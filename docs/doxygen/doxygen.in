@@ -33,7 +33,10 @@ PROJECT_NAME           = "BOSS Afterburner"
 # with spaces.
 
 INPUT  = "/besfs/users/deboer/BOSS_Afterburner"
+INPUT += "/besfs/users/deboer/BOSS_Afterburner/docs/doxygen/mainpage.md"
 INPUT += "/besfs/users/deboer/BOSS_Afterburner/docs/doxygen/boss.md"
+
+USE_MDFILE_AS_MAINPAGE = "/besfs/users/deboer/BOSS_Afterburner/docs/doxygen/mainpage.md"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.
