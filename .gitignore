@@ -1,0 +1,21 @@
+# Ignore folder contents
+data/*.dst
+data/*.raw
+data/*.root
+data/*.rtraw
+log/*.log
+plots/*.eps
+plots/*.png
+plots/*.root
+
+# Ignore settings
+.vscode/*
+*.code-workspace
+
+# Ignore binaries
+*.[oad]
+*.do
+*.so
+*ACLiC_dict_rdict.pcm
+execute
+main
