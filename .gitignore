@@ -1,12 +1,13 @@
 # Ignore folder contents
-data/**.dst
-data/**.raw
-data/**.root
-data/**.rtraw
-log/**.log
-plots/**.eps
-plots/**.png
-plots/**.root
+data/**/*.dst
+data/**/*.raw
+data/**/*.root
+data/**/*.rtraw
+log/**/*.log
+plots/**/*.eps
+plots/**/*.png
+plots/**/*.pdf
+plots/**/*.root
 
 # Ignore settings
 .vscode/**
@@ -16,6 +17,8 @@ plots/**.root
 **.[oad]
 **.do
 **.so
+**.root
+**.png
 *ACLiC_dict_rdict.pcm
 execute
 main
