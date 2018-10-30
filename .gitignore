@@ -17,8 +17,7 @@ plots/**/*.root
 **.[oad]
 **.do
 **.so
-**.root
-**.png
+**.exe
 *ACLiC_dict_rdict.pcm
 execute
 main
