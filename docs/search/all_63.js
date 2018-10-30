@@ -2,6 +2,7 @@ var searchData=
 [
   ['c',['c',['../RooFitMacro_8C.html#a63b96401309cc0c66ce6c88f1783d7c2',1,'RooFitMacro.C']]],
   ['cd',['cd',['../RooFitMacro_8C.html#a830b866985ab6ffa6a05bce1518ed25d',1,'RooFitMacro.C']]],
+  ['checkifnullptr',['CheckIfNullPtr',['../AnalyseRootFile_8C.html#ad14aa2226812edea5dc1258f4c7a9807',1,'AnalyseRootFile.C']]],
   ['chi2',['chi2',['../namespaceAnaBranches_1_1fit4c.html#afe561d0f9578461c4942409cabcec18e',1,'AnaBranches::fit4c::chi2()'],['../namespaceAnaBranches_1_1fit5c.html#a8ec91a8bc3cf8e28c251fe3a8a359253',1,'AnaBranches::fit5c::chi2()']]],
   ['chie',['chie',['../namespaceAnaBranches_1_1dedx.html#ad14eaa3e0bc916bcf00ddb32d625c000',1,'AnaBranches::dedx']]],
   ['chik',['chik',['../namespaceAnaBranches_1_1dedx.html#a4d155e4bffa02c9b1b106f21cd1bac7e',1,'AnaBranches::dedx']]],

@@ -1,7 +1,6 @@
 var NAVTREE =
 [
   [ "BOSS Afterburner", "index.html", [
-    [ "The BOSS Framework", "md_boss.html", null ],
     [ "README", "md__besfs_users_deboer_BOSS_Afterburner_README.html", [
       [ "Acknowledgements", "md__besfs_users_deboer_BOSS_Afterburner_README.html#acknowledgements", null ]
     ] ],

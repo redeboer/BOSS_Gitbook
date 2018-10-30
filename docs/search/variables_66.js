@@ -12,6 +12,8 @@ var searchData=
   ['ffit5c',['fFit5c',['../classRhopiRootChain.html#a37f1da22b14b91f3cac6a5d0fe7d28c5',1,'RhopiRootChain::fFit5c()'],['../classRhopiRootFile.html#a8ee41b35a1a8d47db5abde95be25cb8c',1,'RhopiRootFile::fFit5c()']]],
   ['fgeff',['fGeff',['../classRhopiRootChain.html#a761a7bc8a79deb40d3a2a958805c599b',1,'RhopiRootChain::fGeff()'],['../classRhopiRootFile.html#a4bbff2bbe460061e1f12d72d1554e002',1,'RhopiRootFile::fGeff()']]],
   ['filters',['filters',['../RooFitMacro_8C.html#aa19d2a26febe1d1da2d0597f64d121bb',1,'RooFitMacro.C']]],
+  ['fparticlenamelatex',['fParticleNameLaTeX',['../classParticle.html#afd36e09313f192e586b4055ad8b7acc2',1,'Particle']]],
+  ['fparticlepdg',['fParticlePDG',['../classParticle.html#a08665826413095e79efd4a6a1ec3fabc',1,'Particle']]],
   ['fphoton',['fPhoton',['../classRhopiRootChain.html#a8307c57cd38b5af842684963696a3396',1,'RhopiRootChain::fPhoton()'],['../classRhopiRootFile.html#a6c2fff1979824f33b713ed2cfd770f02',1,'RhopiRootFile::fPhoton()']]],
   ['fpid',['fPid',['../classRhopiRootChain.html#a555436d49e566d01516f88327f9a4653',1,'RhopiRootChain::fPid()'],['../classRhopiRootFile.html#a721ec70ff1391ab97d50bbdadd9c38ab',1,'RhopiRootFile::fPid()']]],
   ['frame',['frame',['../RooFitMacro_8C.html#a23a6bd5989d64fef326940f4e139139e',1,'RooFitMacro.C']]],
