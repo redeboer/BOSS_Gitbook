@@ -9,7 +9,7 @@ plots/**.png
 plots/**.root
 
 # Ignore settings
-.vscode/*
+.vscode/**
 **.code-workspace
 
 # Ignore binaries
