@@ -32,7 +32,8 @@ PROJECT_NAME           = "BOSS Afterburner"
 # directories like "/usr/src/myproject". Separate the files or directories
 # with spaces.
 
-INPUT = "/besfs/users/deboer/BOSS_Afterburner"
+INPUT  = "/besfs/users/deboer/BOSS_Afterburner"
+INPUT += "/besfs/users/deboer/BOSS_Afterburner/docs/doxygen/boss.md"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.
