@@ -1,0 +1,9 @@
+digraph "RooFit_examples" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_f5a818e78c532f69294936c28c6ea257 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="plots" fontname="Helvetica", fontsize="10", URL="dir_f5a818e78c532f69294936c28c6ea257.html"]
+  dir_f53a4c51863e9953c5ab580e3275e47f [shape=box, label="RooFit_examples", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_f53a4c51863e9953c5ab580e3275e47f.html"];
+  }
+}
