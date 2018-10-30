@@ -1,6 +1,8 @@
+/**
 @page     The BOSS Framework
 @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-@date     27-10-2018
+@date     30-10-2018
+*/
 
 This page is used to collect information about using the BOSS framework, like loading a package.
 
