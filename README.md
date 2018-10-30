@@ -6,12 +6,12 @@
 
 The documentation of this framework has to be generated using at least `Doxygen` **1.8.0**, as it contains Markdown, LaTex, and HTML code. When working on the IHEP service, you will therefore have to login to the `lxslc7` server (Scientific Linux 7) -- `lxslc6` uses an older version of `Doxygen`. Generate documentation using `doxygen .doxygen.in` (where `.doxygen.in` is the `Doxygen` input configuration file).
 
-\section intro Introduction
+## Introduction
 From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the `BOSS` framework, I decided to supply the code I write for my own analysis with `Doxygen` formated comments. The resulting documentation can then be used as a gudie for anyone who wants to get familiar with the `BOSS` framework.
 
 In writing my code, I have attempted to set up an object-oriented `C++` class structure that is both general in usage (that is, using base and derived classes) and represents the data structure of analysis output from the `BOSS` framework. In this way, I hope that class documentation in this repository can also be used to help the user understand the `BOSS` framework itself.
 
-\subsection boss The BOSS framework
+## The BOSS framework
 List of resources:
 @todo Go through each web page and describe its contents
 
