@@ -102,8 +102,8 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="contents">
 <div class="textblock"><p><b>This repository is underdevelopment.</b> It has been set up as an <em>unofficial</em> extension to the BOSS analysis framework of the <a href="http://bes3.ihep.ac.cn" title="Offical BESIII webpage">BESIII collaboration</a> with two related purposes:</p>
 <ol type="1">
-<li>Serve as an accessible introduction and user guide to <code>BOSS</code>.</li>
-<li>Provide basic tools to analyse and visualise output of <code>BOSS</code>.</li>
+<li>Serve as an accessible introduction and user guide to <b>BOSS</b>.</li>
+<li>Provide basic tools to analyse and visualise output of <b>BOSS</b>.</li>
 </ol>
 <p>If you do not have an IHEP networking account, it is therefore better to check out the official <a href="http://english.ihep.cas.cn/bes/doc/2247.html" title="Offical BOSS webpage">Offline Software page</a> of BESIII &mdash; this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section <a href="#further-reading">Further reading</a>.</p>
 <h1>Table of contents </h1>
@@ -111,9 +111,9 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#the-boss-framework">The BOSS framework</a><ul>
 <li><a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a></li>
-<li><a href="#setup-of-your-boss-and-afterburner-environment">Setup of your `BOSS` and *Afterburner* environment</a><ul>
+<li><a href="#setup-of-your-boss-and-afterburner-environment">Setup of your **BOSS** and *Afterburner* environment</a><ul>
 <li><a href="#1-your-work-area">(1) Your work area</a></li>
-<li><a href="#2-boss-afterburner">(2) *BOSS Afterburner*</a></li>
+<li><a href="#2-boss-afterburner">(2) BOSS Afterburner</a></li>
 </ul>
 </li>
 <li><a href="#setup-a-boss-package">Setup a BOSS package</a></li>
@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><a href="#technicalities">Technicalities</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#further-reading">Further reading</a><ul>
-<li><a href="#the-boss-analysis-framework">The `BOSS` Analysis Framework</a></li>
+<li><a href="#the-boss-analysis-framework">The **BOSS** Analysis Framework</a></li>
 </ul>
 </li>
 </ul>
@@ -130,35 +130,37 @@ $(document).ready(function(){initNavTree('index.html','');});
 <h1>The BOSS framework</h1>
 <h2>Organisation of the IHEP server</h2>
 <p>The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7.</p>
-<h2>Setup of your <code>BOSS</code> and <em>Afterburner</em> environment</h2>
-<p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <code>BOSS</code> and (2) the <em>BOSS Afterburner</em> repository.</p>
+<h2>Setup of your <b>BOSS</b> and <em>Afterburner</em> environment</h2>
+<p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository.</p>
 <h3>(1) Your work area</h3>
-<ul>
-<li>Go to your <em>IHEP batch</em> folder:</li>
-</ul>
-<p>``` cd /ihepbatch/bes/&lt;your username&gt; ```</p>
-<ul>
-<li>Create a workarea directory and a 'CMT home' directory, where you add the version number of the <code>BOSS</code> version you want to use. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code></li>
-</ul>
-<p>``` mkdir cmthome-&lt;BOSS version&gt; mkdir workarea-&lt;BOSS version&gt; ``` </p>
-<pre class="fragment">- \xrefitem todo 1.
-</pre><h3>(2) <em>BOSS Afterburner</em></h3>
+<p>Go to your <em>IHEP batch</em> folder: </p>
+<pre class="fragment">`cd /ihepbatch/bes/\&lt;your username\&gt;`
+</pre><p>Create a workarea directory and a 'CMT home' directory, where you add the version number of the <b>BOSS</b> version you want to use. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code> </p>
+<pre class="fragment">`mkdir cmthome-\&lt;BOSS version\&gt;`
+`mkdir workarea-\&lt;BOSS version\&gt;`
+</pre><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
+<h3>(2) BOSS Afterburner</h3>
 <p>Go to the <em>BES file system</em> folder: </p>
 <pre class="fragment">`cd /besfs/users/&lt;your username&gt;`
 </pre><p><a href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the <em>BOSS Afterburner</em> repository: </p>
 <pre class="fragment">`git clone https://github.com/redeboer/BOSS_Afterburner`
 </pre><p>Now you're all set to go!</p>
 <h2>Setup a BOSS package</h2>
-<p>The typical example that is used as a starting point in <code>BOSS</code> is the <code>TestRelease</code> package. We will need to copy this package into your work area.</p>
+<p>The typical example that is used as a starting point in <b>BOSS</b> is the <code>TestRelease</code> package. We will need to copy this package into your work area.</p>
 <ol type="1">
-<li>:(同一个节点下) cd 到上一页你创建的workarea路径下<code> 2.</code>cp –r $BesArea/TestRelease ./<code> 3.</code>cd TestRelease/TestRelease-*/cmt<code> 4.</code>cmt broadcast cmt config<code> 5.</code>cmt broadcast make<code> 6.</code>source setup.csh`</li>
+<li>:(同一个节点下) cd 到上一页你创建的workarea路径下`</li>
+<li><code>cp –r $BesArea/TestRelease ./</code></li>
+<li><code>cd TestRelease/TestRelease-*/cmt</code></li>
+<li><code>cmt broadcast cmt config</code></li>
+<li><code>cmt broadcast make</code></li>
+<li><code>source setup.csh</code></li>
 </ol>
 <h1>Technicalities</h1>
 <h1>About</h1>
-<p>From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the <code>BOSS</code> framework, I decided to supply the code I write for my own analysis with <code>Doxygen</code> formated comments. The resulting documentation can then be used as a gudie for anyone who wants to get familiar with the <code>BOSS</code> framework.</p>
-<p>In writing my code, I have attempted to set up an object-oriented <code>C++</code> class structure that is both general in usage (that is, using <em>base and derived classes</em>) and represents the data structure of analysis output from the <code>BOSS</code> framework. In this way, I hope that class documentation in this repository can also be used to help the user understand the <code>BOSS</code> framework itself.</p>
+<p>From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the <b>BOSS</b> framework, I decided to supply the code I write for my own analysis with <code>Doxygen</code> formated comments. The resulting documentation can then be used as a gudie for anyone who wants to get familiar with the <b>BOSS</b> framework.</p>
+<p>In writing my code, I have attempted to set up an object-oriented <code>C++</code> class structure that is both general in usage (that is, using <em>base and derived classes</em>) and represents the data structure of analysis output from the <b>BOSS</b> framework. In this way, I hope that class documentation in this repository can also be used to help the user understand the <b>BOSS</b> framework itself.</p>
 <h1>Further reading</h1>
-<h2>The <code>BOSS</code> Analysis Framework</h2>
+<h2>The <b>BOSS</b> Analysis Framework</h2>
 <ul>
 <li><a href="http://bes3.to.infn.it/Boss/7.0.2/html/classes.html">http://bes3.to.infn.it/Boss/7.0.2/html/classes.html</a> (external)</li>
 <li><a href="https://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/">https://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/</a> (internal)</li>
