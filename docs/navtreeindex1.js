@@ -17,7 +17,7 @@ var NAVTREEINDEX1 =
 "globals_vars.html":[4,1,2],
 "hierarchy.html":[3,2],
 "index.html":[],
-"index.html":[0],
+"md__besfs_users_deboer_BOSS_Afterburner_README.html":[0],
 "namespaceAnaBranches.html":[3,0,0],
 "namespaceAnaBranches.html":[2,0,0],
 "namespaceAnaBranches_1_1dedx.html":[3,0,0,0],
