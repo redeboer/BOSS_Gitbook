@@ -17,8 +17,6 @@ Table of contents
 - [The BOSS framework](#the-boss-framework)
 	- [Organisation of the IHEP server](#organisation-of-the-ihep-server)
 	- [Setup of your BOSS and Afterburner environment](#setup-of-your-boss-and-afterburner-environment)
-		- [(1) Your work area](#1-your-work-area)
-		- [(2) BOSS Afterburner](#2-boss-afterburner)
 	- [Set up a BOSS package](#set-up-a-boss-package)
 - [Further reading](#further-reading)
 	- [The BOSS Analysis Framework](#the-boss-analysis-framework)
@@ -80,27 +78,26 @@ I advise you to set up your environment in the same way I did. There are two mai
 
 You will be running your **BOSS** analyses from this folder. It contains a *Configuration Management Tool* folder (`cmthome`), which is used to set up path variables for **BOSS**, and a `workarea` folder where you develop your own **BOSS** packages (including the `jobOptions*.txt` files).
 
+**Step 1:** Go to your *IHEP batch* folder:
 
-**1.** Go to your *IHEP batch* folder:
+	cd /ihepbatch/bes/<your username>
 
-	cd /ihepbatch/bes/[your username]
+At this stage, you'll have to decide which version of BOSS you have to use. At the time of writing, version 7.0.3 is the latest stable version, though it could be that for your analysis you have to use data sets that were reconstructed with older versions of **BOSS**. Here, I'll just use `7.0.3`, but you can replace this number with whatever version you need. 
 
-At this stage, you'll have to decide which version of BOSS you have to use. At the time of writing, version 7.0.3 is the latest stable version, though it could be that for your analysis you have to use data that was reconstructed with older versions of **BOSS**. For now, I'll just use `7.0.3`, but you can replace this number with whatever version you need. 
-
-**2.** We'll first set up the necessary references to **BOSS** using the *Configuration Management Tool* (CMT). This is done by copying the `cmthome` folder from BOSS Software directory to the `ihepbatch` folder where you currently are:
+**Step 2:** We'll first set up the necessary references to **BOSS** using the *Configuration Management Tool* (CMT). This is done by copying the `cmthome` folder from BOSS Software directory to the `ihepbatch` folder where you currently are:
 
 	cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 cmthome
 
-**3.** Go into the new folder you created and connect to the CMT:
+**Step 3:** Go into the new folder you created and connect to the CMT:
 
 	cd cmthome
 	source setupCMT.csh
 
-**4.** You'll now have to modify the file called `requirements` (we'll use the `vi` editor here, but you can use whatever editor you prefer):
+**Step 4:** You'll now have to modify the file called `requirements` (we'll use the `vi` editor here, but you can use whatever editor you prefer):
 
    vi requirements
 
-**5.** The file contains the following lines:
+**Step 5:** The file contains the following lines:
 
 	#macro WorkArea "/ihepbatch/bes/maqm/workarea"
 
@@ -114,7 +111,7 @@ Uncomment them (remove the hash `#`) and replace `maqm` with your own user name.
 	path_remove CMTPATH "${WorkArea}"
 	path_prepend CMTPATH "${WorkArea}"
 
-**6.** Now, create a **workarea** directory and a 'CMT home' directory, where you add the version number of the **BOSS** version you want to use to the directory name. You can for instance take `<BOSS version>` to be `7.0.3`:
+**Step 6:** Now, create a **workarea** directory and a 'CMT home' directory, where you add the version number of the **BOSS** version you want to use to the directory name. You can for instance take `<BOSS version>` to be `7.0.3`:
 
 	mkdir cmthome-<BOSS version>
 	mkdir workarea-<BOSS version>

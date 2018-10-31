@@ -125,163 +125,160 @@ $(document).ready(function(){initNavTree('README_8md.html','');});
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;- [The BOSS framework](#the-boss-framework)</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    - [Organisation of the IHEP server](#organisation-of-the-ihep-server)</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    - [Setup of your BOSS and Afterburner environment](#setup-of-your-boss-and-afterburner-environment)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        - [(1) Your work area](#1-your-work-area)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        - [(2) BOSS Afterburner](#2-boss-afterburner)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    - [Set up a BOSS package](#set-up-a-boss-package)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;- [Further reading](#further-reading)</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    - [The BOSS Analysis Framework](#the-boss-analysis-framework)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;- [About](#about)</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"># Introduction</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;The [Beijing Spectrometer (BESIII)](http:<span class="comment">//bes3.ihep.ac.cn/) is a particle experiment situated at the [Beijing Electron-Positron Collider (BEPCII)](http://english.ihep.cas.cn/doc/1840.html). It is primarily designed to perform highly sensitive studies of light hadron and charm physics.</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    - [Set up a BOSS package](#set-up-a-boss-package)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;- [Further reading](#further-reading)</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    - [The BOSS Analysis Framework](#the-boss-analysis-framework)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;- [About](#about)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"># Introduction</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;The [Beijing Spectrometer (BESIII)](http:<span class="comment">//bes3.ihep.ac.cn/) is a particle experiment situated at the [Beijing Electron-Positron Collider (BEPCII)](http://english.ihep.cas.cn/doc/1840.html). It is primarily designed to perform highly sensitive studies of light hadron and charm physics.</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;@todo Elaborate or refer</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;@todo Elaborate or refer</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;Output of the detector is analysed <span class="keyword">using</span> the [BESIII Offline Software System (BOSS)](http:<span class="comment">//english.ihep.cas.cn/bes/doc/2247.html).</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;Output of the detector is analysed <span class="keyword">using</span> the [BESIII Offline Software System (BOSS)](http:<span class="comment">//english.ihep.cas.cn/bes/doc/2247.html).</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"># The BOSS framework</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">## Organisation of the IHEP server</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span>The IHEP server runs on [Scientific Linux CERN](https:<span class="comment">//linux.web.cern.ch/linux/scientific.shtml) (SLC). The server offers several versions. Usually, people use either SLC5, SLC6, or SLC7. The domain names for these are `lxslc7.ihep.ac.cn`, where the `7` in this case refers to SLC7. If you are running on Linux or a Linux terminal, the server can be easily accessed using:</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"># The BOSS framework</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">## Organisation of the IHEP server</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span>The IHEP server runs on [Scientific Linux CERN](https:<span class="comment">//linux.web.cern.ch/linux/scientific.shtml) (SLC). The server offers several versions. Usually, people use either SLC5, SLC6, or SLC7. The domain names for these are `lxslc7.ihep.ac.cn`, where the `7` in this case refers to SLC7. If you are running on Linux or a Linux terminal, the server can be easily accessed using:</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    ssh -Y &lt;your user name&gt;@lxslc7.ihep.ac.cn</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    ssh -Y &lt;your user name&gt;@lxslc7.ihep.ac.cn</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;Here, the option `-Y` ensures *X11 forwarding*, allowing you to open graphical applications.</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;Here, the option `-Y` ensures *X11 forwarding*, allowing you to open graphical applications.</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;In Windows, there are some nice tools that allow you to access the server. First of all, to be able to use SSH, use will either have to use [PuTTY](https:<span class="comment">//www.putty.org/) or more extensive software like [Xmanager](https://www.netsarang.com/products/xmg_overview.html). You can also just search for some Linux terminals for Windows. In addition, I would recommend you to work with the (S)FTP client [WinSCP](https://winscp.net/eng/index.php). It allows you to easily navigate the file structure of the IHEP server and to quickly transfer---even synchronise---files up and down to your own computer.</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;In Windows, there are some nice tools that allow you to access the server. First of all, to be able to use SSH, use will either have to use [PuTTY](https:<span class="comment">//www.putty.org/) or more extensive software like [Xmanager](https://www.netsarang.com/products/xmg_overview.html). You can also just search for some Linux terminals for Windows. In addition, I would recommend you to work with the (S)FTP client [WinSCP](https://winscp.net/eng/index.php). It allows you to easily navigate the file structure of the IHEP server and to quickly transfer---even synchronise---files up and down to your own computer.</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;When you have logged into the server, you usually start in your home (`~`) folder. Move to the root of the server (`<a class="code" href="RooFitMacro_8C.html#a830b866985ab6ffa6a05bce1518ed25d">cd</a> /`) and you&#39;ll see that is a large number of other directories. A few of these directories contain space that is assigned to your user account. Here is an overview:</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;When you have logged into the server, you usually start in your home (`~`) folder. Move to the root of the server (`<a class="code" href="RooFitMacro_8C.html#a830b866985ab6ffa6a05bce1518ed25d">cd</a> /`) and you&#39;ll see that is a large number of other directories. A few of these directories contain space that is assigned to your user account. Here is an overview:</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;| Path                                   | Data quotum | Max. number of files  | Remark                  |</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;| -------------------------------------- |:-----------:|:---------------------:|:-----------------------:|</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;| `/afs/ihep.ac.cn/users/&lt;u&gt;/&lt;username&gt;` |      500 MB |                    NA | home (`~`)              |</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;| `/besfs/users/&lt;username&gt;`              |       50 GB |               300,000 |                         |</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;| `/ihepbatch/bes/&lt;username&gt;`            |      200 MB |                    NA |                         |</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;| `/workfs/bes/&lt;username&gt;`               |        5 GB |                50,000 | no `hep_sup` available  |</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;| `/scratchfs/bes/&lt;username&gt;`            |      500 GB |                    NA | max. 2 weeks            |</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;| Path                                   | Data quotum | Max. number of files  | Remark                  |</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;| -------------------------------------- |:-----------:|:---------------------:|:-----------------------:|</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;| `/afs/ihep.ac.cn/users/&lt;u&gt;/&lt;username&gt;` |      500 MB |                    NA | home (`~`)              |</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;| `/besfs/users/&lt;username&gt;`              |       50 GB |               300,000 |                         |</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;| `/ihepbatch/bes/&lt;username&gt;`            |      200 MB |                    NA |                         |</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;| `/workfs/bes/&lt;username&gt;`               |        5 GB |                50,000 | no `hep_sup` available  |</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;| `/scratchfs/bes/&lt;username&gt;`            |      500 GB |                    NA | max. 2 weeks            |</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;Some other important directories are the following:</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;Some other important directories are the following:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;- [BOSS Software directory](https:<span class="comment">//docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_setup_BOSS_environment_on_lxslc)</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    + `/afs/ihep.ac.cn/bes3/offline/Boss`</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;- [Raw data files](https:<span class="comment">//docbes3.ihep.ac.cn/~offlinesoftware/index.php/Raw_Data)</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    + `/bes3fs/offline/data/raw`</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    + `/besfs2/offline/data/raw` (only rounds 3 and 6)</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    + `/besfs/offline/data/randomtrg` (random trigger data)</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;- [Reconstructed data sets](https:<span class="comment">//docbes3.ihep.ac.cn/~offlinesoftware/index.php/Production)</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    + `/besfs3/offline/data/`</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    + `/besfs2/offline/` (older versions)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;- [BOSS Software directory](https:<span class="comment">//docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_setup_BOSS_environment_on_lxslc)</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    + `/afs/ihep.ac.cn/bes3/offline/Boss`</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;- [Raw data files](https:<span class="comment">//docbes3.ihep.ac.cn/~offlinesoftware/index.php/Raw_Data)</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    + `/bes3fs/offline/data/raw`</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    + `/besfs2/offline/data/raw` (only rounds 3 and 6)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    + `/besfs/offline/data/randomtrg` (random trigger data)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;- [Reconstructed data sets](https:<span class="comment">//docbes3.ihep.ac.cn/~offlinesoftware/index.php/Production)</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    + `/besfs3/offline/data/`</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    + `/besfs2/offline/` (older versions)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;These directories will be important later in this &#39;tutorial&#39;.</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;These directories will be important later in this &#39;tutorial&#39;.</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">## Setup of your BOSS and Afterburner environment</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor"></span>I advise you to set up your environment in the same way I did. There are two <a class="code" href="AnalyseRootFile_8C.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> directories that you will be <span class="keyword">using</span>: (1) the **work area** that contains your run scripts <span class="keywordflow">for</span> **BOSS** and (2) the *BOSS Afterburner* repository. I placed the work area in my `ihepbatch` folder (see [Organisation of the IHEP server](#organisation-of-the-ihep-server)) and the BOSS Afterburner in my `besfs` folder. Data generated with **BOSS** through the work area scripts is written then to the `BOSS_Afterburner/data` directory on `besfs` (see later).</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">### (1) Your work area</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor"></span>@todo Test the procedure described below!</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">## Setup of your BOSS and Afterburner environment</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor"></span>I advise you to set up your environment in the same way I did. There are two <a class="code" href="AnalyseRootFile_8C.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> directories that you will be <span class="keyword">using</span>: (1) the **work area** that contains your run scripts <span class="keywordflow">for</span> **BOSS** and (2) the *BOSS Afterburner* repository. I placed the work area in my `ihepbatch` folder (see [Organisation of the IHEP server](#organisation-of-the-ihep-server)) and the BOSS Afterburner in my `besfs` folder. Data generated with **BOSS** through the work area scripts is written then to the `BOSS_Afterburner/data` directory on `besfs` (see later).</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">### (1) Your work area</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor"></span>@todo Test the procedure described below!</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;You will be running your **BOSS** analyses from <span class="keyword">this</span> folder. It contains a *Configuration Management Tool* folder (`cmthome`), which is used to set up <a class="code" href="namespaceAnaBranches_1_1tof1.html#a4dd9f1a8122363dd78b950a448aa0dbe">path</a> variables <span class="keywordflow">for</span> **BOSS**, and a `workarea` folder where you develop your own **BOSS** packages (including the `jobOptions*.txt` files).</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;You will be running your **BOSS** analyses from <span class="keyword">this</span> folder. It contains a *Configuration Management Tool* folder (`cmthome`), which is used to set up <a class="code" href="namespaceAnaBranches_1_1tof1.html#a4dd9f1a8122363dd78b950a448aa0dbe">path</a> variables <span class="keywordflow">for</span> **BOSS**, and a `workarea` folder where you develop your own **BOSS** packages (including the `jobOptions*.txt` files).</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;**Step 1:** Go to your *IHEP batch* folder:</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;**1.** Go to your *IHEP batch* folder:</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="RooFitMacro_8C.html#a830b866985ab6ffa6a05bce1518ed25d">cd</a> /ihepbatch/bes/[your username]</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;At <span class="keyword">this</span> stage, you<span class="stringliteral">&#39;ll have to decide which version of BOSS you have to use. At the time of writing, version 7.0.3 is the latest stable version, though it could be that for your analysis you have to use data that was reconstructed with older versions of **BOSS**. For now, I&#39;</span>ll just use `7.0.3`, but you can replace <span class="keyword">this</span> number with whatever version you need. </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;**2.** We<span class="stringliteral">&#39;ll first set up the necessary references to **BOSS** using the *Configuration Management Tool* (CMT). This is done by copying the `cmthome` folder from BOSS Software directory to the `ihepbatch` folder where you currently are:</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="stringliteral">    cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 cmthome</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="stringliteral">**3.** Go into the new folder you created and connect to the CMT:</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="RooFitMacro_8C.html#a830b866985ab6ffa6a05bce1518ed25d">cd</a> /ihepbatch/bes/&lt;your username&gt;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;At <span class="keyword">this</span> stage, you<span class="stringliteral">&#39;ll have to decide which version of BOSS you have to use. At the time of writing, version 7.0.3 is the latest stable version, though it could be that for your analysis you have to use data sets that were reconstructed with older versions of **BOSS**. Here, I&#39;</span>ll just use `7.0.3`, but you can replace <span class="keyword">this</span> number with whatever version you need. </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;**Step 2:** We<span class="stringliteral">&#39;ll first set up the necessary references to **BOSS** using the *Configuration Management Tool* (CMT). This is done by copying the `cmthome` folder from BOSS Software directory to the `ihepbatch` folder where you currently are:</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="stringliteral">    cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 cmthome</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="stringliteral">**Step 3:** Go into the new folder you created and connect to the CMT:</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="stringliteral">    cd cmthome</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="stringliteral">    source setupCMT.csh</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="stringliteral">    cd cmthome</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="stringliteral">    source setupCMT.csh</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="stringliteral">**4.** You&#39;</span>ll now have to modify the file called `requirements` (we<span class="stringliteral">&#39;ll use the `vi` editor here, but you can use whatever editor you prefer):</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="stringliteral">   vi requirements</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="stringliteral">**5.** The file contains the following lines:</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="stringliteral">    #macro WorkArea &quot;/ihepbatch/bes/maqm/workarea&quot;</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="stringliteral">**Step 4:** You&#39;</span>ll now have to modify the file called `requirements` (we<span class="stringliteral">&#39;ll use the `vi` editor here, but you can use whatever editor you prefer):</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="stringliteral">   vi requirements</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="stringliteral">**Step 5:** The file contains the following lines:</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="stringliteral">    #macro WorkArea &quot;/ihepbatch/bes/maqm/workarea&quot;</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="stringliteral">    #path_remove CMTPATH  &quot;${WorkArea}&quot;</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="stringliteral">    #path_prepend CMTPATH &quot;${WorkArea}&quot;</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="stringliteral">    #path_remove CMTPATH  &quot;${WorkArea}&quot;</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="stringliteral">    #path_prepend CMTPATH &quot;${WorkArea}&quot;</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="stringliteral">Uncomment them (remove the hash `#`) and replace `maqm` with your own user name. Like this:</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="stringliteral">    macro WorkArea &quot;/ihepbatch/bes/&lt;your user name&gt;/workarea&quot;</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="stringliteral">Uncomment them (remove the hash `#`) and replace `maqm` with your own user name. Like this:</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="stringliteral">    macro WorkArea &quot;/ihepbatch/bes/&lt;your user name&gt;/workarea&quot;</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="stringliteral">    path_remove CMTPATH &quot;${WorkArea}&quot;</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="stringliteral">    path_prepend CMTPATH &quot;${WorkArea}&quot;</span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="stringliteral">    path_remove CMTPATH &quot;${WorkArea}&quot;</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="stringliteral">    path_prepend CMTPATH &quot;${WorkArea}&quot;</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="stringliteral">**6.** Now, create a **workarea** directory and a &#39;</span>CMT home<span class="stringliteral">&#39; directory, where you add the version number of the **BOSS** version you want to use to the directory name. You can for instance take `&lt;BOSS version&gt;` to be `7.0.3`:</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="stringliteral">**Step 6:** Now, create a **workarea** directory and a &#39;</span>CMT home<span class="stringliteral">&#39; directory, where you add the version number of the **BOSS** version you want to use to the directory name. You can for instance take `&lt;BOSS version&gt;` to be `7.0.3`:</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="stringliteral">    mkdir cmthome-&lt;BOSS version&gt;</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="stringliteral">    mkdir workarea-&lt;BOSS version&gt;</span></div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="stringliteral">    mkdir cmthome-&lt;BOSS version&gt;</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="stringliteral">    mkdir workarea-&lt;BOSS version&gt;</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="stringliteral">@todo Finish tutorial about setting up your BOSS environment (e.g. cmt home)</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="stringliteral">@todo Finish tutorial about setting up your BOSS environment (e.g. cmt home)</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="stringliteral">### (2) BOSS Afterburner</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="stringliteral">Go to the *BES file system* folder:</span></div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="stringliteral">### (2) BOSS Afterburner</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="stringliteral">Go to the *BES file system* folder:</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="stringliteral">    cd /besfs/users/&lt;your username&gt;</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="stringliteral">[Clone](https://help.github.com/articles/cloning-a-repository/) the *BOSS Afterburner* repository:</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="stringliteral">    git clone https://github.com/redeboer/BOSS_Afterburner</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="stringliteral">Now you&#39;</span>re all set to go!</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="stringliteral">    cd /besfs/users/&lt;your username&gt;</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="stringliteral">[Clone](https://help.github.com/articles/cloning-a-repository/) the *BOSS Afterburner* repository:</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="stringliteral">    git clone https://github.com/redeboer/BOSS_Afterburner</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="stringliteral">Now you&#39;</span>re all set to go!</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">## Set up a BOSS package</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor"></span>The typical example that is used as a starting point in **BOSS** is the `TestRelease` package. We will need to copy <span class="keyword">this</span> <span class="keyword">package </span>into your work area.</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">## Set up a BOSS package</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor"></span>The typical example that is used as a starting point in **BOSS** is the `TestRelease` package. We will need to copy <span class="keyword">this</span> <span class="keyword">package </span>into your work area.</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;First go to [your work area](#your-work-area):</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;First go to [your work area](#your-work-area):</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    cd /ihepbatch/bes/&lt;your username&gt;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    cd /ihepbatch/bes/&lt;your username&gt;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    cp –r $BesArea/TestRelease ./</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    cp –r $BesArea/TestRelease ./</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;1. `cd TestRelease/TestRelease-*/cmt`</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;2. `cmt broadcast cmt config`</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;3. `cmt broadcast make`</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;4. `source setup.csh`</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;# Further reading</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;## The BOSS Analysis Framework</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;- BOSS software source code CVS repository:</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    - [for users inside IHEP](http:<span class="comment">//koala.ihep.ac.cn/cgi-bin/viewcvs.cgi/BossCvs/)</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    - [for users outside IHEP](http:<span class="comment">//docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/)</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;- Doxygen documentation:</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    - http:<span class="comment">//bes3.to.infn.it/Boss/7.0.2/html/classes.html (external)</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    - https:<span class="comment">//boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html (`MdcPatRec` Class Index)</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;1. `cd TestRelease/TestRelease-*/cmt`</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;2. `cmt broadcast cmt config`</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;3. `cmt broadcast make`</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;4. `source setup.csh`</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;# Further reading</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;## The BOSS Analysis Framework</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;- BOSS software source code CVS repository:</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    - [for users inside IHEP](http:<span class="comment">//koala.ihep.ac.cn/cgi-bin/viewcvs.cgi/BossCvs/)</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    - [for users outside IHEP](http:<span class="comment">//docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/)</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;- Doxygen documentation:</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    - http:<span class="comment">//bes3.to.infn.it/Boss/7.0.2/html/classes.html (external)</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    - https:<span class="comment">//boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html (`MdcPatRec` Class Index)</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;- http:<span class="comment">//twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome (TWiki)</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;- https:<span class="comment">//indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf</span></div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;- http:<span class="comment">//twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome (TWiki)</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;- https:<span class="comment">//indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;# About</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the **BOSS** framework, I decided to supply the code I write for my own analysis with `Doxygen` formated comments. The resulting documentation can then be used as a gudie for anyone who wants to get familiar with the **BOSS** framework.</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;# About</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the **BOSS** framework, I decided to supply the code I write for my own analysis with `Doxygen` formated comments. The resulting documentation can then be used as a gudie for anyone who wants to get familiar with the **BOSS** framework.</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;In writing my code, I have attempted to set up an object-oriented `C++` class structure that is both general in usage (that is, using *base and derived classes*) and represents the data structure of analysis output from the **BOSS** framework. In this way, I hope that class documentation in this repository can also be used to help the user understand the **BOSS** framework itself.</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;&lt;!-- @todo Elaborate acknowledgements</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;- Prof. Shen Xiaoyan</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;- Cao Ning</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;- Ma Runqiu --&gt;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;In writing my code, I have attempted to set up an object-oriented `C++` class structure that is both general in usage (that is, using *base and derived classes*) and represents the data structure of analysis output from the **BOSS** framework. In this way, I hope that class documentation in this repository can also be used to help the user understand the **BOSS** framework itself.</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;&lt;!-- @todo Elaborate acknowledgements</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;- Prof. Shen Xiaoyan</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;- Cao Ning</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;- Ma Runqiu --&gt;</div>
 <div class="ttc" id="namespaceAnaBranches_1_1tof1_html_a4dd9f1a8122363dd78b950a448aa0dbe"><div class="ttname"><a href="namespaceAnaBranches_1_1tof1.html#a4dd9f1a8122363dd78b950a448aa0dbe">AnaBranches::tof1::path</a></div><div class="ttdeci">double path</div><div class="ttdoc">Path length. </div><div class="ttdef"><b>Definition:</b> <a href="RhopiRootChain_8h_source.html#l00079">RhopiRootChain.h:79</a></div></div>
 <div class="ttc" id="AnalyseRootFile_8C_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="AnalyseRootFile_8C.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Main function used when executing the executable directory (i.e. </div><div class="ttdef"><b>Definition:</b> <a href="AnalyseRootFile_8C_source.html#l00246">AnalyseRootFile.C:246</a></div></div>
 <div class="ttc" id="RooFitMacro_8C_html_a830b866985ab6ffa6a05bce1518ed25d"><div class="ttname"><a href="RooFitMacro_8C.html#a830b866985ab6ffa6a05bce1518ed25d">cd</a></div><div class="ttdeci">c cd()</div></div>
