@@ -71,6 +71,8 @@ These directories will be important later in this 'tutorial'.
 
 
 ## Setup of your BOSS and Afterburner environment
+***Note:** In it's current version, this tutorial assumes you use `bash` as terminal.*
+
 I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the **work area** that contains your run scripts for **BOSS** and (2) the *BOSS Afterburner* repository. I placed the work area in my `ihepbatch` folder (see [Organisation of the IHEP server](#organisation-of-the-ihep-server)) and the BOSS Afterburner in my `besfs` folder. Data generated with **BOSS** through the work area scripts is written then to the `BOSS_Afterburner/data` directory on `besfs` (see later).
 
 ### (1) Your work area
@@ -88,12 +90,11 @@ At this stage, you'll have to decide which version of BOSS you have to use. At t
 
 	cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 cmthome
 
-**Step 3:** Go into the new folder you created and connect to the CMT:
+and navigate into that copy:
 
 	cd cmthome
-	source setupCMT.csh
 
-**Step 4:** You'll now have to modify the file called `requirements` (we'll use the `vi` editor here, but you can use whatever editor you prefer):
+**Step 4:** You'll now have to modify the file called `requirements` so that it handles your username properly. We'll use the `vi` editor here, but you can use whatever editor you prefer:
 
 	vi requirements
 
@@ -101,7 +102,7 @@ The file contains the following lines:
 
 	#macro WorkArea "/ihepbatch/bes/maqm/workarea"
 
-	#path_remove CMTPATH  "${WorkArea}"
+	#path_remove CMTPATH "${WorkArea}"
 	#path_prepend CMTPATH "${WorkArea}"
 
 Uncomment them (remove the hash `#`) and replace `maqm` with your own user name. Like this:
@@ -111,12 +112,28 @@ Uncomment them (remove the hash `#`) and replace `maqm` with your own user name.
 	path_remove CMTPATH "${WorkArea}"
 	path_prepend CMTPATH "${WorkArea}"
 
-**Step 6:** Now, create a **workarea** directory and a 'CMT home' directory, where you add the version number of the **BOSS** version you want to use to the directory name. You can for instance take `<BOSS version>` to be `7.0.3`:
+**Step 5:** Now you can use the scripts to set all references to **BOSS** at once using:
+
+	source setupCMT.sh  # starts connection to the CMT
+	cmt config          # initiates configuration
+	source setup.sh     # sets path variables
+
+**Step 6:** You're done! Just to be sure, you can check whether the path variables have been set correctly:
+
+	echo $CMTPATH
+
+If everything went well, it should print:
+
+	/ihepbatch/bes/<username>/workarea-7.0.3:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.3:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
+
+
+
+<!-- Now, create a **workarea** directory and a 'CMT home' directory, where you add the version number of the **BOSS** version you want to use to the directory name. You can for instance take `<BOSS version>` to be `7.0.3`:
 
 	mkdir cmthome-<BOSS version>
 	mkdir workarea-<BOSS version>
 
-@todo Finish tutorial about setting up your BOSS environment (e.g. cmt home)
+@todo Finish tutorial about setting up your BOSS environment (e.g. cmt home) -->
 
 ### (2) BOSS Afterburner
 Go to the *BES file system* folder:

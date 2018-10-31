@@ -167,6 +167,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 </ul>
 <p>These directories will be important later in this 'tutorial'.</p>
 <h2>Setup of your BOSS and Afterburner environment</h2>
+<p>***Note:** In it's current version, this tutorial assumes you use <code>bash</code> as terminal.*</p>
 <p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository. I placed the work area in my <code>ihepbatch</code> folder (see <a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a>) and the BOSS Afterburner in my <code>besfs</code> folder. Data generated with <b>BOSS</b> through the work area scripts is written then to the <code>BOSS_Afterburner/data</code> directory on <code>besfs</code> (see later).</p>
 <h3>(1) Your work area</h3>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Test the procedure described below!</dd></dl>
@@ -176,26 +177,29 @@ $(document).ready(function(){initNavTree('index.html','');});
 </pre><p>At this stage, you'll have to decide which version of BOSS you have to use. At the time of writing, version 7.0.3 is the latest stable version, though it could be that for your analysis you have to use data sets that were reconstructed with older versions of <b>BOSS</b>. Here, I'll just use <code>7.0.3</code>, but you can replace this number with whatever version you need.</p>
 <p><b>Step 2:</b> We'll first set up the necessary references to <b>BOSS</b> using the <em>Configuration Management Tool</em> (CMT). This is done by copying the <code>cmthome</code> folder from BOSS Software directory to the <code>ihepbatch</code> folder where you currently are: </p>
 <pre class="fragment">cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 cmthome
-</pre><p><b>Step 3:</b> Go into the new folder you created and connect to the CMT: </p>
+</pre><p>and navigate into that copy: </p>
 <pre class="fragment">cd cmthome
-source setupCMT.csh
-</pre><p><b>Step 4:</b> You'll now have to modify the file called <code>requirements</code> (we'll use the <code>vi</code> editor here, but you can use whatever editor you prefer): </p>
+</pre><p><b>Step 4:</b> You'll now have to modify the file called <code>requirements</code> so that it handles your username properly. We'll use the <code>vi</code> editor here, but you can use whatever editor you prefer: </p>
 <pre class="fragment">vi requirements
 </pre><p>The file contains the following lines: </p>
 <pre class="fragment">#macro WorkArea "/ihepbatch/bes/maqm/workarea"
 
-#path_remove CMTPATH  "${WorkArea}"
+#path_remove CMTPATH "${WorkArea}"
 #path_prepend CMTPATH "${WorkArea}"
 </pre><p>Uncomment them (remove the hash <code>#</code>) and replace <code>maqm</code> with your own user name. Like this: </p>
 <pre class="fragment">macro WorkArea "/ihepbatch/bes/&lt;your user name&gt;/workarea"
 
 path_remove CMTPATH "${WorkArea}"
 path_prepend CMTPATH "${WorkArea}"
-</pre><p><b>Step 6:</b> Now, create a <b>workarea</b> directory and a 'CMT home' directory, where you add the version number of the <b>BOSS</b> version you want to use to the directory name. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code>: </p>
-<pre class="fragment">mkdir cmthome-&lt;BOSS version&gt;
-mkdir workarea-&lt;BOSS version&gt;
-</pre><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
-<h3>(2) BOSS Afterburner</h3>
+</pre><p><b>Step 5:</b> Now you can use the scripts to set all references to <b>BOSS</b> at once using: </p>
+<pre class="fragment">source setupCMT.sh  # starts connection to the CMT
+cmt config          # initiates configuration
+source setup.sh     # sets path variables
+</pre><p><b>Step 6:</b> You're done! Just to be sure, you can check whether the path variables have been set correctly: </p>
+<pre class="fragment">echo $CMTPATH
+</pre><p>If everything went well, it should print: </p>
+<pre class="fragment">/ihepbatch/bes/&lt;username&gt;/workarea-7.0.3:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.3:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
+</pre><h3>(2) BOSS Afterburner</h3>
 <p>Go to the <em>BES file system</em> folder: </p>
 <pre class="fragment">cd /besfs/users/&lt;your username&gt;
 </pre><p><a href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the <em>BOSS Afterburner</em> repository: </p>
