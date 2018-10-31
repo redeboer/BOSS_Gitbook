@@ -30,7 +30,7 @@ namespace Settings
 	}
 	/**
 	 * @brief List of relevant particles used in this analysis.
-	 * @description Particles are generated using the `ROOT` PDG database. For a list of PDG codes, see http://home.fnal.gov/~mrenna/lutp0613man2/node44.html
+	 * @details Particles are generated using the `ROOT` PDG database. For a list of PDG codes, see http://home.fnal.gov/~mrenna/lutp0613man2/node44.html
 	 */
 	namespace Particles
 	{

@@ -315,8 +315,10 @@ void DrawSaveAndDelete(TH2D*& hist, const char* saveas)
 
 /**
  * @brief Fit a Gaussian function on a invariant mass distrubution.
- * @description
+ * @details
  * @param invMassHistogram
+ * @param particle Hypothesis particle: which particle are you reconstructing?
+ * @param sigma This is the assumed with of the Gaussian
  */
 void FitGaussian(TH1D* invMassHistogram, const Particle& particle, const double sigma)
 {
@@ -375,8 +377,8 @@ void FitGaussian(TH1D* invMassHistogram, const Particle& particle, const double 
 
 /**
  * @brief Fit a Breit-Wigner
- * @description
- * @param invMassPlot
+ * @details
+ * @param invMassHistogram
  *
  * @todo Work on Breit-Wigner fit <b>and on its convolution</b>!
  */
