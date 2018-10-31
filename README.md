@@ -1,4 +1,5 @@
-# The BOSS Afterburner Framework {#mainpage}
+Main Page {#mainpage}
+=========
 <!--
 @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 @date     30-10-2018
