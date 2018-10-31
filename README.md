@@ -36,9 +36,8 @@ The IHEP server runs on Scientific Linux (SL). There are several versions availa
 I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the **work area** that contains your run scripts for `BOSS` and (2) the *BOSS Afterburner* repository.
 
 1. **Work area**
-   - Go to your *IHEP batch* folder:
+   - Go to your *IHEP batch* folder:  
 	`cd /ihepbatch/bes/<your username>`
-
    - Create a workarea directory and a 'CMT home' directory, where you add the version number of the `BOSS` version you want to use. You can for instance take `<BOSS version>` to be `7.0.3`
 	`mkdir cmthome-<BOSS version>`
 	`mkdir workarea-<BOSS version>`
