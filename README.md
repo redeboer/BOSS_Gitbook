@@ -64,12 +64,15 @@ Some other important directories are the following:
 - [Raw data files](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Raw_Data)
 
   `/bes3fs/offline/data/raw`
+
   `/besfs2/offline/data/raw` (only rounds 3 and 6)
+
   `/besfs/offline/data/randomtrg` (random trigger data)
 
 - [Reconstructed data sets](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Production)
 
   `/besfs3/offline/data/`
+
   `/besfs2/offline/` (older versions)
 
 These directories will be important later in this 'tutorial'.
