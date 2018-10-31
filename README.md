@@ -38,14 +38,14 @@ I advise you to set up your environment in the same way I did. There are two mai
 1. **Work area**
    - Go to your *IHEP batch* folder:
 
-```bash
-cd /ihepbatch/bes/<your username>
+```
+cd /ihepbatch/bes/\<your username\>
 ```
    - Create a workarea directory and a 'CMT home' directory, where you add the version number of the `BOSS` version you want to use. You can for instance take `<BOSS version>` to be `7.0.3`
 
-```bash
-mkdir cmthome-<BOSS version>
-mkdir workarea-<BOSS version>
+```
+mkdir cmthome-\<BOSS version\>
+mkdir workarea-\<BOSS version\>
 ```
 
 	- @todo Finish tutorial about setting up your BOSS environment (e.g. cmt home)
