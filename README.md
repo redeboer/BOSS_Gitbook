@@ -5,16 +5,16 @@
 1. Serve as an accessible introduction and user guide to the `BOSS` framework.
 2. Provide basic tools to analyse output of `BOSS` and generate plots.
 
-If you do not have an IHEP networking account, it is therefore better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html "Offical BOSS webpage") of BESIII -- this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section [Further reading](#further-reading).
+If you do not have an IHEP networking account, it is therefore better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html "Offical BOSS webpage") of BESIII --- this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section [Further reading](#further-reading).
 
 
-## Table of contents
+# Table of contents
 - [Main Page {#mainpage}](#main-page-mainpage)
-	- [Table of contents](#table-of-contents)
+- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [The BOSS framework](#the-boss-framework)
 	- [Organisation of the IHEP server](#organisation-of-the-ihep-server)
-	- [Setup of your environment](#setup-of-your-environment)
+	- [Setup of your `BOSS` and *Afterburner* environment](#setup-of-your-boss-and-afterburner-environment)
 	- [Setup a BOSS package](#setup-a-boss-package)
 - [Technicalities](#technicalities)
 - [About](#about)
@@ -25,26 +25,39 @@ If you do not have an IHEP networking account, it is therefore better to check o
 # Introduction
 
 
+
 # The BOSS framework
 
 ## Organisation of the IHEP server
 The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7.
 
 
-## Setup of your environment
-I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the **work area** that  that 
+## Setup of your `BOSS` and *Afterburner* environment
+I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the **work area** that contains your run scripts for `BOSS` and (2) the *BOSS Afterburner* repository.
 
-1. Your **Work area** Place your `BOSS` packages in `/ihepbatch/bes/<your username>`.
-- Place the `BOSS_Afterburner` in `/besfs/users/<your username>`.
+1. **Work area**
+   - Go to your *IHEP batch* folder:
+	`cd /ihepbatch/bes/<your username>`
+   - Create a workarea directory and a 'CMT home' directory, where you add the version number of the `BOSS` version you want to use. You can for instance take `<BOSS version>` to be `7.0.3`
+	`mkdir cmthome-<BOSS version>`
+	`mkdir workarea-<BOSS version>`
+	- @todo Finish tutorial about setting up your BOSS environment (e.g. cmt home)
+2. **BOSS_Afterburner**
+	- Go to the *BES file system* folder:
+	`cd /besfs/users/<your username>`
+	- [Clone](https://help.github.com/articles/cloning-a-repository/) the *BOSS Afterburner* repository:
+	`git clone https://github.com/redeboer/BOSS_Afterburner`
+
+Now you're all set to go!
 
 ## Setup a BOSS package
 The typical example that is used as a starting point in `BOSS` is the `TestRelease` package. We will need to copy this package into your work area.
 1. :(同一个节点下) cd 到上一页你创建的workarea路径下`
-3. `cp –r $BesArea/TestRelease ./`
-4. `cd TestRelease/TestRelease-*/cmt`
-5. `cmt broadcast cmt config`
-6. `cmt broadcast make`
-7. `source setup.csh`
+2. `cp –r $BesArea/TestRelease ./`
+3. `cd TestRelease/TestRelease-*/cmt`
+4. `cmt broadcast cmt config`
+5. `cmt broadcast make`
+6. `source setup.csh`
 
 
 # Technicalities
