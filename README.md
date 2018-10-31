@@ -1,5 +1,5 @@
 Main Page {#mainpage}
-=========
+=====================
 
 **This repository is underdevelopment.** It has been set up as an *unofficial* extension to the BOSS analysis framework of the [BESIII collaboration](http://bes3.ihep.ac.cn "Offical BESIII webpage") with two related purposes:
 
@@ -10,7 +10,7 @@ If you do not have an IHEP networking account, it is therefore better to check o
 
 
 Table of contents
-=========
+=================
 - [Introduction](#introduction)
 - [The BOSS framework](#the-boss-framework)
 	- [Organisation of the IHEP server](#organisation-of-the-ihep-server)
