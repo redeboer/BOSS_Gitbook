@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><a href="#2-boss-afterburner">(2) BOSS Afterburner</a></li>
 </ul>
 </li>
-<li><a href="#setup-a-boss-package">Setup a BOSS package</a></li>
+<li><a href="#set-up-a-boss-package">Set up a BOSS package</a></li>
 </ul>
 </li>
 <li><a href="#further-reading">Further reading</a><ul>
@@ -139,18 +139,25 @@ $(document).ready(function(){initNavTree('index.html','');});
 <p>When you have logged into the server, you usually start in your home (<code>~</code>) folder. Move to the root of the server (<code>cd /</code>) and you'll see that is a large number of other directories. A few of these directories contain space that is assigned to your user account. Here is an overview:</p>
 <table class="doxtable">
 <tr>
-<th>Path </th><th align="right">Data quotum </th><th align="center">Max. number of files </th><th>Remark  </th></tr>
+<th>Path </th><th align="center">Data quotum </th><th align="center">Max. number of files </th><th align="center">Remark  </th></tr>
 <tr>
-<td><code>/afs/ihep.ac.cn/users/&lt;u&gt;/&lt;username&gt;</code> </td><td align="right">500 MB </td><td align="center">NA </td><td>home (<code>~</code>) </td></tr>
+<td><code>/afs/ihep.ac.cn/users/&lt;u&gt;/&lt;username&gt;</code> </td><td align="center">500 MB </td><td align="center">NA </td><td align="center">home (<code>~</code>) </td></tr>
 <tr>
-<td><code>/besfs/users/&lt;username&gt;</code> </td><td align="right">50 GB </td><td align="center">300,000 </td><td></td></tr>
+<td><code>/besfs/users/&lt;username&gt;</code> </td><td align="center">50 GB </td><td align="center">300,000 </td><td align="center"></td></tr>
 <tr>
-<td><code>/ihepbatch/bes/&lt;username&gt;</code> </td><td align="right">200 MB </td><td align="center">NA </td><td></td></tr>
+<td><code>/ihepbatch/bes/&lt;username&gt;</code> </td><td align="center">200 MB </td><td align="center">NA </td><td align="center"></td></tr>
 <tr>
-<td><code>/workfs/bes/&lt;username&gt;</code> </td><td align="right">5 GB </td><td align="center">50,000 </td><td>no <code>hep_sup</code> </td></tr>
+<td><code>/workfs/bes/&lt;username&gt;</code> </td><td align="center">5 GB </td><td align="center">50,000 </td><td align="center">no <code>hep_sup</code> available </td></tr>
 <tr>
-<td><code>/scratchfs/bes/&lt;username&gt;</code> </td><td align="right">500 GB </td><td align="center">NA </td><td>max. 2 weeks </td></tr>
+<td><code>/scratchfs/bes/&lt;username&gt;</code> </td><td align="center">500 GB </td><td align="center">NA </td><td align="center">max. 2 weeks </td></tr>
 </table>
+<p>Some other important directories are the following:</p>
+<ul>
+<li>**<a href="https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_setup_BOSS_environment_on_lxslc">BOSS Software directory</a>** <code>/afs/ihep.ac.cn/bes3/offline/Boss</code></li>
+<li>**<a href="https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Raw_Data">Raw data files</a>** <code>/bes3fs/offline/data/raw</code> <code>/besfs2/offline/data/raw</code> (only rounds 3 and 6) <code>/besfs/offline/data/randomtrg</code> (random trigger data)</li>
+<li>**<a href="https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Production">Reconstructed data sets</a>** <code>/besfs3/offline/data/</code> <code>/besfs2/offline/</code> (older versions)</li>
+</ul>
+<p>These directories will be important later in this 'tutorial'.</p>
 <h2>Setup of your BOSS and Afterburner environment</h2>
 <p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository.</p>
 <h3>(1) Your work area</h3>
@@ -166,10 +173,14 @@ mkdir workarea-&lt;BOSS version&gt;
 </pre><p><a href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the <em>BOSS Afterburner</em> repository: </p>
 <pre class="fragment">git clone https://github.com/redeboer/BOSS_Afterburner
 </pre><p>Now you're all set to go!</p>
-<h2>Setup a BOSS package</h2>
+<h2>Set up a BOSS package</h2>
 <p>The typical example that is used as a starting point in <b>BOSS</b> is the <code>TestRelease</code> package. We will need to copy this package into your work area.</p>
-<p>First go to <a href="#your-work-area">your work area</a>: cd /ihepbatch/bes/&lt;your username&gt;=""&gt;</p>
-<pre class="fragment">cp –r $BesArea/TestRelease ./
+<p>First go to <a href="#your-work-area">your work area</a>: </p>
+<pre class="fragment">cd /ihepbatch/bes/&lt;your username&gt;
+
+
+
+cp –r $BesArea/TestRelease ./
 </pre><ol type="1">
 <li><code>cd TestRelease/TestRelease-*/cmt</code></li>
 <li><code>cmt broadcast cmt config</code></li>

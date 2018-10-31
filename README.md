@@ -19,7 +19,7 @@ Table of contents
 	- [Setup of your BOSS and Afterburner environment](#setup-of-your-boss-and-afterburner-environment)
 		- [(1) Your work area](#1-your-work-area)
 		- [(2) BOSS Afterburner](#2-boss-afterburner)
-	- [Setup a BOSS package](#setup-a-boss-package)
+	- [Set up a BOSS package](#set-up-a-boss-package)
 - [Further reading](#further-reading)
 	- [The BOSS Analysis Framework](#the-boss-analysis-framework)
 - [About](#about)
@@ -47,15 +47,29 @@ In Windows, there are some nice tools that allow you to access the server. First
 
 When you have logged into the server, you usually start in your home (`~`) folder. Move to the root of the server (`cd /`) and you'll see that is a large number of other directories. A few of these directories contain space that is assigned to your user account. Here is an overview:
 
-| Path                                   | Data quotum | Max. number of files  | Remark         |
-| -------------------------------------- | -----------:|:---------------------:| -------------- |
-| `/afs/ihep.ac.cn/users/<u>/<username>` |      500 MB |                    NA | home (`~`)     |
-| `/besfs/users/<username>`              |       50 GB |               300,000 |                |
-| `/ihepbatch/bes/<username>`            |      200 MB |                    NA |                |
-| `/workfs/bes/<username>`               |        5 GB |                50,000 | no `hep_sup`   |
-| `/scratchfs/bes/<username>`            |      500 GB |                    NA | max. 2 weeks   |
+| Path                                   | Data quotum | Max. number of files  | Remark                  |
+| -------------------------------------- |:-----------:|:---------------------:|:-----------------------:|
+| `/afs/ihep.ac.cn/users/<u>/<username>` |      500 MB |                    NA | home (`~`)              |
+| `/besfs/users/<username>`              |       50 GB |               300,000 |                         |
+| `/ihepbatch/bes/<username>`            |      200 MB |                    NA |                         |
+| `/workfs/bes/<username>`               |        5 GB |                50,000 | no `hep_sup` available  |
+| `/scratchfs/bes/<username>`            |      500 GB |                    NA | max. 2 weeks            |
 
+Some other important directories are the following:
 
+- **[BOSS Software directory](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_setup_BOSS_environment_on_lxslc)**
+  `/afs/ihep.ac.cn/bes3/offline/Boss`
+
+- **[Raw data files](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Raw_Data)**
+  `/bes3fs/offline/data/raw`
+  `/besfs2/offline/data/raw` (only rounds 3 and 6)
+  `/besfs/offline/data/randomtrg` (random trigger data)
+
+- **[Reconstructed data sets](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Production)**
+  `/besfs3/offline/data/`
+  `/besfs2/offline/` (older versions)
+
+These directories will be important later in this 'tutorial'.
 
 
 ## Setup of your BOSS and Afterburner environment
@@ -85,10 +99,11 @@ Go to the *BES file system* folder:
 
 Now you're all set to go!
 
-## Setup a BOSS package
+## Set up a BOSS package
 The typical example that is used as a starting point in **BOSS** is the `TestRelease` package. We will need to copy this package into your work area.
 
 First go to [your work area](#your-work-area):
+
 	cd /ihepbatch/bes/<your username>
 
 
