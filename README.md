@@ -16,14 +16,14 @@ Table of contents
 - [Introduction](#introduction)
 - [The BOSS framework](#the-boss-framework)
 	- [Organisation of the IHEP server](#organisation-of-the-ihep-server)
-	- [Setup of your **BOSS** and *Afterburner* environment](#setup-of-your-boss-and-afterburner-environment)
+	- [Setup of your BOSS and Afterburner environment](#setup-of-your-boss-and-afterburner-environment)
 		- [(1) Your work area](#1-your-work-area)
 		- [(2) BOSS Afterburner](#2-boss-afterburner)
 	- [Setup a BOSS package](#setup-a-boss-package)
 - [Technicalities](#technicalities)
 - [About](#about)
 - [Further reading](#further-reading)
-	- [The **BOSS** Analysis Framework](#the-boss-analysis-framework)
+	- [The BOSS Analysis Framework](#the-boss-analysis-framework)
 
 
 # Introduction
@@ -33,32 +33,36 @@ Table of contents
 # The BOSS framework
 
 ## Organisation of the IHEP server
-The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7. The domain names for these are `lxslc7.ihep.ac.cn`, where the `7` in this case refers to SL7. If you are running on Linux or a Linux terminal, the server can be easily accessed using:
+The IHEP server runs on [Scientific Linux](https://www.scientificlinux.org/) (SL). The server offers several versions. Usually, people use either SL5, SL6, or SL7. The domain names for these are `lxslc7.ihep.ac.cn`, where the `7` in this case refers to SL7. If you are running on Linux or a Linux terminal, the server can be easily accessed using:
 
-	ssh -Y \<your user name\>@lxslc7.ihep.ac.cn
+	ssh -Y <your user name>@lxslc7.ihep.ac.cn
 
 Here, the option `-Y` ensures *X11 forwarding*, allowing you to open graphical applications.
 
-In Windows, there are several nice tools to work on this. First of all, to be able to use SSH, use will either have to use [PuTTY](https://www.putty.org/) or more extensive software like [Xmanager](https://www.netsarang.com/products/xmg_overview.html). In addition, I would recommend you to work with the (S)FTP client [WinSCP](https://winscp.net/eng/index.php). It allows you to easily navigate the file structure of the IHEP server and to quickly transfer---even synchronise---files up and down to your own computer.
+In Windows, there are some nice tools that allow you to access the server. First of all, to be able to use SSH, use will either have to use [PuTTY](https://www.putty.org/) or more extensive software like [Xmanager](https://www.netsarang.com/products/xmg_overview.html). You can also just search for some Linux terminals for Windows. In addition, I would recommend you to work with the (S)FTP client [WinSCP](https://winscp.net/eng/index.php). It allows you to easily navigate the file structure of the IHEP server and to quickly transfer---even synchronise---files up and down to your own computer.
 
 
-## Setup of your **BOSS** and *Afterburner* environment
+## Setup of your BOSS and Afterburner environment
 I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the **work area** that contains your run scripts for **BOSS** and (2) the *BOSS Afterburner* repository.
 
 ### (1) Your work area
 
 Go to your *IHEP batch* folder:
 
-	cd /ihepbatch/bes/\<your username\>
+	cd /ihepbatch/bes/<your username>
 
-Create a workarea directory and a 'CMT home' directory, where you add the version number of the **BOSS** version you want to use to the directory name. You can for instance take `<BOSS version>` to be `7.0.3`:
+Now, create a **workarea** directory and a 'CMT home' directory, where you add the version number of the **BOSS** version you want to use to the directory name. You can for instance take `<BOSS version>` to be `7.0.3`:
 
-	mkdir cmthome-\<BOSS version\>
-	mkdir workarea-\<BOSS version\>
-
-
+	mkdir cmthome-<BOSS version>
+	mkdir workarea-<BOSS version>
 
 @todo Finish tutorial about setting up your BOSS environment (e.g. cmt home)
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
 ### (2) BOSS Afterburner
 Go to the *BES file system* folder:
@@ -75,7 +79,7 @@ Now you're all set to go!
 The typical example that is used as a starting point in **BOSS** is the `TestRelease` package. We will need to copy this package into your work area.
 
 First go to [your work area](#your-work-area):
-	cd /ihepbatch/bes/\<your username\>
+	cd /ihepbatch/bes/<your username>
 
 
 
@@ -103,7 +107,7 @@ In writing my code, I have attempted to set up an object-oriented `C++` class st
 
 # Further reading
 
-## The **BOSS** Analysis Framework
+## The BOSS Analysis Framework
 - http://bes3.to.infn.it/Boss/7.0.2/html/classes.html (external)
 - https://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/ (internal)
 - https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html (`MdcPatRec` Class Index)

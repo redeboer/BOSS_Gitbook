@@ -112,7 +112,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#the-boss-framework">The BOSS framework</a><ul>
 <li><a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a></li>
-<li><a href="#setup-of-your-boss-and-afterburner-environment">Setup of your **BOSS** and *Afterburner* environment</a><ul>
+<li><a href="#setup-of-your-boss-and-afterburner-environment">Setup of your BOSS and Afterburner environment</a><ul>
 <li><a href="#1-your-work-area">(1) Your work area</a></li>
 <li><a href="#2-boss-afterburner">(2) BOSS Afterburner</a></li>
 </ul>
@@ -123,26 +123,36 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><a href="#technicalities">Technicalities</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#further-reading">Further reading</a><ul>
-<li><a href="#the-boss-analysis-framework">The **BOSS** Analysis Framework</a></li>
+<li><a href="#the-boss-analysis-framework">The BOSS Analysis Framework</a></li>
 </ul>
 </li>
 </ul>
 <h1>Introduction</h1>
 <h1>The BOSS framework</h1>
 <h2>Organisation of the IHEP server</h2>
-<p>The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7. The domain names for these are <code>lxslc7.ihep.ac.cn</code>, where the <code>7</code> in this case refers to SL7. If you are running on Linux or a Linux terminal, the server can be easily accessed using: </p>
-<pre class="fragment">ssh -Y \&lt;your user name\&gt;@lxslc7.ihep.ac.cn
+<p>The IHEP server runs on <a href="https://www.scientificlinux.org/">Scientific Linux</a> (SL). The server offers several versions. Usually, people use either SL5, SL6, or SL7. The domain names for these are <code>lxslc7.ihep.ac.cn</code>, where the <code>7</code> in this case refers to SL7. If you are running on Linux or a Linux terminal, the server can be easily accessed using: </p>
+<pre class="fragment">ssh -Y &lt;your user name&gt;@lxslc7.ihep.ac.cn
 </pre><p>Here, the option <code>-Y</code> ensures <em>X11 forwarding</em>, allowing you to open graphical applications.</p>
-<p>In Windows, there are several nice tools to work on this. First of all, to be able to use SSH, use will either have to use <a href="https://www.putty.org/">PuTTY</a> or more extensive software like <a href="https://www.netsarang.com/products/xmg_overview.html">Xmanager</a>. In addition, I would recommend you to work with the (S)FTP client <a href="https://winscp.net/eng/index.php">WinSCP</a>. It allows you to easily navigate the file structure of the IHEP server and to quickly transfer&mdash;even synchronise&mdash;files up and down to your own computer.</p>
-<h2>Setup of your <b>BOSS</b> and <em>Afterburner</em> environment</h2>
+<p>In Windows, there are some nice tools that allow you to access the server. First of all, to be able to use SSH, use will either have to use <a href="https://www.putty.org/">PuTTY</a> or more extensive software like <a href="https://www.netsarang.com/products/xmg_overview.html">Xmanager</a>. You can also just search for some Linux terminals for Windows. In addition, I would recommend you to work with the (S)FTP client <a href="https://winscp.net/eng/index.php">WinSCP</a>. It allows you to easily navigate the file structure of the IHEP server and to quickly transfer&mdash;even synchronise&mdash;files up and down to your own computer.</p>
+<h2>Setup of your BOSS and Afterburner environment</h2>
 <p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository.</p>
 <h3>(1) Your work area</h3>
 <p>Go to your <em>IHEP batch</em> folder: </p>
-<pre class="fragment">cd /ihepbatch/bes/\&lt;your username\&gt;
-</pre><p>Create a workarea directory and a 'CMT home' directory, where you add the version number of the <b>BOSS</b> version you want to use to the directory name. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code>: </p>
-<pre class="fragment">mkdir cmthome-\&lt;BOSS version\&gt;
-mkdir workarea-\&lt;BOSS version\&gt;
+<pre class="fragment">cd /ihepbatch/bes/&lt;your username&gt;
+</pre><p>Now, create a <b>workarea</b> directory and a 'CMT home' directory, where you add the version number of the <b>BOSS</b> version you want to use to the directory name. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code>: </p>
+<pre class="fragment">mkdir cmthome-&lt;BOSS version&gt;
+mkdir workarea-&lt;BOSS version&gt;
 </pre><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
+<table class="doxtable">
+<tr>
+<th>Tables </th><th align="center">Are </th><th align="right">Cool  </th></tr>
+<tr>
+<td>col 3 is </td><td align="center">right-aligned </td><td align="right">$1600 </td></tr>
+<tr>
+<td>col 2 is </td><td align="center">centered </td><td align="right">$12 </td></tr>
+<tr>
+<td>zebra stripes </td><td align="center">are neat </td><td align="right">$1 </td></tr>
+</table>
 <h3>(2) BOSS Afterburner</h3>
 <p>Go to the <em>BES file system</em> folder: </p>
 <pre class="fragment">cd /besfs/users/&lt;your username&gt;
@@ -151,7 +161,7 @@ mkdir workarea-\&lt;BOSS version\&gt;
 </pre><p>Now you're all set to go!</p>
 <h2>Setup a BOSS package</h2>
 <p>The typical example that is used as a starting point in <b>BOSS</b> is the <code>TestRelease</code> package. We will need to copy this package into your work area.</p>
-<p>First go to <a href="#your-work-area">your work area</a>: cd /ihepbatch/bes/&lt;your username&gt;</p>
+<p>First go to <a href="#your-work-area">your work area</a>: cd /ihepbatch/bes/&lt;your username&gt;=""&gt;</p>
 <pre class="fragment">cp –r $BesArea/TestRelease ./
 </pre><ol type="1">
 <li><code>cd TestRelease/TestRelease-*/cmt</code></li>
@@ -164,7 +174,7 @@ mkdir workarea-\&lt;BOSS version\&gt;
 <p>From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the <b>BOSS</b> framework, I decided to supply the code I write for my own analysis with <code>Doxygen</code> formated comments. The resulting documentation can then be used as a gudie for anyone who wants to get familiar with the <b>BOSS</b> framework.</p>
 <p>In writing my code, I have attempted to set up an object-oriented <code>C++</code> class structure that is both general in usage (that is, using <em>base and derived classes</em>) and represents the data structure of analysis output from the <b>BOSS</b> framework. In this way, I hope that class documentation in this repository can also be used to help the user understand the <b>BOSS</b> framework itself.</p>
 <h1>Further reading</h1>
-<h2>The <b>BOSS</b> Analysis Framework</h2>
+<h2>The BOSS Analysis Framework</h2>
 <ul>
 <li><a href="http://bes3.to.infn.it/Boss/7.0.2/html/classes.html">http://bes3.to.infn.it/Boss/7.0.2/html/classes.html</a> (external)</li>
 <li><a href="https://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/">https://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/</a> (internal)</li>
