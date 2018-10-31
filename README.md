@@ -95,9 +95,9 @@ At this stage, you'll have to decide which version of BOSS you have to use. At t
 
 **Step 4:** You'll now have to modify the file called `requirements` (we'll use the `vi` editor here, but you can use whatever editor you prefer):
 
-   vi requirements
+	vi requirements
 
-**Step 5:** The file contains the following lines:
+The file contains the following lines:
 
 	#macro WorkArea "/ihepbatch/bes/maqm/workarea"
 

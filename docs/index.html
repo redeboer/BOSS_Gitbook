@@ -179,9 +179,9 @@ $(document).ready(function(){initNavTree('index.html','');});
 </pre><p><b>Step 3:</b> Go into the new folder you created and connect to the CMT: </p>
 <pre class="fragment">cd cmthome
 source setupCMT.csh
-</pre><p><b>Step 4:</b> You'll now have to modify the file called <code>requirements</code> (we'll use the <code>vi</code> editor here, but you can use whatever editor you prefer):</p>
-<p>vi requirements</p>
-<p><b>Step 5:</b> The file contains the following lines: </p>
+</pre><p><b>Step 4:</b> You'll now have to modify the file called <code>requirements</code> (we'll use the <code>vi</code> editor here, but you can use whatever editor you prefer): </p>
+<pre class="fragment">vi requirements
+</pre><p>The file contains the following lines: </p>
 <pre class="fragment">#macro WorkArea "/ihepbatch/bes/maqm/workarea"
 
 #path_remove CMTPATH  "${WorkArea}"
