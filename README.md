@@ -8,6 +8,8 @@ The BOSS Afterburner {#mainpage}
 
 If you do not have an IHEP networking account, it is therefore better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html "Offical BOSS webpage") of BESIII --- this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section [Further reading](#further-reading).
 
+The MarkDown generated material on this repository page serve as a simple introduction. For more details, you can go to the [parallel Doxygen generated webpage](https://redeboer.github.io/BOSS_Afterburner/ "Doxygen page of the BOSS Afterburner") of the BOSS Afterburner.
+
 
 Table of contents
 =================
@@ -31,7 +33,13 @@ Table of contents
 # The BOSS framework
 
 ## Organisation of the IHEP server
-The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7.
+The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7. The domain names for these are `lxslc7.ihep.ac.cn`, where the `7` in this case refers to SL7. If you are running on Linux or a Linux terminal, the server can be easily accessed using:
+
+	ssh -Y \<your user name\>@lxslc7.ihep.ac.cn
+
+Here, the option `-Y` ensures *X11 forwarding*, allowing you to open graphical applications.
+
+In Windows, there are several nice tools to work on this. First of all, to be able to use SSH, use will either have to use [PuTTY](https://www.putty.org/) or more extensive software like [Xmanager](https://www.netsarang.com/products/xmg_overview.html). In addition, I would recommend you to work with the (S)FTP client [WinSCP](https://winscp.net/eng/index.php). It allows you to easily navigate the file structure of the IHEP server and to quickly transfer---even synchronise---files up and down to your own computer.
 
 
 ## Setup of your **BOSS** and *Afterburner* environment
@@ -41,32 +49,37 @@ I advise you to set up your environment in the same way I did. There are two mai
 
 Go to your *IHEP batch* folder:
 
-	`cd /ihepbatch/bes/\<your username\>`
+	cd /ihepbatch/bes/\<your username\>
 
-Create a workarea directory and a 'CMT home' directory, where you add the version number of the **BOSS** version you want to use. You can for instance take `<BOSS version>` to be `7.0.3`
+Create a workarea directory and a 'CMT home' directory, where you add the version number of the **BOSS** version you want to use to the directory name. You can for instance take `<BOSS version>` to be `7.0.3`:
 
-	`mkdir cmthome-\<BOSS version\>`
-	`mkdir workarea-\<BOSS version\>`
+	mkdir cmthome-\<BOSS version\>
+	mkdir workarea-\<BOSS version\>
+
+
 
 @todo Finish tutorial about setting up your BOSS environment (e.g. cmt home)
 
 ### (2) BOSS Afterburner
 Go to the *BES file system* folder:
 
-	`cd /besfs/users/<your username>`
+	cd /besfs/users/<your username>
 
 [Clone](https://help.github.com/articles/cloning-a-repository/) the *BOSS Afterburner* repository:
 
-	`git clone https://github.com/redeboer/BOSS_Afterburner`
+	git clone https://github.com/redeboer/BOSS_Afterburner
 
 Now you're all set to go!
 
 ## Setup a BOSS package
 The typical example that is used as a starting point in **BOSS** is the `TestRelease` package. We will need to copy this package into your work area.
 
-1. :(同一个节点下) cd 到上一页你创建的workarea路径下`
+First go to [your work area](#your-work-area):
+	cd /ihepbatch/bes/\<your username\>
 
-2. `cp –r $BesArea/TestRelease ./`
+
+
+	cp –r $BesArea/TestRelease ./
 
 3. `cd TestRelease/TestRelease-*/cmt`
 
