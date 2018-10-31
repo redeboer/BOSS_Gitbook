@@ -128,6 +128,9 @@ $(document).ready(function(){initNavTree('index.html','');});
 </li>
 </ul>
 <h1>Introduction</h1>
+<p>The <a href="http://bes3.ihep.ac.cn/">Beijing Spectrometer (BESIII)</a> is a particle experiment situated at the <a href="http://english.ihep.cas.cn/doc/1840.html">Beijing Electron-Positron Collider (BEPCII)</a>. It is primarily designed to perform highly sensitive studies of light hadron and charm physics.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Elaborate or refer</dd></dl>
+<p>Output of the detector is analysed using the <a href="http://english.ihep.cas.cn/bes/doc/2247.html">BESIII Offline Software System (BOSS)</a>.</p>
 <h1>The BOSS framework</h1>
 <h2>Organisation of the IHEP server</h2>
 <p>The IHEP server runs on <a href="https://www.scientificlinux.org/">Scientific Linux</a> (SL). The server offers several versions. Usually, people use either SL5, SL6, or SL7. The domain names for these are <code>lxslc7.ihep.ac.cn</code>, where the <code>7</code> in this case refers to SL7. If you are running on Linux or a Linux terminal, the server can be easily accessed using: </p>
@@ -142,7 +145,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 </pre><p>Now, create a <b>workarea</b> directory and a 'CMT home' directory, where you add the version number of the <b>BOSS</b> version you want to use to the directory name. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code>: </p>
 <pre class="fragment">mkdir cmthome-&lt;BOSS version&gt;
 mkdir workarea-&lt;BOSS version&gt;
-</pre><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
+</pre><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
 <table class="doxtable">
 <tr>
 <th>Tables </th><th align="center">Are </th><th align="right">Cool  </th></tr>
@@ -176,11 +179,18 @@ mkdir workarea-&lt;BOSS version&gt;
 <h1>Further reading</h1>
 <h2>The BOSS Analysis Framework</h2>
 <ul>
+<li>BOSS software source code CVS repository:<ul>
+<li><a href="http://koala.ihep.ac.cn/cgi-bin/viewcvs.cgi/BossCvs/">for users inside IHEP</a></li>
+<li><a href="http://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/">for users outside IHEP</a></li>
+</ul>
+</li>
+<li>Doxygen documentation:<ul>
 <li><a href="http://bes3.to.infn.it/Boss/7.0.2/html/classes.html">http://bes3.to.infn.it/Boss/7.0.2/html/classes.html</a> (external)</li>
-<li><a href="https://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/">https://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/</a> (internal)</li>
 <li><a href="https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html">https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html</a> (<code>MdcPatRec</code> Class Index)</li>
+</ul>
+</li>
 <li><a href="http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome">http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome</a> (TWiki)</li>
-<li><a href="https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf">https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf</a>\ </li>
+<li><a href="https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf">https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf</a> </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->

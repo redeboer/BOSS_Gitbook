@@ -28,6 +28,11 @@ Table of contents
 
 # Introduction
 
+The [Beijing Spectrometer (BESIII)](http://bes3.ihep.ac.cn/) is a particle experiment situated at the [Beijing Electron-Positron Collider (BEPCII)](http://english.ihep.cas.cn/doc/1840.html). It is primarily designed to perform highly sensitive studies of light hadron and charm physics.
+
+@todo Elaborate or refer
+
+Output of the detector is analysed using the [BESIII Offline Software System (BOSS)](http://english.ihep.cas.cn/bes/doc/2247.html).
 
 
 # The BOSS framework
@@ -108,8 +113,13 @@ In writing my code, I have attempted to set up an object-oriented `C++` class st
 # Further reading
 
 ## The BOSS Analysis Framework
-- http://bes3.to.infn.it/Boss/7.0.2/html/classes.html (external)
-- https://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/ (internal)
-- https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html (`MdcPatRec` Class Index)
+- BOSS software source code CVS repository:
+	- [for users inside IHEP](http://koala.ihep.ac.cn/cgi-bin/viewcvs.cgi/BossCvs/)
+	- [for users outside IHEP](http://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/)
+
+- Doxygen documentation:
+	- http://bes3.to.infn.it/Boss/7.0.2/html/classes.html (external)
+	- https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html (`MdcPatRec` Class Index)
+
 - http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome (TWiki)
-- https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf\
+- https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf
