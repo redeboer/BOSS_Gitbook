@@ -1,4 +1,4 @@
-# The BOSS Framework
+# The BOSS Framework {#boss}
 
 ## Introduction
 
