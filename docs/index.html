@@ -97,10 +97,68 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">BOSS Afterburner Documentation</div>  </div>
+<div class="title">Main Page </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><p><b>This repository is underdevelopment.</b> It has been set up as an <em>unofficial</em> extension to the BOSS analysis framework of the <a href="http://bes3.ihep.ac.cn" title="Offical BESIII webpage">BESIII collaboration</a> with two related purposes:</p>
+<ol type="1">
+<li>Serve as an accessible introduction and user guide to <code>BOSS</code>.</li>
+<li>Provide basic tools to analyse and visualise output of <code>BOSS</code>.</li>
+</ol>
+<p>If you do not have an IHEP networking account, it is therefore better to check out the official <a href="http://english.ihep.cas.cn/bes/doc/2247.html" title="Offical BOSS webpage">Offline Software page</a> of BESIII &mdash; this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section <a href="#further-reading">Further reading</a>.</p>
+<h1>Table of contents </h1>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#the-boss-framework">The BOSS framework</a><ul>
+<li><a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a></li>
+<li><a href="#setup-of-your-boss-and-afterburner-environment">Setup of your `BOSS` and *Afterburner* environment</a></li>
+<li><a href="#setup-a-boss-package">Setup a BOSS package</a></li>
+</ul>
+</li>
+<li><a href="#technicalities">Technicalities</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#further-reading">Further reading</a><ul>
+<li><a href="#the-boss-analysis-framework">The `BOSS` Analysis Framework</a></li>
+</ul>
+</li>
+</ul>
+<h1>Introduction</h1>
+<h1>The BOSS framework</h1>
+<h2>Organisation of the IHEP server</h2>
+<p>The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7.</p>
+<h2>Setup of your <code>BOSS</code> and <em>Afterburner</em> environment</h2>
+<p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <code>BOSS</code> and (2) the <em>BOSS Afterburner</em> repository.</p>
+<ol type="1">
+<li><b>Work area</b><ul>
+<li>Go to your <em>IHEP batch</em> folder: <code>cd /ihepbatch/bes/&lt;your username&gt;</code></li>
+<li>Create a workarea directory and a 'CMT home' directory, where you add the version number of the <code>BOSS</code> version you want to use. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code> <code>mkdir cmthome-&lt;BOSS version&gt;</code> <code>mkdir workarea-&lt;BOSS version&gt;</code><ul>
+<li><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>Now you're all set to go!</p>
+<h2>Setup a BOSS package</h2>
+<p>The typical example that is used as a starting point in <code>BOSS</code> is the <code>TestRelease</code> package. We will need to copy this package into your work area.</p>
+<ol type="1">
+<li>:(同一个节点下) cd 到上一页你创建的workarea路径下<code> 2.</code>cp –r $BesArea/TestRelease ./<code> 3.</code>cd TestRelease/TestRelease-*/cmt<code> 4.</code>cmt broadcast cmt config<code> 5.</code>cmt broadcast make<code> 6.</code>source setup.csh`</li>
+</ol>
+<h1>Technicalities</h1>
+<h1>About</h1>
+<p>From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the <code>BOSS</code> framework, I decided to supply the code I write for my own analysis with <code>Doxygen</code> formated comments. The resulting documentation can then be used as a gudie for anyone who wants to get familiar with the <code>BOSS</code> framework.</p>
+<p>In writing my code, I have attempted to set up an object-oriented <code>C++</code> class structure that is both general in usage (that is, using <em>base and derived classes</em>) and represents the data structure of analysis output from the <code>BOSS</code> framework. In this way, I hope that class documentation in this repository can also be used to help the user understand the <code>BOSS</code> framework itself.</p>
+<h1>Further reading</h1>
+<h2>The <code>BOSS</code> Analysis Framework</h2>
+<ul>
+<li><a href="http://bes3.to.infn.it/Boss/7.0.2/html/classes.html">http://bes3.to.infn.it/Boss/7.0.2/html/classes.html</a> (external)</li>
+<li><a href="https://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/">https://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/</a> (internal)</li>
+<li><a href="https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html">https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html</a> (<code>MdcPatRec</code> Class Index)</li>
+<li><a href="http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome">http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome</a> (TWiki)</li>
+<li><a href="https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf">https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf</a>\ </li>
+</ul>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
