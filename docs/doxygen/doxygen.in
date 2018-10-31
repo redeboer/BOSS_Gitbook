@@ -752,3 +752,12 @@ SEARCHENGINE           = YES
 # the documentation for these projects as well.
 
 # EXT_DOC_PATHS          =
+
+
+# =================================
+# New >1.8.0 configs
+# =================================
+
+# Needed on the IHEP server, because it does not have dot installed.
+# NOTE: Not sure what dot does anyway
+HAVE_DOT = NO
