@@ -106,7 +106,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li>Provide basic tools to analyse and visualise output of <b>BOSS</b>.</li>
 </ol>
 <p>If you do not have an IHEP networking account, it is therefore better to check out the official <a href="http://english.ihep.cas.cn/bes/doc/2247.html" title="Offical BOSS webpage">Offline Software page</a> of BESIII &mdash; this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section <a href="#further-reading">Further reading</a>.</p>
-<p>The MarkDown generated material on this repository page serve as a simple introduction. For more details, you can go to the <a href="https://redeboer.github.io/BOSS_Afterburner/" title="Doxygen page of the BOSS Afterburner">parallel Doxygen generated webpage</a> of the BOSS Afterburner.</p>
+<p>The MarkDown generated material on <a href="https://github.com/redeboer/BOSS_Afterburner">this repository page</a> serve as a simple introduction. For more details, you can go to the <a href="https://redeboer.github.io/BOSS_Afterburner/" title="Doxygen page of the BOSS Afterburner">parallel Doxygen-generated webpage</a> of the BOSS Afterburner.</p>
 <h1>Table of contents </h1>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
@@ -114,9 +114,12 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a></li>
 <li><a href="#setup-of-your-boss-and-afterburner-environment">Setup of your BOSS and Afterburner environment</a></li>
 <li><a href="#set-up-a-boss-package">Set up a BOSS package</a></li>
+<li><a href="#running-a-job">Running a job</a></li>
+<li><a href="#submitting-a-job">Submitting a job</a></li>
 </ul>
 </li>
 <li><a href="#further-reading">Further reading</a><ul>
+<li><a href="#ihep-and-the-besiii-collaboration">IHEP and the BESIII collaboration</a></li>
 <li><a href="#the-boss-analysis-framework">The BOSS Analysis Framework</a></li>
 </ul>
 </li>
@@ -145,14 +148,15 @@ $(document).ready(function(){initNavTree('index.html','');});
 <tr>
 <td><code>/ihepbatch/bes/$USER</code> </td><td align="center">200 MB </td><td align="center">NA </td><td align="center"></td></tr>
 <tr>
-<td><code>/workfs/bes/$USER</code> </td><td align="center">5 GB </td><td align="center">50,000 </td><td align="center">no <code>hep_sup</code> available </td></tr>
+<td><code>/workfs/bes/$USER</code> </td><td align="center">5 GB </td><td align="center">50,000 </td><td align="center">no <code>hep_sub</code> available </td></tr>
 <tr>
 <td><code>/scratchfs/bes/$USER</code> </td><td align="center">500 GB </td><td align="center">NA </td><td align="center">max. 2 weeks </td></tr>
 </table>
+<p>Of course, here, and in what follows, <code>$USER</code> refers to your user name.</p>
 <p>Some other important directories are the following:</p>
 <ul>
 <li><a href="https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_setup_BOSS_environment_on_lxslc">BOSS Software directory</a><ul>
-<li><code>/afs/ihep.ac.cn/bes3/offline/Boss</code></li>
+<li><code>/afs/ihep.ac.cn/bes3/offline/Boss</code> (also referred to with <code>$BesArea</code>)</li>
 </ul>
 </li>
 <li><a href="https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Raw_Data">Raw data files</a><ul>
@@ -175,7 +179,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Test the procedure described below! </dd></dl>
 <p>You will be running your <b>BOSS</b> analyses from this folder. It contains a <em>Configuration Management Tool</em> folder (<code>cmthome</code>), which is used to set up path variables for <b>BOSS</b>, and a <code>workarea</code> folder where you develop your own <b>BOSS</b> packages (including the <code>jobOptions*.txt</code> files).</p>
 <p><b>Step 1:</b> Go to your <em>IHEP batch</em> folder: </p>
-<pre class="fragment">cd /ihepbatch/bes/&lt;your username&gt;
+<pre class="fragment">cd /ihepbatch/bes/$USER
 </pre><p>At this stage, you'll have to decide which version of BOSS you have to use. At the time of writing, version 7.0.3 is the latest stable version, though it could be that for your analysis you have to use data sets that were reconstructed with older versions of <b>BOSS</b>. Here, I'll just use <code>7.0.3</code>, but you can replace this number with whatever version you need.</p>
 <p><b>Step 2:</b> We'll first set up the necessary references to <b>BOSS</b> using the <em>Configuration Management Tool</em> (CMT). This is done by copying the <code>cmthome</code> folder from BOSS Software directory to the <code>ihepbatch</code> folder where you currently are: </p>
 <pre class="fragment">cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 .
@@ -220,8 +224,9 @@ source $IHEPBATCH/cmthome-7.0.3/setupCMT.sh
 source $IHEPBATCH/cmthome-7.0.3/setup.sh
 source $IHEPBATCH/workarea-7.0.3/TestRelease/TestRelease-00-00-86/cmt/setup.sh
 export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
-</pre><p>You can now either log in again to the server or use <code>source ~/.bashrc</code> to reload the run commands.</p>
-<p><b>Step 6:</b> You're done! To test whether everything went correctly, you can try to run <b>BOSS</b>: </p>
+</pre><p>Notice that the commands we used in step 4 are used here again. There is also a reference to the <code>workarea</code> (see step 7). The last line allows you to submit <b>BOSS</b> jobs to the queue&mdash;for now, don't worry what this means.</p>
+<p>You can now either log in again to the server or use <code>source ~/.bashrc</code> to reload the run commands.</p>
+<p><b>Step 6:</b> To test whether everything went correctly, you can try to run <b>BOSS</b>: </p>
 <pre class="fragment">boss.exe
 </pre><p>It should result in a (trivial) error message like this: </p>
 <pre class="fragment">**************************************************
@@ -230,27 +235,80 @@ export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
 
 the jobOptions file is : jobOptions.txt
 ERROR! the jobOptions file is empty!
-</pre><h3>(2) Set up the BOSS Afterburner</h3>
-<p>Go to the <em>BES file system</em> folder: </p>
+</pre><p><b>Step 7:</b> It is convention to place your <b>BOSS</b> packages in a <em>workarea</em> folder next to the <code>cmthome</code> folder we have been using so far. Let's create it: </p>
+<pre class="fragment">cd /ihepbatch/bes/$USER
+mkdir workarea-7.0.3
+</pre><p>We'll get back to this folder when we <a href="#set-up-a-boss-package">set up a BOSS package</a>.</p>
+<h3>(2) Set up the BOSS Afterburner</h3>
+<p>This is the simple part. Go to the <em>BES file system</em> folder: </p>
 <pre class="fragment">cd /besfs/users/$USER
 </pre><p><a href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the <em>BOSS Afterburner</em> repository: </p>
 <pre class="fragment">git clone https://github.com/redeboer/BOSS_Afterburner
-</pre><p>Now you're all set to go!</p>
+</pre><p>The <em>BOSS Aafterburner</em> will be used to analyse output from <b>BOSS</b>.</p>
 <h2>Set up a BOSS package</h2>
-<p>The typical example that is used as a starting point in <b>BOSS</b> is the <code>TestRelease</code> package. We will need to copy this package into your work area.</p>
-<p>First go to <a href="#your-work-area">your work area</a>: </p>
-<pre class="fragment">cd /ihepbatch/bes/$USER
-
-
-
-cp –r $BesArea/TestRelease ./
-</pre><ol type="1">
-<li><code>cd TestRelease/TestRelease-*/cmt</code></li>
-<li><code>cmt broadcast cmt config</code></li>
-<li><code>cmt broadcast make</code></li>
-<li><code>source setup.csh</code></li>
+<p>Now that you have configured your <b>BOSS</b> work area, you can start developing packages. The typical example package to get you started is the <code>TestRelease</code> package. We will need to copy this package into your <a href="#set-up-your-work-area">your work area</a>. So let's navigate there: </p>
+<pre class="fragment">cd /ihepbatch/bes/$USER/workarea-7.0.3
+</pre><p>Now copy the typical <code>TestRelease</code> example to your <em>work area</em> and navigate into it: </p>
+<pre class="fragment">cp –r $BesArea/TestRelease ./
+cd TestRelease/TestRelease-*
+</pre><p>You are now in a folder like <code>TestRelease/TestRelease-00-00-86</code>, where <code>00-00-86</code> represents the version. Using <code>ls</code>, you can see that it contains some folders:</p>
+<ul>
+<li><code>cmt</code>: the <em>Configuration Management Tool</em> that you will use to connect to <b>BOSS</b></li>
+<li><code>CVS</code>: a folder used when generating documentation</li>
+<li><code>run</code>: which contains the <code>jobOptions</code> that are run with <code>boss.exe</code></li>
+</ul>
+<p>We can set up the <code>TestRelease</code> by going into <code>cmt</code> and 'broadcasting' to <b>BOSS</b> from there: </p>
+<pre class="fragment">cd cmt
+cmt broadcast cmt config
+cmt broadcast make
+source setup.sh
+</pre><p>This will initialise the package so that you can run it from the run folder. This is done using <code>boss.exe</code>: </p>
+<pre class="fragment">cd ../run
+boss.exe jobOptions_sim.txt
+</pre><p>which, in this case, will run a Monte Carlo simulation.</p>
+<p>Note that in step 7 <a href="#set-up-your-work-area">when we set up the work area</a> we added a line to the <code>.bashrc</code> that ensures that the <code>TestRelease</code> package is laoded every time you log in, so you won't have to do this every time yourself.</p>
+<h2>Running a job</h2>
+<p>Particile physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In <b>BOSS</b>, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on <b>BOSS</b>:</p>
+<ol type="1">
+<li><code>sim</code>: you perform a Monte Carlo simulation and generate a raw data file (<code>rtraw</code>)</li>
+<li><code>rec</code>: you reconstruct particle tracks from the raw data and write out a reconstructed data file (<code>dst</code>)</li>
+<li><code>ana</code>: you analyse the reconstructed tracks and generate a <a href="https://root.cern.ch/input-and-output">CERN ROOT</a> file containing trees that describe event and track variables (<code>root</code>)</li>
 </ol>
+<p>When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. (See [Organisation of the IHEP server](organisation-of-the-ihep-server), under "Reconstructed data sets", for where these files are located.)</p>
+<p>The steps are performed from your the <code>jobOptions*.txt</code> files of your own package in your work area. As an example, you can run the <code>jobOptions</code> in in the <code>TestRelease</code> package: </p>
+<pre class="fragment">cd /ihepbatch/bes/$USER/TestRelease/TestRelease-*/run/
+boss.exe jobOptions_sim.txt
+boss.exe jobOptions_rec.txt
+boss.exe jobOptions_ana_rhopi.txt
+</pre><p>But be careful: for these jobs to work successfully, you will probably have to edit them and set the right paths.</p>
+<h2>Submitting a job</h2>
+<p>The <code>TestRelease</code> example typically simulates, reconstructes, and analyses only 10 events. For serious work, it you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queque'. For this, there are two options: either you submit them using the command <code>hep_sub</code> or using the command <code>boss.conder</code>. The latter is easiest: you can use it just like <code>boss.exe</code>.</p>
+<p>With <code>hep_sub</code>, however, you essentially forward a shell script to the queue, which then executes the commands in there. So you'll have to make that first. Let's say, you make a shell script <code>test.sh</code> in the <code>run</code> folder that looks like this: </p>
+<pre class="fragment">#!/bin/bash
+boss.exe jobOptions_sim.txt
+</pre><p>The first line clarifies that you use <code>bash</code>, the second does what you did when running a job: calling <code>boss.exe</code>, but of course, you can make this script to execute whatever <code>bash</code> commands you want.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Not sure if you should <code>chmod +x</code> it?</dd></dl>
+<p>Now you can simply submit the shell script to the queue using: </p>
+<pre class="fragment">hep_sub test.sh -g physics
+</pre><p>and it will be executed in the background. Here, the option <code>-g</code> tellst that you are from the <code>physics</code> group. You can check whether the job is (still) running in the queue using: </p>
+<pre class="fragment">hep_q -u $USER
+</pre><p>Note that <code>hep_q</code> would list all jobs from all users.</p>
 <h1>Further reading</h1>
+<h2>IHEP and the BESIII collaboration</h2>
+<ul>
+<li>BESIII:<ul>
+<li><a href="http://bes3.ihep.ac.cn/">http://bes3.ihep.ac.cn/</a></li>
+<li><a href="http://bes.ihep.ac.cn/">http://bes.ihep.ac.cn/</a></li>
+</ul>
+</li>
+<li>IHEP:<ul>
+<li><a href="http://english.ihep.cas.cn/">http://english.ihep.cas.cn/</a> [English]</li>
+<li><a href="http://www.ihep.cas.cn/">http://www.ihep.cas.cn/</a> [Chinese]</li>
+<li><a href="http://web.ihep.ac.cn/">http://web.ihep.ac.cn/</a></li>
+</ul>
+</li>
+<li><a href="http://english.ihep.cas.cn/doc/259.html">http://english.ihep.cas.cn/doc/259.html</a></li>
+</ul>
 <h2>The BOSS Analysis Framework</h2>
 <ul>
 <li>BOSS software source code CVS repository:<ul>
@@ -267,8 +325,8 @@ cp –r $BesArea/TestRelease ./
 <li><a href="https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf">https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf</a></li>
 </ul>
 <h1>About</h1>
-<p>From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the <b>BOSS</b> framework, I decided to supply the code I write for my own analysis with <code>Doxygen</code> formated comments. The resulting documentation can then be used as a gudie for anyone who wants to get familiar with the <b>BOSS</b> framework.</p>
-<p>In writing my code, I have attempted to set up an object-oriented <code>C++</code> class structure that is both general in usage (that is, using <em>base and derived classes</em>) and represents the data structure of analysis output from the <b>BOSS</b> framework. In this way, I hope that class documentation in this repository can also be used to help the user understand the <b>BOSS</b> framework itself. </p>
+<p>From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the <b>BOSS</b> framework, I decided to supply the code I write for my own analysis with <code>Doxygen</code> formated comments. The resulting documentation can then be used as a guide for anyone who wants to get familiar with the <b>BOSS</b> framework.</p>
+<p>In writing my code, I have attempted to set up an object-oriented <code>C++</code> class structure that is both general in usage (that is, using <em>base and derived classes</em>) and represents the data structure of analysis output from the <b>BOSS</b> framework. In this way, I hope that the class documentation in this repository can also be used to help the user understand the <b>BOSS</b> framework itself. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

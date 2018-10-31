@@ -8,7 +8,7 @@ The BOSS Afterburner {#mainpage}
 
 If you do not have an IHEP networking account, it is therefore better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html "Offical BOSS webpage") of BESIII --- this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section [Further reading](#further-reading).
 
-The MarkDown generated material on this repository page serve as a simple introduction. For more details, you can go to the [parallel Doxygen generated webpage](https://redeboer.github.io/BOSS_Afterburner/ "Doxygen page of the BOSS Afterburner") of the BOSS Afterburner.
+The MarkDown generated material on [this repository page](https://github.com/redeboer/BOSS_Afterburner) serve as a simple introduction. For more details, you can go to the [parallel Doxygen-generated webpage](https://redeboer.github.io/BOSS_Afterburner/ "Doxygen page of the BOSS Afterburner") of the BOSS Afterburner.
 
 
 Table of contents
@@ -18,13 +18,15 @@ Table of contents
 	- [Organisation of the IHEP server](#organisation-of-the-ihep-server)
 	- [Setup of your BOSS and Afterburner environment](#setup-of-your-boss-and-afterburner-environment)
 	- [Set up a BOSS package](#set-up-a-boss-package)
+	- [Running a job](#running-a-job)
+	- [Submitting a job](#submitting-a-job)
 - [Further reading](#further-reading)
+	- [IHEP and the BESIII collaboration](#ihep-and-the-besiii-collaboration)
 	- [The BOSS Analysis Framework](#the-boss-analysis-framework)
 - [About](#about)
 
 
 # Introduction
-
 The [Beijing Spectrometer (BESIII)](http://bes3.ihep.ac.cn/) is a particle experiment situated at the [Beijing Electron-Positron Collider (BEPCII)](http://english.ihep.cas.cn/doc/1840.html). It is primarily designed to perform highly sensitive studies of light hadron and charm physics.
 
 @todo Elaborate or refer
@@ -50,13 +52,15 @@ When you have logged into the server, you usually start in your home (`~`) folde
 | `/afs/ihep.ac.cn/users/<letter>/$USER` |      500 MB |                    NA | home (`~`)              |
 | `/besfs/users/$USER`                   |       50 GB |               300,000 |                         |
 | `/ihepbatch/bes/$USER`                 |      200 MB |                    NA |                         |
-| `/workfs/bes/$USER`                    |        5 GB |                50,000 | no `hep_sup` available  |
+| `/workfs/bes/$USER`                    |        5 GB |                50,000 | no `hep_sub` available  |
 | `/scratchfs/bes/$USER`                 |      500 GB |                    NA | max. 2 weeks            |
+
+Of course, here, and in what follows, `$USER` refers to your user name.
 
 Some other important directories are the following:
 
 - [BOSS Software directory](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_setup_BOSS_environment_on_lxslc)
-	+ `/afs/ihep.ac.cn/bes3/offline/Boss`
+	+ `/afs/ihep.ac.cn/bes3/offline/Boss` (also referred to with `$BesArea`)
 
 - [Raw data files](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Raw_Data)
 	+ `/bes3fs/offline/data/raw`
@@ -83,7 +87,7 @@ You will be running your **BOSS** analyses from this folder. It contains a *Conf
 
 **Step 1:** Go to your *IHEP batch* folder:
 
-	cd /ihepbatch/bes/<your username>
+	cd /ihepbatch/bes/$USER
 
 At this stage, you'll have to decide which version of BOSS you have to use. At the time of writing, version 7.0.3 is the latest stable version, though it could be that for your analysis you have to use data sets that were reconstructed with older versions of **BOSS**. Here, I'll just use `7.0.3`, but you can replace this number with whatever version you need. 
 
@@ -152,9 +156,11 @@ These lines force the server to load your `.bashrc` run commands file. In that f
 	source $IHEPBATCH/workarea-7.0.3/TestRelease/TestRelease-00-00-86/cmt/setup.sh
 	export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
 
+Notice that the commands we used in step 4 are used here again. There is also a reference to the `workarea` (see step 7). The last line allows you to submit **BOSS** jobs to the queue---for now, don't worry what this means.
+
 You can now either log in again to the server or use `source ~/.bashrc` to reload the run commands.
 
-**Step 6:** You're done! To test whether everything went correctly, you can try to run **BOSS**:
+**Step 6:** To test whether everything went correctly, you can try to run **BOSS**:
 
 	boss.exe
 
@@ -167,9 +173,15 @@ It should result in a (trivial) error message like this:
 	the jobOptions file is : jobOptions.txt
 	ERROR! the jobOptions file is empty!
 
+**Step 7:** It is convention to place your **BOSS** packages in a *workarea* folder next to the `cmthome` folder we have been using so far. Let's create it:
+
+	cd /ihepbatch/bes/$USER
+	mkdir workarea-7.0.3
+
+We'll get back to this folder when we [set up a BOSS package](#set-up-a-boss-package).
 
 ### (2) Set up the BOSS Afterburner
-Go to the *BES file system* folder:
+This is the simple part. Go to the *BES file system* folder:
 
 	cd /besfs/users/$USER
 
@@ -177,28 +189,98 @@ Go to the *BES file system* folder:
 
 	git clone https://github.com/redeboer/BOSS_Afterburner
 
-Now you're all set to go!
+The *BOSS Aafterburner* will be used to analyse output from **BOSS**.
+
 
 ## Set up a BOSS package
-The typical example that is used as a starting point in **BOSS** is the `TestRelease` package. We will need to copy this package into your work area.
+Now that you have configured your **BOSS** work area, you can start developing packages. The typical example package to get you started is the `TestRelease` package. We will need to copy this package into your [your work area](#set-up-your-work-area). So let's navigate there:
 
-First go to [your work area](#your-work-area):
+	cd /ihepbatch/bes/$USER/workarea-7.0.3
 
-	cd /ihepbatch/bes/$USER
-
-
+Now copy the typical `TestRelease` example to your *work area* and navigate into it:
 
 	cp –r $BesArea/TestRelease ./
+	cd TestRelease/TestRelease-*
 
-1. `cd TestRelease/TestRelease-*/cmt`
+You are now in a folder like `TestRelease/TestRelease-00-00-86`, where `00-00-86` represents the version. Using `ls`, you can see that it contains some folders:
 
-2. `cmt broadcast cmt config`
+- `cmt`: the *Configuration Management Tool* that you will use to connect to **BOSS**
+- `CVS`: a folder used when generating documentation
+- `run`: which contains the `jobOptions` that are run with `boss.exe`
 
-3. `cmt broadcast make`
+We can set up the `TestRelease` by going into `cmt` and 'broadcasting' to **BOSS** from there:
 
-4. `source setup.csh`
+	cd cmt
+	cmt broadcast cmt config
+	cmt broadcast make
+	source setup.sh
+
+This will initialise the package so that you can run it from the run folder. This is done using `boss.exe`:
+
+	cd ../run
+	boss.exe jobOptions_sim.txt
+
+which, in this case, will run a Monte Carlo simulation.
+
+Note that in step 7 [when we set up the work area](#set-up-your-work-area) we added a line to the `.bashrc` that ensures that the `TestRelease` package is laoded every time you log in, so you won't have to do this every time yourself.
+
+
+## Running a job
+Particile physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In **BOSS**, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on **BOSS**:
+
+1. `sim`: you perform a Monte Carlo simulation and generate a raw data file (`rtraw`)
+2. `rec`: you reconstruct particle tracks from the raw data and write out a reconstructed data file (`dst`)
+3. `ana`: you analyse the reconstructed tracks and generate a [CERN ROOT](https://root.cern.ch/input-and-output) file containing trees that describe event and track variables (`root`)
+
+When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. (See [Organisation of the IHEP server](organisation-of-the-ihep-server), under "Reconstructed data sets", for where these files are located.)
+
+The steps are performed from your the `jobOptions*.txt` files of your own package in your work area. As an example, you can run the `jobOptions` in in the `TestRelease` package:
+
+	cd /ihepbatch/bes/$USER/TestRelease/TestRelease-*/run/
+	boss.exe jobOptions_sim.txt
+	boss.exe jobOptions_rec.txt
+	boss.exe jobOptions_ana_rhopi.txt
+
+But be careful: for these jobs to work successfully, you will probably have to edit them and set the right paths.
+
+
+## Submitting a job
+The `TestRelease` example typically simulates, reconstructes, and analyses only 10 events. For serious work, it you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queque'. For this, there are two options: either you submit them using the command `hep_sub` or using the command `boss.conder`. The latter is easiest: you can use it just like `boss.exe`.
+
+With `hep_sub`, however, you essentially forward a shell script to the queue, which then executes the commands in there. So you'll have to make that first. Let's say, you make a shell script `test.sh` in the `run` folder that looks like this:
+
+	#!/bin/bash
+	boss.exe jobOptions_sim.txt
+
+The first line clarifies that you use `bash`, the second does what you did when running a job: calling `boss.exe`, but of course, you can make this script to execute whatever `bash` commands you want.
+
+@todo Not sure if you should `chmod +x` it?
+
+Now you can simply submit the shell script to the queue using:
+
+	hep_sub test.sh -g physics
+
+and it will be executed in the background. Here, the option `-g` tellst that you are from the `physics` group. You can check whether the job is (still) running in the queue using:
+
+	hep_q -u $USER
+
+Note that `hep_q` would list all jobs from all users.
+
 
 # Further reading
+
+## IHEP and the BESIII collaboration
+- BESIII:
+	- http://bes3.ihep.ac.cn/
+	- http://bes.ihep.ac.cn/
+
+- IHEP: 
+	- http://english.ihep.cas.cn/ [English]
+	- http://www.ihep.cas.cn/ [Chinese]
+	- http://web.ihep.ac.cn/
+
+- http://english.ihep.cas.cn/doc/259.html
+
 
 ## The BOSS Analysis Framework
 - BOSS software source code CVS repository:
@@ -214,10 +296,6 @@ First go to [your work area](#your-work-area):
 
 
 # About
-From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the **BOSS** framework, I decided to supply the code I write for my own analysis with `Doxygen` formated comments. The resulting documentation can then be used as a gudie for anyone who wants to get familiar with the **BOSS** framework.
+From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the **BOSS** framework, I decided to supply the code I write for my own analysis with `Doxygen` formated comments. The resulting documentation can then be used as a guide for anyone who wants to get familiar with the **BOSS** framework.
 
-In writing my code, I have attempted to set up an object-oriented `C++` class structure that is both general in usage (that is, using *base and derived classes*) and represents the data structure of analysis output from the **BOSS** framework. In this way, I hope that class documentation in this repository can also be used to help the user understand the **BOSS** framework itself.
-<!-- @todo Elaborate acknowledgements
-- Prof. Shen Xiaoyan
-- Cao Ning
-- Ma Runqiu -->
+In writing my code, I have attempted to set up an object-oriented `C++` class structure that is both general in usage (that is, using *base and derived classes*) and represents the data structure of analysis output from the **BOSS** framework. In this way, I hope that the class documentation in this repository can also be used to help the user understand the **BOSS** framework itself.
