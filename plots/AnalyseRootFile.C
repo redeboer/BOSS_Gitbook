@@ -316,7 +316,7 @@ void DrawSaveAndDelete(TH2D*& hist, const char* saveas)
 /**
  * @brief Fit a Gaussian function on a invariant mass distrubution.
  * @details
- * @param invMassHistogram
+ * @param invMassHistogram Invariant mass histogram that you would like to fit
  * @param particle Hypothesis particle: which particle are you reconstructing?
  * @param sigma This is the assumed with of the Gaussian
  */
