@@ -1,16 +1,16 @@
-# Main Page {#mainpage}
+Main Page {#mainpage}
+=========
 
 **This repository is underdevelopment.** It has been set up as an *unofficial* extension to the BOSS analysis framework of the [BESIII collaboration](http://bes3.ihep.ac.cn "Offical BESIII webpage") with two related purposes:
 
-1. Serve as an accessible introduction and user guide to the `BOSS` framework.
-2. Provide basic tools to analyse output of `BOSS` and generate plots.
+1. Serve as an accessible introduction and user guide to `BOSS`.
+2. Provide basic tools to analyse and visualise output of `BOSS`.
 
 If you do not have an IHEP networking account, it is therefore better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html "Offical BOSS webpage") of BESIII --- this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section [Further reading](#further-reading).
 
 
-# Table of contents
-- [Main Page {#mainpage}](#main-page-mainpage)
-- [Table of contents](#table-of-contents)
+Table of contents
+=========
 - [Introduction](#introduction)
 - [The BOSS framework](#the-boss-framework)
 	- [Organisation of the IHEP server](#organisation-of-the-ihep-server)
