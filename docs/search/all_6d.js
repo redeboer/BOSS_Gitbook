@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['main_20page',['Main Page',['../index.html',1,'']]],
   ['m2gg',['m2gg',['../namespaceAnaBranches_1_1etot.html#a2f13976ceaaa3de0d620b64ebb0faed2',1,'AnaBranches::etot']]],
   ['main',['main',['../AnalyseRootFile_8C.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'AnalyseRootFile.C']]],
   ['mean',['mean',['../RooFitMacro_8C.html#a2caea41d9fe6d1f76df20f84c164a63b',1,'RooFitMacro.C']]],

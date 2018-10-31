@@ -1,5 +1,5 @@
-Main Page {#mainpage}
-=====================
+The BOSS Afterburner {#mainpage}
+================================
 
 **This repository is underdevelopment.** It has been set up as an *unofficial* extension to the BOSS analysis framework of the [BESIII collaboration](http://bes3.ihep.ac.cn "Offical BESIII webpage") with two related purposes:
 
