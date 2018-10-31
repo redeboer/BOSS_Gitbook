@@ -111,7 +111,11 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#the-boss-framework">The BOSS framework</a><ul>
 <li><a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a></li>
-<li><a href="#setup-of-your-boss-and-afterburner-environment">Setup of your `BOSS` and *Afterburner* environment</a></li>
+<li><a href="#setup-of-your-boss-and-afterburner-environment">Setup of your `BOSS` and *Afterburner* environment</a><ul>
+<li><a href="#1-your-work-area">(1) Your work area</a></li>
+<li><a href="#2-boss-afterburner">(2) *BOSS Afterburner*</a></li>
+</ul>
+</li>
 <li><a href="#setup-a-boss-package">Setup a BOSS package</a></li>
 </ul>
 </li>
@@ -128,26 +132,22 @@ $(document).ready(function(){initNavTree('index.html','');});
 <p>The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7.</p>
 <h2>Setup of your <code>BOSS</code> and <em>Afterburner</em> environment</h2>
 <p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <code>BOSS</code> and (2) the <em>BOSS Afterburner</em> repository.</p>
-<ol type="1">
-<li><b>Work area</b><ul>
+<h3>(1) Your work area</h3>
+<ul>
 <li>Go to your <em>IHEP batch</em> folder:</li>
 </ul>
-</li>
-</ol>
 <p>``` cd /ihepbatch/bes/&lt;your username&gt; ```</p>
 <ul>
 <li>Create a workarea directory and a 'CMT home' directory, where you add the version number of the <code>BOSS</code> version you want to use. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code></li>
 </ul>
 <p>``` mkdir cmthome-&lt;BOSS version&gt; mkdir workarea-&lt;BOSS version&gt; ``` </p>
 <pre class="fragment">- \xrefitem todo 1.
-</pre><ol type="1">
-<li><b>BOSS_Afterburner</b><ul>
-<li>Go to the <em>BES file system</em> folder: <code>cd /besfs/users/&lt;your username&gt;</code></li>
-<li><a href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the <em>BOSS Afterburner</em> repository: <code>git clone <a href="https://github.com/redeboer/BOSS_Afterburner">https://github.com/redeboer/BOSS_Afterburner</a></code></li>
-</ul>
-</li>
-</ol>
-<p>Now you're all set to go!</p>
+</pre><h3>(2) <em>BOSS Afterburner</em></h3>
+<p>Go to the <em>BES file system</em> folder: </p>
+<pre class="fragment">`cd /besfs/users/&lt;your username&gt;`
+</pre><p><a href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the <em>BOSS Afterburner</em> repository: </p>
+<pre class="fragment">`git clone https://github.com/redeboer/BOSS_Afterburner`
+</pre><p>Now you're all set to go!</p>
 <h2>Setup a BOSS package</h2>
 <p>The typical example that is used as a starting point in <code>BOSS</code> is the <code>TestRelease</code> package. We will need to copy this package into your work area.</p>
 <ol type="1">

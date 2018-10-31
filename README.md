@@ -15,6 +15,8 @@ Table of contents
 - [The BOSS framework](#the-boss-framework)
 	- [Organisation of the IHEP server](#organisation-of-the-ihep-server)
 	- [Setup of your `BOSS` and *Afterburner* environment](#setup-of-your-boss-and-afterburner-environment)
+		- [(1) Your work area](#1-your-work-area)
+		- [(2) *BOSS Afterburner*](#2-boss-afterburner)
 	- [Setup a BOSS package](#setup-a-boss-package)
 - [Technicalities](#technicalities)
 - [About](#about)
@@ -35,7 +37,7 @@ The IHEP server runs on Scientific Linux (SL). There are several versions availa
 ## Setup of your `BOSS` and *Afterburner* environment
 I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the **work area** that contains your run scripts for `BOSS` and (2) the *BOSS Afterburner* repository.
 
-1. **Work area**
+### (1) Your work area
    - Go to your *IHEP batch* folder:
 
 ```
@@ -50,11 +52,13 @@ mkdir workarea-\<BOSS version\>
 
 	- @todo Finish tutorial about setting up your BOSS environment (e.g. cmt home)
 
-2. **BOSS_Afterburner**
-	- Go to the *BES file system* folder:
+### (2) *BOSS Afterburner*
+Go to the *BES file system* folder:
+
 	`cd /besfs/users/<your username>`
 
-	- [Clone](https://help.github.com/articles/cloning-a-repository/) the *BOSS Afterburner* repository:
+[Clone](https://help.github.com/articles/cloning-a-repository/) the *BOSS Afterburner* repository:
+
 	`git clone https://github.com/redeboer/BOSS_Afterburner`
 
 Now you're all set to go!
