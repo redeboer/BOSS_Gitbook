@@ -105,17 +105,15 @@ $(document).ready(function(){initNavTree('md__besfs_users_deboer_BOSS_Afterburne
 <li>Serve as an accessible introduction and user guide to the <code>BOSS</code> framework.</li>
 <li>Provide basic tools to analyse output of <code>BOSS</code> and generate plots.</li>
 </ol>
-<p>If you do not have an IHEP networking account, it is therefore better to check out the official <a href="http://english.ihep.cas.cn/bes/doc/2247.html" title="Offical BOSS webpage">Offline Software page</a> of BESIII &ndash; this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section <a href="#further-reading">Further reading</a>.</p>
-<h2>Table of contents</h2>
+<p>If you do not have an IHEP networking account, it is therefore better to check out the official <a href="http://english.ihep.cas.cn/bes/doc/2247.html" title="Offical BOSS webpage">Offline Software page</a> of BESIII &mdash; this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section <a href="#further-reading">Further reading</a>.</p>
+<h1>Table of contents</h1>
 <ul>
-<li><a href="#main-page-mainpage">Main Page {#mainpage}</a><ul>
+<li><a href="#main-page-mainpage">Main Page {#mainpage}</a></li>
 <li><a href="#table-of-contents">Table of contents</a></li>
-</ul>
-</li>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#the-boss-framework">The BOSS framework</a><ul>
 <li><a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a></li>
-<li><a href="#setup-of-your-environment">Setup of your environment</a></li>
+<li><a href="#setup-of-your-boss-and-afterburner-environment">Setup of your `BOSS` and *Afterburner* environment</a></li>
 <li><a href="#setup-a-boss-package">Setup a BOSS package</a></li>
 </ul>
 </li>
@@ -130,18 +128,24 @@ $(document).ready(function(){initNavTree('md__besfs_users_deboer_BOSS_Afterburne
 <h1>The BOSS framework</h1>
 <h2>Organisation of the IHEP server</h2>
 <p>The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7.</p>
-<h2>Setup of your environment</h2>
-<p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that that</p>
+<h2>Setup of your <code>BOSS</code> and <em>Afterburner</em> environment</h2>
+<p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <code>BOSS</code> and (2) the <em>BOSS Afterburner</em> repository.</p>
 <ol type="1">
-<li>Your <b>Work area</b> Place your <code>BOSS</code> packages in <code>/ihepbatch/bes/&lt;your username&gt;</code>.</li>
-</ol>
-<ul>
-<li>Place the <code>BOSS_Afterburner</code> in <code>/besfs/users/&lt;your username&gt;</code>.</li>
+<li><b>Work area</b><ul>
+<li>Go to your <em>IHEP batch</em> folder: <code>cd /ihepbatch/bes/&lt;your username&gt;</code></li>
+<li>Create a workarea directory and a 'CMT home' directory, where you add the version number of the <code>BOSS</code> version you want to use. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code> <code>mkdir cmthome-&lt;BOSS version&gt;</code> <code>mkdir workarea-&lt;BOSS version&gt;</code><ul>
+<li><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
+</li>
 </ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>Now you're all set to go!</p>
 <h2>Setup a BOSS package</h2>
 <p>The typical example that is used as a starting point in <code>BOSS</code> is the <code>TestRelease</code> package. We will need to copy this package into your work area.</p>
 <ol type="1">
-<li>:(同一个节点下) cd 到上一页你创建的workarea路径下<code> 3.</code>cp –r $BesArea/TestRelease ./<code> 4.</code>cd TestRelease/TestRelease-*/cmt<code> 5.</code>cmt broadcast cmt config<code> 6.</code>cmt broadcast make<code> 7.</code>source setup.csh`</li>
+<li>:(同一个节点下) cd 到上一页你创建的workarea路径下<code> 2.</code>cp –r $BesArea/TestRelease ./<code> 3.</code>cd TestRelease/TestRelease-*/cmt<code> 4.</code>cmt broadcast cmt config<code> 5.</code>cmt broadcast make<code> 6.</code>source setup.csh`</li>
 </ol>
 <h1>Technicalities</h1>
 <h1>About</h1>
