@@ -38,13 +38,17 @@ I advise you to set up your environment in the same way I did. There are two mai
 1. **Work area**
    - Go to your *IHEP batch* folder:
 	`cd /ihepbatch/bes/<your username>`
+
    - Create a workarea directory and a 'CMT home' directory, where you add the version number of the `BOSS` version you want to use. You can for instance take `<BOSS version>` to be `7.0.3`
 	`mkdir cmthome-<BOSS version>`
 	`mkdir workarea-<BOSS version>`
+
 	- @todo Finish tutorial about setting up your BOSS environment (e.g. cmt home)
+
 2. **BOSS_Afterburner**
 	- Go to the *BES file system* folder:
 	`cd /besfs/users/<your username>`
+
 	- [Clone](https://help.github.com/articles/cloning-a-repository/) the *BOSS Afterburner* repository:
 	`git clone https://github.com/redeboer/BOSS_Afterburner`
 
