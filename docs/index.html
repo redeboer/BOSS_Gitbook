@@ -171,14 +171,42 @@ $(document).ready(function(){initNavTree('index.html','');});
 </ul>
 <p>These directories will be important later in this 'tutorial'.</p>
 <h2>Setup of your BOSS and Afterburner environment</h2>
-<p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository.</p>
+<p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository. I placed the work area in my <code>ihepbatch</code> folder (see <a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a>) and the BOSS Afterburner in my <code>besfs</code> folder. Data generated with <b>BOSS</b> through the work area scripts is written then to the <code>BOSS_Afterburner/data</code> directory on <code>besfs</code> (see later).</p>
 <h3>(1) Your work area</h3>
-<p>Go to your <em>IHEP batch</em> folder: </p>
-<pre class="fragment">cd /ihepbatch/bes/&lt;your username&gt;
-</pre><p>Now, create a <b>workarea</b> directory and a 'CMT home' directory, where you add the version number of the <b>BOSS</b> version you want to use to the directory name. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code>: </p>
-<pre class="fragment">mkdir cmthome-&lt;BOSS version&gt;
-mkdir workarea-&lt;BOSS version&gt;
-</pre><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Test the procedure described below!</dd></dl>
+<p>You will be running your <b>BOSS</b> analyses from this folder. It contains a <em>Configuration Management Tool</em> folder (<code>cmthome</code>), which is used to set up path variables for <b>BOSS</b>, and a <code>workarea</code> folder where you develop your own <b>BOSS</b> packages (including the <code>jobOptions*.txt</code> files). So let's set it up:</p>
+<ol type="1">
+<li><p class="startli">Go to your <em>IHEP batch</em> folder:</p>
+<p class="startli">cd /ihepbatch/bes/[your username]</p>
+</li>
+</ol>
+<p>At this stage, you'll have to decide which version of BOSS you have to use. At the time of writing, version 7.0.3 is the latest stable version, though it could be that for your analysis you have to use data that was reconstructed with older versions of <b>BOSS</b>. For now, I'll just use <code>7.0.3</code>, but you can replace this number with whatever version you need.</p>
+<ol type="1">
+<li><p class="startli">We'll first set up the necessary references to <b>BOSS</b> using the <em>Configuration Management Tool</em> (CMT). This is done by copying the <code>cmthome</code> folder from BOSS Software directory to the <code>ihepbatch</code> folder where you currently are:</p>
+<p class="startli">cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 cmthome</p>
+</li>
+<li><p class="startli">Go into the new folder you created and connect to the CMT:</p>
+<p class="startli">cd cmthome source setupCMT.csh</p>
+</li>
+<li><p class="startli">You'll now have to modify the file called <code>requirements</code> (we'll use the <code>vi</code> editor here, but you can use whatever editor you prefer):</p>
+<p class="startli">vi requirements</p>
+</li>
+<li><p class="startli">The file contains the following lines:</p>
+<p class="startli">#macro WorkArea "/ihepbatch/bes/maqm/workarea"</p>
+<p class="startli">#path_remove CMTPATH "${WorkArea}" #path_prepend CMTPATH "${WorkArea}"</p>
+</li>
+</ol>
+<p>Uncomment them (remove the hash <code>#</code>) and replace <code>maqm</code> with your own user name. Like this: </p>
+<pre class="fragment">macro WorkArea "/ihepbatch/bes/&lt;your user name&gt;/workarea"
+
+path_remove CMTPATH "${WorkArea}"
+path_prepend CMTPATH "${WorkArea}"
+</pre><ol type="1">
+<li><p class="startli">Now, create a <b>workarea</b> directory and a 'CMT home' directory, where you add the version number of the <b>BOSS</b> version you want to use to the directory name. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code>:</p>
+<p class="startli">mkdir cmthome-&lt;BOSS version&gt;=""&gt; mkdir workarea-&lt;BOSS version&gt;=""&gt;</p>
+</li>
+</ol>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
 <h3>(2) BOSS Afterburner</h3>
 <p>Go to the <em>BES file system</em> folder: </p>
 <pre class="fragment">cd /besfs/users/&lt;your username&gt;
