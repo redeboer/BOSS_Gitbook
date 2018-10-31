@@ -1,11 +1,13 @@
-<!-- @mainpage Main page
+# The BOSS Afterburner Framework {#mainpage}
+<!--
 @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 @date     30-10-2018
 @copyright Copyright (c) 2018
 @tableofcontents -->
 
-The documentation of this framework has to be generated using at least `Doxygen` **1.8.0**, as it contains Markdown, LaTex, and HTML code. When working on the IHEP service, you will therefore have to login to the `lxslc7` server (Scientific Linux 7) -- `lxslc6` uses an older version of `Doxygen`. Generate documentation using `doxygen .doxygen.in` (where `.doxygen.in` is the `Doxygen` input configuration file).
-
+## Table of contents
+- [Introduction](#introduction)
+- [The BOSS framework](#the-boss-framework)
 ## Introduction
 From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the `BOSS` framework, I decided to supply the code I write for my own analysis with `Doxygen` formated comments. The resulting documentation can then be used as a gudie for anyone who wants to get familiar with the `BOSS` framework.
 
@@ -21,7 +23,9 @@ List of resources:
 - http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome (TWiki)
 - https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf\
 
-\section acknowledgements Acknowledgements
+## Technicalities
+
+# Acknowledgements
 <!-- @todo Elaborate acknowledgements
 - Prof. Shen Xiaoyan
 - Cao Ning

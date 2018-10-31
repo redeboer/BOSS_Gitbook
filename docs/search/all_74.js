@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['the_20boss_20afterburner_20framework',['The BOSS Afterburner Framework',['../md__besfs_users_deboer_BOSS_Afterburner_README.html',1,'']]],
   ['te',['te',['../namespaceAnaBranches_1_1tof1.html#a46f2b695c83825e99e41fe8de57ae906',1,'AnaBranches::tof1::te()'],['../namespaceAnaBranches_1_1tof2.html#afff719f4bfcacc35a051f41c6d58f816',1,'AnaBranches::tof2::te()'],['../namespaceAnaBranches_1_1tofe.html#acbd118cf120119c35cb46cd4a441c8e0',1,'AnaBranches::tofe::te()']]],
   ['temp',['temp',['../RooFitExample_8C.html#a92cfabe7d9a858c0b8bbdc8b1436b4a4',1,'RooFitExample.C']]],
   ['thit',['thit',['../namespaceAnaBranches_1_1dedx.html#a704c1f7cdc91e4922de0c64e3aa231b3',1,'AnaBranches::dedx']]],
