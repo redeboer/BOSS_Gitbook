@@ -57,15 +57,18 @@ When you have logged into the server, you usually start in your home (`~`) folde
 
 Some other important directories are the following:
 
-- **[BOSS Software directory](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_setup_BOSS_environment_on_lxslc)**
+- [BOSS Software directory](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_setup_BOSS_environment_on_lxslc)
+
   `/afs/ihep.ac.cn/bes3/offline/Boss`
 
-- **[Raw data files](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Raw_Data)**
+- [Raw data files](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Raw_Data)
+
   `/bes3fs/offline/data/raw`
   `/besfs2/offline/data/raw` (only rounds 3 and 6)
   `/besfs/offline/data/randomtrg` (random trigger data)
 
-- **[Reconstructed data sets](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Production)**
+- [Reconstructed data sets](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Production)
+
   `/besfs3/offline/data/`
   `/besfs2/offline/` (older versions)
 
