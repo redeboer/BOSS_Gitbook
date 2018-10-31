@@ -106,6 +106,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li>Provide basic tools to analyse and visualise output of <b>BOSS</b>.</li>
 </ol>
 <p>If you do not have an IHEP networking account, it is therefore better to check out the official <a href="http://english.ihep.cas.cn/bes/doc/2247.html" title="Offical BOSS webpage">Offline Software page</a> of BESIII &mdash; this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section <a href="#further-reading">Further reading</a>.</p>
+<p>The MarkDown generated material on this repository page serve as a simple introduction. For more details, you can go to the <a href="https://redeboer.github.io/BOSS_Afterburner/" title="Doxygen page of the BOSS Afterburner">parallel Doxygen generated webpage</a> of the BOSS Afterburner.</p>
 <h1>Table of contents </h1>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
@@ -129,27 +130,30 @@ $(document).ready(function(){initNavTree('index.html','');});
 <h1>Introduction</h1>
 <h1>The BOSS framework</h1>
 <h2>Organisation of the IHEP server</h2>
-<p>The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7.</p>
+<p>The IHEP server runs on Scientific Linux (SL). There are several versions available that can be accessed simultaneously. Usually, people use either SL5, SL6, or SL7. The domain names for these are <code>lxslc7.ihep.ac.cn</code>, where the <code>7</code> in this case refers to SL7. If you are running on Linux or a Linux terminal, the server can be easily accessed using: </p>
+<pre class="fragment">ssh -Y \&lt;your user name\&gt;@lxslc7.ihep.ac.cn
+</pre><p>Here, the option <code>-Y</code> ensures <em>X11 forwarding</em>, allowing you to open graphical applications.</p>
+<p>In Windows, there are several nice tools to work on this. First of all, to be able to use SSH, use will either have to use <a href="https://www.putty.org/">PuTTY</a> or more extensive software like <a href="https://www.netsarang.com/products/xmg_overview.html">Xmanager</a>. In addition, I would recommend you to work with the (S)FTP client <a href="https://winscp.net/eng/index.php">WinSCP</a>. It allows you to easily navigate the file structure of the IHEP server and to quickly transfer&mdash;even synchronise&mdash;files up and down to your own computer.</p>
 <h2>Setup of your <b>BOSS</b> and <em>Afterburner</em> environment</h2>
 <p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository.</p>
 <h3>(1) Your work area</h3>
 <p>Go to your <em>IHEP batch</em> folder: </p>
-<pre class="fragment">`cd /ihepbatch/bes/\&lt;your username\&gt;`
-</pre><p>Create a workarea directory and a 'CMT home' directory, where you add the version number of the <b>BOSS</b> version you want to use. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code> </p>
-<pre class="fragment">`mkdir cmthome-\&lt;BOSS version\&gt;`
-`mkdir workarea-\&lt;BOSS version\&gt;`
+<pre class="fragment">cd /ihepbatch/bes/\&lt;your username\&gt;
+</pre><p>Create a workarea directory and a 'CMT home' directory, where you add the version number of the <b>BOSS</b> version you want to use to the directory name. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code>: </p>
+<pre class="fragment">mkdir cmthome-\&lt;BOSS version\&gt;
+mkdir workarea-\&lt;BOSS version\&gt;
 </pre><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
 <h3>(2) BOSS Afterburner</h3>
 <p>Go to the <em>BES file system</em> folder: </p>
-<pre class="fragment">`cd /besfs/users/&lt;your username&gt;`
+<pre class="fragment">cd /besfs/users/&lt;your username&gt;
 </pre><p><a href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the <em>BOSS Afterburner</em> repository: </p>
-<pre class="fragment">`git clone https://github.com/redeboer/BOSS_Afterburner`
+<pre class="fragment">git clone https://github.com/redeboer/BOSS_Afterburner
 </pre><p>Now you're all set to go!</p>
 <h2>Setup a BOSS package</h2>
 <p>The typical example that is used as a starting point in <b>BOSS</b> is the <code>TestRelease</code> package. We will need to copy this package into your work area.</p>
-<ol type="1">
-<li>:(同一个节点下) cd 到上一页你创建的workarea路径下`</li>
-<li><code>cp –r $BesArea/TestRelease ./</code></li>
+<p>First go to <a href="#your-work-area">your work area</a>: cd /ihepbatch/bes/&lt;your username&gt;</p>
+<pre class="fragment">cp –r $BesArea/TestRelease ./
+</pre><ol type="1">
 <li><code>cd TestRelease/TestRelease-*/cmt</code></li>
 <li><code>cmt broadcast cmt config</code></li>
 <li><code>cmt broadcast make</code></li>
