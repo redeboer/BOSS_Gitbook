@@ -130,14 +130,17 @@ $(document).ready(function(){initNavTree('index.html','');});
 <p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <code>BOSS</code> and (2) the <em>BOSS Afterburner</em> repository.</p>
 <ol type="1">
 <li><b>Work area</b><ul>
-<li>Go to your <em>IHEP batch</em> folder: <code>cd /ihepbatch/bes/&lt;your username&gt;</code></li>
-<li>Create a workarea directory and a 'CMT home' directory, where you add the version number of the <code>BOSS</code> version you want to use. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code> <code>mkdir cmthome-&lt;BOSS version&gt;</code> <code>mkdir workarea-&lt;BOSS version&gt;</code><ul>
-<li><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Finish tutorial about setting up your BOSS environment (e.g. cmt home)</dd></dl>
-</li>
+<li>Go to your <em>IHEP batch</em> folder:</li>
 </ul>
 </li>
+</ol>
+<p>```bash cd /ihepbatch/bes/&lt;your username&gt;=""&gt; ```</p>
+<ul>
+<li>Create a workarea directory and a 'CMT home' directory, where you add the version number of the <code>BOSS</code> version you want to use. You can for instance take <code>&lt;BOSS version&gt;</code> to be <code>7.0.3</code></li>
 </ul>
-</li>
+<p>```bash mkdir cmthome-&lt;BOSS version&gt;=""&gt; mkdir workarea-&lt;BOSS version&gt;=""&gt; ``` </p>
+<pre class="fragment">- \xrefitem todo 1.
+</pre><ol type="1">
 <li><b>BOSS_Afterburner</b><ul>
 <li>Go to the <em>BES file system</em> folder: <code>cd /besfs/users/&lt;your username&gt;</code></li>
 <li><a href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the <em>BOSS Afterburner</em> repository: <code>git clone <a href="https://github.com/redeboer/BOSS_Afterburner">https://github.com/redeboer/BOSS_Afterburner</a></code></li>
