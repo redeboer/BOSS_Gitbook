@@ -124,7 +124,9 @@ $(document).ready(function(){initNavTree('index.html','');});
 </ul>
 <h1>Introduction</h1>
 <p>The <a href="http://bes3.ihep.ac.cn/">Beijing Spectrometer (BESIII)</a> is a particle experiment situated at the <a href="http://english.ihep.cas.cn/doc/1840.html">Beijing Electron-Positron Collider (BEPCII)</a>. It is primarily designed to perform highly sensitive studies of light hadron and charm physics.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Elaborate or refer</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd><p class="startdd">Elaborate or refer </p>
+<p class="enddd">Rewrite for TC shell.</p>
+</dd></dl>
 <p>Output of the detector is analysed using the <a href="http://english.ihep.cas.cn/bes/doc/2247.html">BESIII Offline Software System (BOSS)</a>.</p>
 <h1>The BOSS framework</h1>
 <h2>Organisation of the IHEP server</h2>
@@ -137,15 +139,15 @@ $(document).ready(function(){initNavTree('index.html','');});
 <tr>
 <th>Path </th><th align="center">Data quotum </th><th align="center">Max. number of files </th><th align="center">Remark  </th></tr>
 <tr>
-<td><code>/afs/ihep.ac.cn/users/&lt;u&gt;/&lt;username&gt;</code> </td><td align="center">500 MB </td><td align="center">NA </td><td align="center">home (<code>~</code>) </td></tr>
+<td><code>/afs/ihep.ac.cn/users/&lt;letter&gt;/$USER</code> </td><td align="center">500 MB </td><td align="center">NA </td><td align="center">home (<code>~</code>) </td></tr>
 <tr>
-<td><code>/besfs/users/&lt;username&gt;</code> </td><td align="center">50 GB </td><td align="center">300,000 </td><td align="center"></td></tr>
+<td><code>/besfs/users/$USER</code> </td><td align="center">50 GB </td><td align="center">300,000 </td><td align="center"></td></tr>
 <tr>
-<td><code>/ihepbatch/bes/&lt;username&gt;</code> </td><td align="center">200 MB </td><td align="center">NA </td><td align="center"></td></tr>
+<td><code>/ihepbatch/bes/$USER</code> </td><td align="center">200 MB </td><td align="center">NA </td><td align="center"></td></tr>
 <tr>
-<td><code>/workfs/bes/&lt;username&gt;</code> </td><td align="center">5 GB </td><td align="center">50,000 </td><td align="center">no <code>hep_sup</code> available </td></tr>
+<td><code>/workfs/bes/$USER</code> </td><td align="center">5 GB </td><td align="center">50,000 </td><td align="center">no <code>hep_sup</code> available </td></tr>
 <tr>
-<td><code>/scratchfs/bes/&lt;username&gt;</code> </td><td align="center">500 GB </td><td align="center">NA </td><td align="center">max. 2 weeks </td></tr>
+<td><code>/scratchfs/bes/$USER</code> </td><td align="center">500 GB </td><td align="center">NA </td><td align="center">max. 2 weeks </td></tr>
 </table>
 <p>Some other important directories are the following:</p>
 <ul>
@@ -167,19 +169,19 @@ $(document).ready(function(){initNavTree('index.html','');});
 </ul>
 <p>These directories will be important later in this 'tutorial'.</p>
 <h2>Setup of your BOSS and Afterburner environment</h2>
-<p>***Note:** In it's current version, this tutorial assumes you use <code>bash</code> as terminal.*</p>
-<p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <b>work area</b> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository. I placed the work area in my <code>ihepbatch</code> folder (see <a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a>) and the BOSS Afterburner in my <code>besfs</code> folder. Data generated with <b>BOSS</b> through the work area scripts is written then to the <code>BOSS_Afterburner/data</code> directory on <code>besfs</code> (see later).</p>
-<h3>(1) Your work area</h3>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Test the procedure described below!</dd></dl>
+<p>***Note:** In it's current version, this tutorial assumes you use a <code>bash</code> terminal.*</p>
+<p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <em>work area</em> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository. I placed the work area in my <code>ihepbatch</code> folder (see <a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a>) and the BOSS Afterburner in my <code>besfs</code> folder. Data generated with <b>BOSS</b> through the work area scripts is written then to the <code>BOSS_Afterburner/data</code> directory on <code>besfs</code> (see later).</p>
+<h3>(1) Set up your work area</h3>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Test the procedure described below! </dd></dl>
 <p>You will be running your <b>BOSS</b> analyses from this folder. It contains a <em>Configuration Management Tool</em> folder (<code>cmthome</code>), which is used to set up path variables for <b>BOSS</b>, and a <code>workarea</code> folder where you develop your own <b>BOSS</b> packages (including the <code>jobOptions*.txt</code> files).</p>
 <p><b>Step 1:</b> Go to your <em>IHEP batch</em> folder: </p>
 <pre class="fragment">cd /ihepbatch/bes/&lt;your username&gt;
 </pre><p>At this stage, you'll have to decide which version of BOSS you have to use. At the time of writing, version 7.0.3 is the latest stable version, though it could be that for your analysis you have to use data sets that were reconstructed with older versions of <b>BOSS</b>. Here, I'll just use <code>7.0.3</code>, but you can replace this number with whatever version you need.</p>
 <p><b>Step 2:</b> We'll first set up the necessary references to <b>BOSS</b> using the <em>Configuration Management Tool</em> (CMT). This is done by copying the <code>cmthome</code> folder from BOSS Software directory to the <code>ihepbatch</code> folder where you currently are: </p>
-<pre class="fragment">cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 cmthome
+<pre class="fragment">cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 .
 </pre><p>and navigate into that copy: </p>
-<pre class="fragment">cd cmthome
-</pre><p><b>Step 4:</b> You'll now have to modify the file called <code>requirements</code> so that it handles your username properly. We'll use the <code>vi</code> editor here, but you can use whatever editor you prefer: </p>
+<pre class="fragment">cd cmthome-7.0.3
+</pre><p><b>Step 3:</b> You'll now have to modify the file called <code>requirements</code> so that it handles your username properly. We'll use the <code>vi</code> editor here, but you can use whatever editor you prefer: </p>
 <pre class="fragment">vi requirements
 </pre><p>The file contains the following lines: </p>
 <pre class="fragment">#macro WorkArea "/ihepbatch/bes/maqm/workarea"
@@ -187,28 +189,57 @@ $(document).ready(function(){initNavTree('index.html','');});
 #path_remove CMTPATH "${WorkArea}"
 #path_prepend CMTPATH "${WorkArea}"
 </pre><p>Uncomment them (remove the hash <code>#</code>) and replace <code>maqm</code> with your own user name. Like this: </p>
-<pre class="fragment">macro WorkArea "/ihepbatch/bes/&lt;your user name&gt;/workarea"
+<pre class="fragment">macro WorkArea "/ihepbatch/bes/$USER/workarea"
 
 path_remove CMTPATH "${WorkArea}"
 path_prepend CMTPATH "${WorkArea}"
-</pre><p><b>Step 5:</b> Now you can use the scripts to set all references to <b>BOSS</b> at once using: </p>
+</pre><p><b>Step 4:</b> Now you can use the scripts to set all references to <b>BOSS</b> at once using: </p>
 <pre class="fragment">source setupCMT.sh  # starts connection to the CMT
 cmt config          # initiates configuration
 source setup.sh     # sets path variables
-</pre><p><b>Step 6:</b> You're done! Just to be sure, you can check whether the path variables have been set correctly: </p>
+</pre><p>Just to be sure, you can check whether the path variables have been set correctly: </p>
 <pre class="fragment">echo $CMTPATH
 </pre><p>If everything went well, it should print: </p>
-<pre class="fragment">/ihepbatch/bes/&lt;username&gt;/workarea-7.0.3:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.3:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
-</pre><h3>(2) BOSS Afterburner</h3>
+<pre class="fragment">/ihepbatch/bes/$USER/workarea-7.0.3:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.3:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
+</pre><p><b>Step 5:</b> Adapt your <code>bash</code> profile (<code>.bash_profile</code>) and <em>run commands</em> file (<code>.bashrc</code>) so that <b>BOSS</b> is loaded automatically every time you log into the server. The easy solution is simply copy-pasting and running these commands: </p>
+<pre class="fragment">echo -e "if test -f .bashrc; then\n\tsource .bashrc\nfi" &gt;&gt; ~/.bash_profile
+echo "IHEPBATCH=\"/ihepbatch/bes/$USER\"" &gt;&gt; ~/.bashrc
+echo "CMTHOME=\"/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3\"" &gt;&gt; ~/.bashrc
+echo "source $IHEPBATCH/cmthome-7.0.3/setupCMT.sh" &gt;&gt; ~/.bashrc
+echo "source $IHEPBATCH/cmthome-7.0.3/setup.sh" &gt;&gt; ~/.bashrc
+echo "source $IHEPBATCH/workarea-7.0.3/TestRelease/TestRelease-00-00-86/cmt/setup.sh" &gt;&gt; ~/.bashrc
+echo "export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/" &gt;&gt; ~/.bashrc
+</pre><p>However, to avoid becoming a <a href="https://pics.me.me/kakashi-went-from-the-copy-ninja-to-the-copy-paste-14969048.png" title="Kakashi programming">copy ninja</a>, you'd better modify these files yourself. First, add these lines to your bash profile (<code>vi ~/bash_profile</code>): </p>
+<pre class="fragment">if test -f .bashrc; then
+    source .bashrc
+fi
+</pre><p>These lines force the server to load your <code>.bashrc</code> run commands file. In that file, you should add the following lines: </p>
+<pre class="fragment">IHEPBATCH="/ihepbatch/bes/$USER"
+CMTHOME="/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3"
+source $IHEPBATCH/cmthome-7.0.3/setupCMT.sh
+source $IHEPBATCH/cmthome-7.0.3/setup.sh
+source $IHEPBATCH/workarea-7.0.3/TestRelease/TestRelease-00-00-86/cmt/setup.sh
+export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
+</pre><p>You can now either log in again to the server or use <code>source ~/.bashrc</code> to reload the run commands.</p>
+<p><b>Step 6:</b> You're done! To test whether everything went correctly, you can try to run <b>BOSS</b>: </p>
+<pre class="fragment">boss.exe
+</pre><p>It should result in a (trivial) error message like this: </p>
+<pre class="fragment">**************************************************
+               BOSS version: 7.0.3
+************** BESIII Collaboration **************
+
+the jobOptions file is : jobOptions.txt
+ERROR! the jobOptions file is empty!
+</pre><h3>(2) Set up the BOSS Afterburner</h3>
 <p>Go to the <em>BES file system</em> folder: </p>
-<pre class="fragment">cd /besfs/users/&lt;your username&gt;
+<pre class="fragment">cd /besfs/users/$USER
 </pre><p><a href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the <em>BOSS Afterburner</em> repository: </p>
 <pre class="fragment">git clone https://github.com/redeboer/BOSS_Afterburner
 </pre><p>Now you're all set to go!</p>
 <h2>Set up a BOSS package</h2>
 <p>The typical example that is used as a starting point in <b>BOSS</b> is the <code>TestRelease</code> package. We will need to copy this package into your work area.</p>
 <p>First go to <a href="#your-work-area">your work area</a>: </p>
-<pre class="fragment">cd /ihepbatch/bes/&lt;your username&gt;
+<pre class="fragment">cd /ihepbatch/bes/$USER
 
 
 

@@ -47,11 +47,11 @@ When you have logged into the server, you usually start in your home (`~`) folde
 
 | Path                                   | Data quotum | Max. number of files  | Remark                  |
 | -------------------------------------- |:-----------:|:---------------------:|:-----------------------:|
-| `/afs/ihep.ac.cn/users/<u>/<username>` |      500 MB |                    NA | home (`~`)              |
-| `/besfs/users/<username>`              |       50 GB |               300,000 |                         |
-| `/ihepbatch/bes/<username>`            |      200 MB |                    NA |                         |
-| `/workfs/bes/<username>`               |        5 GB |                50,000 | no `hep_sup` available  |
-| `/scratchfs/bes/<username>`            |      500 GB |                    NA | max. 2 weeks            |
+| `/afs/ihep.ac.cn/users/<letter>/$USER` |      500 MB |                    NA | home (`~`)              |
+| `/besfs/users/$USER`                   |       50 GB |               300,000 |                         |
+| `/ihepbatch/bes/$USER`                 |      200 MB |                    NA |                         |
+| `/workfs/bes/$USER`                    |        5 GB |                50,000 | no `hep_sup` available  |
+| `/scratchfs/bes/$USER`                 |      500 GB |                    NA | max. 2 weeks            |
 
 Some other important directories are the following:
 
@@ -71,12 +71,13 @@ These directories will be important later in this 'tutorial'.
 
 
 ## Setup of your BOSS and Afterburner environment
-***Note:** In it's current version, this tutorial assumes you use `bash` as terminal.*
+***Note:** In it's current version, this tutorial assumes you use a `bash` terminal.*
 
-I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the **work area** that contains your run scripts for **BOSS** and (2) the *BOSS Afterburner* repository. I placed the work area in my `ihepbatch` folder (see [Organisation of the IHEP server](#organisation-of-the-ihep-server)) and the BOSS Afterburner in my `besfs` folder. Data generated with **BOSS** through the work area scripts is written then to the `BOSS_Afterburner/data` directory on `besfs` (see later).
+I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the *work area* that contains your run scripts for **BOSS** and (2) the *BOSS Afterburner* repository. I placed the work area in my `ihepbatch` folder (see [Organisation of the IHEP server](#organisation-of-the-ihep-server)) and the BOSS Afterburner in my `besfs` folder. Data generated with **BOSS** through the work area scripts is written then to the `BOSS_Afterburner/data` directory on `besfs` (see later).
 
-### (1) Your work area
+### (1) Set up your work area
 @todo Test the procedure described below!
+@todo Rewrite for TC shell.
 
 You will be running your **BOSS** analyses from this folder. It contains a *Configuration Management Tool* folder (`cmthome`), which is used to set up path variables for **BOSS**, and a `workarea` folder where you develop your own **BOSS** packages (including the `jobOptions*.txt` files).
 
@@ -88,13 +89,13 @@ At this stage, you'll have to decide which version of BOSS you have to use. At t
 
 **Step 2:** We'll first set up the necessary references to **BOSS** using the *Configuration Management Tool* (CMT). This is done by copying the `cmthome` folder from BOSS Software directory to the `ihepbatch` folder where you currently are:
 
-	cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 cmthome
+	cp -R /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3 .
 
 and navigate into that copy:
 
-	cd cmthome
+	cd cmthome-7.0.3
 
-**Step 4:** You'll now have to modify the file called `requirements` so that it handles your username properly. We'll use the `vi` editor here, but you can use whatever editor you prefer:
+**Step 3:** You'll now have to modify the file called `requirements` so that it handles your username properly. We'll use the `vi` editor here, but you can use whatever editor you prefer:
 
 	vi requirements
 
@@ -107,38 +108,70 @@ The file contains the following lines:
 
 Uncomment them (remove the hash `#`) and replace `maqm` with your own user name. Like this:
 
-	macro WorkArea "/ihepbatch/bes/<your user name>/workarea"
+	macro WorkArea "/ihepbatch/bes/$USER/workarea"
 
 	path_remove CMTPATH "${WorkArea}"
 	path_prepend CMTPATH "${WorkArea}"
 
-**Step 5:** Now you can use the scripts to set all references to **BOSS** at once using:
+**Step 4:** Now you can use the scripts to set all references to **BOSS** at once using:
 
 	source setupCMT.sh  # starts connection to the CMT
 	cmt config          # initiates configuration
 	source setup.sh     # sets path variables
 
-**Step 6:** You're done! Just to be sure, you can check whether the path variables have been set correctly:
+Just to be sure, you can check whether the path variables have been set correctly:
 
 	echo $CMTPATH
 
 If everything went well, it should print:
 
-	/ihepbatch/bes/<username>/workarea-7.0.3:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.3:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
+	/ihepbatch/bes/$USER/workarea-7.0.3:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.3:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
+
+**Step 5:** Adapt your `bash` profile (`.bash_profile`) and *run commands* file (`.bashrc`) so that **BOSS** is loaded automatically every time you log into the server. The easy solution is simply copy-pasting and running these commands:
+
+	echo -e "if test -f .bashrc; then\n\tsource .bashrc\nfi" >> ~/.bash_profile
+	echo "IHEPBATCH=\"/ihepbatch/bes/$USER\"" >> ~/.bashrc
+	echo "CMTHOME=\"/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3\"" >> ~/.bashrc
+	echo "source $IHEPBATCH/cmthome-7.0.3/setupCMT.sh" >> ~/.bashrc
+	echo "source $IHEPBATCH/cmthome-7.0.3/setup.sh" >> ~/.bashrc
+	echo "source $IHEPBATCH/workarea-7.0.3/TestRelease/TestRelease-00-00-86/cmt/setup.sh" >> ~/.bashrc
+	echo "export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/" >> ~/.bashrc
+
+However, to avoid becoming a [copy ninja](https://pics.me.me/kakashi-went-from-the-copy-ninja-to-the-copy-paste-14969048.png "Kakashi programming"), you'd better modify these files yourself. First, add these lines to your bash profile (`vi ~/bash_profile`):
+
+	if test -f .bashrc; then
+		source .bashrc
+	fi
+
+These lines force the server to load your `.bashrc` run commands file. In that file, you should add the following lines:
+
+	IHEPBATCH="/ihepbatch/bes/$USER"
+	CMTHOME="/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.3"
+	source $IHEPBATCH/cmthome-7.0.3/setupCMT.sh
+	source $IHEPBATCH/cmthome-7.0.3/setup.sh
+	source $IHEPBATCH/workarea-7.0.3/TestRelease/TestRelease-00-00-86/cmt/setup.sh
+	export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
+
+You can now either log in again to the server or use `source ~/.bashrc` to reload the run commands.
+
+**Step 6:** You're done! To test whether everything went correctly, you can try to run **BOSS**:
+
+	boss.exe
+
+It should result in a (trivial) error message like this:
+
+	**************************************************
+	               BOSS version: 7.0.3
+	************** BESIII Collaboration **************
+
+	the jobOptions file is : jobOptions.txt
+	ERROR! the jobOptions file is empty!
 
 
-
-<!-- Now, create a **workarea** directory and a 'CMT home' directory, where you add the version number of the **BOSS** version you want to use to the directory name. You can for instance take `<BOSS version>` to be `7.0.3`:
-
-	mkdir cmthome-<BOSS version>
-	mkdir workarea-<BOSS version>
-
-@todo Finish tutorial about setting up your BOSS environment (e.g. cmt home) -->
-
-### (2) BOSS Afterburner
+### (2) Set up the BOSS Afterburner
 Go to the *BES file system* folder:
 
-	cd /besfs/users/<your username>
+	cd /besfs/users/$USER
 
 [Clone](https://help.github.com/articles/cloning-a-repository/) the *BOSS Afterburner* repository:
 
@@ -151,7 +184,7 @@ The typical example that is used as a starting point in **BOSS** is the `TestRel
 
 First go to [your work area](#your-work-area):
 
-	cd /ihepbatch/bes/<your username>
+	cd /ihepbatch/bes/$USER
 
 
 
