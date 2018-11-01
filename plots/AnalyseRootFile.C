@@ -27,8 +27,8 @@
 #include "TH2D.h"
 #include "TString.h"
 #include "TSystem.h"
-#include "inc/FrameworkSettings.h"
-#include "inc/RhopiRootChain.h"
+#include "../inc/FrameworkSettings.h"
+#include "../inc/RhopiRootChain.h"
 #include <iostream>
 using namespace AnaBranches;
 using namespace RooFit;
@@ -45,7 +45,7 @@ void DrawSaveAndDelete(TH1D*&, const char*);
 void DrawSaveAndDelete(TH1D*&, const TString&);
 void DrawSaveAndDelete(TH2D*&, const char*);
 void DrawSaveAndDelete(TH2D*&, const TString&);
-void FitGaussian(TH1D* invMassPlot, const Particle& particle, const double sigma = .005);
+void FitDoubleGaussian(TH1D* invMassPlot, const Particle& particle, const double sigma = .00444, const double sigma = .013);
 void FitBreitWigner(TH1D* invMassPlot);
 
 
@@ -61,7 +61,7 @@ void AnalyseRootFile()
 	std::cout << std::endl; // TEMPORARY print line because of ssh X11 warning message
 
 	// * Load RhoPi ROOT analysis file *
-	RhopiRootChain rhopi("../root","ana");
+	RhopiRootChain rhopi("../data/root","ana");
 
 	// * Some variables *
 	Long64_t nentries = 0; // will be used when looping over TTrees
@@ -224,8 +224,8 @@ void AnalyseRootFile()
 				histFit5c_dalitz_rhom_rhop->Fill(fit5c::mrhom, fit5c::mrhop);
 			}
 		// * Fit
-			FitGaussian(histFit4c_mpi0,  Settings::Particles::Pi0);
-			FitGaussian(histFit5c_mrho0, Settings::Particles::Rho0);
+			FitDoubleGaussian(histFit4c_mpi0,  Settings::Particles::Pi0);
+			FitDoubleGaussian(histFit5c_mrho0, Settings::Particles::Rho0);
 
 		// * Draw and save histograms
 			DrawAndSave(histFit5c_mrho0, Settings::Output::Extension+"/invmass."+Settings::Output::Extension);
@@ -314,13 +314,15 @@ void DrawSaveAndDelete(TH2D*& hist, const char* saveas)
 }
 
 /**
- * @brief Fit a Gaussian function on a invariant mass distrubution.
+ * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
+ * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
  * @details
  * @param invMassHistogram Invariant mass histogram that you would like to fit
- * @param particle Hypothesis particle: which particle are you reconstructing?
- * @param sigma This is the assumed with of the Gaussian
+ * @param particle Hypothesis particle: which particle are you reconstructing? Its mass will be used as the mean of <b>both</b> Gaussians.
+ * @param sigma1 This is the assumed with of the first Gaussian
+ * @param sigma2 This is the assumed with of the second Gaussian
  */
-void FitGaussian(TH1D* invMassHistogram, const Particle& particle, const double sigma)
+void FitDoubleGaussian(TH1D* invMassHistogram, const Particle& particle, const double sigma1, const double sigma2)
 {
 	// * Check if null pointer and create clone if successful
 	if(!invMassHistogram) {
@@ -337,12 +339,25 @@ void FitGaussian(TH1D* invMassHistogram, const Particle& particle, const double 
 	RooDataHist invMassDistribution(invMassHistogram->GetName(), invMassHistogram->GetTitle(), invMassVar, Import(*invMassHistogram));
 
 	// * Create Gaussian function *
-	RooRealVar  sigmean ("sigmean",  Form("%s mass",  particle.GetNameLaTeX()),
+	RooRealVar  mean1(
+		"mean1", Form("%s mass", particle.GetNameLaTeX()),
 		particle.GetMass()*1.03, particle.GetMass()*.95, particle.GetMass()*1.05);
 	RooRealVar  sigwidth("sigwidth", Form("%s width", particle.GetNameLaTeX()), sigma);
 	RooGaussian signal("gauss",
 		Form("Gaussian PDF for %s distribution", invMassHistogram->GetXaxis()->GetTitle()),
 		invMassVar, sigmean, sigwidth);
+
+	//gauss1
+	RooRealVar mean1("mean1","mean of gaussian1",0);
+	RooRealVar sigma1("sigma1","sigma of gaussian1",0.00444);//0.0019
+	RooGaussian gauss1("gauss1","gaussian PDF",M,mean1,sigma1);
+	//gauss2
+	RooRealVar mean2("mean2","mean of gaussian2",0);
+	RooRealVar sigma2("sigma2","sigma of gaussian2",0.013);
+	RooGaussian gauss2("gauss2","gaussian PDF",M,mean2,sigma2);
+	//add the components
+	RooRealVar  ngauss1("ngauss1","event of gauss1",0.87,0,1);
+	RooAddPdf   triple_gauss("triple_gauss","g1+g2+g3",RooArgList(gauss1,gauss2),RooArgList(ngauss1));
 
 	// * Background function *
 	double boundary = 30000.;
