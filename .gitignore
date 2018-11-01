@@ -9,6 +9,9 @@ plots/**/*.eps
 plots/**/*.png
 plots/**/*.pdf
 plots/**/*.root
+jobs/**/fort.*
+jobs/**/*.fferr
+jobs/**/*.ffwarn
 
 # Ignore settings
 .vscode/**
