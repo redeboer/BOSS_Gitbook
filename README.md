@@ -20,6 +20,7 @@ Table of contents
 	- [Set up a BOSS package](#set-up-a-boss-package)
 	- [Running a job](#running-a-job)
 	- [Submitting a job](#submitting-a-job)
+	- [Splitting up jobs](#splitting-up-jobs)
 - [Further reading](#further-reading)
 	- [IHEP and the BESIII collaboration](#ihep-and-the-besiii-collaboration)
 	- [The BOSS Analysis Framework](#the-boss-analysis-framework)
@@ -265,6 +266,13 @@ and it will be executed in the background. Here, the option `-g` tellst that you
 	hep_q -u $USER
 
 Note that `hep_q` would list all jobs from all users.
+
+
+## Splitting up jobs
+Jobs that take a long time to be executed in the queue will be killed by the server. It is therefore recommended that you analyse a maximum of **10,000 events** per job, particularly if you perform Monte Carlo simulations. Of course, you will be wanting to work with much larger data samples, sou you will have to submit parallel jobs. This can be done by writing different `jobOptions*.txt` files, where you modify the input/output file and random seed number.
+
+What is much more convenient, however, is developing a `jobOptions*.txt` template file that is used to generate. In these, you for instance replace the specific paths and seed number you used by generic tokens like `INPUTFILE`, `OUTPUTFILE`, and `RANDOMSEED`. You can then use a `bash` script (or comparable shell scripts) to replace these tokens by unique paths and seed numbers. For example, have a look at the [`awk`](https://www.tldp.org/LDP/abs/html/awk.html) command.
+
 
 
 # Further reading
