@@ -5,13 +5,13 @@
 # *  ORGANIZATION: IHEP, CAS (Beijing, CHINA)
 # *       CREATED: 22 October 2018
 # *         USAGE: bash CreateJobFiles.sh <number of jobs> <number of events>
-# *     ARGUMENTS: $1 number of job files to be created
-# *                $2 number of events per job (optional -- default is 10,000)
+# *     ARGUMENTS: 1) number of job files to be created
+# *                2) number of events per job (optional -- default is 10,000)
 # * ===============================================================================
 
 set -o nounset # Treat unset variables as an error
 
-# * ------- Script parameters ------- * #
+# * ------- Script parameters ------- *
 	nJobs=${1}
 	analysis_type="rhopi" # will be used in file naming
 	rand_sim=2000         # random number generator for sim option
@@ -24,7 +24,7 @@ set -o nounset # Treat unset variables as an error
 		nEventsPerJob=${2}
 	fi
 
-# * ------- Check parameters ------- * #
+# * ------- Check parameters ------- *
 	if [ ! -d ${scriptFolder} ]; then
 		echo -e "\e[91mERROR: output folder \"${scriptFolder}\" does not exist. Check this script...\e[0m"
 		exit
@@ -34,7 +34,7 @@ set -o nounset # Treat unset variables as an error
 		exit
 	fi
 
-# * ------- Functions ------- * #
+# * ------- Functions ------- *
 	function CreateOrEmptyOutputSubDir()
 	{
 		if [ ! -d "${1}/${2}" ]; then
@@ -57,7 +57,7 @@ set -o nounset # Treat unset variables as an error
 
 
 
-# * ------- Main function ------- * #
+# * ------- Main function ------- *
 
 	# * User input
 	echo "This will create ${nJobs} \"${analysis_type}\" job files with ${nEventsPerJob} events each of them."
@@ -126,5 +126,5 @@ set -o nounset # Treat unset variables as an error
 
 	done
 
-# * ------- Final terminal output ------- * #
+# * ------- Final terminal output ------- *
 	echo -e "\e[92mSuccesfully created ${nJobs} \"${analysis_type}\" job files with ${nEventsPerJob} events each\e[0m"
