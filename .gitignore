@@ -3,6 +3,7 @@ data/**/*.dst
 data/**/*.raw
 data/**/*.root
 data/**/*.rtraw
+data/**/*.log
 log/**/*.log
 plots/**/*.eps
 plots/**/*.png
