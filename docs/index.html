@@ -116,6 +116,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><a href="#set-up-a-boss-package">Set up a BOSS package</a></li>
 <li><a href="#running-a-job">Running a job</a></li>
 <li><a href="#submitting-a-job">Submitting a job</a></li>
+<li><a href="#splitting-up-jobs">Splitting up jobs</a></li>
 </ul>
 </li>
 <li><a href="#further-reading">Further reading</a><ul>
@@ -293,6 +294,9 @@ boss.exe jobOptions_sim.txt
 </pre><p>and it will be executed in the background. Here, the option <code>-g</code> tellst that you are from the <code>physics</code> group. You can check whether the job is (still) running in the queue using: </p>
 <pre class="fragment">hep_q -u $USER
 </pre><p>Note that <code>hep_q</code> would list all jobs from all users.</p>
+<h2>Splitting up jobs</h2>
+<p>Jobs that take a long time to be executed in the queue will be killed by the server. It is therefore recommended that you analyse a maximum of <b>10,000 events</b> per job, particularly if you perform Monte Carlo simulations. Of course, you will be wanting to work with much larger data samples, sou you will have to submit parallel jobs. This can be done by writing different <code>jobOptions*.txt</code> files, where you modify the input/output file and random seed number.</p>
+<p>What is much more convenient, however, is developing a <code>jobOptions*.txt</code> template file that is used to generate. In these, you for instance replace the specific paths and seed number you used by generic tokens like <code>INPUTFILE</code>, <code>OUTPUTFILE</code>, and <code>RANDOMSEED</code>. You can then use a <code>bash</code> script (or comparable shell scripts) to replace these tokens by unique paths and seed numbers. For example, have a look at the <a href="https://www.tldp.org/LDP/abs/html/awk.html">`awk`</a> command.</p>
 <h1>Further reading</h1>
 <h2>IHEP and the BESIII collaboration</h2>
 <ul>
