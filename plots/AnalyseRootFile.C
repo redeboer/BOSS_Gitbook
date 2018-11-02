@@ -45,7 +45,7 @@ void DrawSaveAndDelete(TH1D*&, const char*);
 void DrawSaveAndDelete(TH1D*&, const TString&);
 void DrawSaveAndDelete(TH2D*&, const char*);
 void DrawSaveAndDelete(TH2D*&, const TString&);
-void FitDoubleGaussian(TH1D* invMassPlot, const Particle& particle, const double sigma = .00444, const double sigma = .013);
+void FitPureDoubleGaussian(TH1D* invMassPlot, const Particle& particle, const double sigma1 = .00444, const double sigma2 = .0013);
 void FitBreitWigner(TH1D* invMassPlot);
 
 
@@ -223,9 +223,9 @@ void AnalyseRootFile()
 				histFit5c_dalitz_rhop_rho0->Fill(fit5c::mrhop, fit5c::mrho0);
 				histFit5c_dalitz_rhom_rhop->Fill(fit5c::mrhom, fit5c::mrhop);
 			}
-		// * Fit
-			FitDoubleGaussian(histFit4c_mpi0,  Settings::Particles::Pi0);
-			FitDoubleGaussian(histFit5c_mrho0, Settings::Particles::Rho0);
+		// * Fit double Gaussians
+			FitPureDoubleGaussian(histFit4c_mpi0,  Settings::Particles::Pi0);
+			FitPureDoubleGaussian(histFit5c_mrho0, Settings::Particles::Rho0);
 
 		// * Draw and save histograms
 			DrawAndSave(histFit5c_mrho0, Settings::Output::Extension+"/invmass."+Settings::Output::Extension);
@@ -322,8 +322,9 @@ void DrawSaveAndDelete(TH2D*& hist, const char* saveas)
  * @param sigma1 This is the assumed with of the first Gaussian
  * @param sigma2 This is the assumed with of the second Gaussian
  */
-void FitDoubleGaussian(TH1D* invMassHistogram, const Particle& particle, const double sigma1, const double sigma2)
+void FitPureDoubleGaussian(TH1D* invMassHistogram, const Particle& particle, const double sigma1, const double sigma2)
 {
+
 	// * Check if null pointer and create clone if successful
 	if(!invMassHistogram) {
 		std::cout << "ERROR: argument is a null pointer" << std::endl;
@@ -331,58 +332,49 @@ void FitDoubleGaussian(TH1D* invMassHistogram, const Particle& particle, const d
 	}
 
 	// * Set RooFit fit variable (in this case only the invariant mass axis) *
-	double hmin = invMassHistogram->GetXaxis()->GetXmin();
-	double hmax = invMassHistogram->GetXaxis()->GetXmax();
+	const double hmin = invMassHistogram->GetXaxis()->GetXmin();
+	const double hmax = invMassHistogram->GetXaxis()->GetXmax();
 	RooRealVar invMassVar("invMassVar", invMassHistogram->GetXaxis()->GetTitle(), hmin, hmax);
 
 	// * Import histogram to Roofit *
 	RooDataHist invMassDistribution(invMassHistogram->GetName(), invMassHistogram->GetTitle(), invMassVar, Import(*invMassHistogram));
 
-	// * Create Gaussian function *
-	RooRealVar  mean1(
+	// * Create Gaussian functions *
+	RooRealVar  sigmean1(
 		"mean1", Form("%s mass", particle.GetNameLaTeX()),
-		particle.GetMass()*1.03, particle.GetMass()*.95, particle.GetMass()*1.05);
-	RooRealVar  sigwidth("sigwidth", Form("%s width", particle.GetNameLaTeX()), sigma);
-	RooGaussian signal("gauss",
-		Form("Gaussian PDF for %s distribution", invMassHistogram->GetXaxis()->GetTitle()),
-		invMassVar, sigmean, sigwidth);
+		particle.GetMass(), particle.GetMass()*.95, particle.GetMass()*1.05);
+	RooRealVar sigwidth1(
+		"sigma1", Form("%s width", particle.GetNameLaTeX()),
+		.00444, 1e-3, .1);
+	RooGaussian gauss1("gauss1",
+		Form("Gaussian PDF 1 for %s distribution", invMassHistogram->GetXaxis()->GetTitle()),
+		invMassVar, sigmean1, sigwidth1);
 
-	//gauss1
-	RooRealVar mean1("mean1","mean of gaussian1",0);
-	RooRealVar sigma1("sigma1","sigma of gaussian1",0.00444);//0.0019
-	RooGaussian gauss1("gauss1","gaussian PDF",M,mean1,sigma1);
-	//gauss2
-	RooRealVar mean2("mean2","mean of gaussian2",0);
-	RooRealVar sigma2("sigma2","sigma of gaussian2",0.013);
-	RooGaussian gauss2("gauss2","gaussian PDF",M,mean2,sigma2);
-	//add the components
-	RooRealVar  ngauss1("ngauss1","event of gauss1",0.87,0,1);
-	RooAddPdf   triple_gauss("triple_gauss","g1+g2+g3",RooArgList(gauss1,gauss2),RooArgList(ngauss1));
+	RooRealVar  sigmean2(
+		"mean2", Form("%s mass", particle.GetNameLaTeX()),
+		particle.GetMass(), particle.GetMass()*.95, particle.GetMass()*1.05);
+	RooRealVar sigwidth2(
+		"sigma2", Form("%s width", particle.GetNameLaTeX()),
+		.0013, 1e-3, .1);
+	RooGaussian gauss2("gauss2",
+		Form("Gaussian PDF 2 for %s distribution", invMassHistogram->GetXaxis()->GetTitle()),
+		invMassVar, sigmean2, sigwidth2);
 
-	// * Background function *
-	double boundary = 30000.;
-	RooRealVar p0("p0", "p0", 0., -10000., 10000.);
-	RooRealVar p1("p1", "p1", 0., -10000., 10000.);
-	RooRealVar p2("p2", "p2", 0., -10000., 10000.);
-	RooRealVar p3("p2", "p2", 0., -10000., 10000.);
-	RooPolynomial background("background",
-		"Background Probability Density Function (PDF)",
-		invMassVar, RooArgList(p0, p1, p2, p3));
+	// * Add the components *
+	const double boundary = 40000.;
+	RooRealVar ngauss1("ngauss1", "Number of events in Gaussian 1", 0.5*boundary, 0, boundary);
+	RooRealVar ngauss2("ngauss2", "Number of events in Gaussian 2", 0.5*boundary, 0, boundary);
+	RooAddPdf  signal("double_gaussian", "Double gaussian",
+		RooArgList( gauss1,  gauss2),
+		RooArgList(ngauss1, ngauss2));
 
-	// * Fit background + gaussian to the distribution *
-	// See https://root.cern.ch/doc/master/classRooAddPdf.html
-	RooRealVar nsig("nsig", "number of signal events",     800., 0., boundary);
-	RooRealVar nbkg("nbkg", "number of background events",   0., 0., boundary);
-	RooAddPdf model("total_distribution", "sig+bck",
-		RooArgList(signal, background), RooArgList(nsig, nbkg));
-	model.fitTo(invMassDistribution);
-
-	// * Plot results and save *
+	// * Fit, plot results, and save *
+	RooFitResult* result = signal.fitTo(invMassDistribution);
 	RooPlot *frame = invMassVar.frame(); // create a frame to draw
 	invMassDistribution.plotOn(frame);   // draw distribution
-	model.plotOn(frame);                  // draw sig+bck fit
-	model.plotOn(frame, Components(signal),     LineStyle(kDashed), LineColor(kRed));   // draw signal
-	model.plotOn(frame, Components(background), LineStyle(kDashed), LineColor(kGreen)); // draw background
+	signal.plotOn(frame);                // draw sig+bck fit
+	signal.plotOn(frame, Components(gauss1), LineStyle(kDashed), LineColor(kRed));   // draw gauss 1
+	signal.plotOn(frame, Components(gauss2), LineStyle(kDashed), LineColor(kGreen)); // draw gauss 2
 
 	// * Save results *
 	TCanvas c;
@@ -423,11 +415,11 @@ void FitBreitWigner(TH1D* invMassHistogram)
 	// * Create function *
 		// * First Gaussian
 		RooRealVar  mean1 ("mean1",  "mean of gaussian1",  0);
-		RooRealVar  sigma1("sigma1", "sigma of gaussian1", 0.00444); // 0.0019
+		RooRealVar  sigma1("sigma1", "sigma of gaussian1", 0.00444);
 		RooGaussian gauss1("gauss1", "First gaussian PDF", invMassVar, mean1, sigma1);
 		// * Second Gaussian
 		RooRealVar  mean2 ("mean2",  "mean of gaussian2",   0);
-		RooRealVar  sigma2("sigma2", "sigma of gaussian2",  0.013);
+		RooRealVar  sigma2("sigma2", "sigma of gaussian2",  0.002);
 		RooGaussian gauss2("gauss2", "Second gaussian PDF", invMassVar, mean2, sigma2);
 		// * Merge the Gaussian components into one Probability Density Function (PDF)
 		RooRealVar ngauss1("ngauss1", "event of gauss1", 0.87, 0, 1);
@@ -457,12 +449,12 @@ void FitBreitWigner(TH1D* invMassHistogram)
 	total.plotOn(xframe);
 
 	// // * Chebychev function *
-	// // RooRealVar p0("p0", "p0",  0.4, -10., 10.);
-	// // RooRealVar p1("p1", "p1", -0.4, -10., 10.);
-	// // RooRealVar p2("p2", "p2", -0.3, -3.,   3.); // 100000
-	// // RooRealVar p3("p3", "p3", -0.2, -3.,   3.); // 100000
-	// // // RooRealVar p4("p4", "p4", -0.2, -3., 3.); // 100000);
-	// // RooChebychev bkg("bkg", "bkg", invMassVar, RooArgList(p0, p1, p2, p3));
+	// RooRealVar p0("p0", "p0",  0.4, -10., 10.);
+	// RooRealVar p1("p1", "p1", -0.4, -10., 10.);
+	// RooRealVar p2("p2", "p2", -0.3, -3.,   3.); // 100000
+	// RooRealVar p3("p3", "p3", -0.2, -3.,   3.); // 100000
+	// // RooRealVar p4("p4", "p4", -0.2, -3., 3.); // 100000);
+	// RooChebychev bkg("bkg", "bkg", invMassVar, RooArgList(p0, p1, p2, p3));
 
 	// // // * Gaussian
 	// // 	RooRealVar  amean ("amean",  "mean of gaussian1", 1.35, 1.5, 1.2);
