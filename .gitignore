@@ -9,8 +9,17 @@ plots/**/*.eps
 plots/**/*.png
 plots/**/*.pdf
 plots/**/*.root
+
+# Ignore jobs
+jobs/ana/**/*.txt
+jobs/rec/**/*.txt
+jobs/sim/**/*.txt
+jobs/sub/**/*.sh
+jobs/sub/**/*.sh.*.*
+jobs/**/fort.*
 jobs/**/fort.*
 jobs/**/*.fferr
+jobs/**/*.ffwarn
 jobs/**/*.ffwarn
 
 # Ignore settings

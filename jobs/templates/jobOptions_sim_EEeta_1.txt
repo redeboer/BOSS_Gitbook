@@ -1,0 +1,46 @@
+//DENG Zi-yan 2008-03-17
+ 
+#include "$OFFLINEEVENTLOOPMGRROOT/share/OfflineEventLoopMgr_Option.txt"
+//*************job options for Ekhara ***************
+ ApplicationMgr.DLLs += {"Ekhara"};
+ ApplicationMgr.TopAlg += {"Ekhara"};
+ 
+ Ekhara.Channel=3;              // 1:pi+pi- 2:pi0  3:eta 4:eta'
+ Ekhara.Formfactor = 1;         // 5: model for pi0  2: model for eta
+ Ekhara.sw_1pi = 2;             //1 = s; 2 = t; 3 = s+t
+ Ekhara.sw_2pi = 1;             //1 = s; 2 = t; 3 = s+t
+ Ekhara.Ecm = 3.89;             // CMS-energy (GeV)
+ Ekhara.InitialEvents = 100000;
+ Ekhara.Thetaminpositron = 0.0; // minimum theta positron    (grad)
+ Ekhara.Thetamaxpositron = 180.0;// maximum theta positron   (grad)
+ Ekhara.Energyminpositron = 0.0; // maximal photon angle/missing momentum angle (grad)
+ Ekhara.Energymaxpositron = 100.0;// minimal hadrons(muons) angle (grad)
+ Ekhara.Thetaminelectron = 0.0;   // maximal hadrons(muons) angle (grad)
+ Ekhara.Thetamaxelectron = 180.0; // minimal hadrons(muons) angle (grad)
+ Ekhara.Energyminelectron = 0.0;  // maximal hadrons(muons) angle (grad)
+ Ekhara.Energymaxelectron = 100.;
+ Ekhara.Thetaminpion = 0.0;
+ Ekhara.Thetamaxpion = 180.;
+ Ekhara.Eminpion = 0.;
+ Ekhara.Emaxpion = 110.;
+//**************job options for random number************************
+BesRndmGenSvc.RndmSeed = 10000 ;
+ 
+//**************job options for detector simulation******************
+#include "$BESSIMROOT/share/G4Svc_BesSim.txt"
+ 
+//configure for calibration constants
+#include "$CALIBSVCROOT/share/calibConfig_sim.txt" 
+
+// run ID
+RealizationSvc.RunIdList = {-34028,0,-34036};
+ 
+#include "$ROOTIOROOT/share/jobOptions_Digi2Root.txt"
+RootCnvSvc.digiRootOutputFile =" /besfs/groups/tauqcd/zhangbx/bos703/MCPUB/EEeta/e3.89_EEeta_1.raw ";
+ 
+// OUTPUT PRINTOUT LEVEL
+// Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel  = 6;
+ 
+// Number of events to be processed (default is 10)
+ApplicationMgr.EvtMax = 100;

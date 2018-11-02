@@ -12,12 +12,33 @@ set -o nounset # Treat unset variables as an error
 
 # * ------- Script parameters ------- *
 	analysis_type="${1}" # will be used in file naming
-	scriptFolder="/ihepbatch/bes/$USER/workarea-7.0.3/TestRelease/TestRelease-00-00-86/run"
+	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
+	scriptFolder="${afterburnerPath}/jobs"
+
+
+# * ------- Functions ------- *
+	function CheckFolder()
+	{
+		folderToCheck="${1}"
+		if [ ! -d ${folderToCheck} ]; then
+			echo -e "\e[91mFATAL ERROR: folder \"${folderToCheck}\" does not exist. Check this script...\e[0m"
+			exit
+		fi
+	}
+
+
+# * ------- Check parameters ------- *
+	CheckFolder ${scriptFolder}
+	nJobs=$(ls ${scriptFolder}/sub/sub_${analysis_type}_*.sh | wc -l)
+	if [ ${nJobs} == 0 ]; then
+		echo -e "\e[91mERROR: No jobs of type \"${analysis_type}\" available\e[0m"
+		exit
+	fi
+
 
 # * ------- Run over all job files ------- *
-	nJobs=$(ls ${scriptFolder}/submit/submit_${analysis_type}_*.sh | wc -l)
-	read -p "Submitting ${nJobs} \"${analysis_type}\" jobs. Continue...?"
-	for job in $(ls ${scriptFolder}/submit/submit_${analysis_type}_*.sh); do
+	read -p "Pess ENTER to submit ${nJobs} \"${analysis_type}\" jobs..."
+	for job in $(ls ${scriptFolder}/sub/sub_${analysis_type}_*.sh); do
 		chmod +x ${job} # not sure if necessary
 		hep_sub -g physics ${job}
 		if [ $? != 0 ]; then
