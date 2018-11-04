@@ -10,6 +10,6 @@ var AnalyseRootFile_8C =
     [ "DrawSaveAndDelete", "AnalyseRootFile_8C.html#abbe735079bab29d4d1f8112536fc865d", null ],
     [ "DrawSaveAndDelete", "AnalyseRootFile_8C.html#a18b3006201f3fd77160421296f316937", null ],
     [ "FitBreitWigner", "AnalyseRootFile_8C.html#ae85bc9854f18cb88c29a04500ae1b85b", null ],
-    [ "FitDoubleGaussian", "AnalyseRootFile_8C.html#afebe14aee44967a66e2f843db042fa1c", null ],
+    [ "FitPureDoubleGaussian", "AnalyseRootFile_8C.html#abf24c50c39c6b7d82c4fdddf7a57146a", null ],
     [ "main", "AnalyseRootFile_8C.html#ae66f6b31b5ad750f1fe042a706a4e3d4", null ]
 ];

@@ -17,7 +17,7 @@ var searchData=
   ['fit4c',['fit4c',['../classRhopiRootChain.html#af48122acfbd1cf0a49c9cb897df55c64',1,'RhopiRootChain::fit4c()'],['../classRhopiRootFile.html#a1a1decc22ca9951f4f0da71a7f69ea3c',1,'RhopiRootFile::fit4c()']]],
   ['fit5c',['fit5c',['../classRhopiRootChain.html#a7a35a17d1fc0aedface52acc50e4e24d',1,'RhopiRootChain::fit5c()'],['../classRhopiRootFile.html#a190b4f499a2787f3c541e7895b7894b3',1,'RhopiRootFile::fit5c()']]],
   ['fitbreitwigner',['FitBreitWigner',['../AnalyseRootFile_8C.html#ae85bc9854f18cb88c29a04500ae1b85b',1,'AnalyseRootFile.C']]],
-  ['fitgaussian',['FitGaussian',['../AnalyseRootFile_8C.html#a5a01e340d9489d755b9d69fd328ae21b',1,'AnalyseRootFile.C']]],
+  ['fitpuredoublegaussian',['FitPureDoubleGaussian',['../AnalyseRootFile_8C.html#abf24c50c39c6b7d82c4fdddf7a57146a',1,'AnalyseRootFile.C']]],
   ['fparticlenamelatex',['fParticleNameLaTeX',['../classParticle.html#afd36e09313f192e586b4055ad8b7acc2',1,'Particle']]],
   ['fparticlepdg',['fParticlePDG',['../classParticle.html#a08665826413095e79efd4a6a1ec3fabc',1,'Particle']]],
   ['fphoton',['fPhoton',['../classRhopiRootChain.html#a8307c57cd38b5af842684963696a3396',1,'RhopiRootChain::fPhoton()'],['../classRhopiRootFile.html#a6c2fff1979824f33b713ed2cfd770f02',1,'RhopiRootFile::fPhoton()']]],
