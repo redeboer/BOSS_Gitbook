@@ -11,6 +11,7 @@
 // * ======================================== * //
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
+	#include "TApplication.h"
 	#include "TChain.h"
 	#include "TFile.h"
 	#include "TString.h"
@@ -81,7 +82,7 @@ void CompareChainVsHadd()
 	}
 
 	// * Start stopwatch *
-		double time = 0.
+		double time = 0.;
 		double timeChain = 0.;
 		double timeHadd  = 0.;
 		TStopwatch stopwatch;
