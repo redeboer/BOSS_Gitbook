@@ -27,12 +27,10 @@
  * @brief Main function used when compiling and executing in `ROOT`.
  * @details
  */
-void CompareChainVsHadd()
+void CompareChainVsHadd(int nTimes = 10)
 {
 
 	// * Load files and their TTree *
-		// ! Set number of times you want to loop over the trees
-		int nTimes = 10;
 		// ! Pick one of its branches
 		const char* treeName = "tof1";
 		const char* branchName = "tpi";
