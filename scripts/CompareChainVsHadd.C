@@ -69,8 +69,8 @@ void CompareChainVsHadd()
 		// ! Set proper branch names
 		double haddRead;
 		double chainRead;
-		haddTree->SetBranchAddress("tpi", haddRead);
-		chain   ->SetBranchAddress("tpi", chainRead);
+		haddTree->SetBranchAddress("tpi", &haddRead);
+		chain   ->SetBranchAddress("tpi", &chainRead);
 
 	// * Get number of entries *
 	Long64_t haddNEntries  = haddTree->GetEntries();
