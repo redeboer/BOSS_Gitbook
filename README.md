@@ -1,5 +1,5 @@
-The BOSS Afterburner {#mainpage}
-================================
+The BOSS Afterburner
+====================
 
 [TOC]
 
