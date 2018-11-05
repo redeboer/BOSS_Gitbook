@@ -9,6 +9,7 @@ plots/**/*.eps
 plots/**/*.png
 plots/**/*.pdf
 plots/**/*.root
+scripts/**/*.log
 
 # Ignore jobs
 jobs/ana/**/*.txt
@@ -18,9 +19,8 @@ jobs/sub/**/*.sh
 jobs/sub/**/*.sh.*.*
 jobs/**/fort.*
 jobs/**/fort.*
-jobs/**/*.fferr
-jobs/**/*.ffwarn
-jobs/**/*.ffwarn
+jobs/**.fferr
+jobs/**.ffwarn
 
 # Ignore settings
 .vscode/**

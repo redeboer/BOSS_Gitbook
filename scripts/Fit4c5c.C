@@ -1,8 +1,8 @@
 /**
- * @brief    Simple script that compares the speed of looping over a `TChain` of ROOT files and over one  combined ROOT file (where all the ROOT files have been combined using `hadd`).
+ * @brief    Simple script that applies some fits to `fit4c` and `fit5c` invariant mass info from output of the `RhopiAlg` analysis job.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
  * @date     November 5th, 2018
- * @details  This macro does the same loop several times (`nTimes` with default 10) as to ensure a fair comparison between the two loop modes. The computation times for both the `TChain` and the `hadd` method are printed and written out to a log file. Note that the reading operation is quite simple: only one branch address is loaded.
+ * @details
  */
 
 
@@ -16,7 +16,6 @@
 	#include "TTree.h"
 	#include "TStopwatch.h"
 	#include <iostream>
-	#include <fstream>
 
 
 // * ============================= * //
@@ -24,44 +23,18 @@
 // * ============================= * //
 /**
  * @brief Main function used when compiling and executing in `ROOT`.
+ * @param fileName 
  */
-void CompareChainVsHadd(int nTimes = 10, const char* outputFileName = "comparison.log")
+void Fit4c5c(const char* fileName = "../data/root/ana_rhopi.root")
 {
 
 	// * Load files and their TTree *
+		// ! Choose a file that was generated using hadd
+		TFile *file = new TFile(fileName);
+		TTree *tree = dynamic_cast<TTree*>(file->Get(treeName));
 		// ! Pick one of its branches
 		const char* treeName = "tof1";
 		const char* branchName = "tpi";
-		// ! Choose a file that was generated using hadd
-		TFile *file = new TFile("../data/root/ana_rhopi.root");
-		TTree *tree = dynamic_cast<TTree*>(file->Get(treeName));
-		// ! Set these file names
-		TChain *chain = new TChain(treeName);
-		chain->Add("../data/root/ana_rhopi_0.root");
-		chain->Add("../data/root/ana_rhopi_1.root");
-		chain->Add("../data/root/ana_rhopi_2.root");
-		chain->Add("../data/root/ana_rhopi_3.root");
-		chain->Add("../data/root/ana_rhopi_4.root");
-		chain->Add("../data/root/ana_rhopi_5.root");
-		chain->Add("../data/root/ana_rhopi_6.root");
-		chain->Add("../data/root/ana_rhopi_7.root");
-		chain->Add("../data/root/ana_rhopi_8.root");
-		chain->Add("../data/root/ana_rhopi_9.root");
-		chain->Add("../data/root/ana_rhopi_10.root");
-		chain->Add("../data/root/ana_rhopi_11.root");
-		chain->Add("../data/root/ana_rhopi_12.root");
-		chain->Add("../data/root/ana_rhopi_13.root");
-		chain->Add("../data/root/ana_rhopi_14.root");
-		chain->Add("../data/root/ana_rhopi_15.root");
-		chain->Add("../data/root/ana_rhopi_16.root");
-		chain->Add("../data/root/ana_rhopi_17.root");
-		chain->Add("../data/root/ana_rhopi_18.root");
-		chain->Add("../data/root/ana_rhopi_19.root");
-		chain->Add("../data/root/ana_rhopi_20.root");
-		chain->Add("../data/root/ana_rhopi_21.root");
-		chain->Add("../data/root/ana_rhopi_22.root");
-		chain->Add("../data/root/ana_rhopi_23.root");
-		chain->Add("../data/root/ana_rhopi_24.root");
 		// ! Set proper branch names
 		double haddRead;
 		double chainRead;
