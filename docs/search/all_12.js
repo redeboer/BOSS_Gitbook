@@ -4,6 +4,8 @@ var searchData=
   ['te',['te',['../namespaceAnaBranches_1_1tof1.html#a46f2b695c83825e99e41fe8de57ae906',1,'AnaBranches::tof1::te()'],['../namespaceAnaBranches_1_1tof2.html#afff719f4bfcacc35a051f41c6d58f816',1,'AnaBranches::tof2::te()'],['../namespaceAnaBranches_1_1tofe.html#acbd118cf120119c35cb46cd4a441c8e0',1,'AnaBranches::tofe::te()']]],
   ['temp',['temp',['../RooFitExample_8C.html#a92cfabe7d9a858c0b8bbdc8b1436b4a4',1,'RooFitExample.C']]],
   ['thit',['thit',['../namespaceAnaBranches_1_1dedx.html#a704c1f7cdc91e4922de0c64e3aa231b3',1,'AnaBranches::dedx']]],
+  ['tips_2c_20tricks_2c_20and_20troubleshooting',['Tips, Tricks, and Troubleshooting',['../tips.html',1,'']]],
+  ['tips_2emd',['tips.md',['../tips_8md.html',1,'']]],
   ['tk',['tk',['../namespaceAnaBranches_1_1tof1.html#a7512333ee1febe4ce685971a109691ad',1,'AnaBranches::tof1::tk()'],['../namespaceAnaBranches_1_1tof2.html#af37006a9a0240c05152223fafbec67e6',1,'AnaBranches::tof2::tk()'],['../namespaceAnaBranches_1_1tofe.html#a00b241826a61b3e3cdd2ae7abe3be8fe',1,'AnaBranches::tofe::tk()']]],
   ['tmu',['tmu',['../namespaceAnaBranches_1_1tof1.html#a115eb70f0ae189f56465dea1fc7a79fa',1,'AnaBranches::tof1::tmu()'],['../namespaceAnaBranches_1_1tof2.html#acad1e0f5ccedf34b8ba996e72e4449d4',1,'AnaBranches::tof2::tmu()'],['../namespaceAnaBranches_1_1tofe.html#aac9e4cae6f7206946f1b715afee3ceea',1,'AnaBranches::tofe::tmu()']]],
   ['todo_20list',['Todo List',['../todo.html',1,'']]],

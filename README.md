@@ -1,6 +1,8 @@
 The BOSS Afterburner {#mainpage}
 ================================
 
+[TOC]
+
 **This repository is underdevelopment.** It has been set up as an unofficial extension to the BOSS analysis framework of the [BESIII collaboration](http://bes3.ihep.ac.cn "Offical BESIII webpage") with two related purposes:
 
 1. Serve as an accessible introduction and user guide to **BOSS**.
@@ -10,22 +12,7 @@ If you do not have an IHEP networking account, it is therefore better to check o
 
 The MarkDown generated material on [this repository page](https://github.com/redeboer/BOSS_Afterburner) serves as a simple introduction. For more details, you can go to the [parallel Doxygen-generated webpage](https://redeboer.github.io/BOSS_Afterburner/ "Doxygen page of the BOSS Afterburner") of the BOSS Afterburner.
 
-
-Table of contents
-=================
-- [Introduction](#introduction)
-- [The BOSS framework](#the-boss-framework)
-	- [Organisation of the IHEP server](#organisation-of-the-ihep-server)
-	- [Setup of your BOSS and Afterburner environment](#setup-of-your-boss-and-afterburner-environment)
-	- [Set up a BOSS package](#set-up-a-boss-package)
-	- [Running a job](#running-a-job)
-	- [Submitting a job](#submitting-a-job)
-	- [Splitting up jobs](#splitting-up-jobs)
-- [Further reading](#further-reading)
-	- [IHEP and the BESIII collaboration](#ihep-and-the-besiii-collaboration)
-	- [The BOSS Analysis Framework](#the-boss-analysis-framework)
-- [About](#about)
-
+See also @ref tips ([MarkDown](docs/doxygen/tips.md)).
 
 # Introduction
 The [Beijing Spectrometer (BESIII)](http://bes3.ihep.ac.cn/) is a particle experiment situated at the [Beijing Electron-Positron Collider (BEPCII)](http://english.ihep.cas.cn/doc/1840.html). It is primarily designed to perform highly sensitive studies of light hadron and charm physics.

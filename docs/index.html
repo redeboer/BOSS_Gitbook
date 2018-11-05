@@ -83,6 +83,23 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">The BOSS Afterburner </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#autotoc_md0">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md1">The BOSS framework</a><ul><li class="level2"><a href="#autotoc_md2">Organisation of the IHEP server</a></li>
+<li class="level2"><a href="#autotoc_md3">Setup of your BOSS and Afterburner environment</a></li>
+<li class="level2"><a href="#autotoc_md4">Set up a BOSS package</a></li>
+<li class="level2"><a href="#autotoc_md5">Running a job</a></li>
+<li class="level2"><a href="#autotoc_md6">Submitting a job</a></li>
+<li class="level2"><a href="#autotoc_md7">Splitting up jobs</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#autotoc_md8">Further reading</a><ul><li class="level2"><a href="#autotoc_md9">IHEP and the BESIII collaboration</a></li>
+<li class="level2"><a href="#autotoc_md10">The BOSS Analysis Framework</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#autotoc_md11">About</a></li>
+</ul>
+</div>
 <div class="textblock"><p><b>This repository is underdevelopment.</b> It has been set up as an unofficial extension to the BOSS analysis framework of the <a href="http://bes3.ihep.ac.cn" title="Offical BESIII webpage">BESIII collaboration</a> with two related purposes:</p>
 <ol type="1">
 <li>Serve as an accessible introduction and user guide to <b>BOSS</b>.</li>
@@ -90,33 +107,18 @@ $(document).ready(function(){initNavTree('index.html','');});
 </ol>
 <p>If you do not have an IHEP networking account, it is therefore better to check out the official <a href="http://english.ihep.cas.cn/bes/doc/2247.html" title="Offical BOSS webpage">Offline Software page</a> of BESIII &ndash; this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section <a href="#further-reading">Further reading</a>.</p>
 <p>The MarkDown generated material on <a href="https://github.com/redeboer/BOSS_Afterburner">this repository page</a> serves as a simple introduction. For more details, you can go to the <a href="https://redeboer.github.io/BOSS_Afterburner/" title="Doxygen page of the BOSS Afterburner">parallel Doxygen-generated webpage</a> of the BOSS Afterburner.</p>
-<h1>Table of contents </h1>
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#the-boss-framework">The BOSS framework</a><ul>
-<li><a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a></li>
-<li><a href="#setup-of-your-boss-and-afterburner-environment">Setup of your BOSS and Afterburner environment</a></li>
-<li><a href="#set-up-a-boss-package">Set up a BOSS package</a></li>
-<li><a href="#running-a-job">Running a job</a></li>
-<li><a href="#submitting-a-job">Submitting a job</a></li>
-<li><a href="#splitting-up-jobs">Splitting up jobs</a></li>
-</ul>
-</li>
-<li><a href="#further-reading">Further reading</a><ul>
-<li><a href="#ihep-and-the-besiii-collaboration">IHEP and the BESIII collaboration</a></li>
-<li><a href="#the-boss-analysis-framework">The BOSS Analysis Framework</a></li>
-</ul>
-</li>
-<li><a href="#about">About</a></li>
-</ul>
-<h1>Introduction</h1>
+<p>See also <a class="el" href="tips.html">Tips, Tricks, and Troubleshooting</a> See also <a class="el" href="tips_8md.html">Tips</a></p>
+<h1><a class="anchor" id="autotoc_md0"></a>
+Introduction</h1>
 <p>The <a href="http://bes3.ihep.ac.cn/">Beijing Spectrometer (BESIII)</a> is a particle experiment situated at the <a href="http://english.ihep.cas.cn/doc/1840.html">Beijing Electron-Positron Collider (BEPCII)</a>. It is primarily designed to perform highly sensitive studies of light hadron and charm physics.</p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd><p class="startdd">Elaborate or refer to official pages </p>
 <p class="enddd">Rewrite for TC shell.</p>
 </dd></dl>
 <p>Output of the detector is analysed using the <a href="http://english.ihep.cas.cn/bes/doc/2247.html">BESIII Offline Software System (BOSS)</a>.</p>
-<h1>The BOSS framework</h1>
-<h2>Organisation of the IHEP server</h2>
+<h1><a class="anchor" id="autotoc_md1"></a>
+The BOSS framework</h1>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Organisation of the IHEP server</h2>
 <p>The IHEP server runs on <a href="https://linux.web.cern.ch/linux/scientific.shtml">Scientific Linux CERN</a> (SLC). The server offers several versions. Usually, people use either SLC5, SLC6, or SLC7. The domain names for these are <code>lxslc7.ihep.ac.cn</code>, where the <code>7</code> in this case refers to SLC7. If you are running on Linux or a Linux terminal, the server can be easily accessed using: </p><pre class="fragment">ssh -Y &lt;your user name&gt;@lxslc7.ihep.ac.cn
 </pre><p>Here, the option <code>-Y</code> ensures <em>X11 forwarding</em>, allowing you to open graphical applications.</p>
 <p>In Windows, there are some nice tools that allow you to access the server. First of all, to be able to use SSH, use will either have to use <a href="https://www.putty.org/">PuTTY</a> or more extensive software like <a href="https://www.netsarang.com/products/xmg_overview.html">Xmanager</a>. You can also just search for some Linux terminals for Windows. In addition, I would recommend you to work with the (S)FTP client <a href="https://winscp.net/eng/index.php">WinSCP</a>. It allows you to easily navigate the file structure of the IHEP server and to quickly transfer&mdash;even synchronise&mdash;files up and down to your own computer.</p>
@@ -155,7 +157,8 @@ $(document).ready(function(){initNavTree('index.html','');});
 </li>
 </ul>
 <p>These directories will be important later in this 'tutorial'.</p>
-<h2>Setup of your BOSS and Afterburner environment</h2>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Setup of your BOSS and Afterburner environment</h2>
 <p>***Note:** In it's current version, this tutorial assumes you use a <code>bash</code> terminal.*</p>
 <p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <em>work area</em> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository. I placed the work area in my <code>ihepbatch</code> folder (see <a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a>) and the BOSS Afterburner in my <code>besfs</code> folder. Data generated with <b>BOSS</b> through the work area scripts is written then to the <code>BOSS_Afterburner/data</code> directory on <code>besfs</code> (see later).</p>
 <h3>(1) Set up your work area</h3>
@@ -211,7 +214,8 @@ mkdir workarea-7.0.3
 <p>This is the simple part. Go to the <em>BES file system</em> folder: </p><pre class="fragment">cd /besfs/users/$USER
 </pre><p><a href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the <em>BOSS Afterburner</em> repository: </p><pre class="fragment">git clone https://github.com/redeboer/BOSS_Afterburner
 </pre><p>The <em>BOSS Aafterburner</em> will be used to analyse output from <b>BOSS</b>.</p>
-<h2>Set up a BOSS package</h2>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Set up a BOSS package</h2>
 <p>Now that you have configured your <b>BOSS</b> work area, you can start developing packages. The typical example package to get you started is the <code>TestRelease</code> package. We will need to copy this package into your <a href="#set-up-your-work-area">your work area</a>. So let's navigate there: </p><pre class="fragment">cd /ihepbatch/bes/$USER/workarea-7.0.3
 </pre><p>Now copy the typical <code>TestRelease</code> example to your <em>work area</em> and navigate into it: </p><pre class="fragment">cp –r $BesArea/TestRelease ./
 cd TestRelease/TestRelease-*
@@ -229,7 +233,8 @@ source setup.sh
 boss.exe jobOptions_sim.txt
 </pre><p>which, in this case, will run a Monte Carlo simulation.</p>
 <p>Note that in step 7 <a href="#set-up-your-work-area">when we set up the work area</a> we added a line to the <code>.bashrc</code> that ensures that the <code>TestRelease</code> package is laoded every time you log in, so you won't have to do this every time yourself.</p>
-<h2>Running a job</h2>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Running a job</h2>
 <p>Particile physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In <b>BOSS</b>, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on <b>BOSS</b>:</p>
 <ol type="1">
 <li><code>sim</code>: you perform a Monte Carlo simulation and generate a raw data file (<code>rtraw</code>)</li>
@@ -242,7 +247,8 @@ boss.exe jobOptions_sim.txt
 boss.exe jobOptions_rec.txt
 boss.exe jobOptions_ana_rhopi.txt
 </pre><p>But be careful: for these jobs to work successfully, you will probably have to edit them and set the right paths.</p>
-<h2>Submitting a job</h2>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Submitting a job</h2>
 <p>The <code>TestRelease</code> example typically simulates, reconstructes, and analyses only 10 events. For serious work, it you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queque'. For this, there are two options: either you submit them using the command <code>hep_sub</code> or using the command <code>boss.conder</code>. The latter is easiest: you can use it just like <code>boss.exe</code>.</p>
 <p>With <code>hep_sub</code>, however, you essentially forward a shell script to the queue, which then executes the commands in there. So you'll have to make that first. Let's say, you make a shell script <code>test.sh</code> in the <code>run</code> folder that looks like this: </p><pre class="fragment">#!/bin/bash
 boss.exe jobOptions_sim.txt
@@ -251,11 +257,14 @@ boss.exe jobOptions_sim.txt
 <p>Now you can simply submit the shell script to the queue using: </p><pre class="fragment">hep_sub test.sh -g physics
 </pre><p>and it will be executed in the background. Here, the option <code>-g</code> tellst that you are from the <code>physics</code> group. You can check whether the job is (still) running in the queue using: </p><pre class="fragment">hep_q -u $USER
 </pre><p>Note that <code>hep_q</code> would list all jobs from all users.</p>
-<h2>Splitting up jobs</h2>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Splitting up jobs</h2>
 <p>Jobs that take a long time to be executed in the queue will be killed by the server. It is therefore recommended that you analyse a maximum of <b>10,000 events</b> per job, particularly if you perform Monte Carlo simulations. Of course, you will be wanting to work with much larger data samples, sou you will have to submit parallel jobs. This can be done by writing different <code>jobOptions*.txt</code> files, where you modify the input/output file and random seed number.</p>
 <p>What is much more convenient, however, is developing a <code>jobOptions*.txt</code> template file that is used to generate. In these, you for instance replace the specific paths and seed number you used by generic tokens like <code>INPUTFILE</code>, <code>OUTPUTFILE</code>, and <code>RANDOMSEED</code>. You can then use a <code>bash</code> script (or comparable shell scripts) to replace these tokens by unique paths and seed numbers. For example, have a look at the <a href="https://www.tldp.org/LDP/abs/html/awk.html"><code>awk</code></a> command.</p>
-<h1>Further reading</h1>
-<h2>IHEP and the BESIII collaboration</h2>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Further reading</h1>
+<h2><a class="anchor" id="autotoc_md9"></a>
+IHEP and the BESIII collaboration</h2>
 <ul>
 <li>BESIII:<ul>
 <li><a href="http://bes3.ihep.ac.cn/">http://bes3.ihep.ac.cn/</a></li>
@@ -270,7 +279,8 @@ boss.exe jobOptions_sim.txt
 </li>
 <li><a href="http://english.ihep.cas.cn/doc/259.html">http://english.ihep.cas.cn/doc/259.html</a></li>
 </ul>
-<h2>The BOSS Analysis Framework</h2>
+<h2><a class="anchor" id="autotoc_md10"></a>
+The BOSS Analysis Framework</h2>
 <ul>
 <li>BOSS software source code CVS repository:<ul>
 <li><a href="http://koala.ihep.ac.cn/cgi-bin/viewcvs.cgi/BossCvs/">for users inside IHEP</a></li>
@@ -285,7 +295,8 @@ boss.exe jobOptions_sim.txt
 <li><a href="http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome">http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome</a> (TWiki)</li>
 <li><a href="https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf">https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf</a></li>
 </ul>
-<h1>About</h1>
+<h1><a class="anchor" id="autotoc_md11"></a>
+About</h1>
 <p>From October 2018 to May 2019, I will be doing my master research at the BESIII Collaboration as a visiting master student from Utrecht University (The Netherlands). Because I, like many others, will spend a lot of time getting used to the <b>BOSS</b> framework, I decided to supply the code I write for my own analysis with <code>Doxygen</code> formated comments. The resulting documentation can then be used as a guide for anyone who wants to get familiar with the <b>BOSS</b> framework.</p>
 <p>In writing my code, I have attempted to set up an object-oriented <code>C++</code> class structure that is both general in usage (that is, using <em>base and derived classes</em>) and represents the data structure of analysis output from the <b>BOSS</b> framework. In this way, I hope that the class documentation in this repository can also be used to help the user understand the <b>BOSS</b> framework itself. </p>
 </div></div><!-- contents -->

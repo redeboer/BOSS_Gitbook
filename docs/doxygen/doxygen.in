@@ -32,8 +32,10 @@ PROJECT_NAME           = "BOSS Afterburner"
 # directories like "/usr/src/myproject". Separate the files or directories
 # with spaces.
 
-INPUT = "../.."
-# INPUT += "/besfs/users/deboer/BOSS_Afterburner/README.md"
+INPUT  = "../.."
+INPUT += "../../README.md"
+INPUT += "./tips.md"
+INPUT += "./boss.md"
 USE_MDFILE_AS_MAINPAGE = "../../README.md"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
@@ -762,3 +764,5 @@ SEARCHENGINE           = YES
 # Needed on the IHEP server, because it does not have dot installed.
 # NOTE: Not sure what dot does anyway
 HAVE_DOT = NO
+TOC_INCLUDE_HEADINGS = 2
+MARKDOWN_SUPPORT = YES
