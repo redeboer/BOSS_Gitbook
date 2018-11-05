@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"classRhopiRootFile.html#a8ee41b35a1a8d47db5abde95be25cb8c":[5,0,6,19],
+"classRhopiRootFile.html#a92278e12d4408ba6f5abf5f2ebc45c96":[5,0,6,15],
+"classRhopiRootFile.html#aa26e721364bf22aa7928aa3305093386":[5,0,6,17],
 "classRhopiRootFile.html#aa611de67c8ef76790b06524fa893b476":[5,0,6,8],
 "classRhopiRootFile.html#ab55dc4f5a93bb072954a953bf2d59e64":[5,0,6,23],
 "classRhopiRootFile.html#ac1b40912fe1f66c1df25badd726d106e":[5,0,6,25],
@@ -44,8 +47,8 @@ var NAVTREEINDEX1 =
 "namespaceAnaBranches_1_1tof2.html":[4,0,0,8],
 "namespaceAnaBranches_1_1tofe.html":[4,0,0,9],
 "namespaceAnaBranches_1_1vxyz.html":[4,0,0,10],
-"namespaceSettings.html":[5,0,1],
 "namespaceSettings.html":[4,0,1],
+"namespaceSettings.html":[5,0,1],
 "namespaceSettings_1_1Detector.html":[4,0,1,0],
 "namespaceSettings_1_1Math.html":[4,0,1,1],
 "namespaceSettings_1_1Output.html":[4,0,1,2],
