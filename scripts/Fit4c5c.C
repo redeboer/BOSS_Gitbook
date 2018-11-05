@@ -31,7 +31,8 @@ void Fit4c5c(const char* fileName = "../data/root/ana_rhopi.root")
 	// * Load files and their TTree *
 		// ! Choose a file that was generated using hadd
 		TFile *file = new TFile(fileName);
-		TTree *tree = dynamic_cast<TTree*>(file->Get(treeName));
+		TTree *treeFit4c = dynamic_cast<TTree*>(file->Get("fit4c"));
+		TTree *treeFit5c = dynamic_cast<TTree*>(file->Get("fit5c"));
 		// ! Pick one of its branches
 		const char* treeName = "tof1";
 		const char* branchName = "tpi";
