@@ -88,6 +88,7 @@ void CompareChainVsHadd()
 		TStopwatch stopwatch;
 
 	// * Loop multiple times over *
+		std::cout << std::endl;
 		for(int iteration = 0; iteration < nTimes; ++iteration) {
 			// * User output
 			std::cout << "Performing iteration " << iteration+1 << "/" << nTimes << std::endl;
@@ -108,6 +109,7 @@ void CompareChainVsHadd()
 		}
 
 	// * Print results *
+		std::cout << std::endl;
 		std::cout << "Times for hadd file:" << std::endl;
 		std::cout << "  total:   " << timeHadd        << std::endl;
 		std::cout << "  average: " << timeHadd/nTimes << std::endl;
