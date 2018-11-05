@@ -18,9 +18,8 @@ jobs/sim/**/*.txt
 jobs/sub/**/*.sh
 jobs/sub/**/*.sh.*.*
 jobs/**/fort.*
-jobs/**/fort.*
-jobs/**.fferr
-jobs/**.ffwarn
+jobs/**/*.fferr
+jobs/**/*.ffwarn
 
 # Ignore settings
 .vscode/**
