@@ -32,7 +32,7 @@ void CompareChainVsHadd()
 
 	// * Load files and their TTree *
 		// ! Set number of times you want to loop over the trees
-		int nTimes = 100;
+		int nTimes = 10;
 		// ! Pick one of its branches
 		const char* treeName = "tof1";
 		const char* branchName = "tpi";
@@ -89,6 +89,8 @@ void CompareChainVsHadd()
 
 	// * Loop multiple times over *
 		for(int iteration = 0; iteration < nTimes; ++iteration) {
+			// * User output
+			std::cout << "Performing iteration " << iteration+1 << "/" << nTimes << std::endl;
 			// * Loop over hadded file
 			time = stopwatch.RealTime();
 			stopwatch.Continue();
