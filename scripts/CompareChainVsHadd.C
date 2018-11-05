@@ -35,7 +35,7 @@ void CompareChainVsHadd()
 		int nTimes = 100;
 		// ! Pick one of its branches
 		const char* treeName = "tof1";
-		const char* branchName = "tof1";
+		const char* branchName = "tpi";
 		// ! Choose a file that was generated using hadd
 		TFile *file = new TFile("../data/root/ana_rhopi.root");
 		TTree *tree = dynamic_cast<TTree*>(file->Get(treeName));
@@ -69,12 +69,12 @@ void CompareChainVsHadd()
 		// ! Set proper branch names
 		double haddRead;
 		double chainRead;
-		haddTree->SetBranchAddress("tpi", &haddRead);
-		chain   ->SetBranchAddress("tpi", &chainRead);
+		tree ->SetBranchAddress(branchName, &haddRead);
+		chain->SetBranchAddress(branchName, &chainRead);
 
 	// * Get number of entries *
-	Long64_t haddNEntries  = haddTree->GetEntries();
-	Long64_t chainNEntries = chain   ->GetEntries();
+	Long64_t haddNEntries  = tree ->GetEntries();
+	Long64_t chainNEntries = chain->GetEntries();
 	std::cout << "Number of entries in the combined ROOT file:  " <<  haddNEntries << std::endl;
 	std::cout << "Number of entries in the chain of ROOT files: " << chainNEntries << std::endl;
 	if(haddNEntries != chainNEntries) {
@@ -88,21 +88,21 @@ void CompareChainVsHadd()
 		TStopwatch stopwatch;
 
 	// * Loop multiple times over *
-		for(int iteration = 0; iteration < ; ++iteration) {
+		for(int iteration = 0; iteration < nTimes; ++iteration) {
 			// * Loop over hadded file
 			time = stopwatch.RealTime();
 			stopwatch.Continue();
 			for(Long64_t i = 0; i < haddNEntries; ++i) {
-				haddTree->GetEntry(i);
+				tree->GetEntry(i);
 			}
-			timeHadd += (stopwatch.RealTime() - time1);
+			timeHadd += (stopwatch.RealTime() - time);
 			// * Loop over chain
 			time = stopwatch.RealTime();
 			stopwatch.Continue();
 			for(Long64_t i = 0; i < chainNEntries; ++i) {
 				chain->GetEntry(i);
 			}
-			timeChain += (stopwatch.RealTime() - time1);
+			timeChain += (stopwatch.RealTime() - time);
 		}
 
 	// * Print results *
