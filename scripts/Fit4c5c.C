@@ -2,7 +2,7 @@
  * @brief    Simple script that applies some fits to `fit4c` and `fit5c` invariant mass info from output of the `RhopiAlg` analysis job.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
  * @date     November 5th, 2018
- * @details
+ * @details  Makes use of one `hadd`ed file, not of a `TChain`.
  */
 
 
@@ -28,8 +28,7 @@
 void Fit4c5c(const char* fileName = "../data/root/ana_rhopi.root")
 {
 
-	// * Load files and their TTree *
-		// ! Choose a file that was generated using hadd
+	// * Load the file and its trees *
 		TFile *file = new TFile(fileName);
 		TTree *treeFit4c = dynamic_cast<TTree*>(file->Get("fit4c"));
 		TTree *treeFit5c = dynamic_cast<TTree*>(file->Get("fit5c"));
@@ -81,33 +80,8 @@ void Fit4c5c(const char* fileName = "../data/root/ana_rhopi.root")
 		}
 		std::cout << std::endl;
 
-	// * Write results *
-		std::ofstream out;
-		out.open(outputFileName);
-		out << "Number of iterations: " << nTimes << std::endl;
-		out << "Number of events:     " << chainNEntries << std::endl;
-		out << "Times for hadd file:" << std::endl;
-		out << "  total (s):         " << timeHadd << std::endl;
-		out << "  average (s):       " << timeHadd/nTimes << std::endl;
-		out << "  per event (ns):    " << timeHadd/nTimes/chainNEntries*1e9 << std::endl;
-		out << "Times for chain:" << std::endl;
-		out << "  total (s):         " << timeChain << std::endl;
-		out << "  average (s):       " << timeChain/nTimes << std::endl;
-		out << "  per event (ns):    " << timeChain/nTimes/chainNEntries*1e9;
-		out.close();
-	// * Print results *
-		std::cout << std::endl;
-		std::cout << "Number of iterations: " << nTimes << std::endl;
-		std::cout << "Number of events:     " << chainNEntries << std::endl;
-		std::cout << "\033[1;4mTimes for hadd file\033[0m" << std::endl;
-		std::cout << "  total (s):          " << timeHadd << std::endl;
-		std::cout << "  average (s):        " << timeHadd/nTimes << std::endl;
-		std::cout << "  per event (ns):     " << timeHadd/nTimes/chainNEntries*1e9 << std::endl;
-		std::cout << "\033[1;4mTimes for chain\033[0m" << std::endl;
-		std::cout << "  total (s):          " << timeChain << std::endl;
-		std::cout << "  average (s):        " << timeChain/nTimes << std::endl;
-		std::cout << "  per event (ns):     " << timeChain/nTimes/chainNEntries*1e9 << std::endl;
 	// * Terminate ROOT *
+		file->Close();
 		gApplication->Terminate();
 
 }

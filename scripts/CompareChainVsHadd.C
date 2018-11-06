@@ -16,7 +16,19 @@
 	#include "TTree.h"
 	#include "TStopwatch.h"
 	#include <iostream>
-	#include <fstream>
+	#include <fstream> // for writing to a file
+	#include <sstream> // needed to import arguments in `main` function
+
+
+// * ======================= * //
+// * ------- GLOBALS ------- * //
+// * ======================= * //
+	const char* gDefaultOutputFileName = "comparison.log";
+	const int   gDefaultNTimes         = 10;
+	// ! Customise these values ! //
+	const char* gFileToLoad  = "../data/root/ana_rhopi.root";
+	const char* gTreeName    = "tof1";
+	const char* gBrancheName = "tpi";
 
 
 // * ============================= * //
@@ -25,18 +37,26 @@
 /**
  * @brief Main function used when compiling and executing in `ROOT`.
  */
-void CompareChainVsHadd(int nTimes = 10, const char* outputFileName = "comparison.log")
+void CompareChainVsHadd(int nTimes = gDefaultNTimes, const char* outputFileName = gDefaultOutputFileName)
 {
 
-	// * Load files and their TTree *
-		// ! Pick one of its branches
-		const char* treeName = "tof1";
-		const char* branchName = "tpi";
-		// ! Choose a file that was generated using hadd
-		TFile *file = new TFile("../data/root/ana_rhopi.root");
-		TTree *tree = dynamic_cast<TTree*>(file->Get(treeName));
-		// ! Set these file names
-		TChain *chain = new TChain(treeName);
+	// * Attempt to load file * //
+		TFile *file = new TFile(gFileToLoad);
+		if(!file || file->IsZombie()) {
+			if(file) file->Close();
+			return;
+		}
+
+	// * Attempt to load TTree from file * //
+		TTree *tree = dynamic_cast<TTree*>(file->Get(gTreeName));
+		if(!tree) {
+			std::cout << "FATAL ERROR: File \"" << gFileToLoad << "\" does not contain a tree \"" << gTreeName << "\"" << std::endl;
+			file->Close();
+			return;
+		}
+
+	// * Load tchains * //
+		TChain *chain = new TChain(gTreeName);
 		chain->Add("../data/root/ana_rhopi_0.root");
 		chain->Add("../data/root/ana_rhopi_1.root");
 		chain->Add("../data/root/ana_rhopi_2.root");
@@ -62,22 +82,25 @@ void CompareChainVsHadd(int nTimes = 10, const char* outputFileName = "compariso
 		chain->Add("../data/root/ana_rhopi_22.root");
 		chain->Add("../data/root/ana_rhopi_23.root");
 		chain->Add("../data/root/ana_rhopi_24.root");
-		// ! Set proper branch names
+
+	// * Set branch addresses * //
 		double haddRead;
 		double chainRead;
-		tree ->SetBranchAddress(branchName, &haddRead);
-		chain->SetBranchAddress(branchName, &chainRead);
+		tree ->SetBranchAddress(gBrancheName, &haddRead);
+		chain->SetBranchAddress(gBrancheName, &chainRead);
 
 	// * Get number of entries *
-	Long64_t haddNEntries  = tree ->GetEntries();
-	Long64_t chainNEntries = chain->GetEntries();
-	std::cout << "Number of entries in the combined ROOT file:  " <<  haddNEntries << std::endl;
-	std::cout << "Number of entries in the chain of ROOT files: " << chainNEntries << std::endl;
-	if(haddNEntries != chainNEntries) {
-		std::cout << "--> ERROR: Number of entries is not the same!" << std::endl;
-	} else {
-		std::cout << "--> OK" << std::endl;
-	}
+		Long64_t haddNEntries  = tree ->GetEntries();
+		Long64_t chainNEntries = chain->GetEntries();
+		std::cout << "Number of entries in the combined ROOT file:  " <<  haddNEntries << std::endl;
+		std::cout << "Number of entries in the chain of ROOT files: " << chainNEntries << std::endl;
+		if(haddNEntries != chainNEntries) {
+			std::cout << "--> ERROR: Number of entries is not the same!" << std::endl;
+			file->Close();
+			return;
+		} else {
+			std::cout << "--> OK" << std::endl;
+		}
 
 	// * Start stopwatch *
 		double time = 0.;
@@ -121,6 +144,7 @@ void CompareChainVsHadd(int nTimes = 10, const char* outputFileName = "compariso
 		out << "  average (s):       " << timeChain/nTimes << std::endl;
 		out << "  per event (ns):    " << timeChain/nTimes/chainNEntries*1e9;
 		out.close();
+
 	// * Print results *
 		std::cout << std::endl;
 		std::cout << "Number of iterations: " << nTimes << std::endl;
@@ -133,7 +157,30 @@ void CompareChainVsHadd(int nTimes = 10, const char* outputFileName = "compariso
 		std::cout << "  total (s):          " << timeChain << std::endl;
 		std::cout << "  average (s):        " << timeChain/nTimes << std::endl;
 		std::cout << "  per event (ns):     " << timeChain/nTimes/chainNEntries*1e9 << std::endl;
-	// * Terminate ROOT *
-		gApplication->Terminate();
 
+}
+
+/**
+ * @brief Main function when directly compiling using e.g. `g++`.
+ */
+int main(int argc, char *argv[])
+{
+	// * Default arguments * //
+	int nTimes = gDefaultNTimes;
+	TString outputFileName(gDefaultOutputFileName);
+
+	//* Import arguments if available * //
+	if(argc > 1) { // if at least one argument is given
+		std::stringstream str(argv[1]);
+		str >> nTimes; // convert argument to integer
+	}
+	if(argc > 1) { // if at least two arguments are given
+		outputFileName = argv[2];
+	}
+
+	// * Execute function * //
+	CompareChainVsHadd(nTimes, outputFileName);
+
+	// * Default return value * //
+	return 0;
 }
