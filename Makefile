@@ -1,4 +1,4 @@
-# ! Still under development -- copied from NIKHEF project
+# ! Still under development -- copied from the NIKHEFproject2018 repository
 
 # # Author: Remco de Boer
 # # Date: May 20th, 2018
