@@ -2,8 +2,10 @@ var searchData=
 [
   ['detector',['Detector',['../namespaceSettings_1_1Detector.html',1,'Settings']]],
   ['math',['Math',['../namespaceSettings_1_1Math.html',1,'Settings']]],
+  ['script_20folder',['Script folder',['../md__mnt_c_IHEP_BOSS_Afterburner_scripts_README.html',1,'']]],
   ['output',['Output',['../namespaceSettings_1_1Output.html',1,'Settings']]],
   ['particles',['Particles',['../namespaceSettings_1_1Particles.html',1,'Settings']]],
+  ['readme_2emd',['README.md',['../scripts_2README_8md.html',1,'']]],
   ['setbranchaddress',['SetBranchAddress',['../classBOSSRootChain.html#ace5af0bff981d3283f12c359c9f18c21',1,'BOSSRootChain::SetBranchAddress()'],['../PlotAnaOutput_8C.html#ad2f199c9c6a8aeeed1f4ddb54786ba0e',1,'SetBranchAddress():&#160;PlotAnaOutput.C']]],
   ['setchain',['SetChain',['../classRhopiRootChain.html#af2ba8d92bfbe26e4ce319f4c6a7a60c2',1,'RhopiRootChain']]],
   ['setleftmargin',['SetLeftMargin',['../RooFitMacro_8C.html#a48661e18ee7ffd45394c8a636b1dd9b8',1,'RooFitMacro.C']]],

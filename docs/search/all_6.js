@@ -1,6 +1,9 @@
 var searchData=
 [
   ['gauss',['gauss',['../RooFitMacro_8C.html#a082d147d848fe3b37cb0861c4250b513',1,'RooFitMacro.C']]],
+  ['gbranchename',['gBrancheName',['../CompareChainVsHadd_8C.html#a241c9c45cc2042fc316d22ceac35eb5d',1,'CompareChainVsHadd.C']]],
+  ['gdefaultntimes',['gDefaultNTimes',['../CompareChainVsHadd_8C.html#a60a723826c10d3877fdffbd3d429c15a',1,'CompareChainVsHadd.C']]],
+  ['gdefaultoutputfilename',['gDefaultOutputFileName',['../CompareChainVsHadd_8C.html#ab17e022eddaae4f4d52a6a42a84026e0',1,'CompareChainVsHadd.C']]],
   ['geff',['geff',['../classRhopiRootChain.html#a5e0b5275df9db37d0d3cf81cec8f0b02',1,'RhopiRootChain::geff()'],['../classRhopiRootFile.html#aa611de67c8ef76790b06524fa893b476',1,'RhopiRootFile::geff()']]],
   ['getlistofchains',['GetListOfChains',['../classBOSSRootChain.html#a59cb568e9e52a54b640928bdadd286ac',1,'BOSSRootChain']]],
   ['getlistofttrees',['GetListOfTTrees',['../classBOSSRootFile.html#a55a8ce3e66f1671ccdbb90cfd06285a3',1,'BOSSRootFile']]],
@@ -13,6 +16,8 @@ var searchData=
   ['getpdgcode',['GetPDGCode',['../classParticle.html#a4b8ac08a6780525067a126f69e42def7',1,'Particle']]],
   ['gettree',['GetTree',['../classBOSSRootFile.html#a586f25e9d89758ddaeefd3e2a0b34e43',1,'BOSSRootFile']]],
   ['getxaxis',['GetXaxis',['../RooFitMacro_8C.html#a0d0604c49c2f21bc6bc844af99825f6f',1,'RooFitMacro.C']]],
+  ['gfiletoload',['gFileToLoad',['../CompareChainVsHadd_8C.html#aa3dda915a68202f6344b5bb828e71e0e',1,'CompareChainVsHadd.C']]],
   ['ghit',['ghit',['../namespaceAnaBranches_1_1dedx.html#ad24edfa8bdfd4fbbc826eaa148bfc0a3',1,'AnaBranches::dedx']]],
-  ['gpdg',['gPDG',['../Particle_8h.html#a3ec90cfec059bc7f3ad04c4cd6812b82',1,'Particle.h']]]
+  ['gpdg',['gPDG',['../Particle_8h.html#a3ec90cfec059bc7f3ad04c4cd6812b82',1,'Particle.h']]],
+  ['gtreename',['gTreeName',['../CompareChainVsHadd_8C.html#a0c1ca9e8f58c539cd9b3115a8a4f0f0d',1,'CompareChainVsHadd.C']]]
 ];

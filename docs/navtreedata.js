@@ -17,6 +17,7 @@ var NAVTREE =
       ] ],
       [ "About", "index.html#autotoc_md11", null ]
     ] ],
+    [ "Script folder", "md__mnt_c_IHEP_BOSS_Afterburner_scripts_README.html", null ],
     [ "Tips, Tricks, and Troubleshooting", "tips.html", [
       [ "Tips & Tricks", "tips.html#autotoc_md12", [
         [ "Troubleshooting", "tips.html#autotoc_md13", null ]
@@ -56,7 +57,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AnalyseRootFile_8C.html",
-"classRhopiRootFile.html#a8ee41b35a1a8d47db5abde95be25cb8c"
+"classRhopiRootFile.html#a550ef62f0570746575a9258753d65bcc"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
