@@ -17,10 +17,7 @@ var NAVTREE =
       ] ],
       [ "About", "index.html#autotoc_md15", null ]
     ] ],
-    [ "Folder for binary files", "md__mnt_c_IHEP_BOSS_Afterburner_bin_README.html", null ],
-    [ "Data folder", "md__mnt_c_IHEP_BOSS_Afterburner_data_README.html", null ],
     [ "boss", "md_boss.html", null ],
-    [ "Documentation", "md_README.html", null ],
     [ "Tips, Tricks, and Troubleshooting", "tips.html", [
       [ "Tips & Tricks", "tips.html#autotoc_md0", [
         [ "Recommended software", "tips.html#autotoc_md1", null ],
@@ -28,10 +25,6 @@ var NAVTREE =
       ] ],
       [ "Troubleshooting", "tips.html#autotoc_md3", null ]
     ] ],
-    [ "Folder for header files of the BOSS Afterburner", "md__mnt_c_IHEP_BOSS_Afterburner_inc_README.html", null ],
-    [ "Jobs folder", "md__mnt_c_IHEP_BOSS_Afterburner_jobs_README.html", null ],
-    [ "Plots folder", "md__mnt_c_IHEP_BOSS_Afterburner_plots_README.html", null ],
-    [ "Script folder", "md__mnt_c_IHEP_BOSS_Afterburner_scripts_README.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],

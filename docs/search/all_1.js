@@ -7,6 +7,5 @@ var searchData=
   ['bossrootfile',['BOSSRootFile',['../classBOSSRootFile.html',1,'BOSSRootFile'],['../classBOSSRootFile.html#a0d0f7ca92e6f18b1c29f94f611a4fec5',1,'BOSSRootFile::BOSSRootFile()'],['../classBOSSRootFile.html#a2274abd55a6801a20c1777416700521d',1,'BOSSRootFile::BOSSRootFile(const char *)']]],
   ['bossrootfile_2eh',['BOSSRootFile.h',['../BOSSRootFile_8h.html',1,'']]],
   ['bsize',['Bsize',['../RooFitMacro_8C.html#a1f34a05fd94d82d484e6d9b1bbdb7043',1,'RooFitMacro.C']]],
-  ['boss',['boss',['../md_boss.html',1,'']]],
-  ['readme_2emd',['README.md',['../bin_2README_8md.html',1,'']]]
+  ['boss',['boss',['../md_boss.html',1,'']]]
 ];

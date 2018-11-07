@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readme_2emd',['README.md',['../jobs_2README_8md.html',1,'']]]
+  ['tips_2emd',['tips.md',['../tips_8md.html',1,'']]]
 ];

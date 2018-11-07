@@ -32,7 +32,5 @@ var searchData=
   ['ftof2',['fTof2',['../classRhopiRootChain.html#af726b3de96f10319127a1807d9ed914b',1,'RhopiRootChain::fTof2()'],['../classRhopiRootFile.html#adbc7856675e66a23c51aca5c357f96a6',1,'RhopiRootFile::fTof2()']]],
   ['ftofe',['fTofe',['../classRhopiRootChain.html#a511120c49b5e55b1270ba4467a3accdc',1,'RhopiRootChain::fTofe()'],['../classRhopiRootFile.html#ac1b40912fe1f66c1df25badd726d106e',1,'RhopiRootFile::fTofe()']]],
   ['fttrees',['fTTrees',['../classBOSSRootFile.html#ad6f246502fcecae260212be36db2c81e',1,'BOSSRootFile']]],
-  ['fvxyz',['fVxyz',['../classRhopiRootChain.html#aee70d91f7b73d405d820d6849b6dca8b',1,'RhopiRootChain::fVxyz()'],['../classRhopiRootFile.html#a550ef62f0570746575a9258753d65bcc',1,'RhopiRootFile::fVxyz()']]],
-  ['folder_20for_20binary_20files',['Folder for binary files',['../md__mnt_c_IHEP_BOSS_Afterburner_bin_README.html',1,'']]],
-  ['folder_20for_20header_20files_20of_20the_20boss_20afterburner',['Folder for header files of the BOSS Afterburner',['../md__mnt_c_IHEP_BOSS_Afterburner_inc_README.html',1,'']]]
+  ['fvxyz',['fVxyz',['../classRhopiRootChain.html#aee70d91f7b73d405d820d6849b6dca8b',1,'RhopiRootChain::fVxyz()'],['../classRhopiRootFile.html#a550ef62f0570746575a9258753d65bcc',1,'RhopiRootFile::fVxyz()']]]
 ];

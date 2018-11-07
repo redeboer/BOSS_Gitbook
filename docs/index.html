@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <h1><a class="anchor" id="autotoc_md4"></a>
 Introduction</h1>
 <p>The <a href="http://bes3.ihep.ac.cn/">Beijing Spectrometer (BESIII)</a> is a particle experiment situated at the <a href="http://english.ihep.cas.cn/doc/1840.html">Beijing Electron-Positron Collider (BEPCII)</a>. It is primarily designed to perform highly sensitive studies of light hadron and charm physics.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd><p class="startdd">Elaborate or refer to official pages </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd><p class="startdd">Elaborate or refer to official pages </p>
 <p class="enddd">Rewrite for TC shell.</p>
 </dd></dl>
 <p>Output of the detector is analysed using the <a href="http://english.ihep.cas.cn/bes/doc/2247.html">BESIII Offline Software System (BOSS)</a>.</p>
@@ -162,7 +162,7 @@ Setup of your BOSS and Afterburner environment</h2>
 <p>***Note:** In it's current version, this tutorial assumes you use a <code>bash</code> terminal.*</p>
 <p>I advise you to set up your environment in the same way I did. There are two main directories that you will be using: (1) the <em>work area</em> that contains your run scripts for <b>BOSS</b> and (2) the <em>BOSS Afterburner</em> repository. I placed the work area in my <code>ihepbatch</code> folder (see <a href="#organisation-of-the-ihep-server">Organisation of the IHEP server</a>) and the BOSS Afterburner in my <code>besfs</code> folder. Data generated with <b>BOSS</b> through the work area scripts is written then to the <code>BOSS_Afterburner/data</code> directory on <code>besfs</code> (see later).</p>
 <h3>(1) Set up your work area</h3>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Test the procedure described below! </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Test the procedure described below! </dd></dl>
 <p>You will be running your <b>BOSS</b> analyses from this folder. It contains a <em>Configuration Management Tool</em> folder (<code>cmthome</code>), which is used to set up path variables for <b>BOSS</b>, and a <code>workarea</code> folder where you develop your own <b>BOSS</b> packages (including the <code>jobOptions*.txt</code> files).</p>
 <p><b>Step 1:</b> Go to your <em>IHEP batch</em> folder: </p><pre class="fragment">cd /ihepbatch/bes/$USER
 </pre><p>At this stage, you'll have to decide which version of BOSS you have to use. At the time of writing, version 7.0.3 is the latest stable version, though it could be that for your analysis you have to use data sets that were reconstructed with older versions of <b>BOSS</b>. Here, I'll just use <code>7.0.3</code>, but you can replace this number with whatever version you need.</p>
@@ -253,7 +253,7 @@ Submitting a job</h2>
 <p>With <code>hep_sub</code>, however, you essentially forward a shell script to the queue, which then executes the commands in there. So you'll have to make that first. Let's say, you make a shell script <code>test.sh</code> in the <code>run</code> folder that looks like this: </p><pre class="fragment">#!/bin/bash
 boss.exe jobOptions_sim.txt
 </pre><p>The first line clarifies that you use <code>bash</code>, the second does what you did when running a job: calling <code>boss.exe</code>, but of course, you can make this script to execute whatever <code>bash</code> commands you want.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Not sure if you should <code>chmod +x</code> it?</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Not sure if you should <code>chmod +x</code> it?</dd></dl>
 <p>Now you can simply submit the shell script to the queue using: </p><pre class="fragment">hep_sub test.sh -g physics
 </pre><p>and it will be executed in the background. Here, the option <code>-g</code> tellst that you are from the <code>physics</code> group. You can check whether the job is (still) running in the queue using: </p><pre class="fragment">hep_q -u $USER
 </pre><p>Note that <code>hep_q</code> would list all jobs from all users.</p>
