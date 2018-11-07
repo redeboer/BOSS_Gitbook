@@ -16,10 +16,16 @@
 	#include "RooPlot.h"
 	#include "RooRealVar.h"
 	#include "TCanvas.h"
+	#include "TDatabasePDG.h"
 	#include "TFile.h"
 	#include "TH1D.h"
-	#include "TString.h" // used for `Form`
+	#include "TLine.h"
+	#include "TParticlePDG.h"
+	#include "TPaveText.h"
+	#include "TString.h"
+	#include "TStyle.h"
 	#include "TSystem.h"
+	#include "TText.h"
 	#include "TTree.h"
 	#include <iostream>
 	using namespace RooFit;
@@ -28,7 +34,12 @@
 // * ======================= * //
 // * ------- GLOBALS ------- * //
 // * ======================= * //
+	// ! Do not change these parametes ! //
+	const TDatabasePDG gPDG;
+		//!< A `ROOT` `TDatabasePDG` object that contains all info of particles. Has to be constructed once, which is why it is a global.
 	// ! Customise these values ! //
+	const TParticlePDG* gParticlePDG = gPDG.GetParticle(111);
+		//!< The particle that you want to analyse. (111 is the PDG code for pi0.
 	const char* gDefaultFileToLoad = "../data/root/ana_rhopi.root";
 		//!< Location of the ROOT file that you want to analyse.
 	const char* gTreeToLoad        = "fit4c";
@@ -36,9 +47,9 @@
 	const char* gBrancheToLoad     = "mpi0";
 		//!< Branche in the `TTree` that you want to use to create the invariant mass plot.
 	const char* gCandidate         = "#pi^{0}";
-		//!< Decay particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">TLaTeX</a>).
+		//!< Decay particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">`TLaTeX`</a>).
 	const char* gDaughters         = "#gamma#gamma";
-		//!< Daughter particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">TLaTeX</a>).
+		//!< Daughter particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">`TLaTeX`</a>).
 	const char* gOutputExtension   = "pdf";
 		//!< Extension that is used to save the output plots.
 		//!< !! Note that it has to be set before the `gOutputDir` !!
@@ -96,46 +107,57 @@ void FitDoubleGaussian_RooFit(const char* inputFileName = gDefaultFileToLoad)
 		}
 		std::cout << "\rSuccesfully looped over " << nEntries << " events in the \"" << gTreeToLoad << "\" tree (\"" << gBrancheToLoad << "\")" << std::endl;
 
-	// * Set RooFit fit variable (in this case only the invariant mass axis)
+	// * The `RooFit` method * //
+	/*
+		See https://root.cern.ch/roofit-20-minutes
+	*/
 		const double xmin = hist.GetXaxis()->GetXmin();
 		const double xmax = hist.GetXaxis()->GetXmax();
 		RooRealVar invMassVar("invMassVar", Form("#it{M}_{%s} (GeV/#it{c}^{2})", gDaughters), xmin, xmax);
 
-	// * Import histogram to Roofit
+	// * Import histogram to Roofit * //
 		RooDataHist invMassDistribution(
-			hist.GetName(), hist.GetTitle(),
+			Form("%s_%s_RooDataHist", gTreeToLoad, gBrancheToLoad), hist.GetTitle(),
 			invMassVar, RooFit::Import(hist));
 
-	// * Create Gaussian functions
-		RooRealVar m1("mean1",  "#pi^{0} mass",  .130, .132, .140);
-		RooRealVar s1("sigma1", "#pi^{0} width", .003, 1e-3, .1);
+	// * Create Gaussian functions * //
+		RooRealVar m1("mean1",  "#pi^{0} mass", gParticlePDG->Mass());
+		RooRealVar s1("sigma1", "#pi^{0} width", .005, 0., .1);
 		RooGaussian gauss1("gauss1",
 			"Gaussian PDF 1 for #it{M}_{#gamma#gamma} distribution",
 			invMassVar, m1, s1);
 
-		RooRealVar m2("mean2",  "#pi^{0} mass",  .135);
-		RooRealVar s2("sigma2", "#pi^{0} width", .0005, 1e-3, .1);
+		RooRealVar m2("mean2",  "#pi^{0} mass", gParticlePDG->Mass());
+		RooRealVar s2("sigma2", "#pi^{0} width", .0005, 0., .1);
 		RooGaussian gauss2("gauss2",
 			"Gaussian PDF 2 for #it{M}_{#gamma#gamma} distribution",
 			invMassVar, m2, s2);
 
-	// * Add the components
-		RooRealVar n1("ngauss1", "Number of events in Gaussian 1", 30000., 0., 60000.);
-		RooRealVar n2("ngauss2", "Number of events in Gaussian 2", 10000., 0., 60000.);
-		RooAddPdf  signal("double_gaussian", "Double gaussian",
+	// * Add the components and fit * //
+		double boundary = 5e5;
+		RooRealVar n1("ngauss1", "Number of events in Gaussian 1", 8e3, 0., boundary);
+		RooRealVar n2("ngauss2", "Number of events in Gaussian 2", 1e5, 0., boundary);
+		RooAddPdf  doublegauss("double_gaussian", "Double gaussian",
 			RooArgList(gauss1, gauss2),
 			RooArgList(n1, n2));
+		RooFitResult* result = doublegauss.fitTo(invMassDistribution);
 
-	// * Fit, plot results, and save
-		RooFitResult* result = signal.fitTo(invMassDistribution);
+	// * Fit, plot results, and save * //
 		RooPlot *frame = invMassVar.frame(); // create a frame to draw
-		invMassDistribution.plotOn(frame);   // draw distribution
-		signal.plotOn(frame);                // draw sig+bck fit
-		signal.plotOn(frame, Components(gauss1), LineStyle(kDashed), LineColor(kRed));   // draw gauss 1
-		signal.plotOn(frame, Components(gauss2), LineStyle(kDashed), LineColor(kGreen)); // draw gauss 2
+		frame->SetAxisRange(.1, .169);
+		invMassDistribution.plotOn(frame, // draw distribution
+			LineWidth(2), LineColor(kBlue+2), LineWidth(1),
+			MarkerColor(kBlue+2), MarkerSize(.5));
+		doublegauss.plotOn(frame, LineWidth(2), LineColor(kBlack)); // draw sig+bck fit
+		doublegauss.plotOn(frame, Components(gauss1), // draw gauss 1
+			LineWidth(1), LineColor(kRed-4));
+		doublegauss.plotOn(frame, Components(gauss2), // draw gauss 2
+			LineWidth(1), LineColor(kBlue-4));
+		doublegauss.paramOn(frame, Layout(.56, .98, .92));
 
 	// * Write fitted histograms * //
 		TCanvas c;
+		c.SetBatch();
 		frame->Draw();
 		c.SaveAs(outputFileName.Data());
 		c.Close();

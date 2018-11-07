@@ -10,7 +10,6 @@
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
 	#include "TCanvas.h"
-	#include "TText.h"
 	#include "TDatabasePDG.h"
 	#include "TF1.h"
 	#include "TFile.h"
@@ -23,8 +22,10 @@
 	#include "TString.h"
 	#include "TStyle.h"
 	#include "TSystem.h"
+	#include "TText.h"
 	#include "TTree.h"
 	#include <iostream>
+
 
 // * ======================= * //
 // * ------- GLOBALS ------- * //
@@ -119,7 +120,7 @@ void FitDoubleGaussian_TH1Fit(const char* inputFileName = gDefaultFileToLoad)
 		// * width of each Gaussian
 			doublegauss.SetParameter(2, .005);
 			doublegauss.SetParameter(5, .0005);
-		TFitResultPtr result = hist.Fit(&doublegauss, "SQ");
+		TFitResultPtr result = hist.Fit(&doublegauss, "S");
 		result->Print();
 
 	// * Extract the parameters * //
@@ -142,6 +143,7 @@ void FitDoubleGaussian_TH1Fit(const char* inputFileName = gDefaultFileToLoad)
 
 	// * Write main histogram (do this first to you can extract Y-ranges) * //
 		TCanvas c;
+		c.SetBatch();
 		hist.SetAxisRange(.1, .17); // decrease range of the X-axis
 		hist.Draw("ep1");
 		c.Update(); // see here https://root.cern.ch/root/roottalk/roottalk02/4222.html

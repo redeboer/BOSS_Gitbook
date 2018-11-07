@@ -17,7 +17,6 @@ var NAVTREE =
       ] ],
       [ "About", "index.html#autotoc_md15", null ]
     ] ],
-    [ "boss", "md_boss.html", null ],
     [ "Tips, Tricks, and Troubleshooting", "tips.html", [
       [ "Tips & Tricks", "tips.html#autotoc_md0", [
         [ "Recommended software", "tips.html#autotoc_md1", null ],
