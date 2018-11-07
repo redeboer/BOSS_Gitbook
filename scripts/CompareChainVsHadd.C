@@ -9,7 +9,6 @@
 // * ======================================== * //
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
-	#include "TApplication.h"
 	#include "TChain.h"
 	#include "TFile.h"
 	#include "TString.h"
@@ -174,12 +173,12 @@ int main(int argc, char *argv[])
 		std::stringstream str(argv[1]);
 		str >> nTimes; // convert argument to integer
 	}
-	if(argc > 1) { // if at least two arguments are given
+	if(argc > 2) { // if at least two arguments are given
 		outputFileName = argv[2];
 	}
 
 	// * Execute function * //
-	CompareChainVsHadd(nTimes, outputFileName);
+	CompareChainVsHadd(nTimes, outputFileName.Data());
 
 	// * Default return value * //
 	return 0;
