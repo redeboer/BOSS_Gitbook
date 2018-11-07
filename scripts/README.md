@@ -20,4 +20,15 @@ The charm of `RooFit` a function can be nicely build up bit by bit with probabil
 # Comparison of `TChain` versus `hadd`ed files
 See script [`CompareChainVsHadd.C`](CompareChainVsHadd.C).
 
-Some explanations, such as the comparison of computing time between `TChain` and `hadd`ed ROOT files.
+A simple test, looping over a tree with 263.990 event for 100 times, resulted in the following results. Here, 'uncompiled' stands for `root TestScript.C` and 'compile' stands for `root TestScript.C+`.
+
+            | `hadd` | `TChain` |
+:----------:|:------:|:--------:|:-----:
+compiled    | 576 ns | 771 ns   | 33.9%
+uncompiled  | 767 ns | 969 ns   | 26.3%
+:----------:|:------:|:--------:|:-----:
+            | 33.2%  | 25.7%    |
+
+**Conclusion:**
+1. Best to use `hadd`!
+2. If your compilation takes e.g. 10 seconds, you win back this time if you run over around 50M events. But this number is probably much lower for more complicated per-event computations.
