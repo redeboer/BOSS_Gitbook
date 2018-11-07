@@ -15,10 +15,12 @@ var searchData=
   ['filters',['filters',['../RooFitMacro_8C.html#aa19d2a26febe1d1da2d0597f64d121bb',1,'RooFitMacro.C']]],
   ['findchain',['FindChain',['../classBOSSRootChain.html#a0ecfcc49ff6ddcbf77dec527bd4663be',1,'BOSSRootChain']]],
   ['fit4c',['fit4c',['../classRhopiRootChain.html#af48122acfbd1cf0a49c9cb897df55c64',1,'RhopiRootChain::fit4c()'],['../classRhopiRootFile.html#a1a1decc22ca9951f4f0da71a7f69ea3c',1,'RhopiRootFile::fit4c()']]],
-  ['fit4c5c',['Fit4c5c',['../Fit4c5c_8C.html#a56cecbed62854db3a972cda9a7b04051',1,'Fit4c5c.C']]],
-  ['fit4c5c_2ec',['Fit4c5c.C',['../Fit4c5c_8C.html',1,'']]],
   ['fit5c',['fit5c',['../classRhopiRootChain.html#a7a35a17d1fc0aedface52acc50e4e24d',1,'RhopiRootChain::fit5c()'],['../classRhopiRootFile.html#a190b4f499a2787f3c541e7895b7894b3',1,'RhopiRootFile::fit5c()']]],
   ['fitbreitwigner',['FitBreitWigner',['../AnalyseRootFile_8C.html#ae85bc9854f18cb88c29a04500ae1b85b',1,'AnalyseRootFile.C']]],
+  ['fitdoublegaussian_5froofit',['FitDoubleGaussian_RooFit',['../FitDoubleGaussian__RooFit_8C.html#a8c259a9b2df55669eb9f3657c2ce1e4f',1,'FitDoubleGaussian_RooFit.C']]],
+  ['fitdoublegaussian_5froofit_2ec',['FitDoubleGaussian_RooFit.C',['../FitDoubleGaussian__RooFit_8C.html',1,'']]],
+  ['fitdoublegaussian_5fth1fit',['FitDoubleGaussian_TH1Fit',['../FitDoubleGaussian__TH1Fit_8C.html#ab9a792a6394ae0a46131f08a000b141f',1,'FitDoubleGaussian_TH1Fit.C']]],
+  ['fitdoublegaussian_5fth1fit_2ec',['FitDoubleGaussian_TH1Fit.C',['../FitDoubleGaussian__TH1Fit_8C.html',1,'']]],
   ['fitpuredoublegaussian',['FitPureDoubleGaussian',['../AnalyseRootFile_8C.html#abf24c50c39c6b7d82c4fdddf7a57146a',1,'AnalyseRootFile.C']]],
   ['fparticlenamelatex',['fParticleNameLaTeX',['../classParticle.html#afd36e09313f192e586b4055ad8b7acc2',1,'Particle']]],
   ['fparticlepdg',['fParticlePDG',['../classParticle.html#a08665826413095e79efd4a6a1ec3fabc',1,'Particle']]],
@@ -30,5 +32,7 @@ var searchData=
   ['ftof2',['fTof2',['../classRhopiRootChain.html#af726b3de96f10319127a1807d9ed914b',1,'RhopiRootChain::fTof2()'],['../classRhopiRootFile.html#adbc7856675e66a23c51aca5c357f96a6',1,'RhopiRootFile::fTof2()']]],
   ['ftofe',['fTofe',['../classRhopiRootChain.html#a511120c49b5e55b1270ba4467a3accdc',1,'RhopiRootChain::fTofe()'],['../classRhopiRootFile.html#ac1b40912fe1f66c1df25badd726d106e',1,'RhopiRootFile::fTofe()']]],
   ['fttrees',['fTTrees',['../classBOSSRootFile.html#ad6f246502fcecae260212be36db2c81e',1,'BOSSRootFile']]],
-  ['fvxyz',['fVxyz',['../classRhopiRootChain.html#aee70d91f7b73d405d820d6849b6dca8b',1,'RhopiRootChain::fVxyz()'],['../classRhopiRootFile.html#a550ef62f0570746575a9258753d65bcc',1,'RhopiRootFile::fVxyz()']]]
+  ['fvxyz',['fVxyz',['../classRhopiRootChain.html#aee70d91f7b73d405d820d6849b6dca8b',1,'RhopiRootChain::fVxyz()'],['../classRhopiRootFile.html#a550ef62f0570746575a9258753d65bcc',1,'RhopiRootFile::fVxyz()']]],
+  ['folder_20for_20binary_20files',['Folder for binary files',['../md__mnt_c_IHEP_BOSS_Afterburner_bin_README.html',1,'']]],
+  ['folder_20for_20header_20files_20of_20the_20boss_20afterburner',['Folder for header files of the BOSS Afterburner',['../md__mnt_c_IHEP_BOSS_Afterburner_inc_README.html',1,'']]]
 ];

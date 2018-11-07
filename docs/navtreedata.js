@@ -2,28 +2,36 @@ var NAVTREE =
 [
   [ "BOSS Afterburner", "index.html", [
     [ "The BOSS Afterburner", "index.html", [
-      [ "Introduction", "index.html#autotoc_md0", null ],
-      [ "The BOSS framework", "index.html#autotoc_md1", [
-        [ "Organisation of the IHEP server", "index.html#autotoc_md2", null ],
-        [ "Setup of your BOSS and Afterburner environment", "index.html#autotoc_md3", null ],
-        [ "Set up a BOSS package", "index.html#autotoc_md4", null ],
-        [ "Running a job", "index.html#autotoc_md5", null ],
-        [ "Submitting a job", "index.html#autotoc_md6", null ],
-        [ "Splitting up jobs", "index.html#autotoc_md7", null ]
+      [ "Introduction", "index.html#autotoc_md4", null ],
+      [ "The BOSS framework", "index.html#autotoc_md5", [
+        [ "Organisation of the IHEP server", "index.html#autotoc_md6", null ],
+        [ "Setup of your BOSS and Afterburner environment", "index.html#autotoc_md7", null ],
+        [ "Set up a BOSS package", "index.html#autotoc_md8", null ],
+        [ "Running a job", "index.html#autotoc_md9", null ],
+        [ "Submitting a job", "index.html#autotoc_md10", null ],
+        [ "Splitting up jobs", "index.html#autotoc_md11", null ]
       ] ],
-      [ "Further reading", "index.html#autotoc_md8", [
-        [ "IHEP and the BESIII collaboration", "index.html#autotoc_md9", null ],
-        [ "The BOSS Analysis Framework", "index.html#autotoc_md10", null ]
+      [ "Further reading", "index.html#autotoc_md12", [
+        [ "IHEP and the BESIII collaboration", "index.html#autotoc_md13", null ],
+        [ "The BOSS Analysis Framework", "index.html#autotoc_md14", null ]
       ] ],
-      [ "About", "index.html#autotoc_md11", null ]
+      [ "About", "index.html#autotoc_md15", null ]
     ] ],
-    [ "Script folder", "md__mnt_c_IHEP_BOSS_Afterburner_scripts_README.html", null ],
-    [ "Tips, Tricks, and Troubleshooting", "tips.html", [
-      [ "Tips & Tricks", "tips.html#autotoc_md12", [
-        [ "Troubleshooting", "tips.html#autotoc_md13", null ]
-      ] ]
-    ] ],
+    [ "Folder for binary files", "md__mnt_c_IHEP_BOSS_Afterburner_bin_README.html", null ],
+    [ "Data folder", "md__mnt_c_IHEP_BOSS_Afterburner_data_README.html", null ],
     [ "boss", "md_boss.html", null ],
+    [ "Documentation", "md_README.html", null ],
+    [ "Tips, Tricks, and Troubleshooting", "tips.html", [
+      [ "Tips & Tricks", "tips.html#autotoc_md0", [
+        [ "Recommended software", "tips.html#autotoc_md1", null ],
+        [ "Compiling", "tips.html#autotoc_md2", null ]
+      ] ],
+      [ "Troubleshooting", "tips.html#autotoc_md3", null ]
+    ] ],
+    [ "Folder for header files of the BOSS Afterburner", "md__mnt_c_IHEP_BOSS_Afterburner_inc_README.html", null ],
+    [ "Jobs folder", "md__mnt_c_IHEP_BOSS_Afterburner_jobs_README.html", null ],
+    [ "Plots folder", "md__mnt_c_IHEP_BOSS_Afterburner_plots_README.html", null ],
+    [ "Script folder", "md__mnt_c_IHEP_BOSS_Afterburner_scripts_README.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
@@ -57,7 +65,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AnalyseRootFile_8C.html",
-"classRhopiRootFile.html#a550ef62f0570746575a9258753d65bcc"
+"classRhopiRootChain.html#a8307c57cd38b5af842684963696a3396"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

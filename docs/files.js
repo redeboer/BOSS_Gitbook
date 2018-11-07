@@ -8,7 +8,8 @@ var files =
       [ "BOSSRootFile", "classBOSSRootFile.html", "classBOSSRootFile" ]
     ] ],
     [ "CompareChainVsHadd.C", "CompareChainVsHadd_8C.html", "CompareChainVsHadd_8C" ],
-    [ "Fit4c5c.C", "Fit4c5c_8C.html", "Fit4c5c_8C" ],
+    [ "FitDoubleGaussian_RooFit.C", "FitDoubleGaussian__RooFit_8C.html", "FitDoubleGaussian__RooFit_8C" ],
+    [ "FitDoubleGaussian_TH1Fit.C", "FitDoubleGaussian__TH1Fit_8C.html", "FitDoubleGaussian__TH1Fit_8C" ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],
     [ "PlotAnaOutput.C", "PlotAnaOutput_8C.html", "PlotAnaOutput_8C" ],

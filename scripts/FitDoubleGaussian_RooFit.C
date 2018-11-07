@@ -36,9 +36,9 @@
 	const char* gBrancheToLoad     = "mpi0";
 		//!< Branche in the `TTree` that you want to use to create the invariant mass plot.
 	const char* gCandidate         = "#pi^{0}";
-		//!< Decay particle string that will be used in the invariant mass plot labels. Use LaTeX here (see @ref TLaTeX https://root.cern.ch/doc/master/classTLatex.html).
+		//!< Decay particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">TLaTeX</a>).
 	const char* gDaughters         = "#gamma#gamma";
-		//!< Daughter particle string that will be used in the invariant mass plot labels. Use LaTeX here (see @ref TLaTeX https://root.cern.ch/doc/master/classTLatex.html).
+		//!< Daughter particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">TLaTeX</a>).
 	const char* gOutputExtension   = "pdf";
 		//!< Extension that is used to save the output plots.
 		//!< !! Note that it has to be set before the `gOutputDir` !!

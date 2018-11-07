@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['the_20boss_20afterburner',['The BOSS Afterburner',['../index.html',1,'']]],
-  ['tips_2c_20tricks_2c_20and_20troubleshooting',['Tips, Tricks, and Troubleshooting',['../tips.html',1,'']]],
-  ['todo_20list',['Todo List',['../todo.html',1,'']]]
+  ['folder_20for_20binary_20files',['Folder for binary files',['../md__mnt_c_IHEP_BOSS_Afterburner_bin_README.html',1,'']]],
+  ['folder_20for_20header_20files_20of_20the_20boss_20afterburner',['Folder for header files of the BOSS Afterburner',['../md__mnt_c_IHEP_BOSS_Afterburner_inc_README.html',1,'']]]
 ];

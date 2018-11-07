@@ -12,7 +12,7 @@ If you do not have an IHEP networking account, it is therefore better to check o
 
 The MarkDown generated material on [this repository page](https://github.com/redeboer/BOSS_Afterburner) serves as a simple introduction. For more details, you can go to the [parallel Doxygen-generated webpage](https://redeboer.github.io/BOSS_Afterburner/ "Doxygen page of the BOSS Afterburner") of the BOSS Afterburner.
 
-See also @ref tips ([MarkDown](docs/doxygen/tips.md)).
+See also @ref tips ([MarkDown](doxygen/tips.md)).
 
 # Introduction
 The [Beijing Spectrometer (BESIII)](http://bes3.ihep.ac.cn/) is a particle experiment situated at the [Beijing Electron-Positron Collider (BEPCII)](http://english.ihep.cas.cn/doc/1840.html). It is primarily designed to perform highly sensitive studies of light hadron and charm physics.
