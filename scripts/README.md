@@ -22,12 +22,11 @@ See script [`CompareChainVsHadd.C`](CompareChainVsHadd.C).
 
 A simple test, looping over a tree with 263.990 event for 100 times, resulted in the following results. Here, 'uncompiled' stands for `root TestScript.C` and 'compile' stands for `root TestScript.C+`.
 
-|            | `hadd` | `TChain` |       |
-|:----------:|:------:|:--------:|:-----:|
-| compiled   | 576 ns | 771 ns   | 33.9% |
-| uncompiled | 767 ns | 969 ns   | 26.3% |
-| ---------- | ------ | -------- | ----- |
-|            | 33.2%  | 25.7%    |       |
+|            | `hadd`    | `TChain`  |       |
+|:----------:|:---------:|:---------:|:-----:|
+| compiled   | 576 ns    | 771 ns    | 33.9% |
+| uncompiled | 767 ns    | 969 ns    | 26.3% |
+|            | **33.2%** | **25.7%** |       |
 
 **Conclusion:**
 1. Best to use `hadd`!
