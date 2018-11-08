@@ -1,0 +1,10 @@
+Number of iterations: 100
+Number of events:     263990
+Times for hadd file:
+  total (s):         20.2478
+  average (s):       0.202478
+  per event (ns):    766.992
+Times for chain:
+  total (s):         25.5796
+  average (s):       0.255796
+  per event (ns):    968.961
