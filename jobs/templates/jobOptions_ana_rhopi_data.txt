@@ -9,7 +9,9 @@
 #include "/ihepbatch/bes/deboer/workarea-7.0.3/Physics/RhopiAlg/RhopiAlg-00-00-23/share/jobOptions_Rhopi.txt"
 
 // * ------- ROOT input data file (rec or dst) ------- * //
-EventCnvSvc.digiRootInputFile = {DSTFILES};
+EventCnvSvc.digiRootInputFile = {DSTFILES
+
+};
 
 // * ------- OUTPUT PRINTOUT LEVEL ------- * //
 // Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL)
@@ -22,5 +24,5 @@ ApplicationMgr.EvtMax = 10000;
 
 // * ------- ROOT output data file (root) ------- * //
 ApplicationMgr.HistogramPersistency = "ROOT";
-NTupleSvc.Output = { "FILE1 DATAFILE='../../data/root/ana_rhopi_data.root' OPT='NEW' TYP='ROOT'"}; //after correction
+NTupleSvc.Output = { "FILE1 DATAFILE='../../data/ROOTFILE' OPT='NEW' TYP='ROOT'"}; //after correction
 
