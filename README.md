@@ -9,9 +9,11 @@
 
 If you do not have an IHEP networking account, it is therefore better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html) of BESIII -- this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section [Further reading](./#further-reading).
 
-The MarkDown generated material on [this repository page](https://github.com/redeboer/BOSS_Afterburner) serves as a simple introduction. For more details, you can go to the [parallel Doxygen-generated webpage](https://redeboer.github.io/BOSS_Afterburner/) of the BOSS Afterburner.
+The BOSS Afterburner repository consists of three parts:
 
-See also @ref tips \([MarkDown](https://github.com/redeboer/BOSS_Afterburner/tree/902bbfd0a1c109e93d69e39a384ddfed810d8a02/doxygen/tips.md)\).
+* [The repository itself on GitHub](https://github.com/redeboer/BOSS_Afterburner), containing all the source code, including MarkDown files.
+* [Tke BOSS GitBook](https://redeboer.gitbook.io/boss-gitbook), which contains tutorial-like pages on both the BOSS Analysis Framework and the BOSS Afterburner.
+* [Doxygen documentation of the BOSS Afterburner](https://redeboer.github.io/BOSS_Afterburner/). This page can be consulted for more details about the code in the BOSS Afterburner.
 
 ## Introduction
 
@@ -345,3 +347,4 @@ What is much more convenient, however, is developing a `jobOptions*.txt` templat
   * [https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html](https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html) \(`MdcPatRec` Class Index\)
 * [http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome](http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome) \(TWiki\)
 * [https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong\_Li.pdf](https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf)
+
