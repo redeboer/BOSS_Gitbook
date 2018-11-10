@@ -44,7 +44,6 @@ MessageSvc.OutputLevel = 5;
 MessageSvc.useColors   = true;
 
 // * ------- Number of events ------- * //
-// Number of events to be processed (default is 10)
+// Number of events to be processed
 ApplicationMgr.EvtMax = NEVENTS;
 
-// # vim: filetype=c

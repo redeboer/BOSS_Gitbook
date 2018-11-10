@@ -3,92 +3,136 @@
 # *   DESCRIPTION: Batch create jobOption files based on a template
 # *        AUTHOR: Remco de Boer (@IHEP), EMAIL: remco.de.boer@ihep.ac.cn
 # *  ORGANIZATION: IHEP, CAS (Beijing, CHINA)
-# *       CREATED: 22 October 2018
+# *       CREATED: 8 November 2018
 # *         USAGE: bash CreateJobFiles.sh <number of jobs> <number of events>
-# *     ARGUMENTS: 1) number of job files to be created
-# *                2) number of events per job (optional -- default is 10,000)
-# *                3) analysis type name (optional -- default is "rhopi")
+# *     ARGUMENTS: 1) number of job files to be created (default is 25)
+# *                2) input file that will be used to create the list of dst files (check default value)
+# *                3) number of events per job (default is 10,000)
+# *                4) analysis type name (default is "rhopi_data")
 # * ===============================================================================
 
-source CommonFunctions.sh
+set -e # exit if a command or function exits with a non-zero status
 
-# * ------- Script parameters ------- *
-	nJobs=${1} # number of jobOption files and submit scripts that need to be generated
-	nEventsPerJob=10000   # default number of events per job
+# * ===================================================== * #
+# * ------- Attempt to load script with functions ------- * #
+# * ===================================================== * #
+	commonFunctionsScriptName="CommonFunctions.sh"
+	if [ -s "${commonFunctionsScriptName}" ]; then
+		source "${commonFunctionsScriptName}"
+	else
+		echo -e "\e[91mFATAL ERROR: Source script \"${commonFunctionsScriptName}\" does not exist\e[0m"
+		exit
+	fi
+
+
+# ! ================================ ! #
+# ! ------- Script arguments ------- ! #
+# ! ================================ ! #
+	# * (1) number of jobOption files and submit scripts that need to be generated
+	nJobs=25 # default argument
+	if [ $# -ge 1 ]; then
+		nJobs=${1}
+	fi    
+	# * (2) input file that will be used to create the list of dst files
+	inputFile="filenames/SelectionByDate_jpsi_round02.txt" # default argument
 	if [ $# -ge 2 ]; then
-		nEventsPerJob=${2}
+		inputFile="${2}"
 	fi
-	analysis_type="rhopi_data" # default value: will be used in file naming
+	# * (3) number of events per job (optional -- default is 10,000)
+	nEventsPerJob=10000 # default argument
 	if [ $# -ge 3 ]; then
-		analysis_type="${3}"
+		nEventsPerJob=${3}
 	fi
+	# * (4) analysis type name (optional -- default is "rhopi_data")
+	analysis_type="rhopi_data" # default argument
+	if [ $# -ge 4 ]; then
+		analysis_type="${4}"
+	fi
+
+
+# * ================================= * #
+# * ------- Script parameters ------- * #
+# * ================================= * #
 	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
 	scriptFolder="${afterburnerPath}/jobs" # contains templates and will write scripts to its subfolders
-	outputFolder="${afterburnerPath}/data"
-		# rtraw, dst, root, and log files will be written to this folder
+	outputFolder="${afterburnerPath}/data" # rtraw, dst, root, and log files will be written to this folder
+	temporaryFileName="temporary.txt" # will be removed at the end
 
 
-# * ------- Check parameters ------- *
-	CheckIfFolderExists ${scriptFolder}
-	CheckIfFolderExists ${outputFolder}
+# * =============================================== * #
+# * ------- Check arguments and parameters -------  * #
+# * =============================================== * #
+	CheckIfFileExists   "${inputFile}"
+	CheckIfFolderExists "${scriptFolder}"
+	CheckIfFolderExists "${outputFolder}"
 
 
-# * ------- Main function ------- *
+# * ============================= * #
+# * ------- Main function ------- * #
+# * ============================= * #
 
 	# * User input
-	echo "This will create ${nJobs} \"${analysis_type}\" job files with ${nEventsPerJob} events each of them in folder \"${scriptFolder}\"."
-	read -p "To continue, press ENTER, else Ctrl+C ..."
+	echo "This will create ${nJobs} \"ana_${analysis_type}.txt\" job files with ${nEventsPerJob} events each in folder:"
+	echo "   \"${scriptFolder}\"."
+	echo "DST files will be loaded from the file names listed in this file:"
+	echo "   \"${inputFile}\" (has $(cat ${inputFile} | wc -l) newline characters)"
+
+	AskForInput "To continue, press ENTER, else Ctrl+C ..."
+
+	# * Create inventory of files
+	CreateFilenameInventoryFromFileOfDirectories "${inputFile}" "${temporaryFileName}" "dst"
+	FormatTextFileToCppVectorArguments "${temporaryFileName}"
 
 	# * Create and EMPTY scripts directory (no need for sim and rec in data analysis)
-	CreateOrEmptyDirectory "${scriptFolder}" "ana"
-	CreateOrEmptyDirectory "${scriptFolder}" "sub"
-	# * Create and EMPTY sutput directory
-	CreateOrEmptyDirectory "${outputFolder}" "raw"
-	CreateOrEmptyDirectory "${outputFolder}" "dst"
-	CreateOrEmptyDirectory "${outputFolder}" "root"
-	CreateOrEmptyDirectory "${outputFolder}" "log"
-
-sed -i '/$/,$/'
-
-cp -f templates/jobOptions_ana_rhopi_data.txt ana/ana_rhopi_data_0.txt
-sed -i '/DSTFILES/{
-	s/DSTFILES//g
-	r filenames/data.txt
-}' ana/ana_rhopi_data_0.txt
-exit
+	CreateOrEmptyDirectory "${scriptFolder}" "ana"  "${analysis_type}"
+	CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${analysis_type}"
+	# * Create and EMPTY output directory
+	CreateOrEmptyDirectory "${outputFolder}" "raw"  "${analysis_type}"
+	CreateOrEmptyDirectory "${outputFolder}" "dst"  "${analysis_type}"
+	CreateOrEmptyDirectory "${outputFolder}" "root" "${analysis_type}"
+	CreateOrEmptyDirectory "${outputFolder}" "log"  "${analysis_type}"
 
 	# * Loop over jobs
 	for jobNo in $(seq 0 $((${nJobs} - 1))); do
 
+		echo -en "\e[0K\rCreating files for job $(($jobNo+1))/${nJobs}..." # overwrite previous line
+
 		# * Generate the analyse files (ana)
-		CheckTemplateFile "${scriptFolder}/templates/jobOptions_ana_${analysis_type}.txt"
+		templateName="${scriptFolder}/templates/jobOptions_ana_${analysis_type}.txt"
+		outputJobOptionsFile="${scriptFolder}/ana/ana_${analysis_type}_${jobNo}.txt"
+		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
 			{sub(/ROOTFILE/,"root/ana_'${analysis_type}'_'${jobNo}'.root")}
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 			{sub(/NEVENTS/,'${nEventsPerJob}')}
 			{if(flag == 1) {print $0} else {next} }' \
-		${templateName} > "${scriptFolder}/ana/ana_${analysis_type}_${jobNo}.txt"
+		"${templateName}" > "${outputJobOptionsFile}"
 		sed -i "/DSTFILES/{
 			s/DSTFILES//g
-			r ${scriptFolder}/ana/ana_${analysis_type}_${jobNo}.txt
-		}" ${scriptFolder}/ana/ana_${analysis_type}_${jobNo}.txt
+			r ${temporaryFileName}
+		}" "${outputJobOptionsFile}"
 
 		# * Generate the submit files (sub)
-		CheckTemplateFile "${scriptFolder}/templates/submit.sh"
+		templateName="${scriptFolder}/templates/submit_data.sh"
+		outputScriptFile="${scriptFolder}/sub/sub_${analysis_type}_${jobNo}.sh"
+		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
 			{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
-			{sub(/SIM_BOS/,"sim/sim_'${analysis_type}'_'${jobNo}'.txt")}
-			{sub(/SIM_LOG/,"log/sim_'${analysis_type}'_'${jobNo}'.log")}
-			{sub(/REC_BOS/,"rec/rec_'${analysis_type}'_'${jobNo}'.txt")}
-			{sub(/REC_LOG/,"log/rec_'${analysis_type}'_'${jobNo}'.log")}
 			{sub(/ANA_BOS/,"ana/ana_'${analysis_type}'_'${jobNo}'.txt")}
 			{sub(/ANA_LOG/,"log/ana_'${analysis_type}'_'${jobNo}'.log")}
 			{if(flag == 1) {print $0} else {next} }' \
-		${templateName} > "${scriptFolder}/sub/sub_${analysis_type}_${jobNo}.sh"
+		"${templateName}" > "${outputScriptFile}"
 
 	done
+	echo
 
 
-# * ------- Final terminal output ------- *
-	echo -e "\e[92mSuccesfully created ${nJobs} \"${analysis_type}\" job files with ${nEventsPerJob} events each\e[0m"
+# * ===================================== * #
+# * ------- Final terminal output ------- * #
+# * ===================================== * #
+	PrintSuccessMessage \
+		"Succesfully created ${nJobs} \"${analysis_type}\" job files with ${nEventsPerJob} events each\n"
+	rm "${temporaryFileName}"
+
+set +e # exit if a command or function exits with a non-zero status

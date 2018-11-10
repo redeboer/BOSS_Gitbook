@@ -10,7 +10,6 @@
 
 // * ------- ROOT input data file (rec or dst) ------- * //
 EventCnvSvc.digiRootInputFile = {DSTFILES
-
 };
 
 // * ------- OUTPUT PRINTOUT LEVEL ------- * //
@@ -24,5 +23,5 @@ ApplicationMgr.EvtMax = 10000;
 
 // * ------- ROOT output data file (root) ------- * //
 ApplicationMgr.HistogramPersistency = "ROOT";
-NTupleSvc.Output = { "FILE1 DATAFILE='../../data/ROOTFILE' OPT='NEW' TYP='ROOT'"}; //after correction
+NTupleSvc.Output = { "FILE1 DATAFILE='OUTPUT_PATH/ROOTFILE' OPT='NEW' TYP='ROOT'"}; //after correction
 

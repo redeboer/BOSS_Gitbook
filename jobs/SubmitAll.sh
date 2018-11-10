@@ -10,6 +10,15 @@
 
 set -o nounset # Treat unset variables as an error
 
+# * ------- Attempt to load script with functions ------- * #
+	commonFunctionsScriptName="CommonFunctions.sh"
+	if [ -s "${commonFunctionsScriptName}" ]; then
+		source "${commonFunctionsScriptName}"
+	else
+		PrintErrorMessage "ERROR: Source script \"${commonFunctionsScriptName}\" does not exist"
+		exit
+	fi
+
 # * ------- Script parameters ------- *
 	analysis_type="${1}" # will be used in file naming
 	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
@@ -21,7 +30,7 @@ set -o nounset # Treat unset variables as an error
 	{
 		folderToCheck="${1}"
 		if [ ! -d ${folderToCheck} ]; then
-			echo -e "\e[91mFATAL ERROR: folder \"${folderToCheck}\" does not exist. Check this script...\e[0m"
+			PrintErrorMessage "FATAL ERROR: folder \"${folderToCheck}\" does not exist. Check this script..."
 			exit
 		fi
 	}
@@ -31,23 +40,24 @@ set -o nounset # Treat unset variables as an error
 	CheckFolder ${scriptFolder}
 	nJobs=$(ls ${scriptFolder}/sub/sub_${analysis_type}_*.sh | wc -l)
 	if [ ${nJobs} == 0 ]; then
-		echo -e "\e[91mERROR: No jobs of type \"${analysis_type}\" available\e[0m"
+		PrintErrorMessage "ERROR: No jobs of type \"${analysis_type}\" available"
 		exit
 	fi
 
 
 # * ------- Run over all job files ------- *
-	read -p "Pess ENTER to submit ${nJobs} \"${analysis_type}\" jobs..."
+	AskForInput "Press ENTER to submit ${nJobs} \"${analysis_type}\" jobs..."
 	for job in $(ls ${scriptFolder}/sub/sub_${analysis_type}_*.sh); do
 		chmod +x ${job} # not sure if necessary
-		hep_sub -g physics ${job}
+		# hep_sub -g physics ${job}
 		if [ $? != 0 ]; then
-			echo -e "\e[91mAborted submitting jobs\e[0m"
+			PrintErrorMessage "Aborted submitting jobs"
 			exit
 		fi
 	done
 
 # * ------- Final terminal output ------- * #
-	echo -e "\e[92mSuccesfully submitted ${nJobs} \"${analysis_type}\" jobs\e[0m\n"
+	PrintSuccessMessage "Succesfully submitted ${nJobs} \"${analysis_type}\" jobs"
+	echo
 	echo "These are your jobs:"
 	hep_q -u $USER

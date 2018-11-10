@@ -1,0 +1,2 @@
+#!/bin/bash
+boss.exe SCRIPT_PATH/ANA_BOS > OUTPUT_PATH/ANA_LOG

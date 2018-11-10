@@ -1,0 +1,6 @@
+/besfs3/offline/data/703-1/jpsi/round02/dst/090612
+/besfs3/offline/data/703-1/jpsi/round02/dst/090613
+/besfs3/offline/data/703-1/jpsi/round02/dst/090614
+/besfs3/offline/data/703-1/jpsi/round02/dst/090615
+/besfs3/offline/data/703-1/jpsi/round02/dst/090616
+/besfs3/offline/data/703-1/jpsi/round02/dst/090620
