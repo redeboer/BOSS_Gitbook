@@ -1,6 +1,6 @@
 # Set up a BOSS package
 
-### Set up a BOSS package
+## Set up a BOSS package
 
 Now that you have configured your **BOSS** work area, you can start developing packages. The typical example package to get you started is the `TestRelease` package. We will need to copy this package into your [your work area](../#set-up-your-work-area). So let's navigate there:
 
@@ -39,5 +39,9 @@ boss.exe jobOptions_sim.txt
 
 which, in this case, will run a Monte Carlo simulation.
 
-Note that in step 7 [when we set up the work area](../#set-up-your-work-area) we added a line to the `.bashrc` that ensures that the `TestRelease` package is laoded every time you log in, so you won't have to do this every time yourself.
+Note that in step 7 [when we set up the work area](../#set-up-your-work-area) we added a line to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
+
+## Creating packages 'the official way'
+
+@todo Go through Chinese documentation and [this page](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started) and write out.
 
