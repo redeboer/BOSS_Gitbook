@@ -1,4 +1,0 @@
-# The BOSS Analysis Framework
-
-
-
