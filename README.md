@@ -1,5 +1,6 @@
-The BOSS Afterburner
-====================
+# Introduction to the BOSS Analysis Framework
+=============================================
+
 
 [TOC]
 
