@@ -30,4 +30,3 @@ However, parts of this tutorial refer to components of the BOSS Afterburner repo
 If you have been able to create data output, you can analyse your results with the BOSS Afterburner. This is described in the second part of this GitBook.
 
 {% page-ref page="afterburner/intro.md" %}
-
