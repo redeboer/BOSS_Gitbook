@@ -92,10 +92,16 @@ $(document).ready(function(){initNavTree('FitDoubleGaussian__RooFit_8C.html','')
 <code>#include &quot;RooPlot.h&quot;</code><br />
 <code>#include &quot;RooRealVar.h&quot;</code><br />
 <code>#include &quot;TCanvas.h&quot;</code><br />
+<code>#include &quot;TDatabasePDG.h&quot;</code><br />
 <code>#include &quot;TFile.h&quot;</code><br />
 <code>#include &quot;TH1D.h&quot;</code><br />
+<code>#include &quot;TLine.h&quot;</code><br />
+<code>#include &quot;TParticlePDG.h&quot;</code><br />
+<code>#include &quot;TPaveText.h&quot;</code><br />
 <code>#include &quot;TString.h&quot;</code><br />
+<code>#include &quot;TStyle.h&quot;</code><br />
 <code>#include &quot;TSystem.h&quot;</code><br />
+<code>#include &quot;TText.h&quot;</code><br />
 <code>#include &quot;TTree.h&quot;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 </div>
@@ -112,6 +118,12 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:ac9e84faed4bc1858d832bc0242dbfb9e"><td class="memItemLeft" align="right" valign="top">const TDatabasePDG&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FitDoubleGaussian__RooFit_8C.html#ac9e84faed4bc1858d832bc0242dbfb9e">gPDG</a></td></tr>
+<tr class="memdesc:ac9e84faed4bc1858d832bc0242dbfb9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code>ROOT</code> <code>TDatabasePDG</code> object that contains all info of particles. Has to be constructed once, which is why it is a global.  <a href="#ac9e84faed4bc1858d832bc0242dbfb9e">More...</a><br /></td></tr>
+<tr class="separator:ac9e84faed4bc1858d832bc0242dbfb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a438663ec87faaae22ab474226a5d2102"><td class="memItemLeft" align="right" valign="top">const TParticlePDG *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FitDoubleGaussian__RooFit_8C.html#a438663ec87faaae22ab474226a5d2102">gParticlePDG</a> = gPDG.GetParticle(111)</td></tr>
+<tr class="memdesc:a438663ec87faaae22ab474226a5d2102"><td class="mdescLeft">&#160;</td><td class="mdescRight">The particle that you want to analyse. (111 is the PDG code for pi0.  <a href="#a438663ec87faaae22ab474226a5d2102">More...</a><br /></td></tr>
+<tr class="separator:a438663ec87faaae22ab474226a5d2102"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac41bea696542fc9b2e5635c33aec6d95"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FitDoubleGaussian__RooFit_8C.html#ac41bea696542fc9b2e5635c33aec6d95">gDefaultFileToLoad</a> = &quot;../data/root/ana_rhopi.root&quot;</td></tr>
 <tr class="memdesc:ac41bea696542fc9b2e5635c33aec6d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Location of the ROOT file that you want to analyse.  <a href="#ac41bea696542fc9b2e5635c33aec6d95">More...</a><br /></td></tr>
 <tr class="separator:ac41bea696542fc9b2e5635c33aec6d95"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,10 +134,10 @@ Variables</h2></td></tr>
 <tr class="memdesc:af491b5667c02eb6dad026ffa4d554286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Branche in the <code>TTree</code> that you want to use to create the invariant mass plot.  <a href="#af491b5667c02eb6dad026ffa4d554286">More...</a><br /></td></tr>
 <tr class="separator:af491b5667c02eb6dad026ffa4d554286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea876d99c1406074c6c524053079f0cf"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FitDoubleGaussian__RooFit_8C.html#aea876d99c1406074c6c524053079f0cf">gCandidate</a> = &quot;#pi^{0}&quot;</td></tr>
-<tr class="memdesc:aea876d99c1406074c6c524053079f0cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decay particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">TLaTeX</a>).  <a href="#aea876d99c1406074c6c524053079f0cf">More...</a><br /></td></tr>
+<tr class="memdesc:aea876d99c1406074c6c524053079f0cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decay particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html"><code>TLaTeX</code></a>).  <a href="#aea876d99c1406074c6c524053079f0cf">More...</a><br /></td></tr>
 <tr class="separator:aea876d99c1406074c6c524053079f0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a959f097c18c44dd1c6207dda984226"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FitDoubleGaussian__RooFit_8C.html#a9a959f097c18c44dd1c6207dda984226">gDaughters</a> = &quot;#gamma#gamma&quot;</td></tr>
-<tr class="memdesc:a9a959f097c18c44dd1c6207dda984226"><td class="mdescLeft">&#160;</td><td class="mdescRight">Daughter particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">TLaTeX</a>).  <a href="#a9a959f097c18c44dd1c6207dda984226">More...</a><br /></td></tr>
+<tr class="memdesc:a9a959f097c18c44dd1c6207dda984226"><td class="mdescLeft">&#160;</td><td class="mdescRight">Daughter particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html"><code>TLaTeX</code></a>).  <a href="#a9a959f097c18c44dd1c6207dda984226">More...</a><br /></td></tr>
 <tr class="separator:a9a959f097c18c44dd1c6207dda984226"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a3498961ffa77348466b66bed674f15"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FitDoubleGaussian__RooFit_8C.html#a3a3498961ffa77348466b66bed674f15">gOutputExtension</a> = &quot;pdf&quot;</td></tr>
 <tr class="memdesc:a3a3498961ffa77348466b66bed674f15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extension that is used to save the output plots.  <a href="#a3a3498961ffa77348466b66bed674f15">More...</a><br /></td></tr>
@@ -159,7 +171,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00057">57</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00068">68</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
 
 </div>
 </div>
@@ -192,7 +204,7 @@ Variables</h2></td></tr>
 <p>Main function that is called when executing the executable compiled using e.g. </p>
 <p><code>g++</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00151">151</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00173">173</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
 
 </div>
 </div>
@@ -211,7 +223,7 @@ Variables</h2></td></tr>
 
 <p>Branche in the <code>TTree</code> that you want to use to create the invariant mass plot. </p>
 
-<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00036">36</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00047">47</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
 
 </div>
 </div>
@@ -227,9 +239,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Decay particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">TLaTeX</a>). </p>
+<p>Decay particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html"><code>TLaTeX</code></a>). </p>
 
-<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00038">38</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00049">49</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
 
 </div>
 </div>
@@ -245,9 +257,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Daughter particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">TLaTeX</a>). </p>
+<p>Daughter particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html"><code>TLaTeX</code></a>). </p>
 
-<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00040">40</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00051">51</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
 
 </div>
 </div>
@@ -265,7 +277,7 @@ Variables</h2></td></tr>
 
 <p>Location of the ROOT file that you want to analyse. </p>
 
-<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00032">32</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00043">43</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
 
 </div>
 </div>
@@ -284,7 +296,7 @@ Variables</h2></td></tr>
 <p>Directory to which the resulting output files will be written (format determined by <code>gOutputExtension</code>). </p>
 <p>Preferably write to the <code>plots</code> folder in this repository, as the contents will be ignored through <code>.gitignore</code>. !! No not end this string with a "/" !! </p>
 
-<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00045">45</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00056">56</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
 
 </div>
 </div>
@@ -303,7 +315,43 @@ Variables</h2></td></tr>
 <p>Extension that is used to save the output plots. </p>
 <p>!! Note that it has to be set before the <code>gOutputDir</code> !! </p>
 
-<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00042">42</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00053">53</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+
+</div>
+</div>
+<a id="a438663ec87faaae22ab474226a5d2102"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a438663ec87faaae22ab474226a5d2102">&#9670;&nbsp;</a></span>gParticlePDG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const TParticlePDG* gParticlePDG = gPDG.GetParticle(111)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The particle that you want to analyse. (111 is the PDG code for pi0. </p>
+
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00041">41</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+
+</div>
+</div>
+<a id="ac9e84faed4bc1858d832bc0242dbfb9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9e84faed4bc1858d832bc0242dbfb9e">&#9670;&nbsp;</a></span>gPDG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const TDatabasePDG gPDG</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A <code>ROOT</code> <code>TDatabasePDG</code> object that contains all info of particles. Has to be constructed once, which is why it is a global. </p>
+
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00038">38</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
 
 </div>
 </div>
@@ -321,7 +369,7 @@ Variables</h2></td></tr>
 
 <p><code>TTree</code> that you want to loop over. </p>
 
-<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00034">34</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html#l00045">45</a> of file <a class="el" href="FitDoubleGaussian__RooFit_8C_source.html">FitDoubleGaussian_RooFit.C</a>.</p>
 
 </div>
 </div>

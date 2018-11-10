@@ -1,13 +1,20 @@
 var searchData=
 [
-  ['detector',['Detector',['../namespaceSettings_1_1Detector.html',1,'Settings']]],
-  ['math',['Math',['../namespaceSettings_1_1Math.html',1,'Settings']]],
-  ['output',['Output',['../namespaceSettings_1_1Output.html',1,'Settings']]],
-  ['particles',['Particles',['../namespaceSettings_1_1Particles.html',1,'Settings']]],
-  ['setbranchaddress',['SetBranchAddress',['../classBOSSRootChain.html#ace5af0bff981d3283f12c359c9f18c21',1,'BOSSRootChain::SetBranchAddress()'],['../PlotAnaOutput_8C.html#ad2f199c9c6a8aeeed1f4ddb54786ba0e',1,'SetBranchAddress():&#160;PlotAnaOutput.C']]],
-  ['setchain',['SetChain',['../classRhopiRootChain.html#af2ba8d92bfbe26e4ce319f4c6a7a60c2',1,'RhopiRootChain']]],
-  ['setleftmargin',['SetLeftMargin',['../RooFitMacro_8C.html#a48661e18ee7ffd45394c8a636b1dd9b8',1,'RooFitMacro.C']]],
-  ['settings',['Settings',['../namespaceSettings.html',1,'']]],
-  ['sigma',['sigma',['../RooFitMacro_8C.html#ac3cab5530393619c5b422ba240a3dd3a',1,'RooFitMacro.C']]],
-  ['staton',['statOn',['../RooFitMacro_8C.html#a5065ba2967b1334a14ba20cb50f857e3',1,'RooFitMacro.C']]]
+  ['running_20jobs',['Running jobs',['../autotoc_md9.html',1,'']]],
+  ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
+  ['references_2emd',['references.md',['../references_8md.html',1,'']]],
+  ['rhit',['rhit',['../namespaceAnaBranches_1_1tofe.html#a2701078290a458fe6966687014e25388',1,'AnaBranches::tofe']]],
+  ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#a5a404d3db862276fa70b85a353496d4e',1,'Settings::Particles']]],
+  ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],
+  ['rhopirootchain',['RhopiRootChain',['../classRhopiRootChain.html',1,'RhopiRootChain'],['../classRhopiRootChain.html#ae5feb0475f7c45a3c3787cfaf775da71',1,'RhopiRootChain::RhopiRootChain()'],['../classRhopiRootChain.html#a2f4696b928a2bdf3b65508a00bfe5028',1,'RhopiRootChain::RhopiRootChain(const char *directoryPath, const char *analysisName)']]],
+  ['rhopirootchain_2eh',['RhopiRootChain.h',['../RhopiRootChain_8h.html',1,'']]],
+  ['rhopirootfile',['RhopiRootFile',['../classRhopiRootFile.html',1,'RhopiRootFile'],['../classRhopiRootFile.html#a108fb195008d97baf4bde456992e7e68',1,'RhopiRootFile::RhopiRootFile()'],['../classRhopiRootFile.html#a893de8a83dbec774b137360b11e3da86',1,'RhopiRootFile::RhopiRootFile(const char *)']]],
+  ['rhopirootfile_2eh',['RhopiRootFile.h',['../RhopiRootFile_8h.html',1,'']]],
+  ['roofitexample',['RooFitExample',['../RooFitExample_8C.html#a41e8769dc6e6d9c54d170544664fd6c0',1,'RooFitExample.C']]],
+  ['roofitexample_2ec',['RooFitExample.C',['../RooFitExample_8C.html',1,'']]],
+  ['roofitmacro_2ec',['RooFitMacro.C',['../RooFitMacro_8C.html',1,'']]],
+  ['running_2djobs_2emd',['running-jobs.md',['../running-jobs_8md.html',1,'']]],
+  ['rvphi0',['rvphi0',['../namespaceAnaBranches_1_1vxyz.html#a382d3965b74292dd0db8a9e0199c8083',1,'AnaBranches::vxyz']]],
+  ['rvxy0',['rvxy0',['../namespaceAnaBranches_1_1vxyz.html#a51a39a855c534a2d89db5718ac430e30',1,'AnaBranches::vxyz']]],
+  ['rvz0',['rvz0',['../namespaceAnaBranches_1_1vxyz.html#ab296ebcd63a9231145ddad27ae425345',1,'AnaBranches::vxyz']]]
 ];

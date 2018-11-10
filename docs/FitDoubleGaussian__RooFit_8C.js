@@ -8,5 +8,7 @@ var FitDoubleGaussian__RooFit_8C =
     [ "gDefaultFileToLoad", "FitDoubleGaussian__RooFit_8C.html#ac41bea696542fc9b2e5635c33aec6d95", null ],
     [ "gOutputDir", "FitDoubleGaussian__RooFit_8C.html#ad51db93fa73afb236e133e9ff987c7ab", null ],
     [ "gOutputExtension", "FitDoubleGaussian__RooFit_8C.html#a3a3498961ffa77348466b66bed674f15", null ],
+    [ "gParticlePDG", "FitDoubleGaussian__RooFit_8C.html#a438663ec87faaae22ab474226a5d2102", null ],
+    [ "gPDG", "FitDoubleGaussian__RooFit_8C.html#ac9e84faed4bc1858d832bc0242dbfb9e", null ],
     [ "gTreeToLoad", "FitDoubleGaussian__RooFit_8C.html#a1164366d783a09881eddb3d3b9b19047", null ]
 ];

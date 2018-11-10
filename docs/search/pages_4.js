@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['plots_20folder',['Plots folder',['../md__mnt_c_IHEP_BOSS_Afterburner_plots_README.html',1,'']]]
+  ['monte_20carlo_20simulations',['Monte Carlo simulations',['../autotoc_md8.html',1,'']]],
+  ['main_20page',['Main page',['../index.html',1,'']]]
 ];
