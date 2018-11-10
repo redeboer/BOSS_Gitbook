@@ -261,6 +261,19 @@ Jobs that take a long time to be executed in the queue will be killed by the ser
 What is much more convenient, however, is developing a `jobOptions*.txt` template file that is used to generate. In these, you for instance replace the specific paths and seed number you used by generic tokens like `INPUTFILE`, `OUTPUTFILE`, and `RANDOMSEED`. You can then use a `bash` script (or comparable shell scripts) to replace these tokens by unique paths and seed numbers. For example, have a look at the [`awk`](https://www.tldp.org/LDP/abs/html/awk.html) command.
 
 
+## Exclusive Monte Carlo Simulation
+@todo Set particle width.
+@todo Extracting detector resolution.
+
+
+## Inclusive Monte Carlo Simulation
+@todo Location of the inclusive decay charts.
+@todo Fitting a Breit-Wigner convoluted with a double Gaussian.
+
+
+## Data analysis
+@todo Splitting up a job.
+
 
 # Further reading
 
