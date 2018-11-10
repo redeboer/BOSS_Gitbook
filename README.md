@@ -1,10 +1,6 @@
-# Introduction to the BOSS Analysis Framework
+# Main page
 
-## Introduction to the BOSS Analysis Framework
-
-=============================================
-
-\[TOC\]
+@tableofcontents
 
 **This repository is underdevelopment.** It has been set up as an unofficial extension to the BOSS analysis framework of the [BESIII collaboration](http://bes3.ihep.ac.cn) with two related purposes:
 
