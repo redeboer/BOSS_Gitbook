@@ -1,8 +1,6 @@
 # Table of contents
 
 * [Main page](README.md)
-* [Further reading](references.md)
-* [About](about.md)
 
 ## Working with BOSS
 
@@ -17,4 +15,10 @@
 ## Working with the BOSS Afterburner
 
 * [The BOSS Afterburner](afterburner/intro.md)
+
+## Appendices
+
+* [Tips & Tricks](appendices/tips-and-tricks.md)
+* [Further reading](appendices/references.md)
+* [About](appendices/about.md)
 
