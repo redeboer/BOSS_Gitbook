@@ -23,10 +23,11 @@ The BOSS Afterburner repository can be accessed through three channels. There is
 
 The documentation of the [GitBook page](https://redeboer.gitbook.io/boss-gitbook/) is intended to provide tutorials for using both the BOSS Analysis Framework and the BOSS Afterburner. If you are not familiar with BOSS, it is best to start looking at that part of the tutorial.
 
-{% page-ref page="boss/intro.md" %}
+{% page-ref page="working-with-boss/intro.md" %}
 
 However, parts of this tutorial refer to components of the BOSS Afterburner repository. Keep that repository therefore at hand \(by cloning it\).
 
 If you have been able to create data output, you can analyse your results with the BOSS Afterburner. This is described in the second part of this GitBook.
 
-{% page-ref page="afterburner/intro.md" %}
+{% page-ref page="working-with-the-boss-afterburner/intro.md" %}
+
