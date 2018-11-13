@@ -39,7 +39,7 @@
 	// ! Customise these values ! //
 	const TParticlePDG* gParticlePDG = gPDG.GetParticle(111);
 		//!< The particle that you want to analyse. (111 is the PDG code for pi0.
-	const char* gDefaultFileToLoad = "../data/root/ana_rhopi.root";
+	const char* gDefaultFileToLoad = "../data/root/ana_rhopi_data_0.root";
 		//!< Location of the ROOT file that you want to analyse.
 	const char* gTreeToLoad        = "fit4c";
 		//!< `TTree` that you want to loop over.

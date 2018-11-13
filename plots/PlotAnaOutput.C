@@ -38,7 +38,7 @@ void DrawSaveAndDelete(TH2D*&, const char*);
 void PlotAnaOutput()
 {
 	// * Load RhoPi ROOT analysis file *
-	RhopiRootFile rhopi("rhopi_ana.root");
+	RhopiRootFile rhopi("rhopi_ana_data.root");
 
 	// * Some variables *
 	Long64_t nentries; // will be used when looping over TTrees
