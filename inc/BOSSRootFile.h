@@ -41,6 +41,7 @@ public:
 	void Print(const char* nameOfTree, Option_t *option = "toponly");
 	void Print();
 	void PrintTrees(Option_t *option = "");
+	bool IsZombie();
 
 	// * Getters *
 	int GetNumberOfEvents(const char* treeName);
@@ -220,6 +221,13 @@ void BOSSRootFile::Print()
 	std::cout << std::endl;
 }
 
+/**
+ * @brief Check if file is loaded.
+ */
+bool BOSSRootFile::IsZombie()
+{
+	return fFile.IsZombie();
+}
 
 
 // * =============================== * //

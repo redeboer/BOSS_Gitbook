@@ -5,9 +5,8 @@
  * @brief    Container for particle data. In essence an container of `ROOT`'s `TParticlePDG`.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
  * @date     October 25th, 2018
+ * @details  This object is an extention of `Particle.h`. It contains additional parameters that are relevant when reconstructing the particle, like fit range in the invariant mass plot. The idea is that you can use this object to generalise functions like fitting, where the mass range is particle-specific. It is then convenient to only have to feed the function this object.
  * @remark   @b DEVELOPMENTAL
- *
- * @details  Thie object contains information to the `TParticlePDG` that is additional to
  */
 
 
@@ -19,11 +18,7 @@
 #include "Particle.h"
 #include "TString.h"
 #include <iostream>
-
-// * ======================= * //
-// * ------- GLOBALS ------- * //
-// * ======================= * //
-TDatabasePDG gPDG; //!< A `ROOT` `TDatabasePDG` object that contains all info of particles. Has to be constructed once, which is why it is a global.
+#include <utility>
 
 
 // * ================================ * //
@@ -35,23 +30,42 @@ public:
 	// * Constructor and destructors *
 	ReconstructedParticle(int pdgCode);
 	ReconstructedParticle(const char* pdgCode);
+	ReconstructedParticle(int pdgCode, const char* daughters);
+	ReconstructedParticle(const char* pdgCode, const char* daughters);
+
+	// * Setters *
+	void SetDaughterLabel(const char* daughters);
 
 	// * Getters *
-	TParticlePDG* GetParticlePDG() const;
-	int GetPDGCode() const;
-	double GetMass() const;
-	const char* GetNameLaTeX() const;
+	const double GetLowerMass() const;
+	const double GetUpperMass() const;
+	const double GetMassOffsetPercentage() const;
+	const double FitFrom() const;
+	const double FitUntil() const;
+	const double PlotFrom() const;
+	const double PlotUntil() const;
+	const double GetGaussianSmallWidth() const;
+	const double GetGaussianWideWidth() const;
+	const std::pair<double, double> GetDoubleGaussianWidths() const;
+	const std::pair<double, double> GetDoubleGaussianRatio() const;
+	const std::pair<double, double> GetFitRange() const;
+	const std::pair<double, double> GetPlotRange() const;
+	void GetDoubleGaussianWidths(double& from, double& to) const;
+	void GetFitRange(double& from, double& to) const;
+	void GetPlotRange(double& from, double& to) const;
+	const char* GetDaughterLabel() const;
 
 protected:
 	// * Data members *
-	TParticlePDG* fParticlePDG;
-	//!< A pointer to its corresponding particle in the PDG.
-	TString fParticleNameLaTeX;
-	//!< Particle name in LaTeX format.
+	TString fDaughterLabels; //!< LaTeX formatted string for decay particles.
+	double fMassOffset;
+	std::pair<double, double> fDoubleGaussianWidths; //!< Pair of two sigma values. You can use that as estimates of the widths for the double gaussian that you plan to fit. These sigmas are supposed to characterise the resolution of the detector. For consistency in naming, the first one should be smaller than the second.
+	std::pair<double, double> fFitRange; //!< Invariant mass range over which you fit a function (double Gaussian, Crystal ball, Breit-Wigner, etc.).
+	std::pair<double, double> fPlotRange; //!< Invariant mass range that you plot.
 
-	// * Private members
+	// * Private methods *
 	void Initialize();
-	TString& DetermineNameLaTeX();
+	void DetermineReconstructionParameters();
 
 };
 
@@ -62,202 +76,234 @@ protected:
 /**
  * @brief Construct particle based on its code in the PDG.
  */
-ReconstructedParticle::ReconstructedParticle(int pdgCode)
+ReconstructedParticle::ReconstructedParticle(int pdgCode) : Particle(pdgCode)
 {
-	fParticlePDG = gPDG.GetParticle(pdgCode);
 	Initialize();
 }
+
 /**
  * @brief Construct particle based on its code in the PDG.
  */
-ReconstructedParticle::ReconstructedParticle(const char* particleName)
+ReconstructedParticle::ReconstructedParticle(const char* particleName) : Particle(particleName)
 {
-	fParticlePDG = gPDG.GetParticle(particleName);
 	Initialize();
 }
+
 /**
- * @brief Helper function for constructors.
- * @details Sets remaining members based on `TParticlePDG` object that was set previously.
+ * @brief Construct particle based on its code in the PDG.
+ */
+ReconstructedParticle::ReconstructedParticle(int pdgCode, const char* daughters) :
+	Particle(pdgCode), fDaughterLabels(daughters)
+{
+	Initialize();
+}
+
+/**
+ * @brief Construct particle based on its code in the PDG. This constructor also sets the daughters.
+ */
+ReconstructedParticle::ReconstructedParticle(const char* particleName, const char* daughters) :
+	Particle(particleName), fDaughterLabels(daughters)
+{
+	Initialize();
+}
+
+/**
+ * @brief Encapsulation of what any constructor for this object needs to do.
  */
 void ReconstructedParticle::Initialize()
 {
-	if(!fParticlePDG) {
-		std::cout << "Initialize ERROR: ReconstructedParticle was not found in PDG database" << std::endl;
-		return;
-	}
-	fParticleNameLaTeX = DetermineNameLaTeX();
+	DetermineReconstructionParameters();
 }
+
+
+
+// * ======================= * //
+// * ------- SETTERS ------- * //
+// * ======================= * //
+/**
+ * @brief Set a LaTeX label for the daughters. This method is public as to allow you to modify it later. Construction cannot be automised, as it is up to you to decide which decay channel you want to analyse.
+ */
+void ReconstructedParticle::SetDaughterLabel(const char* daughters)
+{
+	fDaughterLabels = daughters;
+}
+
 
 
 // * ======================= * //
 // * ------- GETTERS ------- * //
 // * ======================= * //
-/**
- * @return TParticlePDG* Pointer to the `TParticlePDG` in the `TDatabasePDG` (located in `FrameworkSettings.h`). Is a `nullptr` if particle was not properly loaded.
- */
-TParticlePDG* ReconstructedParticle::GetParticlePDG() const
-{
-	return fParticlePDG;
-}
 
 /**
- * @return double Mass of the particle according to the PDG. Returns 0 if particle was not loaded.
+ * @brief Get (compute) the lower mass boundary. Useful for fitting parameters.
  */
-double ReconstructedParticle::GetMass() const
+const double ReconstructedParticle::GetLowerMass() const
 {
-	if(fParticlePDG) return fParticlePDG->Mass();
+	if(fParticlePDG) return (1. - fMassOffset) * GetMass();
 	else return 0.;
 }
 
 /**
- * @return const char* Name of the particle in LaTeX `ROOT` format.
+ * @brief Get (compute) the upper mass boundary. Useful for fitting parameters.
  */
-const char* ReconstructedParticle::GetNameLaTeX() const
+const double ReconstructedParticle::GetUpperMass() const
 {
-	if(fParticlePDG) return fParticleNameLaTeX;
-	else return nullptr;
+	if(fParticlePDG) return (1. + fMassOffset) * GetMass();
+	else return 0.;
 }
 
 /**
- * @return int PDG code, and 0 if particle was not loaded.
+ * @brief Get offset mass percentage. Useful for fitting parameters.
  */
-int ReconstructedParticle::GetPDGCode() const
+const double ReconstructedParticle::GetMassOffsetPercentage() const
 {
-	if(fParticlePDG) return fParticlePDG->PdgCode();
-	else return 0;
+	return fMassOffset;
 }
 
+/**
+ * @brief Get plot range through a `return` statement.
+ */
+const double ReconstructedParticle::GetGaussianSmallWidth() const
+{
+	return fDoubleGaussianWidths.first;
+}
 
+/**
+ * @brief Get plot range through a `return` statement.
+ */
+const double ReconstructedParticle::GetGaussianWideWidth() const
+{
+	return fDoubleGaussianWidths.second;
+}
 
-// * =========================== * //
-// * ------- INFORMATION ------- * //
-// * =========================== * //
+/**
+ * @brief Get the left boundary of the plotting range.
+ */
+const double ReconstructedParticle::FitFrom() const
+{
+	return fFitRange.first;
+}
 
+/**
+ * @brief Get the right boundary of the plotting range.
+ */
+const double ReconstructedParticle::FitUntil() const
+{
+	return fFitRange.second;
+}
+
+/**
+ * @brief Get the left boundary of the plotting range.
+ */
+const double ReconstructedParticle::PlotFrom() const
+{
+	return fPlotRange.first;
+}
+
+/**
+ * @brief Get the right boundary of the plotting range.
+ */
+const double ReconstructedParticle::PlotUntil() const
+{
+	return fPlotRange.second;
+}
+
+/**
+ * @brief Get plot range through a `return` statement.
+ */
+const std::pair<double, double> ReconstructedParticle::GetDoubleGaussianWidths() const
+{
+	return fDoubleGaussianWidths;
+}
+
+/**
+ * @brief Get fit range through a `return` statement.
+ */
+const std::pair<double, double> ReconstructedParticle::GetFitRange() const
+{
+	return fFitRange;
+}
+
+/**
+ * @brief Get plot range through a `return` statement.
+ */
+const std::pair<double, double> ReconstructedParticle::GetPlotRange() const
+{
+	return fPlotRange;
+}
+
+/**
+ * @brief Get the plot range through reference.
+ */
+void ReconstructedParticle::GetDoubleGaussianWidths(double& from, double& to) const
+{
+	from = fDoubleGaussianWidths.first;
+	to   = fDoubleGaussianWidths.second;
+}
+
+/**
+ * @brief Get the plot range through reference.
+ */
+void ReconstructedParticle::GetFitRange(double& from, double& to) const
+{
+	from = fFitRange.first;
+	to   = fFitRange.second;
+}
+
+/**
+ * @brief Get the plot range through reference.
+ */
+void ReconstructedParticle::GetPlotRange(double& from, double& to) const
+{
+	from = fPlotRange.first;
+	to   = fPlotRange.second;
+}
+
+/**
+ * @brief Get the LaTeX label for the daughters.
+ */
+const char* ReconstructedParticle::GetDaughterLabel() const
+{
+	return fDaughterLabels.Data();
+}
 
 
 
 // * =============================== * //
 // * ------- PRIVATE METHODS ------- * //
 // * =============================== * //
+// ! Tweak your analysis parameters here ! //
 /**
- * @brief Determines a LaTeX string in `ROOT` format from the PDG code of the particle that was loaded.
- * @details See instructions here: https://root.cern.ch/doc/master/classTLatex.html.
- * @todo Expand the switch statement here if you miss any particles. See e.g. http://home.fnal.gov/~mrenna/lutp0613man2/node44.html, or use the `TDatabasePDG` in `ROOT`.
+ * @brief Determine the wide and small sigma estimates for the double Gaussian fit. These are supposed to characterise the resolution of the deterctor.
  */
-TString& Particle::DetermineNameLaTeX()
+void ReconstructedParticle::DetermineReconstructionParameters()
 {
-	if(!fParticlePDG) fParticleNameLaTeX = "";
-	else switch (fParticlePDG->PdgCode()) {
-		// * Quarks
-			case 1: fParticleNameLaTeX = "d";  break; // down quark
-			case 2: fParticleNameLaTeX = "u";  break; // up quark
-			case 3: fParticleNameLaTeX = "s";  break; // strange quark
-			case 4: fParticleNameLaTeX = "c";  break; // charm quark
-			case 5: fParticleNameLaTeX = "b";  break; // bottom quark
-			case 6: fParticleNameLaTeX = "t";  break; // top quark
-			case 7: fParticleNameLaTeX = "b'"; break; // bottom prime quark
-			case 8: fParticleNameLaTeX = "t'"; break; // top prime quark
-		// * Leptons
-			case 11: fParticleNameLaTeX = "e^{-}";       break; // electron
-			case 12: fParticleNameLaTeX = "#nu_{e}";     break; // electron neutrino
-			case 13: fParticleNameLaTeX = "#mu^{-}";     break; // muon
-			case 14: fParticleNameLaTeX = "#nu_{#mu}";   break; // muon neutrino
-			case 15: fParticleNameLaTeX = "#tau^{-}";    break; // tau
-			case 16: fParticleNameLaTeX = "#nu_{#tau}";  break; // tau neutrino
-			case 17: fParticleNameLaTeX = "#tau'";       break; // tau prime
-			case 18: fParticleNameLaTeX = "#nu'_{#tau}"; break; // tau prime neutrino
-		// * Gauge boson
-			case 21: fParticleNameLaTeX = "#mathrm{g}";       break; // graviton
-			case 22: fParticleNameLaTeX = "#gamma";           break; // photon
-			case 23: fParticleNameLaTeX = "#mathrm{Z}^{0}";   break; // Z boson
-			case 24: fParticleNameLaTeX = "#mathrm{W}^{+}";   break; // W boson
-			case 25: fParticleNameLaTeX = "#mathrm{h}^{0}";   break; // Higgs boson
-			case 32: fParticleNameLaTeX = "#mathrm{Z}'^{0}";  break; // Z prime boson
-			case 33: fParticleNameLaTeX = "#mathrm{Z}''^{0}"; break; // Z double prime boson
-			case 34: fParticleNameLaTeX = "#mathrm{W}'^{+}";  break; // W prime boson
-			case 35: fParticleNameLaTeX = "#mathrm{H}^{0}";   break; // H0 boson
-			case 36: fParticleNameLaTeX = "#mathrm{A}^{0}";     break; // neutral A boson
-			case 37: fParticleNameLaTeX = "#mathrm{H}^{+}";   break; // H+ boson
-			case 39: fParticleNameLaTeX = "#mathrm{G}";       break; // graviton
-			case 41: fParticleNameLaTeX = "#mathrm{R}^{0}";   break; // neutral R boson
-			case 42: fParticleNameLaTeX = "#mathrm{L}_{#mathrm{Q}}"; break; // LQ boson
-		// * Mesons
-			case 211: fParticleNameLaTeX = "#pi^{+}";                      break; // positive pion
-			case 213: fParticleNameLaTeX = "#rho^{+}";                     break; // positive rho meson
-			case 311: fParticleNameLaTeX = "#mathrm{K}^{0}";               break; // neutral K meson
-			case 313: fParticleNameLaTeX = "#mathrm{K}^{*0}";              break; // neutral K* meson
-			case 321: fParticleNameLaTeX = "#mathrm{K}^{+}";               break; // positive kaon
-			case 323: fParticleNameLaTeX = "#mathrm{K}^{*+}";              break; // positive K* meson
-			case 411: fParticleNameLaTeX = "#mathrm{D}^{+}";               break; // positive D meson
-			case 413: fParticleNameLaTeX = "#mathrm{D}^{*+}";              break; // positive D* meson
-			case 421: fParticleNameLaTeX = "#mathrm{D}^{0}";               break; // neutral D meson
-			case 423: fParticleNameLaTeX = "#mathrm{D}^{*0}";              break; // neutral D* meson
-			case 431: fParticleNameLaTeX = "#mathrm{D}_{#mathrm{s}}^{+}";  break; // positive D strange meson
-			case 433: fParticleNameLaTeX = "#mathrm{D}_{#mathrm{s}}^{*+}"; break; // positive D* strange meson
-			case 511: fParticleNameLaTeX = "#mathrm{B}^{0}";               break; // neutral B meson
-			case 513: fParticleNameLaTeX = "#mathrm{B}^{*0}";              break; // neutral B* meson
-			case 521: fParticleNameLaTeX = "#mathrm{B}^{+}";               break; // positive B meson
-			case 523: fParticleNameLaTeX = "#mathrm{B}^{*+}";              break; // positive B* meson
-			case 531: fParticleNameLaTeX = "#mathrm{B}_{#mathrm{s}}^{0}";  break; // neutral B strange meson
-			case 533: fParticleNameLaTeX = "#mathrm{B}_{#mathrm{s}}^{*0}"; break; // neutral B* strange meson
-			case 541: fParticleNameLaTeX = "#mathrm{B}_{#c}^{+}";         break; // positive B charmed meson
-			case 543: fParticleNameLaTeX = "#mathrm{B}_{#c}^{*+}";        break; // positive B* charmed meson
-			case 111: fParticleNameLaTeX = "#pi^{0}";                      break; // neutral pion
-			case 113: fParticleNameLaTeX = "#rho^{0}";                     break; // neutral rho meson
-			case 221: fParticleNameLaTeX = "#eta";                         break; // eta meson
-			case 223: fParticleNameLaTeX = "#omega";                       break; // omega meson
-			case 331: fParticleNameLaTeX = "#eta'";                        break; // eta' meson
-			case 333: fParticleNameLaTeX = "#phi";                         break; // phi meson
-			case 441: fParticleNameLaTeX = "#eta_{#c}";                   break; // eta charm meson
-			case 443: fParticleNameLaTeX = "#mathrm{J}/#psi ";             break; // J/psi meson
-			case 551: fParticleNameLaTeX = "#eta_{#b}";                   break; // eta beauty meson
-			case 553: fParticleNameLaTeX = "#Upsilon";                     break; // upsilon meson
-			case 130: fParticleNameLaTeX = "#mathrm{K}_{#mathrm{L}}^{0}";  break; // neutral K_L meson
-			case 310: fParticleNameLaTeX = "#mathrm{K}_{#mathrm{S}}^{0}";  break; // neutral K_S meson
-		// * Baryons
-			case 1114: fParticleNameLaTeX = "#Delta^{-}";        break; // Delta-
-			case 2112: fParticleNameLaTeX = "#mathrm{n}";        break; // neutron
-			case 2114: fParticleNameLaTeX = "#Delta^{0}";        break; // Delta0
-			case 2212: fParticleNameLaTeX = "#mathrm{p}";        break; // proton
-			case 2214: fParticleNameLaTeX = "#Delta^{+}";        break; // Delta+
-			case 2224: fParticleNameLaTeX = "#Delta^{++}";       break; // Delta++
-			case 3112: fParticleNameLaTeX = "#Sigma^{-}";        break; // Sigma-
-			case 3114: fParticleNameLaTeX = "#Sigma^{*-}";       break; // Sigma*-
-			case 3122: fParticleNameLaTeX = "#Lambda^{0}";       break; // Lambda0
-			case 3212: fParticleNameLaTeX = "#Sigma^{0}";        break; // Sigma0
-			case 3214: fParticleNameLaTeX = "#Sigma^{*0}";       break; // Sigma*0
-			case 3222: fParticleNameLaTeX = "#Sigma^{+}";        break; // Sigma+
-			case 3224: fParticleNameLaTeX = "#Sigma^{*+}";       break; // Sigma*+
-			case 3312: fParticleNameLaTeX = "#Xi^{-}";           break; // Xi-
-			case 3314: fParticleNameLaTeX = "#Xi^{*-}";          break; // Xi*-
-			case 3322: fParticleNameLaTeX = "#Xi^{0}";           break; // Xi0
-			case 3324: fParticleNameLaTeX = "#Xi^{*0}";          break; // Xi*0
-			case 3334: fParticleNameLaTeX = "#Omega^{-}";        break; // Omega-
-			case 4112: fParticleNameLaTeX = "#Sigma_{#c}^{0}";   break; // Sigma_c0
-			case 4114: fParticleNameLaTeX = "#Sigma_{#c}^{*0}";  break; // Sigma*_c0
-			case 4122: fParticleNameLaTeX = "#Lambda_{#c}^{+}";  break; // Lambda_c+
-			case 4212: fParticleNameLaTeX = "#Sigma_{#c}^{+}";   break; // Sigma_c+
-			case 4214: fParticleNameLaTeX = "#Sigma_{#c}^{*+}";  break; // Sigma*_c+
-			case 4222: fParticleNameLaTeX = "#Sigma_{#c}^{++}";  break; // Sigma_c++
-			case 4224: fParticleNameLaTeX = "#Sigma_{#c}^{*++}"; break; // Sigma*_c++
-			case 4132: fParticleNameLaTeX = "#Xi_{#c}^{0}";      break; // Xi_c0
-			case 4312: fParticleNameLaTeX = "#Xi'^{0}_{#c}";     break; // Xi'_c0
-			case 4314: fParticleNameLaTeX = "#Xi_{#c}^{*0}";     break; // Xi*_c0
-			case 4232: fParticleNameLaTeX = "#Xi_{#c}^{+}";      break; // Xi_c+
-			case 4322: fParticleNameLaTeX = "#Xi'^{+}_{#c}";     break; // Xi'_c+
-			case 4324: fParticleNameLaTeX = "#Xi_{#c}^{*+}";     break; // Xi*_c+
-			case 4332: fParticleNameLaTeX = "#Omega_{#c}^{0}";   break; // Omega_c0
-			case 4334: fParticleNameLaTeX = "#Omega_{#c}^{*0}";  break; // Omega*_c0
-			case 5112: fParticleNameLaTeX = "#Sigma_{#b}^{-}";   break; // Sigma_b-
-			case 5114: fParticleNameLaTeX = "#Sigma_{#b}^{*-}";  break; // Sigma*_b-
-			case 5122: fParticleNameLaTeX = "#Lambda_{#b}^{0}";  break; // Lambda_b0
-			case 5212: fParticleNameLaTeX = "#Sigma_{#b}^{0}";   break; // Sigma_b0
-			case 5214: fParticleNameLaTeX = "#Sigma_{#b}^{*0}";  break; // Sigma*_b0
-			case 5222: fParticleNameLaTeX = "#Sigma_{#b}^{+}";   break; // Sigma_b+
-			case 5224: fParticleNameLaTeX = "#Sigma_{#b}^{*+}";  break; // Sigma*_b+
+	if(fParticlePDG) {
+		switch(fParticlePDG->PdgCode()) {
+			case 111: // neutral pion
+				fMassOffset           = .05;
+				fDoubleGaussianWidths = {.0005, .005};
+				fFitRange             = {.10, .17};
+				fPlotRange            = {.10, .17};
+				break;
+			case 113: // neutral rho
+				fMassOffset           = .05;
+				fDoubleGaussianWidths = {.0005, .005};
+				fFitRange             = {.50, 1.0};
+				fPlotRange            = {.50, 1.0};
+				break;
+			case 213:
+			case -213: // rho meson
+				fMassOffset           = .05;
+				fDoubleGaussianWidths = {.0005, .005};
+				fFitRange             = {.60, 1.2};
+				fPlotRange            = {.60, 1.2};
+				break;
+			default:
+				std::cout << "ERROR: No particle defined for PDG code " << fParticlePDG->PdgCode() << " (" << fParticlePDG->GetName() << ")" << std::endl;
+				break;
+		}
 	}
-	return fParticleNameLaTeX;
 }
-
 
 #endif
