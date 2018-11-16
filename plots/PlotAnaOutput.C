@@ -18,8 +18,9 @@
 #include "TH1D.h"
 #include "TH2D.h"
 #include "TString.h"
-#include "BOSSRootFile.h"
-#include "RhopiRootFile.h"
+#include "../inc/BOSSRootFile.h"
+#include "../inc/RhopiRootFile.h"
+using namespace AnaBranches;
 
 
 // * ===================================== * //

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['about',['About',['../autotoc_md0.html',1,'']]]
+  ['main_20page',['Main page',['../index.html',1,'']]]
 ];

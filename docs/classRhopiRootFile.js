@@ -1,7 +1,7 @@
 var classRhopiRootFile =
 [
     [ "RhopiRootFile", "classRhopiRootFile.html#a108fb195008d97baf4bde456992e7e68", null ],
-    [ "RhopiRootFile", "classRhopiRootFile.html#a893de8a83dbec774b137360b11e3da86", null ],
+    [ "RhopiRootFile", "classRhopiRootFile.html#a3cc840716db92059777db1574dcbfd23", null ],
     [ "~RhopiRootFile", "classRhopiRootFile.html#a5dc1db377413d95d16710b8812997c92", null ],
     [ "dedx", "classRhopiRootFile.html#a10c9efcad65e600e7bcd6cbc7ec96cd4", null ],
     [ "Destruct", "classRhopiRootFile.html#a0106032e714856168d0d7ab138c1876a", null ],

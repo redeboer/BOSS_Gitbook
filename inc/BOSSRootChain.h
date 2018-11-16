@@ -11,19 +11,20 @@
  */
 
 
+
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-#include <iostream>
-#include <list>
 #include "TChain.h"
 #include "TFile.h"
 #include "TKey.h"
 #include "TList.h"
 #include "TObject.h"
 #include "TString.h"
-#include "TTree.h"
 #include "TSystemDirectory.h"
+#include "TTree.h"
+#include <iostream>
+#include <list>
 
 
 
@@ -63,7 +64,7 @@ protected:
 	std::list<TString> fFileNames;
 	//!< List of filenames that were loaded from the directory.
 
-	// * Private members
+	// * Private methods *
 	void Initialize();
 	void Destruct();
 	void LoadChains();
@@ -290,7 +291,6 @@ void BOSSRootChain::PrintTrees(Option_t *option)
 		}
 	}
 }
-
 
 
 

@@ -83,9 +83,9 @@ $(document).ready(function(){initNavTree('tips.html','');});
 <div class="title">Tips, Tricks, and Troubleshooting </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md18"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md5"></a>
 Tips &amp; Tricks</h1>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Recommended software</h2>
 <p>Although I recognise that any programmer will and should develop her or his own habits, there are a few simple recommendations I would like to make, in particular for beginners.</p>
 <ul>
@@ -97,7 +97,7 @@ Recommended software</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md20"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 Compiling</h2>
 <p>For compiling outside ROOT, you will need to use a compiler like <code>g++</code>. The compiler needs to be told where the libraries for included ROOT header files are located. You can do this using flags that ROOT set during its installation. In case of <code>g++</code>, use: </p><pre class="fragment">g++ YourCode.C -I$(root-config --incdir) $(root-config --libs --evelibs --glibs) -o YourBinaryOutput.o
 </pre><p><em>Pro <code>bash</code> tip:</em> You might like to create an easy command for this. You can do this by adding the following lines to your <code>~/.bashrc</code>. </p><pre class="fragment">function rtcompile () {
@@ -117,7 +117,7 @@ export rtcompilerun
 export rtdebugcompile
 </pre><p>Note the flags added through <code>root-config</code>: there are includes (preceded by option <code>-I</code>) and linked libraries (following that option, and preceding output option <code>-o</code>). Note also that flags have been added for <code>RooFit</code>. For more information about ROOT flags, see <a href="https://root.cern.ch/root/HowtoCERNLIB.html">this page</a>.</p>
 <p>I give three examples of commands here, one for compiling only (<code>rtcompile</code>), one for compiling and executing if successful (<code>rtcompilerun</code>), and one for compiling with <code>fsanitize</code> activated (<a href="https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html"><code>rtdebugcompile</code></a>). The latter is useful if you want to look for memory leaks etc &mdash; only use if you are interested in this, because it will decrease runtime. In addition, there are many issues in root (like <code>TString</code>) that are identified by <code>fsanitize</code>.</p>
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Troubleshooting</h1>
 <p><em>For the moment, I use this section to collect issues I encounter and provide a solution where possble</em></p>
 <ul>

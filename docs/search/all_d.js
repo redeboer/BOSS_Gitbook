@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['normph',['normPH',['../namespaceAnaBranches_1_1dedx.html#a0680b36b1619fcdd66462714956e9696',1,'AnaBranches::dedx']]]
+  ['openfile',['OpenFile',['../classBOSSRootFile.html#a50f2872225d67bcdaee614b7e469a78b',1,'BOSSRootFile']]]
 ];

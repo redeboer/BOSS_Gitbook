@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BOSS Afterburner: Running jobs</title>
+<title>BOSS Afterburner: Data analysis</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,27 +80,14 @@ $(document).ready(function(){initNavTree('autotoc_md9.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Running jobs </div>  </div>
+<div class="title">Data analysis </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="el" href="classParticle.html">Particle</a> physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In <b>BOSS</b>, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on <b>BOSS</b>:</p>
-<ol type="1">
-<li><code>sim</code>: you perform a Monte Carlo simulation and generate a raw data file (<code>rtraw</code>)</li>
-<li><code>rec</code>: you reconstruct particle tracks from the raw data and write out a reconstructed data file (<code>dst</code>)</li>
-<li><code>ana</code>: you analyse the reconstructed tracks and generate a <a href="https://root.cern.ch/input-and-output">CERN ROOT</a> file containing trees that describe event and track variables (<code>root</code>)</li>
-</ol>
-<p>When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. (See https://github.com/redeboer/BOSS_Afterburner/tree/902bbfd0a1c109e93d69e39a384ddfed810d8a02/organisation-of-the-ihep-server/README.md "Organisation of the IHEP server", under "Reconstructed data sets", for where these files are located.)</p>
-<p>The steps are performed from your the <code>jobOptions*.txt</code> files of your own package in your work area. As an example, you can run the <code>jobOptions</code> in in the <code>TestRelease</code> package:</p>
-<div class="fragment"><div class="line">cd /ihepbatch/bes/$USER/TestRelease/TestRelease-*/run/</div><div class="line">boss.exe jobOptions_sim.txt</div><div class="line">boss.exe jobOptions_rec.txt</div><div class="line">boss.exe jobOptions_ana_rhopi.txt</div></div><!-- fragment --><p>But be careful: for these jobs to work successfully, you will probably have to edit them and set the right paths.</p>
-<p>The <code>TestRelease</code> example typically simulates, reconstructs, and analyses only 10 events. For serious work, you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queue'. For this, there are two options: either you submit them using the command <code>hep_sub</code> or using the command <code>boss.conder</code>. The latter is easiest: you can use it just like <code>boss.exe</code>.</p>
-<p>With <code>hep_sub</code>, however, you essentially forward a shell script to the queue, which then executes the commands in there. So you'll have to make that first. Let's say, you make a shell script <code>test.sh</code> in the <code>run</code> folder that looks like this:</p>
-<div class="fragment"><div class="line">#!/bin/bash</div><div class="line">boss.exe jobOptions_sim.txt</div></div><!-- fragment --><p>The first line clarifies that you use <code>bash</code>, the second does what you did when running a job: calling <code>boss.exe</code>, but of course, you can make this script to execute whatever <code>bash</code> commands you want.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Not sure if you should <code>chmod +x</code> it?</dd></dl>
-<p>Now you can simply submit the shell script to the queue using:</p>
-<div class="fragment"><div class="line">hep_sub test.sh -g physics</div></div><!-- fragment --><p>and it will be executed in the background. Here, the option <code>-g</code> tellst that you are from the <code>physics</code> group. You can check whether the job is (still) running in the queue using:</p>
-<div class="fragment"><div class="line">hep_q -u $USER</div></div><!-- fragment --><p>Note that <code>hep_q</code> would list all jobs from all users.</p>
-<p>Jobs that take a long time to be executed in the queue will be killed by the server. It is therefore recommended that you analyse a maximum of <b>10,000 events</b> per job, particularly if you perform Monte Carlo simulations. Of course, you will be wanting to work with much larger data samples, sou you will have to submit parallel jobs. This can be done by writing different <code>jobOptions*.txt</code> files, where you modify the input/output file and random seed number.</p>
-<p>What is much more convenient, however, is developing a <code>jobOptions*.txt</code> template file that is used to generate. In these, you for instance replace the specific paths and seed number you used by generic tokens like <code>INPUTFILE</code>, <code>OUTPUTFILE</code>, and <code>RANDOMSEED</code>. You can then use a <code>bash</code> script (or comparable shell scripts) to replace these tokens by unique paths and seed numbers. For example, have a look at the <a href="https://www.tldp.org/LDP/abs/html/awk.html"><code>awk</code></a> command. </p>
+<div class="textblock"><h3>Your own simulations</h3>
+<h3>Simulations performed by BESIII</h3>
+<p>From here on, you will essentially be doing your own research. Most types of data analysis in particle physics, however, have much in common, particularly within the same collaboration. This is why the BOSS Afterburner has been made public: it can serve as a starting point for your own research.</p>
+<p>We therefore come to the second part of this GitBook.</p>
+<p>{% page-ref page="../afterburner/intro.md" %} </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

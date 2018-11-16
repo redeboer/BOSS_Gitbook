@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['temp_2ec',['Temp.C',['../Temp_8C.html',1,'']]],
-  ['tips_2emd',['tips.md',['../tips_8md.html',1,'']]]
+  ['tips_2dand_2dtricks_2emd',['tips-and-tricks.md',['../tips-and-tricks_8md.html',1,'']]]
 ];

@@ -1,16 +1,13 @@
 var searchData=
 [
-  ['about_2emd',['about.md',['../about_8md.html',1,'']]],
   ['anabranches',['AnaBranches',['../namespaceAnaBranches.html',1,'']]],
   ['analyserootfile',['AnalyseRootFile',['../AnalyseRootFile_8C.html#a9fec05c630b94050e2248c14fcb5d3ba',1,'AnalyseRootFile.C']]],
   ['analyserootfile_2ec',['AnalyseRootFile.C',['../AnalyseRootFile_8C.html',1,'']]],
-  ['about',['About',['../autotoc_md0.html',1,'']]],
   ['dedx',['dedx',['../namespaceAnaBranches_1_1dedx.html',1,'AnaBranches']]],
   ['etot',['etot',['../namespaceAnaBranches_1_1etot.html',1,'AnaBranches']]],
   ['fit4c',['fit4c',['../namespaceAnaBranches_1_1fit4c.html',1,'AnaBranches']]],
   ['fit5c',['fit5c',['../namespaceAnaBranches_1_1fit5c.html',1,'AnaBranches']]],
   ['geff',['geff',['../namespaceAnaBranches_1_1geff.html',1,'AnaBranches']]],
-  ['intro_2emd',['intro.md',['../afterburner_2intro_8md.html',1,'']]],
   ['photon',['photon',['../namespaceAnaBranches_1_1photon.html',1,'AnaBranches']]],
   ['pid',['pid',['../namespaceAnaBranches_1_1pid.html',1,'AnaBranches']]],
   ['tof1',['tof1',['../namespaceAnaBranches_1_1tof1.html',1,'AnaBranches']]],
