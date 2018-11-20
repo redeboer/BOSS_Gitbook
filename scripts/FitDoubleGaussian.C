@@ -2,7 +2,7 @@
  * @brief    Simple script that shows how to fit a double gaussian on an invariant mass spectrum using `RooFit`.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
  * @date     November 5th, 2018
- * @details  Note that this script makes use of one `hadd`ed file, not of a `TChain`. It is currently assumed that the invariant mass plot to be fitted comes from the `mpi0` branch in the `fit4c` that is produced by the `RhopiAlg` analysis job. But this can be modified in the sections that have been marked by `// ! ... ! //`.
+ * @details  Note that this script makes use of one `hadd`ed file, not of a `TChain`. It is currently assumed that the invariant mass plot to be fitted comes from the `mpi0` branch in the `fit5c` that is produced by the `RhopiAlg` analysis job. But this can be modified in the sections that have been marked by `// ! ... ! //`.
  */
 
 
@@ -47,13 +47,12 @@ void FitDoubleGaussian()
 	// * Output file name declared here to avoid `Form` bug later * //
 	// ! Set your parameters here ! //
 		const char* inputFileName = "../data/root/ana_rhopi_data_0.root";
-		const char* treeName = "fit4c";
+		const char* treeName = "fit5c";
 		ReconstructedParticle particle(
-			111, // the PDG code for pi0 is 111
+			213, // the PDG code for pi0 is 111
 			"#gamma#gamma"); // decay channel (use LaTeX!)
 		if(!particle.GetParticlePDG()) return;
 		const int numberOfBins = 500;
-		const double boundary = 5e5;
 
 	// * Prepare input and output * //
 		RhopiRootFile file(inputFileName);
@@ -77,7 +76,7 @@ void FitDoubleGaussian()
 		std::cout << "Looping over " << nEntries << " events in the \"" << treeName << "\" tree" << std::flush;
 		for(Long64_t i = 0; i < nEntries; ++i) {
 			tree->GetEntry(i);
-			hist.Fill(fit4c::mpi0); //! set mass branch here
+			hist.Fill(fit5c::mrhop); //! set mass branch here
 		}
 		std::cout << "\rSuccesfully looped over " << nEntries << " events in the \"" << treeName << "\" tree" << std::endl;
 

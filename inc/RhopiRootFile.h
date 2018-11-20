@@ -10,12 +10,14 @@
  */
 
 
+
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 	#include "BOSSRootFile.h"
 	#include "RhopiRootNamespace.h"
 	#include "TTree.h"
+
 
 
 // * ================================ * //
@@ -70,29 +72,38 @@ private:
 	//!< Branch for Time of Flight registered by the <b>end cap</b>.
 
 	// * Private methods *
+	void PrintDistribution1D();
+
+	// * Constructor/destructor helpers *
 	void Initialize();
 	void Destruct();
+
 };
+
 
 
 // * =========================================== * //
 // * ------- CONSRUCTORS AND DESTRUCTORS ------- * //
 // * =========================================== * //
-	RhopiRootFile::RhopiRootFile(const char* filename) : BOSSRootFile(filename)
-	{
-		// * Load trees *
+/**
+ * @brief Constructor. Loads all trees and sets branch addresses of the default Rhopi ROOT file.
+ * @param filename File name of the ROOT file that you want to load.
+ */
+RhopiRootFile::RhopiRootFile(const char* filename) : BOSSRootFile(filename)
+{
+	// * Load trees *
 	// ! Modify these according to your ROOT file
-			if(!(fVxyz   = FindTree("vxyz")))   Destruct(); // Vertex position
-			if(!(fPhoton = FindTree("photon"))) Destruct(); // Photon information
-			if(!(fDedx   = FindTree("dedx")))   Destruct(); // dE/dx PID information
-			if(!(fTof1   = FindTree("tof1")))   Destruct(); // ToF inner barrel information
-			if(!(fTof2   = FindTree("tof2")))   Destruct(); // ToF outer barrel information
-			if(!(fPid    = FindTree("pid")))    Destruct(); // Particle Identification
-			if(!(fEtot   = FindTree("etot")))   Destruct(); // Total energy
-			if(!(fFit4c  = FindTree("fit4c")))  Destruct(); // Fit pi^0 information from EMCal
-			if(!(fFit5c  = FindTree("fit5c")))  Destruct(); // Fit rho^0, rho^+, rho^- inv. mass from EMCal
-			if(!(fGeff   = FindTree("geff")))   Destruct(); // Photon detection efficiency info
-			if(!(fTofe   = FindTree("tofe")))   Destruct(); // ToF end cap information
+		if(!(fVxyz   = FindTree("vxyz")))   Destruct(); // Vertex position
+		if(!(fPhoton = FindTree("photon"))) Destruct(); // Photon information
+		if(!(fDedx   = FindTree("dedx")))   Destruct(); // dE/dx PID information
+		if(!(fTof1   = FindTree("tof1")))   Destruct(); // ToF inner barrel information
+		if(!(fTof2   = FindTree("tof2")))   Destruct(); // ToF outer barrel information
+		if(!(fPid    = FindTree("pid")))    Destruct(); // Particle Identification
+		if(!(fEtot   = FindTree("etot")))   Destruct(); // Total energy
+		if(!(fFit4c  = FindTree("fit4c")))  Destruct(); // Fit pi^0 information from EMCal
+		if(!(fFit5c  = FindTree("fit5c")))  Destruct(); // Fit rho^0, rho^+, rho^- inv. mass from EMCal
+		if(!(fGeff   = FindTree("geff")))   Destruct(); // Photon detection efficiency info
+		if(!(fTofe   = FindTree("tofe")))   Destruct(); // ToF end cap information
 	// * Set branching addresses *
 	// ! Modify these according to your ROOT file
 		// * Vertex position (vxyz / m_tuple1)
@@ -179,35 +190,41 @@ private:
 			SetBranchAddress(fTofe,   "tpi",    AnaBranches::tofe::tpi);    // difference with ToF in charged pion hypothesis
 			SetBranchAddress(fTofe,   "tk",     AnaBranches::tofe::tk);     // difference with ToF in charged kaon hypothesis
 			SetBranchAddress(fTofe,   "tp",     AnaBranches::tofe::tp);     // difference with ToF in proton hypothesis
-	}
-	RhopiRootFile::~RhopiRootFile()
-	{
-		Destruct();
-	}
+}
 
+/**
+ * @brief Default destructor. Merely calls the destructor helper.
+ */
+RhopiRootFile::~RhopiRootFile()
+{
+	Destruct();
+}
 
+/**
+ * @brief Auxiliary function for the destructor (so that the destructor functionality can also be called by other methods). Merely sets pointers to null.
+ */
+void RhopiRootFile::Destruct()
+{
+	BOSSRootFile::Destruct(); // needed?
+	Initialize();
+}
 
-// * =============================== * //
-// * ------- PRIVATE METHODS ------- * //
-// * =============================== * //
-	void RhopiRootFile::Initialize()
-	{
-		fVxyz   = nullptr;
-		fPhoton = nullptr;
-		fDedx   = nullptr;
-		fTof1   = nullptr;
-		fTof2   = nullptr;
-		fPid    = nullptr;
-		fEtot   = nullptr;
-		fFit4c  = nullptr;
-		fFit5c  = nullptr;
-		fGeff   = nullptr;
-		fTofe   = nullptr;
-	}
-	void RhopiRootFile::Destruct()
-	{
-		BOSSRootFile::Destruct(); // needed?
-		Initialize();
-	}
+/**
+ * @brief Auxiliar function for constructor (so that it can be called by all constructor types and other methods). Only sets sets all pointer type data members to nullpointers.
+ */
+void RhopiRootFile::Initialize()
+{
+	fVxyz   = nullptr;
+	fPhoton = nullptr;
+	fDedx   = nullptr;
+	fTof1   = nullptr;
+	fTof2   = nullptr;
+	fPid    = nullptr;
+	fEtot   = nullptr;
+	fFit4c  = nullptr;
+	fFit5c  = nullptr;
+	fGeff   = nullptr;
+	fTofe   = nullptr;
+}
 
 #endif

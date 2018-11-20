@@ -39,100 +39,20 @@ void DrawSaveAndDelete(TH2D*&, const char*);
 void PlotAnaOutput()
 {
 	// * Load RhoPi ROOT analysis file *
-	RhopiRootFile rhopi("rhopi_ana_data.root");
+	RhopiRootFile rhopi("../data/root/ana_rhopi_data_0.root");
+	if(rhopi.IsZombie()) return;
 
 	// * Some variables *
-	Long64_t nentries; // will be used when looping over TTrees
-
-	// * Set branching addresses *
-	// ! Modify these according to your ROOT file
-		// * Vertex position (vxyz / m_tuple1)
-			SetBranchAddress(rhopi.vxyz(), "vx0",    vxyz::vx0);    // primary x-vertex as determined by MDC
-			SetBranchAddress(rhopi.vxyz(), "vy0",    vxyz::vy0);    // primary y-vertex as determined by MDC
-			SetBranchAddress(rhopi.vxyz(), "vz0",    vxyz::vz0);    // primary z-vertex as determined by MDC
-			SetBranchAddress(rhopi.vxyz(), "vr0",    vxyz::vr0);    // distance from origin in xy-plane
-			SetBranchAddress(rhopi.vxyz(), "rvxy0",  vxyz::rvxy0);  // nearest distance to IP in xy plane
-			SetBranchAddress(rhopi.vxyz(), "rvz0",   vxyz::rvz0);   // nearest distance to IP in z direction
-			SetBranchAddress(rhopi.vxyz(), "rvphi0", vxyz::rvphi0); // angle in the xy-plane (?)
-		// * Photon information (photon / m_tuple2)
-			SetBranchAddress(rhopi.photon(), "dthe", photon::dthe); // theta difference with nearest charged track (degrees)
-			SetBranchAddress(rhopi.photon(), "dphi", photon::dphi); // phi difference with nearest charged track (degrees)
-			SetBranchAddress(rhopi.photon(), "dang", photon::dang); // angle difference with nearest charged track
-			SetBranchAddress(rhopi.photon(), "eraw", photon::eraw); // energy of the photon
-		// * dE/dx PID information (dedx / m_tuple7)
-			SetBranchAddress(rhopi.dedx(), "ptrk",   dedx::ptrk);   // momentum of the track
-			SetBranchAddress(rhopi.dedx(), "chie",   dedx::chie);   // chi2 in case of electron
-			SetBranchAddress(rhopi.dedx(), "chimu",  dedx::chimu);  // chi2 in case of muon
-			SetBranchAddress(rhopi.dedx(), "chipi",  dedx::chipi);  // chi2 in case of pion
-			SetBranchAddress(rhopi.dedx(), "chik",   dedx::chik);   // chi2 in case of kaon
-			SetBranchAddress(rhopi.dedx(), "chip",   dedx::chip);   // chi2 in case of proton
-			SetBranchAddress(rhopi.dedx(), "probPH", dedx::probPH); // most probable pulse height from truncated mean
-			SetBranchAddress(rhopi.dedx(), "normPH", dedx::normPH); // normalized pulse height
-			SetBranchAddress(rhopi.dedx(), "ghit",   dedx::ghit);   // number of good hits
-			SetBranchAddress(rhopi.dedx(), "thit",   dedx::thit);   // total number of hits
-		// * ToF inner barrel information (tof1 / m_tuple9)
-			SetBranchAddress(rhopi.tof1(), "ptrk", tof1::ptrk); // momentum of the track as reconstructed by MDC
-			SetBranchAddress(rhopi.tof1(), "cntr", tof1::cntr); // ToF counter ID
-			SetBranchAddress(rhopi.tof1(), "ph",   tof1::ph);   // ToF pulse height
-			SetBranchAddress(rhopi.tof1(), "zhit", tof1::zhit); // track extrapolate Z or R Hit position
-			SetBranchAddress(rhopi.tof1(), "qual", tof1::qual); // data quality of reconstruction
-			SetBranchAddress(rhopi.tof1(), "te",   tof1::te);   // difference with ToF in electron hypothesis
-			SetBranchAddress(rhopi.tof1(), "tmu",  tof1::tmu);  // difference with ToF in muon hypothesis
-			SetBranchAddress(rhopi.tof1(), "tpi",  tof1::tpi);  // difference with ToF in charged pion hypothesis
-			SetBranchAddress(rhopi.tof1(), "tk",   tof1::tk);   // difference with ToF in charged kaon hypothesis
-			SetBranchAddress(rhopi.tof1(), "tp",   tof1::tp);   // difference with ToF in proton hypothesis
-		// * ToF outer barrel information (tof2 / m_tuple10)
-			SetBranchAddress(rhopi.tof2(), "ptrk", tof2::ptrk); // momentum of the track as reconstructed by MDC
-			SetBranchAddress(rhopi.tof2(), "cntr", tof2::cntr); // ToF counter ID
-			SetBranchAddress(rhopi.tof2(), "ph",   tof2::ph);   // ToF pulse height
-			SetBranchAddress(rhopi.tof2(), "zhit", tof2::zhit); // track extrapolate Z or R Hit position
-			SetBranchAddress(rhopi.tof2(), "qual", tof2::qual); // data quality of reconstruction
-			SetBranchAddress(rhopi.tof2(), "te",   tof2::te);   // difference with ToF in electron hypothesis
-			SetBranchAddress(rhopi.tof2(), "tmu",  tof2::tmu);  // difference with ToF in muon hypothesis
-			SetBranchAddress(rhopi.tof2(), "tpi",  tof2::tpi);  // difference with ToF in charged pion hypothesis
-			SetBranchAddress(rhopi.tof2(), "tk",   tof2::tk);   // difference with ToF in charged kaon hypothesis
-			SetBranchAddress(rhopi.tof2(), "tp",   tof2::tp);   // difference with ToF in proton hypothesis
-		// * Particle Identification (pid / m_tuple11)
-			SetBranchAddress(rhopi.pid(), "ptrk", pid::ptrk); // momentum of the track
-			SetBranchAddress(rhopi.pid(), "cost", pid::cost); // theta angle of the track
-			SetBranchAddress(rhopi.pid(), "dedx", pid::dedx); // Chi squared of the dedx of the track
-			SetBranchAddress(rhopi.pid(), "tof1", pid::tof1); // Chi squared of the inner barrel ToF of the track
-			SetBranchAddress(rhopi.pid(), "tof2", pid::tof2); // Chi squared of the outer barrel ToF of the track
-			SetBranchAddress(rhopi.pid(), "prob", pid::prob); // probability that it is a pion
-		// * Total energy (etot / m_tuple3)
-			SetBranchAddress(rhopi.etot(), "m2gg", etot::m2gg); // invariant mass of the two gammas
-			SetBranchAddress(rhopi.etot(), "etot", etot::etot); // total energy of pi^+, pi^ and the two gammas
-		// * Fit pi^0 information from EMCal (fit4c / m_tuple4)
-			SetBranchAddress(rhopi.fit4c(), "mpi0", fit4c::mpi0); // invariant pi0 mass according to Kalman kinematic fit
-			SetBranchAddress(rhopi.fit4c(), "chi2", fit4c::chi2); // chi square of the Kalman kinematic fit
-		// * Fit rho^0, rho^+, rho^- inv. mass from EMCal (fit5c / m_tuple5)
-			SetBranchAddress(rhopi.fit5c(), "chi2", fit5c::chi2); // chi squared of the Kalman kinematic fit
-			SetBranchAddress(rhopi.fit5c(), "mrh0", fit5c::mrho0); // inv. mass pi^+ pi^- (rho^0)
-			SetBranchAddress(rhopi.fit5c(), "mrhp", fit5c::mrhop); // inv. mass pi^0 pi^+ (rho^+)
-			SetBranchAddress(rhopi.fit5c(), "mrhm", fit5c::mrhom); // inv. mass pi^0 pi^- (rho^-)
-		// * Photon detection efficiency info (geff / m_tuple6)
-			SetBranchAddress(rhopi.geff(), "fcos", geff::fcos); // E/p ratio for pi^0 candidate
-			SetBranchAddress(rhopi.geff(), "elow", geff::elow); // lowest energy of the two gammas
-		// * ToF end cap information (tofe / m_tuple8)
-			SetBranchAddress(rhopi.tofe(), "ptrk", tofe::ptrk); // momentum of the track as reconstructed by MDC
-			SetBranchAddress(rhopi.tofe(), "cntr", tofe::cntr); // ToF counter ID
-			SetBranchAddress(rhopi.tofe(), "ph",   tofe::ph);   // ToF pulse height
-			SetBranchAddress(rhopi.tofe(), "rhit", tofe::rhit); // track extrapolate Z or R Hit position
-			SetBranchAddress(rhopi.tofe(), "qual", tofe::qual); // data quality of reconstruction
-			SetBranchAddress(rhopi.tofe(), "te",   tofe::te);   // difference with ToF in electron hypothesis
-			SetBranchAddress(rhopi.tofe(), "tmu",  tofe::tmu);  // difference with ToF in muon hypothesis
-			SetBranchAddress(rhopi.tofe(), "tpi",  tofe::tpi);  // difference with ToF in charged pion hypothesis
-			SetBranchAddress(rhopi.tofe(), "tk",   tofe::tk);   // difference with ToF in charged kaon hypothesis
-			SetBranchAddress(rhopi.tofe(), "tp",   tofe::tp);   // difference with ToF in proton hypothesis
+	Long64_t nEntries; // will be used when looping over TTrees
 
 	// * Set png output directory *
 	// ! Set these depending on which histograms you save
-		gSystem->mkdir("png");
-		gSystem->mkdir("png/branches");
-		gSystem->mkdir("png/tof1");
-		gSystem->mkdir("png/tof2");
-		gSystem->mkdir("png/fit4c");
-		gSystem->mkdir("png/fit5c");
+		gSystem->mkdir(Form("png"));
+		gSystem->mkdir(Form("png/branches"));
+		gSystem->mkdir(Form("png/tof1"));
+		gSystem->mkdir(Form("png/tof2"));
+		gSystem->mkdir(Form("png/fit4c"));
+		gSystem->mkdir(Form("png/fit5c"));
 
 	// * Generate inner barrel ToF plots *
 		// * Create histograms
@@ -162,9 +82,9 @@ void PlotAnaOutput()
 				40, -500., 50.  // ToF difference bins
 			);
 		// * Loop over tof1 TTree
-			nentries = rhopi.tof1()->GetEntries();
-			std::cout << "Looping over " << nentries << " entries in TTree \"" << rhopi.tof1()->GetName() << "\"" << std::endl;
-			for (Long64_t i=0; i < nentries; i++ ) {
+			nEntries = rhopi.tof1()->GetEntries();
+			std::cout << "Looping over " << nEntries << " entries in TTree \"" << rhopi.tof1()->GetName() << "\"" << std::endl;
+			for (Long64_t i=0; i < nEntries; i++ ) {
 				rhopi.tof1()->GetEntry(i);
 				histTof1_e ->Fill(tof1::ptrk, 50*tof1::te);  // one ToF unit is 50 ns
 				histTof1_mu->Fill(tof1::ptrk, 50*tof1::tmu); // one ToF unit is 50 ns
@@ -207,9 +127,9 @@ void PlotAnaOutput()
 				40, -500., 50.  // ToF difference bins
 			);
 		// * Loop over tof2 TTree
-			nentries = rhopi.tof2()->GetEntries();
-			std::cout << "Looping over " << nentries << " entries in TTree \"" << rhopi.tof2()->GetName() << "\"" << std::endl;
-			for (Long64_t i=0; i < nentries; i++ ) {
+			nEntries = rhopi.tof2()->GetEntries();
+			std::cout << "Looping over " << nEntries << " entries in TTree \"" << rhopi.tof2()->GetName() << "\"" << std::endl;
+			for (Long64_t i=0; i < nEntries; i++ ) {
 				rhopi.tof2()->GetEntry(i);
 				histTof2_e ->Fill(tof2::ptrk, 50*tof2::te);  // one ToF unit is 50 ns
 				histTof2_mu->Fill(tof2::ptrk, 50*tof2::tmu); // one ToF unit is 50 ns
@@ -231,9 +151,9 @@ void PlotAnaOutput()
 				150, 0., .25
 			);
 		// * Loop over tof2 TTree
-			nentries = rhopi.fit4c()->GetEntries();
-			std::cout << "Looping over " << nentries << " entries in TTree \"" << rhopi.fit4c()->GetName() << "\"" << std::endl;
-			for (Long64_t i=0; i < nentries; i++ ) {
+			nEntries = rhopi.fit4c()->GetEntries();
+			std::cout << "Looping over " << nEntries << " entries in TTree \"" << rhopi.fit4c()->GetName() << "\"" << std::endl;
+			for (Long64_t i=0; i < nEntries; i++ ) {
 				rhopi.fit4c()->GetEntry(i);
 				histFit4c_mpi0->Fill(fit4c::mpi0);
 			}
@@ -270,9 +190,9 @@ void PlotAnaOutput()
 				80, 0.3, 3.
 			);
 		// * Loop over tof2 TTree
-			nentries = rhopi.fit5c()->GetEntries();
-			std::cout << "Looping over " << nentries << " entries in TTree \"" << rhopi.fit5c()->GetName() << "\"" << std::endl;
-			for (Long64_t i=0; i < nentries; i++ ) {
+			nEntries = rhopi.fit5c()->GetEntries();
+			std::cout << "Looping over " << nEntries << " entries in TTree \"" << rhopi.fit5c()->GetName() << "\"" << std::endl;
+			for (Long64_t i=0; i < nEntries; i++ ) {
 				rhopi.fit5c()->GetEntry(i);
 				histFit5c_mrho0->Fill(fit5c::mrho0);
 				histFit5c_mrhom->Fill(fit5c::mrhom);
@@ -462,4 +382,11 @@ void DrawSaveAndDelete(TH2D*& hist, const char* saveas)
 	delete c;
 	delete hist;
 	hist = NULL;
+}
+
+
+int main()
+{
+	PlotAnaOutput();
+	return 0;
 }

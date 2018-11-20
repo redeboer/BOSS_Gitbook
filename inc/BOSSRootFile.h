@@ -13,11 +13,16 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+	#include "FrameworkSettings.h"
+	#include "TCanvas.h"
 	#include "TFile.h"
+	#include "TH1D.h"
+	#include "TH2D.h"
 	#include "TKey.h"
 	#include "TList.h"
 	#include "TObject.h"
 	#include "TString.h"
+	#include "TSystem.h"
 	#include "TTree.h"
 	#include <iostream>
 	#include <list>
@@ -42,6 +47,24 @@ public:
 	void Print();
 	void PrintTrees(Option_t *option = "");
 	bool IsZombie();
+	void PlotDistribution1D(
+		TTree* tree, const char* branchName,
+		int nBins, double x1, double x2,
+		const char* title = "", Option_t* opt = "ep", TString fileName = "");
+	void PlotDistribution1D(
+		const char* treeName, const char* branchName,
+		int nBins, double x1, double x2,
+		const char* title = "", Option_t* opt = "ep", TString fileName = "");
+	void PlotDistribution2D(
+		TTree* tree, const char* branchX, const char* branchY,
+		int nBinsX, double x1, double x2,
+		int nBinsY, double y1, double y2,
+		const char* title = "", Option_t* opt = "colz", bool setLogZ = kFALSE, TString fileName = "");
+	void PlotDistribution2D(
+		const char* treeName, const char* branchX, const char* branchY,
+		int nBinsX, double x1, double x2,
+		int nBinsY, double y1, double y2,
+		const char* title = "", Option_t* opt = "colz", bool setLogZ = kFALSE, TString fileName = "");
 
 	// * Getters *
 	int GetNumberOfEvents(const char* treeName);
@@ -50,8 +73,8 @@ public:
 
 protected:
 	// * Data members *
-	TFile             fFile;
-	std::list<TTree*> fTrees;
+	TFile             fFile;  //!< The `TFile` that has been loaded.
+	std::list<TTree*> fTrees; //!< List of pointers to all `TTree`s in the ROOT file
 
 	// * Private methods *
 	bool OpenFile(const char*);
@@ -59,7 +82,7 @@ protected:
 	void Destruct();
 	void LoadTTrees();
 	template<class T>
-	void SetBranchAddress(TTree* tree, const char* branchName, T& address);
+	int SetBranchAddress(TTree* tree, const char* branchName, T& address);
 
 };
 
@@ -229,6 +252,173 @@ bool BOSSRootFile::IsZombie()
 	return fFile.IsZombie();
 }
 
+/**
+ * @brief Plot a 1D distribution of one of the branches in the file.
+ * @todo Move these settings to `FrameworkSettings.h`
+ *
+ * @tparam T         Template that can be any type (like `double`, `int`, etc.)
+ * @param tree       Pointer to the `TTree` that you want to load a branch from.
+ * @param branchName Name of the branch that you are looking.
+ * @param address    Type (address) that you want to set.
+ * @param nBins      The number of bins that you want to have in the resulting histogram.
+ */
+void BOSSRootFile::PlotDistribution1D(
+	TTree* tree, const char* branchName,
+	int nBins, double x1, double x2,
+	const char* title, Option_t* opt, TString outputFileName)
+{
+	// * Check input arguments * //
+		if(!tree) {
+			std::cout << "ERROR: TTree* is a null pointer" << std::endl;
+			return;
+		}
+		double address;
+		int result = SetBranchAddress(tree, branchName, address);
+		if(result < 0) {
+			std::cout << "ERROR: Attempt to load \"" << branchName << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
+			return;
+		}
+		if(nBins<1) {
+			std::cout << "ERROR: Cannot create a histogram with " << nBins << " bins" << std::endl;
+			return;
+		}
+		if(x1 >= x2) {
+			std::cout << "ERROR: Value x1=" << x1 << " cannot be more than x2=" << x2 << std::endl;
+			return;
+		}
+	// * Create histogram * //
+		TString histTitle(title);
+		if(histTitle.EqualTo("")) histTitle = Form("Distribution of \"%s\" in tree \"%s\";;counts", branchName, tree->GetName());
+		TH1D hist("hist", histTitle.Data(), nBins, x1, x2);
+	// ! Modify histogram styles here ! //
+		TCanvas c;
+		// hist.SetStats(kFALSE);
+	// * Loop over tree to fill histogram * //
+		Long64_t nEntries = tree->GetEntries();
+		for(Long64_t i = 0; i < nEntries; ++i) {
+			tree->GetEntry(i);
+			hist.Fill(address);
+		}
+	// * Draw histogram and save * //
+		hist.Draw(opt);
+		if(outputFileName.EqualTo("")) {
+			const char* outputFolder = Form("%s/%s", Settings::Output::PlotOutputDir, __BASE_FILE__);
+			gSystem->mkdir(outputFolder, kTRUE);
+			outputFileName = Form("%s/%s_%s.%s", outputFolder, tree->GetName(), branchName, Settings::Output::Extension);
+		}
+		c.SaveAs(outputFileName.Data());
+		c.Close();
+}
+
+/**
+ * @brief Plot a 1D distribution of one of the branches in the file.
+ * @todo Move these settings to `FrameworkSettings.h`
+ *
+ * @tparam T         Template that can be any type (like `double`, `int`, etc.)
+ * @param treeName   Name of the `TTree` you want to load.
+ * @param branchName Name of the branch that you are looking.
+ * @param address    Type (address) that you want to set.
+ * @param nBins      The number of bins that you want to have in the resulting histogram.
+ */
+void BOSSRootFile::PlotDistribution1D(
+	const char* treeName, const char* branchName,
+	int nBins, double x1, double x2,
+	const char* title, Option_t* opt, TString outputFileName)
+{
+	TTree* tree = FindTree(treeName);
+	PlotDistribution1D(tree, branchName, nBins, x1, x2, title, opt, outputFileName);
+}
+
+/**
+ * @brief Plot a 2D distribution of one of the branches in the file.
+ * @todo Move these settings to `FrameworkSettings.h`
+ *
+ * @tparam T       Template that can be any type (like `double`, `int`, etc.)
+ * @param tree Name of the `TTree` you want to load.
+ * @param branchX  Name of branch that will be plotted on the x axis
+ * @param branchY  Name of branch that will be plotted on the y axis
+ * @param address  Type (address) that you want to set.
+ * @param nBins    The number of bins that you want to have in the resulting histogram.
+ */
+void BOSSRootFile::PlotDistribution2D(
+	TTree* tree, const char* branchX, const char* branchY,
+	int nBinsX, double x1, double x2,
+	int nBinsY, double y1, double y2,
+	const char* title, Option_t* opt, bool setLogZ, TString outputFileName)
+{
+	// * Check input arguments * //
+		if(!tree) {
+			std::cout << "ERROR: TTree* is a null pointer" << std::endl;
+			return;
+		}
+		int result;
+		double addressX; result = SetBranchAddress(tree, branchX, addressX);
+		if(result < 0) {
+			std::cout << "ERROR: Attempt to load \"" << branchX << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
+			return;
+		}
+		double addressY; result = SetBranchAddress(tree, branchY, addressY);
+		if(result < 0) {
+			std::cout << "ERROR: Attempt to load \"" << branchY << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
+			return;
+		}
+		if(nBinsX<1 || nBinsY<1) {
+			std::cout << "ERROR: Cannot create a histogram with " << nBinsX << " x " << nBinsY << " bins" << std::endl;
+			return;
+		}
+		if(x1 >= x2) {
+			std::cout << "ERROR: Value x1=" << x1 << " cannot be more than x2=" << x2 << std::endl;
+			return;
+		}
+		if(y1 >= y2) {
+			std::cout << "ERROR: Value y1=" << y1 << " cannot be more than y2=" << y2 << std::endl;
+			return;
+		}
+	// * Create histogram * //
+		TString histTitle(title);
+		if(histTitle.EqualTo("")) histTitle = Form("Distribution of \"%s vs %s\" in tree \"%s\";;;counts", branchX, branchY, tree->GetName());
+		TH2D hist("hist", histTitle.Data(), nBinsX, x1, x2, nBinsY, y1, y2);
+	// ! Modify histogram styles here ! //
+		TCanvas c;
+		c.SetBatch(kFALSE);
+		if(setLogZ) c.SetLogz();
+		// hist.SetStats(kFALSE);
+	// * Loop over tree to fill histogram * //
+		Long64_t nEntries = tree->GetEntries();
+		for(Long64_t i = 0; i < nEntries; ++i) {
+			tree->GetEntry(i);
+			hist.Fill(addressX, addressY);
+		}
+	// * Draw histogram and save * //
+		hist.Draw(opt);
+		const char* outputFolder = Form("%s/%s", Settings::Output::PlotOutputDir, __BASE_FILE__);
+		const char* outputFile = Form("%s_%s_%s.%s", tree->GetName(), branchX, branchY, Settings::Output::Extension);
+		gSystem->mkdir(outputFolder);
+		c.SaveAs(Form("%s/%s", outputFolder, outputFile));
+		c.Close();
+}
+
+/**
+ * @brief Plot a 2D distribution of one of the branches in the file.
+ * @todo Move these settings to `FrameworkSettings.h`
+ *
+ * @tparam T       Template that can be any type (like `double`, `int`, etc.)
+ * @param treeName Name of the `TTree` you want to load.
+ * @param branchX  Name of branch that will be plotted on the x axis
+ * @param branchY  Name of branch that will be plotted on the y axis
+ * @param address  Type (address) that you want to set.
+ * @param nBins    The number of bins that you want to have in the resulting histogram.
+ */
+void BOSSRootFile::PlotDistribution2D(
+	const char* treeName, const char* branchX, const char* branchY,
+	int nBinsX, double x1, double x2,
+	int nBinsY, double y1, double y2,
+	const char* title, Option_t* opt, bool setLogZ, TString outputFileName)
+{
+	TTree* tree = FindTree(treeName);
+	PlotDistribution2D(tree, branchX, branchY, nBinsX, x1, x2, nBinsY, y1, y2, title, opt, setLogZ, outputFileName);
+}
+
 
 // * =============================== * //
 // * ------- PRIVATE METHODS ------- * //
@@ -292,7 +482,7 @@ void BOSSRootFile::LoadTTrees()
  * @param address    Type (address) that you want to set.
  */
 template<class T>
-void BOSSRootFile::SetBranchAddress(TTree* tree, const char* branchName, T& address)
+int BOSSRootFile::SetBranchAddress(TTree* tree, const char* branchName, T& address)
 {
 	if(!tree) {
 		std::cout << "ERROR: TTree* is a null pointer" << std::endl;
@@ -303,6 +493,7 @@ void BOSSRootFile::SetBranchAddress(TTree* tree, const char* branchName, T& addr
 		std::cout << "WARNING: Attempt to load \"" << branchName << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
 		// std::terminate(); // use this if you want the class construction to be strict
 	}
+	return result;
 }
 
 #endif
