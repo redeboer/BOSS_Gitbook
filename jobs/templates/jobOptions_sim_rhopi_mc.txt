@@ -11,7 +11,7 @@ KKMC.NumberOfEventPrinted=1;
 KKMC.GenerateJPsi=true;
 
 // * ------- Job options for EvtGen ------- * //
-#include "$BESEVTGENROOT/share/BesEvtGen.txt"
+#include "/ihepbatch/bes/$USER/workarea-7.0.3/Physics/Generator/BesEvtGen/BesEvtGen-00-03-90/share/BesEvtGen.txt"
 EvtDecay.userDecayTableName = "SCRIPT_PATH/DEC";
 
 // * ------- Job options for random number ------- * //

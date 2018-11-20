@@ -8,8 +8,6 @@
 # *     ARGUMENTS: $1 analysis name (e.g. "rhopi")
 # * ===============================================================================
 
-set -o nounset # Treat unset variables as an error
-
 # * ------- Attempt to load script with functions ------- * #
 	commonFunctionsScriptName="CommonFunctions.sh"
 	if [ -s "${commonFunctionsScriptName}" ]; then
@@ -19,13 +17,13 @@ set -o nounset # Treat unset variables as an error
 		exit
 	fi
 
-# * ------- Script parameters ------- *
+# * ------- Script parameters ------- * #
 	analysis_type="${1}" # will be used in file naming
 	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
 	scriptFolder="${afterburnerPath}/jobs"
 
 
-# * ------- Functions ------- *
+# * ------- Functions ------- * #
 	function CheckFolder()
 	{
 		folderToCheck="${1}"
@@ -36,7 +34,7 @@ set -o nounset # Treat unset variables as an error
 	}
 
 
-# * ------- Check parameters ------- *
+# * ------- Check parameters ------- * #
 	CheckFolder ${scriptFolder}
 	nJobs=$(ls ${scriptFolder}/sub/sub_${analysis_type}_*.sh | wc -l)
 	if [ ${nJobs} == 0 ]; then
@@ -45,11 +43,11 @@ set -o nounset # Treat unset variables as an error
 	fi
 
 
-# * ------- Run over all job files ------- *
+# * ------- Run over all job files ------- * #
 	AskForInput "Press ENTER to submit ${nJobs} \"${analysis_type}\" jobs..."
 	for job in $(ls ${scriptFolder}/sub/sub_${analysis_type}_*.sh); do
 		chmod +x ${job} # not sure if necessary
-		# hep_sub -g physics ${job}
+		hep_sub -g physics ${job}
 		if [ $? != 0 ]; then
 			PrintErrorMessage "Aborted submitting jobs"
 			exit
