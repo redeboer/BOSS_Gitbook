@@ -11,10 +11,10 @@
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
 	#include "RooAddPdf.h"
-	#include "RooDataHist.h"
-	#include "RooGaussian.h"
 	#include "RooBreitWigner.h"
+	#include "RooDataHist.h"
 	#include "RooFFTConvPdf.h"
+	#include "RooGaussian.h"
 	#include "RooPlot.h"
 	#include "RooRealVar.h"
 	#include "TCanvas.h"
@@ -110,9 +110,6 @@ void FitDoubleGaussian_RooFit(const char* inputFileName = gDefaultFileToLoad)
 		std::cout << "\rSuccesfully looped over " << nEntries << " events in the \"" << gTreeToLoad << "\" tree (\"" << gBrancheToLoad << "\")" << std::endl;
 
 	// * The `RooFit` method * //
-	/*
-		See https://root.cern.ch/roofit-20-minutes
-	*/
 		const double xmin = hist.GetXaxis()->GetXmin();
 		const double xmax = hist.GetXaxis()->GetXmax();
 		RooRealVar invMassVar("invMassVar", Form("#it{M}_{%s} (GeV/#it{c}^{2})", gDaughters), xmin, xmax);

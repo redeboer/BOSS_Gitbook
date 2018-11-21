@@ -47,7 +47,7 @@
 void FitDoubleGaussian()
 {
 	// * Open RhoPi input file * //
-		RhopiRootFile file("../data/root/ana_rhopi_mc.root");
+		RhopiRootFile file("../data/root/ana_rhopi_data.root");
 		if(file.IsZombie()) return;
 
 	// * Particles to reconstruct * //
@@ -58,9 +58,9 @@ void FitDoubleGaussian()
 
 	// * Create invariant mass histogram * //
 		TH1D hist_pi0;  SetInvariantMassHistogram(hist_pi0,  pi0,  500);
-		TH1D hist_rho0; SetInvariantMassHistogram(hist_rho0, rho0, 500);
-		TH1D hist_rhop; SetInvariantMassHistogram(hist_rhop, rhop, 500);
-		TH1D hist_rhom; SetInvariantMassHistogram(hist_rhom, rhom, 500);
+		TH1D hist_rho0; SetInvariantMassHistogram(hist_rho0, rho0, 200);
+		TH1D hist_rhop; SetInvariantMassHistogram(hist_rhop, rhop, 200);
+		TH1D hist_rhom; SetInvariantMassHistogram(hist_rhom, rhom, 200);
 
 	// * Loop the tree to fill inv mass spectrums * //
 		auto fit4c_lambda = [] (TH1D& pi0) {
@@ -75,16 +75,22 @@ void FitDoubleGaussian()
 		LoopTree(file.FindTree("fit5c"), fit5c_lambda, hist_rho0, hist_rhop, hist_rhom);
 
 	// * Fit double gaussian * //
-		FitPureDoubleGaussian(hist_pi0,  pi0);
-		FitPureDoubleGaussian(hist_rho0, rho0);
-		FitPureDoubleGaussian(hist_rhop, rhop);
-		FitPureDoubleGaussian(hist_rhom, rhom);
+		FitDoubleGaussian(hist_pi0,  pi0);
+		FitDoubleGaussian(hist_rho0, rho0);
+		FitDoubleGaussian(hist_rhop, rhop);
+		FitDoubleGaussian(hist_rhom, rhom);
 
 	// * Fit Breit-Wigner * //
 		FitBreitWigner(hist_pi0,  pi0);
 		FitBreitWigner(hist_rho0, rho0);
 		FitBreitWigner(hist_rhop, rhop);
 		FitBreitWigner(hist_rhom, rhom);
+
+	// * Fit Breit-Wigner convoluted with double Gaussian * //
+		FitBWDoubleGaussianConvolution(hist_pi0,  pi0);
+		FitBWDoubleGaussianConvolution(hist_rho0, rho0);
+		FitBWDoubleGaussianConvolution(hist_rhop, rhop);
+		FitBWDoubleGaussianConvolution(hist_rhom, rhom);
 
 }
 

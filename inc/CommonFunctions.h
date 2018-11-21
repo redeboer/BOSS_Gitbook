@@ -17,7 +17,9 @@
 	#include "../inc/Particle.h"
 	#include "../inc/ReconstructedParticle.h"
 	#include "RooAddPdf.h"
+	#include "RooBreitWigner.h"
 	#include "RooDataHist.h"
+	#include "RooFFTConvPdf.h"
 	#include "RooFitResult.h"
 	#include "RooGaussian.h"
 	#include "RooPlot.h"
@@ -134,7 +136,7 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	 * @param hist Invariant mass histogram that you would like to fit
 	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
 	 */
-	void FitPureDoubleGaussian(TH1D &hist, const ReconstructedParticle& particle)
+	void FitDoubleGaussian(TH1D &hist, const ReconstructedParticle& particle)
 	{
 		
 		// * The `RooFit` method * //
@@ -225,7 +227,7 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 				Form("%s mass", particle.GetNameLaTeX()),
 				particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
 			RooRealVar width("width", Form("%s width", particle.GetNameLaTeX()),
-				particle.GetBWWidth(), 0., 100.*particle.GetBWWidth());
+				particle.GetBWPureWidth(), 0., 100.*particle.GetBWPureWidth());
 			RooGaussian bw("breitwigner",
 				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
 				invMassVar, mean, width);
@@ -249,6 +251,83 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 			const TString outputDir = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
 			gSystem->mkdir(outputDir.Data());
 			c.SaveAs(Form("%s/BreitWigner_%s.%s", outputDir.Data(), particle.GetName(), Settings::Output::Extension));
+			c.Close();
+
+	}
+
+	/**
+	 * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
+	 * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
+	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
+	 * @param hist Invariant mass histogram that you would like to fit
+	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	 */
+	void FitBWDoubleGaussianConvolution(TH1D &hist, const ReconstructedParticle& particle)
+	{
+		
+		// * The `RooFit` method * //
+			RooRealVar invMassVar("invMassVar",
+				Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
+				particle.PlotFrom(),
+				particle.PlotUntil()
+			);
+
+		// * Import histogram to Roofit * //
+			RooDataHist invMassDistribution(
+				Form("%scandidate_RooDataHist", particle.GetName()), hist.GetTitle(),
+				invMassVar, RooFit::Import(hist));
+
+		// * Create Gaussian functions * //
+			RooRealVar m0("GaussianMeanZero", "GaussianMeanZero", 0.);
+			RooRealVar s1("#sigma_{1}", Form("%s width 1", particle.GetNameLaTeX()), particle.GetGaussianSmallWidth());
+			RooRealVar s2("#sigma_{2}", Form("%s width 2", particle.GetNameLaTeX()), particle.GetGaussianWideWidth());
+			RooGaussian gauss1("gauss1",
+				Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				invMassVar, m0, s1);
+			RooGaussian gauss2("gauss2",
+				Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				invMassVar, m0, s2);
+
+		// * Add the Gaussian components * //
+			RooRealVar ratio("n_{gaus1} / n_{gaus2}", "Ratio between the two Gaussian pdfs", .8, 0., 1.);
+			RooAddPdf  doublegauss("double_gaussian", "Double gaussian",
+				RooArgList(gauss1, gauss2), RooArgList(ratio));
+			doublegauss.fitTo(
+				invMassDistribution,
+				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
+
+		// * Create Breit-Wigner/Cauchy distribution * //
+			RooRealVar mean(
+				Form("m_{%s}", particle.GetNameLaTeX()),
+				Form("%s mass", particle.GetNameLaTeX()),
+				particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
+			RooRealVar width("#sigma_{BW}", Form("%s BW width", particle.GetNameLaTeX()),
+				particle.GetBWConvolutedWidth(), 0., 10.*particle.GetBWConvolutedWidth());
+			RooGaussian bw("breitwigner",
+				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				invMassVar, mean, width);
+
+		// * Convolute and fit * //
+			RooFFTConvPdf signal("signal", "signal", invMassVar, bw, doublegauss);
+			signal.fitTo(invMassDistribution,
+				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
+
+		// * Plot results and save * //
+			RooPlot *frame = invMassVar.frame(); // create a frame to draw
+			frame->SetAxisRange(particle.PlotFrom(), particle.PlotUntil());
+			invMassDistribution.plotOn(frame, // draw distribution
+				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
+				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
+			signal.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
+			signal.paramOn(frame, RooFit::Layout(.56, .98, .92));
+
+		// * Write fitted histograms * //
+			TCanvas c;
+			c.SetBatch();
+			frame->Draw();
+			const TString outputDir = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
+			gSystem->mkdir(outputDir.Data());
+			c.SaveAs(Form("%s/Convolution_%s.%s", outputDir.Data(), particle.GetName(), Settings::Output::Extension));
 			c.Close();
 
 	}

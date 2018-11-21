@@ -44,7 +44,8 @@ public:
 	const double FitUntil() const;
 	const double PlotFrom() const;
 	const double PlotUntil() const;
-	const double GetBWWidth() const;
+	const double GetBWPureWidth() const;
+	const double GetBWConvolutedWidth() const;
 	const double GetGaussianSmallWidth() const;
 	const double GetGaussianWideWidth() const;
 	const std::pair<double, double> GetDoubleGaussianWidths() const;
@@ -60,7 +61,8 @@ protected:
 	// * Data members *
 	TString fDaughterLabels; //!< LaTeX formatted string for decay particles.
 	double fMassOffset; //!< Percentage (divided by 100) that the mean (namely, the mass) may vary.
-	double fBreitWignerWidth; //!< Estimate for the width of the Breit-Wigner function.
+	double fBWPureWidth; //!< Estimate for the width of the Breit-Wigner function when fitting BW only.
+	double fBWConvolutedWidth; //!< Estimate for the width of the Breit-Wigner function when convoluted with a double Gaussian.
 	std::pair<double, double> fDoubleGaussianWidths; //!< Pair of two sigma values. You can use that as estimates of the widths for the double gaussian that you plan to fit. These sigmas are supposed to characterise the resolution of the detector. For consistency in naming, the first one should be smaller than the second.
 	std::pair<double, double> fFitRange; //!< Invariant mass range over which you fit a function (double Gaussian, Crystal ball, Breit-Wigner, etc.).
 	std::pair<double, double> fPlotRange; //!< Invariant mass range that you plot.
@@ -163,11 +165,19 @@ const double ReconstructedParticle::GetMassOffsetPercentage() const
 }
 
 /**
- * @brief Get estimate for the width of the Breit-Wigner function.
+ * @brief Get estimate for the width of the Breit-Wigner function when fitting a pure BW only.
  */
-const double ReconstructedParticle::GetBWWidth() const
+const double ReconstructedParticle::GetBWPureWidth() const
 {
-	return fBreitWignerWidth;
+	return fBWPureWidth;
+}
+
+/**
+ * @brief Get estimate for the width of the Breit-Wigner function when the BW is convoluted with a Double gaussian.
+ */
+const double ReconstructedParticle::GetBWConvolutedWidth() const
+{
+	return fBWConvolutedWidth;
 }
 
 /**
@@ -292,23 +302,26 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 		switch(fParticlePDG->PdgCode()) {
 			case 111: // neutral pion
 				fMassOffset           = .03;
-				fBreitWignerWidth     = .007;
-				fDoubleGaussianWidths = {.0005, .005};
+				fBWPureWidth          = .007;
+				fBWConvolutedWidth    = .00002;
+				fDoubleGaussianWidths = {.00499, .0135};
 				fFitRange             = {.10, .17};
 				fPlotRange            = {.10, .17};
 				break;
 			case 113: // neutral rho
-				fMassOffset           = .10;
-				fBreitWignerWidth     = .08;
-				fDoubleGaussianWidths = {.05, .1};
+				fMassOffset           = .05;
+				fBWPureWidth          = .0008;
+				fBWConvolutedWidth    = .001;
+				fDoubleGaussianWidths = {.0469, .1312};
 				fFitRange             = {.60, 1.0};
 				fPlotRange            = {.25, 1.5};
 				break;
 			case 213:
 			case -213: // rho meson
 				fMassOffset           = .10;
-				fBreitWignerWidth     = .08;
-				fDoubleGaussianWidths = {.05, .1};
+				fBWPureWidth          = .08;
+				fBWConvolutedWidth    = .0004;
+				fDoubleGaussianWidths = {.0542, .209};
 				fFitRange             = {.60, 1.0};
 				fPlotRange            = {.25, 1.5};
 				break;
