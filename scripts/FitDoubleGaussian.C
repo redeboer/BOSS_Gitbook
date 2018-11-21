@@ -49,28 +49,18 @@ void FitDoubleGaussian()
 	// * Open RhoPi input file * //
 		RhopiRootFile file("../data/root/ana_rhopi_mc.root");
 		if(file.IsZombie()) return;
+
 	// * Particles to reconstruct * //
 		ReconstructedParticle pi0 ( 111, "#gamma#gamma"); // neutral rho meson
 		ReconstructedParticle rho0( 113, "#pi^{+}#pi^{-}"); // neutral rho meson
 		ReconstructedParticle rhop( 213, "#pi^{+}#pi^{0}"); // positive rho meson
 		ReconstructedParticle rhom(-213, "#pi^{-}#pi^{0}"); // negative rho meson
+
 	// * Create invariant mass histogram * //
-		TH1D hist_pi0("hist_pi0",
-			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
-				pi0.GetNameLaTeX(), pi0.GetDaughterLabel()),
-			500, pi0.PlotFrom(), pi0.PlotUntil() );
-		TH1D hist_rho0("hist_rho",
-			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
-				rho0.GetNameLaTeX(), rho0.GetDaughterLabel()),
-			500, rho0.PlotFrom(), rho0.PlotUntil() );
-		TH1D hist_rhop("hist_rhop",
-			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
-				rhop.GetNameLaTeX(), rhop.GetDaughterLabel()),
-			500, rhop.PlotFrom(), rhop.PlotUntil() );
-		TH1D hist_rhom("hist_rhom",
-			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
-				rhom.GetNameLaTeX(), rhom.GetDaughterLabel()),
-			500, rhom.PlotFrom(), rhom.PlotUntil());
+		TH1D hist_pi0;  SetInvariantMassHistogram(hist_pi0,  pi0,  500);
+		TH1D hist_rho0; SetInvariantMassHistogram(hist_rho0, rho0, 500);
+		TH1D hist_rhop; SetInvariantMassHistogram(hist_rhop, rhop, 500);
+		TH1D hist_rhom; SetInvariantMassHistogram(hist_rhom, rhom, 500);
 
 	// * Loop the tree to fill inv mass spectrums * //
 		auto fit4c_lambda = [] (TH1D& pi0) {
@@ -83,11 +73,18 @@ void FitDoubleGaussian()
 		};
 		LoopTree(file.FindTree("fit4c"), fit4c_lambda, hist_pi0);
 		LoopTree(file.FindTree("fit5c"), fit5c_lambda, hist_rho0, hist_rhop, hist_rhom);
-	// * Import histogram to Roofit * //
+
+	// * Fit double gaussian * //
 		FitPureDoubleGaussian(hist_pi0,  pi0);
 		FitPureDoubleGaussian(hist_rho0, rho0);
 		FitPureDoubleGaussian(hist_rhop, rhop);
 		FitPureDoubleGaussian(hist_rhom, rhom);
+
+	// * Fit Breit-Wigner * //
+		FitBreitWigner(hist_pi0,  pi0);
+		FitBreitWigner(hist_rho0, rho0);
+		FitBreitWigner(hist_rhop, rhop);
+		FitBreitWigner(hist_rhom, rhom);
 
 }
 

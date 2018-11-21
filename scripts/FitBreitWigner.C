@@ -107,9 +107,6 @@ void FitDoubleGaussian_RooFit(const char* inputFileName = gDefaultFileToLoad)
 		std::cout << "\rSuccesfully looped over " << nEntries << " events in the \"" << gTreeToLoad << "\" tree (\"" << gBrancheToLoad << "\")" << std::endl;
 
 	// * The `RooFit` method * //
-	/*
-		See https://root.cern.ch/roofit-20-minutes
-	*/
 		const double xmin = hist.GetXaxis()->GetXmin();
 		const double xmax = hist.GetXaxis()->GetXmax();
 		RooRealVar invMassVar("invMassVar", Form("#it{M}_{%s} (GeV/#it{c}^{2})", gDaughters), xmin, xmax);
@@ -125,7 +122,7 @@ void FitDoubleGaussian_RooFit(const char* inputFileName = gDefaultFileToLoad)
 		RooBreitWigner bw("breitwigner",
 			"Breit-Wigner PDF for the #it{M}_{#gamma#gamma} distribution",
 			invMassVar, m1, s1);
-		RooFitResult* result = bw.fitTo(invMassDistribution);
+		bw.fitTo(invMassDistribution);
 
 	// * Fit, plot results, and save * //
 		RooPlot *frame = invMassVar.frame(); // create a frame to draw
