@@ -18,11 +18,14 @@
 	#include "../inc/ReconstructedParticle.h"
 	#include "RooAddPdf.h"
 	#include "RooBreitWigner.h"
+	#include "RooCmdArg.h"
 	#include "RooDataHist.h"
 	#include "RooFFTConvPdf.h"
 	#include "RooFitResult.h"
 	#include "RooGaussian.h"
+	#include "RooLinkedList.h"
 	#include "RooPlot.h"
+	#include "RooPolynomial.h"
 	#include "RooRealVar.h"
 	#include "TCanvas.h"
 	#include "TH1.h"
@@ -31,7 +34,6 @@
 	#include "TString.h"
 	#include "TSystem.h"
 	#include "TTree.h"
-
 
 // * ========================= * //
 // * ------- FUNCTIONS ------- * //
@@ -136,7 +138,7 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	 * @param hist Invariant mass histogram that you would like to fit
 	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
 	 */
-	void FitDoubleGaussian(TH1D &hist, const ReconstructedParticle& particle)
+	void FitDoubleGaussian(TH1D &hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0)
 	{
 		
 		// * The `RooFit` method * //
@@ -166,11 +168,31 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 			RooGaussian gauss2("gauss2",
 				"Gaussian PDF 2 for #it{M}_{#gamma#gamma} distribution",
 				invMassVar, mean, s2);
+			RooRealVar n1("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
+			RooRealVar n2("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
+			RooArgList components(gauss1, gauss2);
+			RooArgList ratios(n1, n2);
+
+		// * Add polynomial background if required * //
+			RooArgList parameters;
+			for(UChar_t i = 0; i <= numPolynomials; ++i) {
+				auto p = new RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6);
+				parameters.add(*p);
+			}
+			RooPolynomial polBackground("polBkg",
+				Form("Polynomial-%u background", numPolynomials),
+				invMassVar, parameters);
+			RooRealVar sbratio(
+				Form("N_{pol%u}", numPolynomials),
+				Form("N_{pol%u}", numPolynomials),
+				0., 0., 1e5);
+			if(numPolynomials) {
+				components.add(polBackground);
+				ratios.add(sbratio);
+			}
 
 		// * Add the components and fit * //
-			RooRealVar ratio("n_{gaus1} / n_{gaus2}", "Ratio between the two Gaussian pdfs", .8, 0., 1.);
-			RooAddPdf  doublegauss("double_gaussian", "Double gaussian",
-				RooArgList(gauss1, gauss2), RooArgList(ratio));
+			RooAddPdf  doublegauss("double_gaussian", "Double gaussian", components, ratios);
 			doublegauss.fitTo(
 				invMassDistribution,
 				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
@@ -186,6 +208,10 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 				RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
 			doublegauss.plotOn(frame, RooFit::Components(gauss2), // draw gauss 2
 				RooFit::LineWidth(1), RooFit::LineColor(kBlue-4));
+			if(numPolynomials) {
+				doublegauss.plotOn(frame, RooFit::Components(polBackground), // draw background
+					RooFit::LineStyle(kDashed), RooFit::LineWidth(1), RooFit::LineColor(kGray));
+			}
 			doublegauss.paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 		// * Write fitted histograms * //
@@ -289,7 +315,7 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 				invMassVar, m0, s2);
 
 		// * Add the Gaussian components * //
-			RooRealVar ratio("n_{gaus1} / n_{gaus2}", "Ratio between the two Gaussian pdfs", .8, 0., 1.);
+			RooRealVar ratio("N_{gaus1} / N_{gaus2}", "Ratio between the two Gaussian pdfs", .8, 0., 1.);
 			RooAddPdf  doublegauss("double_gaussian", "Double gaussian",
 				RooArgList(gauss1, gauss2), RooArgList(ratio));
 			doublegauss.fitTo(

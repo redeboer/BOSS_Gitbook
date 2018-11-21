@@ -13,23 +13,7 @@
 	#include "../inc/ReconstructedParticle.h"
 	#include "../inc/CommonFunctions.h"
 	#include "../inc/RhopiRootFile.h"
-	#include "RooAddPdf.h"
-	#include "RooDataHist.h"
-	#include "RooGaussian.h"
-	#include "RooPlot.h"
-	#include "RooRealVar.h"
-	#include "TCanvas.h"
-	#include "TDatabasePDG.h"
-	#include "TFile.h"
 	#include "TH1D.h"
-	#include "TLine.h"
-	#include "TParticlePDG.h"
-	#include "TPaveText.h"
-	#include "TString.h"
-	#include "TStyle.h"
-	#include "TSystem.h"
-	#include "TText.h"
-	#include "TTree.h"
 	#include <iostream>
 	using namespace RooFit;
 	using namespace AnaBranches;
@@ -57,7 +41,7 @@ void FitDoubleGaussian()
 		ReconstructedParticle rhom(-213, "#pi^{-}#pi^{0}"); // negative rho meson
 
 	// * Create invariant mass histogram * //
-		TH1D hist_pi0;  SetInvariantMassHistogram(hist_pi0,  pi0,  500);
+		TH1D hist_pi0;  SetInvariantMassHistogram(hist_pi0,  pi0,  400);
 		TH1D hist_rho0; SetInvariantMassHistogram(hist_rho0, rho0, 200);
 		TH1D hist_rhop; SetInvariantMassHistogram(hist_rhop, rhop, 200);
 		TH1D hist_rhom; SetInvariantMassHistogram(hist_rhom, rhom, 200);
@@ -76,21 +60,21 @@ void FitDoubleGaussian()
 
 	// * Fit double gaussian * //
 		FitDoubleGaussian(hist_pi0,  pi0);
-		FitDoubleGaussian(hist_rho0, rho0);
-		FitDoubleGaussian(hist_rhop, rhop);
-		FitDoubleGaussian(hist_rhom, rhom);
+		FitDoubleGaussian(hist_rho0, rho0, 2);
+		FitDoubleGaussian(hist_rhop, rhop, 2);
+		FitDoubleGaussian(hist_rhom, rhom, 2);
 
-	// * Fit Breit-Wigner * //
-		FitBreitWigner(hist_pi0,  pi0);
-		FitBreitWigner(hist_rho0, rho0);
-		FitBreitWigner(hist_rhop, rhop);
-		FitBreitWigner(hist_rhom, rhom);
+	// // * Fit Breit-Wigner * //
+	// 	FitBreitWigner(hist_pi0,  pi0);
+	// 	FitBreitWigner(hist_rho0, rho0);
+	// 	FitBreitWigner(hist_rhop, rhop);
+	// 	FitBreitWigner(hist_rhom, rhom);
 
-	// * Fit Breit-Wigner convoluted with double Gaussian * //
-		FitBWDoubleGaussianConvolution(hist_pi0,  pi0);
-		FitBWDoubleGaussianConvolution(hist_rho0, rho0);
-		FitBWDoubleGaussianConvolution(hist_rhop, rhop);
-		FitBWDoubleGaussianConvolution(hist_rhom, rhom);
+	// // * Fit Breit-Wigner convoluted with double Gaussian * //
+	// 	FitBWDoubleGaussianConvolution(hist_pi0,  pi0);
+	// 	FitBWDoubleGaussianConvolution(hist_rho0, rho0);
+	// 	FitBWDoubleGaussianConvolution(hist_rhop, rhop);
+	// 	FitBWDoubleGaussianConvolution(hist_rhom, rhom);
 
 }
 

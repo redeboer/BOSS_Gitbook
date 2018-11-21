@@ -313,8 +313,8 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 				fBWPureWidth          = .0008;
 				fBWConvolutedWidth    = .001;
 				fDoubleGaussianWidths = {.0469, .1312};
-				fFitRange             = {.60, 1.0};
-				fPlotRange            = {.25, 1.5};
+				fFitRange             = {.40, 1.1};
+				fPlotRange            = {.30, 1.7};
 				break;
 			case 213:
 			case -213: // rho meson
@@ -322,8 +322,8 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 				fBWPureWidth          = .08;
 				fBWConvolutedWidth    = .0004;
 				fDoubleGaussianWidths = {.0542, .209};
-				fFitRange             = {.60, 1.0};
-				fPlotRange            = {.25, 1.5};
+				fFitRange             = {.50, 1.42};
+				fPlotRange            = {.30, 1.7};
 				break;
 			default:
 				std::cout << "ERROR: No particle defined for PDG code " << fParticlePDG->PdgCode() << " (" << fParticlePDG->GetName() << ")" << std::endl;
