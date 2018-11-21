@@ -9,12 +9,17 @@ var classBOSSRootFile =
     [ "GetListOfTTrees", "classBOSSRootFile.html#a55a8ce3e66f1671ccdbb90cfd06285a3", null ],
     [ "GetNumberOfEvents", "classBOSSRootFile.html#a1c2e2406263cf75798c229aea96b6e48", null ],
     [ "Initialize", "classBOSSRootFile.html#a3cf31e409d40fc19ade885757af5979f", null ],
+    [ "IsZombie", "classBOSSRootFile.html#a868c91e1482044ce8b2e7924fc72d8fc", null ],
     [ "LoadTTrees", "classBOSSRootFile.html#a68aa488e33695f729dbc27e287510161", null ],
     [ "OpenFile", "classBOSSRootFile.html#a50f2872225d67bcdaee614b7e469a78b", null ],
+    [ "PlotDistribution1D", "classBOSSRootFile.html#a323fecc8d09a7a9addc9737eb281ef58", null ],
+    [ "PlotDistribution1D", "classBOSSRootFile.html#aae52f7660fbc439887a93784ffce4165", null ],
+    [ "PlotDistribution2D", "classBOSSRootFile.html#a965b1b4f075dbd7b16f07cd93cb69496", null ],
+    [ "PlotDistribution2D", "classBOSSRootFile.html#aaaa7f282b374f4e4aff444762ca6d54b", null ],
     [ "Print", "classBOSSRootFile.html#a080b54eb245e3635e97d75742ce9ec4b", null ],
     [ "Print", "classBOSSRootFile.html#a5eb701bf9d34142c3567327efa8493fa", null ],
     [ "PrintTrees", "classBOSSRootFile.html#a86e04bbc6328de69218d0f21a5482a4f", null ],
-    [ "SetBranchAddress", "classBOSSRootFile.html#a35003c737916b64a2cd8fafc7d61ec0f", null ],
+    [ "SetBranchAddress", "classBOSSRootFile.html#a04105374cbf3e7a745edf371afee4111", null ],
     [ "fFile", "classBOSSRootFile.html#ad6aab73be264702bcff44b160fc8f062", null ],
     [ "fTrees", "classBOSSRootFile.html#ab13dafde6019b134503c6a75aeee4884", null ]
 ];

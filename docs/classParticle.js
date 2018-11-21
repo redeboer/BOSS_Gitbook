@@ -4,6 +4,7 @@ var classParticle =
     [ "Particle", "classParticle.html#a7121e9afc2587bcad901ea025bada0d0", null ],
     [ "DetermineNameLaTeX", "classParticle.html#ae97e941db471dbe130c5aa7277d8c224", null ],
     [ "GetMass", "classParticle.html#ad34f1d39fb95328fcfb59d74f71a736c", null ],
+    [ "GetName", "classParticle.html#a4f2ca39f24510c12afcb574c6bb57e42", null ],
     [ "GetNameLaTeX", "classParticle.html#a0ad89f7795ac792af9aa0c553b555eee", null ],
     [ "GetParticlePDG", "classParticle.html#aa9f7152d465aadc5f9414edc45a47386", null ],
     [ "GetPDGCode", "classParticle.html#a4b8ac08a6780525067a126f69e42def7", null ],

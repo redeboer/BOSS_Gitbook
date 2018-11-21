@@ -105,8 +105,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a108fb195008d97baf4bde456992e7e68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiRootFile.html#a108fb195008d97baf4bde456992e7e68">RhopiRootFile</a> ()</td></tr>
 <tr class="separator:a108fb195008d97baf4bde456992e7e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cc840716db92059777db1574dcbfd23"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiRootFile.html#a3cc840716db92059777db1574dcbfd23">RhopiRootFile</a> (const char *filename)</td></tr>
+<tr class="memdesc:a3cc840716db92059777db1574dcbfd23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a3cc840716db92059777db1574dcbfd23">More...</a><br /></td></tr>
 <tr class="separator:a3cc840716db92059777db1574dcbfd23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5dc1db377413d95d16710b8812997c92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiRootFile.html#a5dc1db377413d95d16710b8812997c92">~RhopiRootFile</a> ()</td></tr>
+<tr class="memdesc:a5dc1db377413d95d16710b8812997c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <a href="#a5dc1db377413d95d16710b8812997c92">More...</a><br /></td></tr>
 <tr class="separator:a5dc1db377413d95d16710b8812997c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92278e12d4408ba6f5abf5f2ebc45c96"><td class="memItemLeft" align="right" valign="top">TTree *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiRootFile.html#a92278e12d4408ba6f5abf5f2ebc45c96">vxyz</a> ()</td></tr>
 <tr class="separator:a92278e12d4408ba6f5abf5f2ebc45c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,6 +153,21 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5eb701bf9d34142c3567327efa8493fa inherit pub_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86e04bbc6328de69218d0f21a5482a4f inherit pub_methods_classBOSSRootFile"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a86e04bbc6328de69218d0f21a5482a4f">PrintTrees</a> (Option_t *option=&quot;&quot;)</td></tr>
 <tr class="separator:a86e04bbc6328de69218d0f21a5482a4f inherit pub_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868c91e1482044ce8b2e7924fc72d8fc inherit pub_methods_classBOSSRootFile"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a868c91e1482044ce8b2e7924fc72d8fc">IsZombie</a> ()</td></tr>
+<tr class="memdesc:a868c91e1482044ce8b2e7924fc72d8fc inherit pub_methods_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if file is loaded.  <a href="classBOSSRootFile.html#a868c91e1482044ce8b2e7924fc72d8fc">More...</a><br /></td></tr>
+<tr class="separator:a868c91e1482044ce8b2e7924fc72d8fc inherit pub_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a323fecc8d09a7a9addc9737eb281ef58 inherit pub_methods_classBOSSRootFile"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a323fecc8d09a7a9addc9737eb281ef58">PlotDistribution1D</a> (TTree *tree, const char *branchName, int nBins, double x1, double x2, const char *title=&quot;&quot;, Option_t *opt=&quot;ep&quot;, TString fileName=&quot;&quot;)</td></tr>
+<tr class="memdesc:a323fecc8d09a7a9addc9737eb281ef58 inherit pub_methods_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plot a 1D distribution of one of the branches in the file.  <a href="classBOSSRootFile.html#a323fecc8d09a7a9addc9737eb281ef58">More...</a><br /></td></tr>
+<tr class="separator:a323fecc8d09a7a9addc9737eb281ef58 inherit pub_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae52f7660fbc439887a93784ffce4165 inherit pub_methods_classBOSSRootFile"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#aae52f7660fbc439887a93784ffce4165">PlotDistribution1D</a> (const char *treeName, const char *branchName, int nBins, double x1, double x2, const char *title=&quot;&quot;, Option_t *opt=&quot;ep&quot;, TString fileName=&quot;&quot;)</td></tr>
+<tr class="memdesc:aae52f7660fbc439887a93784ffce4165 inherit pub_methods_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plot a 1D distribution of one of the branches in the file.  <a href="classBOSSRootFile.html#aae52f7660fbc439887a93784ffce4165">More...</a><br /></td></tr>
+<tr class="separator:aae52f7660fbc439887a93784ffce4165 inherit pub_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a965b1b4f075dbd7b16f07cd93cb69496 inherit pub_methods_classBOSSRootFile"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a965b1b4f075dbd7b16f07cd93cb69496">PlotDistribution2D</a> (TTree *tree, const char *branchX, const char *branchY, int nBinsX, double x1, double x2, int nBinsY, double y1, double y2, const char *title=&quot;&quot;, Option_t *opt=&quot;colz&quot;, bool setLogZ=kFALSE, TString fileName=&quot;&quot;)</td></tr>
+<tr class="memdesc:a965b1b4f075dbd7b16f07cd93cb69496 inherit pub_methods_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plot a 2D distribution of one of the branches in the file.  <a href="classBOSSRootFile.html#a965b1b4f075dbd7b16f07cd93cb69496">More...</a><br /></td></tr>
+<tr class="separator:a965b1b4f075dbd7b16f07cd93cb69496 inherit pub_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaa7f282b374f4e4aff444762ca6d54b inherit pub_methods_classBOSSRootFile"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#aaaa7f282b374f4e4aff444762ca6d54b">PlotDistribution2D</a> (const char *treeName, const char *branchX, const char *branchY, int nBinsX, double x1, double x2, int nBinsY, double y1, double y2, const char *title=&quot;&quot;, Option_t *opt=&quot;colz&quot;, bool setLogZ=kFALSE, TString fileName=&quot;&quot;)</td></tr>
+<tr class="memdesc:aaaa7f282b374f4e4aff444762ca6d54b inherit pub_methods_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plot a 2D distribution of one of the branches in the file.  <a href="classBOSSRootFile.html#aaaa7f282b374f4e4aff444762ca6d54b">More...</a><br /></td></tr>
+<tr class="separator:aaaa7f282b374f4e4aff444762ca6d54b inherit pub_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c2e2406263cf75798c229aea96b6e48 inherit pub_methods_classBOSSRootFile"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a1c2e2406263cf75798c229aea96b6e48">GetNumberOfEvents</a> (const char *treeName)</td></tr>
 <tr class="memdesc:a1c2e2406263cf75798c229aea96b6e48 inherit pub_methods_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of events in one of the <code>TTree</code>s.  <a href="classBOSSRootFile.html#a1c2e2406263cf75798c229aea96b6e48">More...</a><br /></td></tr>
 <tr class="separator:a1c2e2406263cf75798c229aea96b6e48 inherit pub_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,9 +180,13 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr class="memitem:a21270a2244c8410bdde7eedb3c917e82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiRootFile.html#a21270a2244c8410bdde7eedb3c917e82">PrintDistribution1D</a> ()</td></tr>
+<tr class="separator:a21270a2244c8410bdde7eedb3c917e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5adbf50f64e23c3c8e6fcd19265c5251"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiRootFile.html#a5adbf50f64e23c3c8e6fcd19265c5251">Initialize</a> ()</td></tr>
+<tr class="memdesc:a5adbf50f64e23c3c8e6fcd19265c5251"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliar function for constructor (so that it can be called by all constructor types and other methods).  <a href="#a5adbf50f64e23c3c8e6fcd19265c5251">More...</a><br /></td></tr>
 <tr class="separator:a5adbf50f64e23c3c8e6fcd19265c5251"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0106032e714856168d0d7ab138c1876a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiRootFile.html#a0106032e714856168d0d7ab138c1876a">Destruct</a> ()</td></tr>
+<tr class="memdesc:a0106032e714856168d0d7ab138c1876a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary function for the destructor (so that the destructor functionality can also be called by other methods).  <a href="#a0106032e714856168d0d7ab138c1876a">More...</a><br /></td></tr>
 <tr class="separator:a0106032e714856168d0d7ab138c1876a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -219,14 +240,16 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a68aa488e33695f729dbc27e287510161 inherit pro_methods_classBOSSRootFile"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a68aa488e33695f729dbc27e287510161">LoadTTrees</a> ()</td></tr>
 <tr class="memdesc:a68aa488e33695f729dbc27e287510161 inherit pro_methods_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the ROOT <code>TFile</code> could be successfully loaded, this method will generate a list of pointers to all <code>TTree</code>s in the main folder of the ROOT file.  <a href="classBOSSRootFile.html#a68aa488e33695f729dbc27e287510161">More...</a><br /></td></tr>
 <tr class="separator:a68aa488e33695f729dbc27e287510161 inherit pro_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35003c737916b64a2cd8fafc7d61ec0f inherit pro_methods_classBOSSRootFile"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a35003c737916b64a2cd8fafc7d61ec0f inherit pro_methods_classBOSSRootFile"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a35003c737916b64a2cd8fafc7d61ec0f">SetBranchAddress</a> (TTree *tree, const char *branchName, T &amp;address)</td></tr>
-<tr class="memdesc:a35003c737916b64a2cd8fafc7d61ec0f inherit pro_methods_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relate an address in the memory to a branch of a <code>TTree</code>.  <a href="classBOSSRootFile.html#a35003c737916b64a2cd8fafc7d61ec0f">More...</a><br /></td></tr>
-<tr class="separator:a35003c737916b64a2cd8fafc7d61ec0f inherit pro_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04105374cbf3e7a745edf371afee4111 inherit pro_methods_classBOSSRootFile"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a04105374cbf3e7a745edf371afee4111 inherit pro_methods_classBOSSRootFile"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a04105374cbf3e7a745edf371afee4111">SetBranchAddress</a> (TTree *tree, const char *branchName, T &amp;address)</td></tr>
+<tr class="memdesc:a04105374cbf3e7a745edf371afee4111 inherit pro_methods_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relate an address in the memory to a branch of a <code>TTree</code>.  <a href="classBOSSRootFile.html#a04105374cbf3e7a745edf371afee4111">More...</a><br /></td></tr>
+<tr class="separator:a04105374cbf3e7a745edf371afee4111 inherit pro_methods_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classBOSSRootFile"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classBOSSRootFile')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classBOSSRootFile.html">BOSSRootFile</a></td></tr>
 <tr class="memitem:ad6aab73be264702bcff44b160fc8f062 inherit pro_attribs_classBOSSRootFile"><td class="memItemLeft" align="right" valign="top">TFile&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#ad6aab73be264702bcff44b160fc8f062">fFile</a></td></tr>
+<tr class="memdesc:ad6aab73be264702bcff44b160fc8f062 inherit pro_attribs_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <code>TFile</code> that has been loaded.  <a href="classBOSSRootFile.html#ad6aab73be264702bcff44b160fc8f062">More...</a><br /></td></tr>
 <tr class="separator:ad6aab73be264702bcff44b160fc8f062 inherit pro_attribs_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab13dafde6019b134503c6a75aeee4884 inherit pro_attribs_classBOSSRootFile"><td class="memItemLeft" align="right" valign="top">std::list&lt; TTree * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#ab13dafde6019b134503c6a75aeee4884">fTrees</a></td></tr>
+<tr class="memdesc:ab13dafde6019b134503c6a75aeee4884 inherit pro_attribs_classBOSSRootFile"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of pointers to all <code>TTree</code>s in the ROOT file.  <a href="classBOSSRootFile.html#ab13dafde6019b134503c6a75aeee4884">More...</a><br /></td></tr>
 <tr class="separator:ab13dafde6019b134503c6a75aeee4884 inherit pro_attribs_classBOSSRootFile"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -235,7 +258,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section remark"><dt>Remarks</dt><dd><b>DEVELOPMENTAL</b> </dd></dl>
 <p>The <code>RhopiRootTree</code> is derived from the general <code>BOSSRootTree</code> class. It can be used to easily load a ROOT file generated in the jopOptions_ana (analysis) step of the BOSS framework. As opposed to the more <code>BOSSRootTree</code> class, the structure of this class needs to match that of the analysis you are working with. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00024">24</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00026">26</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a108fb195008d97baf4bde456992e7e68"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a108fb195008d97baf4bde456992e7e68">&#9670;&nbsp;</a></span>RhopiRootFile() <span class="overload">[1/2]</span></h2>
@@ -260,7 +283,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00029">29</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00031">31</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -280,7 +303,15 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00081">81</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p>Constructor. </p>
+<p>Loads all trees and sets branch addresses of the default Rhopi ROOT file. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>File name of the ROOT file that you want to load. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00092">92</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -299,7 +330,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00183">183</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p>Default destructor. </p>
+<p>Merely calls the destructor helper. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00198">198</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -327,7 +361,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00036">36</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00038">38</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -354,7 +388,10 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00214">214</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p>Auxiliary function for the destructor (so that the destructor functionality can also be called by other methods). </p>
+<p>Merely sets pointers to null. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00206">206</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -381,7 +418,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00040">40</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00042">42</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -408,7 +445,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00041">41</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00043">43</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -435,7 +472,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00042">42</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00044">44</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -462,7 +499,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00043">43</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00045">45</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -489,7 +526,10 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00200">200</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p>Auxiliar function for constructor (so that it can be called by all constructor types and other methods). </p>
+<p>Only sets sets all pointer type data members to nullpointers. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00215">215</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -516,7 +556,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00035">35</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00037">37</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -543,7 +583,32 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00039">39</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00041">41</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+
+</div>
+</div>
+<a id="a21270a2244c8410bdde7eedb3c917e82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21270a2244c8410bdde7eedb3c917e82">&#9670;&nbsp;</a></span>PrintDistribution1D()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RhopiRootFile::PrintDistribution1D </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -570,7 +635,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00037">37</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00039">39</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -597,7 +662,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00038">38</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00040">40</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -624,7 +689,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00044">44</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00046">46</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -651,7 +716,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00034">34</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00036">36</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -678,7 +743,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for PID using energy loss ( <img class="formulaInl" alt="$ dE/dx $" src="form_10.png"/>). </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00053">53</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00055">55</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -704,7 +769,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for total energy and energy of the <img class="formulaInl" alt="$ \gamma $" src="form_17.png"/>'s. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00061">61</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00063">63</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -730,7 +795,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for neutral pion ( <img class="formulaInl" alt="$ \pi^0 $" src="form_5.png"/>) invariant mass. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00063">63</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00065">65</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -756,7 +821,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for charged and neutral rho ( <img class="formulaInl" alt="$ \rho^0, \rho^-, \rho^+ $" src="form_11.png"/>) invariant mass. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00065">65</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00067">67</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -782,7 +847,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for photon detection efficiences. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00067">67</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00069">69</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -808,7 +873,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for photon kinematics. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00051">51</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00053">53</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -834,7 +899,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for particle identification information. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00059">59</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00061">61</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -860,7 +925,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for Time of Flight registered by the <b>inner</b> barrel. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00055">55</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00057">57</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -886,7 +951,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for Time of Flight registered by the <b>outer</b> barrel. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00057">57</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00059">59</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -912,7 +977,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for Time of Flight registered by the <b>end cap</b>. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00069">69</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00071">71</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -938,7 +1003,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Branch for primary vertex information. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00049">49</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiRootFile_8h_source.html#l00051">51</a> of file <a class="el" href="RhopiRootFile_8h_source.html">RhopiRootFile.h</a>.</p>
 
 </div>
 </div>

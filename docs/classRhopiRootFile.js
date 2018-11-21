@@ -12,6 +12,7 @@ var classRhopiRootFile =
     [ "Initialize", "classRhopiRootFile.html#a5adbf50f64e23c3c8e6fcd19265c5251", null ],
     [ "photon", "classRhopiRootFile.html#a591b4cd54646ba42017da8d58dfe218a", null ],
     [ "pid", "classRhopiRootFile.html#a67c4a5babc8864eadb54447a5b48eaaa", null ],
+    [ "PrintDistribution1D", "classRhopiRootFile.html#a21270a2244c8410bdde7eedb3c917e82", null ],
     [ "tof1", "classRhopiRootFile.html#ae0329885e68f70c9927bb37bf5857732", null ],
     [ "tof2", "classRhopiRootFile.html#a58963ecacd52d1cfa2326bb7ebac1da4", null ],
     [ "tofe", "classRhopiRootFile.html#af87f70208099be349c10323efc1e4f48", null ],

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['loadchains',['LoadChains',['../classBOSSRootChain.html#aeb8e87abb7c774e2071d953f54bb1ac8',1,'BOSSRootChain']]],
-  ['loadttrees',['LoadTTrees',['../classBOSSRootFile.html#a68aa488e33695f729dbc27e287510161',1,'BOSSRootFile']]]
+  ['main',['main',['../CompareChainVsHadd_8C.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;CompareChainVsHadd.C'],['../FitBreitWigner_8C.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;FitBreitWigner.C'],['../FitConvolution_8C.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;FitConvolution.C'],['../FitDoubleGaussian_8C.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;FitDoubleGaussian.C'],['../FitDoubleGaussian__TH1Fit_8C.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;FitDoubleGaussian_TH1Fit.C'],['../PlotRhopi_8C.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;PlotRhopi.C'],['../QuickPlotRhopi_8C.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;QuickPlotRhopi.C']]],
+  ['mean',['mean',['../RooFitMacro_8C.html#afd960fe3deda10cc82f7e594a2612179',1,'RooFitMacro.C']]],
+  ['mum',['Mum',['../namespaceSettings_1_1Particles.html#a919e92dcdc1e21f87041ff5869fbaf67',1,'Settings::Particles']]]
 ];

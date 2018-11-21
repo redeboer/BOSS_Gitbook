@@ -1,8 +1,6 @@
 var searchData=
 [
   ['anabranches',['AnaBranches',['../namespaceAnaBranches.html',1,'']]],
-  ['analyserootfile',['AnalyseRootFile',['../AnalyseRootFile_8C.html#a9fec05c630b94050e2248c14fcb5d3ba',1,'AnalyseRootFile.C']]],
-  ['analyserootfile_2ec',['AnalyseRootFile.C',['../AnalyseRootFile_8C.html',1,'']]],
   ['dedx',['dedx',['../namespaceAnaBranches_1_1dedx.html',1,'AnaBranches']]],
   ['etot',['etot',['../namespaceAnaBranches_1_1etot.html',1,'AnaBranches']]],
   ['fit4c',['fit4c',['../namespaceAnaBranches_1_1fit4c.html',1,'AnaBranches']]],
