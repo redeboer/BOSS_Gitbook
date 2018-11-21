@@ -289,15 +289,15 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 			case 113: // neutral rho
 				fMassOffset           = .10;
 				fDoubleGaussianWidths = {.05, .1};
-				fFitRange             = {.30, 1.5};
-				fPlotRange            = {.30, 1.5};
+				fFitRange             = {.60, 1.0};
+				fPlotRange            = {.25, 1.5};
 				break;
 			case 213:
 			case -213: // rho meson
 				fMassOffset           = .10;
 				fDoubleGaussianWidths = {.05, .1};
-				fFitRange             = {.25, 1.3};
-				fPlotRange            = {.25, 1.3};
+				fFitRange             = {.60, 1.0};
+				fPlotRange            = {.25, 1.5};
 				break;
 			default:
 				std::cout << "ERROR: No particle defined for PDG code " << fParticlePDG->PdgCode() << " (" << fParticlePDG->GetName() << ")" << std::endl;

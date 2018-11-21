@@ -9,10 +9,10 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-#include <iostream>
-#include "TCanvas.h"
-#include "TString.h"
-#include "../inc/RhopiRootFile.h"
+	#include <iostream>
+	#include "TCanvas.h"
+	#include "TString.h"
+	#include "../inc/RhopiRootFile.h"
 
 
 // * ============================= * //
@@ -23,39 +23,40 @@
  */
 void QuickPlotRhopi()
 {
-	// * Load RhoPi ROOT analysis file *
-	RhopiRootFile rhopi("../data/root/ana_rhopi_data_0.root"); // data
-	// RhopiRootFile rhopi("../data/root/ana_rhopi.root"); // MC
+	// * Load RhoPi ROOT analysis file * //
+	RhopiRootFile rhopi("../data/root/ana_rhopi_mc.root");
 	if(rhopi.IsZombie()) return;
-	// * Plot and save 1D distributions *
-	rhopi.PlotDistribution1D("fit4c", "mpi0", 500, .1, .17,
-		"#it{M}_{#gamma#gamma} distribution;#it{M}_{#gamma#gamma} (GeV/#it{c});counts",
-		"ep", "../plots/pdf/QuickPlotRhopi.C/fit4c_mpi0.pdf");
-	rhopi.PlotDistribution1D("fit5c", "mrh0", 200, .5, 1.2,
-		"#it{M}_{#pi^{+}#pi^{-}} distribution;#it{M}_{#pi^{+}#pi^{-}} (GeV/#it{c});counts",
-		"ep", "../plots/pdf/QuickPlotRhopi.C/fit4c_mrh0.pdf");
-	rhopi.PlotDistribution1D("fit5c", "mrhp", 200, .5, 1.2,
-		"#it{M}_{#pi^{+}#pi^{0}} distribution;#it{M}_{#pi^{+}#pi^{0}} (GeV/#it{c});counts",
-		"ep", "../plots/pdf/QuickPlotRhopi.C/fit4c_mrhp.pdf");
-	rhopi.PlotDistribution1D("fit5c", "mrhm", 200, .5, 1.2,
-		"#it{M}_{#pi^{-}#pi^{0}} distribution;#it{M}_{#pi^{-}#pi^{0}} (GeV/#it{c});counts",
-		"ep", "../plots/pdf/QuickPlotRhopi.C/fit4c_mrhm.pdf");
-	// * Plot and save 2D distributions *
-	rhopi.PlotDistribution2D(
-		"tof1", "ptrk", "tpi", 200, .1, 1.7, 120, -2., 7.,
-		"TOF (#pi hypothesis) versus momentum;p (GeV/#it{c^{2}});TOF (50ns)", "colz", kTRUE);
-	rhopi.PlotDistribution2D(
-		"tof1", "ptrk", "tp",  200, .1, 1.7, 120, -15., 1.,
-		"TOF (proton hypothesis) versus momentum;p (GeV/#it{c^{2}});TOF (50ns)", "colz", kTRUE);
-	rhopi.PlotDistribution2D(
-		"fit5c", "mrhm", "mrhp",  200, .4, 4., 150, .4, 3.,
-		"Dalitz plot #rho^{-} vs #rho^{+} candidates;#it{M}_{#pi^{0}#pi^{-}} (GeV/#it{c});#it{M}_{#pi^{+}#pi^{0}} (GeV/#it{c})", "colz", kTRUE);
-	rhopi.PlotDistribution2D(
-		"fit5c", "mrh0", "mrhp",  200, .4, 4., 150, .4, 3.,
-		"Dalitz plot #rho^{0} vs #rho^{+} candidates;#it{M}_{#pi^{+}#pi^{-}} (GeV/#it{c});#it{M}_{#pi^{+}#pi^{0}} (GeV/#it{c})", "colz", kTRUE);
-	rhopi.PlotDistribution2D(
-		"fit5c", "mrh0", "mrhm",  200, .4, 4., 150, .4, 3.,
-		"Dalitz plot #rho^{0} vs #rho^{-} candidates;#it{M}_{#pi^{+}#pi^{-}} (GeV/#it{c});#it{M}_{#pi^{-}#pi^{0}} (GeV/#it{c})", "colz", kTRUE);
+
+	// * Invariant mass distributions * //
+		rhopi.PlotDistribution1D("fit4c", "mpi0", 500, .1, .17,
+			"#it{M}_{#gamma#gamma} distribution;#it{M}_{#gamma#gamma} (GeV/#it{c});counts",
+			"ep", "../plots/pdf/QuickPlotRhopi.C/fit4c_mpi0.pdf");
+		rhopi.PlotDistribution1D("fit5c", "mrh0", 200, .5, 1.2,
+			"#it{M}_{#pi^{+}#pi^{-}} distribution;#it{M}_{#pi^{+}#pi^{-}} (GeV/#it{c});counts",
+			"ep", "../plots/pdf/QuickPlotRhopi.C/fit4c_mrh0.pdf");
+		rhopi.PlotDistribution1D("fit5c", "mrhp", 200, .5, 1.2,
+			"#it{M}_{#pi^{+}#pi^{0}} distribution;#it{M}_{#pi^{+}#pi^{0}} (GeV/#it{c});counts",
+			"ep", "../plots/pdf/QuickPlotRhopi.C/fit4c_mrhp.pdf");
+		rhopi.PlotDistribution1D("fit5c", "mrhm", 200, .5, 1.2,
+			"#it{M}_{#pi^{-}#pi^{0}} distribution;#it{M}_{#pi^{-}#pi^{0}} (GeV/#it{c});counts",
+			"ep", "../plots/pdf/QuickPlotRhopi.C/fit4c_mrhm.pdf");
+	// * Dalitz plots * //
+		rhopi.PlotDistribution2D(
+			"fit5c", "mrhm", "mrhp",  200, .2, 4., 150, .2, 3.,
+			"Dalitz plot #rho^{-} vs #rho^{+} candidates;#it{M}_{#pi^{0}#pi^{-}} (GeV/#it{c});#it{M}_{#pi^{+}#pi^{0}} (GeV/#it{c})", "colz", kTRUE);
+		rhopi.PlotDistribution2D(
+			"fit5c", "mrh0", "mrhp",  200, .2, 4., 150, .2, 3.,
+			"Dalitz plot #rho^{0} vs #rho^{+} candidates;#it{M}_{#pi^{+}#pi^{-}} (GeV/#it{c});#it{M}_{#pi^{+}#pi^{0}} (GeV/#it{c})", "colz", kTRUE);
+		rhopi.PlotDistribution2D(
+			"fit5c", "mrh0", "mrhm",  200, .2, 4., 150, .2, 3.,
+			"Dalitz plot #rho^{0} vs #rho^{-} candidates;#it{M}_{#pi^{+}#pi^{-}} (GeV/#it{c});#it{M}_{#pi^{-}#pi^{0}} (GeV/#it{c})", "colz", kTRUE);
+	// * ToF plots * //
+		rhopi.PlotDistribution2D(
+			"tof1", "ptrk", "tpi", 200, .1, 1.7, 120, -2., 7.,
+			"TOF (#pi hypothesis) versus momentum;p (GeV/#it{c^{2}});TOF (50ns)", "colz", kTRUE);
+		rhopi.PlotDistribution2D(
+			"tof1", "ptrk", "tp",  200, .1, 1.7, 120, -15., 1.,
+			"TOF (proton hypothesis) versus momentum;p (GeV/#it{c^{2}});TOF (50ns)", "colz", kTRUE);
 }
 
 /**

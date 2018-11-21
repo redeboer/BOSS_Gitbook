@@ -11,6 +11,7 @@
 // * ======================================== * //
 	#include "../inc/FrameworkSettings.h"
 	#include "../inc/ReconstructedParticle.h"
+	#include "../inc/CommonFunctions.h"
 	#include "../inc/RhopiRootFile.h"
 	#include "RooAddPdf.h"
 	#include "RooDataHist.h"
@@ -33,6 +34,7 @@
 	using namespace RooFit;
 	using namespace AnaBranches;
 	using namespace Settings;
+	using namespace CommonFunctions;
 
 
 // * ============================= * //
@@ -44,96 +46,48 @@
  */
 void FitDoubleGaussian()
 {
-	// * Output file name declared here to avoid `Form` bug later * //
-	// ! Set your parameters here ! //
-		const char* inputFileName = "../data/root/ana_rhopi_data_0.root";
-		const char* treeName = "fit5c";
-		ReconstructedParticle particle(
-			213, // the PDG code for pi0 is 111
-			"#gamma#gamma"); // decay channel (use LaTeX!)
-		if(!particle.GetParticlePDG()) return;
-		const int numberOfBins = 500;
-
-	// * Prepare input and output * //
-		RhopiRootFile file(inputFileName);
+	// * Open RhoPi input file * //
+		RhopiRootFile file("../data/root/ana_rhopi_mc.root");
 		if(file.IsZombie()) return;
-		const TString outputDirectory = Form("%s/%s", Output::PlotOutputDir, __FILE__);
-		const TString outputFileName  = Form("%s/%s.%s", outputDirectory.Data(), particle.GetName(), Output::Extension);
-		gSystem->mkdir(outputDirectory.Data(), kTRUE);
-
+	// * Particles to reconstruct * //
+		ReconstructedParticle pi0 ( 111, "#gamma#gamma"); // neutral rho meson
+		ReconstructedParticle rho0( 113, "#pi^{+}#pi^{-}"); // neutral rho meson
+		ReconstructedParticle rhop( 213, "#pi^{+}#pi^{0}"); // positive rho meson
+		ReconstructedParticle rhom(-213, "#pi^{-}#pi^{0}"); // negative rho meson
 	// * Create invariant mass histogram * //
-		TH1D hist("invmass_hist",
+		TH1D hist_pi0("hist_pi0",
 			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
-				particle.GetNameLaTeX(), particle.GetDaughterLabel()),
-			numberOfBins, particle.FitFrom(), particle.FitUntil()
-		);
+				pi0.GetNameLaTeX(), pi0.GetDaughterLabel()),
+			500, pi0.PlotFrom(), pi0.PlotUntil() );
+		TH1D hist_rho0("hist_rho",
+			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
+				rho0.GetNameLaTeX(), rho0.GetDaughterLabel()),
+			500, rho0.PlotFrom(), rho0.PlotUntil() );
+		TH1D hist_rhop("hist_rhop",
+			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
+				rhop.GetNameLaTeX(), rhop.GetDaughterLabel()),
+			500, rhop.PlotFrom(), rhop.PlotUntil() );
+		TH1D hist_rhom("hist_rhom",
+			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
+				rhom.GetNameLaTeX(), rhom.GetDaughterLabel()),
+			500, rhom.PlotFrom(), rhom.PlotUntil());
 
 	// * Loop the tree to fill inv mass spectrums * //
-	// ! You choose your branch and mass in this loop ! //
-		TTree* tree = file.FindTree(treeName);
-		if(!tree) return;
-		Long64_t nEntries = tree->GetEntries();
-		std::cout << "Looping over " << nEntries << " events in the \"" << treeName << "\" tree" << std::flush;
-		for(Long64_t i = 0; i < nEntries; ++i) {
-			tree->GetEntry(i);
-			hist.Fill(fit5c::mrhop); //! set mass branch here
-		}
-		std::cout << "\rSuccesfully looped over " << nEntries << " events in the \"" << treeName << "\" tree" << std::endl;
-
-	// * The `RooFit` method * //
-	// NOTE: See https://root.cern.ch/roofit-20-minutes
-		RooRealVar invMassVar("invMassVar",
-			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
-			particle.FitFrom(),
-			particle.FitUntil()
-		);
-
+		auto fit4c_lambda = [] (TH1D& pi0) {
+			pi0.Fill(fit4c::mpi0);
+		};
+		auto fit5c_lambda = [] (TH1D& rho0, TH1D& rhop, TH1D& rhom) {
+			rho0.Fill(fit5c::mrho0);
+			rhop.Fill(fit5c::mrhop);
+			rhom.Fill(fit5c::mrhom);
+		};
+		LoopTree(file.FindTree("fit4c"), fit4c_lambda, hist_pi0);
+		LoopTree(file.FindTree("fit5c"), fit5c_lambda, hist_rho0, hist_rhop, hist_rhom);
 	// * Import histogram to Roofit * //
-		RooDataHist invMassDistribution(
-			Form("%s_%s_RooDataHist", treeName, particle.GetName()), hist.GetTitle(),
-			invMassVar, Import(hist));
-
-	// * Create Gaussian functions * //
-		RooRealVar mean(
-			Form("m_{%s}", particle.GetNameLaTeX()),
-			Form("%s mass", particle.GetNameLaTeX()),
-			particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
-		RooRealVar s1("#sigma_{1}", Form("%s width 1", particle.GetNameLaTeX()),
-			particle.GetGaussianSmallWidth(), 0., 100.*particle.GetGaussianSmallWidth());
-		RooRealVar s2("#sigma_{2}", Form("%s width 2", particle.GetNameLaTeX()),
-			particle.GetGaussianWideWidth(), 0., 100.*particle.GetGaussianWideWidth());
-		RooGaussian gauss1("gauss1",
-			"Gaussian PDF 1 for #it{M}_{#gamma#gamma} distribution",
-			invMassVar, mean, s1);
-		RooGaussian gauss2("gauss2",
-			"Gaussian PDF 2 for #it{M}_{#gamma#gamma} distribution",
-			invMassVar, mean, s2);
-
-	// * Add the components and fit * //
-		RooRealVar ratio("n_{gaus1} / n_{gaus2}", "Ratio between the two Gaussian pdfs", .8, 0., 1.);
-		RooAddPdf  doublegauss("double_gaussian", "Double gaussian",
-			RooArgList(gauss1, gauss2), RooArgList(ratio));
-		RooFitResult* result = doublegauss.fitTo(invMassDistribution);
-
-	// * Fit, plot results, and save * //
-		RooPlot *frame = invMassVar.frame(); // create a frame to draw
-		frame->SetAxisRange(particle.PlotFrom(), particle.PlotUntil());
-		invMassDistribution.plotOn(frame, // draw distribution
-			LineWidth(2), LineColor(kBlue+2), LineWidth(1),
-			MarkerColor(kBlue+2), MarkerSize(.5));
-		doublegauss.plotOn(frame, LineWidth(2), LineColor(kBlack)); // draw sig+bck fit
-		doublegauss.plotOn(frame, Components(gauss1), // draw gauss 1
-			LineWidth(1), LineColor(kRed-4));
-		doublegauss.plotOn(frame, Components(gauss2), // draw gauss 2
-			LineWidth(1), LineColor(kBlue-4));
-		doublegauss.paramOn(frame, Layout(.56, .98, .92));
-
-	// * Write fitted histograms * //
-		TCanvas c;
-		c.SetBatch();
-		frame->Draw();
-		c.SaveAs(outputFileName.Data());
-		c.Close();
+		FitPureDoubleGaussian(hist_pi0,  pi0);
+		FitPureDoubleGaussian(hist_rho0, rho0);
+		FitPureDoubleGaussian(hist_rhop, rhop);
+		FitPureDoubleGaussian(hist_rhom, rhom);
 
 }
 
@@ -142,9 +96,6 @@ void FitDoubleGaussian()
  */
 int main()
 {
-	// * Execute function * //
 	FitDoubleGaussian();
-
-	// * Default return value * //
 	return 0;
 }

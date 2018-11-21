@@ -232,12 +232,15 @@ void BOSSRootFile::Print()
 		std::cout << "  contains " << fTrees.size() << " TTrees:" << std::endl;
 		std::list<TTree*>::iterator it = fTrees.begin();
 		while(it != fTrees.end()) {
-			std::cout << "    \"" << (*it)->GetName() << "\"\t\"" << (*it)->GetTitle() << "\"" << std::endl;
+			std::cout << "    \"" << (*it)->GetName() <<
+				"\"\t\"" << (*it)->GetTitle() <<
+				"\"\t" << (*it)->GetEntries() << " entries" << std::endl;
 			++it;
 		}
 	} else {
 		std::cout << "  does not contain any TTrees" << std::endl;
 	}
+	std::cout << std::endl;
 	std::cout << "  Output of fFile.ls():" << std::endl;
 	std::cout << "  ---------------------" << std::endl;
 	fFile.ls();
@@ -302,7 +305,7 @@ void BOSSRootFile::PlotDistribution1D(
 	// * Draw histogram and save * //
 		hist.Draw(opt);
 		if(outputFileName.EqualTo("")) {
-			const char* outputFolder = Form("%s/%s", Settings::Output::PlotOutputDir, __BASE_FILE__);
+			const char* outputFolder = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
 			gSystem->mkdir(outputFolder, kTRUE);
 			outputFileName = Form("%s/%s_%s.%s", outputFolder, tree->GetName(), branchName, Settings::Output::Extension);
 		}
@@ -391,7 +394,7 @@ void BOSSRootFile::PlotDistribution2D(
 		}
 	// * Draw histogram and save * //
 		hist.Draw(opt);
-		const char* outputFolder = Form("%s/%s", Settings::Output::PlotOutputDir, __BASE_FILE__);
+		const char* outputFolder = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
 		const char* outputFile = Form("%s_%s_%s.%s", tree->GetName(), branchX, branchY, Settings::Output::Extension);
 		gSystem->mkdir(outputFolder);
 		c.SaveAs(Form("%s/%s", outputFolder, outputFile));

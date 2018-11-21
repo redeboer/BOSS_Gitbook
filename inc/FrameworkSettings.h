@@ -11,15 +11,14 @@
  */
 
 #include "Particle.h"
+#include "TString.h"
 
 namespace Settings
 {
 	namespace Output
 	{
-		const char* Extension = "pdf";
-			//!< Default extension of output plots (e.g. `png`, `eps`, `jpg`, etc.).
-		const char* PlotOutputDir = Form("../plots/%s", Extension);
-			//!< Default output directory for plots.
+		const char* Extension = "pdf"; //!< Default extension of output plots (e.g. `png`, `eps`, `jpg`, etc.).
+		const TString PlotOutputDir = Form("../plots/%s", Extension); //!< Default output directory for plots.
 	}
 	namespace Math
 	{
