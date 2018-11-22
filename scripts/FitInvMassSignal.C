@@ -41,10 +41,10 @@ void FitInvMassSignal()
 		ReconstructedParticle rhom(-213, "#pi^{-}#pi^{0}"); // negative rho meson
 
 	// * Create invariant mass histogram * //
-		TH1D hist_pi0  = SetInvariantMassHistogram(pi0,  400);
-		TH1D hist_rho0 = SetInvariantMassHistogram(rho0, 200);
-		TH1D hist_rhop = SetInvariantMassHistogram(rhop, 200);
-		TH1D hist_rhom = SetInvariantMassHistogram(rhom, 200);
+		TH1D hist_pi0  = CreateInvariantMassHistogram(pi0,  400);
+		TH1D hist_rho0 = CreateInvariantMassHistogram(rho0, 200);
+		TH1D hist_rhop = CreateInvariantMassHistogram(rhop, 200);
+		TH1D hist_rhom = CreateInvariantMassHistogram(rhom, 200);
 
 	// * Loop the tree to fill inv mass spectrums * //
 		auto fit4c_lambda = [] (TH1D& pi0) {
