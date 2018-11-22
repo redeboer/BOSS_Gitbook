@@ -35,7 +35,7 @@ void FitInvMassSignal()
 		if(file.IsZombie()) return;
 
 	// * Particles to reconstruct * //
-		ReconstructedParticle pi0 ( 111, "#gamma#gamma"); // neutral rho meson
+		ReconstructedParticle pi0 ( 111, "#gamma#gamma");   // neutral pi meson
 		ReconstructedParticle rho0( 113, "#pi^{+}#pi^{-}"); // neutral rho meson
 		ReconstructedParticle rhop( 213, "#pi^{+}#pi^{0}"); // positive rho meson
 		ReconstructedParticle rhom(-213, "#pi^{-}#pi^{0}"); // negative rho meson
