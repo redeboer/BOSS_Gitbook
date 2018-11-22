@@ -301,8 +301,8 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 	if(fParticlePDG) {
 		switch(fParticlePDG->PdgCode()) {
 			case 111: // neutral pion
-				fMassOffset           = .03;
-				fBWPureWidth          = .007;
+				fMassOffset           = .02;
+				fBWPureWidth          = .013;
 				fBWConvolutedWidth    = .00002;
 				fDoubleGaussianWidths = {.00499, .0135};
 				fFitRange             = {.10, .17};
@@ -310,7 +310,7 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 				break;
 			case 113: // neutral rho
 				fMassOffset           = .05;
-				fBWPureWidth          = .0008;
+				fBWPureWidth          = .8;
 				fBWConvolutedWidth    = .001;
 				fDoubleGaussianWidths = {.0469, .1312};
 				fFitRange             = {.40, 1.1};
@@ -318,8 +318,8 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 				break;
 			case 213:
 			case -213: // rho meson
-				fMassOffset           = .10;
-				fBWPureWidth          = .08;
+				fMassOffset           = .05;
+				fBWPureWidth          = .8;
 				fBWConvolutedWidth    = .0004;
 				fDoubleGaussianWidths = {.0542, .209};
 				fFitRange             = {.50, 1.42};

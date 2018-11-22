@@ -64,13 +64,13 @@ void FitInvMassSignal()
 		FitDoubleGaussian(hist_rhop, rhop, 2);
 		FitDoubleGaussian(hist_rhom, rhom, 2);
 
-	// // * Fit Breit-Wigner * //
+	// * Fit Breit-Wigner * //
 		FitBreitWigner(hist_pi0,  pi0);
 		FitBreitWigner(hist_rho0, rho0, 2);
 		FitBreitWigner(hist_rhop, rhop, 2);
 		FitBreitWigner(hist_rhom, rhom, 2);
 
-	// // * Fit Breit-Wigner convoluted with double Gaussian * //
+	// * Fit Breit-Wigner convoluted with double Gaussian * //
 		FitBWDoubleGaussianConvolution(hist_pi0,  pi0);
 		FitBWDoubleGaussianConvolution(hist_rho0, rho0, 2);
 		FitBWDoubleGaussianConvolution(hist_rhop, rhop, 2);
