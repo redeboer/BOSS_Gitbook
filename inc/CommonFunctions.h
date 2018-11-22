@@ -132,6 +132,29 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	}
 
 	/**
+	 * @brief Create a `RooRealVar` specifically for resonstructing a certain particle (`ReconstructedParticle`).
+	 */
+	RooRealVar CreateRooFitInvMassVar(const ReconstructedParticle& particle) {
+		RooRealVar var(
+			Form("#it{M}_{%s}", particle.GetDaughterLabel()),
+			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
+			particle.PlotFrom(),
+			particle.PlotUntil()
+		);
+		return var;
+	}
+
+	/**
+	 * @brief Create a `RooDataHist` specifically for resonstructing a certain particle (`ReconstructedParticle`).
+	 */
+	RooDataHist CreateRooFitInvMassDistr(TH1D &hist, const RooRealVar &var, const ReconstructedParticle& particle) {
+		RooDataHist distr(
+			Form("%scandidate_RooDataHist", particle.GetName()),
+			hist.GetTitle(), var, RooFit::Import(hist));
+		return distr;
+	}
+
+	/**
 	 * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
 	 * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
 	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
@@ -140,18 +163,10 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	 */
 	void FitDoubleGaussian(TH1D &hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0)
 	{
-		
-		// * The `RooFit` method * //
-			RooRealVar invMassVar("invMassVar",
-				Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
-				particle.PlotFrom(),
-				particle.PlotUntil()
-			);
 
-		// * Import histogram to Roofit * //
-			RooDataHist invMassDistribution(
-				Form("%scandidate_RooDataHist", particle.GetName()), hist.GetTitle(),
-				invMassVar, RooFit::Import(hist));
+		// * Create RooFit variable and data distribution * //
+			RooRealVar invMassVar = CreateRooFitInvMassVar(particle);
+			RooDataHist invMassDistribution = CreateRooFitInvMassDistr(hist, invMassVar, particle);
 
 		// * Create Gaussian functions * //
 			RooRealVar mean(
@@ -235,17 +250,9 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	void FitBreitWigner(TH1D &hist, const ReconstructedParticle& particle)
 	{
 
-		// * The `RooFit` method * //
-			RooRealVar invMassVar("invMassVar",
-				Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
-				particle.PlotFrom(),
-				particle.PlotUntil()
-			);
-
-		// * Import histogram to Roofit * //
-			RooDataHist invMassDistribution(
-				Form("%scandidate_RooDataHist", particle.GetName()), hist.GetTitle(),
-				invMassVar, RooFit::Import(hist));
+		// * Create RooFit variable and data distribution * //
+			RooRealVar invMassVar = CreateRooFitInvMassVar(particle);
+			RooDataHist invMassDistribution = CreateRooFitInvMassDistr(hist, invMassVar, particle);
 
 		// * Create Breit-Wigner function and fit * //
 			RooRealVar mean(
@@ -290,18 +297,10 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	 */
 	void FitBWDoubleGaussianConvolution(TH1D &hist, const ReconstructedParticle& particle)
 	{
-		
-		// * The `RooFit` method * //
-			RooRealVar invMassVar("invMassVar",
-				Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
-				particle.PlotFrom(),
-				particle.PlotUntil()
-			);
 
-		// * Import histogram to Roofit * //
-			RooDataHist invMassDistribution(
-				Form("%scandidate_RooDataHist", particle.GetName()), hist.GetTitle(),
-				invMassVar, RooFit::Import(hist));
+		// * Create RooFit variable and data distribution * //
+			RooRealVar invMassVar = CreateRooFitInvMassVar(particle);
+			RooDataHist invMassDistribution = CreateRooFitInvMassDistr(hist, invMassVar, particle);
 
 		// * Create Gaussian functions * //
 			RooRealVar m0("GaussianMeanZero", "GaussianMeanZero", 0.);

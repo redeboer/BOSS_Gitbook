@@ -31,7 +31,7 @@
 void FitDoubleGaussian()
 {
 	// * Open RhoPi input file * //
-		RhopiRootFile file("../data/root/ana_rhopi_data.root");
+		RhopiRootFile file("../data/root/ana_rhopi_mc.root");
 		if(file.IsZombie()) return;
 
 	// * Particles to reconstruct * //
@@ -65,16 +65,16 @@ void FitDoubleGaussian()
 		FitDoubleGaussian(hist_rhom, rhom, 2);
 
 	// // * Fit Breit-Wigner * //
-	// 	FitBreitWigner(hist_pi0,  pi0);
-	// 	FitBreitWigner(hist_rho0, rho0);
-	// 	FitBreitWigner(hist_rhop, rhop);
-	// 	FitBreitWigner(hist_rhom, rhom);
+		FitBreitWigner(hist_pi0,  pi0);
+		FitBreitWigner(hist_rho0, rho0);
+		FitBreitWigner(hist_rhop, rhop);
+		FitBreitWigner(hist_rhom, rhom);
 
 	// // * Fit Breit-Wigner convoluted with double Gaussian * //
-	// 	FitBWDoubleGaussianConvolution(hist_pi0,  pi0);
-	// 	FitBWDoubleGaussianConvolution(hist_rho0, rho0);
-	// 	FitBWDoubleGaussianConvolution(hist_rhop, rhop);
-	// 	FitBWDoubleGaussianConvolution(hist_rhom, rhom);
+		FitBWDoubleGaussianConvolution(hist_pi0,  pi0);
+		FitBWDoubleGaussianConvolution(hist_rho0, rho0);
+		FitBWDoubleGaussianConvolution(hist_rhop, rhop);
+		FitBWDoubleGaussianConvolution(hist_rhom, rhom);
 
 }
 
