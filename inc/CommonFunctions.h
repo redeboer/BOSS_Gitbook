@@ -177,15 +177,15 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 				particle.GetGaussianSmallWidth(), 0., 10.*particle.GetGaussianSmallWidth());
 			RooRealVar s2("#sigma_{2}", Form("%s width 2", particle.GetNameLaTeX()),
 				particle.GetGaussianWideWidth(), 0., 10.*particle.GetGaussianWideWidth());
-			RooGaussian gauss1("gauss1",
-				"Gaussian PDF 1 for #it{M}_{#gamma#gamma} distribution",
+			RooGaussian g1("gauss1",
+				Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
 				invMassVar, mean, s1);
-			RooGaussian gauss2("gauss2",
-				"Gaussian PDF 2 for #it{M}_{#gamma#gamma} distribution",
+			RooGaussian g2("gauss2",
+				Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
 				invMassVar, mean, s2);
 			RooRealVar n1("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
 			RooRealVar n2("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
-			RooArgList components(gauss1, gauss2);
+			RooArgList compon(g1, g2);
 			RooArgList ratios(n1, n2);
 
 		// * Add polynomial background if required * //
@@ -202,13 +202,13 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 				Form("N_{pol%u}", numPolynomials),
 				0., 0., 1e5);
 			if(numPolynomials) {
-				components.add(polBackground);
+				compon.add(polBackground);
 				ratios.add(sbratio);
 			}
 
 		// * Add the components and fit * //
-			RooAddPdf  doublegauss("double_gaussian", "Double gaussian", components, ratios);
-			doublegauss.fitTo(
+			RooAddPdf fullShape("full_shape", "Double gaussian + background", compon, ratios);
+			fullShape.fitTo(
 				invMassDistribution,
 				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
 
@@ -218,16 +218,16 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 			invMassDistribution.plotOn(frame, // draw distribution
 				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
 				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
-			doublegauss.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack)); // draw sig+bck fit
-			doublegauss.plotOn(frame, RooFit::Components(gauss1), // draw gauss 1
+			fullShape.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack)); // draw sig+bck fit
+			fullShape.plotOn(frame, RooFit::Components(g1), // draw gauss 1
 				RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
-			doublegauss.plotOn(frame, RooFit::Components(gauss2), // draw gauss 2
+			fullShape.plotOn(frame, RooFit::Components(g2), // draw gauss 2
 				RooFit::LineWidth(1), RooFit::LineColor(kBlue-4));
 			if(numPolynomials) {
-				doublegauss.plotOn(frame, RooFit::Components(polBackground), // draw background
+				fullShape.plotOn(frame, RooFit::Components(polBackground), // draw background
 					RooFit::LineStyle(kDashed), RooFit::LineWidth(1), RooFit::LineColor(kGray));
 			}
-			doublegauss.paramOn(frame, RooFit::Layout(.56, .98, .92));
+			fullShape.paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 		// * Write fitted histograms * //
 			TCanvas c;
@@ -247,7 +247,7 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	 * @param hist Invariant mass histogram that you would like to fit
 	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
 	 */
-	void FitBreitWigner(TH1D &hist, const ReconstructedParticle& particle)
+	void FitBreitWigner(TH1D &hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0)
 	{
 
 		// * Create RooFit variable and data distribution * //
@@ -261,10 +261,34 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 				particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
 			RooRealVar width("width", Form("%s width", particle.GetNameLaTeX()),
 				particle.GetBWPureWidth(), 0., 100.*particle.GetBWPureWidth());
-			RooGaussian bw("breitwigner",
+			RooGaussian signal("breitwigner",
 				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
 				invMassVar, mean, width);
-			bw.fitTo(
+			RooRealVar n("N_{BW}", "N_{BW}", 1e2, 0., 1e6);
+			RooArgList compon(signal);
+			RooArgList ratios(n);
+
+		// * Add polynomial background if required * //
+			RooArgList parameters;
+			for(UChar_t i = 0; i <= numPolynomials; ++i) {
+				auto p = new RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6);
+				parameters.add(*p);
+			}
+			RooPolynomial polBackground("polBkg",
+				Form("Polynomial-%u background", numPolynomials),
+				invMassVar, parameters);
+			RooRealVar sbratio(
+				Form("N_{pol%u}", numPolynomials),
+				Form("N_{pol%u}", numPolynomials),
+				0., 0., 1e5);
+			if(numPolynomials) {
+				compon.add(polBackground);
+				ratios.add(sbratio);
+			}
+
+		// * Add the components and fit * //
+			RooAddPdf fullShape("full_shape", "Breit-Wigner + background", compon, ratios);
+			fullShape.fitTo(
 				invMassDistribution,
 				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
 
@@ -274,8 +298,14 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 			invMassDistribution.plotOn(frame, // draw distribution
 				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
 				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
-			bw.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
-			bw.paramOn(frame, RooFit::Layout(.56, .98, .92));
+			fullShape.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
+			if(numPolynomials) {
+				fullShape.plotOn(frame, RooFit::Components(signal), // draw Breit-Wigner
+					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
+				fullShape.plotOn(frame, RooFit::Components(polBackground), // draw background
+					RooFit::LineStyle(kDashed), RooFit::LineWidth(1), RooFit::LineColor(kGray));
+			}
+			fullShape.paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 		// * Write fitted histograms * //
 			TCanvas c;
@@ -295,31 +325,32 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	 * @param hist Invariant mass histogram that you would like to fit
 	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
 	 */
-	void FitBWDoubleGaussianConvolution(TH1D &hist, const ReconstructedParticle& particle)
+	void FitBWDoubleGaussianConvolution(TH1D &hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0)
 	{
 
 		// * Create RooFit variable and data distribution * //
 			RooRealVar invMassVar = CreateRooFitInvMassVar(particle);
 			RooDataHist invMassDistribution = CreateRooFitInvMassDistr(hist, invMassVar, particle);
 
-		// * Create Gaussian functions * //
+		// * Create double Gaussian function * //
 			RooRealVar m0("GaussianMeanZero", "GaussianMeanZero", 0.);
-			RooRealVar s1("#sigma_{1}", Form("%s width 1", particle.GetNameLaTeX()), particle.GetGaussianSmallWidth());
-			RooRealVar s2("#sigma_{2}", Form("%s width 2", particle.GetNameLaTeX()), particle.GetGaussianWideWidth());
-			RooGaussian gauss1("gauss1",
+			RooRealVar s1("#sigma_{1}", Form("%s width 1", particle.GetNameLaTeX()),
+				particle.GetGaussianSmallWidth()); //! width is fixed
+			RooRealVar s2("#sigma_{2}", Form("%s width 2", particle.GetNameLaTeX()),
+				particle.GetGaussianWideWidth()); //! width is fixed
+			RooGaussian g1("gauss1",
 				Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
 				invMassVar, m0, s1);
-			RooGaussian gauss2("gauss2",
+			RooGaussian g2("gauss2",
 				Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
 				invMassVar, m0, s2);
+			RooRealVar n1("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
+			RooRealVar n2("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
+			RooRealVar ratio("N_{gaus1} / N_{gaus2}", "Ratio between the two Gaussian pdfs", .8, 0., 1.);
+			RooAddPdf doublegauss("double_gaussian", "Double gaussian",
+				RooArgList(g1, g2), RooArgList(ratio));
 
 		// * Add the Gaussian components * //
-			RooRealVar ratio("N_{gaus1} / N_{gaus2}", "Ratio between the two Gaussian pdfs", .8, 0., 1.);
-			RooAddPdf  doublegauss("double_gaussian", "Double gaussian",
-				RooArgList(gauss1, gauss2), RooArgList(ratio));
-			doublegauss.fitTo(
-				invMassDistribution,
-				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
 
 		// * Create Breit-Wigner/Cauchy distribution * //
 			RooRealVar mean(
@@ -332,9 +363,34 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
 				invMassVar, mean, width);
 
-		// * Convolute and fit * //
-			RooFFTConvPdf signal("signal", "signal", invMassVar, bw, doublegauss);
-			signal.fitTo(invMassDistribution,
+		// * Convolute * //
+			RooFFTConvPdf signal("convolution", "convolution", invMassVar, bw, doublegauss);
+			RooRealVar n("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
+			RooArgList compon(signal);
+			RooArgList ratios(n);
+
+		// * Add polynomial background if required * //
+			RooArgList parameters;
+			for(UChar_t i = 0; i <= numPolynomials; ++i) {
+				auto p = new RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6);
+				parameters.add(*p);
+			}
+			RooPolynomial polBackground("polBkg",
+				Form("Polynomial-%u background", numPolynomials),
+				invMassVar, parameters);
+			RooRealVar sbratio(
+				Form("N_{pol%u}", numPolynomials),
+				Form("N_{pol%u}", numPolynomials),
+				0., 0., 1e5);
+			if(numPolynomials) {
+				compon.add(polBackground);
+				ratios.add(sbratio);
+			}
+
+		// * Add the components and fit * //
+			RooAddPdf fullShape("full_shape", "Double gaussian + background", compon, ratios);
+			fullShape.fitTo(
+				invMassDistribution,
 				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
 
 		// * Plot results and save * //
@@ -343,8 +399,14 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 			invMassDistribution.plotOn(frame, // draw distribution
 				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
 				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
-			signal.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
-			signal.paramOn(frame, RooFit::Layout(.56, .98, .92));
+			fullShape.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
+			if(numPolynomials) {
+				fullShape.plotOn(frame, RooFit::Components(signal), // draw signal
+					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
+				fullShape.plotOn(frame, RooFit::Components(polBackground), // draw background
+					RooFit::LineStyle(kDashed), RooFit::LineWidth(1), RooFit::LineColor(kGray));
+			}
+			fullShape.paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 		// * Write fitted histograms * //
 			TCanvas c;
