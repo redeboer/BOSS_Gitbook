@@ -28,7 +28,7 @@
  * @brief Main function used when compiling and executing in `ROOT`.
  * @param inputFileName 
  */
-void FitDoubleGaussian()
+void FitInvMassSignal()
 {
 	// * Open RhoPi input file * //
 		RhopiRootFile file("../data/root/ana_rhopi_data.root");
@@ -83,6 +83,6 @@ void FitDoubleGaussian()
  */
 int main()
 {
-	FitDoubleGaussian();
+	FitInvMassSignal();
 	return 0;
 }
