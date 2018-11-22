@@ -52,7 +52,7 @@ EventCnvSvc.digiRootInputFile = {"OUTPUT_PATH/RDF"};
 EventCnvSvc.digiRootOutputFile ="OUTPUT_PATH/DSTFILE";
 
 // * ------- Number of events ------- * //
-// Number of events to be processed (default is 10)
+// Number of events to be processed (-1 stands for all events)
 ApplicationMgr.EvtMax = NEVENTS;
 
 // # vim: filetype=c

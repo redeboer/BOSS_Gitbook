@@ -44,6 +44,6 @@ MessageSvc.OutputLevel = 5;
 MessageSvc.useColors   = true;
 
 // * ------- Number of events ------- * //
-// Number of events to be processed
+// Number of events to be processed (-1 stands for all events)
 ApplicationMgr.EvtMax = NEVENTS;
 
