@@ -84,9 +84,9 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	/**
 	 * @brief Create a histogram object.
 	 */
-	void SetInvariantMassHistogram(TH1D& hist, const ReconstructedParticle& particle, const int nBins = 200)
+	TH1D SetInvariantMassHistogram(const ReconstructedParticle& particle, const int nBins = 200)
 	{
-		hist = TH1D(
+		return TH1D(
 			Form("hist_%s", particle.GetName()),
 			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
 				particle.GetNameLaTeX(), particle.GetDaughterLabel()),
