@@ -18,8 +18,8 @@ MessageSvc.OutputLevel = 5;
 MessageSvc.useColors   = true;
 
 // * ------- Number of events ------- * //
-// Number of events to be processed (default is 10)
-ApplicationMgr.EvtMax = 10000;
+// Number of events to be processed (-1 stands for all events)
+ApplicationMgr.EvtMax = NEVENTS;
 
 // * ------- ROOT output data file (root) ------- * //
 ApplicationMgr.HistogramPersistency = "ROOT";

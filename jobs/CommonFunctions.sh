@@ -15,7 +15,7 @@
 # * ================================== * #
 
 	# * Check if already being sourced * #
-		if [ ${CommonFunctionsScriptIsSourced} == true ]; then
+		if [ "${CommonFunctionsScriptIsSourced}" == true ]; then
 			return
 		fi
 
@@ -63,6 +63,24 @@
 	}
 	export CdToBaseDir
 
+	function CreateOrEmptyDirectory()
+	# Create a directory if necessary. If it already exists, remove the already existing files (with a certain pattern).
+	{
+		# * Import function arguments
+		local path=${1}
+		local subdir=${2}
+		local analysis_type=${3}
+		# * Main function: mkdir if necessary
+		if [ ! -d "${path}/${2}" ]; then
+			mkdir -p "${path}/${2}"
+		else
+			rm -rf "${path}/${2}/${2}_${analysis_type}_"*".sh"       # remove sumbit scripts
+			rm -rf "${path}/${2}/${2}_${analysis_type}_"*".sh."*"."* # remove log files
+			rm -rf "${path}/${2}/${2}_${analysis_type}_"*".txt"      # remove jobOptions
+		fi
+	}
+	export CreateOrEmptyDirectory
+
 
 
 # * ======================================= * #
@@ -100,7 +118,7 @@
 	function AskForInput()
 	# Print a terminal message in the color used for a success message.
 	{
-		echo -e "\n${gInputColorCode}${1}${gColorCodeEnd}"
+		echo -e "${gInputColorCode}${1}${gColorCodeEnd}"
 		read -p ""
 	}
 	export AskForInput
@@ -140,24 +158,6 @@
 	}
 	export CheckIfFileExists
 
-	function CreateOrEmptyDirectory()
-	# Create a directory if necessary. If it already exists, remove the already existing files (with a certain pattern).
-	{
-		# * Import function arguments
-		local path=${1}
-		local subdir=${2}
-		local analysis_type=${3}
-		# * Main function: mkdir if necessary
-		if [ ! -d "${path}/${2}" ]; then
-			mkdir "${path}/${2}"
-		else
-			rm -rf "${path}/${2}/${2}_${analysis_type}_"*".sh"       # remove sumbit scripts
-			rm -rf "${path}/${2}/${2}_${analysis_type}_"*".sh."*"."* # remove log files
-			rm -rf "${path}/${2}/${2}_${analysis_type}_"*".txt"      # remove jobOptions
-		fi
-	}
-	export CreateOrEmptyDirectory
-
 
 
 # * ====================================== * #
@@ -179,10 +179,14 @@
 	{
 		# * Import function arguments
 		local fileName=${1}
-		# * Main function
-		DeleteAllEmptyLines ${fileName}
-		sed -i -e "s/.*/\t\"&\",/" ${fileName} # convert lines to C++ vector arguments
-		sed -i "$ s/.$//"          ${fileName} # remove last comma
+		# * Execute function if lines 
+		local numCorrect=$(grep "^\s*\"[^\"]*\",\s*$" "${fileName}" | wc -l) # does not include last line
+		local numLines=$(cat "${fileName}" | sed '/^\s*$/d' | wc -l)
+		if [ $numLines != $(($numCorrect+1)) ]; then
+			DeleteAllEmptyLines ${fileName}
+			sed -i -e "s/.*/\t\"&\",/" ${fileName} # convert lines to C++ vector arguments
+			sed -i "$ s/.$//"          ${fileName} # remove last comma
+		fi
 	}
 	export FormatTextFileToCppVectorArguments
 
@@ -192,7 +196,7 @@
 		# * Import function arguments
 		local fileName=${1}
 		# * Main function: remove Windows style newline characters
-		sed -i 's/\r$//' ${fileName}
+		sed -i 's/\r$//' "${fileName}"
 	}
 	export ChangeLineEndingsFromWindowsToUnix
 
@@ -245,7 +249,7 @@
 				fi
 				outputFile="filenames/${outputFile}.txt"
 			if [ $# -ge 2 ]; then outputFile="${2}"; fi
-			local maxNLines=0 # default value
+			local maxNLines=8 # default value
 			if [ $# -ge 3 ]; then maxNLines=$3; fi
 			local extension="*" # does not look for extensions by default
 			if [ $# -ge 4 ]; then extension="${4}"; fi

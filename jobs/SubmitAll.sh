@@ -8,7 +8,10 @@
 # *     ARGUMENTS: $1 analysis name (e.g. "rhopi")
 # * ===============================================================================
 
+# * ===================================================== * #
 # * ------- Attempt to load script with functions ------- * #
+# * ===================================================== * #
+
 	commonFunctionsScriptName="CommonFunctions.sh"
 	if [ -s "${commonFunctionsScriptName}" ]; then
 		source "${commonFunctionsScriptName}"
@@ -17,13 +20,22 @@
 		exit
 	fi
 
-# * ------- Script parameters ------- * #
-	analysis_type="${1}" # will be used in file naming
+
+
+# ! ================================= ! #
+# ! ------- Script parameters ------- ! #
+# ! ================================= ! #
+
+	analysisType="${1}" # will be used in file naming
 	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
 	scriptFolder="${afterburnerPath}/jobs"
 
 
-# * ------- Functions ------- * #
+
+# * ========================= * #
+# * ------- FUNCTIONS ------- * #
+# * ========================= * #
+
 	function CheckFolder()
 	{
 		folderToCheck="${1}"
@@ -34,28 +46,42 @@
 	}
 
 
+
+# * ================================ * #
 # * ------- Check parameters ------- * #
+# * ================================ * #
+
 	CheckFolder ${scriptFolder}
-	nJobs=$(ls ${scriptFolder}/sub/sub_${analysis_type}_*.sh | wc -l)
+	nJobs=$(ls ${scriptFolder}/sub/sub_${analysisType}_*.sh | wc -l)
 	if [ ${nJobs} == 0 ]; then
-		PrintErrorMessage "ERROR: No jobs of type \"${analysis_type}\" available"
+		PrintErrorMessage "ERROR: No jobs of type \"${analysisType}\" available"
 		exit
 	fi
 
 
+# * ====================================== * #
 # * ------- Run over all job files ------- * #
-	AskForInput "Press ENTER to submit ${nJobs} \"${analysis_type}\" jobs..."
-	for job in $(ls ${scriptFolder}/sub/sub_${analysis_type}_*.sh); do
-		chmod +x ${job} # not sure if necessary
-		hep_sub -g physics ${job}
+# * ====================================== * #
+
+	AskForInput "Press ENTER to submit ${nJobs} \"${analysisType}\" jobs..."
+	# for job in $(ls ${scriptFolder}/sub/sub_${analysisType}_*.sh); do #! absolute path
+	for job in $(ls sub/sub_${analysisType}_*.sh); do
+		chmod +x "${job}" # not sure if necessary
+		echo "${job}"
+		hep_sub -g physics "${job}"
 		if [ $? != 0 ]; then
 			PrintErrorMessage "Aborted submitting jobs"
 			exit
 		fi
 	done
 
+
+
+# * ===================================== * #
 # * ------- Final terminal output ------- * #
-	PrintSuccessMessage "Succesfully submitted ${nJobs} \"${analysis_type}\" jobs"
+# * ===================================== * #
+
+	PrintSuccessMessage "Succesfully submitted ${nJobs} \"${analysisType}\" jobs"
 	echo
 	echo "These are your jobs:"
 	hep_q -u $USER
