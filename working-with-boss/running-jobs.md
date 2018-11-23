@@ -2,13 +2,13 @@
 
 Particle physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In **BOSS**, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on **BOSS**:
 
-1. `sim`: you perform a Monte Carlo simulation and generate a raw data file \(`rtraw`\)
-2. `rec`: you reconstruct particle tracks from the raw data and write out a reconstructed data file \(`dst`\)
-3. `ana`: you analyse the reconstructed tracks and generate a [CERN ROOT](https://root.cern.ch/input-and-output) file containing trees that describe event and track variables \(`root`\)
+1. `sim`: you perform a Monte Carlo simulation and generate a raw data file \(`rtraw`\).
+2. `rec`: you reconstruct particle tracks from the raw data and write out a reconstructed data file \(`dst`\).
+3. `ana`: you analyse the reconstructed tracks and generate a [CERN ROOT](https://root.cern.ch/input-and-output) file containing trees that describe event and track variables \(`root`\).
 
 When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. \(See [Organisation of the IHEP server](https://github.com/redeboer/BOSS_Afterburner/tree/902bbfd0a1c109e93d69e39a384ddfed810d8a02/organisation-of-the-ihep-server/README.md), under "Reconstructed data sets", for where these files are located.\)
 
-The steps are performed from your the `jobOptions*.txt` files of your own package in your work area. As an example, you can run the `jobOptions` in in the `TestRelease` package:
+The steps are performed from your `jobOptions*.txt` files of your own package in your work area. These files are executed using the `boss.exe` command. As an example, you can run the `jobOptions` in in the `TestRelease` package:
 
 ```text
 cd /ihepbatch/bes/$USER/TestRelease/TestRelease-*/run/
@@ -17,7 +17,13 @@ boss.exe jobOptions_rec.txt
 boss.exe jobOptions_ana_rhopi.txt
 ```
 
-But be careful: for these jobs to work successfully, you will probably have to edit them and set the right paths.
+This is essentially it! Of course, for your own analysis, you will have to tweak the parameters in these `jobOptions_*.txt` files and, more importantly, modify the `RhopiAlg` source code to your own tastes.
+
+{% hint style="info" %}
+**Todo**: Describe \`Rhopi.
+{% endhint %}
+
+In the following, we will go through some extra tricks that you will need to master in order to do computational intensive analyses using **BOSS**.
 
 ## Submitting a job
 
