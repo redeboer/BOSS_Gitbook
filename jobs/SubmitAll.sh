@@ -64,10 +64,9 @@
 # * ====================================== * #
 
 	AskForInput "Press ENTER to submit ${nJobs} \"${analysisType}\" jobs..."
-	# for job in $(ls ${scriptFolder}/sub/sub_${analysisType}_*.sh); do #! absolute path
-	for job in $(ls sub/sub_${analysisType}_*.sh); do
+	for job in $(ls ${scriptFolder}/sub/sub_${analysisType}_*.sh); do #! absolute path
+	# for job in $(ls sub/sub_${analysisType}_*.sh); do #! relative path
 		chmod +x "${job}" # not sure if necessary
-		echo "${job}"
 		hep_sub -g physics "${job}"
 		if [ $? != 0 ]; then
 			PrintErrorMessage "Aborted submitting jobs"
