@@ -14,6 +14,18 @@ Although I recognise that any programmer will and should develop her or his own 
   * [**WinSCP**](https://winscp.net/eng/index.php)
   * [**PuTTY**](https://www.putty.org/)
 
+### Key generation for SSH
+
+If you do not like to keep having to enter your password
+
+```text
+ssh-keygen
+```
+
+{% hint style="info" %}
+**Todo**: Complete step by step tutorial.
+{% endhint %}
+
 ### Compiling
 
 For compiling outside ROOT, you will need to use a compiler like `g++`. The compiler needs to be told where the libraries for included ROOT header files are located. You can do this using flags that ROOT set during its installation. In case of `g++`, use:
