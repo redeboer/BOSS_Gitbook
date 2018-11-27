@@ -210,7 +210,7 @@
 				maxNLines=${2}
 			fi
 		# * Check arguments
-		CheckIfFileExists "${fileToSplit}"
+			CheckIfFileExists "${fileToSplit}"
 		# * Extract path, filename, and extension for prefix * #
 			local path=$(dirname "${fileToSplit}")
 			local filename=$(basename "${fileToSplit}")
@@ -218,6 +218,7 @@
 			local filename="${filename%.*}"
 			local prefix="${path}/${filename}_"
 		# * Split input file * #
+		rm -f "${prefix}???.${extension}" #! remove existing files
 		split -d -a3 -l${maxNLines} "${fileToSplit}" "${prefix}"
 		# * Append extension again (if original file has one) * #
 		# shopt -s extglob # for regex
