@@ -42,12 +42,12 @@ void PlotAnaOutput()
 
 	// * Set output directories *
 	// ! Set these depending on which histograms you save
-		gSystem->mkdir(Settings::Output::Extension.Data());
-		gSystem->mkdir(Form("%s/%s", Settings::Output::PlotOutputDir, "branches"));
-		gSystem->mkdir(Form("%s/%s", Settings::Output::PlotOutputDir, "tof1"));
-		gSystem->mkdir(Form("%s/%s", Settings::Output::PlotOutputDir, "tof2"));
-		gSystem->mkdir(Form("%s/%s", Settings::Output::PlotOutputDir, "fit4c"));
-		gSystem->mkdir(Form("%s/%s", Settings::Output::PlotOutputDir, "fit5c"));
+		gSystem->mkdir(Output::Extension);
+		gSystem->mkdir(Form("%s/%s", Output::PlotOutputDir.Data(), "branches"));
+		gSystem->mkdir(Form("%s/%s", Output::PlotOutputDir.Data(), "tof1"));
+		gSystem->mkdir(Form("%s/%s", Output::PlotOutputDir.Data(), "tof2"));
+		gSystem->mkdir(Form("%s/%s", Output::PlotOutputDir.Data(), "fit4c"));
+		gSystem->mkdir(Form("%s/%s", Output::PlotOutputDir.Data(), "fit5c"));
 
 	// * Create histograms * //
 		// * Invariant mass plots *

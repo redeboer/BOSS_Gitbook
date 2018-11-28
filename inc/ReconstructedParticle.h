@@ -13,13 +13,11 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-#include "TDatabasePDG.h"
+#include "../inc/Particle.h"
 #include "TParticlePDG.h"
-#include "Particle.h"
 #include "TString.h"
 #include <iostream>
 #include <utility>
-
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
