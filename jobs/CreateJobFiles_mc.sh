@@ -87,7 +87,7 @@ set -e # exit if a command or function exits with a non-zero status
 
 		# * Generate the analyse files (ana)
 		templateName="${scriptFolder}/templates/jobOptions_ana_${analysisType}.txt"
-		outputJobOptionsFile="${scriptFolder}/ana/ana_${analysisType}_${jobNo}.txt"
+		outputFile="${scriptFolder}/ana/ana_${analysisType}_${jobNo}.txt"
 		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
 			{sub(/DSTFILE/,"dst/rec_'${analysisType}'_'${jobNo}'.dst")}
@@ -95,11 +95,44 @@ set -e # exit if a command or function exits with a non-zero status
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 			{sub(/NEVENTS/,'${nEventsPerJob}')}
 			{if(flag == 1) {print $0} else {next} }' \
-		"${templateName}" > "${outputJobOptionsFile}"
+		"${templateName}" > "${outputFile}"
+		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
+		chmod +x "${outputFile}"
+
+		# * Generate the simulation files (sim)
+		templateName="${scriptFolder}/templates/jobOptions_sim_${analysisType}.txt"
+		outputFile="${scriptFolder}/sim/sim_${analysisType}_${jobNo}.txt"
+		CheckIfFileExists "${templateName}"
+		awk '{flag = 1}
+			{sub(/RDF/,"raw/sim_'${analysisType}'_'${jobNo}'.rtraw")}
+			{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
+			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
+			{sub(/RAND/,'$(($(date +%s%N) % 1000000000))')}
+			{sub(/DEC/,"dec/'${analysisType}'.dec")}
+			{sub(/NEVENTS/,'${nEventsPerJob}')}
+			{if(flag == 1) {print $0} else {next} }' \
+		${templateName} > "${outputFile}"
+		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
+		chmod +x "${outputFile}"
+
+		# * Generate the reconstruction files (rec)
+		templateName="${scriptFolder}/templates/jobOptions_rec_${analysisType}.txt"
+		outputFile="${scriptFolder}/rec/rec_${analysisType}_${jobNo}.txt"
+		CheckIfFileExists "${templateName}"
+		awk '{flag = 1}
+			{sub(/RDF/,"raw/sim_'${analysisType}'_'${jobNo}'.rtraw")}
+			{sub(/DSTFILE/,"dst/rec_'${analysisType}'_'${jobNo}'.dst")}
+			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
+			{sub(/RAND/,'$(($(date +%s%N) % 1000000000))')}
+			{sub(/NEVENTS/,'${nEventsPerJob}')}
+			{if(flag == 1) {print $0} else {next} }' \
+		"${templateName}" > "${outputFile}"
+		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
+		chmod +x "${outputFile}"
 
 		# * Generate the submit files (sub)
 		templateName="${scriptFolder}/templates/submit_mc.sh"
-		outputScriptFile="${scriptFolder}/sub/sub_${analysisType}_${jobNo}.sh"
+		outputFile="${scriptFolder}/sub/sub_${analysisType}_${jobNo}.sh"
 		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
 			{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
@@ -111,34 +144,9 @@ set -e # exit if a command or function exits with a non-zero status
 			{sub(/ANA_BOS/,"ana/ana_'${analysisType}'_'${jobNo}'.txt")}
 			{sub(/ANA_LOG/,"log/ana_'${analysisType}'_'${jobNo}'.log")}
 			{if(flag == 1) {print $0} else {next} }' \
-		"${templateName}" > "${outputScriptFile}"
-
-		# * Generate the simulation files (sim)
-		templateName="${scriptFolder}/templates/jobOptions_sim_${analysisType}.txt"
-		outputJobOptionsFile="${scriptFolder}/sim/sim_${analysisType}_${jobNo}.txt"
-		CheckIfFileExists "${templateName}"
-		awk '{flag = 1}
-			{sub(/RDF/,"raw/sim_'${analysisType}'_'${jobNo}'.rtraw")}
-			{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
-			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
-			{sub(/RAND/,'$(($(date +%s%N) % 1000000000))')}
-			{sub(/DEC/,"dec/'${analysisType}'.dec")}
-			{sub(/NEVENTS/,'${nEventsPerJob}')}
-			{if(flag == 1) {print $0} else {next} }' \
-		${templateName} > "${outputJobOptionsFile}"
-
-		# * Generate the reconstruction files (rec)
-		templateName="${scriptFolder}/templates/jobOptions_rec_${analysisType}.txt"
-		outputJobOptionsFile="${scriptFolder}/rec/rec_${analysisType}_${jobNo}.txt"
-		CheckIfFileExists "${templateName}"
-		awk '{flag = 1}
-			{sub(/RDF/,"raw/sim_'${analysisType}'_'${jobNo}'.rtraw")}
-			{sub(/DSTFILE/,"dst/rec_'${analysisType}'_'${jobNo}'.dst")}
-			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
-			{sub(/RAND/,'$(($(date +%s%N) % 1000000000))')}
-			{sub(/NEVENTS/,'${nEventsPerJob}')}
-			{if(flag == 1) {print $0} else {next} }' \
-		"${templateName}" > "${outputJobOptionsFile}"
+		"${templateName}" > "${outputFile}"
+		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
+		chmod +x "${outputFile}"
 
 	done
 	echo

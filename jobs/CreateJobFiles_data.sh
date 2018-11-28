@@ -93,24 +93,25 @@ set -e # exit if a command or function exits with a non-zero status
 			# * Generate the analyse files (ana)
 				templateName="${scriptFolder}/templates/jobOptions_ana_${analysisType}.txt"
 				CheckIfFileExists "${templateName}"
-				outputJobOptionsFile="${scriptFolder}/ana/ana_${analysisType}_${jobNo}.txt"
+				outpufFile="${scriptFolder}/ana/ana_${analysisType}_${jobNo}.txt"
 				# Replace simple parameters in template
 				awk '{flag = 1}
 					{sub(/ROOTFILE/,"root/ana_'${analysisType}'_'${jobNo}'.root")}
 					{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 					{sub(/NEVENTS/,'${nEventsPerJob}')}
 					{if(flag == 1) {print $0} else {next} }' \
-				"${templateName}" > "${outputJobOptionsFile}"
+				"${templateName}" > "${outpufFile}"
 				# Fill in vector of input DST files
 				sed -i "/DSTFILES/{
 					s/DSTFILES//g
 					r ${file}
-				}" "${outputJobOptionsFile}"
-				ChangeLineEndingsFromWindowsToUnix "${outputJobOptionsFile}"
+				}" "${outpufFile}"
+				ChangeLineEndingsFromWindowsToUnix "${outpufFile}"
+				chmod +x "${outputFile}"
 
 			# * Generate the submit files (sub)
 				templateName="${scriptFolder}/templates/submit_data.sh"
-				outputScriptFile="${scriptFolder}/sub/sub_${analysisType}_${jobNo}.sh"
+				outputFile="${scriptFolder}/sub/sub_${analysisType}_${jobNo}.sh"
 				CheckIfFileExists "${templateName}"
 				awk '{flag = 1}
 					{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
@@ -118,8 +119,9 @@ set -e # exit if a command or function exits with a non-zero status
 					{sub(/ANA_BOS/,"ana/ana_'${analysisType}'_'${jobNo}'.txt")}
 					{sub(/ANA_LOG/,"log/ana_'${analysisType}'_'${jobNo}'.log")}
 					{if(flag == 1) {print $0} else {next} }' \
-				"${templateName}" > "${outputScriptFile}"
-				ChangeLineEndingsFromWindowsToUnix "${outputJobOptionsFile}"
+				"${templateName}" > "${outputFile}"
+				ChangeLineEndingsFromWindowsToUnix "${outputFile}"
+				chmod +x "${outputFile}"
 
 			# * Increase counter
 				jobNo=$((jobNo + 1))
