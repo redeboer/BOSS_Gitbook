@@ -35,6 +35,9 @@ public:
 	Particle(int pdgCode);
 	Particle(const char* pdgCode);
 
+	// * Information *
+	bool IsLoaded() const;
+
 	// * Getters *
 	TParticlePDG* GetParticlePDG() const;
 	int GetPDGCode() const;
@@ -142,6 +145,10 @@ int Particle::GetPDGCode() const
 // * ------- INFORMATION ------- * //
 // * =========================== * //
 
+bool Particle::IsLoaded() const
+{
+	return fParticlePDG;
+}
 
 
 
