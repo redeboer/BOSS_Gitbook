@@ -418,6 +418,7 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 			c.Close();
 
 	}
+
 }
 
 #endif
