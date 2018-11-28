@@ -29,7 +29,7 @@ set -e # exit if a command or function exits with a non-zero status
 # ! ------- Script arguments ------- ! #
 # ! ================================ ! #
 	# * (1) input files that will be used to create the list of dst files
-	searchTerm="filenames/besfs3_offline_data_703-1_jpsi_round02_dst_090612_*.txt"
+	searchTerm="filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_*.txt"
 	if [ $# -ge 1 ]; then searchTerm="${1}"; fi
 	# * (2) analysis type name (optional -- default is "rhopi_data")
 	analysisType="rhopi_data" # default argument
@@ -93,20 +93,20 @@ set -e # exit if a command or function exits with a non-zero status
 			# * Generate the analyse files (ana)
 				templateName="${scriptFolder}/templates/jobOptions_ana_${analysisType}.txt"
 				CheckIfFileExists "${templateName}"
-				outpufFile="${scriptFolder}/ana/ana_${analysisType}_${jobNo}.txt"
+				outputFile="${scriptFolder}/ana/ana_${analysisType}_${jobNo}.txt"
 				# Replace simple parameters in template
 				awk '{flag = 1}
 					{sub(/ROOTFILE/,"root/ana_'${analysisType}'_'${jobNo}'.root")}
 					{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 					{sub(/NEVENTS/,'${nEventsPerJob}')}
 					{if(flag == 1) {print $0} else {next} }' \
-				"${templateName}" > "${outpufFile}"
+				"${templateName}" > "${outputFile}"
 				# Fill in vector of input DST files
 				sed -i "/DSTFILES/{
 					s/DSTFILES//g
 					r ${file}
-				}" "${outpufFile}"
-				ChangeLineEndingsFromWindowsToUnix "${outpufFile}"
+				}" "${outputFile}"
+				ChangeLineEndingsFromWindowsToUnix "${outputFile}"
 				chmod +x "${outputFile}"
 
 			# * Generate the submit files (sub)
