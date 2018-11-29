@@ -13,6 +13,7 @@
 	#include "../inc/ReconstructedParticle.h"
 	#include "../inc/CommonFunctions.h"
 	#include "../inc/RhopiRootFile.h"
+	#include "../inc/FitObjectDoubleGauss.h"
 	#include "TH1D.h"
 	#include <iostream>
 	using namespace RooFit;
@@ -35,46 +36,21 @@ void FitInvMassSignal()
 		if(file.IsZombie()) return;
 
 	// * Particles to reconstruct * //
-		ReconstructedParticle pi0 ( 111, "#gamma#gamma");   // neutral pi meson
-		ReconstructedParticle rho0( 113, "#pi^{+}#pi^{-}"); // neutral rho meson
-		ReconstructedParticle rhop( 213, "#pi^{+}#pi^{0}"); // positive rho meson
-		ReconstructedParticle rhom(-213, "#pi^{-}#pi^{0}"); // negative rho meson
+		ReconstructedParticle pi0(111, "#gamma#gamma");
 
 	// * Create invariant mass histogram * //
-		TH1D hist_pi0  = CreateInvariantMassHistogram(pi0,  200);
-		TH1D hist_rho0 = CreateInvariantMassHistogram(rho0, 200);
-		TH1D hist_rhop = CreateInvariantMassHistogram(rhop, 200);
-		TH1D hist_rhom = CreateInvariantMassHistogram(rhom, 200);
+		TH1D hist_pi0 = CreateInvariantMassHistogram(pi0,  400);
 
 	// * Loop the tree to fill inv mass spectrums * //
 		auto fit4c_lambda = [] (TH1D& pi0) {
 			pi0.Fill(fit4c::mpi0);
 		};
-		auto fit5c_lambda = [] (TH1D& rho0, TH1D& rhop, TH1D& rhom) {
-			rho0.Fill(fit5c::mrho0);
-			rhop.Fill(fit5c::mrhop);
-			rhom.Fill(fit5c::mrhom);
-		};
 		LoopTree(file.FindTree("fit4c"), fit4c_lambda, hist_pi0);
-		LoopTree(file.FindTree("fit5c"), fit5c_lambda, hist_rho0, hist_rhop, hist_rhom);
 
 	// * Fit double gaussian * //
-		// FitDoubleGaussian(hist_pi0,  pi0);
-		FitDoubleGaussian(hist_rho0, rho0, 2);
-	// 	FitDoubleGaussian(hist_rhop, rhop, 2);
-	// 	FitDoubleGaussian(hist_rhom, rhom, 2);
+		FitObjectDoubleGauss fit_pi0(hist_pi0, pi0);
+		fit_pi0.PerformFit();
 
-	// // * Fit Breit-Wigner * //
-	// 	FitBreitWigner(hist_pi0,  pi0);
-	// 	FitBreitWigner(hist_rho0, rho0, 2);
-	// 	FitBreitWigner(hist_rhop, rhop, 2);
-	// 	FitBreitWigner(hist_rhom, rhom, 2);
-
-	// // * Fit Breit-Wigner convoluted with double Gaussian * //
-	// 	FitBWDoubleGaussianConvolution(hist_pi0,  pi0);
-	// 	FitBWDoubleGaussianConvolution(hist_rho0, rho0, 2);
-	// 	FitBWDoubleGaussianConvolution(hist_rhop, rhop, 2);
-	// 	FitBWDoubleGaussianConvolution(hist_rhom, rhom, 2);
 
 }
 

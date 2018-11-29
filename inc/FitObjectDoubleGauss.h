@@ -17,6 +17,7 @@
 #include "../inc/FitObject.h"
 #include "RooGaussian.h"
 #include "RooPolynomial.h"
+#include "RooRealVar.h"
 #include <iostream>
 
 
@@ -30,41 +31,24 @@ public:
 	FitObjectDoubleGauss(TH1D& hist, const ReconstructedParticle& particle);
 
 	// * Setters *
-	void SetDaughterLabel(const char* daughters);
 
 	// * Getters *
-	const double GetLowerMass() const;
-	const double GetUpperMass() const;
-	const double GetMassOffsetPercentage() const;
-	const double FitFrom() const;
-	const double FitUntil() const;
-	const double PlotFrom() const;
-	const double PlotUntil() const;
-	const double GetBWPureWidth() const;
-	const double GetBWConvolutedWidth() const;
-	const double GetGaussianSmallWidth() const;
-	const double GetGaussianWideWidth() const;
-	const std::pair<double, double> GetDoubleGaussianWidths() const;
-	const std::pair<double, double> GetDoubleGaussianRatio() const;
-	const std::pair<double, double> GetFitRange() const;
-	const std::pair<double, double> GetPlotRange() const;
-	void GetDoubleGaussianWidths(double& from, double& to) const;
-	void GetFitRange(double& from, double& to) const;
-	void GetPlotRange(double& from, double& to) const;
-	const char* GetDaughterLabel() const;
 
 protected:
 	// * Data members *
-	TString fDaughterLabels; //!< LaTeX formatted string for decay particles.
-	double fMassOffset; //!< Percentage (divided by 100) that the mean (namely, the mass) may vary.
-	double fBWPureWidth; //!< Estimate for the width of the Breit-Wigner function when fitting BW only.
-	double fBWConvolutedWidth; //!< Estimate for the width of the Breit-Wigner function when convoluted with a double Gaussian.
-	std::pair<double, double> fDoubleGaussianWidths; //!< Pair of two sigma values. You can use that as estimates of the widths for the double gaussian that you plan to fit. These sigmas are supposed to characterise the resolution of the detector. For consistency in naming, the first one should be smaller than the second.
-	std::pair<double, double> fFitRange; //!< Invariant mass range over which you fit a function (double Gaussian, Crystal ball, Breit-Wigner, etc.).
-	std::pair<double, double> fPlotRange; //!< Invariant mass range that you plot.
+	std::unique_ptr<RooRealVar> fMean; //!< Mean of the <b>two</b> Gaussians when centered around the mass
+	std::unique_ptr<RooRealVar> fMean0; //!< Mean of the <b>two</b> Gaussians when centered around \f M_\text{inv} = 0 \f. This is useful in a convolution.
+	std::unique_ptr<RooRealVar> fSigma1; //!< Width of the (prferably) narrow Gaussian of the two.
+	std::unique_ptr<RooRealVar> fSigma2; //!< Width of the (prferably) wide Gaussian of the two.
+	std::unique_ptr<RooGaussian> fGaussian1; //!< Narrow Gaussian.
+	std::unique_ptr<RooGaussian> fGaussian2; //!< Wide Gaussian.
 
 	// * Private methods *
+	std::unique_ptr<RooRealVar> BuildSigmaVariable(const UChar_t number, const double& width);
+	std::unique_ptr<RooGaussian> BuildGaussianFunction(const bool wide, const bool mean0 = false);
 	void Initialize();
+	void SetMassParameter();
+	void SetMassParameterAroundZero();
 	void SetSignalArguments();
 
 };
@@ -103,37 +87,69 @@ protected:
 // * =============================== * //
 
 	/**
+	 * @brief Build a `RooRealVar` object that resembles a sigma of a Gaussian shape (i.e. has the proper name, title, and boundaries).
+	 */
+	std::unique_ptr<RooRealVar> FitObjectDoubleGauss::BuildSigmaVariable(const UChar_t num, const double& width)
+	{
+		return std_fix::make_unique<RooRealVar>(
+			Form("#sigma_{%u}", num),
+			Form("%s width %u", fParticle.GetNameLaTeX(), num),
+			fParticle.GetGaussianSmallWidth(),
+			width * Settings::Fit::fSigmaScaleFactorLow,
+			width * Settings::Fit::fSigmaScaleFactorUp);
+	}
+
+	void FitObjectDoubleGauss::SetMassParameter()
+	{
+		fMean = std_fix::make_unique<RooRealVar>(
+			Form("m_{%s}", fParticle.GetNameLaTeX()),
+			Form("%s mass", fParticle.GetNameLaTeX()),
+			fParticle.GetMass(), fParticle.GetLowerMass(), fParticle.GetUpperMass());
+	}
+
+	void FitObjectDoubleGauss::SetMassParameterAroundZero()
+	{
+		fMean0 = std_fix::make_unique<RooRealVar>("double_gauss_mean", "Double Gaussian mean set to 0", 0.);
+	}
+
+	std::unique_ptr<RooGaussian> FitObjectDoubleGauss::BuildGaussianFunction(const bool wide, const bool mean0)
+	{
+		// * Check existense of all objects * //
+		if(!fMean || !fMean || !fSigma1 || !fSigma2 ) return nullptr;
+		// * Construct parameters based on boolean input * //
+		UChar_t num = 1;
+		auto mean  = fMean.get();
+		auto sigma = fSigma1.get();
+		if(mean0) mean = fMean0.get();
+		if(wide) {
+			num = 2;
+			sigma = fSigma2.get();
+		}
+		// * Return properly formatted RooGaussian object * //
+		return std_fix::make_unique<RooGaussian>(
+			Form("gauss%u", num),
+			Form("Gaussian PDF %u for #it{M}_{%s} distribution", num, fParticle.GetDaughterLabel()),
+			fRooRealVar, *mean, *sigma);
+	}
+
+	/**
 	 * @brief Encapsulation of what any constructor for this object needs to do.
 	 */
 	void FitObjectDoubleGauss::Initialize()
 	{
+		SetMassParameter();
+		SetMassParameterAroundZero();
+		fSigma1 = BuildSigmaVariable(1, fParticle.GetGaussianSmallWidth());
+		fSigma2 = BuildSigmaVariable(2, fParticle.GetGaussianWideWidth());
+		fGaussian1 = BuildGaussianFunction(false); // narrow
+		fGaussian2 = BuildGaussianFunction(true);  // wide
+		fComponents.add(fGaussian1);
+		fComponents.add(fGaussian2);
+		fRatios.addClone(n1);
+		fRatios.addClone(n2);
+		RooRealVar n1("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
+		RooRealVar n2("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
 	}
-
-	/**
-	 * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
-	 * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
-	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
-	 * @param hist Invariant mass histogram that you would like to fit
-	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-	 */
-	void FitObjectDoubleGauss::SetSignalArguments()
-	{
-
-		// * Create function of two added Gaussian functions * //
-			RooRealVar mean(
-				Form("m_{%s}", fParticle.GetNameLaTeX()),
-				Form("%s mass", fParticle.GetNameLaTeX()),
-				fParticle.GetMass(), fParticle.GetLowerMass(), fParticle.GetUpperMass());
-			RooRealVar s1("#sigma_{1}", Form("%s width 1", fParticle.GetNameLaTeX()),
-				fParticle.GetGaussianSmallWidth(), 0., 10.*fParticle.GetGaussianSmallWidth());
-			RooRealVar s2("#sigma_{2}", Form("%s width 2", fParticle.GetNameLaTeX()),
-				fParticle.GetGaussianWideWidth(), 0., 10.*fParticle.GetGaussianWideWidth());
-			RooGaussian g1("gauss1",
-				Form("Gaussian PDF 1 for #it{M}_{%s} distribution", fParticle.GetDaughterLabel()),
-				fRooRealVar, mean, s1);
-			RooGaussian g2("gauss2",
-				Form("Gaussian PDF 2 for #it{M}_{%s} distribution", fParticle.GetDaughterLabel()),
-				fRooRealVar, mean, s2);
 			RooRealVar n1("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
 			RooRealVar n2("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
 			RooArgList compon(g1, g2);

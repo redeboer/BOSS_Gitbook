@@ -17,8 +17,10 @@
 	#include "../inc/ReconstructedParticle.h"
 	#include "RooDataHist.h"
 	#include "RooRealVar.h"
+	#include "RooAddPdf.h"
 	#include "TH1D.h"
 	#include <iostream>
+	#include <utility>
 
 
 // * ================================ * //
@@ -32,6 +34,7 @@ public:
 	~FitObject();
 
 	// * Setters *
+	void PerformFit();
 
 	// * Getters *
 	bool IsLoaded();
@@ -43,6 +46,9 @@ protected:
 	RooRealVar fRooRealVar; //!< Variable used by `RooFit` to perform fit on.
 	RooArgList fSigArgs;
 	RooArgList fBckArgs;
+	std::unique_ptr<RooAddPdf> fFullShape;
+	void AddPolynomialBackground(UChar_t nPol = 2);
+
 	TH1D* fHistogram; //!< Pointer to histogram that you want to analyse (perform a fit on). <b>The object does not own the histogram!</b>
 	UChar_t fNPolynomial;
 
@@ -73,6 +79,17 @@ FitObject::FitObject(TH1D& hist, const ReconstructedParticle& particle) :
 // * ------- SETTERS ------- * //
 // * ======================= * //
 
+/**
+ * @brief perform fit if `RooFit` objects have been loaded.
+ */
+void FitObject::PerformFit()
+{
+	if(fFullShape) {
+		fFullShape->fitTo(
+			fRooDataHist,
+			RooFit::Range(fParticle.FitFrom(), fParticle.FitUntil()));
+	}
+}
 
 
 
