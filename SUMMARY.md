@@ -1,11 +1,12 @@
 # Table of contents
 
 * [Main page](README.md)
+* [Introduction to BESIII](introduction-to-besiii.md)
 
 ## Working with BOSS
 
-* [The BOSS Analysis Framework](working-with-boss/intro.md)
 * [Organisation of the IHEP server](working-with-boss/ihep-server.md)
+* [The BOSS Analysis Framework](working-with-boss/intro.md)
 * [Setup of your BOSS environment](working-with-boss/setup.md)
 * [Set up a BOSS package](working-with-boss/setup-package.md)
 * [Running jobs](working-with-boss/running-jobs.md)
