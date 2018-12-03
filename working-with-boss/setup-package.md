@@ -18,7 +18,7 @@ cd TestRelease/TestRelease-*
 You are now in a folder like `TestRelease/TestRelease-00-00-86`, where `00-00-86` represents the version. Using `ls`, you can see that it contains some folders:
 
 * `cmt`: the _Configuration Management Tool_ that you will use to connect to **BOSS**
-* `CVS`: a folder used when generating documentation
+* `CVS`: a folder used for version management.
 * `run`: which contains the `jobOptions` that are run with `boss.exe`
 
 We can set up the `TestRelease` by going into `cmt` and 'broadcasting' to **BOSS** from there:
