@@ -24,6 +24,7 @@
 
 #include "Particle.h"
 #include "TString.h"
+#include <iostream>
 
 // * In case of C++ 2011 compilation *
 namespace std_fix {

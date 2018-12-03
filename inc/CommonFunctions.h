@@ -94,43 +94,43 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 			nBins, particle.PlotFrom(), particle.PlotUntil());
 	}
 
-	/**
-	 * @brief Function that allows you to create and save a quick sketch of a `TTree` branch.
-	 */
-	void DrawAndSave(TTree* tree, const char* varexp, const char* selection, Option_t* option, TString logScale = "")
-	{
-		TCanvas c;
-		SetLogScale(c, logScale);
-		tree->Draw(varexp, selection, option);
-		c.SaveAs(Form("%s/%s_%s", Settings::Output::PlotOutputDir.Data(), tree->GetName(), varexp));
-	}
+	// /**
+	//  * @brief Function that allows you to create and save a quick sketch of a `TTree` branch.
+	//  */
+	// void DrawAndSave(TTree* tree, const char* varexp, const char* selection, Option_t* option, TString logScale = "")
+	// {
+	// 	TCanvas c;
+	// 	SetLogScale(c, logScale);
+	// 	tree->Draw(varexp, selection, option);
+	// 	c.SaveAs(Form("%s/%s_%s", Settings::Output::PlotOutputDir.Data(), tree->GetName(), varexp));
+	// }
 
-	/**
-	 * @brief Auxiliary function that is used by the more specific `DrawAndSave` functions for `TH1D` and `TH2D`.
-	 */
-	void DrawAndSave(TH1 &hist, const char* saveas, Option_t* opt, TString logScale = "")
-	{
-		TCanvas c;
-		SetLogScale(c, logScale);
-		hist.Draw(opt);
-		c.SaveAs(Form("%s/%s", Settings::Output::PlotOutputDir.Data(), saveas));
-	}
+	// /**
+	//  * @brief Auxiliary function that is used by the more specific `DrawAndSave` functions for `TH1D` and `TH2D`.
+	//  */
+	// void DrawAndSave(TH1 &hist, const char* saveas, Option_t* opt, TString logScale = "")
+	// {
+	// 	TCanvas c;
+	// 	SetLogScale(c, logScale);
+	// 	hist.Draw(opt);
+	// 	c.SaveAs(Form("%s/%s", Settings::Output::PlotOutputDir.Data(), saveas));
+	// }
 
-	/**
-	 * @brief Draw and save a 1D distribution (output folder is determined from `FrameworkSettings.h`).
-	 */
-	void DrawAndSave(TH1D &hist, const char* saveas, TString logScale = "")
-	{
-		DrawAndSave(hist, saveas, "ep", logScale);
-	}
+	// /**
+	//  * @brief Draw and save a 1D distribution (output folder is determined from `FrameworkSettings.h`).
+	//  */
+	// void DrawAndSave(TH1D &hist, const char* saveas, TString logScale = "")
+	// {
+	// 	DrawAndSave(hist, saveas, "ep", logScale);
+	// }
 
-	/**
-	 * @brief Draw and save a 2D distribution (output folder is determined from `FrameworkSettings.h`).
-	 */
-	void DrawAndSave(TH2D &hist, const char* saveas, TString logScale = "")
-	{
-		DrawAndSave(hist, saveas, "colz", logScale);
-	}
+	// /**
+	//  * @brief Draw and save a 2D distribution (output folder is determined from `FrameworkSettings.h`).
+	//  */
+	// void DrawAndSave(TH2D &hist, const char* saveas, TString logScale = "")
+	// {
+	// 	DrawAndSave(hist, saveas, "colz", logScale);
+	// }
 
 	/**
 	 * @brief Create a `RooRealVar` specifically for resonstructing a certain particle (`ReconstructedParticle`).
@@ -156,6 +156,37 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	}
 
 	/**
+	 * @brief The `DrawAndSaveRecursion` functions are necessary for `DrawAndSave`, which is a variadic template function.
+	 */
+	template<class... ARGS> void DrawAndSaveRecursion(Option_t* option, ARGS&&... args); // start recursion
+	template<class TYPE, class... ARGS>
+	void DrawAndSaveRecursion(Option_t* option, TYPE first, ARGS... args)
+	{
+		auto obj = dynamic_cast<TObject*>(first);
+		if(obj) obj->Draw(option);
+		DrawAndSaveRecursion(option, args...); // continue recursion
+	}
+	template<> void DrawAndSaveRecursion(Option_t* option) {} // end recursion
+
+	/**
+	 * @brief Function that allows you to draw and save any set of `TObject`s.
+	 */
+	template<class ...ARGS>
+	void DrawAndSave(const char* filename, Option_t* option, const char* logScale, ARGS... args)
+	{
+		// * Create canvas * //
+			TCanvas c;
+			SetLogScale(c, logScale);
+			c.SetBatch();
+		// * Draw objects * //
+			DrawAndSaveRecursion(option, args...);
+		// * Save canvas * //
+			const TString outputDir = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
+			gSystem->mkdir(outputDir.Data());
+			c.SaveAs(Form("%s/%s.%s", outputDir.Data(), filename, Settings::Output::Extension));
+	}
+
+	/**
 	 * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
 	 * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
 	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
@@ -165,103 +196,102 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	void FitDoubleGaussian(TH1D &hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0)
 	{
 		// * Data members * //
-		RooArgList fBckParameters;
-		RooArgList fComponents;
-		RooArgList fNContributions;
-		std::unique_ptr<RooAddPdf>     fFullShape;
-		std::unique_ptr<RooDataHist>   fRooDataHist;
-		std::unique_ptr<RooGaussian>   fGaussian1;
-		std::unique_ptr<RooGaussian>   fGaussian2;
-		std::unique_ptr<RooPolynomial> fPolBackground;
-		std::unique_ptr<RooRealVar>    fMean;
-		std::unique_ptr<RooRealVar>    fNGauss1;
-		std::unique_ptr<RooRealVar>    fNGauss2;
-		std::unique_ptr<RooRealVar>    fRooRealVar;
-		std::unique_ptr<RooRealVar>    fSigToBckRatio;
-		std::unique_ptr<RooRealVar>    fSigma1;
-		std::unique_ptr<RooRealVar>    fSigma2;
+			// * FitObject
+				std::unique_ptr<RooDataHist> fRooDataHist;
+				std::unique_ptr<RooRealVar>  fRooRealVar;
+			// * FitObjectDoubleGaussian
+				RooArgList fBckParameters;
+				RooArgList fComponents;
+				RooArgList fNContributions;
+				std::unique_ptr<RooAddPdf>     fFullShape;
+				std::unique_ptr<RooGaussian>   fGaussian1;
+				std::unique_ptr<RooGaussian>   fGaussian2;
+				std::unique_ptr<RooPolynomial> fPolBackground;
+				std::unique_ptr<RooRealVar>    fMean;
+				std::unique_ptr<RooRealVar>    fNGauss1;
+				std::unique_ptr<RooRealVar>    fNGauss2;
+				std::unique_ptr<RooRealVar>    fSigToBckRatio;
+				std::unique_ptr<RooRealVar>    fSigma1;
+				std::unique_ptr<RooRealVar>    fSigma2;
 
-if(true) {
-		// * Create RooFit variable and data distribution * //
-			fRooRealVar  = std_fix::make_unique<RooRealVar>(CreateRooFitInvMassVar(particle));
-			fRooDataHist = std_fix::make_unique<RooDataHist>(CreateRooFitInvMassDistr(hist, *fRooRealVar, particle));
+		if(true) {
+			// * Create RooFit variable and data distribution * //
+				fRooRealVar  = std_fix::make_unique<RooRealVar>(CreateRooFitInvMassVar(particle));
+				fRooDataHist = std_fix::make_unique<RooDataHist>(CreateRooFitInvMassDistr(hist, *fRooRealVar, particle));
 
-		// * Create Gaussian functions * //
-			fMean = std_fix::make_unique<RooRealVar>(
-				Form("m_{%s}", particle.GetNameLaTeX()),
-				Form("%s mass", particle.GetNameLaTeX()),
-				particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
-			fSigma1 = std_fix::make_unique<RooRealVar>("#sigma_{1}",
-				Form("%s width 1", particle.GetNameLaTeX()),
-				particle.GetGaussianSmallWidth(),
-				Settings::Fit::fSigmaScaleFactorLow * particle.GetGaussianSmallWidth(),
-				Settings::Fit::fSigmaScaleFactorUp  * particle.GetGaussianSmallWidth());
-			fSigma2 = std_fix::make_unique<RooRealVar>("#sigma_{2}",
-				Form("%s width 2", particle.GetNameLaTeX()),
-				particle.GetGaussianWideWidth(),
-				Settings::Fit::fSigmaScaleFactorLow * particle.GetGaussianWideWidth(),
-				Settings::Fit::fSigmaScaleFactorUp  * particle.GetGaussianWideWidth());
-			fGaussian1 = std_fix::make_unique<RooGaussian>("gauss1",
-				Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
-				*fRooRealVar, *fMean, *fSigma1);
-			fGaussian2 = std_fix::make_unique<RooGaussian>("gauss2",
-				Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
-				*fRooRealVar, *fMean, *fSigma2);
-			fNGauss1 = std_fix::make_unique<RooRealVar>("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
-			fNGauss2 = std_fix::make_unique<RooRealVar>("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
-			fComponents.add(*fGaussian1);
-			fComponents.add(*fGaussian2);
-			fNContributions.add(*fNGauss1);
-			fNContributions.add(*fNGauss2);
+			// * Create Gaussian functions * //
+				fMean = std_fix::make_unique<RooRealVar>(
+					Form("m_{%s}", particle.GetNameLaTeX()),
+					Form("%s mass", particle.GetNameLaTeX()),
+					particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
+				fSigma1 = std_fix::make_unique<RooRealVar>("#sigma_{1}",
+					Form("%s width 1", particle.GetNameLaTeX()),
+					particle.GetGaussianSmallWidth(),
+					Settings::Fit::fSigmaScaleFactorLow * particle.GetGaussianSmallWidth(),
+					Settings::Fit::fSigmaScaleFactorUp  * particle.GetGaussianSmallWidth());
+				fSigma2 = std_fix::make_unique<RooRealVar>("#sigma_{2}",
+					Form("%s width 2", particle.GetNameLaTeX()),
+					particle.GetGaussianWideWidth(),
+					Settings::Fit::fSigmaScaleFactorLow * particle.GetGaussianWideWidth(),
+					Settings::Fit::fSigmaScaleFactorUp  * particle.GetGaussianWideWidth());
+				fGaussian1 = std_fix::make_unique<RooGaussian>("gauss1",
+					Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+					*fRooRealVar, *fMean, *fSigma1);
+				fGaussian2 = std_fix::make_unique<RooGaussian>("gauss2",
+					Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+					*fRooRealVar, *fMean, *fSigma2);
+				fNGauss1 = std_fix::make_unique<RooRealVar>("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
+				fNGauss2 = std_fix::make_unique<RooRealVar>("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
+				fComponents.add(*fGaussian1);
+				fComponents.add(*fGaussian2);
+				fNContributions.add(*fNGauss1);
+				fNContributions.add(*fNGauss2);
 
-		// * Add polynomial background if required * //
-			for(UChar_t i = 0; i <= numPolynomials; ++i) {
-				fBckParameters.addClone(RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6));
-			}
-			fPolBackground = std::make_unique<RooPolynomial>("polBkg",
-				Form("Polynomial-%u background", numPolynomials),
-				*fRooRealVar, fBckParameters);
-			fSigToBckRatio = std_fix::make_unique<RooRealVar>(
-				Form("N_{pol%u}", numPolynomials),
-				Form("N_{pol%u}", numPolynomials),
-				0., 0., 1e5);
-			if(numPolynomials) {
-				fComponents.add(*fPolBackground);
-				fNContributions.add(*fSigToBckRatio);
-			}
+			// * Add polynomial background if required * //
+				for(UChar_t i = 0; i <= numPolynomials; ++i) {
+					fBckParameters.addClone(RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6));
+				}
+				fPolBackground = std::make_unique<RooPolynomial>("polBkg",
+					Form("Polynomial-%u background", numPolynomials),
+					*fRooRealVar, fBckParameters);
+				fSigToBckRatio = std_fix::make_unique<RooRealVar>(
+					Form("N_{pol%u}", numPolynomials),
+					Form("N_{pol%u}", numPolynomials),
+					0., 0., 1e5);
+				if(numPolynomials) {
+					fComponents.add(*fPolBackground);
+					fNContributions.add(*fSigToBckRatio);
+				}
 
-		// * Add the components and fit * //
-			fFullShape = std_fix::make_unique<RooAddPdf>("full_shape", "Double gaussian + background", fComponents, fNContributions);
-			fFullShape->fitTo(
-				*fRooDataHist,
-				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
-}
+			// * Add the components and fit * //
+				fFullShape = std_fix::make_unique<RooAddPdf>("full_shape", "Double gaussian + background", fComponents, fNContributions);
+				fFullShape->fitTo(
+					*fRooDataHist,
+					RooFit::Range(particle.FitFrom(), particle.FitUntil()));
 
-		// * Plot results and save * //
-			auto frame = fRooRealVar->frame(); // create a frame to draw
-			frame->SetAxisRange(particle.PlotFrom(), particle.PlotUntil());
-			fRooDataHist->plotOn(frame, // draw distribution
-				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
-				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
-			fFullShape->plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack)); // draw sig+bck fit
-			fFullShape->plotOn(frame, RooFit::Components(*fComponents.at(0)), // draw gauss 1
-				RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
-			fFullShape->plotOn(frame, RooFit::Components(*fComponents.at(1)), // draw gauss 2
-				RooFit::LineWidth(1), RooFit::LineColor(kBlue-4));
-			if(numPolynomials) {
-				fFullShape->plotOn(frame, RooFit::Components(*fPolBackground), // draw background
-					RooFit::LineStyle(kDashed), RooFit::LineWidth(1), RooFit::LineColor(kGray));
-			}
-			fFullShape->paramOn(frame, RooFit::Layout(.56, .98, .92));
+			// * Plot results and save * //
+				auto frame = fRooRealVar->frame(); // create a frame to draw
+				frame->SetAxisRange(particle.PlotFrom(), particle.PlotUntil());
+				fRooDataHist->plotOn(frame, // draw distribution
+					RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
+					RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
+				fFullShape->plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack)); // draw sig+bck fit
+				fFullShape->plotOn(frame, RooFit::Components(*fComponents.at(0)), // draw gauss 1
+					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
+				fFullShape->plotOn(frame, RooFit::Components(*fComponents.at(1)), // draw gauss 2
+					RooFit::LineWidth(1), RooFit::LineColor(kBlue-4));
+				if(numPolynomials) {
+					fFullShape->plotOn(frame, RooFit::Components(*fPolBackground), // draw background
+						RooFit::LineStyle(kDashed), RooFit::LineWidth(1), RooFit::LineColor(kGray));
+				}
+				fFullShape->paramOn(frame, RooFit::Layout(.56, .98, .92));
 
-		// * Write fitted histograms * //
-			TCanvas c;
-			c.SetBatch();
-			frame->Draw();
-			const TString outputDir = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
-			gSystem->mkdir(outputDir.Data());
-			c.SaveAs(Form("%s/DoubleGauss_%s.%s", outputDir.Data(), particle.GetName(), Settings::Output::Extension));
-			delete frame;
+			// * Write fitted histograms * //
+				DrawAndSave(
+					Form("DoubleGauss_%s", particle.GetName()), "", "",
+					frame);
+				delete frame;
+		}
 
 	}
 
