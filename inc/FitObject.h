@@ -139,10 +139,10 @@ protected:
 // * ------- GETTERS ------- * //
 // * ======================= * //
 
-bool FitObject::IsLoaded()
-{
-	return fParticle.IsLoaded();
-}
+	bool FitObject::IsLoaded()
+	{
+		return fParticle.IsLoaded();
+	}
 
 
 // * =============================== * //

@@ -94,43 +94,43 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 			nBins, particle.PlotFrom(), particle.PlotUntil());
 	}
 
-	// /**
-	//  * @brief Function that allows you to create and save a quick sketch of a `TTree` branch.
-	//  */
-	// void DrawAndSave(TTree* tree, const char* varexp, const char* selection, Option_t* option, TString logScale = "")
-	// {
-	// 	TCanvas c;
-	// 	SetLogScale(c, logScale);
-	// 	tree->Draw(varexp, selection, option);
-	// 	c.SaveAs(Form("%s/%s_%s", Settings::Output::PlotOutputDir.Data(), tree->GetName(), varexp));
-	// }
+	/**
+	 * @brief Function that allows you to create and save a quick sketch of a `TTree` branch.
+	 */
+	void DrawAndSave(TTree* tree, const char* varexp, const char* selection, Option_t* option, TString logScale = "")
+	{
+		TCanvas c;
+		SetLogScale(c, logScale);
+		tree->Draw(varexp, selection, option);
+		c.SaveAs(Form("%s/%s_%s", Settings::Output::PlotOutputDir.Data(), tree->GetName(), varexp));
+	}
 
-	// /**
-	//  * @brief Auxiliary function that is used by the more specific `DrawAndSave` functions for `TH1D` and `TH2D`.
-	//  */
-	// void DrawAndSave(TH1 &hist, const char* saveas, Option_t* opt, TString logScale = "")
-	// {
-	// 	TCanvas c;
-	// 	SetLogScale(c, logScale);
-	// 	hist.Draw(opt);
-	// 	c.SaveAs(Form("%s/%s", Settings::Output::PlotOutputDir.Data(), saveas));
-	// }
+	/**
+	 * @brief Auxiliary function that is used by the more specific `DrawAndSave` functions for `TH1D` and `TH2D`.
+	 */
+	void DrawAndSave(TH1 &hist, const char* saveas, Option_t* opt, TString logScale = "")
+	{
+		TCanvas c;
+		SetLogScale(c, logScale);
+		hist.Draw(opt);
+		c.SaveAs(Form("%s/%s", Settings::Output::PlotOutputDir.Data(), saveas));
+	}
 
-	// /**
-	//  * @brief Draw and save a 1D distribution (output folder is determined from `FrameworkSettings.h`).
-	//  */
-	// void DrawAndSave(TH1D &hist, const char* saveas, TString logScale = "")
-	// {
-	// 	DrawAndSave(hist, saveas, "ep", logScale);
-	// }
+	/**
+	 * @brief Draw and save a 1D distribution (output folder is determined from `FrameworkSettings.h`).
+	 */
+	void DrawAndSave(TH1D &hist, const char* saveas, TString logScale = "")
+	{
+		DrawAndSave(hist, saveas, "ep", logScale);
+	}
 
-	// /**
-	//  * @brief Draw and save a 2D distribution (output folder is determined from `FrameworkSettings.h`).
-	//  */
-	// void DrawAndSave(TH2D &hist, const char* saveas, TString logScale = "")
-	// {
-	// 	DrawAndSave(hist, saveas, "colz", logScale);
-	// }
+	/**
+	 * @brief Draw and save a 2D distribution (output folder is determined from `FrameworkSettings.h`).
+	 */
+	void DrawAndSave(TH2D &hist, const char* saveas, TString logScale = "")
+	{
+		DrawAndSave(hist, saveas, "colz", logScale);
+	}
 
 	/**
 	 * @brief Create a `RooRealVar` specifically for resonstructing a certain particle (`ReconstructedParticle`).
