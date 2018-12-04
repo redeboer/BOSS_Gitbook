@@ -10,59 +10,74 @@ When you are analysing measurement data, you won't have to perform steps 1 and 2
 
 The steps are performed from your `jobOptions*.txt` files of your own package in your work area. These files are executed using the `boss.exe` command. As an example, you can run the `jobOptions` in in the `TestRelease` package:
 
-```text
-cd /ihepbatch/bes/$USER/TestRelease/TestRelease-*/run/
-boss.exe jobOptions_sim.txt
-boss.exe jobOptions_rec.txt
-boss.exe jobOptions_ana_rhopi.txt
+```bash
+cd /ihepbatch/bes/$USER/TestRelease/TestRelease-*/run/boss.exe jobOptions_sim.txtboss.exe jobOptions_rec.txtboss.exe jobOptions_ana_rhopi.txt
 ```
 
 This is essentially it! Of course, for your own analysis, you will have to tweak the parameters in these `jobOptions_*.txt` files and, more importantly, modify the `RhopiAlg` source code to your own tastes.
 
-{% hint style="info" %}
-**Todo**: Describe \`Rhopi.
-{% endhint %}
-
 In the following, we will go through some extra tricks that you will need to master in order to do computational intensive analyses using **BOSS**.
 
-## Submitting a job
+## Submitting a job <a id="submitting-a-job"></a>
 
 The `TestRelease` example typically simulates, reconstructs, and analyses only 10 events. For serious work, you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queue'. For this, there are two options: either you submit them using the command `hep_sub` or using the command `boss.conder`. The latter is easiest: you can use it just like `boss.exe`.
 
 With `hep_sub`, however, you essentially forward a shell script to the queue, which then executes the commands in there. So you'll have to make that first. Let's say, you make a shell script `test.sh` in the `run` folder that looks like this:
 
 ```text
-#!/bin/bash
-boss.exe jobOptions_sim.txt
+#!/bin/bashboss.exe jobOptions_sim.txt
 ```
 
 The first line clarifies that you use `bash`, the second does what you did when running a job: calling `boss.exe`, but of course, you can make this script to execute whatever `bash` commands you want.
 
-@todo Not sure if you should `chmod +x` it?
+The 'queue' \(`hep_sub`\) executes bash scripts using `./`, not the command `bash`. You therefore have to make the script executable. This is done through `chmod +x <yourscript>.sh`.
 
 Now you can simply submit the shell script to the queue using:
 
-```text
+```bash
 hep_sub test.sh -g physics
 ```
 
 and it will be executed in the background. Here, the option `-g` tellst that you are from the `physics` group. You can check whether the job is \(still\) running in the queue using:
 
-```text
+```bash
 hep_q -u $USER
 ```
 
 Note that `hep_q` would list all jobs from all users.
 
-## Splitting up jobs
+## Splitting up jobs <a id="splitting-up-jobs"></a>
 
-Jobs that take a long time to be executed in the queue will be killed by the server. It is therefore recommended that you analyse a maximum of **10,000 events** per job, particularly if you perform Monte Carlo simulations. Of course, you will be wanting to work with much larger data samples, sou you will have to submit parallel jobs. This can be done by writing different `jobOptions*.txt` files, where you modify the input/output file and random seed number.
+Jobs that take a long time to be executed in the queue will be killed by the server. It is therefore recommended that you work with a maximum of **10,000 events** per job if you perform Monte Carlo simulations \(the `sim` step consumes much computer power\). Of course, you will be wanting to work with much larger data samples, sou you will have to submit parallel jobs. This can be done by writing different `jobOptions*.txt` files, where you modify the input/output files and random seed number.
 
-What is much more convenient, however, is developing a `jobOptions*.txt` template file that is used to generate. In these, you for instance replace the specific paths and seed number you used by generic tokens like `INPUTFILE`, `OUTPUTFILE`, and `RANDOMSEED`. You can then use a `bash` script \(or comparable shell scripts\) to replace these tokens by unique paths and seed numbers. For example, have a look at the [`awk`](https://www.tldp.org/LDP/abs/html/awk.html) command.
+You can do all this by hand, but it is much more convenient to generate these files with some script \(whether C++, bash or `tcsh`\) that can generate `jobOptions*.txt` files from a certain _template file_. In these, you for instance replace the specific paths and seed number you used by generic tokens like `INPUTFILE`, `OUTPUTFILE`, and `RANDOMSEED`. You can then use the script to replace these unique tokens by a path or a unique number. Have a look at the [`awk`](https://www.tldp.org/LDP/abs/html/awk.html) and [`sed`](https://www.gnu.org/software/sed/manual/sed.html) commands to get the idea.
+
+### Splitting scripts in the BOSS Afterburner <a id="splitting-scripts-in-the-boss-afterburner"></a>
+
+The BOSS Afterburner offers some bash scripts that can do job splitting for you. In the case of Monte Carlo simulation, reconstruction, and analysis, you work with run numbers and with unique random seed numbers, whereas in data analysis, you have to make selections of `dst` data files. The[`jobs` folder of the BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner/tree/master/jobs) therefore contains two different types of generation scripts.
+
+As you can see, the folder contains a `templates` folder with files that contain the templates with tokens and there are also output folders `ana`, `rec`, `sim` \(for the three steps in MC simulations\), and `sub` \(shell scripts that you submit to the 'queue'\). Then there is also a folder `dec` containing your decay charts for exclusive Monte Carlo simulations \(see section [Monte Carlo simulations](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LSqrMkrQafSYW-zJv2x/primary/working-with-boss/monte-carlo-simulations)\) and a folder called `filenames`. The last one is important for generating job options for data analysis \(see complications described under 2.\).
+
+Finally, script procedures that are shared by both type of job option generation have been grouped into functions in the `CommonFunctions.sh` shell script.
+
+#### Job options for Monte Carlo simulations <a id="job-options-for-monte-carlo-simulations"></a>
+
+These are built on four job option template files: one for the `sim` step, one for `rec`, one for `ana`, and one for the shell script that you feed to the 'queue' \(`hep_sub`\). Here, the complicating ingredient is the random seed number \(which has to be unique for each `sim` job option file\) and the list of run numbers \(which will determine the parameters in simulation and reconstruction\).
+
+Usage is illustrated in the [`ExampleScript_mc.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/ExampleScript_mc.sh) script.
+
+#### Job options for data \(or inclusive Monte Carlo\) analysis <a id="job-options-for-data-or-inclusive-monte-carlo-analysis"></a>
+
+These only result in `ana` job option files and in a shell script that you use to submit to the queue. Here, the complicating ingredient is the list of `dst` that you feed to the `ana` job option file. This list of filenames has to be split up into subgroups \(one for each job option file\) and has to be inserted into the C++ code \(at `EventCnvSvc.digiRootInputFile`\), formatted as a C++ vector of strings. You will also want not to put too many `dst` files there, because you then run the risk that job will be killed if the run time is too long. The generation of this type of job option files is therefore comprised of two parts:
+
+1. Generate a list of \(`dst`\) files you want to analyse. You can do this by feeding a text file of directories and/or filenames that you want to analyse to a function called `CreateFilenameInventoryFromFile` in `CommonFunctions.sh`. Alternatively, you can use the function `CreateFilenameInventoryFromDirectory`, which lists all files within that directory. The output is a number of text files with a maximum number of lines each that together make up the complete list of files.
+2. Insert the paths listed in each of the text files listed above into the `ana` template. For this, the lines of the text files are also converted into C++ vector-of-strings format \(i.e., separated by commas and surrounded by quotation `"` marks\).
+
+Usage of both the relevant functions in the `CommonFunctions.sh` script and of the [`CreateJobFiles_data.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/CreateJobFiles_data.sh) is illustrated in[`ExampleScript_data.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/ExampleScript_data.sh).
 
 {% hint style="info" %}
-**Todo**: Describe process of generating `jobOptions*.txt` files  using the scripts in the repository.
+#### Analysing all events
 
-**Todo**: Mention that `-1` in `ApplicationMgr.EvtMax` stands for 'all events'.
+In data analysis, you usually want to use all events available: cuts are applied to get rid of events you don't want. It is therefore better to use **`-1`**, which stands for '_all_ events', for the maximum number of events in `ApplicationMgr.EvtMax`.
 {% endhint %}
 
