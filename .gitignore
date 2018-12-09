@@ -25,6 +25,7 @@ jobs/sub/**/*.sh.*.*
 # Ignore settings
 **.code-workspace
 .vscode/**
+.bash**
 
 # Ignore binaries
 **.[oad]
