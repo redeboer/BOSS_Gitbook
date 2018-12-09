@@ -1,20 +1,20 @@
 # Setup of your BOSS environment
 
-{% hint style="danger" %}
+{% hint style="warning" %}
 **Warning:** In it's current version, this tutorial assumes you use a `bash` terminal.
+
+**@todo** Rewrite for TC shell.
 {% endhint %}
 
 I advise you to set up your environment in the same way I did. There are two main directories that you will be using: \(1\) the _workarea_, which contains your run scripts for **BOSS**, and \(2\) the _BOSS Afterburner_ repository, which contains your analysis code.
 
 I placed the _workarea_ folder **within** the BOSS Afterburner repository \(`BOSS_Afterburner/boss`\) so that it is available as an example, but another common procedure is to put it in the `ihepbatch` folder \(see [Organisation of the IHEP server](ihep-server.md)\). The BOSS Afterburner is best placed in the `besfs` folder. Data generated with **BOSS** through the _workarea_ scripts will then be written to the `BOSS_Afterburner/data` subdirectory and analysis plots to the `BOSS_Afterburner/plots` folder.
 
-## \(1\) Set up your _workarea_
-
-{% hint style="warning" %}
-**@todo** Test the procedure described below!
-
-**@todo** Rewrite for TC shell.
+{% hint style="info" %}
+**The below procedure is** [**also available as a bash script**](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/setup_boss.sh)**.**
 {% endhint %}
+
+## \(1\) Set up your _workarea_
 
 You will be running your **BOSS** analyses from this folder. It contains a _Configuration Management Tool_ folder \([`cmthome-*`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/cmthome-7.0.4)\), which is used to set up path variables for **BOSS**, and a `workarea-*` folder where you develop your own **BOSS** packages \(including the `jobOptions*.txt` files\). Here, the \* stands for the version of BOSS you are using.
 
@@ -47,7 +47,7 @@ BOSSVERSION=7.0.4
 We'll first have to obtain some scripts that can set up the necessary references to **BOSS**. This is done by copying the `cmthome-*` folder from BOSS Software directory to the `ihepbatch` folder where you currently are:
 
 ```text
-cp -Rf /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-$BOSSVERSION cmthome
+cp -Rf /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-$BOSSVERSION/* cmthome
 ```
 
 and navigate into that copy:
@@ -110,42 +110,33 @@ If everything went well, it should print something like:
 
 ### **Step 5: Modify your `bashrc`**
 
-Adapt your `bash` profile \(`.bash_profile`\) and _run commands_ file \(`.bashrc`\) so that **BOSS** is loaded automatically every time you log into the server. The easy solution is simply copy-pasting and running these commands:
+Adapt your `bash` profile \(`.bash_profile`\) and _run commands_ file \(`.bashrc`\) so that **BOSS** is loaded automatically every time you log into the server.
 
-```bash
-echo -e "if test -f .bashrc; then\n\tsource .bashrc\nfi" >> ~/.bash_profile
-echo "BOSSVERSION=7.0.4" >> ~/.bashrc
-echo "BOSSWORKAREA=\"/besfs/users/$USER/BOSS_Afterburner/boss\"" >> ~/.bashrc
-echo "CMTHOME=\"/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-$BOSSVERSION\"" >> ~/.bashrc
-echo "IHEPBATCH=\"/ihepbatch/bes/$USER\"" >> ~/.bashrc
-echo "source $BOSSWORKAREA/cmthome/setupCMT.sh" >> ~/.bashrc
-echo "source $BOSSWORKAREA/cmthome/setup.sh" >> ~/.bashrc
-echo "source $BOSSWORKAREA/workarea/TestRelease/TestRelease-00-00-86/cmt/setup.sh" >> ~/.bashrc
-echo "export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/" >> ~/.bashrc
-```
+First, add the following lines to your bash profile \(`vi ~/.bash_profile`\):
 
-However, to avoid becoming a [copy ninja](https://pics.me.me/kakashi-went-from-the-copy-ninja-to-the-copy-paste-14969048.png), you'd better modify these files yourself. First, add these lines to your bash profile \(`vi ~/bash_profile`\):
-
+{% code-tabs %}
+{% code-tabs-item title=".bash\_profile" %}
 ```bash
 if test -f .bashrc; then
     source .bashrc
 fi
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 These lines force the server to load your `.bashrc` run commands file when you log in. In that file, you should add the following lines:
 
+{% code-tabs %}
+{% code-tabs-item title=".bashrc" %}
 ```bash
-BOSSVERSION=7.0.4
-BOSSWORKAREA="/besfs/users/$USER/BOSS_Afterburner/boss"
-CMTHOME="/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-$BOSSVERSION"
-IHEPBATCH="/ihepbatch/bes/$USER"
-source "$BOSSWORKAREA/cmthome/setupCMT.sh"
-source "$BOSSWORKAREA/cmthome/setup.sh"
-source "$BOSSWORKAREA/workarea/TestRelease/TestRelease-00-00-86/cmt/setup.sh"
-export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
+source ~/.load_boss.sh
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-Notice that the commands we used in **Step 4** are used here again. There is also a reference to the `workarea` \(see **Step 7**\). The last line allows you to submit **BOSS** jobs to the queue \(`hep_sub`\) — for now, don't worry what this means.
+For this to work upon login, you will have to [download the `.load_boss.sh` script from the BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/.load_boss.sh) and add it to your home folder \(`~`\).
+
+Notice that the commands we used in **Step 4** are again used  in the [`.load_boss.sh` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/.load_boss.sh). There is also a reference to the `workarea` \(see **Step 7**\). The last line allows you to submit **BOSS** jobs to the queue \(`hep_sub`\) — for now, don't worry what this means.
 
 You can now either log in again to the server or use `source ~/.bashrc` to reload the run commands.
 
