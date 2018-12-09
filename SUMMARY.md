@@ -1,25 +1,25 @@
 # Table of contents
 
 * [Main page](README.md)
-* [Introduction to BESIII](introduction-to-besiii.md)
+* [Introduction to BESIII](intro.md)
 
 ## Working with BOSS
 
-* [Organisation of the IHEP server](working-with-boss/ihep-server.md)
-* [The BOSS Analysis Framework](working-with-boss/intro.md)
-* [Setup of your BOSS environment](working-with-boss/setup.md)
-* [Set up a BOSS package](working-with-boss/setup-package.md)
-* [Running jobs](working-with-boss/running-jobs.md)
-* [Monte Carlo simulations](working-with-boss/monte-carlo-simulations.md)
-* [Data analysis](working-with-boss/data-analysis.md)
+* [Organisation of the IHEP server](docs-boss/ihep-server.md)
+* [The BOSS Analysis Framework](docs-boss/intro.md)
+* [Setup of your BOSS environment](docs-boss/setup.md)
+* [Set up a BOSS package](docs-boss/setup-package.md)
+* [Running jobs](docs-boss/running-jobs.md)
+* [Monte Carlo simulations](docs-boss/simulations.md)
+* [Data analysis](docs-boss/data-analysis.md)
 
 ## Working with the BOSS Afterburner
 
-* [The BOSS Afterburner](working-with-the-boss-afterburner/intro.md)
+* [The BOSS Afterburner](docs-afterburner/intro.md)
 
 ## Appendices
 
-* [Tips & Tricks](appendices/tips-and-tricks.md)
-* [Further reading](appendices/references.md)
-* [About](appendices/about.md)
+* [Tips & Tricks](docs-appendices/tips.md)
+* [Further reading](docs-appendices/references.md)
+* [About](docs-appendices/about.md)
 
