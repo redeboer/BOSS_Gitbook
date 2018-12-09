@@ -73,11 +73,12 @@ You are now in a folder like `TestRelease/TestRelease-00-00-86`, where `00-00-86
 
 We can set up the `TestRelease` by going into `cmt` and 'broadcasting' to **BOSS** from there:
 
-```text
+```bash
 cd cmt
-cmt broadcast cmt config
-cmt broadcast make
-source setup.sh
+cmt broadcast      # 
+cmt config         # perform setup and cleanup scripts
+cmt broadcast make # build executables from source code in package
+source setup.sh    # set bash variables
 ```
 
 This will initialise the package so that you can run it from the run folder. This is done using `boss.exe`:
