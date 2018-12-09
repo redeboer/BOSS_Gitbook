@@ -33,18 +33,18 @@ path_prepend CMTPATH "$(GaudiArea)"
 
 # Set the base location of all release for your site:
 macro BES_DIST_AREA "${SITETOPROOT}/Boss"
-#0 Set release number
+# Set release number
 set BES_RELEASE "7.0.4"
 # Setup the CMT search path
 set BesArea "$(BES_DIST_AREA)/$(BES_RELEASE)"
 path_remove CMTPATH  "${BesArea}" 
 path_prepend CMTPATH "${BesArea}"
 
-#Add your worarea to CMTPATH
-#macro WorkArea "/ihepbatch/bes/maqm/workarea"
+# Add your worarea to CMTPATH
+macro WorkArea "/besfs/users/$USER/BOSS_Afterburner/boss/workarea"
 # Add dev area to the front of your CMTPATH (but first remove any previously defined devarea which is under your home directory)
-#path_remove CMTPATH  "${WorkArea}"
-#path_prepend CMTPATH "${WorkArea}"
+path_remove CMTPATH  "${WorkArea}"
+path_prepend CMTPATH "${WorkArea}"
 
 
 #gcc (remove double free)
