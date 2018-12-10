@@ -1,0 +1,56 @@
+//DENG Ping Ronggang 2008-03-17
+
+#include "$OFFLINEEVENTLOOPMGRROOT/share/OfflineEventLoopMgr_Option.txt"
+
+//*************job options for generator (Phokhara)***************
+ApplicationMgr.DLLs += { "Phokhara"};
+ApplicationMgr.TopAlg += { "Phokhara"};
+
+Phokhara.InitialEvents = 50000;     // # of events to determine the maximum   
+Phokhara.NLO = 1;          	    // Born(0), NLO(1)
+Phokhara.SoftPhotonCutoff = 0.0001; // soft photon cutoff                
+Phokhara.Channel = 0;             // mu+mu-(0),pi+pi-(1),2pi0pi+pi-(2),
+                                  // 2pi+2pi-(3),ppbar(4),nnbar(5),
+                                  // K+K-(6),K0K0bar(7),pi+pi-pi0(8), 
+                              	  // Lamb Lambbar->pi-pi+ppbar(9) 
+Phokhara.FSR = 0;        	  // ISR only(0), ISR+FSR(1), ISR+INT+FSR(2)
+Phokhara.FSRNLO = 1;     	  // yes(1), no(0)
+Phokhara.VacuumPolarization = 0;  // yes(1), no(0)
+Phokhara.TaggedPhotons = 0;       // tagged photons(0), untagged photons(1)
+Phokhara.PionFormfactor = 0;      // KS Pionformfactor(0), GS Pionformfactor(1)
+Phokhara.F0model = 0;             // f0+f0(600): KK model(0), no structure(1), 
+                                  // no f0+f0(600)(2), f0 KLOE(3)
+Phokhara.Ecm = 3.686;             // CMS-energy (GeV)                       
+Phokhara.CutTotalInvMass = 0.0;   // minimal hadrons(muons)-gamma-inv mass squared (GeV^2)
+Phokhara.CutHadInvMass = 0.0447;  // minimal inv. mass squared of the hadrons(muons)(GeV^2)
+Phokhara.MaxHadInvMass = 1.06;    // maximal inv. mass squared of the hadrons(muons)(GeV^2)
+Phokhara.MinPhotonEnergy = 0.05;  // minimal photon energy/missing energy   (GeV)          
+Phokhara.MinPhotonAngle = 0.0;    // minimal photon angle/missing momentum angle (grad)
+Phokhara.MaxPhotonAngle = 180.0;  // maximal photon angle/missing momentum angle (grad)
+Phokhara.MinHadronsAngle = 0.0;   // minimal hadrons(muons) angle (grad)
+Phokhara.MaxHadronsAngle = 180.0; // maximal hadrons(muons) angle (grad)
+
+
+//**************job options for random number************************
+BesRndmGenSvc.RndmSeed = 100;
+
+//**************job options for detector simulation******************
+#include "$BESSIMROOT/share/G4Svc_BesSim.txt"
+
+//configure for calibration constants
+#include "$CALIBSVCROOT/share/calibConfig_sim.txt"
+
+// run ID
+RealizationSvc.RunIdList = {-8093};
+
+#include "$ROOTIOROOT/share/jobOptions_Digi2Root.txt"
+RootCnvSvc.digiRootOutputFile = "dimu.rtraw";
+
+// OUTPUT PRINTOUT LEVEL
+// Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel  = 4;
+
+// Number of events to be processed (default is 10)
+ApplicationMgr.EvtMax = 50;
+
+

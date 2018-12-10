@@ -1,0 +1,18 @@
+//input ROOT REC data
+#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+
+//output ROOT DST data
+#include "$ROOTIOROOT/share/jobOptions_Dst2Root.txt"
+
+//Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel = 6;
+
+//ROOT input data file
+EventCnvSvc.digiRootInputFile = {"rhopi.rec"};
+
+//ROOT output data file
+EventCnvSvc.digiRootOutputFile ="rhopi.dst";
+
+//Number of events to be processed (default is 10)
+ApplicationMgr.EvtMax = 50;
+
