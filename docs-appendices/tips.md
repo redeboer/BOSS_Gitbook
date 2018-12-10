@@ -22,7 +22,7 @@ If you do not like to keep having to enter your password
 ssh-keygen
 ```
 
-{% hint style="info" %}
+{% hint style="warning" %}
 **Todo**: Complete step by step tutorial.
 {% endhint %}
 

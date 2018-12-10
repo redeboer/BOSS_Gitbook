@@ -2,9 +2,9 @@
 
 Particle physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In **BOSS**, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on **BOSS**:
 
-1. `sim`: you perform a Monte Carlo simulation and generate a raw data file \(`rtraw`\).
-2. `rec`: you reconstruct particle tracks from the raw data and write out a reconstructed data file \(`dst`\).
-3. `ana`: you analyse the reconstructed tracks and generate a [CERN ROOT](https://root.cern.ch/input-and-output) file containing trees that describe event and track variables \(`root`\).
+1. **`sim`**: you perform a Monte Carlo simulation and generate a raw data file \(`rtraw`\).
+2. **`rec`**: you reconstruct particle tracks from the raw data and write out a reconstructed data file \(`dst`\).
+3. **`ana`**: you analyse the reconstructed tracks and generate a [CERN ROOT](https://root.cern.ch/input-and-output) file containing trees that describe event and track variables \(`root`\).
 
 When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. \(See [Organisation of the IHEP server](https://github.com/redeboer/BOSS_Afterburner/tree/902bbfd0a1c109e93d69e39a384ddfed810d8a02/organisation-of-the-ihep-server/README.md), under "Reconstructed data sets", for where these files are located.\)
 

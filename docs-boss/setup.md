@@ -8,7 +8,7 @@
 
 I advise you to set up your environment in the same way I did. There are two main directories that you will be using: \(1\) the _workarea_, which contains your run scripts for **BOSS**, and \(2\) the _BOSS Afterburner_ repository, which contains your analysis code.
 
-I placed the _workarea_ folder **within** the BOSS Afterburner repository \(`BOSS_Afterburner/boss`\) so that it is available as an example, but another common procedure is to put it in the `ihepbatch` folder \(see [Organisation of the IHEP server](ihep-server.md)\). The BOSS Afterburner is best placed in the `besfs` folder. Data generated with **BOSS** through the _workarea_ scripts will then be written to the `BOSS_Afterburner/data` subdirectory and analysis plots to the `BOSS_Afterburner/plots` folder.
+I placed the _workarea_ folder **within** the BOSS Afterburner repository \(see `BOSS_Afterburner/boss`\) so that it is available as an example, but another common procedure is to put it in the `ihepbatch` folder \(see [Organisation of the IHEP server](ihep-server.md)\). The BOSS Afterburner is best placed in the `besfs` folder. Data generated with **BOSS** through the _workarea_ scripts will then be written to the `BOSS_Afterburner/data` subdirectory and analysis plots to the `BOSS_Afterburner/plots` folder.
 
 {% hint style="info" %}
 **The below procedure is** [**also available as a bash script**](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/setup_boss.sh)**.**
@@ -44,10 +44,11 @@ BOSSVERSION=7.0.4
 
 ### **Step 2: Import environment scripts**
 
-We'll first have to obtain some scripts that can set up the necessary references to **BOSS**. This is done by copying the `cmthome-*` folder from BOSS Software directory to the `ihepbatch` folder where you currently are:
+We'll first have to obtain some scripts that can set up the necessary references to **BOSS**. This is done by copying the `cmthome-*` folder from BOSS Software directory to the _workarea_ where you currently are:
 
-```text
-cp -Rf /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-$BOSSVERSION/* cmthome
+```bash
+mkdir $BOSSWORKAREA/cmthome
+cp -Rf /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-$BOSSVERSION/* $BOSSWORKAREA/cmthome
 ```
 
 and navigate into that copy:
@@ -55,6 +56,8 @@ and navigate into that copy:
 ```text
 cd cmthome*
 ```
+
+Note that we have omitted the version from the original folder name. You can chose to keep it as well, but in the BOSS Afterburner, the convention is that `cmthome` and `workarea` refer to the latest stable version of BOSS.
 
 ### **Step 3: Modify `requirements`**
 
@@ -107,6 +110,8 @@ If everything went well, it should print something like:
 ```text
 /besfs/bes/$USER/BOSS_Afterburner/boss/workarea:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
 ```
+
+The paths listed here \(separated by `:` columns\) will be used to look for packages required by the `requirements` files of packages \(see [Set up a BOSS package](setup-package.md)\). The first of these paths is your _workarea_, the second the BOSS version you use, the rest the paths of the Gaudi libraries.
 
 ### **Step 5: Modify your `bashrc`**
 
