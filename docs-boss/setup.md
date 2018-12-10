@@ -44,10 +44,11 @@ BOSSVERSION=7.0.4
 
 ### **Step 2: Import environment scripts**
 
-We'll first have to obtain some scripts that can set up the necessary references to **BOSS**. This is done by copying the `cmthome-*` folder from BOSS Software directory to the `ihepbatch` folder where you currently are:
+We'll first have to obtain some scripts that can set up the necessary references to **BOSS**. This is done by copying the `cmthome-*` folder from BOSS Software directory to the _workarea_ where you currently are:
 
-```text
-cp -Rf /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-$BOSSVERSION/* cmthome
+```bash
+mkdir $BOSSWORKAREA/cmthome
+cp -Rf /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-$BOSSVERSION/* $BOSSWORKAREA/cmthome
 ```
 
 and navigate into that copy:
@@ -55,6 +56,8 @@ and navigate into that copy:
 ```text
 cd cmthome*
 ```
+
+Note that we have omitted the version from the original folder name. You can chose to keep it as well, but in the BOSS Afterburner, the convention is that `cmthome` and `workarea` refer to the latest stable version of BOSS.
 
 ### **Step 3: Modify `requirements`**
 
@@ -107,6 +110,8 @@ If everything went well, it should print something like:
 ```text
 /besfs/bes/$USER/BOSS_Afterburner/boss/workarea:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
 ```
+
+The paths listed here \(separated by `:` columns\) will be used to look for packages required by the `requirements` files of packages \(see [Set up a BOSS package](setup-package.md)\). The first of these paths is your _workarea_, the second the BOSS version you use, the rest the paths of the Gaudi libraries.
 
 ### **Step 5: Modify your `bashrc`**
 
