@@ -21,7 +21,7 @@ To create an empty package \(with a default format\), use the following command:
 cmt create MyFirstPackage MyFirstPackage-00-00-01
 ```
 
-Here, the name `MyFirstPackage` is just an example name of the package. The name will be used as the folder name as well. The second string describes the version of the package. Within BESIII, this string repeats the package name, followed by 6 digits: `-<major id>-<minor id>-<patch id>`. These digits should increase along with changes you make. Increase the:
+Here, the name `MyFirstPackage` is just an example name of the package. The name will be used as the folder name as well. The second string is the so-called _tag_ of the package. Within BESIII, the convention is that the tag is just the package name followed by 6 digits: `-<major id>-<minor id>-<patch id>`. These digits should increase along with changes you make. Increase the:
 
 * `patch id` if you only made some simple bug fixes that don't change the interface \(`.h` header file\);
 * `minor id` if you only made changes that are backward compatible, such as new functionality;
@@ -29,19 +29,19 @@ Here, the name `MyFirstPackage` is just an example name of the package. The name
 
 The above only becomes relevant as when you start developing packages, so you can forget about this for now.
 
-{% hint style="warning" %}
-Note that the folder structure `MyFirstPackage/MyFirstPackage-00-00-01` is **required** for `cmt` to work properly. If you don't have a subfolder with a string for the version as above, `cmt broadcast` won't work!
-{% endhint %}
-
 The result of the above command is a new folder, that we'll navigate into:
 
 ```text
 cd MyFirstPackage/MyFirstPackage-00-00-01
 ```
 
+{% hint style="warning" %}
+Note that the folder structure `MyFirstPackage/MyFirstPackage-00-00-01` is **required** for `cmt` to work properly within BOSS. If you don't have a subfolder with a string for the version as above, `cmt broadcast` won't work!
+{% endhint %}
+
 Within this folder, you see the core of a default CMT package:
 
-* `cmd`: a folder that contains all files necessary for management of the package through CMT. There are 6 files:
+* **`cmd`**: a folder that contains all files necessary for administration of the package through CMT. There are 6 files:
   * **`cleanup.csh`**
 
     This is a `tcsh` script that allows you to clean all installation files of the package \(for instance useful when you are moving to a new version\).
