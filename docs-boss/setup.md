@@ -8,7 +8,7 @@
 
 I advise you to set up your environment in the same way I did. There are two main directories that you will be using: \(1\) the _workarea_, which contains your run scripts for **BOSS**, and \(2\) the _BOSS Afterburner_ repository, which contains your analysis code.
 
-I placed the _workarea_ folder **within** the BOSS Afterburner repository \(`BOSS_Afterburner/boss`\) so that it is available as an example, but another common procedure is to put it in the `ihepbatch` folder \(see [Organisation of the IHEP server](ihep-server.md)\). The BOSS Afterburner is best placed in the `besfs` folder. Data generated with **BOSS** through the _workarea_ scripts will then be written to the `BOSS_Afterburner/data` subdirectory and analysis plots to the `BOSS_Afterburner/plots` folder.
+I placed the _workarea_ folder **within** the BOSS Afterburner repository \(see `BOSS_Afterburner/boss`\) so that it is available as an example, but another common procedure is to put it in the `ihepbatch` folder \(see [Organisation of the IHEP server](ihep-server.md)\). The BOSS Afterburner is best placed in the `besfs` folder. Data generated with **BOSS** through the _workarea_ scripts will then be written to the `BOSS_Afterburner/data` subdirectory and analysis plots to the `BOSS_Afterburner/plots` folder.
 
 {% hint style="info" %}
 **The below procedure is** [**also available as a bash script**](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/setup_boss.sh)**.**
