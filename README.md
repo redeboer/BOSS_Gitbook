@@ -31,3 +31,5 @@ If you have been able to create data output, you can analyse your results with t
 
 {% page-ref page="docs-afterburner/intro.md" %}
 
+Finally, I have written out any problems and solutions or handy tricks into the [Tips & Tricks](docs-appendices/tips.md) section. Other additional sections, like [Further reading](docs-appendices/references.md), have also been collected into the appendices.
+

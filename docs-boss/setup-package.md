@@ -1,3 +1,10 @@
+---
+description: >-
+  In this part of the BOSS tutorial, you will learn how to work with CMT
+  packages. We'll first have a look at how to create and update packages, then
+  we will go through some packages available in BOSS.
+---
+
 # Set up a BOSS package
 
 ## How to set up a BOSS package?
@@ -56,14 +63,25 @@ For more information see:
 ### Updating a package
 
 {% hint style="warning" %}
-**@todo**: Investigate how to formally update a package.
+**@todo** Investigate how to formally update a package.
+{% endhint %}
+
+### Adding packages to BOSS
+
+{% hint style="warning" %}
+**@todo** Go through Chinese documentation and [this page](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started) and write out.  
+[https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting\_Started](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started)
 {% endhint %}
 
 ## Example packages
 
+{% hint style="warning" %}
+1. **@todo** Introduction to analysis packages already available in BOSS.
+2. **@todo** Scheme of dependencies for the `TestRelease` package
+3. **@todo** How to modify and integrate these packages?
+{% endhint %}
 
-
-### The `TestRelease` example package
+### The `TestRelease` package
 
 The typical example package to get you started is the `TestRelease` package. We will need to copy this package into your [your work area](../#set-up-your-work-area). So let's navigate there:
 
@@ -105,7 +123,7 @@ which, in this case, will run a Monte Carlo simulation.
 
 Note that in step 7 [when we set up the work area](../#set-up-your-work-area) we added a line to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
 
-## The `Rhopi` algorithm
+### The `Rhopi` algorithm
 
 Location of the `RhopiAlg`:
 
@@ -113,12 +131,11 @@ Location of the `RhopiAlg`:
 /afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23
 ```
 
-* Aim \(physics\)
-* What this will learn:
-  * `fit4c` versus `fit5c`
+{% hint style="warning" %}
+**@todo** Describe `RhopiAlg` and how to work with it.
 
-## Adding packages to BOSS
-
-@todo Go through Chinese documentation and [this page](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started) and write out.  
-[https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting\_Started](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started)
+1. Aim \(physics\)
+2. What this will teach you: - `fit4c` versus `fit5c` - Different output
+3. **Note**: Focus on structure of the package and of the code. How to run it is explained in [Running jobs](running-jobs.md).
+{% endhint %}
 
