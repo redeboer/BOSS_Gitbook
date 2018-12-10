@@ -32,9 +32,7 @@ The _BOSS Afterburner_ will be used to analyse output from **BOSS**. We get back
 **The below procedure is** [**also available as a bash script**](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/setup_boss.sh)**.**
 {% endhint %}
 
-You will be running your **BOSS** analyses from this folder. Your _BOSS workarea_ will contain a _Configuration Management Tool_ folder \([`cmthome*`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/cmthome)\), which is used to set up path variables for **BOSS**, and a [`workarea*`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea) folder where you develop your own **BOSS** packages \(including the `jobOptions*.txt` files\). Here, the \* stands for the version of BOSS you are using \(in the BOSS Afterburner it is left empty\).
-
-We will learn more about what the Configuration Management Tool \(CMT\) actually is [Set up a BOSS package](setup-package.md).
+You will be running your **BOSS** analyses from this folder. Your _BOSS workarea_ will contain a [_Configuration Management Tool_](intro.md#configuration-management-tool-cmt) folder \([`cmthome*`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/cmthome)\), which is used to set up path variables for **BOSS**, and a [`workarea*`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea) folder where you develop your own **BOSS** packages \(including the `jobOptions*.txt` files\). Here, the \* stands for the version of BOSS you are using \(in the BOSS Afterburner it is left empty\).
 
 ### **Step 1:** Go to your workarea folder
 
