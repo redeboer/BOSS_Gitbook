@@ -17,7 +17,7 @@ As explained in [The BOSS Analysis Framework](intro.md), BOSS is organised throu
 
 To create an empty package \(with a default format\), use the following command:
 
-```text
+```bash
 cmt create MyFirstPackage MyFirstPackage-00-00-01
 ```
 
@@ -31,7 +31,7 @@ The above only becomes relevant as when you start developing packages, so you ca
 
 The result of the above command is a new folder, that we'll navigate into:
 
-```text
+```bash
 cd MyFirstPackage/MyFirstPackage-00-00-01
 ```
 
@@ -84,13 +84,13 @@ For more information see [this nice introduction to CMT](http://polywww.in2p3.fr
 
 The typical example package to get you started is the `TestRelease` package. We will need to copy this package into your [your work area](../#set-up-your-work-area). So let's navigate there:
 
-```text
+```bash
 cd /ihepbatch/bes/$USER/workarea-7.0.3
 ```
 
 Now copy the typical `TestRelease` example to your _work area_ and navigate into it:
 
-```text
+```bash
 cp –r $BesArea/TestRelease ./
 cd TestRelease/TestRelease-*
 ```
@@ -113,7 +113,7 @@ source setup.sh    # set bash variables
 
 This will initialise the package so that you can run it from the run folder. This is done using `boss.exe`:
 
-```text
+```bash
 cd ../run
 boss.exe jobOptions_sim.txt
 ```
