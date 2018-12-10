@@ -11,7 +11,7 @@ description: >-
 
 Now that you have configured your **BOSS** work area, you can start developing packages. In theory, you can start from scratch. We'll have a short look at that procedure here, because it gives some insight into the default structure of a package in CMT.
 
-### Structure of a CMT package
+### Structure of a default CMT package
 
 As explained in [The BOSS Analysis Framework](intro.md), BOSS is organised through packages. Packages are components of the entire BOSS framework on which individuals like you work independently. Each package on itself can have several versions that are maintained by you through CMT.
 
@@ -21,7 +21,7 @@ To create an empty package \(with a default format\), use the following command:
 cmt create MyFirstPackage MyFirstPackage-00-00-01
 ```
 
-Here, the name `MyFirstPackage` is just an example name of the package. The name will be used as the folder name as well. The second string is the so-called _tag_ of the package. Within BESIII, the convention is that the tag is just the package name followed by 6 digits: `-<major id>-<minor id>-<patch id>`. These digits should increase along with changes you make. Increase the:
+Here, the name `MyFirstPackage` is just an example name of the package. The name will be used as the folder name as well. The second string is the so-called _tag_ of the package. Within BESIII, [the convention is that the tag is just the package name followed by 6 digits](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_tag_a_package): `-<major id>-<minor id>-<patch id>`. These digits should increase along with changes you make. Increase the:
 
 * `patch id` if you only made some simple bug fixes that don't change the interface \(`.h` header file\);
 * `minor id` if you only made changes that are backward compatible, such as new functionality;
@@ -59,10 +59,25 @@ Within this folder, you see the core of a default CMT package:
 
 For more information see [this nice introduction to CMT](http://polywww.in2p3.fr/activites/physique/glast/workbook/pages/cmtMRvcmt/cmtIntroduction.htm).
 
+### Additional files you should create
+
+In addition to the default files above, it is advised that you also create the following files/directories:
+
+* A subdirectory with the name of your package. In our case, it should be called `MyFirstPackage`.
+* A subdirectory named`test`. You use this for private testing of your package.
+* A subdirectory named`doc` for documentation files.
+* A subdirectory named`share` for platform-independent configuration files, scripts, etc.
+* A file named `README` that briefly descibres the purpose and context of the package.
+* A file named `ChangeLog` that contains a record of the changes.
+
+The above is based on the [official BOSS page on how to create a new package](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_create_a_new_package) \(minimal explanations\).
+
 ### Updating a package
 
 {% hint style="warning" %}
 **@todo** Investigate how to formally update a package.
+
+There are snippets of instructions available [here](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started), but it seems you need special admission rights to CVS to follow these instructions.
 {% endhint %}
 
 ### Adding packages to BOSS
@@ -80,22 +95,28 @@ For more information see [this nice introduction to CMT](http://polywww.in2p3.fr
 3. **@todo** How to modify and integrate these packages?
 {% endhint %}
 
+Within BOSS, there are already a few 'example' packages available. All of these are accessible through the so-called [`TestRelease` package](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease), which will be described first. We then focus on one of its main dependencies: the [RhopiAlg algorithm](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg). Within BESIII, this package is typically used as an example for selecting events and usually forms the start of your research.
+
 ### The `TestRelease` package
 
-The typical example package to get you started is the `TestRelease` package. We will need to copy this package into your [your work area](../#set-up-your-work-area). So let's navigate there:
+The `TestRelease` package is used to run certain basic packages that are already available within BOSS. It is best if you copy it into your [your work area](../#set-up-your-work-area), so you can play around with it. A slightly updated version of the `TestRelease` is already available in the BOSS Afterburner in the [`boss/workarea` folder](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea).
+
+You can also choose to copy it from its location in BOSS:
+
+
 
 ```bash
 cd /ihepbatch/bes/$USER/workarea-7.0.3
 ```
 
-Now copy the typical `TestRelease` example to your _work area_ and navigate into it:
+If you [set up your BOSS environment](setup.md#2-set-up-your-boss-workarea), you can copy it to your _BOSS workarea_ as follows:
 
 ```bash
-cp –r $BesArea/TestRelease ./
-cd TestRelease/TestRelease-*
+cp –r "$BesArea/TestRelease" "$BOSSWORKAREA"
+cd "$BOSSWORKAREA/TestRelease/TestRelease-"*
 ```
 
-You are now in a folder like `TestRelease/TestRelease-00-00-86`, where `00-00-86` represents the version. Using `ls`, you can see that it contains some folders:
+You are now in the folder `TestRelease/TestRelease-00-00-86`. Using `ls`, you can see that it contains the following folders:
 
 * `cmt`: the _Configuration Management Tool_ that you will use to connect to **BOSS**
 * `CVS`: a folder used for version management.
@@ -105,7 +126,7 @@ We can set up the `TestRelease` by going into `cmt` and 'broadcasting' to **BOSS
 
 ```bash
 cd cmt
-cmt broadcast      # 
+cmt broadcast      # set up connection to BOSS
 cmt config         # perform setup and cleanup scripts
 cmt broadcast make # build executables from source code in package
 source setup.sh    # set bash variables
@@ -120,7 +141,7 @@ boss.exe jobOptions_sim.txt
 
 which, in this case, will run a Monte Carlo simulation.
 
-Note that in step 7 [when we set up the work area](../#set-up-your-work-area) we added a line to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
+Note that in [Step 5 when we set up the work area](setup.md#step-5-modify-your-bashrc) we added the line source setup.sh to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
 
 ### The `Rhopi` algorithm
 
