@@ -94,6 +94,12 @@ Note that in step 7 [when we set up the work area](../#set-up-your-work-area) we
 
 ## The `Rhopi` algorithm
 
+Location of the `RhopiAlg`:
+
+```bash
+/afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23
+```
+
 * Aim \(physics\)
 * What this will learn:
   * `fit4c` versus `fit5c`
