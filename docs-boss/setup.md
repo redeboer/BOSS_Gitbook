@@ -101,6 +101,8 @@ path_remove CMTPATH "${WorkArea}"
 path_prepend CMTPATH "${WorkArea}"
 ```
 
+The `$CMTPATH` is an important variable for CMT. It is comparable to `$PATH` in that it lists all directories that contain CMT packages. Not that when CMT searches for packages that you listed in the `requirements` file, it will use the first occurrence in the `$CMTPATH`. 
+
 {% hint style="info" %}
 Note that `$CMTPATH` will actually be set to a subfolder called `workarea` **within** what we so far defined as the _BOSS workarea_. We will create this subfolder in [**Step 7**](setup.md#step-7-create-a-workarea-subfolder).
 {% endhint %}
