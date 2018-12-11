@@ -67,23 +67,54 @@ The above is based on the [official BOSS page on how to create a new package](ht
 
 ### Updating a package
 
-{% hint style="warning" %}
-**@todo** Test the below procedure.
-{% endhint %}
+Whenever you are planning to modify the code in your package \(particularly the header code in the `MyFirstPackage` and the source code in `src`\), it is best if you first make a copy of the latest version. You can then safely modify things in this copy and use CMT later to properly tag this new version later.
 
-Whenever you modify the code in your package \(particularly the header code in the `MyFirstPackage` and the source code in `src`\), you need to 'update' the package. This is done through the following commands:
+First create some copy \(of course, you'll have to replace the names here\):
 
 ```bash
-cmt config      # let CMT know that you are updating
-make            # build executables from the source code
-source setup.sh # create the update
+cd MyFirstPackage
+cp -fR MyFirstPackage-00-00-01 MyFirstPackage-00-00-02
 ```
 
-### Tagging a new version of your package
+Now, imagine you have modified the interface of the package in its header files. This, according to the [BOSS version naming convention](setup-package.md#structure-of-a-default-cmt-package), requires you to modify the `major id`. So you will have to rename the folder of the package:
 
+```bash
+mv MyFirstPackage-00-00-02 MyFirstPackage-01-00-00
+```
 
+Finally, it is time to use CMT to tag this new version. The thing is, simply renaming the package is not sufficient: files like `setup.sh` need to be modified as well. Luckily, CMT does this for you automatically for. First go into the `cmt` folder of your new package:
 
-~~In conjuncture with CVS, CMT now decides how to tag the new version of the package. Usually, this means that the patch id number is incremented by one. \(Whether this properly follows the~~ [~~BESIII version naming convention~~](setup-package.md#structure-of-a-default-cmt-package) ~~is not entirely clear.\)~~
+```bash
+cd MyFirstPackage-01-00-00/cmt
+```
+
+Now create new CMT setup and cleanup scripts using:
+
+```bash
+cmt config
+```
+
+If you for instance open the `setup.sh` file you will see that it has deduced the new version number from the folder name. Now build the executables from the source code:
+
+```bash
+make
+```
+
+Here, you should check the terminal output if it actually builds your code correctly. If not, go through your `cxx` and `h` files. If it does build correctly, you can make the package accessible to BOSS using:
+
+```bash
+source setup.sh
+```
+
+You're done now! As mentioned in [Step 3](setup.md#step-3-modify-requirements), when we modified the `requirements` of the BOSS environment, CMT will use the first occurrence of a package in the `$CMTPATH`. That's why we used `path_`**`prepend`**  to add your _BOSS workarea_ to the `$CMTPATH`: in case of a name conflict with a package in the `$BesArea` and one in your _workarea_, CMT, will use the one in your _workarea_.
+
+Just to be sure, while modifying and debugging your package, you can do the entire build-and-source procedure above in one go, using:
+
+```bash
+cmt config
+make
+source setup.sh
+```
 
 {% hint style="info" %}
 BESIII has some documentation on working with CMT available [here](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started). It seems, however, that you need special admission rights to CVS to successfully perform these steps. The documentation is therefore probably outdated.
@@ -103,7 +134,7 @@ Within BOSS, there are already a few 'example' packages available. All of these 
 
 ### The `TestRelease` package
 
-The `TestRelease` package is used to run certain basic packages that are already available within BOSS. It is best if you copy it into your [your work area](../#set-up-your-work-area), so you can play around with it. A slightly updated version of the `TestRelease` is already available in the BOSS Afterburner in the [`boss/workarea` folder](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea).
+The `TestRelease` package is used to run certain basic packages that are already available within BOSS. It is best if you copy `TestRelease` into your [your _workarea_](../#set-up-your-work-area), so you can play around with it. A slightly updated version of the `TestRelease` is already available in the BOSS Afterburner in the [`boss/workarea` folder](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea).
 
 You can also choose to copy it from its location in BOSS:
 
@@ -157,15 +188,9 @@ The `RhopiAlg` package is located here:
 /afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23
 ```
 
-A [better commented version](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23) is also available within the BOSS Afterburner. In this tutorial, we will work with this version.
+A [better commented version](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23) is also available within the BOSS Afterburner. In this tutorial, we will work with this version, but, as with `TestRelease`, you can choose to work with a copy from the `$BesArea`.
 
-Only need to \(as opposed to `TestRelease`\):
-
-```bash
-cmt config
-make
-source setup.sh
-```
+The `RhopiAlg` package is one of the dependencies of `TestRelease`: you actually use `TestRelease` to run an analysis from `RhopiAlg` \(or any other package\). This also means that you have to follow the normal procedure for updating a package [as described above](setup-package.md#updating-a-package).
 
 {% hint style="warning" %}
 **@todo** Describe `RhopiAlg` and how to work with it.
