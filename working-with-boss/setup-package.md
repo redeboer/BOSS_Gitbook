@@ -68,27 +68,34 @@ The above is based on the [official BOSS page on how to create a new package](ht
 ### Updating a package
 
 {% hint style="warning" %}
-**@todo** Investigate how to formally update a package.
+**@todo** Test the below procedure.
+{% endhint %}
 
-There are snippets of instructions available [here](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started), but it seems you need special admission rights to CVS to follow these instructions.
+Whenever you modify the code in your package \(particularly the header code in the `MyFirstPackage` and the source code in `src`\), you need to update the package. This is done through the following commands:
+
+```bash
+cmt config      # let CMT know that you are updating
+make            # build executables from the source code
+source setup.sh # create the update
+```
+
+In conjuncture with CVS, CMT now decides how to tag the new version of the package. Usually, this means that the patch id number is incremented by one. \(Whether this properly follows the [BESIII version naming convention](setup-package.md#structure-of-a-default-cmt-package) is not entirely clear.\)
+
+{% hint style="info" %}
+BESIII has some documentation on working with CMT available [here](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started). It seems, however, that you need special admission rights to CVS to successfully perform these steps. The documentation is therefore probably outdated.
 {% endhint %}
 
 ### Adding packages to BOSS
 
 {% hint style="warning" %}
-**@todo** Go through Chinese documentation and [this page](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started) and write out.  
-[https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting\_Started](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started)
+**@todo** Go through Chinese documentation and [this page](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started) and write out.
+
+**Note**: It seems special access rights are needed for this procedure, so I have currently not been able to test these procedures.
 {% endhint %}
 
 ## Example packages
 
-{% hint style="warning" %}
-1. **@todo** Introduction to analysis packages already available in BOSS.
-2. **@todo** Scheme of dependencies for the `TestRelease` package
-3. **@todo** How to modify and integrate these packages?
-{% endhint %}
-
-Within BOSS, there are already a few 'example' packages available. All of these are accessible through the so-called [`TestRelease` package](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease), which will be described first. We then focus on one of its main dependencies: the [RhopiAlg algorithm](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg). Within BESIII, this package is typically used as an example for selecting events and usually forms the start of your research.
+Within BOSS, there are already a few 'example' packages available. All of these are accessible through the so-called [`TestRelease` package](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease), which will be described and set up first. We then focus on one of its main dependencies: the [RhopiAlg algorithm](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg). Within BESIII, this package is typically used as an example for selecting events and usually forms the start of your research.
 
 ### The `TestRelease` package
 
@@ -117,13 +124,15 @@ We can set up the `TestRelease` by going into `cmt` and 'broadcasting' to **BOSS
 
 ```bash
 cd cmt
-cmt broadcast      # set up connection to BOSS
+cmt broadcast      # connect your workarea to BOSS
 cmt config         # perform setup and cleanup scripts
-cmt broadcast make # build executables from source code in package
+cmt broadcast make # build and connect executables to BOSS
 source setup.sh    # set bash variables
 ```
 
-This will initialise the package, so that you can run it in BOSS from the `run` folder. This is done using `boss.exe`:
+The term `broadcast` is important here and makes the status of the `TestRelease` package different than for instance the `RhopiAlg`.
+
+We have now initialised the package, so that you can run it in BOSS from the `run` folder. This is done using `boss.exe`:
 
 ```bash
 cd ../run
@@ -146,11 +155,25 @@ The `RhopiAlg` package is located here:
 
 A [better commented version](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23) is also available within the BOSS Afterburner. In this tutorial, we will work with this version.
 
+Only need to \(as opposed to `TestRelease`\):
+
+```bash
+cmt config
+make
+source setup.sh
+```
+
 {% hint style="warning" %}
 **@todo** Describe `RhopiAlg` and how to work with it.
 
 1. Aim \(physics\)
 2. What this will teach you: - `fit4c` versus `fit5c` - Different output
 3. **Note**: Focus on structure of the package and of the code. How to run it is explained in [Running jobs](running-jobs.md).
+{% endhint %}
+
+### `KGamma`: a modification of `RhopiAlg`
+
+{% hint style="warning" %}
+Test procedure of creating a new package from `RhopiAlg` and how CMT deals with such a renamed package.
 {% endhint %}
 
