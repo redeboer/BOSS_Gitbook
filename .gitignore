@@ -30,6 +30,7 @@ jobs/sub/**/*.sh.*.*
 **/*.ffwarn
 **.[oad]
 **.do
+**.stamp
 **.exe
 **.so
 *ACLiC_dict_rdict.pcm
