@@ -1,0 +1,30 @@
+// Job options file for generator 
+
+#include "$KKMCROOT/share/jobOptions_KKMC.txt"
+KKMC.CMSEnergy = 3.686;
+//KKMC.CMSEnergySpread=0.0011;
+KKMC.InitializedSeed={400066,1,0};
+KKMC.NumberOfEventPrinted=100;
+KKMC.GeneratePsiPrime=true;
+KKMC.ParticleDecayThroughEvtGen=true;
+KKMC.RadiationCorrection =false;
+
+// please comment the following two line if ParticleDecayThroughEvtGen = false
+ApplicationMgr.DLLs += { "BesEvtGen","BesServices"};
+ApplicationMgr.TopAlg += { "EvtDecay"};
+EvtDecay.userDecayTableName = "../run/pipijpsi.dec";
+//EvtDecay.DecayTopology = "EvtTop";
+//EvtDecay.statDecays = true;
+//EvtDecay.TagLundCharmModel = true;
+
+EvtDecay.NutupleFile=true;
+ApplicationMgr.HistogramPersistency = "ROOT";
+NTupleSvc.Output += { "MYROOTFILE DATAFILE='mctest.root' OPT='NEW' TYP='ROOT'" };
+
+BesRndmGenSvc.RndmSeed = 100;
+#include "$REALIZATIONSVCROOT/share/jobOptions_Realization.txt"
+#include "$BESSIMROOT/share/Bes_Gen.txt"
+MessageSvc.OutputLevel  = 3;
+
+ApplicationMgr.EvtMax = 1000;
+
