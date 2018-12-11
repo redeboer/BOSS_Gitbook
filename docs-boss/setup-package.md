@@ -67,7 +67,7 @@ In addition to the default files above, it is advised that you also create the f
 * A subdirectory named`test`. You use this for private testing of your package.
 * A subdirectory named`doc` for documentation files.
 * A subdirectory named`share` for platform-independent configuration files, scripts, etc.
-* A file named `README` that briefly descibres the purpose and context of the package.
+* A file named `README` that briefly describes the purpose and context of the package.
 * A file named `ChangeLog` that contains a record of the changes.
 
 The above is based on the [official BOSS page on how to create a new package](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_create_a_new_package) \(minimal explanations\).
@@ -103,13 +103,11 @@ The `TestRelease` package is used to run certain basic packages that are already
 
 You can also choose to copy it from its location in BOSS:
 
-
-
 ```bash
-cd /ihepbatch/bes/$USER/workarea-7.0.3
+/afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/TestRelease
 ```
 
-If you [set up your BOSS environment](setup.md#2-set-up-your-boss-workarea), you can copy it to your _BOSS workarea_ as follows:
+If you [set up your BOSS environment](setup.md#2-set-up-your-boss-workarea) correctly, you can copy `TestRelease` to your _BOSS workarea_ as follows:
 
 ```bash
 cp –r "$BesArea/TestRelease" "$BOSSWORKAREA"
@@ -132,7 +130,7 @@ cmt broadcast make # build executables from source code in package
 source setup.sh    # set bash variables
 ```
 
-This will initialise the package so that you can run it from the run folder. This is done using `boss.exe`:
+This will initialise the package, so that you can run it in BOSS from the `run` folder. This is done using `boss.exe`:
 
 ```bash
 cd ../run
@@ -141,15 +139,19 @@ boss.exe jobOptions_sim.txt
 
 which, in this case, will run a Monte Carlo simulation.
 
-Note that in [Step 5 when we set up the work area](setup.md#step-5-modify-your-bashrc) we added the line source setup.sh to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
+Note that in [Step 5 when we set up the work area](setup.md#step-5-modify-your-bashrc) we added `source setup.sh` line to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
 
 ### The `Rhopi` algorithm
 
-Location of the `RhopiAlg`:
+One of the basic analysis packages that is already provided in BOSS is the `RhopiAlg` package. Within BESIII, almost everyone knows it, because it is used as the starting point for developing your own packages. `RhopiAlg` is an illustration of a typical procedure in particle physics: selecting events from your data or Monte Carlo simulation.
+
+The `RhopiAlg` package is located here:
 
 ```bash
 /afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23
 ```
+
+A [better commented version](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23) is also available within the BOSS Afterburner. In this tutorial, we will work with this version.
 
 {% hint style="warning" %}
 **@todo** Describe `RhopiAlg` and how to work with it.

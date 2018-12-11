@@ -24,6 +24,10 @@ When you have logged into the server, you usually start in your home \(`~`\) fol
 | `/workfs/bes/$USER` | 5 GB | 50,000 | no `hep_sub` available |
 | `/scratchfs/bes/$USER` | 500 GB | NA | max. 2 weeks |
 
+{% hint style="danger" %}
+**Do not exceed these data quotas!** If you do, the folder of which you are exceeding its quota will be locked by the Computing Center after a few weeks and it is quite a hassle to regain access.
+{% endhint %}
+
 Of course, here, and in what follows, `$USER` refers to your user name.
 
 Some other important directories are the following:
