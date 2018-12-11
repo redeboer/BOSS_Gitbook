@@ -24,14 +24,20 @@ jobs/sub/**/*.sh.*.*
 .vscode/**
 .bash**
 
-# Ignore binaries
+# Ignore CMT files
+**.cmtref
+**.fferr
+**.ffwarn
+**.in
+**.shstamp
+**.stamp
 **/fort.*
-**/*.fferr
-**/*.ffwarn
+
+# Ignore binaries
 **.[oad]
 **.do
-**.stamp
 **.exe
+**.make
 **.so
 *ACLiC_dict_rdict.pcm
 execute
