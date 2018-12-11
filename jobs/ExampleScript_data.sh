@@ -15,12 +15,12 @@ source CommonFunctions.sh
 analysisType="rhopi_data"
 
 
-#! Set to 1 if you want to load your dst files from "filenames/ExampleFile_DstFiles.txt"
+#! Set to 1 if you want to load your dst files from "filenames/ExampleFile_DstFiles"
 gExampleFromFile=1
 
 if [ ${gExampleFromFile} == 1 ]; then
 	# * This will create your job files based on a file listing dst files and directories
-	CreateFilenameInventoryFromFile "filenames/ExampleFile_DstFiles.txt" "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection.txt" 6 "dst"
+	CreateFilenameInventoryFromFile "filenames/ExampleFile_DstFiles" "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection.txt" 6 "dst"
 	bash CreateJobFiles_data.sh "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_*.txt" "$analysisType" -1
 else
 	# * This will create your job files based on a directory containing dst files
