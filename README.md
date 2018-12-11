@@ -11,7 +11,7 @@ This repository has been set up as an unofficial extension to the BOSS analysis 
 1. Serve as an accessible introduction and user guide to **BOSS**.
 2. Provide basic tools to analyse and visualise output of **BOSS**.
 
-If you do not have an IHEP networking account, it is therefore better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html) of BESIII — this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section [Further reading](appendices/references.md).
+If you do not have an IHEP networking account, it is therefore better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html) of BESIII — this framework can only be of use if you are a collaborator of this experiment and if you have access to the software of this collaboration. You can also have a look at the section [Further reading](docs-appendices/references.md).
 
 The BOSS Afterburner repository can be accessed through three channels. There is:
 
@@ -25,11 +25,11 @@ The BOSS Afterburner repository can be accessed through three channels. There is
 
 The documentation of the [GitBook page](https://besiii.gitbook.io/boss-gitbook) is intended to provide tutorials for using both the BOSS Analysis Framework and the BOSS Afterburner. If you are not familiar with BOSS, it is best to start looking at that part of the tutorial.
 
-{% page-ref page="working-with-boss/intro.md" %}
+{% page-ref page="docs-boss/intro.md" %}
 
 However, parts of this tutorial refer to components of the BOSS Afterburner repository. Keep that repository therefore at hand \(by cloning it\).
 
 If you have been able to create data output, you can analyse your results with the BOSS Afterburner. This is described in the second part of this GitBook.
 
-Finally, I have written out any problems and solutions or handy tricks into the [Tips & Tricks](appendices/tips.md) section. Other additional sections, like [Further reading](appendices/references.md), have also been collected into the appendices.
+Finally, I have written out any problems and solutions or handy tricks into the [Tips & Tricks](docs-appendices/tips.md) section. Other additional sections, like [Further reading](docs-appendices/references.md), have also been collected into the appendices.
 
