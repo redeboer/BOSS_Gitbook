@@ -71,7 +71,7 @@ The above is based on the [official BOSS page on how to create a new package](ht
 **@todo** Test the below procedure.
 {% endhint %}
 
-Whenever you modify the code in your package \(particularly the header code in the `MyFirstPackage` and the source code in `src`\), you need to update the package. This is done through the following commands:
+Whenever you modify the code in your package \(particularly the header code in the `MyFirstPackage` and the source code in `src`\), you need to 'update' the package. This is done through the following commands:
 
 ```bash
 cmt config      # let CMT know that you are updating
@@ -79,7 +79,11 @@ make            # build executables from the source code
 source setup.sh # create the update
 ```
 
-In conjuncture with CVS, CMT now decides how to tag the new version of the package. Usually, this means that the patch id number is incremented by one. \(Whether this properly follows the [BESIII version naming convention](setup-package.md#structure-of-a-default-cmt-package) is not entirely clear.\)
+### Tagging a new version of your package
+
+
+
+~~In conjuncture with CVS, CMT now decides how to tag the new version of the package. Usually, this means that the patch id number is incremented by one. \(Whether this properly follows the~~ [~~BESIII version naming convention~~](setup-package.md#structure-of-a-default-cmt-package) ~~is not entirely clear.\)~~
 
 {% hint style="info" %}
 BESIII has some documentation on working with CMT available [here](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started). It seems, however, that you need special admission rights to CVS to successfully perform these steps. The documentation is therefore probably outdated.
