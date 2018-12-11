@@ -4,5 +4,5 @@
 **This tutorial is still being developed.**
 {% endhint %}
 
-![Current class structure of the BOSS Afterburner](../fig/BOSS_Afterburner.png)
+![Current class structure of the BOSS Afterburner](../.gitbook/assets/boss_afterburner%20%281%29.png)
 

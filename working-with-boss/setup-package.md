@@ -1,10 +1,3 @@
----
-description: >-
-  In this part of the BOSS tutorial, you will learn how to work with CMT
-  packages. We'll first have a look at how to create and update packages, then
-  we will go through some packages available in BOSS.
----
-
 # Set up a BOSS package
 
 ## How to set up a BOSS package?

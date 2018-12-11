@@ -14,5 +14,3 @@ From here on, you will essentially be doing your own research. Most types of dat
 
 We therefore come to the second part of this GitBook.
 
-{% page-ref page="../docs-afterburner/intro.md" %}
-
