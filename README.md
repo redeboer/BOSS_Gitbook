@@ -19,6 +19,8 @@ The BOSS Afterburner repository can be accessed through three channels. There is
 2. [the BOSS GitBook](https://redeboer.gitbook.io/boss-gitbook), which contains tutorial-like pages on both the BOSS Analysis Framework and the BOSS Afterburner;
 3. [Doxygen documentation of the BOSS Afterburner](https://redeboer.github.io/BOSS_Afterburner/). This page can be consulted for more details about the code in the BOSS Afterburner.
 
+![The three components of the *BOSS Afterburner*](../fig/BOSS_Repository.png)
+
 ## Tutorial pages
 
 The documentation of the [GitBook page](https://redeboer.gitbook.io/boss-gitbook/) is intended to provide tutorials for using both the BOSS Analysis Framework and the BOSS Afterburner. If you are not familiar with BOSS, it is best to start looking at that part of the tutorial.
