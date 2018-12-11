@@ -6,9 +6,13 @@
 **@todo** Rewrite for TC shell.
 {% endhint %}
 
-I advise you to set up your environment in the same way I did. There are two main directories that you will be using: \(1\) the _BOSS Afterburner_ repository, which contains your analysis code, and \(2\) the _BOSS workarea_, which contains your run scripts for BOSS.
+I advise you to set up your environment in the same way I did. There are two main directories that you will be using: \(1\) the _BOSS Afterburner_ repository, which contains your analysis code, and \(2\) the _BOSS workarea_, which contains your packages and run scripts for BOSS.
 
 I placed the _workarea_ folder **within** the BOSS Afterburner repository \(see `BOSS_Afterburner/boss`\), so that it is available as an example, but another common procedure is to put it in the `ihepbatch` folder \(see [Organisation of the IHEP server](ihep-server.md) to decide what is best for you\). I think the BOSS Afterburner is best placed in the `besfs` folder. Data generated with **BOSS** through the _workarea_ scripts will then be written to the `BOSS_Afterburner/data` subdirectory and analysis plots to the `BOSS_Afterburner/plots` folder.
+
+{% hint style="info" %}
+If you work with large data samples, you may want to move the `data` folder in [`scratchfs`](ihep-server.md). Modify your job option files accordingly though!
+{% endhint %}
 
 ## \(1\) Set up the _BOSS Afterburner_
 
@@ -32,7 +36,7 @@ The _BOSS Afterburner_ will be used to analyse output from **BOSS**. We get back
 **The below procedure is** [**also available as a bash script**](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/setup_boss.sh)**.**
 {% endhint %}
 
-You will be running your **BOSS** analyses from this folder. Your _BOSS workarea_ will contain a [_Configuration Management Tool_](intro.md#configuration-management-tool-cmt) folder \([`cmthome*`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/cmthome)\), which is used to set up path variables for **BOSS**, and a [`workarea*`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea) folder where you develop your own **BOSS** packages \(including the `jobOptions*.txt` files\). Here, the \* stands for the version of BOSS you are using \(in the BOSS Afterburner it is left empty\).
+You will be running your **BOSS** analyses from this folder. Your _BOSS workarea_ will contain a [_Configuration Management Tool_](intro.md#configuration-management-tool-cmt) folder \([`cmthome*`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/cmthome)\), which is used to set up path variables for **BOSS** and a [`workarea*`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea) folder where you develop your own **BOSS** packages \(including the `jobOptions*.txt` files\). Here, the \* stands for the version of BOSS you are using \(in the BOSS Afterburner it is left empty\).
 
 ### **Step 1:** Go to your workarea folder
 
@@ -129,7 +133,7 @@ If everything went well, it should print something like:
 /besfs/users/$USER/BOSS_Afterburner/boss/workarea:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
 ```
 
-The paths listed here \(separated by `:` columns\) will be used to look for packages required by the `requirements` files of packages \(see [Set up a BOSS package](setup-package.md)\). The first of these paths is your _workarea_, the second the BOSS version you use, the rest the paths of the Gaudi libraries.
+The paths listed here \(separated by `:` columns\) will be used to look for packages required by the `requirements` files of packages \(see [Set up a BOSS package](setup-package.md)\). The first of these paths is your _BOSS workarea_, the second the BOSS version you use \(also called **`$BesArea`**\), the rest are paths of Gaudi libraries.
 
 ### **Step 5: Modify your `bashrc`**
 
@@ -194,4 +198,8 @@ mkdir -p "$BOSSWORKAREA/workarea"
 The option `-p` is used to avoid error messages when making this directory: if you followed the above steps this folder already exists, because it is already available in the BOSS repository \(which you cloned in [the first part](setup.md#1-set-up-the-boss-afterburner)\).
 
 We'll get back to the `workarea` folder when we [set up a BOSS package](setup-package.md).
+
+{% hint style="info" %}
+Your _BOSS workarea_ typically contains three folders: **`Analysis`**, which contains CMT packages that you use for your analysis, **`InstallArea`**, which is created when you use `cmt config`, and **`TestRelease`**, which is used to run all packages. The file structure follows that of the `$BesArea` \(use `ls $BesArea` to verify this.\)
+{% endhint %}
 
