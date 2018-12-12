@@ -9,19 +9,21 @@ fi
 	function AskToOverwrite()
 	{
 		local PackageToOverwrite="$1"
+		local SourcePath="${BesArea}/${PackageToOverwrite}"
 		# * Check if package exists in $BesArea
-		if [ ! -d "${BesArea}/${PackageToOverwrite}" ]; then
+		if [ ! -d "${SourcePath}" ]; then
 			echo "ERROR: package \"${PackageToOverwrite}\" does not exist in \$BesArea!"
 			exit
 		fi
-		if [ -d "${BOSSWORKAREA}/workarea/${PackageToOverwrite}" ]; then
+		local TargetPath="${BOSSWORKAREA}/workarea/${PackageToOverwrite}"
+		if [ -d "${TargetPath}" ]; then
 			echo "WARNING: Package \"${PackageToOverwrite}\" already exists in your workarea"
 			read -p "Press ENTER to overwrite..."
-			rm -rf "${BOSSWORKAREA}/workarea/${PackageToOverwrite}"
+			rm -rf "${TargetPath}"
 		fi
+		mkdir -p "${TargetPath}"
 		echo "Overwriting \"${PackageToOverwrite}\"..."
-		echo $BOSSWORKAREA
-		cp –r "${BesArea}/${PackageToOverwrite}" "${BOSSWORKAREA}/workarea/$(dirname ${PackageToOverwrite})"
+		cp -fR "${SourcePath}"* "${TargetPath}"
 	}
 
 # * Copy example packages * #
