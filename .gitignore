@@ -34,6 +34,13 @@ jobs/sub/**/*.sh.*.*
 **.stamp
 fort.*
 
+# Ignore CVS files
+CVS
+Entries
+Repository
+Root
+Tag
+
 # Ignore binaries
 **.[oad]
 **.do
