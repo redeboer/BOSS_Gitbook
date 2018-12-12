@@ -16,6 +16,7 @@
 ## Working with the BOSS Afterburner
 
 * [The BOSS Afterburner](docs-afterburner/intro.md)
+* [Ideas for a RooFit wrapper](docs-afterburner/ideas-for-a-roofit-wrapper.md)
 
 ## Appendices
 

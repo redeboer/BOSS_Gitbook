@@ -16,7 +16,7 @@ If you do not have an IHEP networking account, it is therefore better to check o
 The BOSS Afterburner repository can be accessed through three channels. There is:
 
 1. [the repository itself on GitHub](https://github.com/redeboer/BOSS_Afterburner), containing all the source code, including MarkDown files;
-2. [the BOSS GitBook](https://redeboer.gitbook.io/boss-gitbook), which contains tutorial-like pages on both the BOSS Analysis Framework and the BOSS Afterburner;
+2. [the BOSS GitBook](https://besiii.gitbook.io/boss-gitbook), which contains tutorial-like pages on both the BOSS Analysis Framework and the BOSS Afterburner;
 3. [Doxygen documentation of the BOSS Afterburner](https://redeboer.github.io/BOSS_Afterburner/). This page can be consulted for more details about the code in the BOSS Afterburner.
 
 ![The tree components of the BOSS Afterburner](.gitbook/assets/boss_repository.png)
