@@ -32,7 +32,7 @@ jobs/sub/**/*.sh.*.*
 **.in
 **.shstamp
 **.stamp
-**/fort.*
+fort.*
 
 # Ignore binaries
 **.[oad]
