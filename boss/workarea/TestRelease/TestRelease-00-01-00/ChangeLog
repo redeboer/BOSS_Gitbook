@@ -1,0 +1,51 @@
+2017-08-18   Zhang Yao<zhangyao@ihep.ac.cn>
+	* add MdcHoughFinder to official MDC reconstruction
+
+2010-03-19   Ma Qiumei <maqm@ihep.ac.cn>
+  *Add 
+   use DTagSkim           DTagSkim-*           Reconstruction 
+
+2009-04-28  Wu Linghui <wulh@ihep.ac.cn>
+  * Add use Gam4pikpAlg in requirements
+	
+2009-04-03  He Miao <hem@ihep.ac.cn>
+  * Add TofEnergyRecOptions.txt in reconstruction cards.
+
+2009-03-30  Wu Linghui <wulh@ihep.ac.cn>
+	* modify the input file in jobOptions_rec_recdata.txt
+
+2009-03-26  Wu Linghui <wulh@ihep.ac.cn>
+	* add   use EmcTimeRec in requirements
+	* add   EmcTimeRecOptions.txt in jobOptions_rec_data.txt and jobOptions_rec_recdata.txt
+
+2009-03-20  Wu Linghui <wulh@ihep.ac.cn>
+	* move   calibConfig*.txt to $CALIBSVCROOT/share/
+	* change rhopi.rec to rhopi.dst in jobOptions_ana_rhopi.txt
+	
+2009-03-12  Wu Linghui <wulh@ihep.ac.cn>
+	* change the output file from rec to dst in jobOption of reconstruction
+
+2009-03-04  Wu Linghui <wulh@ihep.ac.cn>
+	* delete calibConfig_data.txt
+	* add    calibConfig_rec_data.txt and calibConfig_rec_mc.txt
+	* change the name of MDC reconstruction jobOption
+	* change jobOptions_sim for MDC tuning
+
+2009-03-02  Wu Linghui <wulh@ihep.ac.cn>
+	* add    EsTime configure in calibConfig_*.txt
+	* change MDC reconstructin algorithm from MdcxReco to TrkReco
+
+2009-03-02  Wu Linghui <wulh@ihep.ac.cn>
+	* add   two files: calibConfig_data.txt and calibConfig_sim.txt
+	* move  calibration configures from jobOptions_*.txt to calibConfig_*.txt
+	
+2008-4-22   Ma Qiumei <maqm@ihep.ac.cn>
+use BesVisAlg    *     EventDisplay
+
+2008-4-22   Ma Qiumei <maqm@ihep.ac.cn>
+use Trigger        Trigger-*        Trigger
+
+2008-4-01   Ma Qiumei <maqm@ihep.ac.cn>
+Add:
+use RawDataProviderSvc RawDataProviderSvc-* Event
+use MdcxReco       MdcxReco-*       Reconstruction/MdcPatRec
