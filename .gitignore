@@ -28,6 +28,7 @@ jobs/sub/**/*.sh.*.*
 **.cmtref
 **.fferr
 **.ffwarn
+**.history
 **.in
 **.shstamp
 **.stamp
