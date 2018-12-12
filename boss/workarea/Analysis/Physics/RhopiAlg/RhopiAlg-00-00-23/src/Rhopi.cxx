@@ -40,8 +40,8 @@
 
 // * ------- GLOBALS AND TYPEDEFS ------- * //
 	// * Constants *
-	const double twopi = 6.2831853;
-	const double pi = 3.1415927;
+	// const double twopi = 6.2831853; // ! already defined in CLHEP PhysicalConstants
+	// const double pi = 3.1415927;    // ! already defined in CLHEP PhysicalConstants
 	const double mpi = 0.13957;
 	const double xmass[5] = {
 		0.000511, // electron
@@ -50,8 +50,8 @@
 		0.493677, // charged kaon
 		0.938272  // proton
 	};
-	const double velc = 29.9792458; // tof_path unit in cm.
-	const double velc = 299.792458; // tof path unit in mm
+	const double velc_cm = 29.9792458; // tof_path unit in cm.
+	const double velc_mm = 299.792458; // tof path unit in mm
 	// * Typedefs *
 	typedef std::vector<int> Vint;
 	typedef std::vector<HepLorentzVector> Vp4;
@@ -532,7 +532,7 @@ StatusCode Rhopi::execute() {
 						for(int j = 0; j < 5; j++) {
 							double gb = ptrk/xmass[j]; // v = p/m (non-relativistic velocity)
 							double beta = gb/sqrt(1+gb*gb);
-							texp[j] = 10 * path /beta/velc; // hypothesis ToF
+							texp[j] = 10 * path /beta/velc_mm; // hypothesis ToF
 						}
 						// * Write ToF end cap info ("tofe" branch) *
 						m_ptot_etof = ptrk;          // momentum of the track as reconstructed by MDC
@@ -562,7 +562,7 @@ StatusCode Rhopi::execute() {
 							for(int j = 0; j < 5; j++) {
 								double gb = ptrk/xmass[j]; // v = p/m (non-relativistic velocity)
 								double beta = gb/sqrt(1+gb*gb);
-								texp[j] = 10 * path /beta/velc; // hypothesis ToF
+								texp[j] = 10 * path /beta/velc_mm; // hypothesis ToF
 							}
 							// * Write ToF inner barrel info ("tof1" branch) *
 							m_ptot_btof1 = ptrk;          // momentum of the track as reconstructed by MDC
@@ -591,7 +591,7 @@ StatusCode Rhopi::execute() {
 							for(int j = 0; j < 5; j++) {
 								double gb = ptrk/xmass[j]; // v = p/m (non-relativistic velocity)
 								double beta = gb/sqrt(1+gb*gb);
-								texp[j] = 10 * path /beta/velc; // hypothesis ToF
+								texp[j] = 10 * path /beta/velc_mm; // hypothesis ToF
 							}
 							// * Write ToF outer barrel info ("tof2" branch) *
 							m_ptot_btof2 = ptrk;          // momentum of the track as reconstructed by MDC
