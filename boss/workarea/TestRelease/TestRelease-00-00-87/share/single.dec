@@ -1,0 +1,6 @@
+noPhotos
+Decay J/psi
+# Br particle SINGLE Pmin Pmax Cos[theta]_min Cos[theta]_max phi_min phi_max;
+1.0  mu- SINGLE 0.5 1.3 -1.0 1.0;
+Enddecay
+End

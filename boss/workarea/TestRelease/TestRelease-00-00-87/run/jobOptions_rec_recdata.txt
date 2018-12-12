@@ -1,0 +1,46 @@
+//input data
+#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+#include "$OFFLINEEVENTLOOPMGRROOT/share/OfflineEventLoopMgr_Option.txt"
+#include "$CALIBSVCROOT/share/job-CalibData.txt"
+#include "$MAGNETICFIELDROOT/share/MagneticField.txt"
+#include "$ESTIMEALGROOT/share/job_EsTimeAlg.txt"
+
+// PAT+TSF+HOUGH method for MDC reconstruction
+#include "$MDCHOUGHFINDERROOT/share/jobOptions_MdcPatTsfHoughRec.txt" 
+
+#include "$KALFITALGROOT/share/job_kalfit_numf_data.txt"
+#include "$MDCDEDXALGROOT/share/job_dedx_all.txt"
+#include "$TRKEXTALGROOT/share/TrkExtAlgOption.txt"
+#include "$TOFRECROOT/share/jobOptions_TofRec_Data.txt"
+#include "$TOFENERGYRECROOT/share/TofEnergyRecOptions_Data.txt"
+#include "$EMCRECROOT/share/EmcRecOptions.txt"
+#include "$EMCTIMERECROOT/share/EmcTimeRecOptions.txt"
+
+#include "$MUCRECALGROOT/share/jobOptions_MucRec.txt"
+
+#include "$HLTMAKERALGROOT/share/jobOptions_HltMakerAlg.txt"
+
+#include "$EVENTASSEMBLYROOT/share/EventAssembly.txt"
+#include "$PRIMARYVERTEXALGROOT/share/jobOptions_kalman.txt"
+#include "$VEEVERTEXALGROOT/share/jobOptions_veeVertex.txt"
+
+//output ROOT DST data
+#include "$ROOTIOROOT/share/jobOptions_Dst2Root_data.txt"
+
+//configure for calibration constants
+#include "$CALIBSVCROOT/share/calibConfig_rec_data.txt"
+
+
+//Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel = 5; 
+
+//input data file
+EventCnvSvc.digiRootInputFile = {
+"/bes3fs/offline/data/653-1/dedx2/100118/run_0011420_All_file008_SFO-2.psipp-rec"};
+
+//output data file
+EventCnvSvc.digiRootOutputFile ="run.dst";
+
+//Number of events to be processed (default is 10)
+ApplicationMgr.EvtMax = 50;
+

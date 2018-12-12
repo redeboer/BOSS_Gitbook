@@ -1,0 +1,19 @@
+package RhopiAlg
+author He Kanglin <hekl@ihep.ac.cn>
+
+use BesPolicy BesPolicy-*
+use GaudiInterface GaudiInterface-* External
+
+use DstEvent DstEvent-* Event
+use EventModel   EventModel-*  Event
+use EvtRecEvent EvtRecEvent-* Event
+
+use VertexFit    VertexFit-*   Analysis 
+use ParticleID   ParticleID-*  Analysis
+
+use BesROOT      BesROOT-00-*     External
+
+apply_pattern component_library 
+library RhopiAlg  *.cxx  components/*.cxx
+
+apply_pattern declare_runtime files=*.txt
