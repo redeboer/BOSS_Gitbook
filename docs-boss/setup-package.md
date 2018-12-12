@@ -88,25 +88,33 @@ Finally, it is time to use CMT to tag this new version. The thing is, simply ren
 cd MyFirstPackage-01-00-00/cmt
 ```
 
-Now create new CMT setup and cleanup scripts using:
+Now **create new CMT setup and cleanup scripts** using:
 
 ```bash
 cmt config
 ```
 
-If you for instance open the `setup.sh` file you will see that it has deduced the new version number from the folder name. Now build the executables from the source code:
+If you for instance open the `setup.sh` file you will see that it has deduced the new version number from the folder name.
+
+Now **build the executables** from the source code:
 
 ```bash
 make
 ```
 
-Here, you should check the terminal output if it actually builds your code correctly. If not, go through your `cxx` and `h` files. If it does build correctly, you can make the package accessible to BOSS using:
+It is in this step that you 'tell' CMT which version of your package to use. First of all, executables \(`.o`\) and libraries \(`.d`\) are built in the package version folder \(in a folder like `x86_64-slc6-gcc46-opt`\). Then, symbolic links to the header files of your package are placed in a subfolder called `InstallArea` in your `workarea`. It are the symbolic links that determine which version of your package uses BOSS.
+
+At this stage, you should verify in the terminal output whether your code is actually built correctly. If not, go through your `cxx` and `h` files.
+
+If it does build correctly, you can make the package accessible to BOSS using:
 
 ```bash
 source setup.sh
 ```
 
-You're done now! As mentioned in [Step 3](setup.md#step-3-modify-requirements), when we modified the `requirements` of the BOSS environment, CMT will use the first occurrence of a package in the `$CMTPATH`. That's why we used `path_`**`prepend`**  to add your _BOSS workarea_ to the `$CMTPATH`: in case of a name conflict with a package in the `$BesArea` and one in your _workarea_, CMT, will use the one in your _workarea_.
+You're have created an update of your package!
+
+As mentioned in [Step 3](setup.md#step-3-modify-requirements), when we were modifying the `requirements` of the BOSS environment, CMT will use the first occurrence of a package in the `$CMTPATH`. That's why we used `path_prepend`  to add your _BOSS workarea_ to the `$CMTPATH`: in case of a name conflict with a package in the `$BesArea` and one in your _workarea_, CMT will use the one in your _workarea_.
 
 Just to be sure, while modifying and debugging your package, you can do the entire build-and-source procedure above in one go, using:
 

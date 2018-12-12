@@ -13,6 +13,7 @@
   * [http://english.ihep.cas.cn/](http://english.ihep.cas.cn/) \[English\]
   * [http://www.ihep.cas.cn/](http://www.ihep.cas.cn/) \[Chinese\]
   * [http://web.ihep.ac.cn/](http://web.ihep.ac.cn/)
+* [GitLab repository of the Bochum group](https://jollyj.ep1.rub.de/) \(login required\)
 * [http://english.ihep.cas.cn/doc/259.html](http://english.ihep.cas.cn/doc/259.html)
 
 ## The BOSS Analysis Framework
