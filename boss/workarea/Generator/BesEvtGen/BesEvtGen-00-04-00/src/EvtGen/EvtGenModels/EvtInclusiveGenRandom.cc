@@ -24,16 +24,27 @@
 
 #include "EvtGenBase/EvtRandom.hh"
 #include "EvtGenBase/EvtRandomEngine.hh"
+#include<iostream>
 
 extern "C" {
-  extern float begran_(int *);
+  extern double begran_(int *);
+}
+
+extern "C" {
   extern double phoran_(int *);  //Photos
-  extern float rlu_(int *);      //jetset74
+}
+
+extern "C" {
   extern double pyr_(int *);     //pythia
 }
 
 
-float begran_(int *){
+extern "C"{
+  extern double rlu_(int *);      //jetset74
+}
+
+
+double begran_(int *){
   return EvtRandom::Flat();
 }
  
@@ -41,10 +52,13 @@ double phoran_(int *){
   return EvtRandom::Flat();
 }
  
-float  rlu_(int *){
- return EvtRandom::Flat();
 
+double  rlu_(int *){
+  double rdm= EvtRandom::Flat();
+  // std::cout<<"rlu_ = "<<rdm<<std::endl;
+  return rdm;
 }  
+
 
 double  pyr_(int *){
  return EvtRandom::Flat();

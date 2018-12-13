@@ -90,7 +90,7 @@ EvtDecayBase* EvtPycont::clone()
 void EvtPycont::init()
 {
   // check that there are 1 argument
-  if ( getNArg() != 12 && getNArg() != 0 && getNArg() != 1 ) {
+  if ( !(getNArg() == 12 || getNArg() == 0 || getNArg() == 1) ) {
     report(ERROR,"EvtGen") << "EvtPYCONT expects "
 			   << " 12 arguments (d u s c b t e nu_e mu nu_mu tau nu_tau) but found: "
 			   << getNArg() <<endl;

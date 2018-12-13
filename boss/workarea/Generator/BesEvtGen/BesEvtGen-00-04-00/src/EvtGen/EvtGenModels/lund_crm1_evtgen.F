@@ -121,9 +121,9 @@ c
 
       COMMON/LUJETS/N,K(4000,5),P(4000,5),V(4000,5)   !jetset V7.4
       COMMON/LUDAT1/MSTU(200),PARU(200),MSTJ(200),PARJ(200) !jetset v7.4
-        integer N,K,mstu,mstj
-        real p,v,paru,parj, Rdchannel(10),Rlund,Rtot,RR,R_d
-        real ddn,ddsn,dsdsn,sqrts0
+      integer N,K,mstu,mstj
+      real p,v,paru,parj, Rdchannel(10),Rlund,Rtot,RR,R_d
+      real ddn,ddsn,dsdsn,sqrts0
       integer new_charm,i,j,ij,idsign,Nmpa,nds,mli, makeline(2),
      &  ipart(2,20),nloop,ij0
       save new_charm, Rdchannel,Rlund,ddn,ddsn,dsdsn
@@ -132,305 +132,306 @@ c
       LOGICAL FIRST /.TRUE./    !MHK  Initialization flag
       COMMON/LUDAT3/MDCY(500,3),MDME(2000,2),BRAT(2000),KFDP(2000,5)
       common/charm/mdcy_charm(2),mdme_charm(100,2), brat_charm(100),
-     &  kfdp_charm(100,5)
-       integer mdcy,mdme,kfdp,mdcy_charm,mdme_charm,kfdp_charm
-       real brat,brat_charm
-       SAVE /LUJETS/,/LUDAT1/,/LUDAT3/,/ludatr/      
-       real RLU
-        external  RLU
-       common/ludatr/mrlu(6),rrlu(100) !seed of LUND random number generator
-       integer nevtlist/10/,mrlu
-cjc       INTEGER PIDTR, PID1  !PID transform from lundcharm to PDG2006
-	  REAL tecm,ecm,sqrts,rrlu,totalE
-        common/lundseed/ilundseed
-        integer ilundseed
-        external ranlux 
-        real r1
-        logical flagmother, PDGmode, non_KF, flagpsi
-
-        common /mc_mode/mc_mode
-        integer mc_mode(10),mcmode(10)
-        equivalence(mcmode(1),mc_mode(1))
-chenjc/2010-01-17 added for protection
-        integer Iabort,mytest
-        common /istat/Iabort
-CC--PINGRG--2011-10-20
-        COMMON/CHARMONIUMKF/ICKF
-
-         Iabort=0
-
-        tecm = sqrts
-        ecm = sqrts
-        flag = 0;
-
-        if(pid.eq.10441.or.pid.eq.20443.or.pid.eq.445.or.
+     &     kfdp_charm(100,5)
+      integer mdcy,mdme,kfdp,mdcy_charm,mdme_charm,kfdp_charm
+      real brat,brat_charm
+      real RLU
+c      external  RLU
+c      common/ludatr/mrlu(6),rrlu(100) !seed of LUND random number generator
+      integer nevtlist/10/,mrlu
+      SAVE /LUJETS/,/LUDAT1/,/LUDAT3/ !,/ludatr/      
+c     jc       INTEGER PIDTR, PID1  !PID transform from lundcharm to PDG2006
+      REAL tecm,ecm,sqrts,rrlu,totalE
+      common/lundseed/ilundseed
+      integer ilundseed
+      external ranlux 
+      real r1
+      logical flagmother, PDGmode, non_KF, flagpsi
+      
+      common /mc_mode/mc_mode
+      integer mc_mode(10),mcmode(10)
+      equivalence(mcmode(1),mc_mode(1))
+c     henjc/2010-01-17 added for protection
+      integer Iabort,mytest
+      common /istat/Iabort
+C     C--PINGRG--2011-10-20
+      COMMON/CHARMONIUMKF/ICKF
+      
+      Iabort=0
+      
+      tecm = sqrts
+      ecm = sqrts
+      flag = 0;
+      
+      if(pid.eq.10441.or.pid.eq.20443.or.pid.eq.445.or.
      &     pid.eq.10443.or.pid.eq.441.or.pid.eq.443.or.
      &     pid.eq.100443) then 
-           flagmother = .true.
-           else
-           flagmother = .false.
-           endif
-
-cc       print*,'Decaying Particle: numevt,pid, sqrts=, ',numevt,pid,sqrts 
-
+         flagmother = .true.
+      else
+         flagmother = .false.
+      endif
+      
+c     c       print*,'Decaying Particle: numevt,pid, sqrts=, ',numevt,pid,sqrts 
+      
       if(numevt.lt.0) return
       if(numevt.eq.0) then
-        sqrts0=sqrts
-        PARJ(135)=0.01  !(D=0.01)minimum  photon E in initial-state radiation
-C... particle decay in the beam pipe 
-      MSTJ(22)=4      ! decay when the vertex within a cylindrical volume
-      PARJ(73)=5.    !Let most resonace decay in Rin=5 mm ?
-      PARJ(74)=30.    ! Z(mm) for end of CDC in BES, Z(MDC)=1100 mm       ?
-
-C...New tuning parameters MSTJ(101)=(5 or 2)::(parton-shower or 2nd-ME)
-      PARJ(21)=0.427     ! xgm(D=0.36), width in the Px,Py Gaussian dist.
-      PARJ(33)=0.338     ! mass-2q(D=0.8),below which 2 -hadrons prodced,but no much diff by p80
-      parj(126)=0.813     ! (D=2.)GeV Mass_min(gg) (merge g-g to g)
-
-C...baryon production parameters
-      parj(1)=0.071       !(D=0.1)p(qq)/p(q)
-      parj(2)=0.49        !(D=0.3)p(ss)/p(uu),(uu:dd:ss=1:1:parj(2))
-c..Kinds of mesons parameters(pseudoscalar spin=0(pi(ud~),k(s),eta(uu~+dd~+ss~)
-c   spin=1,J=1(Vector, rho,omiga,phi,h1..)
-c      V/p=<3/1 suggested by spin and overlapper of wave function p227
-C                              ...i=11:u&d,12:s,13:C,
-c      L=0,S=0,J=0, ratio=(1-parj(i))(1-parj(14))  pseudoscalar meson
-c      L=0,S=1,J=1, ratio=parj(i)(1-parj(15)-parj(16)-parj(17))  vector
-c      L=1,S=0,J=1, ratio=(1-parj(i))parj(14)      axial vector meson
-C      L=1,S=1,J=0, ratio=parj(i)parj(15)          scalar meson
-c      L=1,S=1,J=1, ratio=parj(i)parj(16)          another axial vector meson
-c      L=1,S=1,J=2, ratio=parj(i)parj(17)          tensor meson
-C...marked * means effection on reducsion scalar production
-      parj(11)=0.1     !*(D=0.5) V/p ratio of u&d
-      parj(12)=0.928    !(D=0.6)  V/p ratio of strange(s)
-c      parj(13)=0.8    !(D=0.75) V/p ratio of Charm
-      parj(14)=0.645    !*(D=0.)  spin=0,L=1,J=1   axial Vector meson
-      parj(15)=0.016    !(D=0.)   spin=1,L=1,J=0   scalar meson
-      parj(16)=0.026    !(D=0.)   spin=1,L=1,J=1   anothe axial Vector meson
-      parj(17)=0.156    !(D=0.)   spin=1,L=1,J=2   tensor meson
-
-      parj(25)=0.336     !(D=1.) extra supression for eta production
-c... calculate frection of Charm meson by Eichten model
-      if(sqrts0.gt.3.726.and.sqrts0.lt.4.5) then
-        mstj(104)=3      ! only produce u,d,s quark
-        MSTJ(107)=0  !(D=0)initial-state radiatic correction;0:no; 1:do
-        call eichten(SQRTS,Rdchannel)
-      endif
-      if(rdchannel(1)+rdchannel(4).gt.0.)
-     &  ddn=rdchannel(1)/(rdchannel(1)+rdchannel(4))
-      if(rdchannel(2)+rdchannel(5).gt.0.)
-     &  ddsn=rdchannel(2)/(rdchannel(2)+rdchannel(5))
-      if(rdchannel(3)+rdchannel(6).gt.0.)
-     &  dsdsn=rdchannel(3)/(rdchannel(3)+rdchannel(6))
-        Rlund=2.5    ! R fraction of continuum events
-      R_d=Rlund
-      Rtot=Rdchannel(10)+Rlund
-      Rlund=Rlund/Rtot             ! fraction of continuum events
-      do j=1,9
-        R_d=R_d+Rdchannel(j)
-        Rdchannel(j)=R_d/Rtot
-      enddo
-c      write(*,*) 'Rlund,Rtot=',Rlund,Rtot,' R_D_channel=',Rdchannel
-      if(new_charm.eq.0) then
-        call charm_updat
-        new_charm=1
-       endif
-
-        if(MSTJ(107).eq.1)then
-           write(*,*) 'lund_crm> do initial-state radiatic correction!'
-        else if(MSTJ(107).eq.0) then
-           write(*,*) 'lund_crm> no initial-state radiatic correction!'
-        endif
-
-        mrlu(1)=ilundseed !!lundcharm random seed
-        mrlu(2)=0
-        call flush()
-      return
-      endif
-ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-cccccc   begin to loop over events
-
- 99   continue !! begin to generate events
-        N=0
-        flag = 0;
-       nloop=0
-10     continue       ! begain Lund jetset particle generator
-       nloop=nloop+1
-       if(nloop.gt.1000000) then
-        write(*,*) 'Branching ratio of final channel is too
-     &small(<0.000001)!'
-        status=3
-        call flush()
-        return
-       endif
-
-        do i=1,10
-            mcmode(i)=0
-         enddo
-C     -- Wiggle beam energy
-cjc      CALL MCBEAM
-cjc         call rnormx(r1,1,ranlux)
-cjc         sqrts = tecm + r1*sigebm
-cjc      if(numevt.eq.1)  mrlu(1)=IRANDM(1)  ! seed of LUND random from sobcard
-C.... select J/psi or psi' by ECM-mass(J/psi or psi')<width_channel/4
-c         print*,'pid= ',pid
-C....... pingrg 2007/10/7
-       ICKF = 0
-       if(pid.eq.100443.or.pid.eq.443 .or.pid.eq.10441.or.pid.eq.20443     !! decay psi(2S),chic_J,J/psi,eta_c 
-     &   .or. pid .eq. 445 .or. pid.eq.441 .or. pid.eq.10443) then   !! not implement eta_c(2S), h_c decays
-       if(pid.eq.443)    mcmode(10)=7     !J/psi
-       if(pid.eq.100443) mcmode(10)=8     !psi(2S)
-       if(pid.eq.100443) then             !! in JetSet74, psi(2S) id=30443, but in EvtGen,id=100443
-         ICKF = 30443 
-        else
-         ICKF = PID  !!TRANSFER TO LUcharm
-        endif
-c...........
-       CALL LUcharm(4,SQRTS)
-          if(Iabort.eq.1) then
-              iabort=0
-              write(*,*) 'Abort and reproduce this event!'
-              goto 10
-          endif
-       else  !!! decay psi(3770)
-C...select fraction of Charm meson paires and continuum hadrons production
-          RR=RLU(0)
-          IF(RR.LE.Rlund) then
-             mcmode(10)=4    !qed
-            CALL LUEEVT1(0,SQRTS)   ! continuum energy generator
-          else if((RR.gt.Rlund.and.RR.le.Rdchannel(1)).or.
-     &        (RR.gt.Rdchannel(3).and.RR.le.Rdchannel(4))) then
-          mcmode(10)=9
-          if(RLU(0).le.ddn) then
-            call luddgen(421,421,SQRTS)    ! D0D0~ 
-          else
-            call luddgen(411,411,SQRTS)    ! D+D- 
-          endif
-        else if((RR.gt.Rdchannel(1).and.RR.le.Rdchannel(2)).or.
-     &      (RR.gt.Rdchannel(4).and.RR.le.Rdchannel(5))) then
-           mcmode(10)=10
-          if(RLU(0).le.ddsn) then
-            call luddgen(421,423,SQRTS)    ! D0D*0~ 
-          else
-            call luddgen(411,413,SQRTS)    ! D+-D*+- 
-          endif
-        else if((RR.gt.Rdchannel(2).and.RR.le.Rdchannel(3)).or.
-     &      (RR.gt.Rdchannel(5).and.RR.le.Rdchannel(6))) then
-           mcmode(10)=11
-          if(RLU(0).le.dsdsn) then
-            call luddgen(423,423,SQRTS)    ! D*0D*0~ 
-          else
-            call luddgen(421,421,SQRTS)    ! D*+-D*+- 
-          endif
-        else if(RR.gt.Rdchannel(6).and.RR.le.Rdchannel(7)) then
-            mcmode(10)=12
-            call luddgen(431,431,SQRTS)   !DsDs
-        else if(RR.gt.Rdchannel(7).and.RR.le.Rdchannel(8)) then
-             mcmode(10)=13
-            call luddgen(431,433,SQRTS)   !DsDs*
-        else if(RR.gt.Rdchannel(8).and.RR.le.Rdchannel(9)) then
-             mcmode(10)=14
-             call luddgen(433,433,SQRTS) ! Ds*Ds*
+         sqrts0=sqrts
+         PARJ(135)=0.01         !(D=0.01)minimum  photon E in initial-state radiation
+C...  particle decay in the beam pipe 
+         MSTJ(22)=4             ! decay when the vertex within a cylindrical volume
+         PARJ(73)=5.            !Let most resonace decay in Rin=5 mm ?
+         PARJ(74)=30.           ! Z(mm) for end of CDC in BES, Z(MDC)=1100 mm       ?
+         
+C...  New tuning parameters MSTJ(101)=(5 or 2)::(parton-shower or 2nd-ME)
+         PARJ(21)=0.427         ! xgm(D=0.36), width in the Px,Py Gaussian dist.
+         PARJ(33)=0.338         ! mass-2q(D=0.8),below which 2 -hadrons prodced,but no much diff by p80
+         parj(126)=0.813        ! (D=2.)GeV Mass_min(gg) (merge g-g to g)
+         
+C...  baryon production parameters
+         parj(1)=0.071          !(D=0.1)p(qq)/p(q)
+         parj(2)=0.49           !(D=0.3)p(ss)/p(uu),(uu:dd:ss=1:1:parj(2))
+c..   Kinds of mesons parameters(pseudoscalar spin=0(pi(ud~),k(s),eta(uu~+dd~+ss~)
+c     spin=1,J=1(Vector, rho,omiga,phi,h1..)
+c     V/p=<3/1 suggested by spin and overlapper of wave function p227
+C     ...i=11:u&d,12:s,13:C,
+c     L=0,S=0,J=0, ratio=(1-parj(i))(1-parj(14))  pseudoscalar meson
+c     L=0,S=1,J=1, ratio=parj(i)(1-parj(15)-parj(16)-parj(17))  vector
+c     L=1,S=0,J=1, ratio=(1-parj(i))parj(14)      axial vector meson
+C     L=1,S=1,J=0, ratio=parj(i)parj(15)          scalar meson
+c     L=1,S=1,J=1, ratio=parj(i)parj(16)          another axial vector meson
+c     L=1,S=1,J=2, ratio=parj(i)parj(17)          tensor meson
+C...  marked * means effection on reducsion scalar production
+         parj(11)=0.1           !*(D=0.5) V/p ratio of u&d
+         parj(12)=0.928         !(D=0.6)  V/p ratio of strange(s)
+c     parj(13)=0.8    !(D=0.75) V/p ratio of Charm
+         parj(14)=0.645         !*(D=0.)  spin=0,L=1,J=1   axial Vector meson
+         parj(15)=0.016         !(D=0.)   spin=1,L=1,J=0   scalar meson
+         parj(16)=0.026         !(D=0.)   spin=1,L=1,J=1   anothe axial Vector meson
+         parj(17)=0.156         !(D=0.)   spin=1,L=1,J=2   tensor meson
+         
+         parj(25)=0.336         !(D=1.) extra supression for eta production
+c...  calculate frection of Charm meson by Eichten model
+         if(sqrts0.gt.3.726.and.sqrts0.lt.4.5) then
+            mstj(104)=3         ! only produce u,d,s quark
+            MSTJ(107)=0         !(D=0)initial-state radiatic correction;0:no; 1:do
+            call eichten(SQRTS,Rdchannel)
          endif
-       endif
+         if(rdchannel(1)+rdchannel(4).gt.0.)
+     &        ddn=rdchannel(1)/(rdchannel(1)+rdchannel(4))
+         if(rdchannel(2)+rdchannel(5).gt.0.)
+     &        ddsn=rdchannel(2)/(rdchannel(2)+rdchannel(5))
+         if(rdchannel(3)+rdchannel(6).gt.0.)
+     &        dsdsn=rdchannel(3)/(rdchannel(3)+rdchannel(6))
+         Rlund=2.5              ! R fraction of continuum events
+         R_d=Rlund
+         Rtot=Rdchannel(10)+Rlund
+         Rlund=Rlund/Rtot       ! fraction of continuum events
+         do j=1,9
+            R_d=R_d+Rdchannel(j)
+            Rdchannel(j)=R_d/Rtot
+         enddo
+c     write(*,*) 'Rlund,Rtot=',Rlund,Rtot,' R_D_channel=',Rdchannel
+         if(new_charm.eq.0) then
+            call charm_updat
+            new_charm=1
+         endif
+         
+         if(MSTJ(107).eq.1)then
+            write(*,*) 'lund_crm> do initial-state radiatic correction!'
+         else if(MSTJ(107).eq.0) then
+            write(*,*) 'lund_crm> no initial-state radiatic correction!'
+         endif
+         
+c         mrlu(1)=1111111        !ilundseed !!lundcharm random seed
+c         mrlu(2)=0    !! initiation
+         call flush()
+c         return
+      endif
 
-c....output
-cjc/2007/EvtGen      CALL LUEDIT(2)
+ccccccbegin to loop over events
+      
+ 99   continue                  !! begin to generate events
+      N=0
+      flag = 0;
+      nloop=0
+ 10   continue                  ! begain Lund jetset particle generator
+      nloop=nloop+1
+      if(nloop.gt.1000000) then
+         write(*,*) 'Branching ratio of final channel is too
+     &small(<0.000001)!'
+         status=3
+         call flush()
+         return
+      endif
+      
+      do i=1,10
+         mcmode(i)=0
+      enddo
+C     -- Wiggle beam energy
+c     jc      CALL MCBEAM
+c     jc         call rnormx(r1,1,ranlux)
+c     jc         sqrts = tecm + r1*sigebm
+c     jc      if(numevt.eq.1)  mrlu(1)=IRANDM(1)  ! seed of LUND random from sobcard
+C.... select J/psi or psi' by ECM-mass(J/psi or psi')<width_channel/4
+c     print*,'pid= ',pid
+C.......pingrg 2007/10/7
+      ICKF = 0
+      if(pid.eq.100443.or.pid.eq.443 .or.pid.eq.10441.or.pid.eq.20443 !! decay psi(2S),chic_J,J/psi,eta_c 
+     &     .or. pid .eq. 445 .or. pid.eq.441 .or. pid.eq.10443) then !! not implement eta_c(2S), h_c decays
+         if(pid.eq.443)    mcmode(10)=7 !J/psi
+         if(pid.eq.100443) mcmode(10)=8 !psi(2S)
+         if(pid.eq.100443) then !! in JetSet74, psi(2S) id=30443, but in EvtGen,id=100443
+            ICKF = 30443 
+         else
+            ICKF = PID          !!TRANSFER TO LUcharm
+         endif
+c...........
+         CALL LUcharm(4,SQRTS)
+         if(Iabort.eq.1) then
+            iabort=0
+            write(*,*) 'Abort and reproduce this event!'
+            goto 10
+         endif
+      else                      !!! decay psi(3770)
+C...  select fraction of Charm meson paires and continuum hadrons production
+         RR=RLU(0)
+c     c          print*, 'RR= ',RR
+         IF(RR.LE.Rlund) then
+            mcmode(10)=4        !qed
+            CALL LUEEVT1(0,SQRTS) ! continuum energy generator
+         else if((RR.gt.Rlund.and.RR.le.Rdchannel(1)).or.
+     &           (RR.gt.Rdchannel(3).and.RR.le.Rdchannel(4))) then
+            mcmode(10)=9
+            if(RLU(0).le.ddn) then
+               call luddgen(421,421,SQRTS) ! D0D0~ 
+            else
+               call luddgen(411,411,SQRTS) ! D+D- 
+            endif
+         else if((RR.gt.Rdchannel(1).and.RR.le.Rdchannel(2)).or.
+     &           (RR.gt.Rdchannel(4).and.RR.le.Rdchannel(5))) then
+            mcmode(10)=10
+            if(RLU(0).le.ddsn) then
+               call luddgen(421,423,SQRTS) ! D0D*0~ 
+            else
+               call luddgen(411,413,SQRTS) ! D+-D*+- 
+            endif
+         else if((RR.gt.Rdchannel(2).and.RR.le.Rdchannel(3)).or.
+     &           (RR.gt.Rdchannel(5).and.RR.le.Rdchannel(6))) then
+            mcmode(10)=11
+            if(RLU(0).le.dsdsn) then
+               call luddgen(423,423,SQRTS) ! D*0D*0~ 
+            else
+               call luddgen(421,421,SQRTS) ! D*+-D*+- 
+            endif
+         else if(RR.gt.Rdchannel(6).and.RR.le.Rdchannel(7)) then
+            mcmode(10)=12
+            call luddgen(431,431,SQRTS) !DsDs
+         else if(RR.gt.Rdchannel(7).and.RR.le.Rdchannel(8)) then
+            mcmode(10)=13
+            call luddgen(431,433,SQRTS) !DsDs*
+         else if(RR.gt.Rdchannel(8).and.RR.le.Rdchannel(9)) then
+            mcmode(10)=14
+            call luddgen(433,433,SQRTS) ! Ds*Ds*
+         endif
+      endif
+      
+c.... output
+c     jc/2007/EvtGen      CALL LUEDIT(2)
       IF (FIRST) THEN
-cjc        CALL LULIST(11)        ! LULIST(11) in the jetset7.4
-        FIRST = .FALSE.
+c     jc        CALL LULIST(11)        ! LULIST(11) in the jetset7.4
+         FIRST = .FALSE.
       ENDIF
 C-----------------------------------------------------------------------
-c find partons, delete secondary partons, set mother pointers
+c     find partons, delete secondary partons, set mother pointers
       KFstring=0
       ndaug = 0
       pdgmode = .false.
       flagpsi = ickf.eq.30443 .or. ickf.eq.443
-cc----- debugging
-c      CALL LULIST(1)
-
+c     c----- debugging
+c     CALL LULIST(1)
+      
       do 1010 i=1,n
-        kp = k(i,3)   !line number of parent particle or jet for i-th track
-        kid = k(i,2)  !parton/particle KF code
-
-        non_KF = kid.eq.21 .or. kid.ge.23.and.kid.le.37.or.kid
-     &   .eq.91.or.kid.eq.92   !! tag gluon,W,and string,cluster
-         if(kid.eq.91.or.kid.eq.92) KFstring=i  !! tag the string, assuming charmonium decays into string
-
-c        print*,'i= ',i,' ',pdgmode,' kp= ',kp,' KFstring= ', KFstring
-c        print*, 'not(non_KF)=',.not.non_KF
-
-        if(.not.pdgmode.and.kid.eq.22.and.abs(k(kp,2)).le.4 )then   !!fill the FSR photon for ccbar anahilation into qqbar(q=u,d,s)  
-           mytest = 1
-           goto 1009                                
-        else if(pid.eq.30443.and.(abs(kid).eq.411.or.abs(kid).eq.421))
-     &                                                      then      !! selec psi(3770)open charm decay modes
-           pdgmode = .true.
-           mytest = 2
-           goto 1009   
-        else if(flagmother .and. kp.eq.1.and..not.non_KF.and.flagpsi) then  !!selection Jpsi,psi(2S) decay mode in PDG mode
-           if(k(i+1,2).ne.21) pdgmode = .true.
-           mytest =3
-           goto 1009
-        else if(.not.pdgmode.and.kp.eq.KFstring.and.KFstring.ne.0) then  !! selection string and cluster fragmentation events
-           mytest = 4
-           goto 1009
-        else if (KFstring .gt. 0 .and. k(i,3).eq.KFstring.and..not.flagpsi) then !! selection etac,chicj, to qqbar
-           mytest = 5
-           goto 1009
-        else
-           mytest = 6
-           goto 1010
-        endif      
-
-
- 1009   if(kid.eq.30443) kid=100443 !change jetset psi' id to pdg06      
-        ndaug = ndaug + 1
-        km(ndaug)=kp
-        kf(ndaug)=kid
-        px(ndaug)=p(i,1)
-        py(ndaug)=p(i,2)
-        pz(ndaug)=p(i,3)
-        e(ndaug)=p(i,4)
-c
-c for debugging:
-c        print '( 2I5,I12,4F12.4,I4 )',ndaug,km(ndaug),kf(ndaug),
+         kp = k(i,3)            !line number of parent particle or jet for i-th track
+         kid = k(i,2)           !parton/particle KF code
+         
+         non_KF = kid.eq.21 .or. kid.ge.23.and.kid.le.37.or.kid
+     &        .eq.91.or.kid.eq.92 !! tag gluon,W,and string,cluster
+         if(kid.eq.91.or.kid.eq.92) KFstring=i !! tag the string, assuming charmonium decays into string
+         
+c     print*,'i= ',i,' ',pdgmode,' kp= ',kp,' KFstring= ', KFstring
+c     print*, 'not(non_KF)=',.not.non_KF
+         
+         if(.not.pdgmode.and.kid.eq.22.and.abs(k(kp,2)).le.4 )then !!fill the FSR photon for ccbar anahilation into qqbar(q=u,d,s)  
+            mytest = 1
+            goto 1009                                
+         else if(pid.eq.30443.and.(abs(kid).eq.411.or.abs(kid).eq.421))
+     &           then           !! selec psi(3770)open charm decay modes
+            pdgmode = .true.
+            mytest = 2
+            goto 1009   
+         else if(flagmother .and. kp.eq.1.and..not.non_KF.and.flagpsi) then !!selection Jpsi,psi(2S) decay mode in PDG mode
+            if(k(i+1,2).ne.21) pdgmode = .true.
+            mytest =3
+            goto 1009
+         else if(.not.pdgmode.and.kp.eq.KFstring.and.KFstring.ne.0) then !! selection string and cluster fragmentation events
+            mytest = 4
+            goto 1009
+         else if (KFstring .gt. 0 .and. k(i,3).eq.KFstring.and..not.flagpsi) then !! selection etac,chicj, to qqbar
+            mytest = 5
+            goto 1009
+         else
+            mytest = 6
+            goto 1010
+         endif      
+         
+         
+ 1009    if(kid.eq.30443) kid=100443 !change jetset psi' id to pdg06      
+         ndaug = ndaug + 1
+         km(ndaug)=kp
+         kf(ndaug)=kid
+         px(ndaug)=p(i,1)
+         py(ndaug)=p(i,2)
+         pz(ndaug)=p(i,3)
+         e(ndaug)=p(i,4)
+c     
+c     for debugging:
+c     print '( 2I5,I12,4F12.4,I4 )',ndaug,km(ndaug),kf(ndaug),
 c     1    px(ndaug),py(ndaug),pz(ndaug),e(ndaug),mytest
 c-----------------------
-
-1010  continue
-
-C.....  for debugging !pingrg  
-c       PRINT*,'N= ',N
-c       CALL LULIST(1)
-c-- test SetLundPar command
-c      print*,'parj(12)=========0.66, ',parj(12)
-cc check the energy conservation
+         
+ 1010 continue
+      
+C.....for debugging !pingrg  
+c     PRINT*,'N= ',N
+c     CALL LULIST(1)
+c--   test SetLundPar command
+c     print*,'parj(12)=========0.66, ',parj(12)
+c     c check the energy conservation
       totalE=0.
       do i=1,ndaug
-      totalE=totalE+e(i)
+         totalE=totalE+e(i)
       enddo
-chenjc/write mcmode into evt_header flag
-         call mvbits(mcmode(2),0,10,flag,0)                ! DMODE1_max <= 1024
-         call mvbits(mcmode(3),0,10,flag,10)              ! DMODE2_max <= 1024
-         if(mcmode(4).eq.-1) mcmode(4)=0
-         call mvbits(mcmode(4),0,1,flag,20)               ! DCHARM1 1/0 = D/D~
-         if (mcmode(5).eq.-1) mcmode(5)=0
-         call mvbits(mcmode(5),0,1,flag,21)               ! DCHARM2
-         call mvbits(mcmode(6),0,1,flag,22)               ! not used
-         call mvbits(mcmode(7),0,1,flag,23)               ! not used
-         call mvbits(mcmode(8),0,1,flag,24)               ! not used
-         call mvbits(mcmode(9),0,3,flag,25)               ! nx_max <= 8
-         call mvbits(mcmode(10),0,4,flag,28)              ! isr_resonances_max <= 16
-
+c     henjc/write mcmode into evt_header flag
+      call mvbits(mcmode(2),0,10,flag,0) ! DMODE1_max <= 1024
+      call mvbits(mcmode(3),0,10,flag,10) ! DMODE2_max <= 1024
+      if(mcmode(4).eq.-1) mcmode(4)=0
+      call mvbits(mcmode(4),0,1,flag,20) ! DCHARM1 1/0 = D/D~
+      if (mcmode(5).eq.-1) mcmode(5)=0
+      call mvbits(mcmode(5),0,1,flag,21) ! DCHARM2
+      call mvbits(mcmode(6),0,1,flag,22) ! not used
+      call mvbits(mcmode(7),0,1,flag,23) ! not used
+      call mvbits(mcmode(8),0,1,flag,24) ! not used
+      call mvbits(mcmode(9),0,3,flag,25) ! nx_max <= 8
+      call mvbits(mcmode(10),0,4,flag,28) ! isr_resonances_max <= 16
+      
       if(abs(ecm-totalE).ge.0.001) goto 99
-c         if(abs(ecm-totalE).ge.0.001) print*,'|ecm-totalE|= ',
+c     if(abs(ecm-totalE).ge.0.001) print*,'|ecm-totalE|= ',
 c     &  ecm,' ',totalE,' ',abs(ecm-totalE)
       call flush()
       RETURN
       END
-C********************************************************************* 
- 
+C*********************************************************************
+      
       SUBROUTINE decay1(kfa)
       
 C...Purpose: Statistics 1st decay products of unstable particles in the code. 
@@ -6072,3 +6073,8 @@ C  Initialization
       WFLAM=DSQRT(AO*X+1.0)
       RETURN
       END
+
+C********************************************************************* 
+ 
+
+ 

@@ -130,6 +130,7 @@ EvtDecay::EvtDecay(const string& name, ISvcLocator* pSvcLocator):Algorithm( name
   //ReadTruth={{"ParentName"},{"i0","i1","i2"},{"j0","j1","j2","j3"}}, where the first part. is Parent->getDaug(i0)->getDaug(i1)->getDaug(i2),
   //and second particle is Parent ->getDaug(j0)->getDaug(j1)->getDaug(j2)->getDaug(j3);
   declareProperty("RvalueTag",_RvalueTag=false);
+  declareProperty("PrintFSFor",m_printfs="");
 }
 
 
@@ -867,6 +868,14 @@ StatusCode EvtDecay::callBesEvtGen( HepMC::GenEvent* hepMCevt )
       if(part->getNDaug()!=0) hepMCpart->set_status(999); 
       
     //-------------
+   if(EvtPDL::getId(m_printfs)==part->getId()) {
+      int myd=part->getNDaug();
+      std::cout<<"_FinalState "<<myd;
+      for(int ii=0;ii<myd;ii++) {
+       std::cout<<" "<<EvtPDL::name(part->getDaug(ii)->getId());
+       }
+      std::cout<<std::endl;
+    }
 
     AllTrk_index=0;
   for( itp=hepMCevt->particles_begin(); itp!=hepMCevt->particles_end(); ++itp )   
@@ -1145,7 +1154,11 @@ EvtBesRandom::~EvtBesRandom()
 
 double EvtBesRandom::random()
 { 
-  return RandFlat::shoot(m_engine);
+  //double  rdm=EvtRandom::Flat(0.0, 1.0);;
+  double rdm= RandFlat::shoot(m_engine);  
+  // std::cout<<"rdm= "<<rdm<<std::endl;
+  return rdm;
+  //return RandFlat::shoot(m_engine);
 }
 
 
@@ -1555,6 +1568,7 @@ void EvtDecay::ReadTruth(EvtParticle* part,std::vector<std::vector<string> > myl
   for(int k=0;k<mylist[0].size();k++){
     if(part->getId()==EvtPDL::getId(mylist[0][k])){
       if(part->getDaug(1)->getId()==EvtPDL::getId("vhdr")){part=part->getDaug(1);continue;}
+      if(part->getDaug(0)->getId()==EvtPDL::getId("vgam")){part=part->getDaug(1);continue;}
       for(int i=1;i<mylist.size();i++){
 	EvtParticle* mypart=part;
 	for(int j=0;j<mylist[i].size();j++){

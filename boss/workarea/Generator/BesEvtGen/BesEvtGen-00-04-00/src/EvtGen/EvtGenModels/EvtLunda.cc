@@ -265,7 +265,7 @@ modeSelection:
     //}
 
     for(i=0;i<ndaugjs;i++){
-      if (abs(kf[i])==11 || kf[i]==92 ) continue; //fill out the unstatble particle
+      if (abs(kf[i])==11 || kf[i]==92 || kf[i]==22) continue; //fill out the unstatble particle
       //std::cout<<i<<", "<<km[i]<<", "<<kf[i]<<", "<<EvtPDL::name(EvtPDL::evtIdFromStdHep(kf[i]))<<" "<<px[i]<<" ,"<<py[i]<<", "<<pz[i]<<", "<<e[i]<<std::endl; //for debugging
       if (EvtPDL::evtIdFromStdHep(kf[i])==EvtId(-1,-1)) {
 	report(ERROR,"EvtGen") << "Lunda returned particle:"<<kf[i]<<endl;

@@ -25,9 +25,9 @@ void ReadME::readMeasuredEcms(int runNo){
     m_runTo=records->GetDouble("RunTo");
     m_sampleName=records->GetDouble("sample");
     m_ecms=records->GetDouble("Ecms");
-    m_ecmsErr=records->GetDouble("Ecms_err");
-    m_aveEcms=records->GetDouble("Ave_Ecms");
-    m_aveEcmsErr=records->GetDouble("Ave_Ecms_err");
+   // m_ecmsErr=records->GetDouble("Ecms_err");
+   // m_aveEcms=records->GetDouble("Ave_Ecms");
+   // m_aveEcmsErr=records->GetDouble("Ave_Ecms_err");
     m_runNoValid=true;
   }
 }
@@ -39,9 +39,12 @@ void ReadME::readDB(int runNo){
   MeasuredEcmsMax=38140;
   DsRunParamsMin=43716;
   DsRunParamsMax=47066;
+  runxyzMin=47543;
+  runxyzMax=51498;
   if(std::abs(runNo)>=RunParamsMin&&std::abs(runNo)<=RunParamsMax) readRunParams(runNo);
   if(std::abs(runNo)>=MeasuredEcmsMin&&std::abs(runNo)<=MeasuredEcmsMax) readMeasuredEcms(runNo);
   if(std::abs(runNo)>=DsRunParamsMin&&std::abs(runNo)<=DsRunParamsMax) readRunParams(runNo);
+  if(std::abs(runNo)>=runxyzMin&&std::abs(runNo)<=runxyzMax) readMeasuredEcms(runNo);
 }
 
 void ReadME::readRunParams(int runNo){

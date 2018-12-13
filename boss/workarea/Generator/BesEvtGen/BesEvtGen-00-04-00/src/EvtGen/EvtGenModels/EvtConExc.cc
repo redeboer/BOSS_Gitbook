@@ -1,102 +1,124 @@
 //--------------------------------------------------------------------------
-//
 // Environment:
 //      This software is part of models developed at BES collaboration
 //      based on the EvtGen framework.  If you use all or part
 //      of it, please give an appropriate acknowledgement.
 //
 // Copyright Information: See EvtGen/BesCopyright
-//      Copyright (A) 2006      Ping Rong-Gang @IHEP
+//      Copyright (A) 2006  Ping Rong-Gang @IHEP, Wang Weiping @USTC  
 //
-// Module: VVS.hh
+// Module: EvtXsection.hh
 //
 // Description: To define cross section for the continuum exclusive process
 // Experimental cross section taken from PRD73,012005, PRD76,092006, also 
 // see a review: Rev. Mod. Phys. 83,1545
-//************
-// For Rscan generation, use the index 74110. The pdg table need to add 
-// particles gamma* and vgam, gamma* is decayed with model PYCON in the DECAY.dec
-//
-  /*******************--- mode definition:also see EvtXsection.cc
-  0: ppbar
-  1: nnbar
-  2: Lambda0 anti-Lambda0
-  3: Sigma0 anti-Sigma0
-  4: Lambda0 anti-Sigma0
-  5: Sigma0 anti-Lambda0
-  6: pi+ pi-
-  7: pi+ pi- pi0
-  8: K+K- pi0
-  9: KsK+pi- 
-  10: KsK-pi+
-  11: K+K-eta
-  12: 2(pi+pi-) 
-  13: pi+pi-2pi0
-  14: K+K-pi+pi-
-  15: K+K-2pi0
-  16: 2(K+K-)
-  17: 2(pi+pi-)pi0
-  18: 2(pi+pi-)eta
-  19: K+K-pi+pi-pi0  		
-  20: K+K-pi+pi-eta
-  21: 3(pi+pi-)
-  22: 2(pi+pi-pi0)
-  23: phi eta
-  24: phi pi0
-  25: K+K*-
-  26: K-K*+
-  27: K_SK*0-bar
-  28: K*0(892)K+pi-
-  29: K*0(892)K-pi+
-  30: K*+K-pi0
-  31: K*-K+pi0
-  32: K_2*(1430)0 K+pi-
-  33: K_2*(1430)0 K-pi+
-  34: K+K-rho
-  35: phi pi+pi-
-  36: phi f0(980)
-  37: eta pi+pi-
-  38: omega pi+ pi-
-  39: omega f0(980)
-  40: eta' pi+ pi-
-  41: f_1(1285)pi+pi-
-  42: omega K+K-
-  43: omega pi+pi-pi0
-  44: Sigma+ Sigma- (Sigma0 Sigma0-bar SU(3) extention )
-  45: K+K-
-  46: K_S K_L
-  47: omega eta
-  48: phi eta'
-  49: phi K+ K-
-
-  52: omega pi0
-
-  70: D0D0-bar
-  71: D+D-
-  72: D+D*-
-  73: D-D*+
-  74: D*+D*-
-  75: D0D-pi+
-  76: D0D+pi-
-  77: D0D*-pi+
-  78: D0D*+pi-
-  79: pi0 pi0 psi(2S)
-  
-
-  90: J/psi pi+ pi-
-  91: psi(2S)pi+pi-
-  92: J/psi K+K-
-  93: D_s+ D_s-
-  94: D_s^{*+}D_s^-
-  95: D_s^{*-}D_s^+
-  96: Lambda_c+ Lambda_c-
-  *************************************/
 // Modification history:
 //
 //    Ping R.-G.       Nov., 2012       Module created
+//    Wang Weiping:    Nov., 2017       added the mode==85: e+e- --> D_s*+D_s*-
+//    Wang Weiping:    Nov., 2017       fixed final states of mode==28,33,92
+//    Wang Weiping:    Nov., 2017       fixed the angle sampling of VP states
 //
+  /*******************--- mode definition: also see EvtXsection.cc
+ mode==0: ppbar
+ mode==1: nnbar
+ mode==2: Lambda0 anti-Lambda0
+ mode==3: Sigma0 anti-Sigma0
+ mode==4: Lambda0 anti-Sigma0
+ mode==5: Sigma0 anti-Lambda0
+ mode==6: pi+ pi-
+ mode==7: pi+ pi- pi0
+ mode==8: K+K- pi0
+ mode==9: KsK+pi- 
+ mode==10: KsK-pi+
+ mode==11: K+K-eta
+ mode==12: 2(pi+pi-)
+ mode==13: pi+pi-2pi0
+ mode==14: K+K-pi+pi-
+ mode==15: K+K-2pi0
+ mode==16: 2(K+K-)
+ mode==17: 2(pi+pi-)pi0
+ mode==18: 2(pi+pi-)eta
+ mode==19: K+K-pi+pi-pi0  		
+ mode==20: K+K-pi+pi-eta
+ mode==21: 3(pi+pi-)
+ mode==22: 2(pi+pi-pi0)
+ mode==23: phi eta
+ mode==24: phi pi0
+ mode==25: K+K*-
+ mode==26: K-K*+
+ mode==27: K_SK*0-bar
+ mode==28: K*0(892)K+pi-
+ mode==29: K*0(892)K-pi+
+ mode==30: K*+K-pi0
+ mode==31: K*-K+pi0
+ mode==32: K_2*(1430)0 K+pi-
+ mode==33: K_2*(1430)0 K-pi+
+ mode==34: K+K-rho
+ mode==35: phi pi+pi-
+ mode==36: phi f0(980)
+ mode==37: eta pi+pi-
+ mode==38: omega pi+ pi-
+ mode==39: omega f0(980)
+ mode==40: eta' pi+ pi-
+ mode==41: f_1(1285)pi+pi-
+ mode==42: omega K+K-
+ mode==43: omega pi+pi-pi0
+ mode==44: Sigma+ Sigma- (Sigma0 Sigma0-bar SU(3) extention )
+ mode==45: K+K-
+ mode==46: K_S K_L
+ mode==47: omega eta
+ mode==48: phi eta'
+ mode==49: phi K+K-
+ mode==50: ppbar pi0
+ mode==51: ppbar eta
+ mode==52: omega pi0
+
+ mode==70: D0 anti-D0
+ mode==71: D+D-
+ mode==72: D+D*-
+ mode==73: D-D*+
+ mode==74: D*+D*-
+ mode==68: D0 anti-D*0
+ mode==69: anti-D0 D*0
+ mode==67: D*0 anti-D*0
+
+ mode==59: D0 anti-D0 pi0
+ mode==63: D+D-pi0
+ mode==75: D0D-pi+
+ mode==76: anti-D0 D+pi-
+
+ mode==77: D0D*-pi+
+ mode==78: anti-D0 D*+pi-
+ mode==65: D-D*0pi+
+ mode==66: D+ anti-D*0pi-
+ mode==60: anti-D0 D*0pi0
+ mode==61: D0 anti-D*0pi0
+ mode==62: D+D*-pi0
+ mode==64: D-D*+pi0
+
+ mode==90: pi+pi- J/psi
+ mode==92: pi0pi0 J/psi
+ mode==91: pi+pi- psi(2S)
+ mode==79: pi0pi0 psi(2S)
+ mode==80: eta J/psi
+ mode==81: pi+pi- h_c
+ mode==82: pi0pi0 h_c
+ mode==83: K+K- J/psi
+ mode==84: KsKs J/psi
+
+ mode==93: D_s+ D_s-
+ mode==94: D_s^{*+}D_s^-
+ mode==95: D_s^{*-}D_s^+
+ mode==85: D_s^{*+}D_s^{*-}
+
+ mode==96: Lambda_c+ anti-Lamba_c-
+ mode==111: e+e- ->Zc(3900)+ pi-
+ mode==112: e+e- ->Zc(3900)- pi+
+//--- 
+  For cross section, see Ref. Rev.Mod. Phys.83,1545
+  *************************************/
 //------------------------------------------------------------------------
-//
 #include <math.h>
 #include "EvtGenBase/EvtPatches.hh"
 #include <stdlib.h>
@@ -181,17 +203,19 @@ int EvtConExc::multimode=0;
 std::vector<std::vector <double> > EvtConExc::VXS;
 
 EvtConExc::~EvtConExc() {
-  if(_mode==74110)checkEvtRatio();
+//  if(_mode==74110)checkEvtRatio();
   if(myFisr.size())OutStaISR();
   if(mydbg){
     // xs->Write();
     myfile->Write();
   }
+
   delete myxsection;
   delete staxsection;
   gamH->deleteTree();
 
   //the deletion of commands is really uggly!
+
   int i;
   if (nconexcdecays==0) {
     delete [] commands;
@@ -228,16 +252,17 @@ EvtDecayBase* EvtConExc::clone(){
 
 
 void EvtConExc::init(){
+  mydbg=false;
   myFisr.clear();
   ReadVP();
   VXS.resize(120);
   for(int i=0;i<120;i++){
     VXS[i].resize(600);
   }
-  _mode   = getArg(0);
+  _mode = getArg(0);
   for(int i=0;i<97;i++){
     if(53<=i && i<=58) continue;
-    if(85<=i && i<=89) continue;
+    if(86<=i && i<=89) continue;
     if(_mode==74110 ||_mode==-100) vmode.push_back(i);
   }
   if(_mode==74110||_mode==-100){
@@ -263,26 +288,28 @@ void EvtConExc::init(){
   //Vector ISR process
   VISR=0;
   if(getNDaug()==2){
-    if(getDaugs()[0]==EvtPDL::getId("gamma") &&getDaugs()[1]==EvtPDL::getId("gamma*") || getDaugs()[0]==EvtPDL::getId("gamma*") &&getDaugs()[1]==EvtPDL::getId("gamma") ) VISR=1;
-  }else if(getNDaug()>2){std::cout<<"Bad daughter specified"<<std::endl;abort();}
+    if(getDaugs()[0]==EvtPDL::getId("gamma")&&getDaugs()[1]==EvtPDL::getId("gamma*") || getDaugs()[0]==EvtPDL::getId("gamma*")&&getDaugs()[1]==EvtPDL::getId("gamma")) VISR=1;
+    }else if(getNDaug()>2){std::cout<<"Bad daughter specified"<<std::endl;abort();
+  }
 
   //  cmsspread=0.0015; //CMC energy spread
   testflag=0;
   getResMass(); 
   if(getArg(0) == -1){ 
-    radflag=0;mydbg=false;
+    radflag=0;
+    mydbg=false;
     _mode   = getArg(0);
     pdgcode = getArg(1);
     pid = EvtPDL::evtIdFromStdHep(pdgcode );
     nson = getNArg()-2;
     std::cout<<"The decay daughters are "<<std::endl;
-    for(int i=2;i<getNArg();i++ ){son[i-2]=EvtPDL::evtIdFromStdHep(getArg(i));std::cout<<EvtPDL::name(son[i-2])<<" ";}
+    for(int i=2;i<getNArg();i++){son[i-2]=EvtPDL::evtIdFromStdHep(getArg(i));std::cout<<EvtPDL::name(son[i-2])<<" ";}
     std::cout<<std::endl;
   }else if(getArg(0)==-2){
     radflag=0;mydbg=false;
     _mode   = getArg(0);
     nson = getNArg()-1;
-    for(int i=1;i<getNArg();i++ ){son[i-1]=EvtPDL::evtIdFromStdHep(getArg(i));}
+    for(int i=1;i<getNArg();i++){son[i-1]=EvtPDL::evtIdFromStdHep(getArg(i));}
   }else if(getArg(0)==-100){
     _mode = getArg(0);
     multimode=1;
@@ -292,10 +319,10 @@ void EvtConExc::init(){
     for(int i=1;i<getNArg();i++){std::cout<<getArg(i)<<" ";}
     std::cout<<std::endl;
     if(vmd[vmd.size()-1]==74110){std::cout<<"74110 is not allowd for multimode simulation"<<std::endl;abort();}
-  }else if(getNArg()==1){ _mode = getArg(0); radflag=0;mydbg=false;} 
-  else if(getNArg()==2){ _mode = getArg(0); radflag=getArg(1);mydbg=false;}
-  else if(getNArg()==3){ _mode = getArg(0); radflag=getArg(1);mydbg=getArg(2);}
-  else{std::cout<<"ConExc:number of parameter should be 1,2 or 3, but you set "<<getNArg()<<std::endl;::abort(); }
+  }else if(getNArg()==1){ _mode = getArg(0); radflag=0;mydbg=false;
+  }else if(getNArg()==2){ _mode = getArg(0); radflag=getArg(1);mydbg=false;
+  }else if(getNArg()==3){ _mode = getArg(0); radflag=getArg(1);mydbg=getArg(2);
+  }else{std::cout<<"ConExc:number of parameter should be 1,2 or 3, but you set "<<getNArg()<<std::endl;::abort(); }
   //--- debugging
   //std::cout<<_mode<<" "<<pdgcode<<" "<<nson<<" "<<EvtPDL::name(son[0])<<" "<<EvtPDL::name(son[1])<<std::endl;
   
@@ -303,6 +330,7 @@ void EvtConExc::init(){
   init_mode(_mode);
   XS_max=-1;
   //-----debugging to make root file
+  mydbg = false; //designer need to remove this line
     if(mydbg){
       myfile = new TFile("mydbg.root","RECREATE");
       xs=new TTree ("xs","momentum of rad. gamma and hadrons");
@@ -330,8 +358,8 @@ void EvtConExc::init(){
     EvtVector4R p_init(parentMass,0.0,0.0,0.0);
     EvtParticle *p=EvtParticleFactory::particleFactory(parentId,p_init);
     theparent = p;
-    myxsection =new EvtXsection (_mode);
-    staxsection =new EvtXsection (_mode);
+    myxsection = new EvtXsection (_mode);
+    staxsection = new EvtXsection (_mode);
     if(_mode==-100) {
       myxsection->setModes(vmd);
       myxsection->ini_data_multimode();
@@ -356,7 +384,7 @@ void EvtConExc::init(){
     //std::cout<<"getXlw= "<<mth<<std::endl;
 
     Egamcut = 0.001; //set photon energy cut according to the BESIII detector
-    double Esig = 0.0001;  //sigularity engy 
+    double Esig = 0.0001;  //sigularity energy 
     double x = 2*Egamcut/_cms;
     double s = _cms*_cms;
     double mhscut = sqrt(s*(1-x));
@@ -394,19 +422,22 @@ void EvtConExc::init(){
     //-- calculated with MC integration method
      double mhdL=myxsection->getXlw();
      if(mhdL<SetMthr) mhdL=SetMthr;
+std::cout<<"SetMthr= "<<SetMthr<<std::endl;
      EgamH = (s-mhdL*mhdL)/2/sqrt(s);
      int nmc=1000000; 
      _xs0 = gamHXSection(s,Esig,Egamcut,nmc);  
      _er0 = _er1; // stored when calculate _xs0
      std::cout<<"_er0= "<<_er0<<std::endl;
      _xs1 = gamHXSection(s,Egamcut,EgamH,nmc);
+     std::cout<<"_xs1= "<<_xs0<<std::endl;
      double xs1_err = _er1;
  
     
-   //--- sigularity point x from 0 to 0.0001GeV
+    //--- sigularity point x from 0 to 0.0001GeV
     double xb= 2*Esig/_cms;
     double sig_xs = SoftPhoton_xs(s,xb)*(myxsection->getXsection(mx));
     _xs0 += sig_xs;
+    std::cout<<"_xs0= "<<_xs0<<std::endl;
 
     //prepare the observed cross section with interpotation function divdif in CERNLIB
     testflag=1;
@@ -429,15 +460,15 @@ void EvtConExc::init(){
       RadXS[i]=xsi/stp;
     } 
     //add the interval 0~Esig
-    AA[598]=Egamcut;   AA[599]=0; //AA[i]: E_gamma
+    AA[598]=Egamcut; AA[599]=0; //AA[i]: E_gamma
     AF[598]=AF[597];
     AF[599]=AF[598]+ _xs0;
     RadXS[599]=_xs0;
 
     
     //prepare observed cross section for each mode
+std::cout<<"mhdL = "<<mhdL<<", SetMthr= "<<SetMthr<<", EgamH = "<<EgamH<<std::endl;
     for(int i=0;i<vmode.size();i++){
-      //std::cout<<"vmode index = "<<i<<std::endl;
       if(_mode==74110||_mode==-100) mk_VXS(Esig,Egamcut,EgamH,i);
     }
     if(_mode==74110||_mode==-100) writeDecayTabel();
@@ -481,14 +512,15 @@ void EvtConExc::init(){
     }
     //for debugging
     //for(int i=0;i<600;i++){double s=_cms*_cms; double mhds=sqrt(s-2*_cms*AA[i]);std::cout<<"Mhds="<<mhds<<" Egam="<<AA[i]<<" "<<AF[i]<<std::endl;}
-    std::cout<<"VXS[79][599]: "<<VXS[79][599]<<" VXS[79][598]= "<<VXS[79][598]<<std::endl;
-    std::cout<<"EgamH="<<EgamH<<" "<<_xs0+_xs1<<" AF[599]="<<AF[599]<<" AF[598] "<<AF[598]<<std::endl;
+    //std::cout<<"VXS[79][599]: "<<VXS[79][599]<<" VXS[79][598]= "<<VXS[79][598]<<std::endl;
+    std::cout<<"EgamH = "<<EgamH<<",  obsvXS = "<<_xs0+_xs1<<",    _xs1 = "<<_xs1 << ", _xs0 = "<<_xs0<<std::endl;
+    std::cout<<"EgamH = "<<EgamH<<", AF[599] = "<< AF[599]<< ", AF[598] = "<<AF[598]<<", _xs0 = "<<_xs0<<std::endl;
     //double Etst=0.0241838;
     //std::cout<<"Etst="<<Etst<<" "<<gamHXSection(s,Etst,EgamH,nmc)<<" "<< lgr(AA,AF,600,Etst)<<std::endl; abort(); 
 
     //for information output
     double bornXS   = myxsection->getXsection(mx);  // std::cout<<"BornXS= "<<bornXS<<std::endl;
-    double bornXS_er=myxsection->getErr(mx);
+    double bornXS_er= myxsection->getErr(mx);
     double obsvXS   = _xs0 + _xs1; //gamHXSection(mth ,mx);
     double obsvXS_er= _er0 + xs1_err;
     double corr = obsvXS/bornXS; 
@@ -504,7 +536,7 @@ void EvtConExc::init(){
     std::cout<<""<<std::endl;
     std::cout<<"========= Generation using cross section (Egamcut="<<Egamcut<<" GeV) =============="<<std::endl;
     std::cout<<" sqrt(s)= "<<mx<< " GeV "<<std::endl;
-    if(_mode>=0 || _mode ==-2 || _mode ==-100 ){
+    if(_mode>=0 || _mode ==-2 || _mode ==-100){
     std::cout<<"The generated born cross section (sigma_b): "<<_xs0<<"+/-"<<_er0<<" in Unit "<<_unit.c_str()<<std::endl;
     std::cout<<"The generated radiative correction cross section (sigma_isr): "<<_xs1<<"+/-"<<xs1_err<<" in Unit "<<_unit.c_str()<<std::endl;
     std::cout<<"The Born process is sampled according to the ratio sigma_b/(sigma_b+sigma_isr)"<<std::endl;
@@ -513,7 +545,7 @@ void EvtConExc::init(){
     std::cout<<"the observed cross section is "<<obsvXS<<"+/-"<< obsvXS_er<<_unit.c_str()<<std::endl;
     std::cout<<"and the Born cross section (s) is  "<<bornXS<<"+/-"<<bornXS_er<<_unit.c_str()<<std::endl;
     std::cout<<"and the vaccum polarziation factor (lep. + hadr.) 1/|1-Pi|^2= "<<vph<<std::endl;
-    std::cout<<"Within the range "<<myxsection->getXlw()<<" ~"<<myxsection->getXup()<<" GeV, "<<myxsection->getMsg().c_str()<<std::endl;
+    std::cout<<"Within the range "<<myxsection->getXlw()<<" ~ "<<myxsection->getXup()<<" GeV, "<<myxsection->getMsg().c_str()<<std::endl;
     std::cout<<"==========================================================================="<<std::endl;
     }else if(_mode==-1){
     std::cout<<"The generated born cross section (sigma_b): "<<_xs0<<" *Br_ee"<<" in Unit "<<_unit.c_str()<<std::endl;
@@ -537,289 +569,288 @@ void EvtConExc::init(){
     mlow=myxsection->getXlw();
     mup =myxsection->getXup();
     //--- for debugging
-  if(mydbg  && _mode!=74110){
-    int nd = myxsection->getYY().size();
-    double  xx[10000],yy[10000],xer[10000],yer[10000];
-    for(int i=0;i<nd;i++){
-      xx[i]=myxsection->getXX()[i];
-      yy[i]=myxsection->getYY()[i];
-      yer[i]=myxsection->getEr()[i];
-      xer[i]=0.;
-      //std::cout<<"yy "<<yy[i]<<std::endl;
-    }
-    myth=new TH1F("myth","Exp.data",200,xx[0],xx[nd]);
-    for(int i=0;i<nd;i++){
-      myth->Fill(xx[i],yy[i]);
-    }
-    myth->SetError(yer);
-    myth->Write();
+   if(mydbg  && _mode!=74110){
+     int nd = myxsection->getYY().size();
+     double  xx[10000],yy[10000],xer[10000],yer[10000];
+     for(int i=0;i<nd;i++){
+       xx[i]=myxsection->getXX()[i];
+       yy[i]=myxsection->getYY()[i];
+       yer[i]=myxsection->getEr()[i];
+       xer[i]=0.;
+       //std::cout<<"yy "<<yy[i]<<std::endl;
+     }
+     myth=new TH1F("myth","Exp.data",200,xx[0],xx[nd]);
+     for(int i=0;i<nd;i++){
+       myth->Fill(xx[i],yy[i]);
+     }
+     myth->SetError(yer);
+     myth->Write();
     
-    //std::cout<<"mass1= "<<mass1<<" mass2= "<<mass2<<std::endl;
-  }else
+     //std::cout<<"mass1= "<<mass1<<" mass2= "<<mass2<<std::endl;
+   }else if(mydbg && _mode==74110){
+     int nd = myxsection->getYY().size();
+     double  xx[10000],yy[10000],xer[10000],yer[10000],ysum[10000],yysum[10000];
+     for(int i=0;i<nd;i++){
+       xx[i]=myxsection->getXX()[i];
+       yy[i]=myxsection->getYY()[i];
+       yer[i]=myxsection->getEr()[i];
+       xer[i]=0.;
+       std::cout<<"yy "<<yy[i]<<std::endl;
+     }
 
-    if(mydbg && _mode==74110 ){
-      int nd = myxsection->getYY().size();
-      double  xx[10000],yy[10000],xer[10000],yer[10000],ysum[10000],yysum[10000];
-      for(int i=0;i<nd;i++){
-	xx[i]=myxsection->getXX()[i];
-	yy[i]=myxsection->getYY()[i];
-	yer[i]=myxsection->getEr()[i];
-	xer[i]=0.;
-	//std::cout<<"yy "<<yy[i]<<std::endl;
-      }
 #include "sty.C"
-      double xhigh=5.0;
-      double xlow = myxsection->getXlw();
-      TGraphErrors *Gdt = new TGraphErrors(nd,xx,yy,xer,yer);
+     double xhigh=5.0;
+     double xlow = myxsection->getXlw();
+     TGraphErrors *Gdt = new TGraphErrors(nd,xx,yy,xer,yer);
 
-      myth=new TH1F("myth","Exp.data",600,xlow,xhigh);
-      Xsum=new TH1F("sumxs","sum of exclusive xs",600,xlow,xhigh);
-      double mstp=(xhigh-xlow)/600;
-      for(int i=0;i<600;i++){
-	double mx=i*mstp+xlow;
-	double xsi = myxsection->getXsection(mx);
-	if(xsi==0) continue;
-        myth->Fill(mx,xsi);
-	//std::cout<<mx<<" "<<xsi<<std::endl;
-      }
+     myth=new TH1F("myth","Exp.data",600,xlow,xhigh);
+     Xsum=new TH1F("sumxs","sum of exclusive xs",600,xlow,xhigh);
+     double mstp=(xhigh-xlow)/600;
+     for(int i=0;i<600;i++){
+       double mx=i*mstp+xlow;
+       double xsi = myxsection->getXsection(mx);
+       if(xsi==0) continue;
+       myth->Fill(mx,xsi);
+   //std::cout<<mx<<" "<<xsi<<std::endl;
+     }
 
-      for(int i=0;i<600;i++){
-        double mx=i*mstp+xlow;
-        ysum[i]=sumExc(mx);
-	if(ysum[i]==0) continue;
-        Xsum->Fill(mx,ysum[i]);
-	//std::cout<<mx<<" "<<ysum[i]<<std::endl;
-      }
+     for(int i=0;i<600;i++){
+       double mx=i*mstp+xlow;
+       ysum[i]=sumExc(mx);
+       if(ysum[i]==0) continue;
+       Xsum->Fill(mx,ysum[i]);
+   //std::cout<<mx<<" "<<ysum[i]<<std::endl;
+     }
 
-      for(int i=0;i<nd;i++){
-        yysum[i]=sumExc(xx[i]);
-      }
+     for(int i=0;i<nd;i++){
+       yysum[i]=sumExc(xx[i]);
+     }
 
-      myth->SetError(yer);
-      myth->Write();
-      Xsum->Write();
+     myth->SetError(yer);
+     myth->Write();
+     Xsum->Write();
 
-      TGraphErrors *Gsum = new TGraphErrors(nd,xx,yysum,xer,yer);
-      //draw graph
-      double ex[600]={600*0};
-      double ey[600],ta[600];
-      double exz[600]={600*0};
-      double eyz[600]={600*0};
-      for(int i=0;i<600;i++){
-	ey[i]=AF[i]*0.001;
-      }
-      TGraphErrors *gr0 = new TGraphErrors(600,MH,AF,ex,ey);
-      TGraphErrors *gr1 = new TGraphErrors(600,MH,RadXS,exz,eyz);
-      TPostScript *ps = new TPostScript("xsobs.ps",111); 
-      TCanvas *c1 = new TCanvas("c1","TGraphs for data",200,10,600,400);
-      gPad-> SetLogy(1);
-      //      c1->SetLogy(1); 
-      gStyle->SetCanvasColor(0);
-      gStyle->SetStatBorderSize(1);
-      c1->Divide(1,1);
+     TGraphErrors *Gsum = new TGraphErrors(nd,xx,yysum,xer,yer);
+     //draw graph
+     double ex[600]={600*0};
+     double ey[600],ta[600];
+     double exz[600]={600*0};
+     double eyz[600]={600*0};
+     for(int i=0;i<600;i++){
+       ey[i]=AF[i]*0.001;
+     }
+     TGraphErrors *gr0 = new TGraphErrors(600,MH,AF,ex,ey);
+     TGraphErrors *gr1 = new TGraphErrors(600,MH,RadXS,exz,eyz);
+     TPostScript *ps = new TPostScript("xsobs.ps",111); 
+     TCanvas *c1 = new TCanvas("c1","TGraphs for data",200,10,600,400);
+     gPad-> SetLogy(1);
+     //      c1->SetLogy(1); 
+     gStyle->SetCanvasColor(0);
+     gStyle->SetStatBorderSize(1);
+     c1->Divide(1,1);
 
-      c1->Update(); 
-      ps->NewPage();
-      c1->Draw();
-      c1->cd(1);
-      c1->SetLogy(1); 
-      gr0->SetMarkerStyle(10);
-      gr0->Draw("AP");
-      gr0->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
-      gr0->GetYaxis()->SetTitle("observed cross section (nb)");
-      gr0->Write();
+     c1->Update(); 
+     ps->NewPage();
+     c1->Draw();
+     c1->cd(1);
+     c1->SetLogy(1); 
+     gr0->SetMarkerStyle(10);
+     gr0->Draw("AP");
+     gr0->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
+     gr0->GetYaxis()->SetTitle("observed cross section (nb)");
+     gr0->Write();
 
-      c1->Update(); 
-      ps->NewPage();
-      c1->Draw();
-      c1->cd(1);
-      c1->SetLogy(1); 
-      gr1->SetMarkerStyle(10);
-      gr1->Draw("AP");
-      gr1->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
-      gr1->GetYaxis()->SetTitle("Rad*BornXS");
-      gr1->Write();
+     c1->Update(); 
+     ps->NewPage();
+     c1->Draw();
+     c1->cd(1);
+     c1->SetLogy(1); 
+     gr1->SetMarkerStyle(10);
+     gr1->Draw("AP");
+     gr1->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
+     gr1->GetYaxis()->SetTitle("Rad*BornXS");
+     gr1->Write();
 
-      //--------- imposing graphs to a pad
-      TMultiGraph *mg = new TMultiGraph();
-      mg->SetTitle("Exclusion graphs");
-      Gdt->SetMarkerStyle(2);
-      Gdt->SetMarkerSize(1);
-      Gsum->SetLineColor(2);
-      Gsum->SetLineWidth(1);
-      mg->Add(Gdt);
-      mg->Add(Gsum);
+     //--------- imposing graphs to a pad
+     TMultiGraph *mg = new TMultiGraph();
+     mg->SetTitle("Exclusion graphs");
+     Gdt->SetMarkerStyle(2);
+     Gdt->SetMarkerSize(1);
+     Gsum->SetLineColor(2);
+     Gsum->SetLineWidth(1);
+     mg->Add(Gdt);
+     mg->Add(Gsum);
 
-      c1->Update(); 
-      ps->NewPage();
-      c1->Draw();
-      c1->cd(1);
-      gPad-> SetLogy(1);
-      mg->Draw("APL");
-      mg->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
-      mg->GetYaxis()->SetTitle("observed cross section (nb)");
-      mg->Write();
-      //-------
+     c1->Update(); 
+     ps->NewPage();
+     c1->Draw();
+     c1->cd(1);
+     gPad-> SetLogy(1);
+     mg->Draw("APL");
+     mg->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
+     mg->GetYaxis()->SetTitle("observed cross section (nb)");
+     mg->Write();
+     //-------
 
-      c1->Update(); 
-      ps->NewPage();
-      c1->Draw();
-      c1->cd(1);
-      Gdt->SetMarkerStyle(2);
-      Gdt->Draw("AP");
-      Gdt->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
-      Gdt->GetYaxis()->SetTitle("observed cross section (nb)");
-      Gdt->Write();
+     c1->Update(); 
+     ps->NewPage();
+     c1->Draw();
+     c1->cd(1);
+     Gdt->SetMarkerStyle(2);
+     Gdt->Draw("AP");
+     Gdt->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
+     Gdt->GetYaxis()->SetTitle("observed cross section (nb)");
+     Gdt->Write();
 
-      c1->Update(); 
-      ps->NewPage();
-      c1->Draw();
-      c1->cd(1);
-      Gsum->SetMarkerStyle(2);
-      Gsum->SetMarkerSize(1);
-      Gsum->Draw("AP");
-      Gsum->SetLineWidth(0);
-      Gsum->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
-      Gsum->GetYaxis()->SetTitle("observed cross section (nb)");
-      Gsum->Write();
+     c1->Update(); 
+     ps->NewPage();
+     c1->Draw();
+     c1->cd(1);
+     Gsum->SetMarkerStyle(2);
+     Gsum->SetMarkerSize(1);
+     Gsum->Draw("AP");
+     Gsum->SetLineWidth(0);
+     Gsum->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
+     Gsum->GetYaxis()->SetTitle("observed cross section (nb)");
+     Gsum->Write();
 
-      c1->Update(); 
-      ps->NewPage();
-      c1->Draw();
-      c1->cd(1);
-      // gPad-> SetLogx(1);
-      Gdt->SetMarkerStyle(2);
-      Gdt->SetMarkerSize(1);
-      Gdt->SetMaximum(8000.0);
-      Gsum->SetLineColor(2);
-      Gsum->SetLineWidth(1.5);
-      Gsum->Draw("AL"); //A: draw axis
-      Gdt->Draw("P");   // superpose to the Gsum, without A-option
-      Gsum->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
-      Gsum->GetYaxis()->SetTitle("cross section (nb)");
-      Gsum->Write();
+     c1->Update(); 
+     ps->NewPage();
+     c1->Draw();
+     c1->cd(1);
+     // gPad-> SetLogx(1);
+     Gdt->SetMarkerStyle(2);
+     Gdt->SetMarkerSize(1);
+     Gdt->SetMaximum(8000.0);
+     Gsum->SetLineColor(2);
+     Gsum->SetLineWidth(1.5);
+     Gsum->Draw("AL"); //A: draw axis
+     Gdt->Draw("P");   // superpose to the Gsum, without A-option
+     Gsum->GetXaxis()->SetTitle("M_{hadrons} (GeV)");
+     Gsum->GetYaxis()->SetTitle("cross section (nb)");
+     Gsum->Write();
 
-      ps->Close(); 
-     } //if(mydbg)_block
-    //-------------------------
+     ps->Close(); 
+   } //if(mydbg)_block
+   //-------------------------
 
 }
 
 
 //--
 void EvtConExc::init_mode(int mode){
-  if(mode ==0 ){
+  if(mode==0){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("p+"));
     daugs[1]=EvtPDL::getId(std::string("anti-p-"));
-  }else  if(mode ==1 ){
+  }else if(mode==1){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("n0"));
     daugs[1]=EvtPDL::getId(std::string("anti-n0"));
-  }else  if(mode ==2 ){
+  }else if(mode==2){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Lambda0"));
     daugs[1]=EvtPDL::getId(std::string("anti-Lambda0"));
-  }else  if(mode ==3 ){
+  }else if(mode==3){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Sigma0"));
     daugs[1]=EvtPDL::getId(std::string("anti-Sigma0"));
-  }else  if(mode ==4 ){
+  }else if(mode==4){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Lambda0"));
     daugs[1]=EvtPDL::getId(std::string("anti-Sigma0"));
-  }else  if(mode ==5 ){
+  }else if(mode==5){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Sigma0"));
     daugs[1]=EvtPDL::getId(std::string("anti-Lambda0"));
-  }  else  if(mode ==6 ){
+  }else if(mode==6){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
-  }else  if(mode ==7 ){
+  }else if(mode==7){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==8 ){
+  }else if(mode==8){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==9 ){
+  }else if(mode==9){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K_S0"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else  if(mode ==10 ){
+  }else if(mode==10){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K_S0"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else  if(mode ==11 ){
+  }else if(mode==11){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("eta"));
-  }else  if(mode ==12 ){
+  }else if(mode==12){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
-  }else  if(mode ==13 ){
+  }else if(mode==13){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
     daugs[3]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==14 ){
+  }else if(mode==14){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
-  }else  if(mode ==15 ){
+  }else if(mode==15){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
     daugs[3]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==16 ){
+  }else if(mode==16){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("K+"));
     daugs[3]=EvtPDL::getId(std::string("K-"));
-  }else  if(mode ==17 ){ 
+  }else if(mode==17){ 
     _ndaugs =5;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==18 ){
+  }else if(mode==18){
     _ndaugs =5;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("eta"));
-  }else  if(mode ==19 ){
+  }else if(mode==19){
     _ndaugs =5;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==20 ){
+  }else if(mode==20){
     _ndaugs =5;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("eta"));
-  }else  if(mode ==21 ){
+  }else if(mode==21){
     _ndaugs =6;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
@@ -827,7 +858,7 @@ void EvtConExc::init_mode(int mode){
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("pi+"));
     daugs[5]=EvtPDL::getId(std::string("pi-"));
-  }else  if(mode ==22 ){
+  }else if(mode==22){
     _ndaugs =6;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
@@ -835,328 +866,333 @@ void EvtConExc::init_mode(int mode){
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("pi0"));
     daugs[5]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 23){
+  }else if(mode==23){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("eta"));
     daugs[1]=EvtPDL::getId(std::string("phi"));
-  }else if(mode == 24){
+  }else if(mode==24){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 25){
+  }else if(mode==25){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K*-"));
-  }else if(mode == 26){
+  }else if(mode==26){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("K-"));
     daugs[1]=EvtPDL::getId(std::string("K*+"));
-  }else if(mode == 27){
+  }else if(mode==27){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("K_S0"));
     daugs[1]=EvtPDL::getId(std::string("anti-K*0"));
-  }else if(mode == 28){
+  }else if(mode==28){
     _ndaugs =3;
-    daugs[0]=EvtPDL::getId(std::string("K*0"));
+    daugs[0]=EvtPDL::getId(std::string("anti-K*0"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 29){
+  }else if(mode==29){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K*0"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 30){
+  }else if(mode==30){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K*+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 31){
+  }else if(mode==31){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K*-"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 32){
+  }else if(mode==32){
     _ndaugs =3;
-    daugs[0]=EvtPDL::getId(std::string("K_2*0"));
+    daugs[0]=EvtPDL::getId(std::string("anti-K_2*0"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 33){
+  }else if(mode==33){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K_2*0"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 34){
+  }else if(mode==34){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("rho0"));
-  }else if(mode == 35){
+  }else if(mode==35){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 36){
+  }else if(mode==36){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("f_0"));
-  }else if(mode == 37){
+  }else if(mode==37){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("eta"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 38){
+  }else if(mode==38){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 39){
+  }else if(mode==39){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("f_0"));
-  }else if(mode == 40){
+  }else if(mode==40){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("eta'"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 41){
+  }else if(mode==41){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("f_1"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 42){
+  }else if(mode==42){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("K-"));
-  }else if(mode == 43){
+  }else if(mode==43){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
     daugs[3]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 44){
+  }else if(mode==44){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Sigma-"));
     daugs[1]=EvtPDL::getId(std::string("anti-Sigma+"));
-  }else if(mode == 45){
+  }else if(mode==45){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
-  }else if(mode == 46){
+  }else if(mode==46){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("K_S0"));
     daugs[1]=EvtPDL::getId(std::string("K_L0"));
-  }else if(mode == 47){
+  }else if(mode==47){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("eta"));
-  }else if(mode == 48){
+  }else if(mode==48){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("eta'"));
-  }else if(mode == 49){
+  }else if(mode==49){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("K-"));
-  }else if(mode == 50){
+  }else if(mode==50){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("p+"));
     daugs[1]=EvtPDL::getId(std::string("anti-p-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 51){
+  }else if(mode==51){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("p+"));
     daugs[1]=EvtPDL::getId(std::string("anti-p-"));
     daugs[2]=EvtPDL::getId(std::string("eta"));
-  }else if(mode == 52){
+  }else if(mode==52){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("pi0"));
-
-  }else if(mode == 59){
+  }else if(mode==59){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("anti-D0"));
     daugs[1]=EvtPDL::getId(std::string("D0"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 60){
+  }else if(mode==60){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("anti-D0"));
     daugs[1]=EvtPDL::getId(std::string("D*0"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 61){
+  }else if(mode==61){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D0"));
     daugs[1]=EvtPDL::getId(std::string("anti-D*0"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 62){
+  }else if(mode==62){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D+"));
     daugs[1]=EvtPDL::getId(std::string("D*-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 63){
+  }else if(mode==63){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D-"));
     daugs[1]=EvtPDL::getId(std::string("D+"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 64){
+  }else if(mode==64){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D-"));
     daugs[1]=EvtPDL::getId(std::string("D*+"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 65){
+  }else if(mode==65){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D-"));
     daugs[1]=EvtPDL::getId(std::string("D*0"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 66){
+  }else if(mode==66){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D+"));
     daugs[1]=EvtPDL::getId(std::string("anti-D*0"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 67){
+  }else if(mode==67){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D*0"));
     daugs[1]=EvtPDL::getId(std::string("anti-D*0"));
-  }else if(mode == 68){
+  }else if(mode==68){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D0"));
     daugs[1]=EvtPDL::getId(std::string("anti-D*0"));
-
-  }else if(mode == 69){
+  }else if(mode==69){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("anti-D0"));
     daugs[1]=EvtPDL::getId(std::string("D*0"));
-
-  }else if(mode == 70){
+  }else if(mode==70){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D0"));
     daugs[1]=EvtPDL::getId(std::string("anti-D0"));
-
-}else if(mode == 71){
+  }else if(mode==71){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D+"));
     daugs[1]=EvtPDL::getId(std::string("D-"));
-  }else if(mode == 72){
+  }else if(mode==72){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D+"));
     daugs[1]=EvtPDL::getId(std::string("D*-"));
-
-  }else if(mode == 73){
+  }else if(mode==73){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D-"));
     daugs[1]=EvtPDL::getId(std::string("D*+"));
-
-  }else if(mode == 74){
+  }else if(mode==74){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D*+"));
     daugs[1]=EvtPDL::getId(std::string("D*-"));
-
-  }else if(mode == 75){
+  }else if(mode==75){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D0"));
     daugs[1]=EvtPDL::getId(std::string("D-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 76){
+  }else if(mode==76){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("anti-D0"));
     daugs[1]=EvtPDL::getId(std::string("D+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 77){
+  }else if(mode==77){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D0"));
     daugs[1]=EvtPDL::getId(std::string("D*-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 78){
+  }else if(mode==78){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("anti-D0"));
     daugs[1]=EvtPDL::getId(std::string("D*+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 79){
+  }else if(mode==79){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("psi(2S)"));
     daugs[1]=EvtPDL::getId(std::string("pi0"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 80){
+  }else if(mode==80){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("eta"));
     daugs[1]=EvtPDL::getId(std::string("J/psi"));
-  }else if(mode == 81){
+  }else if(mode==81){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("h_c"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 82){
+  }else if(mode==82){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("h_c"));
     daugs[1]=EvtPDL::getId(std::string("pi0"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 83){
+  }else if(mode==83){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("J/psi"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("K-"));
-  }else if(mode == 84){
+  }else if(mode==84){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("J/psi"));
     daugs[1]=EvtPDL::getId(std::string("K_S0"));
     daugs[2]=EvtPDL::getId(std::string("K_S0"));
-  }else if(mode == 90){
+  }else if(mode==85){
+    _ndaugs =2;
+    daugs[0]=EvtPDL::getId(std::string("D_s*+"));
+    daugs[1]=EvtPDL::getId(std::string("D_s*-"));
+  }else if(mode==90){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("J/psi"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 91){
+  }else if(mode==91){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("psi(2S)"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 92){
+  }else if(mode==92){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("J/psi"));
-    daugs[1]=EvtPDL::getId(std::string("K+"));
-    daugs[2]=EvtPDL::getId(std::string("K-"));
-  }else if(mode == 93){
+    daugs[1]=EvtPDL::getId(std::string("pi0"));
+    daugs[2]=EvtPDL::getId(std::string("pi0"));
+  }else if(mode==93){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D_s+"));
     daugs[1]=EvtPDL::getId(std::string("D_s-"));
-  }else if(mode == 94){
+  }else if(mode==94){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D_s*+"));
     daugs[1]=EvtPDL::getId(std::string("D_s-"));
-  }else if(mode == 95){
+  }else if(mode==95){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D_s*-"));
     daugs[1]=EvtPDL::getId(std::string("D_s+"));
-  }else if(mode == 96){
+  }else if(mode==96){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Lambda_c+"));
     daugs[1]=EvtPDL::getId(std::string("anti-Lambda_c-"));
-  }else if(mode == 74100){
+  }else if(mode==111){
+    _ndaugs =2;
+    daugs[0]=EvtPDL::getId(std::string("Zc(4020)+"));
+    daugs[1]=EvtPDL::getId(std::string("pi-"));
+  }else if(mode==112){
+    _ndaugs =2;
+    daugs[0]=EvtPDL::getId(std::string("Zc(4020)-"));
+    daugs[1]=EvtPDL::getId(std::string("pi+"));
+  }else if(mode==74100){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("J/psi"));     
-  }else if(mode == 74101){
+  }else if(mode==74101){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("psi(2S)"));
-  }else if(mode == 74102){
+  }else if(mode==74102){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("psi(3770)"));  
-  }else if(mode == 74103){
+  }else if(mode==74103){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("phi"));
-  }else if(mode == 74104){
+  }else if(mode==74104){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("omega"));
-  }else if(mode == 74105){
+  }else if(mode==74105){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("rho0"));
-  }else if(mode == 74106){
+  }else if(mode==74106){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("rho(3S)0")); 
-  }else if(mode == 74107){
+  }else if(mode==74107){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("omega(2S)"));          
-  }else if(mode == 74110){
+  }else if(mode==74110){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("gamma*")); 
     EvtId  myvpho = EvtPDL::getId(std::string("gamma*"));
@@ -1164,21 +1200,21 @@ void EvtConExc::init_mode(int mode){
     _modeFlag.clear();
     _modeFlag.push_back(74110); //R-value generator tag
     _modeFlag.push_back(0);     //to contain the mode selected
-  }else if(mode == -1){
+  }else if(mode==-1){
     _ndaugs = nson;
     for(int i=0;i<nson;i++){ daugs[i]=son[i];  }
     std::cout<<"The paraent particle: "<<EvtPDL::name(pid)<<std::endl;
-  }else if(mode == -2){
+  }else if(mode==-2){
     _ndaugs = nson;
     for(int i=0;i<nson;i++){  daugs[i]=son[i];  }
-  }else if(mode == -100){
+  }else if(mode==-100){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("gamma*"));
     _modeFlag.clear();
     _modeFlag.push_back(-100); //R-value generator tag
     _modeFlag.push_back(0);     //to contain the mode selected 
     return;
-  }else if(mode == 10000){//use for check ISR
+  }else if(mode==10000){//use for check ISR
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
@@ -1201,7 +1237,7 @@ void EvtConExc::init_mode(int mode){
   }
   myxsection = new EvtXsection (mode);
   Mthr=myxsection->getXlw();   
-  if(!(_mode==74110 || _mode==-100) ){
+  if(!(_mode==74110 || _mode==-100)){
    if(Mthr<fmth) {std::cout<<"Low end of cross section: ("<<Mthr<<" < (mass of final state)"<<fmth<<") GeV."<< std::endl; abort();}
   }
 }
@@ -1210,118 +1246,118 @@ void EvtConExc::init_mode(int mode){
 std::vector<EvtId> EvtConExc::get_mode(int mode){
   int _ndaugs;
   EvtId daugs[100];
-  if(mode ==0 ){
+  if(mode==0){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("p+"));
     daugs[1]=EvtPDL::getId(std::string("anti-p-"));
-  }else  if(mode ==1 ){
+  }else if(mode==1){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("n0"));
     daugs[1]=EvtPDL::getId(std::string("anti-n0"));
-  }else  if(mode ==2 ){
+  }else if(mode==2){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Lambda0"));
     daugs[1]=EvtPDL::getId(std::string("anti-Lambda0"));
-  }else  if(mode ==3 ){
+  }else if(mode==3){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Sigma0"));
     daugs[1]=EvtPDL::getId(std::string("anti-Sigma0"));
-  }else  if(mode ==4 ){
+  }else if(mode==4){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Lambda0"));
     daugs[1]=EvtPDL::getId(std::string("anti-Sigma0"));
-  }else  if(mode ==5 ){
+  }else if(mode==5){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Sigma0"));
     daugs[1]=EvtPDL::getId(std::string("anti-Lambda0"));
-  }  else  if(mode ==6 ){
+  }else if(mode ==6){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
-  }else  if(mode ==7 ){
+  }else if(mode==7){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==8 ){
+  }else if(mode==8){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==9 ){
+  }else if(mode==9){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K_S0"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else  if(mode ==10 ){
+  }else if(mode==10){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K_S0"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else  if(mode ==11 ){
+  }else if(mode==11){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("eta"));
-  }else  if(mode ==12 ){
+  }else if(mode==12){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
-  }else  if(mode ==13 ){
+  }else if(mode==13){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
     daugs[3]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==14 ){
+  }else if(mode==14){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
-  }else  if(mode ==15 ){
+  }else if(mode==15){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
     daugs[3]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==16 ){
+  }else if(mode==16){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("K+"));
     daugs[3]=EvtPDL::getId(std::string("K-"));
-  }else  if(mode ==17 ){ 
+  }else if(mode==17){ 
     _ndaugs =5;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==18 ){
+  }else if(mode==18){
     _ndaugs =5;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("eta"));
-  }else  if(mode ==19 ){
+  }else if(mode==19){
     _ndaugs =5;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("pi0"));
-  }else  if(mode ==20 ){
+  }else if(mode==20){
     _ndaugs =5;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("eta"));
-  }else  if(mode ==21 ){
+  }else if(mode==21){
     _ndaugs =6;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
@@ -1329,7 +1365,7 @@ std::vector<EvtId> EvtConExc::get_mode(int mode){
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("pi+"));
     daugs[5]=EvtPDL::getId(std::string("pi-"));
-  }else  if(mode ==22 ){
+  }else if(mode==22){
     _ndaugs =6;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
@@ -1337,336 +1373,341 @@ std::vector<EvtId> EvtConExc::get_mode(int mode){
     daugs[3]=EvtPDL::getId(std::string("pi-"));
     daugs[4]=EvtPDL::getId(std::string("pi0"));
     daugs[5]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 23){
+  }else if(mode==23){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("eta"));
     daugs[1]=EvtPDL::getId(std::string("phi"));
-  }else if(mode == 24){
+  }else if(mode==24){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 25){
+  }else if(mode==25){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K*-"));
-  }else if(mode == 26){
+  }else if(mode==26){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("K-"));
     daugs[1]=EvtPDL::getId(std::string("K*+"));
-  }else if(mode == 27){
+  }else if(mode==27){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("K_S0"));
     daugs[1]=EvtPDL::getId(std::string("anti-K*0"));
-  }else if(mode == 28){
+  }else if(mode==28){
     _ndaugs =3;
-    daugs[0]=EvtPDL::getId(std::string("K*0"));
+    daugs[0]=EvtPDL::getId(std::string("anti-K*0"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 29){
+  }else if(mode==29){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K*0"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 30){
+  }else if(mode==30){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K*+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 31){
+  }else if(mode==31){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K*-"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 32){
+  }else if(mode==32){
     _ndaugs =3;
-    daugs[0]=EvtPDL::getId(std::string("K_2*0"));
+    daugs[0]=EvtPDL::getId(std::string("anti-K_2*0"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 33){
+  }else if(mode==33){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K_2*0"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 34){
+  }else if(mode==34){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
     daugs[2]=EvtPDL::getId(std::string("rho0"));
-  }else if(mode == 35){
+  }else if(mode==35){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 36){
+  }else if(mode==36){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("f_0"));
-  }else if(mode == 37){
+  }else if(mode==37){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("eta"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 38){
+  }else if(mode==38){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 39){
+  }else if(mode==39){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("f_0"));
-  }else if(mode == 40){
+  }else if(mode==40){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("eta'"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 41){
+  }else if(mode==41){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("f_1"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 42){
+  }else if(mode==42){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("K-"));
-  }else if(mode == 43){
+  }else if(mode==43){
     _ndaugs =4;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
     daugs[3]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 44){
+  }else if(mode==44){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Sigma-"));
     daugs[1]=EvtPDL::getId(std::string("anti-Sigma+"));
-  }else if(mode == 45){
+  }else if(mode==45){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("K+"));
     daugs[1]=EvtPDL::getId(std::string("K-"));
-  }else if(mode == 46){
+  }else if(mode==46){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("K_S0"));
     daugs[1]=EvtPDL::getId(std::string("K_L0"));
-  }else if(mode == 47){
+  }else if(mode==47){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("eta"));
-  }else if(mode == 48){
+  }else if(mode==48){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("eta'"));
-  }else if(mode == 49){
+  }else if(mode==49){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("K-"));
-  }else if(mode == 50){
+  }else if(mode==50){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("p+"));
     daugs[1]=EvtPDL::getId(std::string("anti-p-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 51){
+  }else if(mode==51){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("p+"));
     daugs[1]=EvtPDL::getId(std::string("anti-p-"));
     daugs[2]=EvtPDL::getId(std::string("eta"));
-  }else if(mode == 52){
+  }else if(mode==52){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("pi0"));
-
-  }else if(mode == 59){
+  }else if(mode==59){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("anti-D0"));
     daugs[1]=EvtPDL::getId(std::string("D0"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 60){
+  }else if(mode==60){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("anti-D0"));
     daugs[1]=EvtPDL::getId(std::string("D*0"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
- }else if(mode == 61){
+  }else if(mode==61){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D0"));
     daugs[1]=EvtPDL::getId(std::string("anti-D*0"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 62){
+  }else if(mode==62){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D+"));
     daugs[1]=EvtPDL::getId(std::string("D*-"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 63){
+  }else if(mode==63){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D-"));
     daugs[1]=EvtPDL::getId(std::string("D+"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 64){
+  }else if(mode==64){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D-"));
     daugs[1]=EvtPDL::getId(std::string("D*+"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 65){
+  }else if(mode==65){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D-"));
     daugs[1]=EvtPDL::getId(std::string("D*0"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 66){
+  }else if(mode==66){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D+"));
     daugs[1]=EvtPDL::getId(std::string("anti-D*0"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 67){
+  }else if(mode==67){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D*0"));
     daugs[1]=EvtPDL::getId(std::string("anti-D*0"));
-  }else if(mode == 68){
+  }else if(mode==68){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D0"));
     daugs[1]=EvtPDL::getId(std::string("anti-D*0"));
-
-  }else if(mode == 69){
+  }else if(mode==69){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("anti-D0"));
     daugs[1]=EvtPDL::getId(std::string("D*0"));
-
-  }else if(mode == 70){
+  }else if(mode==70){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D0"));
     daugs[1]=EvtPDL::getId(std::string("anti-D0"));
-
-}else if(mode == 71){
+  }else if(mode==71){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D+"));
     daugs[1]=EvtPDL::getId(std::string("D-"));
-  }else if(mode == 72){
+  }else if(mode==72){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D+"));
     daugs[1]=EvtPDL::getId(std::string("D*-"));
-
-  }else if(mode == 73){
+  }else if(mode==73){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D-"));
     daugs[1]=EvtPDL::getId(std::string("D*+"));
-
-  }else if(mode == 74){
+  }else if(mode==74){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D*+"));
     daugs[1]=EvtPDL::getId(std::string("D*-"));
-
-  }else if(mode == 75){
+  }else if(mode==75){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D0"));
     daugs[1]=EvtPDL::getId(std::string("D-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 76){
+  }else if(mode==76){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("anti-D0"));
     daugs[1]=EvtPDL::getId(std::string("D+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 77){
+  }else if(mode==77){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("D0"));
     daugs[1]=EvtPDL::getId(std::string("D*-"));
     daugs[2]=EvtPDL::getId(std::string("pi+"));
-  }else if(mode == 78){
+  }else if(mode==78){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("anti-D0"));
     daugs[1]=EvtPDL::getId(std::string("D*+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 79){
+  }else if(mode==79){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("psi(2S)"));
     daugs[1]=EvtPDL::getId(std::string("pi0"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 80){
+  }else if(mode==80){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("eta"));
     daugs[1]=EvtPDL::getId(std::string("J/psi"));
-  }else if(mode == 81){
+  }else if(mode==81){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("h_c"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 82){
+  }else if(mode==82){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("h_c"));
     daugs[1]=EvtPDL::getId(std::string("pi0"));
     daugs[2]=EvtPDL::getId(std::string("pi0"));
-  }else if(mode == 83){
+  }else if(mode==83){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("J/psi"));
     daugs[1]=EvtPDL::getId(std::string("K+"));
     daugs[2]=EvtPDL::getId(std::string("K-"));
-  }else if(mode == 84){
+  }else if(mode==84){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("J/psi"));
     daugs[1]=EvtPDL::getId(std::string("K_S0"));
     daugs[2]=EvtPDL::getId(std::string("K_S0"));
-  }else if(mode == 90){
+  }else if(mode==85){
+    _ndaugs =2;
+    daugs[0]=EvtPDL::getId(std::string("D_s*+"));
+    daugs[1]=EvtPDL::getId(std::string("D_s*-"));
+  }else if(mode==90){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("J/psi"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 91){
+  }else if(mode==91){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("psi(2S)"));
     daugs[1]=EvtPDL::getId(std::string("pi+"));
     daugs[2]=EvtPDL::getId(std::string("pi-"));
-  }else if(mode == 92){
+  }else if(mode==92){
     _ndaugs =3;
     daugs[0]=EvtPDL::getId(std::string("J/psi"));
-    daugs[1]=EvtPDL::getId(std::string("K+"));
-    daugs[2]=EvtPDL::getId(std::string("K-"));
-  }else if(mode == 93){
+    daugs[1]=EvtPDL::getId(std::string("pi0"));
+    daugs[2]=EvtPDL::getId(std::string("pi0"));
+  }else if(mode==93){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D_s+"));
     daugs[1]=EvtPDL::getId(std::string("D_s-"));
-  }else if(mode == 94){
+  }else if(mode==94){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D_s*+"));
     daugs[1]=EvtPDL::getId(std::string("D_s-"));
-  }else if(mode == 95){
+  }else if(mode==95){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("D_s*-"));
     daugs[1]=EvtPDL::getId(std::string("D_s+"));
-  }else if(mode == 96){
+  }else if(mode==96){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("Lambda_c+"));
     daugs[1]=EvtPDL::getId(std::string("anti-Lambda_c-"));
-  }else if(mode == 74100){
+  }else if(mode==111){
+    _ndaugs =2;
+    daugs[0]=EvtPDL::getId(std::string("Zc(4020)+"));
+    daugs[1]=EvtPDL::getId(std::string("pi-"));
+  }else if(mode==112){
+    _ndaugs =2;
+    daugs[0]=EvtPDL::getId(std::string("Zc(4020)-"));
+    daugs[1]=EvtPDL::getId(std::string("pi+"));
+  }else if(mode==74100){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("J/psi"));   
     daugs[1]=EvtPDL::getId(std::string("gamma"));  
-  }else if(mode == 74101){
+  }else if(mode==74101){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("psi(2S)"));
     daugs[1]=EvtPDL::getId(std::string("gamma"));
-  }else if(mode == 74102){
+  }else if(mode==74102){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("psi(3770)"));
     daugs[1]=EvtPDL::getId(std::string("gamma"));  
-  }else if(mode == 74103){
+  }else if(mode==74103){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("phi"));
     daugs[1]=EvtPDL::getId(std::string("gamma"));
-  }else if(mode == 74104){
+  }else if(mode==74104){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("omega"));
     daugs[1]=EvtPDL::getId(std::string("gamma"));
-  }else if(mode == 74105){
+  }else if(mode==74105){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("rho0"));
     daugs[1]=EvtPDL::getId(std::string("gamma"));
-  }else if(mode == 74106){
+  }else if(mode==74106){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("rho(3S)0"));
     daugs[1]=EvtPDL::getId(std::string("gamma")); 
-  }else if(mode == 74107){
+  }else if(mode==74107){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("omega(2S)"));
     daugs[1]=EvtPDL::getId(std::string("gamma"));          
-  }else if(mode == 74110){
+  }else if(mode==74110){
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("gamma*")); 
     daugs[1]=EvtPDL::getId(std::string("gamma"));
@@ -1675,21 +1716,21 @@ std::vector<EvtId> EvtConExc::get_mode(int mode){
     _modeFlag.clear();
     _modeFlag.push_back(74110); //R-value generator tag
     _modeFlag.push_back(0);     //to contain the mode selected
-  }else if(mode == -1){
+  }else if(mode==-1){
     _ndaugs = nson;
     for(int i=0;i<nson;i++){ daugs[i]=son[i];  }
     std::cout<<"The paraent particle: "<<EvtPDL::name(pid)<<std::endl;
-  }else if(mode == -2){
+  }else if(mode==-2){
     _ndaugs = nson;
     for(int i=0;i<nson;i++){  daugs[i]=son[i];  }
-  }else if(mode == -100){
+  }else if(mode==-100){
     _ndaugs =1;
     daugs[0]=EvtPDL::getId(std::string("gamma*"));
     _modeFlag.clear();
     _modeFlag.push_back(-100); //R-value generator tag
     _modeFlag.push_back(0);     //to contain the mode selected
 
-  }else if(mode == 10000){//use for check ISR
+  }else if(mode==10000){//use for check ISR
     _ndaugs =2;
     daugs[0]=EvtPDL::getId(std::string("pi+"));
     daugs[1]=EvtPDL::getId(std::string("pi-"));
@@ -1719,7 +1760,7 @@ void EvtConExc::initProbMax(){
 
 }
 
-void EvtConExc::decay( EvtParticle *p ){
+void EvtConExc::decay( EvtParticle *p){
   //std::cout<<"_cms= "<<_cms<<" mode= "<<_mode<<std::endl;
   EvtId  myvpho = EvtPDL::getId(std::string("vpho"));
   if(myvpho != p->getId()){
@@ -1757,27 +1798,27 @@ void EvtConExc::decay( EvtParticle *p ){
   if(_mode==74110){
     //preparation of mode sampling
     std::vector<int> vmod; vmod.clear();
-    int mn[82]={0,1,2,3,4,5,6,7,8,9,10,11,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,32,33,34,35,36,37,38,40,41,44,45,46, // 12,14, 30,31,39,42 and 43 is removed
+    int mn[83]={0,1,2,3,4,5,6,7,8,9,10,11,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,32,33,34,35,36,37,38,40,41,44,45,46, // 12,14, 30,31,39,42 and 43 is removed
 		50,51,
-		59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,
+		59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,
 		90,91,92,93,94,95,96,
 		74100,74101,74102,74103,74104,74105,74110};
-    int mn2[83]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,32,33,34,35,36,37,38,40,41,44,45,46,//mode 14,30,31,42, 43 are removed
+    int mn2[84]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,32,33,34,35,36,37,38,40,41,44,45,46,//mode 14,30,31,42, 43 are removed
 		 50,51,
-		 59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,
+		 59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,
 		 90,91,92,93,94,95,96,
 		 74100,74101,74102,74103,74104,74105,74110};
-    int mn3[76]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,45,46,
+    int mn3[77]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,45,46,
 		 50,51,
-		 68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,
+		 68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,
 		 90,91,92,93,94,95,96,
 		 74100,74101,74102,74110}; //remove 43, 74103,74104,74105, this is included in PHOKHARA
     double mx = p->getP4().mass();
   
     if(_cms>2.5){
-      for(int i=0;i<82;i++){vmod.push_back(mn[i]);}
+      for(int i=0;i<83;i++){vmod.push_back(mn[i]);}
     }else{
-      for(int i=0;i<83;i++){vmod.push_back(mn2[i]);}  
+      for(int i=0;i<84;i++){vmod.push_back(mn2[i]);}  
     }
     
     //for(int i=0;i<76;i++){vmod.push_back(mn3[i]);}
@@ -1788,7 +1829,7 @@ void EvtConExc::decay( EvtParticle *p ){
     //std::cout<<"AF[598], AF[598] "<<AF[598]<<" "<<AF[599]<<std::endl;
     //--
     //-- where AF[599]: cross section with full region (0-Egamma^max GeV), AF[598]: cross section within Egam=(0.025-Egamma^max GeV)
-    if(pm <_xs0/(_xs0 + _xs1) ){//without ISR photon for mode=74110
+    if(pm <_xs0/(_xs0 + _xs1)){//without ISR photon for mode=74110
 
       mhds=_cms;
       mymode=selectMode(vmod,mhds);
@@ -1940,7 +1981,7 @@ Sampling_mhds:
     //std::cout<<"AF[598], AF[598] "<<AF[598]<<" "<<AF[599]<<std::endl;
     //--
     //-- where AF[599]: cross section with full region (0-Egamma^max GeV), AF[598]: cross section within Egam=(0.025-Egamma^max GeV)
-    if(pm <_xs0/(_xs0 + _xs1) ){//without ISR photon for mode=74110
+    if(pm <_xs0/(_xs0 + _xs1)){//without ISR photon for mode=74110
 
       mhds=_cms;
       mymode=selectMode(vmd,mhds);
@@ -2098,7 +2139,7 @@ Sampling_mhds_A:
      EvtId gid=EvtPDL::getId("gamma*"); 
      double pm= EvtRandom::Flat(0.,1);
 
-     if(pm <_xs0/(_xs0 + _xs1) ){//with a very soft ISR photon
+     if(pm <_xs0/(_xs0 + _xs1)){//with a very soft ISR photon
        EvtPDL::reSetMass(gid,(_cms-0.0001) );
        mhds = _cms-0.0001;
      }else{
@@ -2137,7 +2178,7 @@ Sampling_mhds_A:
  
   // std::cout<<"xsratio= "<<xsratio<<std::endl;
  
-  if(pm<xsratio ){// no ISR photon
+  if(pm<xsratio){// no ISR photon
   masscheck:
     double summassx=0;
     p->makeDaughters(_ndaugs,daugs);
@@ -2200,7 +2241,7 @@ Sampling_mhds_A:
   // End of decays for all topology
   //----------------------------------------
   //================================= event analysis 
-    if(_nevt ==0 ){
+    if(_nevt ==0){
       std::cout<<"The decay chain: "<<std::endl;
       p->printTree();
     }
@@ -2218,22 +2259,22 @@ bool EvtConExc::hadron_angle_sampling(EvtVector4R ppi, EvtVector4R pcm){
   EvtVector4R pbst=-1*pcm;
   pbst.set(0,pcm.get(0));
   EvtVector4R p4i = boostTo(ppi,pbst);
-  if( (_mode>=0 && _mode<=5) || _mode ==44|| _mode ==47|| _mode ==48 ||_mode ==72 ||_mode == 73||_mode==94||_mode==95 ||_mode ==96 || _mode>=23 &&_mode<=27 || _mode==36|| _mode ==39 || _mode == 80 ){//ee->two baryon mode, VP, SP, mode=-2 is excluded
+  if((_mode>=0 && _mode<=5) || _mode==44 || _mode==96){//ee->two baryon mode, VP, SP, mode=-2 is excluded
     bool byn_ang = baryon_sampling(pcm, p4i);
     return byn_ang;
-  }else if(_mode ==6||_mode==45 || _mode==46 || _mode==70 || _mode==71|| _mode==93){// ee->PP (pi+pi-,..) mode
+  }else if(_mode==6 || _mode==45 || _mode==46 || _mode==70 || _mode==71|| _mode==93){// ee->PP (pi+pi-,..) mode
     bool msn_ang = meson_sampling(pcm,p4i);
     return msn_ang;
-  }else if(_mode==23 || _mode==24 || _mode==25 || _mode==26 || _mode==27 || _mode==36||_mode==47||_mode==48|| _mode==52||_mode==68||_mode==69||_mode==72||_mode==73||_mode==80||_mode==94||_mode==95){
+  }else if(_mode==23 || _mode==24 || _mode==25 || _mode==26 || _mode==27 || _mode==36 || _mode==39 || _mode==47 || _mode==48 || _mode==52 || _mode==68 || _mode==69 || _mode==72 || _mode==73 || _mode==80 || _mode==94 || _mode==95){
     bool msn_ang = VP_sampling(pcm,p4i);
     return msn_ang;
-  }else if(_mode==-2 ){
+  }else if(_mode==-2){
     EvtSpinType::spintype type0 = EvtPDL::getSpinType(daugs[0]);
     EvtSpinType::spintype type1 = EvtPDL::getSpinType(daugs[1]);
-    if(type0==EvtSpinType::SCALAR &&type1==EvtSpinType::SCALAR ){
+    if(type0==EvtSpinType::SCALAR &&type1==EvtSpinType::SCALAR){
     bool msn_ang = meson_sampling(pcm,p4i);
     return msn_ang;
-    }else if(type0==EvtSpinType::VECTOR &&type1==EvtSpinType::SCALAR || type1==EvtSpinType::VECTOR &&type0==EvtSpinType::SCALAR ){
+    }else if(type0==EvtSpinType::VECTOR &&type1==EvtSpinType::SCALAR || type1==EvtSpinType::VECTOR &&type0==EvtSpinType::SCALAR){
     bool msn_ang = VP_sampling(pcm,p4i);
     return msn_ang;
     }
@@ -2591,7 +2632,7 @@ double EvtConExc::Rad2difXs(EvtParticle *p){// leading second order xsection
   return difxs;
 }
 
-double EvtConExc::Rad2difXs(double s, double x ){// leading second order xsection
+double EvtConExc::Rad2difXs(double s, double x){// leading second order xsection
   double wsx = Rad2(s,x);
   double mhs = sqrt(s*(1-x));
   double xs = myxsection->getXsection(mhs);
@@ -2602,7 +2643,7 @@ double EvtConExc::Rad2difXs(double s, double x ){// leading second order xsectio
   return difxs;
 }
 
-double EvtConExc::Rad2difXs(double s, double x, EvtXsection* myxsection ){// leading second order xsection
+double EvtConExc::Rad2difXs(double s, double x, EvtXsection* myxsection){// leading second order xsection
   double wsx = Rad2(s,x);
   double mhs = sqrt(s*(1-x));
   double xs = myxsection->getXsection(mhs);
@@ -2687,7 +2728,7 @@ double EvtConExc::Ros_xs(double mx,double bree, EvtId pid){// in unit nb
 }
 
 
-double Rad2difXs(double *mhs){// leading second order xsection, mhs: the mass of final states
+  double Rad2difXs(double *mhs){// leading second order xsection, mhs: the mass of final states
   double cms = EvtConExc::_cms;
   double s = cms * cms;
   double x = 1 - (*mhs)*(*mhs)/s;
@@ -2769,7 +2810,8 @@ double EvtConExc::SoftPhoton_xs(double s, double b){
 }
 
 double EvtConExc::Li2(double x){
-  double li2= -x +x*x/4. - x*x*x/9;
+//  double li2= -x +x*x/4. - x*x*x/9; // wangwp: may be not correct!
+  double li2= +x +x*x/4. + x*x*x/9; // corrected by wangwp
   return li2;
 }
 
@@ -2839,7 +2881,7 @@ double EvtConExc::Mhad_sampling(double *x,double *y){//sample ISR hadrons, retur
   if(pm>1){std::cout<<"random larger than 1: "<<pm<<std::endl;}
   double mhd=x[mybin-1]+(x[mybin]-x[mybin-1])*pm;
 
-  if((mhd - _cms)>0 ){std::cout<<"selected mhd larger than Ecms: "<<mhd<<" > "<<x[mybin] <<std::endl;abort();}
+  if((mhd - _cms)>0){std::cout<<"selected mhd larger than Ecms: "<<mhd<<" > "<<x[mybin] <<std::endl;abort();}
   if(mhd<_mhdL){
     std::cout<<"the sample mhassrons is less than the low end of XS"<<mhd<<" <"<<_mhdL<<std::endl;
     for(int i=0;i<598;i++){std::cout<<i<<" "<<x[i]<<" "<<y[i]<<std::endl;}
@@ -2906,7 +2948,7 @@ void EvtConExc::SetP4(EvtParticle *p, double mhdr, double xeng,double theta){ //
     EvtId myid = p->getDaug(i)->getId();
     p->getDaug(i)->init(myid,p4[i]);
     if(EvtPDL::name(myid)=="gamma*"){
-     if( (_cms-mhdr)<0.002 ){
+     if( (_cms-mhdr)<0.002){
       EvtVector4R PG(_cms,0,0,0);
       p->getDaug(i)->init(myid,PG);
      }
@@ -2932,7 +2974,7 @@ void EvtConExc::SetP4Rvalue(EvtParticle *p, double mhdr, double xeng,double thet
 }
 
 
-void EvtConExc::findMaxXS(double mhds ){// dsigma/dm/dcos\theta* (Eq(1)@PRD73,012005)
+void EvtConExc::findMaxXS(double mhds){// dsigma/dm/dcos\theta* (Eq(1)@PRD73,012005)
   maxXS=-1;
   for(int i=0;i<90000;i++){
     double x =  1-(mhds/_cms)*(mhds/_cms);
@@ -2947,7 +2989,7 @@ void EvtConExc::findMaxXS(double mhds ){// dsigma/dm/dcos\theta* (Eq(1)@PRD73,01
   }
 }
 
-double EvtConExc::difgamXs(double mhds,double sintheta ){// dsigma/dm/dcos\theta* (Eq(1)@PRD73,012005)
+double EvtConExc::difgamXs(double mhds,double sintheta){// dsigma/dm/dcos\theta* (Eq(1)@PRD73,012005)
   double x = 1-(mhds/_cms)*(mhds/_cms);
   double sin2theta = sintheta*sintheta;
   double alpha = 1./137.;
@@ -3136,21 +3178,21 @@ bool EvtConExc::checkdecay(EvtParticle* p){
 
 double EvtConExc::sumExc(double mx){//summation all cross section of exclusive decays
   std::vector<int> vmod; vmod.clear();
-  int mn[82]={0,1,2,3,4,5,6,7,8,9,10,11,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,32,33,34,35,36,37,38,40,41,44,45,46, // 12,14, 30,31,39,42 and 43 is removed
+  int mn[83]={0,1,2,3,4,5,6,7,8,9,10,11,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,32,33,34,35,36,37,38,40,41,44,45,46, // 12,14, 30,31,39,42 and 43 is removed
 	      50,51,
-	      59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,
+	      59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,
 	      90,91,92,93,94,95,96,
 	      74100,74101,74102,74103,74104,74105,74110};
-  int mn2[83]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,32,33,34,35,36,37,38,40,41,44,45,46,//mode 14,30,31,42, 43 are removed
+  int mn2[84]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,32,33,34,35,36,37,38,40,41,44,45,46,//mode 14,30,31,42, 43 are removed
 	       50,51,
-	       59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,
+	       59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,
 	       90,91,92,93,94,95,96,
 	       74100,74101,74102,74103,74104,74105,74110};
 
   if(_cms > 2.5){
-    for(int i=0;i<82;i++){vmod.push_back(mn[i]);}
+    for(int i=0;i<83;i++){vmod.push_back(mn[i]);}
   }else{
-    for(int i=0;i<83;i++){vmod.push_back(mn2[i]);}  
+    for(int i=0;i<84;i++){vmod.push_back(mn2[i]);}  
   }
   
  // for(int i=0;i<79;i++){vmod.push_back(mn2[i]);}  
@@ -3185,7 +3227,7 @@ bool EvtConExc::angularSampling(EvtParticle* par){
       alpha = baryonAng(p4i.mass());
       cosp = cos(p4i.theta());
       tagp=1;
-    }else if(fabs(pdgcode)==321||fabs(pdgcode)==211 ){
+    }else if(fabs(pdgcode)==321||fabs(pdgcode)==211){
       alpha=1;
       cosk = cos(p4i.theta());
       tagk=1;
@@ -3227,7 +3269,7 @@ bool EvtConExc::photonSampling(EvtParticle* par){
     int pdgcode =EvtPDL::getStdHep( di );
     double alpha=0;
 
-    if(pdgcode==111 ||pdgcode==221 || pdgcode==331 ){//for photon 
+    if(pdgcode==111 ||pdgcode==221 || pdgcode==331){//for photon 
       alpha = 1;
     }else continue;
 
@@ -3356,10 +3398,7 @@ void EvtConExc::ReadVP(){
   
 }
 
-
-
-
-void EvtConExc::mk_VXS(double Esig,double Egamcut,double EgamH,int midx){
+void EvtConExc::mk_VXS(double Esig, double Egamcut, double EgamH, int midx){
   //the mode index is put into vmode
   //initial
   //midx: mode index in vmode[midx] and VXS[midx][bin]
@@ -3378,7 +3417,7 @@ void EvtConExc::mk_VXS(double Esig,double Egamcut,double EgamH,int midx){
   int nint=50;
   int nmc=800;
   //double myxs0 =uscale*gamHXSection(s,Esig,Egamcut,nmc);
-  double myxs0   =uscale*trapezoid(s,Esig,Egamcut,nint,myxsection); 
+  double myxs0 = uscale*trapezoid(s,Esig,Egamcut,nint,myxsection); 
   double xb= 2*Esig/_cms;
   double sig_xs = uscale*SoftPhoton_xs(s,xb)*(myxsection->getXsection(_cms));
   myxs0 += sig_xs;
@@ -3461,6 +3500,7 @@ void EvtConExc::writeDecayTabel(){
   ob<<"mode_index  observed cross /nb"<<std::endl;
   for(int i=0;i<vmode.size();i++){
     ob<<vmode[i]<<" "<<VXS[getModeIndex(vmode[i])][599]<<std::endl;
+//cout<<"vmode["<<i<<"] = "<<vmode[i]<<", VXS["<<getModeIndex(vmode[i])<<"][599] = "<<XS[getModeIndex(vmode[i])][599]<<std::endl; // wangwp
   }
 
   for(int i=0;i<Vmode.size();i++){
@@ -3734,4 +3774,3 @@ double EvtConExc::trapezoid(double s,  double El,double Eh,int n, EvtXsection* m
     }
   return sum;
 }
-

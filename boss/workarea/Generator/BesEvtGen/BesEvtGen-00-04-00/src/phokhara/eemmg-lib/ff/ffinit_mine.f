@@ -1,4 +1,4 @@
-*	$Id: ffinit_mine.f,v 1.1 2016/09/30 06:57:58 pingrg Exp $
+*	$Id: ffinit_mine.f,v 1.2 2018/08/28 03:53:41 pingrg Exp $
 *###[ ffini:
 	subroutine ffini
 ***#[*comment:***********************************************************
@@ -509,8 +509,8 @@
 	if ( nerr .eq. 999 ) then
 *	    print out total numbers...
 	    print '(a)',' '
-	    print '(a)','total number of errors and warnings'
-	    print '(a)','==================================='
+*	    print '(a)','total number of errors and warnings'
+*	    print '(a)','==================================='
 	    inone = 1
 	    do 10 i=1,nmax
 		if ( noccur(i) .gt. 0 ) then
@@ -520,11 +520,11 @@
 		    inone = 0
 		endif
    10	    continue
-	    if ( inone.eq.1 ) print '(a)','fferr: no errors'
+*	    if ( inone.eq.1 ) print '(a)','fferr: no errors'
 	    if ( lwarn ) then
 		call ffwarn(999,ierr,x1,x1)
 	    else
-		print '(a)','the warning system has been disabled'
+*		print '(a)','the warning system has been disabled'
 	    endif
 	    print '(a)',' '
 	    return

@@ -3,7 +3,7 @@ use BesPolicy      BesPolicy-*
 use BesServices    BesServices-*       Control
 use CERNLIB          CERNLIB-*         External
 use GeneratorObject  GeneratorObject-* Generator
-use BesEvtGen       BesEvtGen-*        Generator
+#use BesEvtGen       BesEvtGen-*        Generator
 use PartPropSvc      *
 use HepMC            *               LCG_Interfaces
 use DataInfoSvc     DataInfoSvc-*       Control
@@ -17,7 +17,7 @@ macro_remove fflags "-fmessage-length=0 2"
 
 macro_append HepMC_linkopts "-L$(HepMC_home)/lib -lHepMCfio "
 
-#library BesEvtGen ../src/EvtGen/EvtGenModels/ranlux_fort.c  ../src/EvtGen/EvtGenModels/ranlxd.c ../src/phokhara/eemmg-lib/eemmg5/*.f ../src/phokhara/eemmg-lib/eemmgisr/*.f ../src/phokhara/eemmg-lib/eemmgisrfsr/*.f ../src/phokhara/eemmg-lib/eemmgmix/*.f ../src/phokhara/eemmg-lib/ff/*.f ../src/phokhara/eemmg-lib/ql/*.f ../src/phokhara/eemmg-lib/src/*.cpp
+library BesEvtGen ../src/EvtGen/EvtGenModels/ranlux_fort.c  ../src/EvtGen/EvtGenModels/ranlxd.c ../src/phokhara/eemmg-lib/eemmg5/*.f ../src/phokhara/eemmg-lib/eemmgisr/*.f ../src/phokhara/eemmg-lib/eemmgisrfsr/*.f ../src/phokhara/eemmg-lib/eemmgmix/*.f ../src/phokhara/eemmg-lib/ff/*.f ../src/phokhara/eemmg-lib/ql/*.f ../src/phokhara/eemmg-lib/src/*.cpp
 
 apply_pattern dual_use_library files="EvtDecay.cxx ReadME.cxx  \
                                       ../components/*.cxx  ../src/EvtGen/EvtGenBase/*.cc \

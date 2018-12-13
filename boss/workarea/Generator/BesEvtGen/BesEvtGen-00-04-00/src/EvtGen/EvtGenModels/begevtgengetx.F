@@ -39,7 +39,7 @@ C      COMMON/XHEPEVT/NEVHEP,NHEP,ISTHEP(NMXHEP),IDHEP(NMXHEP),
 C     &JMOHEP(2,NMXHEP),JDAHEP(2,NMXHEP),PHEP(5,NMXHEP),VHEP(4,NMXHEP)
 C      SAVE /XHEPEVT/
 
-#include "./stdhep.inc"
+#include "EvtGenModels/stdhep.inc"
 
         integer entry,eventnum,numparticle,istat,partnum
         integer mother,daugfirst,dauglast

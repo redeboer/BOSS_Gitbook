@@ -46,8 +46,9 @@ double EvtRandom::random(){
     ::abort();
   }
 
-  return _randomEngine->random();
-
+  double rdm= _randomEngine->random();
+  //  std::cout<<"EvtRandom::Flat= "<<rdm<<std::endl;
+  return rdm;
 }
 
 

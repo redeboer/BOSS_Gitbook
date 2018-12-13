@@ -45,6 +45,8 @@ class ReadME{
 		int MeasuredEcmsMin, MeasuredEcmsMax;
 		//DsRunParamsMin and DsRunParamsMax are used to set range for the new 4180 data listed in RunParams
 		int DsRunParamsMin, DsRunParamsMax;
+    //runxyzMin and runxyzMax are used to set range for the new xyz  data listed in RunParams    
+    int runxyzMin, runxyzMax;
 
 		IDatabaseSvc* m_dbSvc;
 		static int preRunNo;

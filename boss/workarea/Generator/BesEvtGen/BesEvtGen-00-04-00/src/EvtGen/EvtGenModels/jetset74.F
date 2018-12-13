@@ -6099,9 +6099,8 @@ C...Purpose: to reconstruct an angle from given x and y coordinates.
       END 
  
 C********************************************************************* 
- 
-C********************************************************************* 
- 
+
+
       SUBROUTINE RLUGET(LFN,MOVE) 
  
 C...Purpose: to dump the state of the random number generator on a file 

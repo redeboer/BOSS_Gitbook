@@ -108,7 +108,7 @@ private:
     
 
 // jobOption params
-string m_DecayDec, m_PdtTable, userDecFileName,m_DecayTop,m_DecayRec, m_ParentPart;
+string m_DecayDec, m_PdtTable, userDecFileName,m_DecayTop,m_DecayRec, m_ParentPart,m_printfs;
 
  std::ofstream outfile,outfile2,truth;
  std::vector<int> m_InSeeds;

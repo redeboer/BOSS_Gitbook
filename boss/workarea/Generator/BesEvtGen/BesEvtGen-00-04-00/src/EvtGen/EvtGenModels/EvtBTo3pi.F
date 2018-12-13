@@ -312,7 +312,7 @@ c                                    the B0bar ->- 3 pions decay
 c****************************************************************************
 c-----------------------------------------------------------------      
       Implicit none
-#include "./EvtBTo3pi.inc"
+#include "EvtGenModels/EvtBTo3pi.inc"
       Real*8  alpha_input
       Real*8  beta_input
       Integer iset
@@ -469,7 +469,7 @@ c	----------------------------------------------------------
 c	----------------------------------------------------------      	
 c 	--- commons      	
 c	----------------------------------------------------------	
-#include "./EvtBTo3pi.inc"
+#include "EvtGenModels/EvtBTo3pi.inc"
 c	----------------------------------------------------------
 c 	--- Used Functions 
 c	----------------------------------------------------------
@@ -628,7 +628,7 @@ c======================================================================
      +           Real_B0,Imag_B0,Real_B0bar,Imag_B0bar,iset,ierr)                 
 c-----------------------------------------------------------------------
       	IMPLICIT None  
-#include "./EvtBTo3pi.inc"
+#include "EvtGenModels/EvtBTo3pi.inc"
 
                                                                                                  
       	Real*8 m12, m13, m23, W12, W13, W23, Wtot
@@ -708,7 +708,7 @@ c======================================================================
       Function BreitWigner(p1,p2,p3,ierr)
 c----------------------------------------------------------------------                                                  
       	IMPLICIT None   
-#include "./EvtBTo3pi.inc"
+#include "EvtGenModels/EvtBTo3pi.inc"
       	Complex *16 BreitWigner,EvtCRhoF_W 
       	Logical Aleph     
         Integer ierr
@@ -811,7 +811,7 @@ c======================================================================
       Subroutine EvtSet_Constants(balpha, bbeta)   
 c----------------------------------------------------------------------                                                     
       IMPLICIT None         
-#include "./EvtBTo3pi.inc"
+#include "EvtGenModels/EvtBTo3pi.inc"
 
 c	-------------------------------------------------------------	                                                                
 c 	---	Basic matrix elements 
@@ -951,7 +951,7 @@ c	--------------------------------------------------------------
 	implicit none
 c --- commons
 
-#include "./EvtBTo3pi.inc"
+#include "EvtGenModels/EvtBTo3pi.inc"
 	
 c --- Used Functions 
 
@@ -1061,7 +1061,7 @@ C===================================================================
       	Subroutine EvtRotation(p,new)      
 c------------------------------------------------------------------
       	Implicit None
-#include "./EvtBTo3pi.inc"
+#include "EvtGenModels/EvtBTo3pi.inc"
 
       	Real*8 p(5),pstor(3)
       	Real*8 phi2,phi3

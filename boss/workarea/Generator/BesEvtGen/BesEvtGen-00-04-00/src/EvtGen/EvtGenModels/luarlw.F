@@ -55,20 +55,20 @@ c      print*,'ITHEVENT= ',ITHEVENT
 cc The parameter initiation is invalid when setting in the ARLWSET,
 cc This is unknown. When adjusting the parameters parj(11,12,14,15,16,17,
 cc 1,2,21,25,33,126), the parameter parj(11,12,2) set by the are law are released. see tag "pingrg"
-      PARJ(1)=0.502    !(D=0.1)p(qq)/p(q)
-      PARJ(2)=0.5      !(D=0.3)p(ss)/p(dd,uu) => RALPA(59,60)
+      PARJ(1)=0.44905  !(D=0.1)p(qq)/p(q)
+      PARJ(2)=0.54537  !(D=0.3)p(ss)/p(dd,uu) => RALPA(59,60)
       PARJ(03)=0.68    !(D=0.4)(P(us)/P(ud))/(P(s)/P(d))
       PARJ(04)=0.05    !(D=0.05)(1/3)P(ud1)/P(ud0)
       PARJ(05)=0.50    !(D=0.5)P(BMB)/[P(BB)+P(BMB)]=it/(0.5+it)
-      PARJ(11)=0.51684 !(D=0.5)ratio of light meson with spin 1/0 RALPA(73) 
-      PARJ(12)=0.498   !(D=0.6)ratio of strang meson with spin 1/0 RALPA(74)
+      PARJ(11)=0.41874 !(D=0.5)ratio of light meson with spin 1/0 RALPA(73) 
+      PARJ(12)=0.85113 !(D=0.6)ratio of strang meson with spin 1/0 RALPA(74)
       PARJ(13)=0.75    !(D=0.75)ratio of charm meson with spin 1/0 
-      PARJ(14)=0.5131  !(D=0.0)ratio of S=0 meson with L=1, J=1  
-      PARJ(15)=0.497   !(D=0.0)ratio of S=1 meson with L=1, J=0 
-      PARJ(16)=0.4187  !(D=0.0)ratio of S=1 meson with L=1, J=1 
-      PARJ(17)=0.567   !(D=0.0)ratio of S=1 meson with L=1, J=2
+      PARJ(14)=0.54183 !(D=0.0)ratio of S=0 meson with L=1, J=1  
+      PARJ(15)=0.34146 !(D=0.0)ratio of S=1 meson with L=1, J=0 
+      PARJ(16)=0.61726 !(D=0.0)ratio of S=1 meson with L=1, J=1 
+      PARJ(17)=0.28821 !(D=0.0)ratio of S=1 meson with L=1, J=2
       PARJ(19)=0.55    !(D=1.0)extra bayon supression
-      PARJ(21)=0.557   !(D=0.36), width in the Px,Py Gaussian dist
+      PARJ(21)=0.25076 !(D=0.36), width in the Px,Py Gaussian dist
       PARJ(25)=1.0     !(D=1.0)eta extra suppression
       PARJ(26)=0.5     !(D=0.4)eta' extra suppression
       PARJ(33)=0.5     !(D=0.8)below which 2 hadrons prodced,
@@ -84,8 +84,8 @@ cc 1,2,21,25,33,126), the parameter parj(11,12,2) set by the are law are release
 
       RALPA(14)=0.3     !C0 in Pn
       RALPA(15)=0.513   !C1 in Pn for IALFU(1)=1 & ECM < RALPA(61)
-      RALPA(16)=0.503   !C2 in Pn for IALFU(1)=1 & ECM < RALPA(61)
-      RALPA(17)=-0.497  !C3 in Pn for IALFU(1)=1 & ECM < RALPA(61)
+      RALPA(16)=-0.57702 !C2 in Pn for IALFU(1)=1 & ECM < RALPA(61)
+      RALPA(17)=-0.795  !C3 in Pn for IALFU(1)=1 & ECM < RALPA(61)
 
       RALPA(21)=0.0     !C1 in Pn for IALFU(1)=1 & ECM > RALPA(61)
       RALPA(22)=0.01    !C2 in Pn for IALFU(1)=1 & ECM > RALPA(61)
@@ -98,9 +98,10 @@ cc 1,2,21,25,33,126), the parameter parj(11,12,2) set by the are law are release
       RALPA(33)=0.1     !C1 in Pn for IALFU(1)=2 & ECM > RALPA(61)
       RALPA(34)=0.1     !C2 in Pn for IALFU(1)=2 & ECM > RALPA(61)
       RALPA(35)=0.1     !C3 in Pn for IALFU(1)=2 & ECM > RALPA(61)
+      RALPA(67)=0.35325
 
       RALPA(67)=0.1855  !(D=0.1)special two-body suppress factor
-      IF(ECM.lt.773) THEN ! the parameters for cms energy less than psi(3770)
+      IF(ECM .lt. 3.773) THEN ! the parameters for cms energy less than psi(3770)
          PARJ(11)=0.611798
          PARJ(12)=7.92527E-12
          PARJ(14)=0.244495
@@ -126,7 +127,7 @@ c      CALL LULIST0(1)
       
        NDAUG=0
       DO 99, I=1, N
-        if(abs(k(i,2)).lt.22 .or. k(i,2).eq.92) goto 99 
+        if(abs(k(i,2)).le.22 .or. k(i,2).eq.92) goto 99 
         NDAUG = NDAUG+1
         km(NDAUG)=k(i,3) !origin, it's mother origin
         kf(NDAUG)=k(i,2) !PID
@@ -7898,9 +7899,15 @@ C
       END
 
 *
-* $Id: luarlw.F,v 1.20 2016/09/13 05:24:27 pingrg Exp $
+* $Id: luarlw.F,v 1.22 2017/11/01 08:13:43 pingrg Exp $
 *
 * $Log: luarlw.F,v $
+* Revision 1.22  2017/11/01 08:13:43  pingrg
+* *** empty log message ***
+*
+* Revision 1.21  2017/05/09 07:59:37  pingrg
+* *** empty log message ***
+*
 * Revision 1.20  2016/09/13 05:24:27  pingrg
 * *** empty log message ***
 *

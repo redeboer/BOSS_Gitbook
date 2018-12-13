@@ -29,7 +29,7 @@ C------------------------------------------------------------------------
 *     Anders Ryd,  Dec 96   Created.
 *     
 *     
-#include "./stdhep.inc"
+#include "EvtGenModels/stdhep.inc"
       
       logical qedrad
       integer ph_nmxhep ! this is parameter nmxhep in photos/photos_make
