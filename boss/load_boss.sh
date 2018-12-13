@@ -19,7 +19,7 @@
 # * Setup BOSS area * #
 	source "${BOSSWORKAREA}/${CMTHOMENAME}/setupCMT.sh"
 	source "${BOSSWORKAREA}/${CMTHOMENAME}/setup.sh"
-	source "${BOSSWORKAREA}/${WORKAREANAME}/TestRelease/TestRelease-"*"/cmt/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/TestRelease/TestRelease-00-01-00/cmt/setup.sh"
 	export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
 
 
