@@ -87,6 +87,21 @@
 	export AttemptToExecute
 	function cmtbroadcast()
 	{
+		# * Attempt to move to last cmt folder
+		local currentPath="$(pwd)"
+		if [ "$(basename "${currentPath}")" != "cmt" ]; then
+			local cmtFolder="$(find -name cmt | head -1)"
+			if [ "${cmtFolder}" == "" ]; then
+				echo "ERROR: no cmt folder available!"
+				return
+			fi
+			cd "${cmtFolder}"
+		fi
+		# * Print package and version name
+		echo
+		echo "=================================="
+		echo "BROADCASTING PACKAGE \"$(basename $(dirname $(pwd)))\""
+		echo "=================================="
 		# * Connect your workarea to BOSS
 		AttemptToExecute "cmt broadcast"
 		if [ $? != 0 ]; then return; fi
@@ -99,10 +114,27 @@
 		# * Set bash variables
 		AttemptToExecute "source setup.sh"
 		if [ $? != 0 ]; then return; fi
+		# * Move back to original path
+		cd "${currentPath}"
 	}
 	export cmtbroadcast
 	function cmtconfig()
 	{
+		# * Attempt to move to last cmt folder
+		local currentPath="$(pwd)"
+		if [ "$(basename "${currentPath}")" != "cmt" ]; then
+			local cmtFolder="$(find -name cmt | head -1)"
+			if [ "${cmtFolder}" == "" ]; then
+				echo "ERROR: no cmt folder available!"
+				return
+			fi
+			cd "${cmtFolder}"
+		fi
+		# * Print package and version name
+		echo; echo
+		echo "====================================="
+		echo "BUILDING PACKAGE \"$(basename $(dirname $(pwd)))\""
+		echo "====================================="
 		# * Create CMT scripts
 		AttemptToExecute "cmt config"
 		if [ $? != 0 ]; then return; fi
@@ -112,5 +144,7 @@
 		# * Make package available to BOSS
 		AttemptToExecute "source setup.sh"
 		if [ $? != 0 ]; then return; fi
+		# * Move back to original path
+		cd "${currentPath}"
 	}
 	export cmtconfig
