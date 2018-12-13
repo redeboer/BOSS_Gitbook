@@ -186,17 +186,31 @@ which, in this case, will run a Monte Carlo simulation.
 
 Note that in [Step 5 when we set up the work area](setup.md#step-5-modify-your-bashrc) we added `source setup.sh` line to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
 
+{% hint style="info" %}
+#### A note on `TestRelease` versions in the _BOSS Afterburner_
+
+* \`\`[`TestRelease-00-00-86`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-00-86) is the original 'stock' version
+* \`\`[`TestRelease-00-00-87`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-00-87) is the same, but has better alignment
+* \`\`[`TestRelease-00-01-00`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-01-00) is the version used in _BOSS Afterburner_
+{% endhint %}
+
 ### The `Rhopi` algorithm
 
 One of the basic analysis packages that is already provided in BOSS is the `RhopiAlg` package. Within BESIII, almost everyone knows it, because it is used as the starting point for developing your own packages. `RhopiAlg` is an illustration of a typical procedure in particle physics: selecting events from your data or Monte Carlo simulation.
 
-The `RhopiAlg` package is located here:
+The original `RhopiAlg` package \(version 0.0.23\) is located here,
 
 ```bash
 /afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23
 ```
 
-A [better commented version](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23) is also available within the BOSS Afterburner. In this tutorial, we will work with this version, but, as with `TestRelease`, you can choose to work with a copy from the `$BesArea`.
+but you can also [have a look at it in the BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23) or [import the original packages](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/import_packages.sh) for any version of BOSS.
+
+{% hint style="info" %}
+The original `RhopiAlg-00-00-23` package of BOSS **7.0.4** contains a few bugs. These have been removed in [`RhopiAlg-00-00-24`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-24).
+{% endhint %}
+
+A better commented and expanded version is also available within the BOSS Afterburner \([version 1.0.0](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00)\). In this tutorial, we will work with this version, but, as with `TestRelease`, you can choose to work with a copy from the `$BesArea`.
 
 The `RhopiAlg` package is one of the dependencies of `TestRelease`: you actually use `TestRelease` to run an analysis from `RhopiAlg` \(or any other package\). This also means that you have to follow the normal procedure for updating a package [as described above](setup-package.md#updating-a-package).
 
@@ -211,6 +225,6 @@ The `RhopiAlg` package is one of the dependencies of `TestRelease`: you actually
 ### `KGamma`: a modification of `RhopiAlg`
 
 {% hint style="warning" %}
-Test procedure of creating a new package from `RhopiAlg` and how CMT deals with such a renamed package.
+**To be developed!**
 {% endhint %}
 
