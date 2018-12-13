@@ -196,6 +196,8 @@ Note that in [Step 5 when we set up the work area](setup.md#step-5-modify-your-b
 
 ### The `Rhopi` algorithm
 
+#### Introduction
+
 One of the basic analysis packages that is already provided in BOSS is the `RhopiAlg` package. Within BESIII, almost everyone knows it, because it is used as the starting point for developing your own packages. `RhopiAlg` is an illustration of a typical procedure in particle physics: selecting events from your data or Monte Carlo simulation.
 
 The original `RhopiAlg` package \(version 0.0.23\) is located here,
@@ -209,6 +211,22 @@ but you can also [have a look at it in the BOSS Afterburner](https://github.com/
 A better commented and expanded version is also available within the BOSS Afterburner \([version 1.0.0](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00)\). In this tutorial, we will work with this version, but, as with `TestRelease`, you can choose to work with a copy from the `$BesArea`.
 
 The `RhopiAlg` package is one of the dependencies of `TestRelease`: you actually use `TestRelease` to run an analysis from `RhopiAlg` \(or any other package\). This also means that you have to follow the normal procedure for updating a package [as described above](setup-package.md#updating-a-package).
+
+#### Declaring and defining properties like cuts
+
+See [header `.h` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/RhopiAlg/Rhopi.h) for declarations and [source `.cxx` code](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/src/Rhopi.cxx) for definitions of cuts.
+
+#### Determining vertex position
+
+#### Writing properties
+
+#### Looping over charged and neutral tracks
+
+#### Kalman kinematic $$n $$-contraints fit procedure
+
+#### Cut flow
+
+#### Output `root` file
 
 {% hint style="warning" %}
 **@todo** Describe `RhopiAlg` and how to work with it.
