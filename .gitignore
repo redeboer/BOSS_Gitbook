@@ -29,6 +29,7 @@ jobs/sub/**/*.sh.*.*
 **.fferr
 **.ffwarn
 **.history
+**.makesav
 **.in
 **.shstamp
 **.stamp

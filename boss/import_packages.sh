@@ -23,7 +23,7 @@ fi
 		fi
 		mkdir -p "${TargetPath}"
 		echo "Overwriting \"${PackageToOverwrite}\"..."
-		cp -fR "${SourcePath}"* "${TargetPath}"
+		cp -fR "${SourcePath}"* $(dirname "${TargetPath}")
 	}
 
 # * Copy example packages * #
