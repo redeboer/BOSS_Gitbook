@@ -200,6 +200,12 @@ The option `-p` is used to avoid error messages when making this directory: if y
 We'll get back to the `workarea` folder when we [set up a BOSS package](setup-package.md).
 
 {% hint style="info" %}
-Your _BOSS workarea_ typically contains three folders: **`Analysis`**, which contains CMT packages that you use for your analysis, **`InstallArea`**, which is created when you use `cmt config`, and **`TestRelease`**, which is used to run all packages. The file structure follows that of the `$BesArea` \(use `ls $BesArea` to verify this.\)
+Your _BOSS workarea_ typically contains three folders \(see [an example here](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea)\):
+
+1.  [**`Analysis`**](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis), which contains CMT packages that you use for your analysis
+2. [**`InstallArea`**](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/InstallArea), which is created when you use `cmt confi`
+3. [**`TestRelease`**](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease), which is used to run all packages
+
+The file structure of your _workarea_ follows that of the packages in `$BesArea` \(use `ls $BesArea` to verify this\), because, [as explained before](setup.md#step-3-modify-requirements), packages in your _workarea_ have priority over those in `$BesArea`. As such, you can expand your _workarea_ by copying certain packages from the `$BesArea` and modifying those. In the _BOSS Afterburner_, there is for instance [a modification of the `BesEvtGen` Monte Carlo generator](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Generator).
 {% endhint %}
 
