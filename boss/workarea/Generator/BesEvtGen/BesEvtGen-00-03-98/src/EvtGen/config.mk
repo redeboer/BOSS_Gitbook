@@ -1,0 +1,11 @@
+EVTCXX=g++
+EVTF77=f77
+EVTCXXFLAGS=-I. -DEVTSTANDALONE   -I${CLHEP_BASE_DIR}/include -I${ROOTSYS}/include -I../
+EVTDEPINC=-I. -DEVTSTANDALONE   -I${CLHEP_BASE_DIR}/include -I${ROOTSYS}/include -I../   -Iignoring -Inonexistent -Idirectory -I"/usr/i386-redhat-linux/include" -I/usr/include/c++/3.2.3 -I/usr/include/c++/3.2.3/i386-redhat-linux -I/usr/include/c++/3.2.3/backward -I/usr/local/include -I/usr/lib/gcc-lib/i386-redhat-linux/3.2.3/include -I/usr/include
+EVTF77FLAGS= -I${CLHEP_BASE_DIR}/include -I${ROOTSYS}/include -I../
+EVTLINK=-L. -L${CERN_ROOT}/lib/ -L${CLHEP_BASE_DIR}/lib -L${ROOTSYS}/lib
+EVTLINKOPT=  
+EVTSYSLIB=-lg2c -lnsl
+EVTPYLIB=pythia6205
+EVTPHLIB=photos202
+EVTPDLIB=pdflib804

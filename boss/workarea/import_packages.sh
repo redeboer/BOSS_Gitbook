@@ -11,21 +11,23 @@ fi
 		local PackageToOverwrite="$1"
 		local SourcePath="${BesArea}/${PackageToOverwrite}"
 		# * Look for latest package
-		ls ${SourcePath}/* | tail -1
+		SourcePath=${SourcePath}/$(ls ${SourcePath}* | tail -1)
 		if [ $? != 0 ]; then
 			exit
 		fi
-		SourcePath=$(ls ${SourcePath}* | tail -1)
-		PackageToOverwrite=$(basename "${SourcePath}")
+		local VersionToOverwrite=$(basename "${SourcePath}")
+		# echo "SourcePath:         $SourcePath"
+		# echo "PackageToOverwrite: $PackageToOverwrite"
+		# echo "VersionToOverwrite: $VersionToOverwrite"
 		# * Check if package already exists in your workarea
-		local TargetPath="${BOSSWORKAREA}/workarea/${PackageToOverwrite}"
+		local TargetPath="${BOSSWORKAREA}/workarea/${PackageToOverwrite}/${VersionToOverwrite}"
 		if [ -d "${TargetPath}" ]; then
-			echo "WARNING: Package \"${PackageToOverwrite}\" already exists in your workarea"
+			echo "WARNING: Package \"${VersionToOverwrite}\" already exists in your workarea"
 			read -p "Press ENTER to overwrite..."
 			rm -rf "${TargetPath}"
 		fi
 		mkdir -p "${TargetPath}"
-		echo "Overwriting \"${PackageToOverwrite}\"..."
+		echo "Importing \"${VersionToOverwrite}\"..."
 		cp -fR "${SourcePath}"* $(dirname "${TargetPath}")
 	}
 
