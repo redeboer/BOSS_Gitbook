@@ -1,3 +1,6 @@
+# Ignore Windows files
+desktop.ini
+
 # Ignore folder contents
 data/**/*.dst
 data/**/*.log

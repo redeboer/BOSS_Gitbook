@@ -123,52 +123,52 @@ StatusCode KGamma::initialize(){
 
 	// * NTuple: Vertex position (vxyz) * //
 		NTuplePtr nt1(ntupleSvc(), "FILE1/vxyz");
-		if ( nt1 ) m_tuple1 = nt1;
+		if ( nt1 ) m_tuple_vxyz = nt1;
 		else {
-			m_tuple1 = ntupleSvc()->book("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
-			if(m_tuple1 ) {
-				m_tuple1->addItem("vx0",    m_vx0);    // primary x-vertex as determined by MDC
-				m_tuple1->addItem("vy0",    m_vy0);    // primary y-vertex as determined by MDC
-				m_tuple1->addItem("vz0",    m_vz0);    // primary z-vertex as determined by MDC
-				m_tuple1->addItem("vr0",    m_vr0);    // distance from origin in xy-plane
-				m_tuple1->addItem("rvxy0",  m_rvxy0);  // nearest distance to IP in xy plane
-				m_tuple1->addItem("rvz0",   m_rvz0);   // nearest distance to IP in z direction
-				m_tuple1->addItem("rvphi0", m_rvphi0); // angle in the xy-plane (?)
+			m_tuple_vxyz = ntupleSvc()->book("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
+			if(m_tuple_vxyz) {
+				m_tuple_vxyz->addItem("vx0",    m_vx0);    // primary x-vertex as determined by MDC
+				m_tuple_vxyz->addItem("vy0",    m_vy0);    // primary y-vertex as determined by MDC
+				m_tuple_vxyz->addItem("vz0",    m_vz0);    // primary z-vertex as determined by MDC
+				m_tuple_vxyz->addItem("vr0",    m_vr0);    // distance from origin in xy-plane
+				m_tuple_vxyz->addItem("rvxy0",  m_rvxy0);  // nearest distance to IP in xy plane
+				m_tuple_vxyz->addItem("rvz0",   m_rvz0);   // nearest distance to IP in z direction
+				m_tuple_vxyz->addItem("rvphi0", m_rvphi0); // angle in the xy-plane (?)
 			}
 			else {
-				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple1) << endmsg;
+				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_vxyz) << endmsg;
 				return StatusCode::FAILURE;
 			}
 		}
 
 	// * NTuple: Photon kinematics (photon) * //
 		NTuplePtr nt2(ntupleSvc(), "FILE1/photon");
-		if ( nt2 ) m_tuple2 = nt2;
+		if ( nt2 ) m_tuple_ang = nt2;
 		else {
-			m_tuple2 = ntupleSvc()->book("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
-			if(m_tuple2 ) {
-				m_tuple2->addItem ("dthe", m_dthe); // theta difference with nearest charged track (degrees)
-				m_tuple2->addItem ("dphi", m_dphi); // phi difference with nearest charged track (degrees)
-				m_tuple2->addItem ("dang", m_dang); // angle difference with nearest charged track
-				m_tuple2->addItem ("eraw", m_eraw); // energy of the photon
+			m_tuple_ang = ntupleSvc()->book("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
+			if(m_tuple_ang) {
+				m_tuple_ang->addItem ("dthe", m_dthe); // theta difference with nearest charged track (degrees)
+				m_tuple_ang->addItem ("dphi", m_dphi); // phi difference with nearest charged track (degrees)
+				m_tuple_ang->addItem ("dang", m_dang); // angle difference with nearest charged track
+				m_tuple_ang->addItem ("eraw", m_eraw); // energy of the photon
 			}
 			else {
-				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple2) << endmsg;
+				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_ang) << endmsg;
 				return StatusCode::FAILURE;
 			}
 		}
 
 	// * NTuple: Energy branch (etot) * //
 		NTuplePtr nt3(ntupleSvc(), "FILE1/etot");
-		if ( nt3 ) m_tuple3 = nt3;
+		if ( nt3 ) m_tuple_mgg = nt3;
 		else {
-			m_tuple3 = ntupleSvc()->book("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
-			if(m_tuple3 ) {
-				m_tuple3->addItem ("m2gg", m_m2gg); // invariant mass of the two gammas
-				m_tuple3->addItem ("etot", m_etot); // total energy of pi^+, pi^ and the two gammas
+			m_tuple_mgg = ntupleSvc()->book("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
+			if(m_tuple_mgg) {
+				m_tuple_mgg->addItem ("m2gg", m_m2gg); // invariant mass of the two gammas
+				m_tuple_mgg->addItem ("etot", m_etot); // total energy of pi^+, pi^ and the two gammas
 			}
 			else {
-				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple3) << endmsg;
+				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_mgg) << endmsg;
 				return StatusCode::FAILURE;
 			}
 		}
@@ -176,15 +176,15 @@ StatusCode KGamma::initialize(){
 	// * NTuple: Neutral pion (pi0) fit branch (fit4c) * //
 		if(m_test4C) {
 			NTuplePtr nt4(ntupleSvc(), "FILE1/fit4c");
-			if ( nt4 ) m_tuple4 = nt4;
+			if ( nt4 ) m_tuple_fit4c = nt4;
 			else {
-				m_tuple4 = ntupleSvc()->book("FILE1/fit4c", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple4 ) {
-					m_tuple4->addItem ("mpi0", m_mpi0); // invariant pi0 mass according to Kalman kinematic fit
-					m_tuple4->addItem ("chi2", m_chi1); // chi square of the Kalman kinematic fit
+				m_tuple_fit4c = ntupleSvc()->book("FILE1/fit4c", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(m_tuple_fit4c ) {
+					m_tuple_fit4c->addItem ("mpi0", m_mpi0); // invariant pi0 mass according to Kalman kinematic fit
+					m_tuple_fit4c->addItem ("chi2", m_chi1); // chi square of the Kalman kinematic fit
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple4) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_fit4c) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
@@ -193,32 +193,32 @@ StatusCode KGamma::initialize(){
 	// * NTuple: Rho fit branch (fit5c) * //
 		if(m_test5C) {
 			NTuplePtr nt5(ntupleSvc(), "FILE1/fit5c");
-			if ( nt5 ) m_tuple5 = nt5;
+			if ( nt5 ) m_tuple_fit5c = nt5;
 			else {
-				m_tuple5 = ntupleSvc()->book("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple5 ) {
-					m_tuple5->addItem ("chi2",  m_chi2);  // chi squared of the Kalman kinematic fit
-					m_tuple5->addItem ("mrho0", m_mrho0); // inv. mass pi^+ pi^- (rho^0)
-					m_tuple5->addItem ("mrhop", m_mrhop); // inv. mass pi^0 pi^+ (rho^+)
-					m_tuple5->addItem ("mrhom", m_mrhom); // inv. mass pi^0 pi^- (rho^-)
+				m_tuple_fit5c = ntupleSvc()->book("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(m_tuple_fit5c) {
+					m_tuple_fit5c->addItem ("chi2",  m_chi2);  // chi squared of the Kalman kinematic fit
+					m_tuple_fit5c->addItem ("mrho0", m_mrho0); // inv. mass pi^+ pi^- (rho^0)
+					m_tuple_fit5c->addItem ("mrhop", m_mrhop); // inv. mass pi^0 pi^+ (rho^+)
+					m_tuple_fit5c->addItem ("mrhom", m_mrhom); // inv. mass pi^0 pi^- (rho^-)
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple5) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_fit5c) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
 
 	// * NTuple: Photon detection efficiences (geff) * //
 			NTuplePtr nt6(ntupleSvc(), "FILE1/geff");
-			if ( nt6 ) m_tuple6 = nt6;
+			if ( nt6 ) m_tuple_photon = nt6;
 			else {
-				m_tuple6 = ntupleSvc()->book("FILE1/geff", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple6 ) {
-					m_tuple6->addItem ("fcos", m_fcos); // E/p ratio for pi^0 candidate
-					m_tuple6->addItem ("elow", m_elow); // lowest energy of the two gammas
+				m_tuple_photon = ntupleSvc()->book("FILE1/geff", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(m_tuple_photon) {
+					m_tuple_photon->addItem ("fcos", m_fcos); // E/p ratio for pi^0 candidate
+					m_tuple_photon->addItem ("elow", m_elow); // lowest energy of the two gammas
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple6) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_photon) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
@@ -227,23 +227,23 @@ StatusCode KGamma::initialize(){
 	// * NTuple: Import dE/dx PID branch (dedx) * //
 		if(m_checkDedx) {
 			NTuplePtr nt7(ntupleSvc(), "FILE1/dedx");
-			if ( nt7 ) m_tuple7 = nt7;
+			if ( nt7 ) m_tuple_dedx = nt7;
 			else {
-				m_tuple7 = ntupleSvc()->book("FILE1/dedx", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple7 ) {
-					m_tuple7->addItem ("ptrk",   m_ptrk);   // momentum of the track
-					m_tuple7->addItem ("chie",   m_chie);   // chi2 in case of electron
-					m_tuple7->addItem ("chimu",  m_chimu);  // chi2 in case of muon
-					m_tuple7->addItem ("chipi",  m_chipi);  // chi2 in case of pion
-					m_tuple7->addItem ("chik",   m_chik);   // chi2 in case of kaon
-					m_tuple7->addItem ("chip",   m_chip);   // chi2 in case of proton
-					m_tuple7->addItem ("probPH", m_probPH); // most probable pulse height from truncated mean
-					m_tuple7->addItem ("normPH", m_normPH); // normalized pulse height
-					m_tuple7->addItem ("ghit",   m_ghit);   // number of good hits
-					m_tuple7->addItem ("thit",   m_thit);   // total number of hits
+				m_tuple_dedx = ntupleSvc()->book("FILE1/dedx", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(m_tuple_dedx) {
+					m_tuple_dedx->addItem ("ptrk",   m_ptrk);   // momentum of the track
+					m_tuple_dedx->addItem ("chie",   m_chie);   // chi2 in case of electron
+					m_tuple_dedx->addItem ("chimu",  m_chimu);  // chi2 in case of muon
+					m_tuple_dedx->addItem ("chipi",  m_chipi);  // chi2 in case of pion
+					m_tuple_dedx->addItem ("chik",   m_chik);   // chi2 in case of kaon
+					m_tuple_dedx->addItem ("chip",   m_chip);   // chi2 in case of proton
+					m_tuple_dedx->addItem ("probPH", m_probPH); // most probable pulse height from truncated mean
+					m_tuple_dedx->addItem ("normPH", m_normPH); // normalized pulse height
+					m_tuple_dedx->addItem ("ghit",   m_ghit);   // number of good hits
+					m_tuple_dedx->addItem ("thit",   m_thit);   // total number of hits
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple7) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_dedx) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
@@ -252,25 +252,25 @@ StatusCode KGamma::initialize(){
 	// * NTuple: ToF endcap branch (tofe) * //
 		if(m_checkTof) {
 			NTuplePtr nt8(ntupleSvc(), "FILE1/tofe");
-			if ( nt8 ) m_tuple8 = nt8;
+			if ( nt8 ) m_tuple_tof_ec = nt8;
 			else {
-				m_tuple8 = ntupleSvc()->book("FILE1/tofe",CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple8 ) {
-					m_tuple8->addItem("ptrk", m_ptot_etof); // momentum of the track as reconstructed by MDC
-					m_tuple9->addItem("path", m_path_etof); // path length
-					m_tuple9->addItem("tof",  m_tof_etof);  // time of flight
-					m_tuple8->addItem("cntr", m_cntr_etof); // ToF counter ID
-					m_tuple8->addItem("ph",   m_ph_etof);   // ToF pulse height
-					m_tuple8->addItem("rhit", m_rhit_etof); // track extrapolate Z or R Hit position
-					m_tuple8->addItem("qual", m_qual_etof); // data quality of reconstruction
-					m_tuple8->addItem("te",   m_te_etof);   // difference with ToF in electron hypothesis
-					m_tuple8->addItem("tmu",  m_tmu_etof);  // difference with ToF in muon hypothesis
-					m_tuple8->addItem("tpi",  m_tpi_etof);  // difference with ToF in charged pion hypothesis
-					m_tuple8->addItem("tk",   m_tk_etof);   // difference with ToF in charged kaon hypothesis
-					m_tuple8->addItem("tp",   m_tp_etof);   // difference with ToF in proton hypothesis
+				m_tuple_tof_ec = ntupleSvc()->book("FILE1/tofe",CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(m_tuple_tof_ec) {
+					m_tuple_tof_ec->addItem("ptrk", m_ptot_etof); // momentum of the track as reconstructed by MDC
+					m_tuple_tof_ec->addItem("path", m_path_etof); // path length
+					m_tuple_tof_ec->addItem("tof",  m_tof_etof);  // time of flight
+					m_tuple_tof_ec->addItem("cntr", m_cntr_etof); // ToF counter ID
+					m_tuple_tof_ec->addItem("ph",   m_ph_etof);   // ToF pulse height
+					m_tuple_tof_ec->addItem("rhit", m_rhit_etof); // track extrapolate Z or R Hit position
+					m_tuple_tof_ec->addItem("qual", m_qual_etof); // data quality of reconstruction
+					m_tuple_tof_ec->addItem("te",   m_te_etof);   // difference with ToF in electron hypothesis
+					m_tuple_tof_ec->addItem("tmu",  m_tmu_etof);  // difference with ToF in muon hypothesis
+					m_tuple_tof_ec->addItem("tpi",  m_tpi_etof);  // difference with ToF in charged pion hypothesis
+					m_tuple_tof_ec->addItem("tk",   m_tk_etof);   // difference with ToF in charged kaon hypothesis
+					m_tuple_tof_ec->addItem("tp",   m_tp_etof);   // difference with ToF in proton hypothesis
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple8) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_tof_ec) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
@@ -279,25 +279,25 @@ StatusCode KGamma::initialize(){
 	// * NTuple: TToF inner barrel branch (tof1) * //
 		if(m_checkTof) {
 			NTuplePtr nt9(ntupleSvc(), "FILE1/tof1");
-			if ( nt9 ) m_tuple9 = nt9;
+			if ( nt9 ) m_tuple_tof_ib = nt9;
 			else {
-				m_tuple9 = ntupleSvc()->book("FILE1/tof1", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple9 ) {
-					m_tuple9->addItem("ptrk", m_ptot_btof1); // momentum of the track as reconstructed by MDC
-					m_tuple9->addItem("path", m_path_btof1); // path length
-					m_tuple9->addItem("tof",  m_tof_btof1);  // time of flight
-					m_tuple9->addItem("cntr", m_cntr_btof1); // ToF counter ID
-					m_tuple9->addItem("ph",   m_ph_btof1);   // ToF pulse height
-					m_tuple9->addItem("zhit", m_zhit_btof1); // track extrapolate Z or R Hit position
-					m_tuple9->addItem("qual", m_qual_btof1); // data quality of reconstruction
-					m_tuple9->addItem("te",   m_te_btof1);   // difference with ToF in electron hypothesis
-					m_tuple9->addItem("tmu",  m_tmu_btof1);  // difference with ToF in muon hypothesis
-					m_tuple9->addItem("tpi",  m_tpi_btof1);  // difference with ToF in charged pion hypothesis
-					m_tuple9->addItem("tk",   m_tk_btof1);   // difference with ToF in charged kaon hypothesis
-					m_tuple9->addItem("tp",   m_tp_btof1);   // difference with ToF in proton hypothesis
+				m_tuple_tof_ib = ntupleSvc()->book("FILE1/tof1", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(m_tuple_tof_ib) {
+					m_tuple_tof_ib->addItem("ptrk", m_ptot_btof1); // momentum of the track as reconstructed by MDC
+					m_tuple_tof_ib->addItem("path", m_path_btof1); // path length
+					m_tuple_tof_ib->addItem("tof",  m_tof_btof1);  // time of flight
+					m_tuple_tof_ib->addItem("cntr", m_cntr_btof1); // ToF counter ID
+					m_tuple_tof_ib->addItem("ph",   m_ph_btof1);   // ToF pulse height
+					m_tuple_tof_ib->addItem("zhit", m_zhit_btof1); // track extrapolate Z or R Hit position
+					m_tuple_tof_ib->addItem("qual", m_qual_btof1); // data quality of reconstruction
+					m_tuple_tof_ib->addItem("te",   m_te_btof1);   // difference with ToF in electron hypothesis
+					m_tuple_tof_ib->addItem("tmu",  m_tmu_btof1);  // difference with ToF in muon hypothesis
+					m_tuple_tof_ib->addItem("tpi",  m_tpi_btof1);  // difference with ToF in charged pion hypothesis
+					m_tuple_tof_ib->addItem("tk",   m_tk_btof1);   // difference with ToF in charged kaon hypothesis
+					m_tuple_tof_ib->addItem("tp",   m_tp_btof1);   // difference with ToF in proton hypothesis
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple9) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_tof_ib) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
@@ -306,25 +306,25 @@ StatusCode KGamma::initialize(){
 	// * NTuple: ToF outer barrel branch (tof2) * //
 		if(m_checkTof) {
 			NTuplePtr nt10(ntupleSvc(), "FILE1/tof2");
-			if ( nt10 ) m_tuple10 = nt10;
+			if ( nt10 ) m_tuple_tof_ob = nt10;
 			else {
-				m_tuple10 = ntupleSvc()->book("FILE1/tof2", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple10 ) {
-					m_tuple10->addItem("ptrk", m_ptot_btof2); // momentum of the track as reconstructed by MDC
-					m_tuple10->addItem("path", m_path_btof2); // path length
-					m_tuple10->addItem("tof",  m_tof_btof2);  // time of flight
-					m_tuple10->addItem("cntr", m_cntr_btof2); // ToF counter ID
-					m_tuple10->addItem("ph",   m_ph_btof2);   // ToF pulse height
-					m_tuple10->addItem("zhit", m_zhit_btof2); // track extrapolate Z or R Hit position
-					m_tuple10->addItem("qual", m_qual_btof2); // data quality of reconstruction
-					m_tuple10->addItem("te",   m_te_btof2);   // difference with ToF in electron hypothesis
-					m_tuple10->addItem("tmu",  m_tmu_btof2);  // difference with ToF in muon hypothesis
-					m_tuple10->addItem("tpi",  m_tpi_btof2);  // difference with ToF in charged pion hypothesis
-					m_tuple10->addItem("tk",   m_tk_btof2);   // difference with ToF in charged kaon hypothesis
-					m_tuple10->addItem("tp",   m_tp_btof2);   // difference with ToF in proton hypothesis
+				m_tuple_tof_ob = ntupleSvc()->book("FILE1/tof2", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(m_tuple_tof_ob) {
+					m_tuple_tof_ob->addItem("ptrk", m_ptot_btof2); // momentum of the track as reconstructed by MDC
+					m_tuple_tof_ob->addItem("path", m_path_btof2); // path length
+					m_tuple_tof_ob->addItem("tof",  m_tof_btof2);  // time of flight
+					m_tuple_tof_ob->addItem("cntr", m_cntr_btof2); // ToF counter ID
+					m_tuple_tof_ob->addItem("ph",   m_ph_btof2);   // ToF pulse height
+					m_tuple_tof_ob->addItem("zhit", m_zhit_btof2); // track extrapolate Z or R Hit position
+					m_tuple_tof_ob->addItem("qual", m_qual_btof2); // data quality of reconstruction
+					m_tuple_tof_ob->addItem("te",   m_te_btof2);   // difference with ToF in electron hypothesis
+					m_tuple_tof_ob->addItem("tmu",  m_tmu_btof2);  // difference with ToF in muon hypothesis
+					m_tuple_tof_ob->addItem("tpi",  m_tpi_btof2);  // difference with ToF in charged pion hypothesis
+					m_tuple_tof_ob->addItem("tk",   m_tk_btof2);   // difference with ToF in charged kaon hypothesis
+					m_tuple_tof_ob->addItem("tp",   m_tp_btof2);   // difference with ToF in proton hypothesis
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple10) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_tof_ob) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
@@ -332,18 +332,18 @@ StatusCode KGamma::initialize(){
 
 	// * NTuple: Track PID information (pid) * //
 		NTuplePtr nt11(ntupleSvc(), "FILE1/pid");
-		if ( nt11 ) m_tuple11 = nt11;
+		if ( nt11 ) m_tuple_pid = nt11;
 		else {
-			m_tuple11 = ntupleSvc()->book("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
-			if(m_tuple11 ) {
-				m_tuple11->addItem ("ptrk", m_ptrk_pid); // momentum of the track
-				m_tuple11->addItem ("cost", m_cost_pid); // theta angle of the track
-				m_tuple11->addItem ("dedx", m_dedx_pid); // Chi2 of the dedx of the track
-				m_tuple11->addItem ("tof1", m_tof1_pid); // Chi2 of the inner barrel ToF of the track
-				m_tuple11->addItem ("tof2", m_tof2_pid); // Chi2 of the outer barrel ToF of the track
-				m_tuple11->addItem ("prob", m_prob_pid); // probability that it is a pion
+			m_tuple_pid = ntupleSvc()->book("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
+			if(m_tuple_pid) {
+				m_tuple_pid->addItem ("ptrk", m_ptrk_pid); // momentum of the track
+				m_tuple_pid->addItem ("cost", m_cost_pid); // theta angle of the track
+				m_tuple_pid->addItem ("dedx", m_dedx_pid); // Chi2 of the dedx of the track
+				m_tuple_pid->addItem ("tof1", m_tof1_pid); // Chi2 of the inner barrel ToF of the track
+				m_tuple_pid->addItem ("tof2", m_tof2_pid); // Chi2 of the outer barrel ToF of the track
+				m_tuple_pid->addItem ("prob", m_prob_pid); // probability that it is a pion
 			} else {
-				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple11) << endmsg;
+				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_pid) << endmsg;
 				return StatusCode::FAILURE;
 			}
 		}
@@ -445,7 +445,7 @@ StatusCode KGamma::execute() {
 			m_rvxy0  = Rvxy0;  // nearest distance to IP in xy plane
 			m_rvz0   = Rvz0;   // nearest distance to IP in z direction
 			m_rvphi0 = Rvphi0; // angle in the xy-plane (?)
-			m_tuple1->write(); // "vxyz" branch
+			m_tuple_vxyz->write(); // "vxyz" branch
 
 			// * Apply vertex cuts *
 			// if(fabs(z0)  >= m_vz0cut) continue;
@@ -515,7 +515,7 @@ StatusCode KGamma::execute() {
 			m_dphi = dphi; // phi difference with nearest charged track (degrees)
 			m_dang = dang; // angle difference with nearest charged track
 			m_eraw = eraw; // energy of the photon
-			m_tuple2->write(); // "photon" branch
+			m_tuple_ang->write(); // "photon" branch
 
 			// * Apply photon cuts *
 			if(eraw < m_energyThreshold) continue;
@@ -560,7 +560,7 @@ StatusCode KGamma::execute() {
 				m_normPH = dedxTrk->normPH();       // normalized pulse height
 				m_ghit   = dedxTrk->numGoodHits();  // number of good hits
 				m_thit   = dedxTrk->numTotalHits(); // total number of hits
-				m_tuple7->write(); // "dedx" branch
+				m_tuple_dedx->write(); // "dedx" branch
 			}
 		}
 
@@ -617,7 +617,7 @@ StatusCode KGamma::execute() {
 						m_tpi_etof  = tof - texp[2]; // difference with ToF in charged pion hypothesis
 						m_tk_etof   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
 						m_tp_etof   = tof - texp[4]; // difference with ToF in proton hypothesis
-						m_tuple8->write(); // "tofe" branch
+						m_tuple_tof_ec->write(); // "tofe" branch
 					}
 
 					// * If ebarrel ToF ToF detector: *
@@ -650,7 +650,7 @@ StatusCode KGamma::execute() {
 							m_tpi_btof1  = tof - texp[2]; // difference with ToF in charged pion hypothesis
 							m_tk_btof1   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
 							m_tp_btof1   = tof - texp[4]; // difference with ToF in proton hypothesis
-							m_tuple9->write(); // "tof1" branch
+							m_tuple_tof_ib->write(); // "tof1" branch
 						}
 
 						if(hitStatus.layer() == 2) { // * outer barrel ToF detector
@@ -680,7 +680,7 @@ StatusCode KGamma::execute() {
 							m_tpi_btof2  = tof - texp[2]; // difference with ToF in charged pion hypothesis
 							m_tk_btof2   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
 							m_tp_btof2   = tof - texp[4]; // difference with ToF in proton hypothesis
-							m_tuple10->write(); // "tof2" branch
+							m_tuple_tof_ob->write(); // "tof2" branch
 						}
 					}
 				}
@@ -736,7 +736,7 @@ StatusCode KGamma::execute() {
 			m_tof1_pid = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
 			m_tof2_pid = pid->chiTof2(2);      // Chi squared of the outer barrel ToF of the track
 			m_prob_pid = pid->probPion();      // probability that it is a pion
-			m_tuple11->write(); // "pid" branch
+			m_tuple_pid->write(); // "pid" branch
 
 			if(pid->probPion() < 0.001 || (pid->probPion() < pid->probKaon())) continue;
 			if(pid->probPion() < 0.001) continue;
@@ -813,7 +813,7 @@ StatusCode KGamma::execute() {
 				// * WRITE total energy and pi^0 candidate inv. mass ("etot" branch) *
 				m_m2gg = p2g.m();  // invariant mass of the two gammas
 				m_etot = pTot.e(); // total energy of pi^+, pi^ and the two gammas
-				m_tuple3->write(); // "etot" branch
+				m_tuple_mgg->write(); // "etot" branch
 			}
 		}
 
@@ -906,7 +906,7 @@ StatusCode KGamma::execute() {
 					// * WRITE pi^0 information from EMCal ("fit4c" branch) *
 					m_mpi0 = ppi0.m();        // invariant pi0 mass according to Kalman kinematic fit
 					m_chi1 = kkmfit->chisq(); // chi square of the Kalman kinematic fit
-					m_tuple4->write(); // "fit4c" branch
+					m_tuple_fit4c->write(); // "fit4c" branch
 					Ncut4++; // ChiSq has to be less than 200 and fit4c has to be passed
 				}
 			}
@@ -974,7 +974,7 @@ StatusCode KGamma::execute() {
 					m_mrho0 = prho0.m();      // inv. mass pi^+ pi^- (rho^0)
 					m_mrhop = prhop.m();      // inv. mass pi^0 pi^+ (rho^+)
 					m_mrhom = prhom.m();      // inv. mass pi^0 pi^- (rho^-)
-					m_tuple5->write(); // "fit5c" branch
+					m_tuple_fit5c->write(); // "fit5c" branch
 					Ncut5++; // Kalman kinematic fit 5c is successful
 
 
@@ -984,7 +984,7 @@ StatusCode KGamma::execute() {
 							// * WRITE photon detection efficiency info ("geff" branch) *
 							m_fcos = (eg1-eg2) / ppi0.rho();  // E/p ratio for pi^0 candidate
 							m_elow = (eg1 < eg2) ? eg1 : eg2; // lowest energy of the two gammas
-							m_tuple6->write(); // "geff" branch
+							m_tuple_photon->write(); // "geff" branch
 							Ncut6++; // 0.620 < mass of rho0 < 0.920
 						}
 					} // rho0 cut
