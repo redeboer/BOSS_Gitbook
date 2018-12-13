@@ -40,8 +40,8 @@
 
 // * ------- GLOBALS AND TYPEDEFS ------- * //
 	// * Constants *
-	// const double twopi = 6.2831853; // already declared in CLHEP/Units/PhysicalConstants.h
-	// const double pi = 3.1415927;    // already declared in CLHEP/Units/PhysicalConstants.h
+	// const double twopi = 6.2831853; // ! already defined in CLHEP PhysicalConstants
+	// const double pi = 3.1415927;    // ! already defined in CLHEP PhysicalConstants
 	const double mpi = 0.13957;
 	const double xmass[5] = {
 		0.000511, // electron
@@ -50,7 +50,7 @@
 		0.493677, // charged kaon
 		0.938272  // proton
 	};
-	const double velc_cc = 29.9792458; // tof_path unit in cm.
+	const double velc_cm = 29.9792458; // tof_path unit in cm.
 	const double velc_mm = 299.792458; // tof path unit in mm
 	// * Typedefs *
 	typedef std::vector<int> Vint;
