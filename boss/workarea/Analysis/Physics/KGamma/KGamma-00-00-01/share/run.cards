@@ -1,0 +1,192 @@
+#############################################################################
+# File: genbes.cards
+#
+# Purpose: user-supplied run control cardfile for GENbes program execution
+#
+# Known problems: a typical SOBER event generator requires a _ipar
+#     card(MPARAM)  and a _rpar card(XPARAM). However, some generators
+#     require additional cards. Please inform GENbes programmers what
+#     additional cards are needed for which generator.
+#############################################################################
+
+* -----------------------------------------------------------------------------
+* Conventions:
+#     '#'   starts a comment line;
+*     '*'   also  starts a comment line
+!     '!'   de-activates(comments out) a data card
+*
+* (1) the order of cards is non-essential;
+* (2) keyname's case(uppercase,lowercase) is non-essential;
+* (3) a card can be one line or multiple lines with at least one space
+*     in the beginning of a continuation line;
+* (4) if several cards have identical keyname, only the last card takes effect;
+* -----------------------------------------------------------------------------
+
+# Optional, a CERNLIB/FFREAD directive: list all cards readin
+list on
+
+# Optional, a CERNLIB/FFREAD directive: list all KEY names defined
+keys on
+
+* -----------------------------------------------------------------------------
+*  (1) generator name must be single-quoted
+
+*  (2) forbidden generators:
+*    - 'ugnt' generator is excluded from GENbes because it adopts a very
+*      special system of reference frames and communicates with SOBER via
+*      a special common /PXP/ which is against GENbes-SIMbes philosophy
+*      that the only link between genbes and simbes is the event data. 
+*    - 'usrgen' generator is excluded from GENbes because GENbes has its 
+*     own method to call user generator.
+*    - 'koralbe' is excluded from GENbes because it uses jetset63 instead
+*      of jetset74. GENbes does not allow using a backward version.
+
+*  (3) generators that can be called by GENbes are (in alphabetical
+*      order): 
+*          'bhagen'    'ddgen'   'ddprod'   'dsdgen'   'dssgen'
+*          'epscat'    'fff'     'ffgen'    'fsfgen'   'gamma2'
+*          'howl'      'kstark'  'lund'     'mugen'    'p2bb'
+*          'p2epem'    'p2mumu'  'ppgen'    'radee'    'radgg'
+*          'radmu'     'rhopi'   'sagerx'   'tauprd'   'tester'
+*
+*  (4) <GeneratorName>_ipar card serves the same purpose as SOBER's MPARAM card
+*      <GeneratorName>_rpar card serves the same purpose as SOBER's XPARAM card
+*     all *_ipar cards are actually aliases of MPARAM card
+*     all *_rpar cards are actually aliases of XPARAM card
+*     therefore, 
+*     you must(!) comment out all not-used *_ipar and *_rpar cards
+*     REPEAT: YOU MUST COMMENT OUT ALL NOT-USED *_ipar and *_rpar cards
+*
+*     Hint: command 'printcards genbes.cards' prints on screen all effective
+*          cards(excluding comment lines) in 'genbes.cards'
+*
+* -----------------------------------------------------------------------------
+*      nominal Ecm [GeV] (before rad. corr.)   sigma per beam [GeV]
+beam_pars      3.097                                0.0
+
+* generate event     from     to    (event# can start from any integer)
+*                                   (default: from 1 to 1)
+event_range           1      1
+
+* limit on # of events to save in diskfile (default 0)
+nevt_output          1000000
+
+* seed of random number generator   0/1 save/not-save curr.seed to disk
+* (default:      0                    0)
+run_seed         11000                1
+
+* limit on # of events to fill in event Ntuple (default 0)
+nevt_hist          5000
+
+*  file i/o function system: 1=Unix-like, 2(Default)=C-standard-lib
+!io_func   1
+
+* not used debug cards
+!debug_ipar    0
+!debug_rpar    0
+
+* not used debug cards
+* for subprograms in the list, turn on debugging lines
+!debug_list 'none'
+
+* upper limits on error message sending
+*            to screen   to logfile  to errorfile            
+warn_times    1000          1000          1000
+*
+* a "nice" thing about SOBER is that we cannot tell easily which generator
+* requires this 'radiative_pars' card :-(
+* radiative_pars card is used (optionally?) at least by
+*   'fff', 'howl', 'ugnt', 'tauprd'
+* irad: 0=no radiation  1=normal  2=radiate to resonance
+* frad = smin/s0 = max fraction
+*                 irad     use_lookup_table     smin     frad
+!radiative_pars   1       'TRUE'                1.       .1
+
+* -- example generator specific cards -------------------------------------
+!generator_name 'lund'
+
+!generator_name 'lund_crm'
+
+!generator_name  'ddgen'
+*            D0_ratio
+!ddgen_rpar   0.52
+*            D1   D2-mode
+!ddgen_ipar   1000   1000
+
+generator_name 'tester'
+
+* if max_phi=0.0,   then  phi=0 to 2pi irrespective of min_phi;
+* P = P +/- dP,  uniform distribution;
+*        cos(theta) min    max     P      min_phi(rad)  max_phi(rad)  dP
+tester_rpar       0      0    1.0          0.          6.283       0.
+*             dumb  sober_pid    charge  #particles     stable?(0=No)
+tester_ipar   6        3          -1           3             1
+
+!generator_name 'fixpt'
+ 
+* if max_phi=0.0,   then  phi=0 to 2pi irrespective of min_phi;
+* P = P +/- dP,  uniform distribution;
+*        cos(theta) min    max    P  min_phi(rad) max_phi(rad) dP  Pt
+!fixpt_rpar        0.85   0.90    2.0       0.         6.283    1.0  1.0
+*             dumb  sober_pid    charge  #particles     stable?(0=No)
+!fixpt_ipar   6        3          -1           1             1
+
+!generator_name  'epscat'
+
+!generator_name  'radee'
+*            junk   theta_min  theta_max   xk_min    xk_max
+!radee_rpar   1.     45.        145.        .01       .99
+*              jw  jc  (see radee.f)
+!radee_ipar    1    1
+
+
+!generator_name  'bhagen'
+*              Emin_photon (GeV)      |cos(theta)|
+!bhagen_rpar     0.01                    0.7
+
+!generator_name  'radmu'
+* cos theta    from    to
+!radmu_rpar    -0.7 0.7
+
+
+!generator_name  'mugen'
+*              Emin_photon (GeV)
+!mugen_rpar     0.001           
+
+!generator_name  'p2mumu'
+* cos theta    from    to
+!p2mumu_rpar    -0.7 0.7
+
+
+!generator_name  'rhopi'
+!rhopi_ipar 1
+
+!generator_name  'p2bb'
+*  SOBER pid for the baryon
+!p2bb_ipar       6
+*     cos theta    from   to    coefficient before cos^2theta 
+!p2bb_rpar          -1.    1.    0.3153
+
+* === phase space generator and event topology definition ==========
+!generator_name 'howl'
+*          IsUnWeighted NthrowToGetMaxWeight MaxTrialPerEvent 
+!howl_ipar    1          100000               1000
+
+*             number of particle lines
+!gen_topology   2
+*             line# ifrom  pid   charge: integer 0, +/-1, +/-2
+!               1     0     3     -1
+!               2     0     3     +1
+
+* === to define or change default values of particle intrinsic properties ===
+*     1st line:  # of assignments to follow
+!assign_width     1 
+*  assignments: pid   value
+!                26    0.0002
+* similar you can define or alter spin, parity, life, 
+!assign_mass
+!assign_spin
+!assign_parity
+!assign_life
+*
+end
