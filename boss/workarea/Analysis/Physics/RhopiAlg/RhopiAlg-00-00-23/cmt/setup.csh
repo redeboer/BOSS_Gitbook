@@ -1,4 +1,4 @@
-# echo "setup RhopiAlg RhopiAlg-00-00-23 in /afs/.ihep.ac.cn/bes3/offline/Boss/7.0.4/Analysis/Physics"
+# echo "setup RhopiAlg RhopiAlg-00-00-23 in /besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics"
 
 if ( $?CMTROOT == 0 ) then
   setenv CMTROOT /afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/contrib/CMT/v1r25
@@ -8,9 +8,9 @@ set cmtRhopiAlgtempfile=`${CMTROOT}/mgr/cmt -quiet build temporary_name`
 if $status != 0 then
   set cmtRhopiAlgtempfile=/tmp/cmt.$$
 endif
-${CMTROOT}/mgr/cmt setup -csh -pack=RhopiAlg -version=RhopiAlg-00-00-23 -path=/afs/.ihep.ac.cn/bes3/offline/Boss/7.0.4/Analysis/Physics  -no_cleanup $* >${cmtRhopiAlgtempfile}
+${CMTROOT}/mgr/cmt setup -csh -pack=RhopiAlg -version=RhopiAlg-00-00-23 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  -no_cleanup $* >${cmtRhopiAlgtempfile}
 if ( $status != 0 ) then
-  echo "${CMTROOT}/mgr/cmt setup -csh -pack=RhopiAlg -version=RhopiAlg-00-00-23 -path=/afs/.ihep.ac.cn/bes3/offline/Boss/7.0.4/Analysis/Physics  -no_cleanup $* >${cmtRhopiAlgtempfile}"
+  echo "${CMTROOT}/mgr/cmt setup -csh -pack=RhopiAlg -version=RhopiAlg-00-00-23 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  -no_cleanup $* >${cmtRhopiAlgtempfile}"
   set cmtsetupstatus=2
   /bin/rm -f ${cmtRhopiAlgtempfile}
   unset cmtRhopiAlgtempfile
