@@ -1,4 +1,4 @@
-# echo "cleanup BesEvtGen BesEvtGen-00-03-98 in /afs/.ihep.ac.cn/bes3/offline/Boss/7.0.4/Generator"
+# echo "cleanup BesEvtGen BesEvtGen-00-04-00 in /besfs/users/deboer/BOSS_Afterburner/boss/workarea/Generator"
 
 if test "${CMTROOT}" = ""; then
   CMTROOT=/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/contrib/CMT/v1r25; export CMTROOT
@@ -6,9 +6,9 @@ fi
 . ${CMTROOT}/mgr/setup.sh
 cmtBesEvtGentempfile=`${CMTROOT}/mgr/cmt -quiet build temporary_name`
 if test ! $? = 0 ; then cmtBesEvtGentempfile=/tmp/cmt.$$; fi
-${CMTROOT}/mgr/cmt cleanup -sh -pack=BesEvtGen -version=BesEvtGen-00-03-98 -path=/afs/.ihep.ac.cn/bes3/offline/Boss/7.0.4/Generator  $* >${cmtBesEvtGentempfile}
+${CMTROOT}/mgr/cmt cleanup -sh -pack=BesEvtGen -version=BesEvtGen-00-04-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Generator  $* >${cmtBesEvtGentempfile}
 if test $? != 0 ; then
-  echo >&2 "${CMTROOT}/mgr/cmt cleanup -sh -pack=BesEvtGen -version=BesEvtGen-00-03-98 -path=/afs/.ihep.ac.cn/bes3/offline/Boss/7.0.4/Generator  $* >${cmtBesEvtGentempfile}"
+  echo >&2 "${CMTROOT}/mgr/cmt cleanup -sh -pack=BesEvtGen -version=BesEvtGen-00-04-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Generator  $* >${cmtBesEvtGentempfile}"
   cmtcleanupstatus=2
   /bin/rm -f ${cmtBesEvtGentempfile}
   unset cmtBesEvtGentempfile
