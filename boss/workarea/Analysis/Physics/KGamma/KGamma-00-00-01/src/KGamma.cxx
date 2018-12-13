@@ -24,7 +24,7 @@
 	#include "GaudiKernel/PropertyMgr.h"
 	#include "GaudiKernel/SmartDataPtr.h"
 	#include "ParticleID/ParticleID.h"
-	#include "RhopiAlg/Rhopi.h"
+	#include "KGamma/KGamma.h"
 	#include "TMath.h"
 	#include "VertexFit/Helix.h"
 	#include "VertexFit/IVertexDbSvc.h"
@@ -79,11 +79,11 @@
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
-Rhopi::Rhopi(const std::string& name, ISvcLocator* pSvcLocator) :
+KGamma::KGamma(const std::string& name, ISvcLocator* pSvcLocator) :
 	Algorithm(name, pSvcLocator) {
 
 	// * Define the properties * //
-		// Here, you set the fixed properties, such as cut variables or whether or not to test whether the 4-constraint fit procedure was successful. Not that you should define the variables themselves in the header (RhopiAlg/Rhopi.h).
+		// Here, you set the fixed properties, such as cut variables or whether or not to test whether the 4-constraint fit procedure was successful. Not that you should define the variables themselves in the header (KGamma/KGamma.h).
 
 		// * Define r0, z0 cut for charged tracks *
 		declareProperty("Vr0cut", m_vr0cut   = 1.0);
@@ -116,7 +116,7 @@ Rhopi::Rhopi(const std::string& name, ISvcLocator* pSvcLocator) :
 // * ========================== * //
 // * ------- INITIALIZE ------- * //
 // * ========================== * //
-StatusCode Rhopi::initialize(){
+StatusCode KGamma::initialize(){
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "In initialize():" << endmsg;
@@ -357,7 +357,7 @@ StatusCode Rhopi::initialize(){
 // * ========================= * //
 // * -------- EXECUTE -------- * //
 // * ========================= * //
-StatusCode Rhopi::execute() {
+StatusCode KGamma::execute() {
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "In execute():" << endreq;
@@ -769,7 +769,7 @@ StatusCode Rhopi::execute() {
 		}
 
 
-	// * RhopiAlg without PID * //
+	// * KGamma without PID * //
 		// for(int i = 0; i < nGood; ++i) { 
 			// EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
 			// RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
@@ -1001,7 +1001,7 @@ StatusCode Rhopi::execute() {
 // * ========================== * //
 // * -------- FINALIZE -------- * //
 // * ========================== * //
-StatusCode Rhopi::finalize() {
+StatusCode KGamma::finalize() {
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "in finalize()" << endmsg;

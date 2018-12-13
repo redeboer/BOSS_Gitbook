@@ -1,16 +1,16 @@
 #include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
-ApplicationMgr.DLLs   += {"RhopiAlg"};
-ApplicationMgr.TopAlg += {"Rhopi"};
+ApplicationMgr.DLLs   += {"KGamma"};
+ApplicationMgr.TopAlg += {"KGamma"};
 
-Rhopi.Vr0cut = 1.0;
-Rhopi.Vz0cut = 5.0;
+KGamma.Vr0cut = 1.0;
+KGamma.Vz0cut = 5.0;
 
-Rhopi.EnergyThreshold = 0.04;
-Rhopi.GammaPhiCut     = 20.0;
-Rhopi.GammaThetaCut   = 20.0;
-Rhopi.GammaAngleCut   = 20.0;
+KGamma.EnergyThreshold = 0.04;
+KGamma.GammaPhiCut     = 20.0;
+KGamma.GammaThetaCut   = 20.0;
+KGamma.GammaAngleCut   = 20.0;
 
-Rhopi.Test4C    = 1;
-Rhopi.Test5C    = 1;
-Rhopi.CheckDedx = 1;
-Rhopi.CheckTof  = 1;
+KGamma.Test4C    = 1;
+KGamma.Test5C    = 1;
+KGamma.CheckDedx = 1;
+KGamma.CheckTof  = 1;

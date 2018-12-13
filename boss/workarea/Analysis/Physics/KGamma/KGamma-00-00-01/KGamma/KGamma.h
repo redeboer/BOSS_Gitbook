@@ -7,10 +7,10 @@
 //#include "VertexFit/ReadBeamParFromDb.h"
 
 
-class Rhopi : public Algorithm {
+class KGamma : public Algorithm {
 
 public:
-	Rhopi(const std::string& name, ISvcLocator* pSvcLocator);
+	KGamma(const std::string& name, ISvcLocator* pSvcLocator);
 	StatusCode initialize();
 	StatusCode execute();
 	StatusCode finalize();
@@ -65,17 +65,17 @@ private:
 			NTuple::Item<double> m_dang;
 			NTuple::Item<double> m_eraw;
 
-		// * Rhopi: raw mgg, etot *
+		// * KGamma: raw mgg, etot *
 			NTuple::Tuple* m_tuple3;
 			NTuple::Item<double> m_m2gg;
 			NTuple::Item<double> m_etot;
 
-		// * Rhopi fit4C *
+		// * KGamma fit4C *
 			NTuple::Tuple* m_tuple4;
 			NTuple::Item<double> m_chi1;
 			NTuple::Item<double> m_mpi0;
 
-		// * Rhopi fit5C *
+		// * KGamma fit5C *
 			NTuple::Tuple* m_tuple5;
 			NTuple::Item<double> m_chi2;
 			NTuple::Item<double> m_mrho0;

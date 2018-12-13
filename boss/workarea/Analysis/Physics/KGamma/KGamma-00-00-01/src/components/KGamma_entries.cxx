@@ -1,9 +1,9 @@
 #include "GaudiKernel/DeclareFactoryEntries.h"
-#include "RhopiAlg/Rhopi.h"
+#include "KGamma/KGamma.h"
 
-DECLARE_ALGORITHM_FACTORY( Rhopi )
+DECLARE_ALGORITHM_FACTORY( KGamma )
 
-DECLARE_FACTORY_ENTRIES( RhopiAlg ) {
-  DECLARE_ALGORITHM(Rhopi);
+DECLARE_FACTORY_ENTRIES( KGamma ) {
+  DECLARE_ALGORITHM(KGamma);
 }
 

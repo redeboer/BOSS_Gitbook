@@ -1,4 +1,4 @@
-package RhopiAlg
+package KGamma
 author He Kanglin <hekl@ihep.ac.cn>
 
 use BesPolicy BesPolicy-*
@@ -14,6 +14,6 @@ use ParticleID   ParticleID-*  Analysis
 use BesROOT      BesROOT-00-*     External
 
 apply_pattern component_library 
-library RhopiAlg  *.cxx  components/*.cxx
+library KGamma  *.cxx  components/*.cxx
 
 apply_pattern declare_runtime files=*.txt
