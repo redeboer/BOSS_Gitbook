@@ -49,7 +49,7 @@ private:
 	// * ------- DECLARE NTUPLES HERE ------- * //
 
 		// * Charged track vertex *
-			NTuple::Tuple* m_tuple1;
+		NTuple::Tuple* m_tuple_vxyz;
 			NTuple::Item<double> m_vx0;
 			NTuple::Item<double> m_vy0;
 			NTuple::Item<double> m_vz0;
@@ -58,37 +58,37 @@ private:
 			NTuple::Item<double> m_rvz0;
 			NTuple::Item<double> m_rvphi0;
 
-		// * Fake photon *
-			NTuple::Tuple* m_tuple2;
+		// * Fake photon (angles) *
+		NTuple::Tuple* m_tuple_ang;
 			NTuple::Item<double> m_dthe;
 			NTuple::Item<double> m_dphi;
 			NTuple::Item<double> m_dang;
 			NTuple::Item<double> m_eraw;
 
 		// * Rhopi: raw mgg, etot *
-			NTuple::Tuple* m_tuple3;
+		NTuple::Tuple* m_tuple_mgg;
 			NTuple::Item<double> m_m2gg;
 			NTuple::Item<double> m_etot;
 
 		// * Rhopi fit4C *
-			NTuple::Tuple* m_tuple4;
+		NTuple::Tuple* m_tuple_fit4c;
 			NTuple::Item<double> m_chi1;
 			NTuple::Item<double> m_mpi0;
 
 		// * Rhopi fit5C *
-			NTuple::Tuple* m_tuple5;
+		NTuple::Tuple* m_tuple_fit5c;
 			NTuple::Item<double> m_chi2;
 			NTuple::Item<double> m_mrho0;
 			NTuple::Item<double> m_mrhop;
 			NTuple::Item<double> m_mrhom;
 
 		// * Photons *
-			NTuple::Tuple* m_tuple6;
+		NTuple::Tuple* m_tuple_photon;
 			NTuple::Item<double> m_fcos;
 			NTuple::Item<double> m_elow;
 
 		// * Energy loss dE/dx *
-			NTuple::Tuple* m_tuple7;
+		NTuple::Tuple* m_tuple_dedx;
 			NTuple::Item<double> m_ptrk;
 			NTuple::Item<double> m_chie;
 			NTuple::Item<double> m_chimu;
@@ -101,7 +101,7 @@ private:
 			NTuple::Item<double> m_thit;
 
 		// * End cap ToF *
-			NTuple::Tuple* m_tuple8;
+		NTuple::Tuple* m_tuple_tof_ec;
 			NTuple::Item<double> m_ptot_etof;
 			NTuple::Item<double> m_path_etof;
 			NTuple::Item<double> m_tof_etof;
@@ -116,7 +116,7 @@ private:
 			NTuple::Item<double> m_qual_etof;
 
 		// * Barrel inner ToF *
-			NTuple::Tuple* m_tuple9;
+		NTuple::Tuple* m_tuple_tof_ib;
 			NTuple::Item<double> m_ptot_btof1;
 			NTuple::Item<double> m_path_btof1;
 			NTuple::Item<double> m_tof_btof1;
@@ -131,7 +131,7 @@ private:
 			NTuple::Item<double> m_qual_btof1;
 
 		// * Barrel outer ToF *
-			NTuple::Tuple* m_tuple10;
+		NTuple::Tuple* m_tuple_tof_ob;
 			NTuple::Item<double> m_ptot_btof2;
 			NTuple::Item<double> m_path_btof2;
 			NTuple::Item<double> m_tof_btof2;
@@ -146,7 +146,7 @@ private:
 			NTuple::Item<double> m_qual_btof2;
 
 		// * Particle ID info *
-			NTuple::Tuple* m_tuple11;
+		NTuple::Tuple* m_tuple_pid;
 			NTuple::Item<double> m_ptrk_pid;
 			NTuple::Item<double> m_cost_pid;
 			NTuple::Item<double> m_dedx_pid;
