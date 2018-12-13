@@ -10,11 +10,14 @@ fi
 	{
 		local PackageToOverwrite="$1"
 		local SourcePath="${BesArea}/${PackageToOverwrite}"
-		# * Check if package exists in $BesArea
-		if [ ! -d "${SourcePath}" ]; then
-			echo "ERROR: package \"${PackageToOverwrite}\" does not exist in \$BesArea!"
+		# * Look for latest package
+		ls ${SourcePath}/* | tail -1
+		if [ $? != 0 ]; then
 			exit
 		fi
+		SourcePath=$(ls ${SourcePath}* | tail -1)
+		PackageToOverwrite=$(basename "${SourcePath}")
+		# * Check if package already exists in your workarea
 		local TargetPath="${BOSSWORKAREA}/workarea/${PackageToOverwrite}"
 		if [ -d "${TargetPath}" ]; then
 			echo "WARNING: Package \"${PackageToOverwrite}\" already exists in your workarea"
@@ -27,5 +30,6 @@ fi
 	}
 
 # * Copy example packages * #
-	AskToOverwrite "TestRelease/TestRelease-00-00-86"
-	AskToOverwrite "Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23"
+	AskToOverwrite "Analysis/Physics/RhopiAlg"
+	AskToOverwrite "TestRelease"
+	AskToOverwrite "Generator/BesEvtGen"
