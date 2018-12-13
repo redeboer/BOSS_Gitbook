@@ -17,8 +17,6 @@ public:
 
 private:
 
-	// ReadBeamParFromDb m_reader;
-
 	// * ------- Declare r0, z0 cut for charged tracks ------- *
 		double m_vr0cut;
 		double m_vz0cut;

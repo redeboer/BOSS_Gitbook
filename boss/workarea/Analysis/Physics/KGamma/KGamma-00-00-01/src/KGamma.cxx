@@ -51,7 +51,7 @@
 		0.938272  // proton
 	};
 	const double velc_cm = 29.9792458; // tof_path unit in cm.
-	const double velc_mm = 299.792458; // tof path unit in mm
+	const double velc_mm = 299.792458; // tof_path unit in mm
 	// * Typedefs *
 	typedef std::vector<int> Vint;
 	typedef std::vector<HepLorentzVector> Vp4;
@@ -325,9 +325,9 @@ StatusCode KGamma::initialize(){
 // * -------- EXECUTE -------- * //
 StatusCode KGamma::execute() {
 
-	// * Extract run and event info *
-		std::cout << "execute()" << std::endl;
+	std::cout << "execute()" << std::endl;
 
+	// * Extract run and event info *
 		MsgStream log(msgSvc(), name());
 		log << MSG::INFO << "in execute()" << endreq;
 
