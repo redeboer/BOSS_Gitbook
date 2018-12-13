@@ -7,40 +7,46 @@
 //#include "VertexFit/ReadBeamParFromDb.h"
 
 
-class KGamma : public Algorithm {
+class Rhopi : public Algorithm {
 
 public:
-	KGamma(const std::string& name, ISvcLocator* pSvcLocator);
+	Rhopi(const std::string& name, ISvcLocator* pSvcLocator);
 	StatusCode initialize();
 	StatusCode execute();
 	StatusCode finalize();
 
 private:
 
-	// * ------- Declare r0, z0 cut for charged tracks ------- *
+	// ReadBeamParFromDb m_reader;
+
+	// * ------- DECLARE CUTS HERE ------- * //
+
+		// * Declare r0, z0 cut for charged tracks *
 		double m_vr0cut;
 		double m_vz0cut;
+		double m_rvz0cut;
+		double m_rvxy0cut;
 
-
-	// * ------- Declare energy, dphi, dthe cuts for fake gamma's ------- *
+		// * Declare energy, dphi, dthe cuts for fake gamma's *
 		double m_energyThreshold;
 		double m_gammaPhiCut;
 		double m_gammaThetaCut;
 		double m_gammaAngleCut;
 
+		// * Declare invariant mass window cut *
+		double m_dmrho0; // width of inv. mass window around mrho0
 
-	// * ------- DEFINE CHECKS HERE ------- * //
+		// * Declare whether to test the success of the 4- and 5-constraint fits *
+		bool m_test4C;
+		bool m_test5C;
+		double m_maxChiSq;
 
-		// * fit4C / fit5C tests *
-			int m_test4C;
-			int m_test5C;
-
-		// * PID checks *
-			int m_checkDedx;
-			int m_checkTof;
+		// * Declare whether or not to check success of Particle Identification *
+		bool m_checkDedx;
+		bool m_checkTof;
 
 
-	// * ------- DEFINE NTUPLES HERE ------- * //
+	// * ------- DECLARE NTUPLES HERE ------- * //
 
 		// * Charged track vertex *
 			NTuple::Tuple* m_tuple1;
@@ -59,22 +65,22 @@ private:
 			NTuple::Item<double> m_dang;
 			NTuple::Item<double> m_eraw;
 
-		// * KGamma: raw mgg, etot *
+		// * Rhopi: raw mgg, etot *
 			NTuple::Tuple* m_tuple3;
 			NTuple::Item<double> m_m2gg;
 			NTuple::Item<double> m_etot;
 
-		// * KGamma fit4C *
+		// * Rhopi fit4C *
 			NTuple::Tuple* m_tuple4;
 			NTuple::Item<double> m_chi1;
 			NTuple::Item<double> m_mpi0;
 
-		// * KGamma fit5C *
+		// * Rhopi fit5C *
 			NTuple::Tuple* m_tuple5;
 			NTuple::Item<double> m_chi2;
-			NTuple::Item<double> m_mrh0;
-			NTuple::Item<double> m_mrhp;
-			NTuple::Item<double> m_mrhm;
+			NTuple::Item<double> m_mrho0;
+			NTuple::Item<double> m_mrhop;
+			NTuple::Item<double> m_mrhom;
 
 		// * Photons *
 			NTuple::Tuple* m_tuple6;
