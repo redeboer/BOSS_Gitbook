@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['jpsidzerophi',['JpsiDzeroPhi',['../classJpsiDzeroPhi.html',1,'']]]
+  ['jpsidzeroomega',['JpsiDzeroOmega',['../classJpsiDzeroOmega.html',1,'']]]
 ];

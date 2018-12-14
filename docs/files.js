@@ -16,12 +16,12 @@ var files =
     ] ],
     [ "FitObjectDoubleGauss.h", "FitObjectDoubleGauss_8h.html", "FitObjectDoubleGauss_8h" ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
-    [ "JpsiDzero.h", "JpsiDzero_8h.html", [
-      [ "JpsiDzeroPhi", "classJpsiDzeroPhi.html", "classJpsiDzeroPhi" ]
+    [ "JpsiDzeroOmega.cxx", "JpsiDzeroOmega_8cxx.html", "JpsiDzeroOmega_8cxx" ],
+    [ "JpsiDzeroOmega.h", "JpsiDzeroOmega_8h.html", [
+      [ "JpsiDzeroOmega", "classJpsiDzeroOmega.html", "classJpsiDzeroOmega" ]
     ] ],
-    [ "JpsiDzeroPhi.cxx", "JpsiDzeroPhi_8cxx.html", "JpsiDzeroPhi_8cxx" ],
-    [ "JpsiDzeroPhi_entries.cxx", "JpsiDzeroPhi__entries_8cxx.html", "JpsiDzeroPhi__entries_8cxx" ],
-    [ "JpsiDzeroPhi_load.cxx", "JpsiDzeroPhi__load_8cxx.html", null ],
+    [ "JpsiDzeroOmega_entries.cxx", "JpsiDzeroOmega__entries_8cxx.html", "JpsiDzeroOmega__entries_8cxx" ],
+    [ "JpsiDzeroOmega_load.cxx", "JpsiDzeroOmega__load_8cxx.html", null ],
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],
     [ "PlotRhopi.C", "PlotRhopi_8C.html", "PlotRhopi_8C" ],
     [ "QuickPlotRhopi.C", "QuickPlotRhopi_8C.html", "QuickPlotRhopi_8C" ],
