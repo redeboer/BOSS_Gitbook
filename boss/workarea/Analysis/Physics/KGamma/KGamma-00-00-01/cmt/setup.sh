@@ -6,9 +6,9 @@ fi
 . ${CMTROOT}/mgr/setup.sh
 cmtKGammatempfile=`${CMTROOT}/mgr/cmt -quiet build temporary_name`
 if test ! $? = 0 ; then cmtKGammatempfile=/tmp/cmt.$$; fi
-${CMTROOT}/mgr/cmt setup -sh -pack=KGammaversion=KGamma-00-00-01 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  -no_cleanup $* >${cmtKGammatempfile}
+${CMTROOT}/mgr/cmt setup -sh -pack=KGamma -version=KGamma-00-00-01 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  -no_cleanup $* >${cmtKGammatempfile}
 if test $? != 0 ; then
-  echo >&2 "${CMTROOT}/mgr/cmt setup -sh -pack=KGammaversion=KGamma-00-00-01 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  -no_cleanup $* >${cmtKGammatempfile}"
+  echo >&2 "${CMTROOT}/mgr/cmt setup -sh -pack=KGamma -version=KGamma-00-00-01 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  -no_cleanup $* >${cmtKGammatempfile}"
   cmtsetupstatus=2
   /bin/rm -f ${cmtKGammatempfile}
   unset cmtKGammatempfile

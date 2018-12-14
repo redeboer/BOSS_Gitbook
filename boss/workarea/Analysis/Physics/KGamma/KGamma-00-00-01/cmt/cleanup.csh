@@ -8,9 +8,9 @@ set cmtKGammatempfile=`${CMTROOT}/mgr/cmt -quiet build temporary_name`
 if $status != 0 then
   set cmtKGammatempfile=/tmp/cmt.$$
 endif
-${CMTROOT}/mgr/cmt cleanup -csh -pack=KGammaversion=KGamma-00-00-01 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  $* >${cmtKGammatempfile}
+${CMTROOT}/mgr/cmt cleanup -csh -pack=KGamma -version=KGamma-00-00-01 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  $* >${cmtKGammatempfile}
 if ( $status != 0 ) then
-  echo "${CMTROOT}/mgr/cmt cleanup -csh -pack=KGammaversion=KGamma-00-00-01 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  $* >${cmtKGammatempfile}"
+  echo "${CMTROOT}/mgr/cmt cleanup -csh -pack=KGamma -version=KGamma-00-00-01 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  $* >${cmtKGammatempfile}"
   set cmtcleanupstatus=2
   /bin/rm -f ${cmtKGammatempfile}
   unset cmtKGammatempfile
