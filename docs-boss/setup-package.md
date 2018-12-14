@@ -69,6 +69,8 @@ The above is based on the [official BOSS page on how to create a new package](ht
 
 Whenever you are planning to modify the code in your package \(particularly the header code in the `MyFirstPackage` and the source code in `src`\), it is best if you first make a copy of the latest version. You can then safely modify things in this copy and use CMT later to properly tag this new version later.
 
+#### Copy and rename
+
 First create some copy \(of course, you'll have to replace the names here\):
 
 ```bash
@@ -81,6 +83,8 @@ Now, imagine you have modified the interface of the package in its header files.
 ```bash
 mv MyFirstPackage-00-00-02 MyFirstPackage-01-00-00
 ```
+
+#### Tag your version using CMT
 
 Finally, it is time to use CMT to tag this new version. The thing is, simply renaming the package is not sufficient: files like `setup.sh` need to be modified as well. Luckily, CMT does this for you automatically for. First go into the `cmt` folder of your new package:
 
@@ -96,6 +100,8 @@ cmt config
 
 If you for instance open the `setup.sh` file you will see that it has deduced the new version number from the folder name.
 
+#### Build package
+
 Now **build the executables** from the source code:
 
 ```bash
@@ -106,13 +112,19 @@ It is in this step that you 'tell' CMT which version of your package to use. Fir
 
 At this stage, you should verify in the terminal output whether your code is actually built correctly. If not, go through your `cxx` and `h` files.
 
+#### Make package accessible to CMT
+
 If it does build correctly, you can make the package accessible to BOSS using:
 
 ```bash
 source setup.sh
 ```
 
-You're have created an update of your package!
+This sets certain`bash` variables so that BOSS will use your version of this package. One of these variables is called `$<PACKAGENAME>ROOT` and can be used to call your package in job options file \(see for example `$RHOPIALGROOT`  in [this template](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/templates/jobOptions_ana_rhopi_data.txt)\).
+
+Congratulations, you have created an update of your package!
+
+#### Remark on `TestRelease`
 
 As mentioned in [Step 3](setup.md#step-3-modify-requirements), when we were modifying the `requirements` of the BOSS environment, CMT will use the first occurrence of a package in the `$CMTPATH`. That's why we used `path_prepend`  to add your _BOSS workarea_ to the `$CMTPATH`: in case of a name conflict with a package in the `$BesArea` and one in your _workarea_, CMT will use the one in your _workarea_.
 
