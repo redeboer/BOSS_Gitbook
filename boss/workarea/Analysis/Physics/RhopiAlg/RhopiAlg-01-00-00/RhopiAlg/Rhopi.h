@@ -31,12 +31,14 @@ public:
 	Rhopi(const std::string& name, ISvcLocator* pSvcLocator);
 
 	// * Algorithm steps *
-	StatusCode initialize();
-	StatusCode execute();
-	StatusCode finalize();
+	// ! Already implemented in `Algorithm` base class
+	// StatusCode initialize();
+	// StatusCode execute();
+	// StatusCode finalize();
 
 private:
 
+	// * Reader for beam info * //
 	// ReadBeamParFromDb m_reader;
 
 	// ! ------- DECLARE CUTS HERE ------- ! //
@@ -68,8 +70,8 @@ private:
 
 
 	// ! ------- DECLARE NTUPLES HERE ------- ! //
-		// NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves.
-		// Note that the NTuple::Items are added to the NTuple during the Rhopi::initialize() step.
+		// NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem.
+		// Note that the NTuple::Items are added to the NTuple during the Rhopi::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Vertex information of the charged tracks *
 		NTuple::Tuple* m_tuple_vxyz;
