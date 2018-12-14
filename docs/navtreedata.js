@@ -36,9 +36,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BOSSRootChain_8h.html",
-"RhopiRootNamespace_8h.html#ac4b952a62854c4461e2dddcb93f8d2f9",
-"classParticle.html#ad34f1d39fb95328fcfb59d74f71a736c",
-"hierarchy.html"
+"RooFitMacro_8C.html#a1f34a05fd94d82d484e6d9b1bbdb7043",
+"classReconstructedParticle.html#a6731ad7c08ab43cfc7dde67fb7ee47c3"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

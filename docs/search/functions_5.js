@@ -1,7 +1,7 @@
 var searchData=
 [
   ['f',['f',['../RooFitMacro_8C.html#afff438b5d8282fa381f798c09a8f3989',1,'RooFitMacro.C']]],
-  ['finalize',['finalize',['../classKGamma.html#a54bb11fb21bcd0a183ae97b36ca7d7f9',1,'KGamma::finalize()'],['../classRhopi.html#a59c6392853421e63f7e86e47382955be',1,'Rhopi::finalize()'],['../classRhopi.html#a59c6392853421e63f7e86e47382955be',1,'Rhopi::finalize()']]],
+  ['finalize',['finalize',['../classKGamma.html#a54bb11fb21bcd0a183ae97b36ca7d7f9',1,'KGamma::finalize()'],['../classRhopi.html#a59c6392853421e63f7e86e47382955be',1,'Rhopi::finalize()']]],
   ['findchain',['FindChain',['../classBOSSRootChain.html#a0ecfcc49ff6ddcbf77dec527bd4663be',1,'BOSSRootChain']]],
   ['findtree',['FindTree',['../classBOSSRootFile.html#a375821f55d30244e018f04951bfa54de',1,'BOSSRootFile']]],
   ['fit4c',['fit4c',['../classRhopiRootChain.html#af48122acfbd1cf0a49c9cb897df55c64',1,'RhopiRootChain::fit4c()'],['../classRhopiRootFile.html#a1a1decc22ca9951f4f0da71a7f69ea3c',1,'RhopiRootFile::fit4c()']]],

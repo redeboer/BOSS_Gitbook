@@ -90,7 +90,7 @@ KGamma::KGamma(const std::string& name, ISvcLocator* pSvcLocator) :
 		declareProperty("Vz0cut",    m_vz0cut   = 9999.); // 5.0
 		declareProperty("Vrvz0cut",  m_rvz0cut  =   10.);
 		declareProperty("Vrvxy0cut", m_rvxy0cut =    1.);
- 
+
 		// * Define energy, dphi, dthe cuts for fake gamma's *
 		declareProperty("EnergyThreshold", m_energyThreshold = 0.04);
 		declareProperty("GammaPhiCut",     m_gammaPhiCut     = 20.0);

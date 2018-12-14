@@ -2,7 +2,6 @@ var hierarchy =
 [
     [ "Algorithm", null, [
       [ "KGamma", "classKGamma.html", null ],
-      [ "Rhopi", "classRhopi.html", null ],
       [ "Rhopi", "classRhopi.html", null ]
     ] ],
     [ "BOSSRootChain", "classBOSSRootChain.html", [
