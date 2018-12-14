@@ -33,8 +33,8 @@ PROJECT_NAME           = "BOSS Afterburner"
 # with spaces.
 
 INPUT  = ".."
-INPUT += "../README.md"
-USE_MDFILE_AS_MAINPAGE = "../README.md"
+# INPUT += "../README.md"
+# USE_MDFILE_AS_MAINPAGE = "../README.md"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.
@@ -308,7 +308,7 @@ EXCLUDE                =
 # EXCLUDE_PATTERNS tag to specify one or more wildcard patterns to exclude
 # certain files from those directories.
 
-EXCLUDE_PATTERNS       = # */README.md
+EXCLUDE_PATTERNS       = */boss/workarea/Generator/*
 
 # The EXAMPLE_PATH tag can be used to specify one or more files or
 # directories that contain example code fragments that are included (see
@@ -445,13 +445,13 @@ LATEX_OUTPUT           = latex
 # LaTeX documents. This may be useful for small projects and may help to
 # save some trees in general.
 
-COMPACT_LATEX          = NO
+COMPACT_LATEX          = YES
 
 # The PAPER_TYPE tag can be used to set the paper type that is used
 # by the printer. Possible values are: a4, a4wide, letter, legal and
 # executive. If left blank a4wide will be used.
 
-PAPER_TYPE             = a4wide
+PAPER_TYPE             = a4
 
 # The EXTRA_PACKAGES tag can be to specify one or more names of LaTeX
 # packages that should be included in the LaTeX output.
@@ -470,7 +470,7 @@ LATEX_HEADER           =
 # contain links (just like the HTML output) instead of page references
 # This makes the output suitable for online browsing using a pdf viewer.
 
-PDF_HYPERLINKS         = NO
+PDF_HYPERLINKS         = YES
 
 # If the USE_PDFLATEX tag is set to YES, pdflatex will be used instead of
 # plain latex in the generated Makefile. Set this option to YES to get a
@@ -483,7 +483,7 @@ USE_PDFLATEX           = NO
 # running if errors occur, instead of asking the user for help.
 # This option is also used when generating formulas in HTML.
 
-LATEX_BATCHMODE        = NO
+LATEX_BATCHMODE        = YES
 
 #---------------------------------------------------------------------------
 # configuration options related to the RTF output

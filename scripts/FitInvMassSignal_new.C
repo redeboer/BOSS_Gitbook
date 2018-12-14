@@ -27,7 +27,6 @@
 // * ============================= * //
 /**
  * @brief Main function used when compiling and executing in `ROOT`.
- * @param inputFileName 
  */
 void FitInvMassSignal()
 {

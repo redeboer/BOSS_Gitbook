@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['tof1',['tof1',['../classRhopiRootChain.html#aed6c4aa7809bf7087112301afdd862e5',1,'RhopiRootChain::tof1()'],['../classRhopiRootFile.html#ae0329885e68f70c9927bb37bf5857732',1,'RhopiRootFile::tof1()']]],
-  ['tof2',['tof2',['../classRhopiRootChain.html#a5f40af634eb7c7991dfc79839c21baa2',1,'RhopiRootChain::tof2()'],['../classRhopiRootFile.html#a58963ecacd52d1cfa2326bb7ebac1da4',1,'RhopiRootFile::tof2()']]],
-  ['tofe',['tofe',['../classRhopiRootChain.html#a06ba724435abdecf481420605fab8630',1,'RhopiRootChain::tofe()'],['../classRhopiRootFile.html#af87f70208099be349c10323efc1e4f48',1,'RhopiRootFile::tofe()']]]
+  ['ratios',['ratios',['../FitObjectDoubleGauss_8h.html#ae97d0f10e8761141d98f7f1f6759d4a5',1,'FitObjectDoubleGauss.h']]],
+  ['reconstructedparticle',['ReconstructedParticle',['../classReconstructedParticle.html#a92d433507c9aaa350dd5999eff1c5cab',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode)'],['../classReconstructedParticle.html#a4d4ac611435e63765574304852ec23e6',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode)'],['../classReconstructedParticle.html#a38b19a3d3f5b338ac7e5e553cc925442',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode, const char *daughters)'],['../classReconstructedParticle.html#a95cf3aff593e7dbbb86849109cadc894',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode, const char *daughters)']]],
+  ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#a5a404d3db862276fa70b85a353496d4e',1,'Settings::Particles']]],
+  ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],
+  ['rhopi',['Rhopi',['../classRhopi.html#ab871fad73488bb6fa152c421b5f4bdd3',1,'Rhopi::Rhopi(const std::string &amp;name, ISvcLocator *pSvcLocator)'],['../classRhopi.html#ab871fad73488bb6fa152c421b5f4bdd3',1,'Rhopi::Rhopi(const std::string &amp;name, ISvcLocator *pSvcLocator)']]],
+  ['rhopirootchain',['RhopiRootChain',['../classRhopiRootChain.html#ae5feb0475f7c45a3c3787cfaf775da71',1,'RhopiRootChain::RhopiRootChain()'],['../classRhopiRootChain.html#a2f4696b928a2bdf3b65508a00bfe5028',1,'RhopiRootChain::RhopiRootChain(const char *directoryPath, const char *analysisName)']]],
+  ['rhopirootfile',['RhopiRootFile',['../classRhopiRootFile.html#a108fb195008d97baf4bde456992e7e68',1,'RhopiRootFile::RhopiRootFile()'],['../classRhopiRootFile.html#a3cc840716db92059777db1574dcbfd23',1,'RhopiRootFile::RhopiRootFile(const char *filename)']]]
 ];

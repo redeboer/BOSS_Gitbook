@@ -259,11 +259,14 @@ bool BOSSRootFile::IsZombie()
  * @brief Plot a 1D distribution of one of the branches in the file.
  * @todo Move these settings to `FrameworkSettings.h`
  *
- * @tparam T         Template that can be any type (like `double`, `int`, etc.)
  * @param tree       Pointer to the `TTree` that you want to load a branch from.
  * @param branchName Name of the branch that you are looking.
- * @param address    Type (address) that you want to set.
  * @param nBins      The number of bins that you want to have in the resulting histogram.
+ * @param x1         Determines left side of the plot range.
+ * @param x2         Determines right side of the plot range.
+ * @param title      Determines title of the plot.
+ * @param opt        Draw options.
+ * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
  */
 void BOSSRootFile::PlotDistribution1D(
 	TTree* tree, const char* branchName,
@@ -317,11 +320,14 @@ void BOSSRootFile::PlotDistribution1D(
  * @brief Plot a 1D distribution of one of the branches in the file.
  * @todo Move these settings to `FrameworkSettings.h`
  *
- * @tparam T         Template that can be any type (like `double`, `int`, etc.)
- * @param treeName   Name of the `TTree` you want to load.
+ * @param treeName   Name of the `TTree` that you want to load a branch from.
  * @param branchName Name of the branch that you are looking.
- * @param address    Type (address) that you want to set.
  * @param nBins      The number of bins that you want to have in the resulting histogram.
+ * @param x1         Determines left side of the plot range.
+ * @param x2         Determines right side of the plot range.
+ * @param title      Determines title of the plot.
+ * @param opt        Draw options.
+ * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
  */
 void BOSSRootFile::PlotDistribution1D(
 	const char* treeName, const char* branchName,
@@ -336,12 +342,19 @@ void BOSSRootFile::PlotDistribution1D(
  * @brief Plot a 2D distribution of one of the branches in the file.
  * @todo Move these settings to `FrameworkSettings.h`
  *
- * @tparam T       Template that can be any type (like `double`, `int`, etc.)
- * @param tree Name of the `TTree` you want to load.
- * @param branchX  Name of branch that will be plotted on the x axis
- * @param branchY  Name of branch that will be plotted on the y axis
- * @param address  Type (address) that you want to set.
- * @param nBins    The number of bins that you want to have in the resulting histogram.
+ * @param tree    Pointer to the `TTree` that you want to load a branch from.
+ * @param branchX Name of the X-branch that you are looking.
+ * @param branchY Name of the Y-branch that you are looking.
+ * @param nBinsX  The number of bins that you want to have in the resulting histogram.
+ * @param x1      Determines left side of the plot range.
+ * @param x2      Determines right side of the plot range.
+ * @param nBinsY  The number of bins that you want to have in the resulting histogram.
+ * @param y1      Determines left side of the plot range.
+ * @param y2      Determines right side of the plot range.
+ * @param title   Determines title of the plot.
+ * @param opt     Draw options.
+ * @param setLogZ  Use a log scale in the Z-direction.
+ * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
  */
 void BOSSRootFile::PlotDistribution2D(
 	TTree* tree, const char* branchX, const char* branchY,
@@ -405,12 +418,19 @@ void BOSSRootFile::PlotDistribution2D(
  * @brief Plot a 2D distribution of one of the branches in the file.
  * @todo Move these settings to `FrameworkSettings.h`
  *
- * @tparam T       Template that can be any type (like `double`, `int`, etc.)
- * @param treeName Name of the `TTree` you want to load.
- * @param branchX  Name of branch that will be plotted on the x axis
- * @param branchY  Name of branch that will be plotted on the y axis
- * @param address  Type (address) that you want to set.
- * @param nBins    The number of bins that you want to have in the resulting histogram.
+ * @param treeName Name of the `TTree` that you want to load a branch from.
+ * @param branchX  Name of the X-branch that you are looking.
+ * @param branchY  Name of the Y-branch that you are looking.
+ * @param nBinsX   The number of bins that you want to have in the resulting histogram.
+ * @param x1       Determines left side of the plot range.
+ * @param x2       Determines right side of the plot range.
+ * @param nBinsY   The number of bins that you want to have in the resulting histogram.
+ * @param y1       Determines left side of the plot range.
+ * @param y2       Determines right side of the plot range.
+ * @param title    Determines title of the plot.
+ * @param opt      Draw options.
+ * @param setLogZ  Use a log scale in the Z-direction.
+ * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
  */
 void BOSSRootFile::PlotDistribution2D(
 	const char* treeName, const char* branchX, const char* branchY,

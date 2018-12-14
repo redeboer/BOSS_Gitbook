@@ -1,15 +1,6 @@
 var searchData=
 [
-  ['f',['f',['../RooFitMacro_8C.html#afff438b5d8282fa381f798c09a8f3989',1,'RooFitMacro.C']]],
-  ['findchain',['FindChain',['../classBOSSRootChain.html#a0ecfcc49ff6ddcbf77dec527bd4663be',1,'BOSSRootChain']]],
-  ['findtree',['FindTree',['../classBOSSRootFile.html#a375821f55d30244e018f04951bfa54de',1,'BOSSRootFile']]],
-  ['fit4c',['fit4c',['../classRhopiRootChain.html#af48122acfbd1cf0a49c9cb897df55c64',1,'RhopiRootChain::fit4c()'],['../classRhopiRootFile.html#a1a1decc22ca9951f4f0da71a7f69ea3c',1,'RhopiRootFile::fit4c()']]],
-  ['fit5c',['fit5c',['../classRhopiRootChain.html#a7a35a17d1fc0aedface52acc50e4e24d',1,'RhopiRootChain::fit5c()'],['../classRhopiRootFile.html#a190b4f499a2787f3c541e7895b7894b3',1,'RhopiRootFile::fit5c()']]],
-  ['fitbreitwigner',['FitBreitWigner',['../namespaceCommonFunctions.html#aa038c79c1d8d960be74f6cbdd6982c07',1,'CommonFunctions']]],
-  ['fitdoublegaussian',['FitDoubleGaussian',['../FitDoubleGaussian_8C.html#a6a4a5d4f8961b68ff05a149e3e6ee947',1,'FitDoubleGaussian.C']]],
-  ['fitdoublegaussian_5froofit',['FitDoubleGaussian_RooFit',['../FitBreitWigner_8C.html#a8c259a9b2df55669eb9f3657c2ce1e4f',1,'FitDoubleGaussian_RooFit(const char *inputFileName=gDefaultFileToLoad):&#160;FitBreitWigner.C'],['../FitConvolution_8C.html#a8c259a9b2df55669eb9f3657c2ce1e4f',1,'FitDoubleGaussian_RooFit(const char *inputFileName=gDefaultFileToLoad):&#160;FitConvolution.C']]],
-  ['fitdoublegaussian_5fth1fit',['FitDoubleGaussian_TH1Fit',['../FitDoubleGaussian__TH1Fit_8C.html#ab9a792a6394ae0a46131f08a000b141f',1,'FitDoubleGaussian_TH1Fit.C']]],
-  ['fitfrom',['FitFrom',['../classReconstructedParticle.html#a97f5c3b741c26bc59c56994597e47686',1,'ReconstructedParticle']]],
-  ['fitpuredoublegaussian',['FitPureDoubleGaussian',['../namespaceCommonFunctions.html#a1f68d512a3ca945320862bfd6db7cdf4',1,'CommonFunctions']]],
-  ['fituntil',['FitUntil',['../classReconstructedParticle.html#a6c714f6005091427158ab2e794e26aeb',1,'ReconstructedParticle']]]
+  ['em',['Em',['../namespaceSettings_1_1Particles.html#aaef63366dac55fce758cceba31ed4fa7',1,'Settings::Particles']]],
+  ['etot',['etot',['../classRhopiRootChain.html#aee4c5c41fcbb4b4137fcce2ae0f8ba81',1,'RhopiRootChain::etot()'],['../classRhopiRootFile.html#a2039e9d45f2c7baa32c135caf533dbf8',1,'RhopiRootFile::etot()']]],
+  ['execute',['execute',['../classKGamma.html#aa563bd45dbd48505120c401ad9f0f138',1,'KGamma::execute()'],['../classRhopi.html#a0e1b11882ca23cf83716eddfbd58b686',1,'Rhopi::execute()'],['../classRhopi.html#a0e1b11882ca23cf83716eddfbd58b686',1,'Rhopi::execute()']]]
 ];

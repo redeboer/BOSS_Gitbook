@@ -145,9 +145,9 @@ namespace AnaBranches
 	 */
 	namespace fit5c {
 		double chi2;  //!< Chi squared of the Kalman kinematic fit.
-		double mrho0; //!< Invariant mass \f$ M_{\pi^+pi^-} \f$ (\f$ \rho^0 \f$).
-		double mrhop; //!< Invariant mass \f$ M_{\pi^0pi^+} \f$ (\f$ \rho^+ \f$).
-		double mrhom; //!< Invariant mass \f$ M_{\pi^0pi^-} \f$ (\f$ \rho^- \f$).
+		double mrho0; //!< Invariant mass \f$ M_{\pi^+ \pi^-} \f$ (\f$ \rho^0 \f$).
+		double mrhop; //!< Invariant mass \f$ M_{\pi^0 \pi^+} \f$ (\f$ \rho^+ \f$).
+		double mrhom; //!< Invariant mass \f$ M_{\pi^0 \pi^-} \f$ (\f$ \rho^- \f$).
 	}
 
 	/**

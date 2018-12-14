@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['particle',['Particle',['../classParticle.html',1,'']]]
+  ['fitobject',['FitObject',['../classFitObject.html',1,'']]],
+  ['fitobjectdoublegauss',['FitObjectDoubleGauss',['../classFitObjectDoubleGauss.html',1,'']]]
 ];

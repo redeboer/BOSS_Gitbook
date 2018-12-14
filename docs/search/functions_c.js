@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quickplotrhopi',['QuickPlotRhopi',['../QuickPlotRhopi_8C.html#a477550f6395175c5419ffedf622e9712',1,'QuickPlotRhopi.C']]]
+  ['openfile',['OpenFile',['../classBOSSRootFile.html#a50f2872225d67bcdaee614b7e469a78b',1,'BOSSRootFile']]]
 ];

@@ -101,9 +101,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5b72d1379fdef201e8ecd070d3e8d34a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a5b72d1379fdef201e8ecd070d3e8d34a">LoopTree</a> (TTree *tree, FUNCTOR &amp;&amp;lambda, Rest &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a5b72d1379fdef201e8ecd070d3e8d34a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generalisation of the procedure when looping over a <code>TTree</code>.  <a href="#a5b72d1379fdef201e8ecd070d3e8d34a">More...</a><br /></td></tr>
 <tr class="separator:a5b72d1379fdef201e8ecd070d3e8d34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68dac046f2abc6ec56e2cfa3ecbe8e54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a68dac046f2abc6ec56e2cfa3ecbe8e54">SetInvariantMassHistogram</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle, const int nBins=200)</td></tr>
-<tr class="memdesc:a68dac046f2abc6ec56e2cfa3ecbe8e54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a histogram object.  <a href="#a68dac046f2abc6ec56e2cfa3ecbe8e54">More...</a><br /></td></tr>
-<tr class="separator:a68dac046f2abc6ec56e2cfa3ecbe8e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeef5cb3fa120622730a8813dc8344f57"><td class="memItemLeft" align="right" valign="top">TH1D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#aeef5cb3fa120622730a8813dc8344f57">CreateInvariantMassHistogram</a> (const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle, const int nBins=200)</td></tr>
+<tr class="memdesc:aeef5cb3fa120622730a8813dc8344f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a histogram object.  <a href="#aeef5cb3fa120622730a8813dc8344f57">More...</a><br /></td></tr>
+<tr class="separator:aeef5cb3fa120622730a8813dc8344f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab84009bd8b434fc968fdcf5048adb8ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#ab84009bd8b434fc968fdcf5048adb8ce">DrawAndSave</a> (TTree *tree, const char *varexp, const char *selection, Option_t *option, TString logScale=&quot;&quot;)</td></tr>
 <tr class="memdesc:ab84009bd8b434fc968fdcf5048adb8ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that allows you to create and save a quick sketch of a <code>TTree</code> branch.  <a href="#ab84009bd8b434fc968fdcf5048adb8ce">More...</a><br /></td></tr>
 <tr class="separator:ab84009bd8b434fc968fdcf5048adb8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,12 +116,35 @@ Functions</h2></td></tr>
 <tr class="memitem:a399e7717778afef343d57db1403181a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a399e7717778afef343d57db1403181a6">DrawAndSave</a> (TH2D &amp;hist, const char *saveas, TString logScale=&quot;&quot;)</td></tr>
 <tr class="memdesc:a399e7717778afef343d57db1403181a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw and save a 2D distribution (output folder is determined from <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code>).  <a href="#a399e7717778afef343d57db1403181a6">More...</a><br /></td></tr>
 <tr class="separator:a399e7717778afef343d57db1403181a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f68d512a3ca945320862bfd6db7cdf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a1f68d512a3ca945320862bfd6db7cdf4">FitPureDoubleGaussian</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle)</td></tr>
-<tr class="memdesc:a1f68d512a3ca945320862bfd6db7cdf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit the sum of two Gaussian functions on a invariant mass distrubution.  <a href="#a1f68d512a3ca945320862bfd6db7cdf4">More...</a><br /></td></tr>
-<tr class="separator:a1f68d512a3ca945320862bfd6db7cdf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa038c79c1d8d960be74f6cbdd6982c07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#aa038c79c1d8d960be74f6cbdd6982c07">FitBreitWigner</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle)</td></tr>
-<tr class="memdesc:aa038c79c1d8d960be74f6cbdd6982c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit the sum of two Gaussian functions on a invariant mass distrubution.  <a href="#aa038c79c1d8d960be74f6cbdd6982c07">More...</a><br /></td></tr>
-<tr class="separator:aa038c79c1d8d960be74f6cbdd6982c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eaf8eb7255dbb6f92a7d8dbcd2e7f25"><td class="memItemLeft" align="right" valign="top">RooRealVar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a8eaf8eb7255dbb6f92a7d8dbcd2e7f25">CreateRooFitInvMassVar</a> (const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle)</td></tr>
+<tr class="memdesc:a8eaf8eb7255dbb6f92a7d8dbcd2e7f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <code>RooRealVar</code> specifically for resonstructing a certain particle (<code><a class="el" href="classReconstructedParticle.html" title="Container for particle data. ">ReconstructedParticle</a></code>).  <a href="#a8eaf8eb7255dbb6f92a7d8dbcd2e7f25">More...</a><br /></td></tr>
+<tr class="separator:a8eaf8eb7255dbb6f92a7d8dbcd2e7f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15e30d18d200b6644825558ccf83fbc9"><td class="memItemLeft" align="right" valign="top">RooDataHist&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a15e30d18d200b6644825558ccf83fbc9">CreateRooFitInvMassDistr</a> (TH1D &amp;hist, const RooRealVar &amp;var, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle)</td></tr>
+<tr class="memdesc:a15e30d18d200b6644825558ccf83fbc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <code>RooDataHist</code> specifically for resonstructing a certain particle (<code><a class="el" href="classReconstructedParticle.html" title="Container for particle data. ">ReconstructedParticle</a></code>).  <a href="#a15e30d18d200b6644825558ccf83fbc9">More...</a><br /></td></tr>
+<tr class="separator:a15e30d18d200b6644825558ccf83fbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab41e671da693362166c9ea735b056fa2"><td class="memTemplParams" colspan="2">template&lt;class... ARGS&gt; </td></tr>
+<tr class="memitem:ab41e671da693362166c9ea735b056fa2"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#ab41e671da693362166c9ea735b056fa2">DrawAndSaveRecursion</a> (Option_t *option, ARGS &amp;&amp;... args)</td></tr>
+<tr class="memdesc:ab41e671da693362166c9ea735b056fa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <code>DrawAndSaveRecursion</code> functions are necessary for <code>DrawAndSave</code>, which is a variadic template function.  <a href="#ab41e671da693362166c9ea735b056fa2">More...</a><br /></td></tr>
+<tr class="separator:ab41e671da693362166c9ea735b056fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a495d51e9e81a262903484823d626cde5"><td class="memTemplParams" colspan="2">template&lt;class TYPE , class... ARGS&gt; </td></tr>
+<tr class="memitem:a495d51e9e81a262903484823d626cde5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a495d51e9e81a262903484823d626cde5">DrawAndSaveRecursion</a> (Option_t *option, TYPE first, ARGS... args)</td></tr>
+<tr class="separator:a495d51e9e81a262903484823d626cde5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4070318c4b6e768c9e17dfea2c4a8e8a"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a4070318c4b6e768c9e17dfea2c4a8e8a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a4070318c4b6e768c9e17dfea2c4a8e8a">DrawAndSaveRecursion</a> (Option_t *option)</td></tr>
+<tr class="separator:a4070318c4b6e768c9e17dfea2c4a8e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2263c9a59f82c52769b4c88faf5cbc6e"><td class="memTemplParams" colspan="2">template&lt;class ... ARGS&gt; </td></tr>
+<tr class="memitem:a2263c9a59f82c52769b4c88faf5cbc6e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a2263c9a59f82c52769b4c88faf5cbc6e">DrawAndSave</a> (const char *filename, Option_t *option, const char *logScale, ARGS... args)</td></tr>
+<tr class="memdesc:a2263c9a59f82c52769b4c88faf5cbc6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that allows you to draw and save any set of <code>TObject</code>s.  <a href="#a2263c9a59f82c52769b4c88faf5cbc6e">More...</a><br /></td></tr>
+<tr class="separator:a2263c9a59f82c52769b4c88faf5cbc6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e6f77b4a672a03ace07686f595bf61c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a8e6f77b4a672a03ace07686f595bf61c">FitDoubleGaussian</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle, const UChar_t numPolynomials=0)</td></tr>
+<tr class="memdesc:a8e6f77b4a672a03ace07686f595bf61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit the sum of two Gaussian functions on a invariant mass distrubution.  <a href="#a8e6f77b4a672a03ace07686f595bf61c">More...</a><br /></td></tr>
+<tr class="separator:a8e6f77b4a672a03ace07686f595bf61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f31d110f5ffaf3838766c5fcaa183b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a4f31d110f5ffaf3838766c5fcaa183b0">FitBreitWigner</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle, const UChar_t numPolynomials=0)</td></tr>
+<tr class="memdesc:a4f31d110f5ffaf3838766c5fcaa183b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit the sum of two Gaussian functions on a invariant mass distrubution.  <a href="#a4f31d110f5ffaf3838766c5fcaa183b0">More...</a><br /></td></tr>
+<tr class="separator:a4f31d110f5ffaf3838766c5fcaa183b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa23105c40906c16c293dc6dae88415a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#aa23105c40906c16c293dc6dae88415a0">FitBWDoubleGaussianConvolution</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle, const UChar_t numPolynomials=0)</td></tr>
+<tr class="memdesc:aa23105c40906c16c293dc6dae88415a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit the sum of two Gaussian functions on a invariant mass distrubution.  <a href="#aa23105c40906c16c293dc6dae88415a0">More...</a><br /></td></tr>
+<tr class="separator:aa23105c40906c16c293dc6dae88415a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header that is used to collect functions that can be used by different scripts. </p>
@@ -147,12 +170,104 @@ Functions</h2></td></tr>
 
 <p>Auxiliary function that you can used in other functions to check if a pointer that you fed it is a nullpointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00042">42</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00047">47</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
+<a id="aeef5cb3fa120622730a8813dc8344f57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeef5cb3fa120622730a8813dc8344f57">&#9670;&nbsp;</a></span>CreateInvariantMassHistogram()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TH1D CommonFunctions::CreateInvariantMassHistogram </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;&#160;</td>
+          <td class="paramname"><em>particle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>nBins</em> = <code>200</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a histogram object. </p>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00088">88</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
+<a id="a15e30d18d200b6644825558ccf83fbc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15e30d18d200b6644825558ccf83fbc9">&#9670;&nbsp;</a></span>CreateRooFitInvMassDistr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RooDataHist CommonFunctions::CreateRooFitInvMassDistr </td>
+          <td>(</td>
+          <td class="paramtype">TH1D &amp;&#160;</td>
+          <td class="paramname"><em>hist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RooRealVar &amp;&#160;</td>
+          <td class="paramname"><em>var</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;&#160;</td>
+          <td class="paramname"><em>particle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a <code>RooDataHist</code> specifically for resonstructing a certain particle (<code><a class="el" href="classReconstructedParticle.html" title="Container for particle data. ">ReconstructedParticle</a></code>). </p>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00151">151</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
+<a id="a8eaf8eb7255dbb6f92a7d8dbcd2e7f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eaf8eb7255dbb6f92a7d8dbcd2e7f25">&#9670;&nbsp;</a></span>CreateRooFitInvMassVar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RooRealVar CommonFunctions::CreateRooFitInvMassVar </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;&#160;</td>
+          <td class="paramname"><em>particle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a <code>RooRealVar</code> specifically for resonstructing a certain particle (<code><a class="el" href="classReconstructedParticle.html" title="Container for particle data. ">ReconstructedParticle</a></code>). </p>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00138">138</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
 <a id="ab84009bd8b434fc968fdcf5048adb8ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab84009bd8b434fc968fdcf5048adb8ce">&#9670;&nbsp;</a></span>DrawAndSave() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab84009bd8b434fc968fdcf5048adb8ce">&#9670;&nbsp;</a></span>DrawAndSave() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,12 +312,12 @@ Functions</h2></td></tr>
 
 <p>Function that allows you to create and save a quick sketch of a <code>TTree</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00095">95</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00100">100</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
 <a id="a3f9e3e44b02e90ad8fdf544b6e3c1d28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f9e3e44b02e90ad8fdf544b6e3c1d28">&#9670;&nbsp;</a></span>DrawAndSave() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f9e3e44b02e90ad8fdf544b6e3c1d28">&#9670;&nbsp;</a></span>DrawAndSave() <span class="overload">[2/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -241,12 +356,12 @@ Functions</h2></td></tr>
 
 <p>Auxiliary function that is used by the more specific <code>DrawAndSave</code> functions for <code>TH1D</code> and <code>TH2D</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00106">106</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00111">111</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
 <a id="a47baa976b0335680107f94900d864ab7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47baa976b0335680107f94900d864ab7">&#9670;&nbsp;</a></span>DrawAndSave() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a47baa976b0335680107f94900d864ab7">&#9670;&nbsp;</a></span>DrawAndSave() <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,12 +394,12 @@ Functions</h2></td></tr>
 
 <p>Draw and save a 1D distribution (output folder is determined from <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00117">117</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00122">122</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
 <a id="a399e7717778afef343d57db1403181a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a399e7717778afef343d57db1403181a6">&#9670;&nbsp;</a></span>DrawAndSave() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a399e7717778afef343d57db1403181a6">&#9670;&nbsp;</a></span>DrawAndSave() <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -317,12 +432,150 @@ Functions</h2></td></tr>
 
 <p>Draw and save a 2D distribution (output folder is determined from <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00125">125</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00130">130</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
-<a id="aa038c79c1d8d960be74f6cbdd6982c07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa038c79c1d8d960be74f6cbdd6982c07">&#9670;&nbsp;</a></span>FitBreitWigner()</h2>
+<a id="a2263c9a59f82c52769b4c88faf5cbc6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2263c9a59f82c52769b4c88faf5cbc6e">&#9670;&nbsp;</a></span>DrawAndSave() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ... ARGS&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommonFunctions::DrawAndSave </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Option_t *&#160;</td>
+          <td class="paramname"><em>option</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>logScale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ARGS...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function that allows you to draw and save any set of <code>TObject</code>s. </p>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00175">175</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
+<a id="ab41e671da693362166c9ea735b056fa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab41e671da693362166c9ea735b056fa2">&#9670;&nbsp;</a></span>DrawAndSaveRecursion() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... ARGS&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommonFunctions::DrawAndSaveRecursion </td>
+          <td>(</td>
+          <td class="paramtype">Option_t *&#160;</td>
+          <td class="paramname"><em>option</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ARGS &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The <code>DrawAndSaveRecursion</code> functions are necessary for <code>DrawAndSave</code>, which is a variadic template function. </p>
+
+</div>
+</div>
+<a id="a495d51e9e81a262903484823d626cde5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a495d51e9e81a262903484823d626cde5">&#9670;&nbsp;</a></span>DrawAndSaveRecursion() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TYPE , class... ARGS&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommonFunctions::DrawAndSaveRecursion </td>
+          <td>(</td>
+          <td class="paramtype">Option_t *&#160;</td>
+          <td class="paramname"><em>option</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TYPE&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ARGS...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00163">163</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
+<a id="a4070318c4b6e768c9e17dfea2c4a8e8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4070318c4b6e768c9e17dfea2c4a8e8a">&#9670;&nbsp;</a></span>DrawAndSaveRecursion() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommonFunctions::DrawAndSaveRecursion </td>
+          <td>(</td>
+          <td class="paramtype">Option_t *&#160;</td>
+          <td class="paramname"><em>option</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00169">169</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
+<a id="a4f31d110f5ffaf3838766c5fcaa183b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f31d110f5ffaf3838766c5fcaa183b0">&#9670;&nbsp;</a></span>FitBreitWigner()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -337,7 +590,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;&#160;</td>
-          <td class="paramname"><em>particle</em>&#160;</td>
+          <td class="paramname"><em>particle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UChar_t&#160;</td>
+          <td class="paramname"><em>numPolynomials</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -349,26 +608,28 @@ Functions</h2></td></tr>
 
 <p>Fit the sum of two Gaussian functions on a invariant mass distrubution. </p>
 <p>The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed. For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.</p>
-<p>See <a href="https://root.cern.ch/roofit-20-minutes">https://root.cern.ch/roofit-20-minutes</a> for an instructive tutorial. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>See <a href="https://root.cern.ch/roofit-20-minutes">https://root.cern.ch/roofit-20-minutes</a> for an instructive tutorial.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hist</td><td>Invariant mass histogram that you would like to fit </td></tr>
     <tr><td class="paramname">particle</td><td>Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object. </td></tr>
+    <tr><td class="paramname">numPolynomials</td><td>The degree of the polynomial that describes the background. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00207">207</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00309">309</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
-<a id="a1f68d512a3ca945320862bfd6db7cdf4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f68d512a3ca945320862bfd6db7cdf4">&#9670;&nbsp;</a></span>FitPureDoubleGaussian()</h2>
+<a id="aa23105c40906c16c293dc6dae88415a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa23105c40906c16c293dc6dae88415a0">&#9670;&nbsp;</a></span>FitBWDoubleGaussianConvolution()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CommonFunctions::FitPureDoubleGaussian </td>
+          <td class="memname">void CommonFunctions::FitBWDoubleGaussianConvolution </td>
           <td>(</td>
           <td class="paramtype">TH1D &amp;&#160;</td>
           <td class="paramname"><em>hist</em>, </td>
@@ -377,7 +638,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;&#160;</td>
-          <td class="paramname"><em>particle</em>&#160;</td>
+          <td class="paramname"><em>particle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UChar_t&#160;</td>
+          <td class="paramname"><em>numPolynomials</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -393,11 +660,62 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">hist</td><td>Invariant mass histogram that you would like to fit </td></tr>
     <tr><td class="paramname">particle</td><td>Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object. </td></tr>
+    <tr><td class="paramname">numPolynomials</td><td>The degree of the polynomial that describes the background. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>width is fixed</p>
+<p>width is fixed </p>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00388">388</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
+<a id="a8e6f77b4a672a03ace07686f595bf61c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e6f77b4a672a03ace07686f595bf61c">&#9670;&nbsp;</a></span>FitDoubleGaussian()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommonFunctions::FitDoubleGaussian </td>
+          <td>(</td>
+          <td class="paramtype">TH1D &amp;&#160;</td>
+          <td class="paramname"><em>hist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;&#160;</td>
+          <td class="paramname"><em>particle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UChar_t&#160;</td>
+          <td class="paramname"><em>numPolynomials</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fit the sum of two Gaussian functions on a invariant mass distrubution. </p>
+<p>The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed. For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.</p>
+<p>See <a href="https://root.cern.ch/roofit-20-minutes">https://root.cern.ch/roofit-20-minutes</a> for an instructive tutorial.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hist</td><td>Invariant mass histogram that you would like to fit </td></tr>
+    <tr><td class="paramname">particle</td><td>Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object. </td></tr>
+    <tr><td class="paramname">numPolynomials</td><td>The degree of the polynomial that describes the background. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00137">137</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00198">198</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
@@ -437,45 +755,7 @@ template&lt;typename FUNCTOR , typename ... Rest&gt; </div>
 
 <p>Generalisation of the procedure when looping over a <code>TTree</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00068">68</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
-
-</div>
-</div>
-<a id="a68dac046f2abc6ec56e2cfa3ecbe8e54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68dac046f2abc6ec56e2cfa3ecbe8e54">&#9670;&nbsp;</a></span>SetInvariantMassHistogram()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CommonFunctions::SetInvariantMassHistogram </td>
-          <td>(</td>
-          <td class="paramtype">TH1D &amp;&#160;</td>
-          <td class="paramname"><em>hist</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;&#160;</td>
-          <td class="paramname"><em>particle</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>nBins</em> = <code>200</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create a histogram object. </p>
-
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00083">83</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00073">73</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
@@ -514,7 +794,7 @@ template&lt;typename FUNCTOR , typename ... Rest&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00056">56</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00061">61</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>

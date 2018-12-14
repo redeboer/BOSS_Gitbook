@@ -37,7 +37,7 @@ public:
 protected:
 	// * Data members *
 	std::unique_ptr<RooRealVar> fMean; //!< Mean of the <b>two</b> Gaussians when centered around the mass
-	std::unique_ptr<RooRealVar> fMean0; //!< Mean of the <b>two</b> Gaussians when centered around \f M_\text{inv} = 0 \f. This is useful in a convolution.
+	std::unique_ptr<RooRealVar> fMean0; //!< Mean of the <b>two</b> Gaussians when centered around \f$ M_{\mathrm{inv}} = 0 \f$. This is useful in a convolution.
 	std::unique_ptr<RooRealVar> fSigma1; //!< Width of the (prferably) narrow Gaussian of the two.
 	std::unique_ptr<RooRealVar> fSigma2; //!< Width of the (prferably) wide Gaussian of the two.
 	std::unique_ptr<RooGaussian> fGaussian1; //!< Narrow Gaussian.

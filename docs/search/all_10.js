@@ -1,11 +1,16 @@
 var searchData=
 [
-  ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
+  ['ratios',['ratios',['../FitObjectDoubleGauss_8h.html#ae97d0f10e8761141d98f7f1f6759d4a5',1,'FitObjectDoubleGauss.h']]],
   ['reconstructedparticle',['ReconstructedParticle',['../classReconstructedParticle.html',1,'ReconstructedParticle'],['../classReconstructedParticle.html#a92d433507c9aaa350dd5999eff1c5cab',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode)'],['../classReconstructedParticle.html#a4d4ac611435e63765574304852ec23e6',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode)'],['../classReconstructedParticle.html#a38b19a3d3f5b338ac7e5e553cc925442',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode, const char *daughters)'],['../classReconstructedParticle.html#a95cf3aff593e7dbbb86849109cadc894',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode, const char *daughters)']]],
   ['reconstructedparticle_2eh',['ReconstructedParticle.h',['../ReconstructedParticle_8h.html',1,'']]],
   ['rhit',['rhit',['../namespaceAnaBranches_1_1tofe.html#a2701078290a458fe6966687014e25388',1,'AnaBranches::tofe']]],
   ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#a5a404d3db862276fa70b85a353496d4e',1,'Settings::Particles']]],
   ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],
+  ['rhopi',['Rhopi',['../classRhopi.html',1,'Rhopi'],['../classRhopi.html#ab871fad73488bb6fa152c421b5f4bdd3',1,'Rhopi::Rhopi(const std::string &amp;name, ISvcLocator *pSvcLocator)'],['../classRhopi.html#ab871fad73488bb6fa152c421b5f4bdd3',1,'Rhopi::Rhopi(const std::string &amp;name, ISvcLocator *pSvcLocator)']]],
+  ['rhopi_2ecxx',['Rhopi.cxx',['../RhopiAlg-00-00-23_2src_2Rhopi_8cxx.html',1,'(Global Namespace)'],['../RhopiAlg-01-00-00_2src_2Rhopi_8cxx.html',1,'(Global Namespace)']]],
+  ['rhopi_2eh',['Rhopi.h',['../RhopiAlg-00-00-23_2RhopiAlg_2Rhopi_8h.html',1,'(Global Namespace)'],['../RhopiAlg-01-00-00_2RhopiAlg_2Rhopi_8h.html',1,'(Global Namespace)']]],
+  ['rhopi_5fentries_2ecxx',['Rhopi_entries.cxx',['../RhopiAlg-00-00-23_2src_2components_2Rhopi__entries_8cxx.html',1,'(Global Namespace)'],['../RhopiAlg-01-00-00_2src_2components_2Rhopi__entries_8cxx.html',1,'(Global Namespace)']]],
+  ['rhopi_5fload_2ecxx',['Rhopi_load.cxx',['../RhopiAlg-00-00-23_2src_2components_2Rhopi__load_8cxx.html',1,'(Global Namespace)'],['../RhopiAlg-01-00-00_2src_2components_2Rhopi__load_8cxx.html',1,'(Global Namespace)']]],
   ['rhopirootchain',['RhopiRootChain',['../classRhopiRootChain.html',1,'RhopiRootChain'],['../classRhopiRootChain.html#ae5feb0475f7c45a3c3787cfaf775da71',1,'RhopiRootChain::RhopiRootChain()'],['../classRhopiRootChain.html#a2f4696b928a2bdf3b65508a00bfe5028',1,'RhopiRootChain::RhopiRootChain(const char *directoryPath, const char *analysisName)']]],
   ['rhopirootchain_2eh',['RhopiRootChain.h',['../RhopiRootChain_8h.html',1,'']]],
   ['rhopirootfile',['RhopiRootFile',['../classRhopiRootFile.html',1,'RhopiRootFile'],['../classRhopiRootFile.html#a108fb195008d97baf4bde456992e7e68',1,'RhopiRootFile::RhopiRootFile()'],['../classRhopiRootFile.html#a3cc840716db92059777db1574dcbfd23',1,'RhopiRootFile::RhopiRootFile(const char *filename)']]],

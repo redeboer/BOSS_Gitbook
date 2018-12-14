@@ -50,12 +50,12 @@ protected:
 	RooArgList fBckArgs;
 	RooArgList fComponents;
 	RooArgList fNContributions;
-	std::unique_ptr<RooAddPdf>     fFullShape;
+	std::unique_ptr<RooAddPdf>     fFullShape; //!< Background and signal added up.
 	std::unique_ptr<RooGaussian>   fGaussian1; //!< Narrow Gaussian.
 	std::unique_ptr<RooGaussian>   fGaussian2; //!< Wide Gaussian.
 	std::unique_ptr<RooPolynomial> fPolBackground;
 	std::unique_ptr<RooRealVar>    fMean; //!< Mean of the <b>two</b> Gaussians when centered around the mass
-	std::unique_ptr<RooRealVar>    fMean0; //!< Mean of the <b>two</b> Gaussians when centered around \f M_\text{inv} = 0 \f. This is useful in a convolution.
+	std::unique_ptr<RooRealVar>    fMean0; //!< Mean of the <b>two</b> Gaussians when centered around \f$ M_{\mathrm{inv}} = 0 \f$. This is useful in a convolution.
 	std::unique_ptr<RooRealVar>    fNGauss1;
 	std::unique_ptr<RooRealVar>    fNGauss2;
 	std::unique_ptr<RooRealVar>    fSigToBckRatio;
@@ -69,6 +69,8 @@ protected:
 	void SetRooRealVar();
 	void SetInvMassDistr(TH1D& hist);
 	void SetSignalArguments();
+	void BuildFullShape();
+	void BuildDoubleGaussian();
 	void AddPolynomialBackground(const UChar_t nPol = 2);
 
 };
@@ -125,6 +127,9 @@ protected:
 		}
 	}
 
+	/**
+	 * @brief Build a `RooFit` function that adds up the signal and the background.
+	 */
 	void FitObject::BuildFullShape()
 	{
 		fFullShape = std_fix::make_unique<RooAddPdf>("full_shape", "Double gaussian + background", fComponents, fNContributions);
@@ -139,6 +144,9 @@ protected:
 // * ------- GETTERS ------- * //
 // * ======================= * //
 
+	/**
+	 * @brief Check if a particle has been loaded into the `FitObject`.
+	 */
 	bool FitObject::IsLoaded()
 	{
 		return fParticle.IsLoaded();
@@ -148,71 +156,75 @@ protected:
 // * =============================== * //
 // * ------- PRIVATE METHODS ------- * //
 // * =============================== * //
-/**
- * @brief Create and set `RooRealVar` data member specifically for resonstructing a certain particle (`ReconstructedParticle`). This data member will be used to as a variable in the `RooFit` procedure
- */
-void FitObject::SetRooRealVar() {
-	if(fParticle.IsLoaded()) {
-		fRooRealVar = RooRealVar(
-			Form("#it{M}_{%s}", fParticle.GetDaughterLabel()),
-			Form("#it{M}_{%s} (GeV/#it{c}^{2})", fParticle.GetDaughterLabel()),
-			fParticle.PlotFrom(),
-			fParticle.PlotUntil()
-		);
+	/**
+	 * @brief Create and set `RooRealVar` data member specifically for resonstructing a certain particle (`ReconstructedParticle`). This data member will be used to as a variable in the `RooFit` procedure
+	 */
+	void FitObject::SetRooRealVar() {
+		if(fParticle.IsLoaded()) {
+			fRooRealVar = RooRealVar(
+				Form("#it{M}_{%s}", fParticle.GetDaughterLabel()),
+				Form("#it{M}_{%s} (GeV/#it{c}^{2})", fParticle.GetDaughterLabel()),
+				fParticle.PlotFrom(),
+				fParticle.PlotUntil()
+			);
+		}
 	}
-}
 
-/**
- * @brief Create a `RooDataHist` specifically for resonstructing a certain particle (`ReconstructedParticle`).
- */
-void FitObject::SetInvMassDistr(TH1D& hist) {
-	if(fParticle.IsLoaded()) {
-		RooDataHist distr(
-			Form("%scandidate_RooDataHist", fParticle.GetName()),
-			histGetTitle(), fRooRealVar, RooFit::Import(hist));
+	/**
+	 * @brief Create a `RooDataHist` specifically for resonstructing a certain particle (`ReconstructedParticle`).
+	 * @param hist Invariant mass histogram to bne analysed.
+	 */
+	void FitObject::SetInvMassDistr(TH1D& hist) {
+		if(fParticle.IsLoaded()) {
+			RooDataHist distr(
+				Form("%scandidate_RooDataHist", fParticle.GetName()),
+				histGetTitle(), fRooRealVar, RooFit::Import(hist));
+		}
 	}
-}
 
-void FitObject::BuildDoubleGaussian()
-{
-	fMean = std_fix::make_unique<RooRealVar>(
-		Form("m_{%s}", fParticle.GetNameLaTeX()),
-		Form("%s mass", fParticle.GetNameLaTeX()),
-		fParticle.GetMass(), fParticle.GetLowerMass(), fParticle.GetUpperMass());
-	fSigma1 = std_fix::make_unique<RooRealVar>("#sigma_{1}",
-		Form("%s width 1", fParticle.GetNameLaTeX()),
-		fParticle.GetGaussianSmallWidth(),
-		Settings::Fit::fSigmaScaleFactorLow * fParticle.GetGaussianSmallWidth(),
-		Settings::Fit::fSigmaScaleFactorUp  * fParticle.GetGaussianSmallWidth());
-	fSigma2 = std_fix::make_unique<RooRealVar>("#sigma_{2}",
-		Form("%s width 2", fParticle.GetNameLaTeX()),
-		fParticle.GetGaussianWideWidth(),
-		Settings::Fit::fSigmaScaleFactorLow * fParticle.GetGaussianWideWidth(),
-		Settings::Fit::fSigmaScaleFactorUp  * fParticle.GetGaussianWideWidth());
-	fGaussian1 = std_fix::make_unique<RooGaussian>("gauss1",
-		Form("Gaussian PDF 1 for #it{M}_{%s} distribution", fParticle.GetDaughterLabel()),
-		*fRooRealVar, *fMean, *fSigma1);
-	fGaussian2 = std_fix::make_unique<RooGaussian>("gauss2",
-		Form("Gaussian PDF 2 for #it{M}_{%s} distribution", fParticle.GetDaughterLabel()),
-		*fRooRealVar, *fMean, *fSigma2);
-	fNGauss1 = std_fix::make_unique<RooRealVar>("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
-	fNGauss2 = std_fix::make_unique<RooRealVar>("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
-	fComponents.add(*fGaussian1);
-	fComponents.add(*fGaussian2);
-	fNContributions.add(*fNGauss1);
-	fNContributions.add(*fNGauss2);
-}
+	/**
+	 * @brief Create a `RooFit` component for a double gaussian, with it's center around the reconstructed particle mass.
+	 */
+	void FitObject::BuildDoubleGaussian()
+	{
+		fMean = std_fix::make_unique<RooRealVar>(
+			Form("m_{%s}", fParticle.GetNameLaTeX()),
+			Form("%s mass", fParticle.GetNameLaTeX()),
+			fParticle.GetMass(), fParticle.GetLowerMass(), fParticle.GetUpperMass());
+		fSigma1 = std_fix::make_unique<RooRealVar>("#sigma_{1}",
+			Form("%s width 1", fParticle.GetNameLaTeX()),
+			fParticle.GetGaussianSmallWidth(),
+			Settings::Fit::fSigmaScaleFactorLow * fParticle.GetGaussianSmallWidth(),
+			Settings::Fit::fSigmaScaleFactorUp  * fParticle.GetGaussianSmallWidth());
+		fSigma2 = std_fix::make_unique<RooRealVar>("#sigma_{2}",
+			Form("%s width 2", fParticle.GetNameLaTeX()),
+			fParticle.GetGaussianWideWidth(),
+			Settings::Fit::fSigmaScaleFactorLow * fParticle.GetGaussianWideWidth(),
+			Settings::Fit::fSigmaScaleFactorUp  * fParticle.GetGaussianWideWidth());
+		fGaussian1 = std_fix::make_unique<RooGaussian>("gauss1",
+			Form("Gaussian PDF 1 for #it{M}_{%s} distribution", fParticle.GetDaughterLabel()),
+			*fRooRealVar, *fMean, *fSigma1);
+		fGaussian2 = std_fix::make_unique<RooGaussian>("gauss2",
+			Form("Gaussian PDF 2 for #it{M}_{%s} distribution", fParticle.GetDaughterLabel()),
+			*fRooRealVar, *fMean, *fSigma2);
+		fNGauss1 = std_fix::make_unique<RooRealVar>("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
+		fNGauss2 = std_fix::make_unique<RooRealVar>("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
+		fComponents.add(*fGaussian1);
+		fComponents.add(*fGaussian2);
+		fNContributions.add(*fNGauss1);
+		fNContributions.add(*fNGauss2);
+	}
 
-/**
- * @brief Auxiliary function that allows you to share functionality among constructors.
- */
-void FitObject::Initialize(TH1D& hist)
-{
-	SetRooRealVar();
-	SetInvMassDistr(hist);
-	fSigArgs.takeOwnership();
-	fBckArgs.takeOwnership();
-}
+	/**
+	 * @brief Auxiliary function that allows you to share functionality among constructors.
+	 */
+	void FitObject::Initialize(TH1D& hist)
+	{
+		SetRooRealVar();
+		SetInvMassDistr(hist);
+		fSigArgs.takeOwnership();
+		fBckArgs.takeOwnership();
+	}
 
 
 #endif

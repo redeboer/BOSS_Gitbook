@@ -108,6 +108,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7121e9afc2587bcad901ea025bada0d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a7121e9afc2587bcad901ea025bada0d0">Particle</a> (const char *pdgCode)</td></tr>
 <tr class="memdesc:a7121e9afc2587bcad901ea025bada0d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct particle based on its code in the PDG.  <a href="#a7121e9afc2587bcad901ea025bada0d0">More...</a><br /></td></tr>
 <tr class="separator:a7121e9afc2587bcad901ea025bada0d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a453db7c050e9e50dc7f7333d1c558bd5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a453db7c050e9e50dc7f7333d1c558bd5">IsLoaded</a> () const</td></tr>
+<tr class="separator:a453db7c050e9e50dc7f7333d1c558bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9f7152d465aadc5f9414edc45a47386"><td class="memItemLeft" align="right" valign="top">TParticlePDG *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#aa9f7152d465aadc5f9414edc45a47386">GetParticlePDG</a> () const</td></tr>
 <tr class="separator:aa9f7152d465aadc5f9414edc45a47386"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b8ac08a6780525067a126f69e42def7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a4b8ac08a6780525067a126f69e42def7">GetPDGCode</a> () const</td></tr>
@@ -159,7 +161,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Construct particle based on its code in the PDG. </p>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00065">65</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00068">68</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>
@@ -181,7 +183,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Construct particle based on its code in the PDG. </p>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00073">73</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00076">76</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>
@@ -212,7 +214,7 @@ Protected Attributes</h2></td></tr>
 <p>Determines a LaTeX string in <code>ROOT</code> format from the PDG code of the particle that was loaded. </p>
 <p>See instructions here: <a href="https://root.cern.ch/doc/master/classTLatex.html">https://root.cern.ch/doc/master/classTLatex.html</a>. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Expand the switch statement here if you miss any particles. See e.g. <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html,">http://home.fnal.gov/~mrenna/lutp0613man2/node44.html,</a> or use the <code>TDatabasePDG</code> in <code>ROOT</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00156">156</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00163">163</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>
@@ -232,7 +234,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>double Mass of the particle according to the PDG. Returns 0 if particle was not loaded. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00106">106</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00109">109</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>
@@ -252,7 +254,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>const char* Name of the particle as registered in the <code>TDatabasePDG</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00124">124</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00127">127</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>
@@ -272,7 +274,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>const char* Name of the particle in LaTeX <code>ROOT</code> format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00115">115</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00118">118</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>
@@ -292,7 +294,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>TParticlePDG* Pointer to the <code>TParticlePDG</code> in the <code>TDatabasePDG</code> (located in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code>). Is a <code>nullptr</code> if particle was not properly loaded. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00098">98</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00101">101</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>
@@ -312,7 +314,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>int PDG code, and 0 if particle was not loaded. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00133">133</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00136">136</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>
@@ -342,7 +344,26 @@ Protected Attributes</h2></td></tr>
 <p>Helper function for constructors. </p>
 <p>Sets remaining members based on <code>TParticlePDG</code> object that was set previously. </p>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00082">82</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00085">85</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+
+</div>
+</div>
+<a id="a453db7c050e9e50dc7f7333d1c558bd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a453db7c050e9e50dc7f7333d1c558bd5">&#9670;&nbsp;</a></span>IsLoaded()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Particle::IsLoaded </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00148">148</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>
@@ -369,7 +390,7 @@ Protected Attributes</h2></td></tr>
 
 <p><a class="el" href="classParticle.html">Particle</a> name in LaTeX format. </p>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00049">49</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00052">52</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>
@@ -395,7 +416,7 @@ Protected Attributes</h2></td></tr>
 
 <p>A pointer to its corresponding particle in the PDG. </p>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00047">47</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00050">50</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
 
 </div>
 </div>

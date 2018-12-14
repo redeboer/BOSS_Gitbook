@@ -1,5 +1,28 @@
 var searchData=
 [
-  ['initialize',['Initialize',['../classBOSSRootChain.html#a4708db2841ea95738c89cda8fcda4a2e',1,'BOSSRootChain::Initialize()'],['../classBOSSRootFile.html#a3cf31e409d40fc19ade885757af5979f',1,'BOSSRootFile::Initialize()'],['../classParticle.html#a843d99f5858367288ea43bf1e2e9e072',1,'Particle::Initialize()'],['../classReconstructedParticle.html#a03c956b9a28c14587c8bf9bc5a90d32d',1,'ReconstructedParticle::Initialize()'],['../classRhopiRootChain.html#a577763f1c5f6bd56f9b0cb11c6bd871a',1,'RhopiRootChain::Initialize()'],['../classRhopiRootFile.html#a5adbf50f64e23c3c8e6fcd19265c5251',1,'RhopiRootFile::Initialize()']]],
-  ['iszombie',['IsZombie',['../classBOSSRootFile.html#a868c91e1482044ce8b2e7924fc72d8fc',1,'BOSSRootFile']]]
+  ['gauss',['gauss',['../RooFitMacro_8C.html#a082d147d848fe3b37cb0861c4250b513',1,'RooFitMacro.C']]],
+  ['geff',['geff',['../classRhopiRootChain.html#a5e0b5275df9db37d0d3cf81cec8f0b02',1,'RhopiRootChain::geff()'],['../classRhopiRootFile.html#aa611de67c8ef76790b06524fa893b476',1,'RhopiRootFile::geff()']]],
+  ['getbwconvolutedwidth',['GetBWConvolutedWidth',['../classReconstructedParticle.html#ac2309d9b0cbadc959f19891b01baaf77',1,'ReconstructedParticle']]],
+  ['getbwpurewidth',['GetBWPureWidth',['../classReconstructedParticle.html#a416fa1770209d8e6aaa5ee0ff4b27069',1,'ReconstructedParticle']]],
+  ['getdaughterlabel',['GetDaughterLabel',['../classReconstructedParticle.html#a46c86512fc4b653a7dab11c90e1766d3',1,'ReconstructedParticle']]],
+  ['getdoublegaussianratio',['GetDoubleGaussianRatio',['../classReconstructedParticle.html#a15d2601c33507f5fdf9ab24b0ef9608d',1,'ReconstructedParticle']]],
+  ['getdoublegaussianwidths',['GetDoubleGaussianWidths',['../classReconstructedParticle.html#a30ad26544dfe2f23fafc10b4dad586f5',1,'ReconstructedParticle::GetDoubleGaussianWidths() const'],['../classReconstructedParticle.html#af6799482466f01c8e2979615ad18f2ea',1,'ReconstructedParticle::GetDoubleGaussianWidths(double &amp;from, double &amp;to) const']]],
+  ['getfitrange',['GetFitRange',['../classReconstructedParticle.html#a21e18f625cdf487ff3aa2f96fe6d2be1',1,'ReconstructedParticle::GetFitRange() const'],['../classReconstructedParticle.html#a22ba750c32e2051afa867e682ab191f4',1,'ReconstructedParticle::GetFitRange(double &amp;from, double &amp;to) const']]],
+  ['getgaussiansmallwidth',['GetGaussianSmallWidth',['../classReconstructedParticle.html#a1d001ba4d78e206c1644d35cbd2628da',1,'ReconstructedParticle']]],
+  ['getgaussianwidewidth',['GetGaussianWideWidth',['../classReconstructedParticle.html#a1ab06406414402dd711144353c03d5ad',1,'ReconstructedParticle']]],
+  ['getlistofchains',['GetListOfChains',['../classBOSSRootChain.html#a59cb568e9e52a54b640928bdadd286ac',1,'BOSSRootChain']]],
+  ['getlistofttrees',['GetListOfTTrees',['../classBOSSRootFile.html#a55a8ce3e66f1671ccdbb90cfd06285a3',1,'BOSSRootFile']]],
+  ['getlowermass',['GetLowerMass',['../classReconstructedParticle.html#a5b421a272556f4fe7bc59e0b6a7fce3d',1,'ReconstructedParticle']]],
+  ['getmass',['GetMass',['../classParticle.html#ad34f1d39fb95328fcfb59d74f71a736c',1,'Particle']]],
+  ['getmassoffsetpercentage',['GetMassOffsetPercentage',['../classReconstructedParticle.html#a130e103764c1162501de2c1f023c30b5',1,'ReconstructedParticle']]],
+  ['getname',['GetName',['../classParticle.html#a4f2ca39f24510c12afcb574c6bb57e42',1,'Particle']]],
+  ['getnamelatex',['GetNameLaTeX',['../classParticle.html#a0ad89f7795ac792af9aa0c553b555eee',1,'Particle']]],
+  ['getnumberofchains',['GetNumberOfChains',['../classBOSSRootChain.html#ad89900c3b015ab923b245c30200bc263',1,'BOSSRootChain']]],
+  ['getnumberofevents',['GetNumberOfEvents',['../classBOSSRootChain.html#ae188f2760b2151627c358b1ccc37cc73',1,'BOSSRootChain::GetNumberOfEvents()'],['../classBOSSRootFile.html#a1c2e2406263cf75798c229aea96b6e48',1,'BOSSRootFile::GetNumberOfEvents()']]],
+  ['getnumberoffiles',['GetNumberOfFiles',['../classBOSSRootChain.html#a849fb5099091d7283bd6c28d5275c2dc',1,'BOSSRootChain']]],
+  ['getparticlepdg',['GetParticlePDG',['../classParticle.html#aa9f7152d465aadc5f9414edc45a47386',1,'Particle']]],
+  ['getpdgcode',['GetPDGCode',['../classParticle.html#a4b8ac08a6780525067a126f69e42def7',1,'Particle']]],
+  ['getplotrange',['GetPlotRange',['../classReconstructedParticle.html#aec7bbf487e76d3fc2c5cdb1b61fbd6bf',1,'ReconstructedParticle::GetPlotRange() const'],['../classReconstructedParticle.html#a6731ad7c08ab43cfc7dde67fb7ee47c3',1,'ReconstructedParticle::GetPlotRange(double &amp;from, double &amp;to) const']]],
+  ['getuppermass',['GetUpperMass',['../classReconstructedParticle.html#add109d84e447cce041b5c0289ba4526e',1,'ReconstructedParticle']]],
+  ['getxaxis',['GetXaxis',['../RooFitMacro_8C.html#a0d0604c49c2f21bc6bc844af99825f6f',1,'RooFitMacro.C']]]
 ];

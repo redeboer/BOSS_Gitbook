@@ -90,10 +90,15 @@ $(document).ready(function(){initNavTree('CommonFunctions_8h.html','');});
 <code>#include &quot;<a class="el" href="Particle_8h_source.html">../inc/Particle.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ReconstructedParticle_8h_source.html">../inc/ReconstructedParticle.h</a>&quot;</code><br />
 <code>#include &quot;RooAddPdf.h&quot;</code><br />
+<code>#include &quot;RooBreitWigner.h&quot;</code><br />
+<code>#include &quot;RooCmdArg.h&quot;</code><br />
 <code>#include &quot;RooDataHist.h&quot;</code><br />
+<code>#include &quot;RooFFTConvPdf.h&quot;</code><br />
 <code>#include &quot;RooFitResult.h&quot;</code><br />
 <code>#include &quot;RooGaussian.h&quot;</code><br />
+<code>#include &quot;RooLinkedList.h&quot;</code><br />
 <code>#include &quot;RooPlot.h&quot;</code><br />
+<code>#include &quot;RooPolynomial.h&quot;</code><br />
 <code>#include &quot;RooRealVar.h&quot;</code><br />
 <code>#include &quot;TCanvas.h&quot;</code><br />
 <code>#include &quot;TH1.h&quot;</code><br />
@@ -102,6 +107,7 @@ $(document).ready(function(){initNavTree('CommonFunctions_8h.html','');});
 <code>#include &quot;TString.h&quot;</code><br />
 <code>#include &quot;TSystem.h&quot;</code><br />
 <code>#include &quot;TTree.h&quot;</code><br />
+<code>#include &lt;utility&gt;</code><br />
 </div>
 <p><a href="CommonFunctions_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -123,9 +129,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5b72d1379fdef201e8ecd070d3e8d34a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a5b72d1379fdef201e8ecd070d3e8d34a">CommonFunctions::LoopTree</a> (TTree *tree, FUNCTOR &amp;&amp;lambda, Rest &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a5b72d1379fdef201e8ecd070d3e8d34a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generalisation of the procedure when looping over a <code>TTree</code>.  <a href="namespaceCommonFunctions.html#a5b72d1379fdef201e8ecd070d3e8d34a">More...</a><br /></td></tr>
 <tr class="separator:a5b72d1379fdef201e8ecd070d3e8d34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68dac046f2abc6ec56e2cfa3ecbe8e54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a68dac046f2abc6ec56e2cfa3ecbe8e54">CommonFunctions::SetInvariantMassHistogram</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle, const int nBins=200)</td></tr>
-<tr class="memdesc:a68dac046f2abc6ec56e2cfa3ecbe8e54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a histogram object.  <a href="namespaceCommonFunctions.html#a68dac046f2abc6ec56e2cfa3ecbe8e54">More...</a><br /></td></tr>
-<tr class="separator:a68dac046f2abc6ec56e2cfa3ecbe8e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeef5cb3fa120622730a8813dc8344f57"><td class="memItemLeft" align="right" valign="top">TH1D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#aeef5cb3fa120622730a8813dc8344f57">CommonFunctions::CreateInvariantMassHistogram</a> (const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle, const int nBins=200)</td></tr>
+<tr class="memdesc:aeef5cb3fa120622730a8813dc8344f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a histogram object.  <a href="namespaceCommonFunctions.html#aeef5cb3fa120622730a8813dc8344f57">More...</a><br /></td></tr>
+<tr class="separator:aeef5cb3fa120622730a8813dc8344f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab84009bd8b434fc968fdcf5048adb8ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#ab84009bd8b434fc968fdcf5048adb8ce">CommonFunctions::DrawAndSave</a> (TTree *tree, const char *varexp, const char *selection, Option_t *option, TString logScale=&quot;&quot;)</td></tr>
 <tr class="memdesc:ab84009bd8b434fc968fdcf5048adb8ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that allows you to create and save a quick sketch of a <code>TTree</code> branch.  <a href="namespaceCommonFunctions.html#ab84009bd8b434fc968fdcf5048adb8ce">More...</a><br /></td></tr>
 <tr class="separator:ab84009bd8b434fc968fdcf5048adb8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,12 +144,35 @@ Functions</h2></td></tr>
 <tr class="memitem:a399e7717778afef343d57db1403181a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a399e7717778afef343d57db1403181a6">CommonFunctions::DrawAndSave</a> (TH2D &amp;hist, const char *saveas, TString logScale=&quot;&quot;)</td></tr>
 <tr class="memdesc:a399e7717778afef343d57db1403181a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw and save a 2D distribution (output folder is determined from <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code>).  <a href="namespaceCommonFunctions.html#a399e7717778afef343d57db1403181a6">More...</a><br /></td></tr>
 <tr class="separator:a399e7717778afef343d57db1403181a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f68d512a3ca945320862bfd6db7cdf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a1f68d512a3ca945320862bfd6db7cdf4">CommonFunctions::FitPureDoubleGaussian</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle)</td></tr>
-<tr class="memdesc:a1f68d512a3ca945320862bfd6db7cdf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit the sum of two Gaussian functions on a invariant mass distrubution.  <a href="namespaceCommonFunctions.html#a1f68d512a3ca945320862bfd6db7cdf4">More...</a><br /></td></tr>
-<tr class="separator:a1f68d512a3ca945320862bfd6db7cdf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa038c79c1d8d960be74f6cbdd6982c07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#aa038c79c1d8d960be74f6cbdd6982c07">CommonFunctions::FitBreitWigner</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle)</td></tr>
-<tr class="memdesc:aa038c79c1d8d960be74f6cbdd6982c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit the sum of two Gaussian functions on a invariant mass distrubution.  <a href="namespaceCommonFunctions.html#aa038c79c1d8d960be74f6cbdd6982c07">More...</a><br /></td></tr>
-<tr class="separator:aa038c79c1d8d960be74f6cbdd6982c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eaf8eb7255dbb6f92a7d8dbcd2e7f25"><td class="memItemLeft" align="right" valign="top">RooRealVar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a8eaf8eb7255dbb6f92a7d8dbcd2e7f25">CommonFunctions::CreateRooFitInvMassVar</a> (const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle)</td></tr>
+<tr class="memdesc:a8eaf8eb7255dbb6f92a7d8dbcd2e7f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <code>RooRealVar</code> specifically for resonstructing a certain particle (<code><a class="el" href="classReconstructedParticle.html" title="Container for particle data. ">ReconstructedParticle</a></code>).  <a href="namespaceCommonFunctions.html#a8eaf8eb7255dbb6f92a7d8dbcd2e7f25">More...</a><br /></td></tr>
+<tr class="separator:a8eaf8eb7255dbb6f92a7d8dbcd2e7f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15e30d18d200b6644825558ccf83fbc9"><td class="memItemLeft" align="right" valign="top">RooDataHist&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a15e30d18d200b6644825558ccf83fbc9">CommonFunctions::CreateRooFitInvMassDistr</a> (TH1D &amp;hist, const RooRealVar &amp;var, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle)</td></tr>
+<tr class="memdesc:a15e30d18d200b6644825558ccf83fbc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <code>RooDataHist</code> specifically for resonstructing a certain particle (<code><a class="el" href="classReconstructedParticle.html" title="Container for particle data. ">ReconstructedParticle</a></code>).  <a href="namespaceCommonFunctions.html#a15e30d18d200b6644825558ccf83fbc9">More...</a><br /></td></tr>
+<tr class="separator:a15e30d18d200b6644825558ccf83fbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab41e671da693362166c9ea735b056fa2"><td class="memTemplParams" colspan="2">template&lt;class... ARGS&gt; </td></tr>
+<tr class="memitem:ab41e671da693362166c9ea735b056fa2"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#ab41e671da693362166c9ea735b056fa2">CommonFunctions::DrawAndSaveRecursion</a> (Option_t *option, ARGS &amp;&amp;... args)</td></tr>
+<tr class="memdesc:ab41e671da693362166c9ea735b056fa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <code>DrawAndSaveRecursion</code> functions are necessary for <code>DrawAndSave</code>, which is a variadic template function.  <a href="namespaceCommonFunctions.html#ab41e671da693362166c9ea735b056fa2">More...</a><br /></td></tr>
+<tr class="separator:ab41e671da693362166c9ea735b056fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a495d51e9e81a262903484823d626cde5"><td class="memTemplParams" colspan="2">template&lt;class TYPE , class... ARGS&gt; </td></tr>
+<tr class="memitem:a495d51e9e81a262903484823d626cde5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a495d51e9e81a262903484823d626cde5">CommonFunctions::DrawAndSaveRecursion</a> (Option_t *option, TYPE first, ARGS... args)</td></tr>
+<tr class="separator:a495d51e9e81a262903484823d626cde5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4070318c4b6e768c9e17dfea2c4a8e8a"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a4070318c4b6e768c9e17dfea2c4a8e8a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a4070318c4b6e768c9e17dfea2c4a8e8a">CommonFunctions::DrawAndSaveRecursion</a> (Option_t *option)</td></tr>
+<tr class="separator:a4070318c4b6e768c9e17dfea2c4a8e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2263c9a59f82c52769b4c88faf5cbc6e"><td class="memTemplParams" colspan="2">template&lt;class ... ARGS&gt; </td></tr>
+<tr class="memitem:a2263c9a59f82c52769b4c88faf5cbc6e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a2263c9a59f82c52769b4c88faf5cbc6e">CommonFunctions::DrawAndSave</a> (const char *filename, Option_t *option, const char *logScale, ARGS... args)</td></tr>
+<tr class="memdesc:a2263c9a59f82c52769b4c88faf5cbc6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that allows you to draw and save any set of <code>TObject</code>s.  <a href="namespaceCommonFunctions.html#a2263c9a59f82c52769b4c88faf5cbc6e">More...</a><br /></td></tr>
+<tr class="separator:a2263c9a59f82c52769b4c88faf5cbc6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e6f77b4a672a03ace07686f595bf61c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a8e6f77b4a672a03ace07686f595bf61c">CommonFunctions::FitDoubleGaussian</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle, const UChar_t numPolynomials=0)</td></tr>
+<tr class="memdesc:a8e6f77b4a672a03ace07686f595bf61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit the sum of two Gaussian functions on a invariant mass distrubution.  <a href="namespaceCommonFunctions.html#a8e6f77b4a672a03ace07686f595bf61c">More...</a><br /></td></tr>
+<tr class="separator:a8e6f77b4a672a03ace07686f595bf61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f31d110f5ffaf3838766c5fcaa183b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#a4f31d110f5ffaf3838766c5fcaa183b0">CommonFunctions::FitBreitWigner</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle, const UChar_t numPolynomials=0)</td></tr>
+<tr class="memdesc:a4f31d110f5ffaf3838766c5fcaa183b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit the sum of two Gaussian functions on a invariant mass distrubution.  <a href="namespaceCommonFunctions.html#a4f31d110f5ffaf3838766c5fcaa183b0">More...</a><br /></td></tr>
+<tr class="separator:a4f31d110f5ffaf3838766c5fcaa183b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa23105c40906c16c293dc6dae88415a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions.html#aa23105c40906c16c293dc6dae88415a0">CommonFunctions::FitBWDoubleGaussianConvolution</a> (TH1D &amp;hist, const <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a> &amp;particle, const UChar_t numPolynomials=0)</td></tr>
+<tr class="memdesc:aa23105c40906c16c293dc6dae88415a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit the sum of two Gaussian functions on a invariant mass distrubution.  <a href="namespaceCommonFunctions.html#aa23105c40906c16c293dc6dae88415a0">More...</a><br /></td></tr>
+<tr class="separator:aa23105c40906c16c293dc6dae88415a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

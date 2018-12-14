@@ -12,6 +12,5 @@ var searchData=
   ['tofunitcm',['TofUnitCm',['../namespaceSettings_1_1Detector.html#a715b085f4483020a4a81cca11ee0a6e3',1,'Settings::Detector']]],
   ['tofunitmm',['TofUnitMm',['../namespaceSettings_1_1Detector.html#abb477379321d99bd67bac345e4764fe0',1,'Settings::Detector']]],
   ['tp',['tp',['../namespaceAnaBranches_1_1tof1.html#a0c67a9746f3ec984a9daae59907d2b88',1,'AnaBranches::tof1::tp()'],['../namespaceAnaBranches_1_1tof2.html#a76879db4482d62f0d6c6ab9158dc48fd',1,'AnaBranches::tof2::tp()'],['../namespaceAnaBranches_1_1tofe.html#aabdb17458a177b37c960aa43321165a0',1,'AnaBranches::tofe::tp()']]],
-  ['tpi',['tpi',['../namespaceAnaBranches_1_1tof1.html#a9bd1458f329c515bb6e284ceff734bde',1,'AnaBranches::tof1::tpi()'],['../namespaceAnaBranches_1_1tof2.html#afb5b564753b488adcbf62b32cd24cac8',1,'AnaBranches::tof2::tpi()'],['../namespaceAnaBranches_1_1tofe.html#a1f48ae33244693a44fb9002ee1108822',1,'AnaBranches::tofe::tpi()']]],
-  ['twopi',['TwoPi',['../namespaceSettings_1_1Math.html#a9c3a9794c14fa379d843b6ca4d84d530',1,'Settings::Math']]]
+  ['tpi',['tpi',['../namespaceAnaBranches_1_1tof1.html#a9bd1458f329c515bb6e284ceff734bde',1,'AnaBranches::tof1::tpi()'],['../namespaceAnaBranches_1_1tof2.html#afb5b564753b488adcbf62b32cd24cac8',1,'AnaBranches::tof2::tpi()'],['../namespaceAnaBranches_1_1tofe.html#a1f48ae33244693a44fb9002ee1108822',1,'AnaBranches::tofe::tpi()']]]
 ];

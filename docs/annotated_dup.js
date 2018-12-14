@@ -4,8 +4,12 @@ var annotated_dup =
     [ "Settings", "namespaceSettings.html", null ],
     [ "BOSSRootChain", "classBOSSRootChain.html", "classBOSSRootChain" ],
     [ "BOSSRootFile", "classBOSSRootFile.html", "classBOSSRootFile" ],
+    [ "FitObject", "classFitObject.html", "classFitObject" ],
+    [ "FitObjectDoubleGauss", "classFitObjectDoubleGauss.html", "classFitObjectDoubleGauss" ],
+    [ "KGamma", "classKGamma.html", "classKGamma" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],
+    [ "Rhopi", "classRhopi.html", "classRhopi" ],
     [ "RhopiRootChain", "classRhopiRootChain.html", "classRhopiRootChain" ],
     [ "RhopiRootFile", "classRhopiRootFile.html", "classRhopiRootFile" ]
 ];

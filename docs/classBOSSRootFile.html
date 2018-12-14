@@ -409,7 +409,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Initialize (null)pointers and clear the list of <code>TTree</code>s. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00433">433</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00453">453</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -459,7 +459,7 @@ Protected Attributes</h2></td></tr>
 
 <p>If the ROOT <code>TFile</code> could be successfully loaded, this method will generate a list of pointers to all <code>TTree</code>s in the main folder of the ROOT file. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00456">456</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00476">476</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -489,7 +489,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Attempt to open <code>TFile</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00441">441</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00461">461</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -557,23 +557,21 @@ Protected Attributes</h2></td></tr>
 
 <p>Plot a 1D distribution of one of the branches in the file. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Move these settings to <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code></dd></dl>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>Template that can be any type (like <code>double</code>, <code>int</code>, etc.) </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tree</td><td>Pointer to the <code>TTree</code> that you want to load a branch from. </td></tr>
     <tr><td class="paramname">branchName</td><td>Name of the branch that you are looking. </td></tr>
-    <tr><td class="paramname">address</td><td>Type (address) that you want to set. </td></tr>
     <tr><td class="paramname">nBins</td><td>The number of bins that you want to have in the resulting histogram. </td></tr>
+    <tr><td class="paramname">x1</td><td>Determines left side of the plot range. </td></tr>
+    <tr><td class="paramname">x2</td><td>Determines right side of the plot range. </td></tr>
+    <tr><td class="paramname">title</td><td>Determines title of the plot. </td></tr>
+    <tr><td class="paramname">opt</td><td>Draw options. </td></tr>
+    <tr><td class="paramname">outputFileName</td><td>Filename of the output file. Extension is set through <code><a class="el" href="CommonFunctions_8h.html">CommonFunctions.h</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00268">268</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00271">271</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -641,23 +639,21 @@ Protected Attributes</h2></td></tr>
 
 <p>Plot a 1D distribution of one of the branches in the file. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Move these settings to <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code></dd></dl>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>Template that can be any type (like <code>double</code>, <code>int</code>, etc.) </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">treeName</td><td>Name of the <code>TTree</code> you want to load. </td></tr>
+    <tr><td class="paramname">treeName</td><td>Name of the <code>TTree</code> that you want to load a branch from. </td></tr>
     <tr><td class="paramname">branchName</td><td>Name of the branch that you are looking. </td></tr>
-    <tr><td class="paramname">address</td><td>Type (address) that you want to set. </td></tr>
     <tr><td class="paramname">nBins</td><td>The number of bins that you want to have in the resulting histogram. </td></tr>
+    <tr><td class="paramname">x1</td><td>Determines left side of the plot range. </td></tr>
+    <tr><td class="paramname">x2</td><td>Determines right side of the plot range. </td></tr>
+    <tr><td class="paramname">title</td><td>Determines title of the plot. </td></tr>
+    <tr><td class="paramname">opt</td><td>Draw options. </td></tr>
+    <tr><td class="paramname">outputFileName</td><td>Filename of the output file. Extension is set through <code><a class="el" href="CommonFunctions_8h.html">CommonFunctions.h</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00326">326</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00332">332</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -755,24 +751,26 @@ Protected Attributes</h2></td></tr>
 
 <p>Plot a 2D distribution of one of the branches in the file. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Move these settings to <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code></dd></dl>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>Template that can be any type (like <code>double</code>, <code>int</code>, etc.) </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tree</td><td>Name of the <code>TTree</code> you want to load. </td></tr>
-    <tr><td class="paramname">branchX</td><td>Name of branch that will be plotted on the x axis </td></tr>
-    <tr><td class="paramname">branchY</td><td>Name of branch that will be plotted on the y axis </td></tr>
-    <tr><td class="paramname">address</td><td>Type (address) that you want to set. </td></tr>
-    <tr><td class="paramname">nBins</td><td>The number of bins that you want to have in the resulting histogram. </td></tr>
+    <tr><td class="paramname">tree</td><td>Pointer to the <code>TTree</code> that you want to load a branch from. </td></tr>
+    <tr><td class="paramname">branchX</td><td>Name of the X-branch that you are looking. </td></tr>
+    <tr><td class="paramname">branchY</td><td>Name of the Y-branch that you are looking. </td></tr>
+    <tr><td class="paramname">nBinsX</td><td>The number of bins that you want to have in the resulting histogram. </td></tr>
+    <tr><td class="paramname">x1</td><td>Determines left side of the plot range. </td></tr>
+    <tr><td class="paramname">x2</td><td>Determines right side of the plot range. </td></tr>
+    <tr><td class="paramname">nBinsY</td><td>The number of bins that you want to have in the resulting histogram. </td></tr>
+    <tr><td class="paramname">y1</td><td>Determines left side of the plot range. </td></tr>
+    <tr><td class="paramname">y2</td><td>Determines right side of the plot range. </td></tr>
+    <tr><td class="paramname">title</td><td>Determines title of the plot. </td></tr>
+    <tr><td class="paramname">opt</td><td>Draw options. </td></tr>
+    <tr><td class="paramname">setLogZ</td><td>Use a log scale in the Z-direction. </td></tr>
+    <tr><td class="paramname">outputFileName</td><td>Filename of the output file. Extension is set through <code><a class="el" href="CommonFunctions_8h.html">CommonFunctions.h</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00346">346</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00359">359</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -870,24 +868,26 @@ Protected Attributes</h2></td></tr>
 
 <p>Plot a 2D distribution of one of the branches in the file. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Move these settings to <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code></dd></dl>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>Template that can be any type (like <code>double</code>, <code>int</code>, etc.) </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">treeName</td><td>Name of the <code>TTree</code> you want to load. </td></tr>
-    <tr><td class="paramname">branchX</td><td>Name of branch that will be plotted on the x axis </td></tr>
-    <tr><td class="paramname">branchY</td><td>Name of branch that will be plotted on the y axis </td></tr>
-    <tr><td class="paramname">address</td><td>Type (address) that you want to set. </td></tr>
-    <tr><td class="paramname">nBins</td><td>The number of bins that you want to have in the resulting histogram. </td></tr>
+    <tr><td class="paramname">treeName</td><td>Name of the <code>TTree</code> that you want to load a branch from. </td></tr>
+    <tr><td class="paramname">branchX</td><td>Name of the X-branch that you are looking. </td></tr>
+    <tr><td class="paramname">branchY</td><td>Name of the Y-branch that you are looking. </td></tr>
+    <tr><td class="paramname">nBinsX</td><td>The number of bins that you want to have in the resulting histogram. </td></tr>
+    <tr><td class="paramname">x1</td><td>Determines left side of the plot range. </td></tr>
+    <tr><td class="paramname">x2</td><td>Determines right side of the plot range. </td></tr>
+    <tr><td class="paramname">nBinsY</td><td>The number of bins that you want to have in the resulting histogram. </td></tr>
+    <tr><td class="paramname">y1</td><td>Determines left side of the plot range. </td></tr>
+    <tr><td class="paramname">y2</td><td>Determines right side of the plot range. </td></tr>
+    <tr><td class="paramname">title</td><td>Determines title of the plot. </td></tr>
+    <tr><td class="paramname">opt</td><td>Draw options. </td></tr>
+    <tr><td class="paramname">setLogZ</td><td>Use a log scale in the Z-direction. </td></tr>
+    <tr><td class="paramname">outputFileName</td><td>Filename of the output file. Extension is set through <code><a class="el" href="CommonFunctions_8h.html">CommonFunctions.h</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00415">415</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00435">435</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -1027,7 +1027,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00488">488</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00508">508</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>

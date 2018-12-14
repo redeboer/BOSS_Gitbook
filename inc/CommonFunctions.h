@@ -2,11 +2,11 @@
 #define Physics_Analysis_CommonFunctions_H
 
 /**
- * @brief       Header that is used to collect functions that can be used by different scripts.
- * @description The idea of sharing these functions is to standardise output.
- * @author      Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
- * @date        November 20th, 2018
- * @remark      @b DEVELOPMENTAL
+ * @brief   Header that is used to collect functions that can be used by different scripts.
+ * @details The idea of sharing these functions is to standardise output.
+ * @author  Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+ * @date    November 20th, 2018
+ * @remark  @b DEVELOPMENTAL
  */
 
 
@@ -190,8 +190,10 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	 * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
 	 * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
 	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
+	 * 
 	 * @param hist Invariant mass histogram that you would like to fit
 	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	 * @param numPolynomials The degree of the polynomial that describes the background.
 	 */
 	void FitDoubleGaussian(TH1D &hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0)
 	{
@@ -299,8 +301,10 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	 * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
 	 * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
 	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
+	 * 
 	 * @param hist Invariant mass histogram that you would like to fit
 	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	 * @param numPolynomials The degree of the polynomial that describes the background.
 	 */
 	void FitBreitWigner(TH1D &hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0)
 	{
@@ -379,6 +383,7 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
 	 * @param hist Invariant mass histogram that you would like to fit
 	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	 * @param numPolynomials The degree of the polynomial that describes the background.
 	 */
 	void FitBWDoubleGaussianConvolution(TH1D &hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0)
 	{

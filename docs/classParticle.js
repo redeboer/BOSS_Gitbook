@@ -9,6 +9,7 @@ var classParticle =
     [ "GetParticlePDG", "classParticle.html#aa9f7152d465aadc5f9414edc45a47386", null ],
     [ "GetPDGCode", "classParticle.html#a4b8ac08a6780525067a126f69e42def7", null ],
     [ "Initialize", "classParticle.html#a843d99f5858367288ea43bf1e2e9e072", null ],
+    [ "IsLoaded", "classParticle.html#a453db7c050e9e50dc7f7333d1c558bd5", null ],
     [ "fParticleNameLaTeX", "classParticle.html#afd36e09313f192e586b4055ad8b7acc2", null ],
     [ "fParticlePDG", "classParticle.html#a08665826413095e79efd4a6a1ec3fabc", null ]
 ];

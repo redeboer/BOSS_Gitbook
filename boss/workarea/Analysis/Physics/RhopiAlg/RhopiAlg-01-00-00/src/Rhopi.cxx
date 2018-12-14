@@ -78,36 +78,37 @@
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
+/**
+ * @brief Constructor for the `Rhopi` algorithm.
+ * @details Here, you should declare properties: give them a name, assign a parameter (data member of `Rhopi`), and if required a documentation string. Note that you should define the paramters themselves in the header (RhopiAlg/Rhopi.h) and that you should assign the values in `share/jopOptions_Rhopi.txt`.
+ */
 // Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 Rhopi::Rhopi(const std::string& name, ISvcLocator* pSvcLocator) :
 	Algorithm(name, pSvcLocator) {
 
-	// * Define the properties * //
-		// Here, you set the fixed properties, such as cut variables or whether or not to test whether the 4-constraint fit procedure was successful. Not that you should define the variables themselves in the header (RhopiAlg/Rhopi.h).
+	// * Define r0, z0 cut for charged tracks *
+	declareProperty("Vr0cut",    m_vr0cut);
+	declareProperty("Vz0cut",    m_vz0cut);
+	declareProperty("Vrvz0cut",  m_rvz0cut);
+	declareProperty("Vrvxy0cut", m_rvxy0cut);
 
-		// * Define r0, z0 cut for charged tracks *
-		declareProperty("Vr0cut",    m_vr0cut   = 9999.); // 1.0
-		declareProperty("Vz0cut",    m_vz0cut   = 9999.); // 5.0
-		declareProperty("Vrvz0cut",  m_rvz0cut  =   10.);
-		declareProperty("Vrvxy0cut", m_rvxy0cut =    1.);
- 
-		// * Define energy, dphi, dthe cuts for fake gamma's *
-		declareProperty("EnergyThreshold", m_energyThreshold = 0.04);
-		declareProperty("GammaPhiCut",     m_gammaPhiCut     = 20.0);
-		declareProperty("GammaThetaCut",   m_gammaThetaCut   = 20.0);
-		declareProperty("GammaAngleCut",   m_gammaAngleCut   = 20.0);
+	// * Define energy, dphi, dthe cuts for fake gamma's *
+	declareProperty("EnergyThreshold", m_energyThreshold);
+	declareProperty("GammaPhiCut",     m_gammaPhiCut);
+	declareProperty("GammaThetaCut",   m_gammaThetaCut);
+	declareProperty("GammaAngleCut",   m_gammaAngleCut);
 
-		// * Define invariant mass window cut *
-		declareProperty("dM_rho0", m_dmrho0 = .150);
+	// * Define invariant mass window cut *
+	declareProperty("dM_rho0", m_dmrho0 = .150);
 
-		// * Whether to test the success of the 4- and 5-constraint fits *
-		declareProperty("Test4C",   m_test4C   = true); // write fit4c
-		declareProperty("Test5C",   m_test5C   = true); // write fit5c and geff
-		declareProperty("MaxChiSq", m_maxChiSq = 200.); // chisq for both fits should be less
+	// * Whether to test the success of the 4- and 5-constraint fits *
+	declareProperty("Test4C",   m_test4C); // write fit4c
+	declareProperty("Test5C",   m_test5C); // write fit5c and geff
+	declareProperty("MaxChiSq", m_maxChiSq); // chisq for both fits should be less
 
-		// * Whether or not to check success of Particle Identification *
-		declareProperty("CheckDedx", m_checkDedx = true);
-		declareProperty("CheckTof",  m_checkTof  = true);
+	// * Whether or not to check success of Particle Identification *
+	declareProperty("CheckDedx", m_checkDedx);
+	declareProperty("CheckTof",  m_checkTof);
 
 }
 
@@ -362,7 +363,7 @@ StatusCode Rhopi::initialize(){
 // * -------- EXECUTE -------- * //
 // * ========================= * //
 /**
- * @brief Inherited `execute` stop of the `Algorithm`. This function is called *for each event*.
+ * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
  */
 StatusCode Rhopi::execute() {
 
@@ -1012,6 +1013,10 @@ StatusCode Rhopi::execute() {
 // * ========================== * //
 // * -------- FINALIZE -------- * //
 // * ========================== * //
+/**
+ * @brief Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events.
+ * @details Prints the flow chart to the terminal, so make sure you save this output!
+ */
 StatusCode Rhopi::finalize() {
 
 	MsgStream log(msgSvc(), name());
