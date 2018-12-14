@@ -31,10 +31,9 @@ public:
 	Rhopi(const std::string& name, ISvcLocator* pSvcLocator);
 
 	// * Algorithm steps *
-	// ! Already implemented in `Algorithm` base class
-	// StatusCode initialize();
-	// StatusCode execute();
-	// StatusCode finalize();
+	StatusCode initialize();
+	StatusCode execute();
+	StatusCode finalize();
 
 private:
 

@@ -388,7 +388,7 @@ StatusCode KGamma::execute() {
 			http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html (class)
 			http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html (typedef EvtRecTrackCol)
 			*/
-		SmartDataPtr<EvtRecEvent>    evtRecEven  (eventSvc(), EventModel::EvtRec::EvtRecEvent);
+		SmartDataPtr<EvtRecEvent>    evtRecEvent (eventSvc(), EventModel::EvtRec::EvtRecEvent);
 		SmartDataPtr<EvtRecTrackCol> evtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
 
 		// * Log number of events *
