@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kgamma',['KGamma',['../classKGamma.html',1,'']]]
+  ['jpsidzerophi',['JpsiDzeroPhi',['../classJpsiDzeroPhi.html',1,'']]]
 ];

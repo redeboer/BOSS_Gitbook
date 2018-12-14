@@ -16,12 +16,12 @@ var files =
     ] ],
     [ "FitObjectDoubleGauss.h", "FitObjectDoubleGauss_8h.html", "FitObjectDoubleGauss_8h" ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
-    [ "KGamma.cxx", "KGamma_8cxx.html", "KGamma_8cxx" ],
-    [ "KGamma.h", "KGamma_8h.html", [
-      [ "KGamma", "classKGamma.html", "classKGamma" ]
+    [ "JpsiDzero.h", "JpsiDzero_8h.html", [
+      [ "JpsiDzeroPhi", "classJpsiDzeroPhi.html", "classJpsiDzeroPhi" ]
     ] ],
-    [ "KGamma_entries.cxx", "KGamma__entries_8cxx.html", "KGamma__entries_8cxx" ],
-    [ "KGamma_load.cxx", "KGamma__load_8cxx.html", null ],
+    [ "JpsiDzeroPhi.cxx", "JpsiDzeroPhi_8cxx.html", "JpsiDzeroPhi_8cxx" ],
+    [ "JpsiDzeroPhi_entries.cxx", "JpsiDzeroPhi__entries_8cxx.html", "JpsiDzeroPhi__entries_8cxx" ],
+    [ "JpsiDzeroPhi_load.cxx", "JpsiDzeroPhi__load_8cxx.html", null ],
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],
     [ "PlotRhopi.C", "PlotRhopi_8C.html", "PlotRhopi_8C" ],
     [ "QuickPlotRhopi.C", "QuickPlotRhopi_8C.html", "QuickPlotRhopi_8C" ],

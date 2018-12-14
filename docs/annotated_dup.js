@@ -6,7 +6,7 @@ var annotated_dup =
     [ "BOSSRootFile", "classBOSSRootFile.html", "classBOSSRootFile" ],
     [ "FitObject", "classFitObject.html", "classFitObject" ],
     [ "FitObjectDoubleGauss", "classFitObjectDoubleGauss.html", "classFitObjectDoubleGauss" ],
-    [ "KGamma", "classKGamma.html", "classKGamma" ],
+    [ "JpsiDzeroPhi", "classJpsiDzeroPhi.html", "classJpsiDzeroPhi" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],
     [ "Rhopi", "classRhopi.html", "classRhopi" ],
