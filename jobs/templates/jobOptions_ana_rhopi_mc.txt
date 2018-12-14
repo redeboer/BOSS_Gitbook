@@ -5,8 +5,7 @@
 #include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
 #include "$MAGNETICFIELDROOT/share/MagneticField.txt"
 #include "$ABSCORROOT/share/jobOptions_AbsCor.txt"
-//#include "$RHOPIALGROOT/share/jobOptions_Rhopi.txt"
-#include "/ihepbatch/bes/deboer/workarea-7.0.3/Physics/RhopiAlg/RhopiAlg-00-00-23/share/jobOptions_Rhopi.txt"
+#include "$RHOPIALGROOT/share/jobOptions_Rhopi.txt"
 
 // * ------- ROOT input data file (rec or dst) ------- * //
 EventCnvSvc.digiRootInputFile = {"OUTPUT_PATH/DSTFILE"};
