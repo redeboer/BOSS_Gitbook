@@ -13,7 +13,6 @@
 	#include "EvtRecEvent/EvtRecTrack.h"
 	#include "GaudiKernel/AlgFactory.h"
 	#include "GaudiKernel/Bootstrap.h"
-	#include "GaudiKernel/Bootstrap.h"
 	#include "GaudiKernel/IDataProviderSvc.h"
 	#include "GaudiKernel/IHistogramSvc.h"
 	#include "GaudiKernel/INTupleSvc.h"
@@ -66,12 +65,12 @@
 
 
 	// * Counters for generating cut flow * //
-		int Ncut0; // no cuts
+		int Ncut0; // counter for all events (no cuts)
 		int Ncut1; // nGood!=2 or nCharge!=0
 		int Ncut2; // number of photons < 2
-		int Ncut3; //
-		int Ncut4; //
-		int Ncut5; // "fit5c" branch
+		int Ncut3; // pass PID
+		int Ncut4; // pass fit4c
+		int Ncut5; // pass fit5c
 		int Ncut6; // "geff" branch
 
 
@@ -79,6 +78,7 @@
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
+// Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 KGamma::KGamma(const std::string& name, ISvcLocator* pSvcLocator) :
 	Algorithm(name, pSvcLocator) {
 
@@ -86,11 +86,11 @@ KGamma::KGamma(const std::string& name, ISvcLocator* pSvcLocator) :
 		// Here, you set the fixed properties, such as cut variables or whether or not to test whether the 4-constraint fit procedure was successful. Not that you should define the variables themselves in the header (KGamma/KGamma.h).
 
 		// * Define r0, z0 cut for charged tracks *
-		declareProperty("Vr0cut", m_vr0cut   = 1.0);
-		declareProperty("Vz0cut", m_vz0cut   = 5.0);
-		declareProperty("Vr0cut", m_rvz0cut  = 10.0);
-		declareProperty("Vz0cut", m_rvxy0cut = 1.0);
-
+		declareProperty("Vr0cut",    m_vr0cut   = 9999.); // 1.0
+		declareProperty("Vz0cut",    m_vz0cut   = 9999.); // 5.0
+		declareProperty("Vrvz0cut",  m_rvz0cut  =   10.);
+		declareProperty("Vrvxy0cut", m_rvxy0cut =    1.);
+ 
 		// * Define energy, dphi, dthe cuts for fake gamma's *
 		declareProperty("EnergyThreshold", m_energyThreshold = 0.04);
 		declareProperty("GammaPhiCut",     m_gammaPhiCut     = 20.0);
@@ -101,9 +101,9 @@ KGamma::KGamma(const std::string& name, ISvcLocator* pSvcLocator) :
 		declareProperty("dM_rho0", m_dmrho0 = .150);
 
 		// * Whether to test the success of the 4- and 5-constraint fits *
-		declareProperty("Test4C",   m_test4C   = true);
-		declareProperty("Test5C",   m_test5C   = true);
-		declareProperty("MaxChiSq", m_maxChiSq = 200.);
+		declareProperty("Test4C",   m_test4C   = true); // write fit4c
+		declareProperty("Test5C",   m_test5C   = true); // write fit5c and geff
+		declareProperty("MaxChiSq", m_maxChiSq = 200.); // chisq for both fits should be less
 
 		// * Whether or not to check success of Particle Identification *
 		declareProperty("CheckDedx", m_checkDedx = true);
@@ -116,6 +116,10 @@ KGamma::KGamma(const std::string& name, ISvcLocator* pSvcLocator) :
 // * ========================== * //
 // * ------- INITIALIZE ------- * //
 // * ========================== * //
+/**
+ * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
+ * @details Define and load NTuples here.
+ */
 StatusCode KGamma::initialize(){
 
 	MsgStream log(msgSvc(), name());
@@ -147,10 +151,10 @@ StatusCode KGamma::initialize(){
 		else {
 			m_tuple_ang = ntupleSvc()->book("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
 			if(m_tuple_ang) {
-				m_tuple_ang->addItem ("dthe", m_dthe); // theta difference with nearest charged track (degrees)
-				m_tuple_ang->addItem ("dphi", m_dphi); // phi difference with nearest charged track (degrees)
-				m_tuple_ang->addItem ("dang", m_dang); // angle difference with nearest charged track
-				m_tuple_ang->addItem ("eraw", m_eraw); // energy of the photon
+				m_tuple_ang->addItem("dthe", m_dthe); // theta difference with nearest charged track (degrees)
+				m_tuple_ang->addItem("dphi", m_dphi); // phi difference with nearest charged track (degrees)
+				m_tuple_ang->addItem("dang", m_dang); // angle difference with nearest charged track
+				m_tuple_ang->addItem("eraw", m_eraw); // energy of the photon
 			}
 			else {
 				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_ang) << endmsg;
@@ -164,8 +168,8 @@ StatusCode KGamma::initialize(){
 		else {
 			m_tuple_mgg = ntupleSvc()->book("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
 			if(m_tuple_mgg) {
-				m_tuple_mgg->addItem ("m2gg", m_m2gg); // invariant mass of the two gammas
-				m_tuple_mgg->addItem ("etot", m_etot); // total energy of pi^+, pi^ and the two gammas
+				m_tuple_mgg->addItem("m2gg", m_m2gg); // invariant mass of the two gammas
+				m_tuple_mgg->addItem("etot", m_etot); // total energy of pi^+, pi^ and the two gammas
 			}
 			else {
 				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_mgg) << endmsg;
@@ -180,8 +184,8 @@ StatusCode KGamma::initialize(){
 			else {
 				m_tuple_fit4c = ntupleSvc()->book("FILE1/fit4c", CLID_ColumnWiseTuple, "ks N-Tuple example");
 				if(m_tuple_fit4c ) {
-					m_tuple_fit4c->addItem ("mpi0", m_mpi0); // invariant pi0 mass according to Kalman kinematic fit
-					m_tuple_fit4c->addItem ("chi2", m_chi1); // chi square of the Kalman kinematic fit
+					m_tuple_fit4c->addItem("mpi0", m_mpi0); // invariant pi0 mass according to Kalman kinematic fit
+					m_tuple_fit4c->addItem("chi2", m_chi1); // chi square of the Kalman kinematic fit
 				}
 				else {
 					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_fit4c) << endmsg;
@@ -197,10 +201,10 @@ StatusCode KGamma::initialize(){
 			else {
 				m_tuple_fit5c = ntupleSvc()->book("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
 				if(m_tuple_fit5c) {
-					m_tuple_fit5c->addItem ("chi2",  m_chi2);  // chi squared of the Kalman kinematic fit
-					m_tuple_fit5c->addItem ("mrho0", m_mrho0); // inv. mass pi^+ pi^- (rho^0)
-					m_tuple_fit5c->addItem ("mrhop", m_mrhop); // inv. mass pi^0 pi^+ (rho^+)
-					m_tuple_fit5c->addItem ("mrhom", m_mrhom); // inv. mass pi^0 pi^- (rho^-)
+					m_tuple_fit5c->addItem("chi2",  m_chi2);  // chi squared of the Kalman kinematic fit
+					m_tuple_fit5c->addItem("mrho0", m_mrho0); // inv. mass pi^+ pi^- (rho^0)
+					m_tuple_fit5c->addItem("mrhop", m_mrhop); // inv. mass pi^0 pi^+ (rho^+)
+					m_tuple_fit5c->addItem("mrhom", m_mrhom); // inv. mass pi^0 pi^- (rho^-)
 				}
 				else {
 					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_fit5c) << endmsg;
@@ -214,8 +218,8 @@ StatusCode KGamma::initialize(){
 			else {
 				m_tuple_photon = ntupleSvc()->book("FILE1/geff", CLID_ColumnWiseTuple, "ks N-Tuple example");
 				if(m_tuple_photon) {
-					m_tuple_photon->addItem ("fcos", m_fcos); // E/p ratio for pi^0 candidate
-					m_tuple_photon->addItem ("elow", m_elow); // lowest energy of the two gammas
+					m_tuple_photon->addItem("fcos", m_fcos); // E/p ratio for pi^0 candidate
+					m_tuple_photon->addItem("elow", m_elow); // lowest energy of the two gammas
 				}
 				else {
 					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_photon) << endmsg;
@@ -231,16 +235,16 @@ StatusCode KGamma::initialize(){
 			else {
 				m_tuple_dedx = ntupleSvc()->book("FILE1/dedx", CLID_ColumnWiseTuple, "ks N-Tuple example");
 				if(m_tuple_dedx) {
-					m_tuple_dedx->addItem ("ptrk",   m_ptrk);   // momentum of the track
-					m_tuple_dedx->addItem ("chie",   m_chie);   // chi2 in case of electron
-					m_tuple_dedx->addItem ("chimu",  m_chimu);  // chi2 in case of muon
-					m_tuple_dedx->addItem ("chipi",  m_chipi);  // chi2 in case of pion
-					m_tuple_dedx->addItem ("chik",   m_chik);   // chi2 in case of kaon
-					m_tuple_dedx->addItem ("chip",   m_chip);   // chi2 in case of proton
-					m_tuple_dedx->addItem ("probPH", m_probPH); // most probable pulse height from truncated mean
-					m_tuple_dedx->addItem ("normPH", m_normPH); // normalized pulse height
-					m_tuple_dedx->addItem ("ghit",   m_ghit);   // number of good hits
-					m_tuple_dedx->addItem ("thit",   m_thit);   // total number of hits
+					m_tuple_dedx->addItem("ptrk",   m_ptrk);   // momentum of the track
+					m_tuple_dedx->addItem("chie",   m_chie);   // chi2 in case of electron
+					m_tuple_dedx->addItem("chimu",  m_chimu);  // chi2 in case of muon
+					m_tuple_dedx->addItem("chipi",  m_chipi);  // chi2 in case of pion
+					m_tuple_dedx->addItem("chik",   m_chik);   // chi2 in case of kaon
+					m_tuple_dedx->addItem("chip",   m_chip);   // chi2 in case of proton
+					m_tuple_dedx->addItem("probPH", m_probPH); // most probable pulse height from truncated mean
+					m_tuple_dedx->addItem("normPH", m_normPH); // normalized pulse height
+					m_tuple_dedx->addItem("ghit",   m_ghit);   // number of good hits
+					m_tuple_dedx->addItem("thit",   m_thit);   // total number of hits
 				}
 				else {
 					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_dedx) << endmsg;
@@ -303,7 +307,7 @@ StatusCode KGamma::initialize(){
 			}
 		}
 
-	// * NTuple: ToF outer barrel branch (tof2) * //
+	// * NTuple: check ToF outer barrel branch (tof2) * //
 		if(m_checkTof) {
 			NTuplePtr nt10(ntupleSvc(), "FILE1/tof2");
 			if ( nt10 ) m_tuple_tof_ob = nt10;
@@ -336,12 +340,12 @@ StatusCode KGamma::initialize(){
 		else {
 			m_tuple_pid = ntupleSvc()->book("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
 			if(m_tuple_pid) {
-				m_tuple_pid->addItem ("ptrk", m_ptrk_pid); // momentum of the track
-				m_tuple_pid->addItem ("cost", m_cost_pid); // theta angle of the track
-				m_tuple_pid->addItem ("dedx", m_dedx_pid); // Chi2 of the dedx of the track
-				m_tuple_pid->addItem ("tof1", m_tof1_pid); // Chi2 of the inner barrel ToF of the track
-				m_tuple_pid->addItem ("tof2", m_tof2_pid); // Chi2 of the outer barrel ToF of the track
-				m_tuple_pid->addItem ("prob", m_prob_pid); // probability that it is a pion
+				m_tuple_pid->addItem("ptrk", m_ptrk_pid); // momentum of the track
+				m_tuple_pid->addItem("cost", m_cost_pid); // theta angle of the track
+				m_tuple_pid->addItem("dedx", m_dedx_pid); // Chi2 of the dedx of the track
+				m_tuple_pid->addItem("tof1", m_tof1_pid); // Chi2 of the inner barrel ToF of the track
+				m_tuple_pid->addItem("tof2", m_tof2_pid); // Chi2 of the outer barrel ToF of the track
+				m_tuple_pid->addItem("prob", m_prob_pid); // probability that it is a pion
 			} else {
 				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_pid) << endmsg;
 				return StatusCode::FAILURE;
@@ -357,33 +361,40 @@ StatusCode KGamma::initialize(){
 // * ========================= * //
 // * -------- EXECUTE -------- * //
 // * ========================= * //
+/**
+ * @brief Inherited `execute` stop of the `Algorithm`. This function is called *for each event*.
+ */
 StatusCode KGamma::execute() {
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "In execute():" << endreq;
 
-	// * Extract run and event info * //
+	// * Load next event from DST file * //
 	// NOTE: Ncut0 -- no cut yet
 
 		// * Load DST file info *
-		SmartDataPtr<Event::EventHeader> eventHeader(eventSvc(),"/Event/EventHeader");
+		SmartDataPtr<Event::EventHeader> eventHeader(eventSvc(), "/Event/EventHeader");
 		int runNo = eventHeader->runNumber();
-		int event = eventHeader->eventNumber();
+		int evtNo = eventHeader->eventNumber();
 		log << MSG::DEBUG << "run, evtnum = "
-				<< runNo << " , "
-				<< event << endreq;
-		cout << "event "<< event << endl;
+		    << runNo << " , "
+		    << evtNo << endreq;
+		cout << "event number: " << evtNo << endl;
 		Ncut0++; // counter for all events
 
-		// * Collection of events
-		SmartDataPtr<EvtRecEvent>    evtRecEvent(eventSvc(),  EventModel::EvtRec::EvtRecEvent);
-		// * Collection of ALL tracks (not event-wise!)
+		// * Load event information and track collection *
+			/*
+			http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html (namespace)
+			http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html (class)
+			http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html (typedef EvtRecTrackCol)
+			*/
+		SmartDataPtr<EvtRecEvent>    evtRecEven  (eventSvc(), EventModel::EvtRec::EvtRecEvent);
 		SmartDataPtr<EvtRecTrackCol> evtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
 
-		// * Print number oevents
-		log << MSG::DEBUG << "ncharg, nneu, tottks = "
-		    << evtRecEvent->totalCharged() << " , "
-		    << evtRecEvent->totalNeutral() << " , "
+		// * Log number of events *
+		log << MSG::DEBUG << "Ncharged, Nneutral, Ntotal = "
+		    << evtRecEvent->totalCharged() << ", "
+		    << evtRecEvent->totalNeutral() << ", "
 		    << evtRecEvent->totalTracks() << endreq;
 
 
@@ -395,17 +406,20 @@ StatusCode KGamma::execute() {
 			double* dbv = vtxsvc->PrimaryVertex();
 			double* vv = vtxsvc->SigmaPrimaryVertex();
 			// HepVector dbv = m_reader.PrimaryVertex(runNo);
-			// HepVector vv = m_reader.SigmaPrimaryVertex(runNo);
+			// HepVector vv  = m_reader.SigmaPrimaryVertex(runNo);
 			xorigin.setX(dbv[0]);
 			xorigin.setY(dbv[1]);
 			xorigin.setZ(dbv[2]);
 		}
 
 
-	// * LOOP OVER CHARGED TRACKS * //
-		// The first part of the set of reconstructed events consists of the charged tracks
+	// * LOOP OVER CHARGED TRACKS: select charged tracks (eventual pions) * //
+	// NOTE: Ncut1 -- nGood has to be 2, mdcTrk->charge() has to be more than 0
+		// The first part of the set of reconstructed tracks are the charged tracks
 		int nCharge = 0;
+			//!< Number of charged tracks as identified by the MDC.
 		Vint iGood;
+			//!< vector of integers that give the position of tracks in the `evtRecEvent` marked good.
 		for(int i = 0; i < evtRecEvent->totalCharged(); ++i) {
 
 			// * Get track: beginning of all tracks + event number
@@ -448,8 +462,8 @@ StatusCode KGamma::execute() {
 			m_tuple_vxyz->write(); // "vxyz" branch
 
 			// * Apply vertex cuts *
-			// if(fabs(z0)  >= m_vz0cut) continue;
-			// if(fabs(Rxy) >= m_vr0cut) continue;
+			if(fabs(z0)    >= m_vz0cut)   continue;
+			if(fabs(Rxy)   >= m_vr0cut)   continue;
 			if(fabs(Rvz0)  >= m_rvz0cut)  continue;
 			if(fabs(Rvxy0) >= m_rvxy0cut) continue;
 
@@ -459,9 +473,7 @@ StatusCode KGamma::execute() {
 
 		}
 
-
-	// * Finish Good Charged Track Selection * //
-	// NOTE: Ncut1 -- nGood has to be 2, mdcTrk->charge() has to be more than 0
+		// * Finish Good Charged Track Selection * //
 		int nGood = iGood.size();
 		log << MSG::DEBUG << "ngood, totcharge = " << nGood << " , " << nCharge << endreq;
 		if((nGood != 2)||(nCharge!=0)){
@@ -470,19 +482,19 @@ StatusCode KGamma::execute() {
 		Ncut1++; // nGood!=2 or nCharge!=0
 
 
-	// * LOOP OVER NEUTRAL TRACKS * //
-		// The second part of the set of reconstructed events consists of the neutral tracks
+	// * LOOP OVER NEUTRAL TRACKS: select photons * //
+	// NOTE: Ncut2 -- number of good photons has to be 2 at least
+		// The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired with each charged track and if their angle is smaller than a certain value (here, 200), the photon track is stored as 'good photon' (added to `iGam`).
 		Vint iGam;
-		iGam.clear();
 		for(int i = evtRecEvent->totalCharged(); i < evtRecEvent->totalTracks(); ++i) {
 
-			// * Get track *
+			// * Get track
 			EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + i;
 			if(!(*itTrk)->isEmcShowerValid()) continue;
 			RecEmcShower *emcTrk = (*itTrk)->emcShower();
 			Hep3Vector emcpos(emcTrk->x(), emcTrk->y(), emcTrk->z());
 
-			// * Find the theta, phi, and angle difference with nearest charged track *
+			// * Find the theta, phi, and angle difference with nearest charged track
 			double dthe = 200.; // start value for difference in theta
 			double dphi = 200.; // start value for difference in phi
 			double dang = 200.; // start value for difference in angle (?)
@@ -504,32 +516,32 @@ StatusCode KGamma::execute() {
 					dphi = phid;
 				}
 			}
+
+			// * Apply angle cut
 			if(dang>=200) continue;
 			double eraw = emcTrk->energy();
 			dthe = dthe * 180 / (CLHEP::pi);
 			dphi = dphi * 180 / (CLHEP::pi);
 			dang = dang * 180 / (CLHEP::pi);
 
-			// * WRITE photon info ("photon" branch) *
+			// * WRITE photon info ("photon" branch)
 			m_dthe = dthe; // theta difference with nearest charged track (degrees)
 			m_dphi = dphi; // phi difference with nearest charged track (degrees)
 			m_dang = dang; // angle difference with nearest charged track
 			m_eraw = eraw; // energy of the photon
 			m_tuple_ang->write(); // "photon" branch
 
-			// * Apply photon cuts *
+			// * Apply photon cuts
 			if(eraw < m_energyThreshold) continue;
 			if((fabs(dthe) < m_gammaThetaCut) && (fabs(dphi) < m_gammaPhiCut) ) continue;
 			if(fabs(dang) < m_gammaAngleCut) continue;
 
-			// * Add photon track to vector *
+			// * Add photon track to vector
 			iGam.push_back(i);
 
 		}
 
-
-	// * Finish Good Photon Selection * //
-	// NOTE: Ncut2 -- number of good photons has to be 2 at least
+		// * Finish Good Photon Selection *
 		int nGam = iGam.size();
 		log << MSG::DEBUG << "Number of good photons: " << nGam << " , " << evtRecEvent->totalNeutral() << endreq;
 		if(nGam<2) {
@@ -538,7 +550,7 @@ StatusCode KGamma::execute() {
 		Ncut2++; // number of photons < 2
 
 
-	// * Check dedx PID infomation * //
+	// * Check charged track dEdx PID information * //
 		if(m_checkDedx) {
 			for(int i = 0; i < nGood; ++i) {
 
@@ -565,7 +577,7 @@ StatusCode KGamma::execute() {
 		}
 
 
-	// * Check ToF infomation (if needed) * //
+	// * Check charged track ToF PID information * //
 		if(m_checkTof) {
 			for(int i = 0; i < nGood; ++i) {
 				EvtRecTrackIterator  itTrk = evtRecTrkCol->begin() + iGood[i];
@@ -664,7 +676,7 @@ StatusCode KGamma::execute() {
 							for(int j = 0; j < 5; j++) {
 								double gb = ptrk/xmass[j]; // v = p/m (non-relativistic velocity)
 								double beta = gb/sqrt(1+gb*gb);
-								texp[j] = 10 * path /beta/velc_mm; // hypothesis ToF
+								texp[j] = 10 * path/beta/velc_mm; // hypothesis ToF
 							}
 
 							// * WRITE ToF outer barrel info ("tof2" branch) *
@@ -688,9 +700,8 @@ StatusCode KGamma::execute() {
 		}
 
 
-	// * Assign 4-momentum to each photon * //
+	// * Get 4-momentum for each photon * //
 		Vp4 pGam;
-		pGam.clear();
 		for(int i = 0; i < nGam; ++i) {
 			EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGam[i];
 			RecEmcShower* emcTrk = (*itTrk)->emcShower();
@@ -702,13 +713,13 @@ StatusCode KGamma::execute() {
 			ptrk.setPy(eraw*sin(the)*sin(phi));
 			ptrk.setPz(eraw*cos(the));
 			ptrk.setE(eraw);
-			// ptrk = ptrk.boost(-0.011,0,0); // boost to cms
+			// ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
 			pGam.push_back(ptrk);
 		}
 		// cout << "before pid" << endl;
 
 
-	// * Assign 4-momentum to each charged track * //
+	// * Get 4-momentum for each charged track * //
 		Vint ipip, ipim; // vector of number of good tracks
 		Vp4  ppip, ppim; // vector of momenta
 		ParticleID *pid = ParticleID::instance();
@@ -1008,14 +1019,14 @@ StatusCode KGamma::finalize() {
 
 	// * Print flow chart * //
 		cout << "Resulting FLOW CHART:" << endl;
-		cout << "  Total number of events: " << Ncut0 << endl;
-		cout << "  nGood==2, nCharge==0:   " << Ncut1 << endl;
-		cout << "  nGam>=2:                " << Ncut2 << endl;
-		cout << "  Pass PID:               " << Ncut3 << endl;
-		cout << "  Pass 4C Kalman fit:     " << Ncut4 << endl;
-		cout << "  Pass 5C Kalman fit:     " << Ncut5 << endl;
-		cout << "  J/psi -> rho0 pi0:      " << Ncut6 << endl;
-		cout << endl;
+		cout << "  (0) Total number of events: " << Ncut0 << endl;
+		cout << "  (1) nGood==2, nCharge==0:   " << Ncut1 << endl;
+		cout << "  (2) nGam>=2:                " << Ncut2 << endl;
+		cout << "  (3) Pass PID:               " << Ncut3 << endl;
+		cout << "  (4) Pass 4C Kalman fit:     " << Ncut4 << endl;
+		cout << "  (5) Pass 5C Kalman fit:     " << Ncut5 << endl;
+		cout << "  (6) J/psi -> rho0 pi0:      " << Ncut6 << endl;
+		cout << endl ;
 
 	log << MSG::INFO << "Successfully returned from finalize()" << endmsg;
 	return StatusCode::SUCCESS;

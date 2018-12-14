@@ -1,25 +1,48 @@
-#ifndef Physics_Analysis_Rhopi_H
-#define Physics_Analysis_Rhopi_H
+#ifndef Physics_Analysis_KGamma_H
+#define Physics_Analysis_KGamma_H
 
-#include "GaudiKernel/AlgFactory.h"
-#include "GaudiKernel/Algorithm.h"
-#include "GaudiKernel/NTuple.h"
-//#include "VertexFit/ReadBeamParFromDb.h"
+/**
+ * @brief    Modified header of the stock BOSS package `KGamma` (version `00-00-23`).
+ * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+ * @date     December 14th, 2018
+ *
+ * @details  This version of the `KGamma` algorithm has more extensive comments. In addition, some additional parameters, such as ToF without particle hypothesis, have been added.
+ */
 
 
-class Rhopi : public Algorithm {
 
+// * ========================= * //
+// * ------- LIBRARIES ------- * //
+// * ========================= * //
+	#include "GaudiKernel/AlgFactory.h"
+	#include "GaudiKernel/Algorithm.h"
+	#include "GaudiKernel/NTuple.h"
+	// #include "VertexFit/ReadBeamParFromDb.h"
+
+
+
+// * ================================ * //
+// * ------- CLASS DEFINITION ------- * //
+// * ================================ * //
+class KGamma : public Algorithm
+{
 public:
-	Rhopi(const std::string& name, ISvcLocator* pSvcLocator);
-	StatusCode initialize();
-	StatusCode execute();
-	StatusCode finalize();
+	// * Constructor and destructors *
+	KGamma(const std::string& name, ISvcLocator* pSvcLocator);
+
+	// * Algorithm steps *
+	// ! Already implemented in `Algorithm` base class
+	// StatusCode initialize();
+	// StatusCode execute();
+	// StatusCode finalize();
 
 private:
 
+	// * Reader for beam info * //
 	// ReadBeamParFromDb m_reader;
 
-	// * ------- DECLARE CUTS HERE ------- * //
+	// ! ------- DECLARE CUTS HERE ------- ! //
+		// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `KGamma::KGamma` constructor (see `.cxx` file).
 
 		// * Declare r0, z0 cut for charged tracks *
 		double m_vr0cut;
@@ -46,9 +69,11 @@ private:
 		bool m_checkTof;
 
 
-	// * ------- DECLARE NTUPLES HERE ------- * //
+	// ! ------- DECLARE NTUPLES HERE ------- ! //
+		// NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem.
+		// Note that the NTuple::Items are added to the NTuple during the KGamma::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
-		// * Charged track vertex *
+		// * Vertex information of the charged tracks *
 		NTuple::Tuple* m_tuple_vxyz;
 			NTuple::Item<double> m_vx0;
 			NTuple::Item<double> m_vy0;
@@ -58,24 +83,24 @@ private:
 			NTuple::Item<double> m_rvz0;
 			NTuple::Item<double> m_rvphi0;
 
-		// * Fake photon (angles) *
+		// * 'Fake' photon (angles) *
 		NTuple::Tuple* m_tuple_ang;
 			NTuple::Item<double> m_dthe;
 			NTuple::Item<double> m_dphi;
 			NTuple::Item<double> m_dang;
 			NTuple::Item<double> m_eraw;
 
-		// * Rhopi: raw mgg, etot *
+		// * Raw invariant mass of the two gammas and their total energy *
 		NTuple::Tuple* m_tuple_mgg;
 			NTuple::Item<double> m_m2gg;
 			NTuple::Item<double> m_etot;
 
-		// * Rhopi fit4C *
+		// * 4-constraint (4C) fit information *
 		NTuple::Tuple* m_tuple_fit4c;
 			NTuple::Item<double> m_chi1;
 			NTuple::Item<double> m_mpi0;
 
-		// * Rhopi fit5C *
+		// * 5-constraint (5C) fit information *
 		NTuple::Tuple* m_tuple_fit5c;
 			NTuple::Item<double> m_chi2;
 			NTuple::Item<double> m_mrho0;
@@ -100,7 +125,7 @@ private:
 			NTuple::Item<double> m_ghit;
 			NTuple::Item<double> m_thit;
 
-		// * End cap ToF *
+		// * End cap ToF decector *
 		NTuple::Tuple* m_tuple_tof_ec;
 			NTuple::Item<double> m_ptot_etof;
 			NTuple::Item<double> m_path_etof;
@@ -115,7 +140,7 @@ private:
 			NTuple::Item<double> m_rhit_etof;
 			NTuple::Item<double> m_qual_etof;
 
-		// * Barrel inner ToF *
+		// * Inner barrel ToF decector *
 		NTuple::Tuple* m_tuple_tof_ib;
 			NTuple::Item<double> m_ptot_btof1;
 			NTuple::Item<double> m_path_btof1;
@@ -130,7 +155,7 @@ private:
 			NTuple::Item<double> m_zhit_btof1;
 			NTuple::Item<double> m_qual_btof1;
 
-		// * Barrel outer ToF *
+		// * Outer barrel ToF decector *
 		NTuple::Tuple* m_tuple_tof_ob;
 			NTuple::Item<double> m_ptot_btof2;
 			NTuple::Item<double> m_path_btof2;

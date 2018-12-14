@@ -14,6 +14,6 @@ use ParticleID   ParticleID-*  Analysis
 use BesROOT      BesROOT-00-*     External
 
 apply_pattern component_library 
-library KGamma  *.cxx  components/*.cxx
+library KGamma*.cxx  components/*.cxx
 
 apply_pattern declare_runtime files=*.txt
