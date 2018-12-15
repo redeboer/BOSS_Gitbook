@@ -1,7 +1,7 @@
 # Setup of your BOSS environment
 
 {% hint style="warning" %}
-**Warning:** In it's current version, this tutorial assumes you use a `bash` terminal.
+load\_**Warning:** In it's current version, this tutorial assumes you use a `bash` terminal.
 
 **@todo** Rewrite for TC shell.
 {% endhint %}
@@ -156,14 +156,14 @@ These lines force the server to load your `.bashrc` run commands file when you l
 {% code-tabs %}
 {% code-tabs-item title=".bashrc" %}
 ```bash
-source ~/.load_boss.sh
+source ~/load_boss.sh
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-For this to work upon login, you will have to [download the `.load_boss.sh` script from the BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/.load_boss.sh) and add it to your home folder \(`~`\).
+For this to work upon login, you will have to [download the `load_boss.sh` script from the BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/load_boss.sh) and add it to your home folder \(`~`\).
 
-Notice that the commands we used in [**Step 4**](setup.md#step-4-set-references-to-boss) are again used  in the [`.load_boss.sh` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/.load_boss.sh). There is also a reference to the `workarea` \(see [**Step 7**](setup.md#step-7-create-a-workarea-subfolder)\). The last line allows you to submit **BOSS** jobs to the queue \(`hep_sub`\) — for now, don't worry what this means.
+Notice that the commands we used in [**Step 4**](setup.md#step-4-set-references-to-boss) are again used  in the [`load_boss.sh` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/load_boss.sh). There is also a reference to the `workarea` \(see [**Step 7**](setup.md#step-7-create-a-workarea-subfolder)\). The last line allows you to submit **BOSS** jobs to the queue \(`hep_sub`\) — for now, don't worry what this means.
 
 You can now either log in again to the server or use `source ~/.bashrc` to reload the run commands.
 
