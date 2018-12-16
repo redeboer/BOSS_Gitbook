@@ -414,7 +414,7 @@ StatusCode JpsiDzeroPhi::execute() {
 		}
 
 
-	// * LOOP OVER CHARGED TRACKS: select charged tracks (eventual pions) * //
+	// * LOOP OVER CHARGED TRACKS: select charged tracks * //
 	// NOTE: Ncut1 -- nGood has to be 2, mdcTrk->charge() has to be more than 0
 		// The first part of the set of reconstructed tracks are the charged tracks
 		int nCharge = 0;
@@ -443,9 +443,9 @@ StatusCode JpsiDzeroPhi::execute() {
 			// * Get radii of vertex
 			HepVector a = mdcTrk->helix();
 			HepSymMatrix Ea = mdcTrk->err();
-			HepPoint3D point0(0.,0.,0.); // the initial point for MDC recosntruction
-			HepPoint3D IP(xorigin[0],xorigin[1],xorigin[2]);
-			VFHelix helixip(point0,a,Ea);
+			HepPoint3D point0(0., 0., 0.); // the initial point for MDC recosntruction
+			HepPoint3D IP(xorigin[0], xorigin[1], xorigin[2]);
+			VFHelix helixip(point0, a, Ea);
 			helixip.pivot(IP);
 			HepVector vecipa = helixip.a();
 			double Rvxy0  = fabs(vecipa[0]); // nearest distance to IP in xy plane
