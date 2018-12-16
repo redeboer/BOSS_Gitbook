@@ -10,7 +10,7 @@ As explained in [The BOSS Analysis Framework](https://besiii.gitbook.io/boss-git
 
 To create an empty package \(with a default format\), use the following command:
 
-```text
+```bash
 cmt create MyFirstPackage MyFirstPackage-00-00-01
 ```
 
@@ -24,7 +24,7 @@ The above only becomes relevant as when you start developing packages, so you ca
 
 The result of the above command is a new folder, that we'll navigate into:
 
-```text
+```bash
 cd MyFirstPackage/MyFirstPackage-00-00-01
 ```
 
@@ -70,13 +70,13 @@ Whenever you are planning to modify the code in your package \(particularly the 
 
 First create some copy \(of course, you'll have to replace the names here\):
 
-```text
+```bash
 cd MyFirstPackagecp -fR MyFirstPackage-00-00-01 MyFirstPackage-00-00-02
 ```
 
 Now, imagine you have modified the interface of the package in its header files. This, according to the [BOSS version naming convention](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4GgC5cleb1Fpaf0c/primary/docs-boss/setup-package#structure-of-a-default-cmt-package), requires you to modify the `major id`. So you will have to rename the folder of the package:
 
-```text
+```bash
 mv MyFirstPackage-00-00-02 MyFirstPackage-01-00-00
 ```
 
@@ -84,13 +84,13 @@ mv MyFirstPackage-00-00-02 MyFirstPackage-01-00-00
 
 Finally, it is time to use CMT to tag this new version. The thing is, simply renaming the package is not sufficient: files like `setup.sh` need to be modified as well. Luckily, CMT does this for you automatically for. First go into the `cmt` folder of your new package:
 
-```text
+```bash
 cd MyFirstPackage-01-00-00/cmt
 ```
 
 Now **create new CMT setup and cleanup scripts** using:
 
-```text
+```bash
 cmt config
 ```
 
@@ -100,7 +100,7 @@ If you for instance open the `setup.sh` file you will see that it has deduced th
 
 Now **build the executables** from the source code:
 
-```text
+```bash
 make
 ```
 
@@ -112,7 +112,7 @@ At this stage, you should verify in the terminal output whether your code is act
 
 If it does build correctly, you can make the package accessible to BOSS using:
 
-```text
+```bash
 source setup.sh
 ```
 
@@ -126,11 +126,19 @@ As mentioned in [Step 3](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4Gg
 
 Just to be sure, while modifying and debugging your package, you can do the entire build-and-source procedure above in one go, using:
 
-```text
-cmt configmakesource setup.sh
+```bash
+cmt config
+make
+source setup.sh
 ```
 
 BESIII has some documentation on working with CMT available [here](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Getting_Started). It seems, however, that you need special admission rights to CVS to successfully perform these steps. The documentation is therefore probably outdated.
+
+{% hint style="info" %}
+#### Compare package output
+
+Another reason for working with a copy of the old version of your package is that you can still checkout and run that old version \(just repeat the above procedure within the folder of that old version\). This allows you to run the same analysis \(see [Running jobs](running-jobs.md)\) again in the old package so that you can compare the output. **Making sure that structural updates of components of software still result in the same output is a vital part of software development!**
+{% endhint %}
 
 ### Adding packages to BOSS <a id="adding-packages-to-boss"></a>
 
@@ -150,13 +158,13 @@ The `TestRelease` package is used to run certain basic packages that are already
 
 You can also choose to copy it from its location in BOSS:
 
-```text
+```bash
 /afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/TestRelease
 ```
 
 If you [set up your BOSS environment](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4GgC5cleb1Fpaf0c/primary/docs-boss/setup#2-set-up-your-boss-workarea) correctly, you can copy `TestRelease` to your _BOSS workarea_ as follows:
 
-```text
+```bash
 cp –r "$BesArea/TestRelease" "$BOSSWORKAREA"cd "$BOSSWORKAREA/TestRelease/TestRelease-"*
 ```
 
@@ -168,15 +176,19 @@ You are now in the folder `TestRelease/TestRelease-00-00-86`. Using `ls`, you ca
 
 We can set up the `TestRelease` by going into `cmt` and 'broadcasting' to **BOSS** from there:
 
-```text
-cd cmtcmt broadcast      # connect your workarea to BOSScmt config         # perform setup and cleanup scriptscmt broadcast make # build and connect executables to BOSSsource setup.sh    # set bash variables
+```bash
+cd cmt
+cmt broadcast      # connect your workarea to BOSS
+cmt config         # perform setup and cleanup scripts
+cmt broadcast make # build and connect executables to BOSS
+source setup.sh    # set bash variables
 ```
 
 The term `broadcast` is important here and makes the status of the `TestRelease` package different than for instance the `RhopiAlg`.
 
 We have now initialised the package, so that you can run it in BOSS from the `run` folder. This is done using `boss.exe`:
 
-```text
+```bash
 cd ../runboss.exe jobOptions_sim.txt
 ```
 
@@ -189,8 +201,6 @@ Note that in [Step 5 when we set up the work area](https://besiii.gitbook.io/bos
 * `​`[`TestRelease-00-00-86`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-00-86) is the original 'stock' version
 * `​`[`TestRelease-00-00-87`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-00-87) is the same, but has better alignment
 * `​`[`TestRelease-00-01-00`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-01-00) is the version used in _BOSS Afterburner_
-
-###  <a id="the-rhopi-algorithm"></a>
 
 ### Other example packages
 
