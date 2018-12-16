@@ -1,0 +1,170 @@
+-------------- Couplings, masses and meson widths -------------------
+137.03599911d0    ---------- 1/alpha (QED)      --------- alpha
+0.51099906d-3 GeV ---------- Electron mass      --------- me
+0.938271998D0 GeV ---------- Proton mass        --------- mp
+0.93956533D0  GeV ---------- Neutron mass       --------- mnt
+.1056583568d0 GeV ---------- Muon mass          --------- mmu
+0.13957018d0  GeV ---------- Charged pion mass  --------- mpi
+0.1349766d0   GeV ---------- Neutral pion mass  --------- mpi0
+0.493677d0    GeV ---------- Charged kaon mass  --------- mKp
+0.497648d0    GeV ---------- Neutral kaon mass  --------- mKn
+1.115683d0    GeV ---------- Lambda mass        --------- mlamb
+-------------------      PDG 2004     -------------------------------
+1.019456d0    GeV ---------- Phi mass    ----------- mm_ph
+0.00426d0     GeV ---------- Phi width   ----------- gg_ph
+2.98d-4           ---------- Br(phi->e+e-) --------- Br_phi_ee
+0.491d0           ---------- Br(phi->K+K-) --------- Br_phi_KK
+-------- pion=1 ----- K+K- model --------  f0_model = 0 --------------
+0.0776526045d0  GeV^2 ------ G_(phi gamma) --------- c_phi_gam
+1.00291061d0    GeV   ------ f0 mass   ------------- mm_f0
+0.108171405d0   GeV   ------ g0 width  ------------- gg_f0
+59.3919713647d0 GeV^2 ------           ------------- c_phi_KK_f0_pi
+0.519709326d0   GeV   ------ f0(600) mass  --------- mm_f0_600
+0.319204396d0   GeV   ------ f0(600) width --------- gg_f0_600
+11.2156718914d0 GeV^2 ------           ------------- c_phi_KK_f0_600_pi
+98.4814123d0          ------ Phase (f0 f0(600)) --------- phas_f0_f0600
+-------- pion=1 ----- "no structure" model ------  f0_model = 1 -------
+0.0776526045d0  GeV^2 ------ G_(phi gamma) --------- c_phi_gam
+0.98385936d0    GeV   ------ f0 mass   ------------- mm_f0
+0.0354330317d0  GeV   ------ g0 width  ------------- gg_f0
+2.83702251679d0 GeV^2 ------           ------------- c_phi_KK_f0_pi
+0.588107848d0   GeV   ------ f0(600) mass  --------- mm_f0_600
+1.65341791d0    GeV   ------ f0(600) width --------- gg_f0_600
+4.01504359106d0 GeV^2 ------           ------------- c_phi_KK_f0_600_pi
+0.d0                  ------ Phase (phi sQED) ------ phas_rho_f0
+101.144768d0          ------ Phase (f0 f0(600))----- phas_f0_f0600
+-------- pion=1 ----- KLOE model --------  f0_model = 3 --------------
+0.983d0  GeV --------------- f0 mass   ------------- mm_f0_exp 
+60.d0        --------------- Phase (phi sQED) ------ phas_rho_f0_exp
+5.89d0   GeV --------------- G_(f0 K+K-)      ------ c_f0_KK_exp
+3.6d0    GeV --------------- G_(f0 pi pi)     ------ c_f0_pipi_exp
+-------  pion=1 ----- KS PionFormFactor ----- FF_pion = 0 -----------
+1.171d0       GeV^-2 ------  C_0   ------------- c_0_pion
+-0.1194d0     GeV^-2 ------  C_1   ------------- c_1_pion
+0.011519d0    GeV^-2 ------  C_2   ------------- c_2_pion
+-0.0437612d0  GeV^-2 ------  C_3   ------------- c_3_pion
+-0.0193578d0  GeV^-2 ------  C_n   ------------- c_n_pion
+0.00184d0     GeV^-2 ------  C_om  ------------- c_om_pion
+0.773945036d0 GeV    ------  Rho_0 mass   ------ m_rho0_pion
+0.144923d0    GeV    ------  Rho_0 width  ------ g_rho0_pion
+1.35671d0     GeV    ------  Rho_1 mass   ------ m_rho1_pion
+0.43685d0     GeV    ------  Rho_1 width  ------ g_rho1_pion
+1.7d0         GeV    ------  Rho_2 mass   ------ m_rho2_pion
+0.24d0        GeV    ------  Rho_2 width  ------ g_rho2_pion
+0.783d0       GeV    ------  Omega_0 mass ------ m_om0_pion
+0.0084d0      GeV    ------  Omega_0 width------ g_om0_pion
+-------  pion=1 ----- GS PionFormFactor ----- FF_pion = 1 -----------
+1.0979d0      GeV^-2 ------  C_0   ------------- c_0_pion
+-0.069164d0   GeV^-2 ------  C_1   ------------- c_1_pion
+0.021579d0    GeV^-2 ------  C_2   ------------- c_2_pion
+-0.0309572d0  GeV^-2 ------  C_3   ------------- c_3_pion
+-0.0193578d0  GeV^-2 ------  C_n   ------------- c_n_pion
+0.00195d0     GeV^-2 ------  C_om  ------------- c_om_pion
+0.77628d0     GeV    ------  Rho_0 mass   ------ m_rho0_pion
+0.15053d0     GeV    ------  Rho_0 width  ------ g_rho0_pion 
+1.3806d0      GeV    ------  Rho_1 mass   ------ m_rho1_pion
+0.33981d0     GeV    ------  Rho_1 width  ------ g_rho1_pion
+1.7d0         GeV    ------  Rho_2 mass   ------ m_rho2_pion
+0.24d0        GeV    ------  Rho_2 width  ------ g_rho2_pion
+0.783d0       GeV    ------  Omega_0 mass ------ m_om0_pion
+0.0084d0      GeV    ------  Omega_0 width------ g_om0_pion
+-------  pion=2 or pion=3 -----------------  4 pi mode ---------------
+0.38d0            ---------              ------------ gam1
+0.38d0            ---------              ------------ gam2
+0.0933d0          ---------              ------------ fpi
+1.251d0      GeV  ---------  A1 mass     ------------ a1m
+0.599d0      GeV  ---------  A1 width    ------------ a1g
+0.773d0      GeV  ---------  Rho_0 mass  ------------ rhom_4
+0.145d0      GeV  ---------  Rho_0 width ------------ rhog_4
+1.35d0       GeV ----------  Rho_1 mass  ------------ rho1m
+0.3d0        GeV ----------  Rho_1 width ------------ rho1g
+1.7d0        GeV ----------  Rho_2 mass  ------------ rho2m
+0.235d0      GeV ----------  Rho_2 width ------------ rho2g
+0.782d0      GeV ----------  Omega mass  ------------ omm_4
+0.0085d0     GeV ----------  Omega width ------------ omg_4
+0.d0             ----------              ------------ aa
+0.08d0           ----------              ------------ bb1
+-0.0075d0        ----------              ------------ bb2
+1.3d0        GeV ----------  F0 mass     ------------ f0m
+0.6d0        GeV ----------  F0 width    ------------ f0g
+0.13956995d0 GeV ----------  Pion mass   ------------ pim_4
+1.55d0           ----------              ------------ sgo_pom
+1.7d0        GeV ----------  Rho_0 mass  ------------ amrop
+0.26d0       GeV ----------  Rho_0 width ------------ gamrop
+-0.1d0           ----------              ------------ sig
+-------  pion=4 or pion=5  ------ Proton and Neutron formfactors -----
+0.672D0      --------------  Beta_rho    ------------  betarho_pp
+1.102D0      --------------  Beta_omega  ------------  betaomega_pp
+0.112D0      --------------  Beta_phi    ------------  betaphi_pp
+-0.052D0     --------------  Alpha_phi   ------------  alphaphi_pp
+0.765D0  GeV --------------  Rho_0 mass  ------------  mrho_pp
+0.784D0  GeV --------------  Rho_0 width ------------  momega_pp
+1.019D0  GeV --------------  Phi mass    ------------  mphi_pp
+0.112D0  GeV --------------  Phi width   ------------  gammarho_pp
+0.25D0       --------------              ------------  gam_pp
+-------  pion=6 or pion=7  ------ K+K- and K0K0bar mode ---------------
+1.018d0         ----------- C_phi0         -----------  c_phi0_Kp
+-0.018d0        ----------- C_phi1         -----------  c_phi1_Kp
+1.195d0         ----------- C_rho0         -----------  c_rho0_Kp
+-0.112d0        ----------- C_rho1         -----------  c_rho1_Kp
+-0.083d0        ----------- C_rho2         -----------  c_rho2_Kp
+1.195d0         ----------- C_om0          -----------  c_om0_Kp
+-0.112d0        ----------- C_om1          -----------  c_om1_Kp
+-0.083d0        ----------- C_om2          -----------  c_om2_Kp
+1.019372d0  GeV ----------- Phi_0 mass     -----------  m_phi0_Kp
+0.00436d0   GeV ----------- Phi_0 width    -----------  g_phi0_Kp
+1.68d0      GeV ----------- Phi_1 mass     -----------  m_phi1_Kp
+0.15d0      GeV ----------- Phi_1 width    -----------  g_phi1_Kp
+0.783d0     GeV ----------- Omega_0 mass   -----------  m_om0_Kp
+0.0084d0    GeV ----------- Omega_0 width  -----------  g_om0_Kp
+1.425d0     GeV ----------- Omega_1 mass   -----------  m_om1_Kp
+0.215d0     GeV ----------- Omega_1 width  -----------  g_om1_Kp
+1.67d0      GeV ----------- Omega_2 mass   -----------  m_om2_Kp
+0.315d0     GeV ----------- Omega_2 width  -----------  g_om2_Kp
+0.775d0     GeV ----------- Rho_0 mass     -----------  m_rho0_Kp
+0.15d0      GeV ----------- Rho_0 width    -----------  g_rho0_Kp
+1.465d0     GeV ----------- Rho_1 mass     -----------  m_rho1_Kp
+0.4d0       GeV ----------- Rho_1 width    -----------  g_rho1_Kp
+1.72d0      GeV ----------- Rho_2 mass     -----------  m_rho2_Kp 
+0.25d0      GeV ----------- Rho_2 width    -----------  g_rho2_Kp
+1.011d0         ----------- Eta_phi        -----------  eta_phi 
+-------  pion=8 --------------------- 3 pi mode -------------------------
+0.782408027d0   GeV ------- Omega_0 mass   -----------  omm0_3pi
+0.00869295829d0 GeV ------- Omega_0 width  -----------  omg0_3pi
+1.375d0         GeV ------- Omega_1 mass   -----------  omm1_3pi
+0.25d0          GeV ------- Omega_1 width  -----------  omg1_3pi
+1.63146137d0    GeV ------- Omega_2 mass   -----------  omm2_3pi
+0.245d0         GeV ------- Omega_2 width  -----------  omg2_3pi
+1.01924189d0    GeV ------- Phi_0 mass     -----------  phim0_3pi
+0.00414423312d0 GeV ------- Phi_0 width    -----------  phig0_3pi
+0.77609d0       GeV ------- Neutral rho_0 mass    ----  rhom0m_3pi
+0.14446d0       GeV ------- Neutral rho_0 width   ----  rhog0m_3pi
+0.77609d0       GeV ------- Charged + rho_0 mass  ----  rhom0p_3pi
+0.14446d0       GeV ------- Charged + rho_0 width ----  rhog0p_3pi
+0.77609d0       GeV ------- Charged - rho_0 mass  ----  rhom0z_3pi
+0.14446d0       GeV ------- Charged - rho_0 width ----  rhog0z_3pi
+1.465d0         GeV ------- Neutral rho_1 mass    ----  rhom1m_3pi
+0.31d0          GeV ------- Neutral rho_1 width   ----  rhog1m_3pi
+1.465d0         GeV ------- Charged + rho_1 mass  ----  rhom1p_3pi
+0.31d0          GeV ------- Charged + rho_1 width ----  rhog1p_3pi
+1.465d0         GeV ------- Charged - rho_1 mass  ----  rhom1z_3pi
+0.31d0          GeV ------- Charged - rho_1 width ----  rhog1z_3pi
+1.7d0           GeV ------- Neutral rho_2 mass    ----  rhom2m_3pi
+0.235d0         GeV ------- Neutral rho_2 width   ----  rhog2m_3pi
+1.7d0           GeV ------- Charged + rho_2 mass  ----  rhom2p_3pi
+0.235d0         GeV ------- Charged + rho_2 width ----  rhog2p_3pi
+1.7d0           GeV ------- Charged - rho_2 mass  ----  rhom2z_3pi
+0.235d0         GeV ------- Charged - rho_2 width ----  rhog2z_3pi
+18.2005759d0    GeV^-3 ----   A   --------------------  aa_3pi 
+-0.866729306d0  GeV^-3 ----   B   --------------------  bb_3pi 
+-0.585093876d0  GeV^-3 ----   F   --------------------  dd_3pi
+-0.719647791d0  GeV^-3 ----   E   --------------------  ee_3pi
+-0.76634311d0   GeV^-3 ----   C   --------------------  jj_3pi
+-1.11919736d0   GeV^-3 ----   D   --------------------  kk_3pi
+------- pion 9 ----- Lambda (-> pi^- p) Lambda bar (-> pi^+ pbar) --
+1.01946d0    --------------  Phi mass    ------------  mm_phi_lam
+0.78265d0    --------------  Omega mass  ------------  mm_om_lam
+1.793d0      --------------  Anom. magnetic moment --  mu_lamb
+0.642d0      --------------  Alpha_lamb  ------------  alpha_lamb      
+90.d0        --------------  Phase F2    ------------  phase_f2_lamb
+0.639d0      --------------  branching ratio --------  ratio_lamb
