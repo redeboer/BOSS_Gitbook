@@ -24,7 +24,7 @@ var searchData=
   ['fgaussian2',['fGaussian2',['../classFitObject.html#ac0f23a7c6812e04cb3f96469b0bbf5f3',1,'FitObject::fGaussian2()'],['../classFitObjectDoubleGauss.html#a031d198334ce405118b91aa8ac08f433',1,'FitObjectDoubleGauss::fGaussian2()']]],
   ['fgeff',['fGeff',['../classRhopiRootChain.html#a761a7bc8a79deb40d3a2a958805c599b',1,'RhopiRootChain::fGeff()'],['../classRhopiRootFile.html#a4bbff2bbe460061e1f12d72d1554e002',1,'RhopiRootFile::fGeff()']]],
   ['filters',['filters',['../RooFitMacro_8C.html#aa19d2a26febe1d1da2d0597f64d121bb',1,'RooFitMacro.C']]],
-  ['finalize',['finalize',['../classJpsiDzeroOmega.html#ae18bd021cacbac9f03fb60d957a4546c',1,'JpsiDzeroOmega::finalize()'],['../classJpsiDzeroPhi.html#a13813dcf7c78bb1207bfb4b80b580df1',1,'JpsiDzeroPhi::finalize()'],['../classKKGamma.html#ab4e4ccecd1b1029c55941137bb4763e0',1,'KKGamma::finalize()'],['../classRhopi.html#a59c6392853421e63f7e86e47382955be',1,'Rhopi::finalize()']]],
+  ['finalize',['finalize',['../classJpsiDzeroOmega.html#ae18bd021cacbac9f03fb60d957a4546c',1,'JpsiDzeroOmega::finalize()'],['../classJpsiDzeroPhi.html#a13813dcf7c78bb1207bfb4b80b580df1',1,'JpsiDzeroPhi::finalize()'],['../classRhopi.html#a59c6392853421e63f7e86e47382955be',1,'Rhopi::finalize()']]],
   ['findchain',['FindChain',['../classBOSSRootChain.html#a0ecfcc49ff6ddcbf77dec527bd4663be',1,'BOSSRootChain']]],
   ['findtree',['FindTree',['../classBOSSRootFile.html#a375821f55d30244e018f04951bfa54de',1,'BOSSRootFile']]],
   ['fit4c',['fit4c',['../classRhopiRootChain.html#af48122acfbd1cf0a49c9cb897df55c64',1,'RhopiRootChain::fit4c()'],['../classRhopiRootFile.html#a1a1decc22ca9951f4f0da71a7f69ea3c',1,'RhopiRootFile::fit4c()']]],

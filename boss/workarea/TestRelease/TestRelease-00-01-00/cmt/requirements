@@ -14,7 +14,6 @@ use ExHelloWorld    *                 BesExamples
 # use GammaEtaAlg     GammaEtaAlg-00-*  Analysis/Physics
 # use KlamsTestAlg    KlamsTestAlg-00-* Analysis/Physics
 use RhopiAlg        RhopiAlg-*        Analysis/Physics
-use KKGamma         KKGamma-*         Analysis/Physics
 use JpsiDzeroPhi    JpsiDzeroPhi-*    Analysis/Physics
 use JpsiDzeroOmega  JpsiDzeroOmega-*  Analysis/Physics
 use PipiJpsiAlg     PipiJpsiAlg-*     Analysis/Physics/PsiPrime

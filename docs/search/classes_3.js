@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kkgamma',['KKGamma',['../classKKGamma.html',1,'']]]
+  ['particle',['Particle',['../classParticle.html',1,'']]]
 ];

@@ -28,12 +28,6 @@ var files =
     ] ],
     [ "JpsiDzeroPhi_entries.cxx", "JpsiDzeroPhi__entries_8cxx.html", "JpsiDzeroPhi__entries_8cxx" ],
     [ "JpsiDzeroPhi_load.cxx", "JpsiDzeroPhi__load_8cxx.html", null ],
-    [ "KKGamma.cxx", "KKGamma_8cxx.html", "KKGamma_8cxx" ],
-    [ "KKGamma.h", "KKGamma_8h.html", [
-      [ "KKGamma", "classKKGamma.html", "classKKGamma" ]
-    ] ],
-    [ "KKGamma_entries.cxx", "KKGamma__entries_8cxx.html", "KKGamma__entries_8cxx" ],
-    [ "KKGamma_load.cxx", "KKGamma__load_8cxx.html", null ],
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],
     [ "PlotRhopi.C", "PlotRhopi_8C.html", "PlotRhopi_8C" ],
     [ "QuickPlotRhopi.C", "QuickPlotRhopi_8C.html", "QuickPlotRhopi_8C" ],
