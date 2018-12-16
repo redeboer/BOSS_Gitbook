@@ -190,54 +190,11 @@ Note that in [Step 5 when we set up the work area](https://besiii.gitbook.io/bos
 * `​`[`TestRelease-00-00-87`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-00-87) is the same, but has better alignment
 * `​`[`TestRelease-00-01-00`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-01-00) is the version used in _BOSS Afterburner_
 
-### The `Rhopi` algorithm <a id="the-rhopi-algorithm"></a>
+###  <a id="the-rhopi-algorithm"></a>
 
-#### Introduction <a id="introduction"></a>
+### Other example packages
 
-One of the basic analysis packages that is already provided in BOSS is the `RhopiAlg` package. Within BESIII, almost everyone knows it, because it is used as the starting point for developing your own packages. `RhopiAlg` is an illustration of a typical procedure in particle physics: reconstructing a decayed particle. For this, you will have to make apply cuts on measured parameters and this package is an illustration of this procedure.
+See next section:
 
-The `RhopiAlg` analyses the decay of the $$\rho(770) $$ meson. As you can see in the in the [PDG listing for this meson](http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf), the $$\rho(770)$$ meson predominantly \(100%\) decays through $$\rho\rightarrow\pi\pi$$ , whether it concerns a $$\rho^+$$ , $$\rho^0$$ , or $$\rho^-$$. This means that we can reconstruct this meson purely through this _2-particle decay mode_.
-
-Additionally, when we consider the charged $$\rho^\pm$$ mesons, one of the decay products is the neutral pion: $$\rho^\pm \rightarrow \pi^\pm\pi^0$$. This meson is again neutral and cannot be detected, so has to be reconstructed. But here again, there is one dominant decay mode: $$\pi^0 \rightarrow \gamma\gamma$$ \($$98.823 \pm 0.034 \%$$, see [its PDG listing](http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf)\). This means that we can reconstruct the $$\rho^\pm$$ meson almost exclusively through its $$\rho^\pm \rightarrow \pi^\pm\pi^0 \rightarrow \pi^\pm\gamma\gamma$$ decay channel.
-
-#### Where to find it? <a id="where-to-find-it"></a>
-
-The original `RhopiAlg` package \(version 0.0.23\) is located here,
-
-```text
-/afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23
-```
-
-but you can also [have a look at it in the BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23) or [import the original packages](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/import_packages.sh) for any version of BOSS.
-
-A better commented and expanded version is also available within the BOSS Afterburner \([version 1.0.0](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00)\). In this tutorial, we will work with this version, but, as with `TestRelease`, you can choose to work with a copy from the `$BesArea`.
-
-The `RhopiAlg` package is one of the dependencies of `TestRelease`: you actually use `TestRelease` to run an analysis from `RhopiAlg` \(or any other package\). This also means that you have to follow the normal procedure for updating a package [as described above](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4GgC5cleb1Fpaf0c/primary/docs-boss/setup-package#updating-a-package).
-
-#### Declaring and defining properties like cuts <a id="declaring-and-defining-properties-like-cuts"></a>
-
-See [header `.h` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/RhopiAlg/Rhopi.h) for declarations and [source `.cxx` code](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/src/Rhopi.cxx) for definitions of cuts.
-
-#### Determining vertex position <a id="determining-vertex-position"></a>
-
-#### Writing properties <a id="writing-properties"></a>
-
-#### Looping over charged and neutral tracks <a id="looping-over-charged-and-neutral-tracks"></a>
-
-#### Kalman kinematic $$n$$-constraints fit procedure <a id="kalman-kinematic-contraints-fit-procedure"></a>
-
-* `fit4c` refers to the 4-constraint reconstruction of $$\pi^0 \rightarrow \gamma\gamma$$.
-* `fit5c` refers to the 5-constraint reconstruction of $$\rho^\pm \rightarrow \pi^\pm\pi^0 \rightarrow \pi^\pm\gamma\gamma$$.
-
-#### Cut flow <a id="cut-flow"></a>
-
-#### Output `root` file <a id="output-root-file"></a>
-
-{% hint style="warning" %}
-**@todo** Describe `RhopiAlg` and how to work with it.
-{% endhint %}
-
-### `KGamma`: a modification of `RhopiAlg` <a id="kgamma-a-modification-of-rhopialg"></a>
-
-**To be developed!**
+{% page-ref page="rhopi.md" %}
 
