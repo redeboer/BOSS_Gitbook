@@ -68,5 +68,5 @@ Decay channel: $$J/\psi \rightarrow D^0 \phi \rightarrow K^-\pi^+ + K^+K^-$$.
 
 * PDG 2018 listing for $$J/\psi(1S)$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
 * PDG 2018 listing for $$D^0$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
-* PDG 2018 listing for $$\phi(1020)$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
+* PDG 2018 listing for $$\phi(1020)$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-phi-1020.pdf).
 
