@@ -18,10 +18,4 @@ JpsiDzeroPhi.GammaAngleCut   = 20.0;
 JpsiDzeroPhi.dM_rho0 = .150;
 
 // * Whether to test the success of the 4- and 5-constraint fits *
-JpsiDzeroPhi.Test4C   = true; // write fit4c
-JpsiDzeroPhi.Test5C   = true; // write fit5c and geff
 JpsiDzeroPhi.MaxChiSq = 200.; // chisq for both fits should be less
-
-// * Whether or not to check success of Particle Identification *
-JpsiDzeroPhi.CheckDedx = true;
-JpsiDzeroPhi.CheckTof  = true;

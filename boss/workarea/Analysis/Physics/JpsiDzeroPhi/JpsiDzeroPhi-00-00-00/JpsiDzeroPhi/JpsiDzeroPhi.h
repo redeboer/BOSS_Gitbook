@@ -57,13 +57,7 @@ private:
 		double m_dmrho0; // width of inv. mass window around mrho0
 
 		// * Declare whether to test the success of the 4- and 5-constraint fits *
-		bool m_test4C;
-		bool m_test5C;
 		double m_maxChiSq;
-
-		// * Declare whether or not to check success of Particle Identification *
-		bool m_checkDedx;
-		bool m_checkTof;
 
 
 	// ! ------- DECLARE NTUPLES HERE ------- ! //
@@ -80,34 +74,12 @@ private:
 			NTuple::Item<double> m_rvz0;
 			NTuple::Item<double> m_rvphi0;
 
-		// * 'Fake' photon (angles) *
-		NTuple::Tuple* m_tuple_ang;
-			NTuple::Item<double> m_dthe;
-			NTuple::Item<double> m_dphi;
-			NTuple::Item<double> m_dang;
-			NTuple::Item<double> m_eraw;
-
-		// * Raw invariant mass of the two gammas and their total energy *
-		NTuple::Tuple* m_tuple_mgg;
-			NTuple::Item<double> m_m2gg;
-			NTuple::Item<double> m_etot;
-
-		// * 4-constraint (4C) fit information *
+		// * 4- and 6-constraint (4C/6C) fit information *
 		NTuple::Tuple* m_tuple_fit4c;
-			NTuple::Item<double> m_chi1;
-			NTuple::Item<double> m_mpi0;
-
-		// * 5-constraint (5C) fit information *
-		NTuple::Tuple* m_tuple_fit5c;
-			NTuple::Item<double> m_chi2;
-			NTuple::Item<double> m_mrho0;
-			NTuple::Item<double> m_mrhop;
-			NTuple::Item<double> m_mrhom;
-
-		// * Photons *
-		NTuple::Tuple* m_tuple_photon;
-			NTuple::Item<double> m_fcos;
-			NTuple::Item<double> m_elow;
+		NTuple::Tuple* m_tuple_fit6c;
+			NTuple::Item<double> m_mD0;
+			NTuple::Item<double> m_mphi;
+			NTuple::Item<double> m_chisq;
 
 		// * Energy loss dE/dx *
 		NTuple::Tuple* m_tuple_dedx;
