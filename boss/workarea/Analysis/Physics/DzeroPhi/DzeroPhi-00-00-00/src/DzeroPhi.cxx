@@ -23,7 +23,7 @@
 	#include "GaudiKernel/PropertyMgr.h"
 	#include "GaudiKernel/SmartDataPtr.h"
 	#include "ParticleID/ParticleID.h"
-	#include "JpsiDzeroPhi/JpsiDzeroPhi.h"
+	#include "DzeroPhi/DzeroPhi.h"
 	#include "TMath.h"
 	#include "VertexFit/Helix.h"
 	#include "VertexFit/IVertexDbSvc.h"
@@ -81,11 +81,11 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 /**
- * @brief Constructor for the `JpsiDzeroPhi` algorithm.
- * @details Here, you should declare properties: give them a name, assign a parameter (data member of `JpsiDzeroPhi`), and if required a documentation string. Note that you should define the paramters themselves in the header (JpsiDzeroPhi/JpsiDzeroPhi.h) and that you should assign the values in `share/jopOptions_JpsiDzeroPhi.txt`.
+ * @brief Constructor for the `DzeroPhi` algorithm.
+ * @details Here, you should declare properties: give them a name, assign a parameter (data member of `DzeroPhi`), and if required a documentation string. Note that you should define the paramters themselves in the header (DzeroPhi/DzeroPhi.h) and that you should assign the values in `share/jopOptions_DzeroPhi.txt`.
  */
 // Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
-JpsiDzeroPhi::JpsiDzeroPhi(const std::string& name, ISvcLocator* pSvcLocator) :
+DzeroPhi::DzeroPhi(const std::string& name, ISvcLocator* pSvcLocator) :
 	Algorithm(name, pSvcLocator) {
 
 	// * Define r0, z0 cut for charged tracks *
@@ -117,7 +117,7 @@ JpsiDzeroPhi::JpsiDzeroPhi(const std::string& name, ISvcLocator* pSvcLocator) :
  * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
  * @details Define and load NTuples here.
  */
-StatusCode JpsiDzeroPhi::initialize(){
+StatusCode DzeroPhi::initialize(){
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "In initialize():" << endmsg;
@@ -304,7 +304,7 @@ StatusCode JpsiDzeroPhi::initialize(){
 /**
  * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
  */
-StatusCode JpsiDzeroPhi::execute() {
+StatusCode DzeroPhi::execute() {
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "In execute():" << endreq;
@@ -838,7 +838,7 @@ StatusCode JpsiDzeroPhi::execute() {
  * @brief Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events.
  * @details Prints the flow chart to the terminal, so make sure you save this output!
  */
-StatusCode JpsiDzeroPhi::finalize() {
+StatusCode DzeroPhi::finalize() {
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "in finalize()" << endmsg;
