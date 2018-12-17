@@ -87,28 +87,28 @@ Rhopi::Rhopi(const std::string& name, ISvcLocator* pSvcLocator) :
 	Algorithm(name, pSvcLocator) {
 
 	// * Define r0, z0 cut for charged tracks *
-	declareProperty("Vr0cut",    m_vr0cut);
-	declareProperty("Vz0cut",    m_vz0cut);
-	declareProperty("Vrvz0cut",  m_rvz0cut);
-	declareProperty("Vrvxy0cut", m_rvxy0cut);
+	declareProperty("Vr0cut",    fVr0cut);
+	declareProperty("Vz0cut",    fVz0cut);
+	declareProperty("Vrvz0cut",  fRvz0cut);
+	declareProperty("Vrvxy0cut", fRvxy0cut);
 
 	// * Define energy, dphi, dthe cuts for fake gamma's *
-	declareProperty("EnergyThreshold", m_energyThreshold);
-	declareProperty("GammaPhiCut",     m_gammaPhiCut);
-	declareProperty("GammaThetaCut",   m_gammaThetaCut);
-	declareProperty("GammaAngleCut",   m_gammaAngleCut);
+	declareProperty("EnergyThreshold", fEnergyThreshold);
+	declareProperty("GammaPhiCut",     fGammaPhiCut);
+	declareProperty("GammaThetaCut",   fGammaThetaCut);
+	declareProperty("GammaAngleCut",   fGammaAngleCut);
 
 	// * Define invariant mass window cut *
-	declareProperty("dM_rho0", m_dmrho0 = .150);
+	declareProperty("dM_rho0", fDeltaMrho0 = .150);
 
 	// * Whether to test the success of the 4- and 5-constraint fits *
-	declareProperty("Test4C",   m_test4C); // write fit4c
-	declareProperty("Test5C",   m_test5C); // write fit5c and geff
-	declareProperty("MaxChiSq", m_maxChiSq); // chisq for both fits should be less
+	declareProperty("Test4C",   fElectronst4C); // write fit4c
+	declareProperty("Test5C",   fElectronst5C); // write fit5c and geff
+	declareProperty("MaxChiSq", fMaxChiSq); // chisq for both fits should be less
 
 	// * Whether or not to check success of Particle Identification *
-	declareProperty("CheckDedx", m_checkDedx);
-	declareProperty("CheckTof",  m_checkTof);
+	declareProperty("CheckDedx", fCheckDedx);
+	declareProperty("CheckTof",  fCheckTof);
 
 }
 
@@ -128,208 +128,208 @@ StatusCode Rhopi::initialize(){
 
 	// * NTuple: Vertex position (vxyz) * //
 		NTuplePtr nt1(ntupleSvc(), "FILE1/vxyz");
-		if ( nt1 ) m_tuple_vxyz = nt1;
+		if ( nt1 ) fTupleVxyz = nt1;
 		else {
-			m_tuple_vxyz = ntupleSvc()->book("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
-			if(m_tuple_vxyz) {
-				m_tuple_vxyz->addItem("vx0",    m_vx0);    // primary x-vertex as determined by MDC
-				m_tuple_vxyz->addItem("vy0",    m_vy0);    // primary y-vertex as determined by MDC
-				m_tuple_vxyz->addItem("vz0",    m_vz0);    // primary z-vertex as determined by MDC
-				m_tuple_vxyz->addItem("vr0",    m_vr0);    // distance from origin in xy-plane
-				m_tuple_vxyz->addItem("rvxy0",  m_rvxy0);  // nearest distance to IP in xy plane
-				m_tuple_vxyz->addItem("rvz0",   m_rvz0);   // nearest distance to IP in z direction
-				m_tuple_vxyz->addItem("rvphi0", m_rvphi0); // angle in the xy-plane (?)
+			fTupleVxyz = ntupleSvc()->book("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
+			if(fTupleVxyz) {
+				fTupleVxyz->addItem("vx0",    fVx0);    // primary x-vertex as determined by MDC
+				fTupleVxyz->addItem("vy0",    fVy0);    // primary y-vertex as determined by MDC
+				fTupleVxyz->addItem("vz0",    fVz0);    // primary z-vertex as determined by MDC
+				fTupleVxyz->addItem("vr0",    fVr0);    // distance from origin in xy-plane
+				fTupleVxyz->addItem("rvxy0",  fRvxy0);  // nearest distance to IP in xy plane
+				fTupleVxyz->addItem("rvz0",   fRvz0);   // nearest distance to IP in z direction
+				fTupleVxyz->addItem("rvphi0", fRvphi0); // angle in the xy-plane (?)
 			}
 			else {
-				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_vxyz) << endmsg;
+				log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleVxyz) << endmsg;
 				return StatusCode::FAILURE;
 			}
 		}
 
 	// * NTuple: Photon kinematics (photon) * //
 		NTuplePtr nt2(ntupleSvc(), "FILE1/photon");
-		if ( nt2 ) m_tuple_ang = nt2;
+		if ( nt2 ) fTupleAngles = nt2;
 		else {
-			m_tuple_ang = ntupleSvc()->book("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
-			if(m_tuple_ang) {
-				m_tuple_ang->addItem("dthe", m_dthe); // theta difference with nearest charged track (degrees)
-				m_tuple_ang->addItem("dphi", m_dphi); // phi difference with nearest charged track (degrees)
-				m_tuple_ang->addItem("dang", m_dang); // angle difference with nearest charged track
-				m_tuple_ang->addItem("eraw", m_eraw); // energy of the photon
+			fTupleAngles = ntupleSvc()->book("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
+			if(fTupleAngles) {
+				fTupleAngles->addItem("dthe", fDeltaTheta); // theta difference with nearest charged track (degrees)
+				fTupleAngles->addItem("dphi", fDeltaPhi); // phi difference with nearest charged track (degrees)
+				fTupleAngles->addItem("dang", fDeltaAngle); // angle difference with nearest charged track
+				fTupleAngles->addItem("eraw", fEraw); // energy of the photon
 			}
 			else {
-				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_ang) << endmsg;
+				log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleAngles) << endmsg;
 				return StatusCode::FAILURE;
 			}
 		}
 
 	// * NTuple: Energy branch (etot) * //
 		NTuplePtr nt3(ntupleSvc(), "FILE1/etot");
-		if ( nt3 ) m_tuple_mgg = nt3;
+		if ( nt3 ) fTupleMgg = nt3;
 		else {
-			m_tuple_mgg = ntupleSvc()->book("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
-			if(m_tuple_mgg) {
-				m_tuple_mgg->addItem("m2gg", m_m2gg); // invariant mass of the two gammas
-				m_tuple_mgg->addItem("etot", m_etot); // total energy of pi^+, pi^ and the two gammas
+			fTupleMgg = ntupleSvc()->book("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
+			if(fTupleMgg) {
+				fTupleMgg->addItem("m2gg", fMtoGG); // invariant mass of the two gammas
+				fTupleMgg->addItem("etot", fEtot); // total energy of pi^+, pi^ and the two gammas
 			}
 			else {
-				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_mgg) << endmsg;
+				log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleMgg) << endmsg;
 				return StatusCode::FAILURE;
 			}
 		}
 
 	// * NTuple: Neutral pion (pi0) fit branch (fit4c) * //
-		if(m_test4C) {
+		if(fElectronst4C) {
 			NTuplePtr nt4(ntupleSvc(), "FILE1/fit4c");
-			if ( nt4 ) m_tuple_fit4c = nt4;
+			if ( nt4 ) fTupleFit4C = nt4;
 			else {
-				m_tuple_fit4c = ntupleSvc()->book("FILE1/fit4c", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple_fit4c ) {
-					m_tuple_fit4c->addItem("mpi0", m_mpi0); // invariant pi0 mass according to Kalman kinematic fit
-					m_tuple_fit4c->addItem("chi2", m_chi1); // chi square of the Kalman kinematic fit
+				fTupleFit4C = ntupleSvc()->book("FILE1/fit4c", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(fTupleFit4C ) {
+					fTupleFit4C->addItem("mpi0", fMpi0); // invariant pi0 mass according to Kalman kinematic fit
+					fTupleFit4C->addItem("chi2", fChi1); // chi square of the Kalman kinematic fit
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_fit4c) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleFit4C) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
 		}
 
 	// * NTuple: Rho fit branch (fit5c) * //
-		if(m_test5C) {
+		if(fElectronst5C) {
 			NTuplePtr nt5(ntupleSvc(), "FILE1/fit5c");
-			if ( nt5 ) m_tuple_fit5c = nt5;
+			if ( nt5 ) fTupleFit5C = nt5;
 			else {
-				m_tuple_fit5c = ntupleSvc()->book("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple_fit5c) {
-					m_tuple_fit5c->addItem("chi2",  m_chi2);  // chi squared of the Kalman kinematic fit
-					m_tuple_fit5c->addItem("mrho0", m_mrho0); // inv. mass pi^+ pi^- (rho^0)
-					m_tuple_fit5c->addItem("mrhop", m_mrhop); // inv. mass pi^0 pi^+ (rho^+)
-					m_tuple_fit5c->addItem("mrhom", m_mrhom); // inv. mass pi^0 pi^- (rho^-)
+				fTupleFit5C = ntupleSvc()->book("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(fTupleFit5C) {
+					fTupleFit5C->addItem("chi2",  fChi2);  // chi squared of the Kalman kinematic fit
+					fTupleFit5C->addItem("mrho0", fMrho0); // inv. mass pi^+ pi^- (rho^0)
+					fTupleFit5C->addItem("mrhop", fMrhop); // inv. mass pi^0 pi^+ (rho^+)
+					fTupleFit5C->addItem("mrhom", fMrhom); // inv. mass pi^0 pi^- (rho^-)
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_fit5c) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleFit5C) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
 
 	// * NTuple: Photon detection efficiences (geff) * //
 			NTuplePtr nt6(ntupleSvc(), "FILE1/geff");
-			if ( nt6 ) m_tuple_photon = nt6;
+			if ( nt6 ) fTuplePhoton = nt6;
 			else {
-				m_tuple_photon = ntupleSvc()->book("FILE1/geff", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple_photon) {
-					m_tuple_photon->addItem("fcos", m_fcos); // E/p ratio for pi^0 candidate
-					m_tuple_photon->addItem("elow", m_elow); // lowest energy of the two gammas
+				fTuplePhoton = ntupleSvc()->book("FILE1/geff", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(fTuplePhoton) {
+					fTuplePhoton->addItem("fcos", fFcos); // E/p ratio for pi^0 candidate
+					fTuplePhoton->addItem("elow", fElow); // lowest energy of the two gammas
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_photon) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTuplePhoton) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
 		}
 
 	// * NTuple: Import dE/dx PID branch (dedx) * //
-		if(m_checkDedx) {
+		if(fCheckDedx) {
 			NTuplePtr nt7(ntupleSvc(), "FILE1/dedx");
-			if ( nt7 ) m_tuple_dedx = nt7;
+			if ( nt7 ) fTupleDedx = nt7;
 			else {
-				m_tuple_dedx = ntupleSvc()->book("FILE1/dedx", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple_dedx) {
-					m_tuple_dedx->addItem("ptrk",   m_ptrk);   // momentum of the track
-					m_tuple_dedx->addItem("chie",   m_chie);   // chi2 in case of electron
-					m_tuple_dedx->addItem("chimu",  m_chimu);  // chi2 in case of muon
-					m_tuple_dedx->addItem("chipi",  m_chipi);  // chi2 in case of pion
-					m_tuple_dedx->addItem("chik",   m_chik);   // chi2 in case of kaon
-					m_tuple_dedx->addItem("chip",   m_chip);   // chi2 in case of proton
-					m_tuple_dedx->addItem("probPH", m_probPH); // most probable pulse height from truncated mean
-					m_tuple_dedx->addItem("normPH", m_normPH); // normalized pulse height
-					m_tuple_dedx->addItem("ghit",   m_ghit);   // number of good hits
-					m_tuple_dedx->addItem("thit",   m_thit);   // total number of hits
+				fTupleDedx = ntupleSvc()->book("FILE1/dedx", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(fTupleDedx) {
+					fTupleDedx->addItem("ptrk",   fPtrack);   // momentum of the track
+					fTupleDedx->addItem("chie",   fChi2e);   // chi2 in case of electron
+					fTupleDedx->addItem("chimu",  fChi2mu);  // chi2 in case of muon
+					fTupleDedx->addItem("chipi",  fChi2pi);  // chi2 in case of pion
+					fTupleDedx->addItem("chik",   fChi2k);   // chi2 in case of kaon
+					fTupleDedx->addItem("chip",   fChi2p);   // chi2 in case of proton
+					fTupleDedx->addItem("probPH", fProbPH); // most probable pulse height from truncated mean
+					fTupleDedx->addItem("normPH", fNormPH); // normalized pulse height
+					fTupleDedx->addItem("ghit",   fGhit);   // number of good hits
+					fTupleDedx->addItem("thit",   fThit);   // total number of hits
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_dedx) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleDedx) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
 		}
 
 	// * NTuple: ToF endcap branch (tofe) * //
-		if(m_checkTof) {
+		if(fCheckTof) {
 			NTuplePtr nt8(ntupleSvc(), "FILE1/tofe");
-			if ( nt8 ) m_tuple_tof_ec = nt8;
+			if ( nt8 ) fTupleTofEC = nt8;
 			else {
-				m_tuple_tof_ec = ntupleSvc()->book("FILE1/tofe",CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple_tof_ec) {
-					m_tuple_tof_ec->addItem("ptrk", m_ptot_etof); // momentum of the track as reconstructed by MDC
-					m_tuple_tof_ec->addItem("path", m_path_etof); // path length
-					m_tuple_tof_ec->addItem("tof",  m_tof_etof);  // time of flight
-					m_tuple_tof_ec->addItem("cntr", m_cntr_etof); // ToF counter ID
-					m_tuple_tof_ec->addItem("ph",   m_ph_etof);   // ToF pulse height
-					m_tuple_tof_ec->addItem("rhit", m_rhit_etof); // track extrapolate Z or R Hit position
-					m_tuple_tof_ec->addItem("qual", m_qual_etof); // data quality of reconstruction
-					m_tuple_tof_ec->addItem("te",   m_te_etof);   // difference with ToF in electron hypothesis
-					m_tuple_tof_ec->addItem("tmu",  m_tmu_etof);  // difference with ToF in muon hypothesis
-					m_tuple_tof_ec->addItem("tpi",  m_tpi_etof);  // difference with ToF in charged pion hypothesis
-					m_tuple_tof_ec->addItem("tk",   m_tk_etof);   // difference with ToF in charged kaon hypothesis
-					m_tuple_tof_ec->addItem("tp",   m_tp_etof);   // difference with ToF in proton hypothesis
+				fTupleTofEC = ntupleSvc()->book("FILE1/tofe",CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(fTupleTofEC) {
+					fTupleTofEC->addItem("ptrk", fPtotTofEC); // momentum of the track as reconstructed by MDC
+					fTupleTofEC->addItem("path", fPathTofEC); // path length
+					fTupleTofEC->addItem("tof",  fTofEC);  // time of flight
+					fTupleTofEC->addItem("cntr", fCntrTofEC); // ToF counter ID
+					fTupleTofEC->addItem("ph",   fPhTofEC);   // ToF pulse height
+					fTupleTofEC->addItem("rhit", fRhitTofEC); // track extrapolate Z or R Hit position
+					fTupleTofEC->addItem("qual", fQualTofEC); // data quality of reconstruction
+					fTupleTofEC->addItem("te",   fElectronTofEC);   // difference with ToF in electron hypothesis
+					fTupleTofEC->addItem("tmu",  fMuonTofEC);  // difference with ToF in muon hypothesis
+					fTupleTofEC->addItem("tpi",  fProtoniTofEC);  // difference with ToF in charged pion hypothesis
+					fTupleTofEC->addItem("tk",   fKaonTofEC);   // difference with ToF in charged kaon hypothesis
+					fTupleTofEC->addItem("tp",   fProtonTofEC);   // difference with ToF in proton hypothesis
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_tof_ec) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleTofEC) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
 		}
 
 	// * NTuple: TToF inner barrel branch (tof1) * //
-		if(m_checkTof) {
+		if(fCheckTof) {
 			NTuplePtr nt9(ntupleSvc(), "FILE1/tof1");
-			if ( nt9 ) m_tuple_tof_ib = nt9;
+			if ( nt9 ) TupleTofIB = nt9;
 			else {
-				m_tuple_tof_ib = ntupleSvc()->book("FILE1/tof1", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple_tof_ib) {
-					m_tuple_tof_ib->addItem("ptrk", m_ptot_btof1); // momentum of the track as reconstructed by MDC
-					m_tuple_tof_ib->addItem("path", m_path_btof1); // path length
-					m_tuple_tof_ib->addItem("tof",  m_tof_btof1);  // time of flight
-					m_tuple_tof_ib->addItem("cntr", m_cntr_btof1); // ToF counter ID
-					m_tuple_tof_ib->addItem("ph",   m_ph_btof1);   // ToF pulse height
-					m_tuple_tof_ib->addItem("zhit", m_zhit_btof1); // track extrapolate Z or R Hit position
-					m_tuple_tof_ib->addItem("qual", m_qual_btof1); // data quality of reconstruction
-					m_tuple_tof_ib->addItem("te",   m_te_btof1);   // difference with ToF in electron hypothesis
-					m_tuple_tof_ib->addItem("tmu",  m_tmu_btof1);  // difference with ToF in muon hypothesis
-					m_tuple_tof_ib->addItem("tpi",  m_tpi_btof1);  // difference with ToF in charged pion hypothesis
-					m_tuple_tof_ib->addItem("tk",   m_tk_btof1);   // difference with ToF in charged kaon hypothesis
-					m_tuple_tof_ib->addItem("tp",   m_tp_btof1);   // difference with ToF in proton hypothesis
+				TupleTofIB = ntupleSvc()->book("FILE1/tof1", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(TupleTofIB) {
+					TupleTofIB->addItem("ptrk", fPtotTofIB); // momentum of the track as reconstructed by MDC
+					TupleTofIB->addItem("path", fPathTofIB); // path length
+					TupleTofIB->addItem("tof",  fTofIB);  // time of flight
+					TupleTofIB->addItem("cntr", fCntrTofIB); // ToF counter ID
+					TupleTofIB->addItem("ph",   fPhTofIB);   // ToF pulse height
+					TupleTofIB->addItem("zhit", fZhitTofIB); // track extrapolate Z or R Hit position
+					TupleTofIB->addItem("qual", fQualTofIB); // data quality of reconstruction
+					TupleTofIB->addItem("te",   fElectronTofIB);   // difference with ToF in electron hypothesis
+					TupleTofIB->addItem("tmu",  fMuonTofIB);  // difference with ToF in muon hypothesis
+					TupleTofIB->addItem("tpi",  fProtoniTofIB);  // difference with ToF in charged pion hypothesis
+					TupleTofIB->addItem("tk",   fKaonTofIB);   // difference with ToF in charged kaon hypothesis
+					TupleTofIB->addItem("tp",   fProtonTofIB);   // difference with ToF in proton hypothesis
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_tof_ib) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(TupleTofIB) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
 		}
 
 	// * NTuple: check ToF outer barrel branch (tof2) * //
-		if(m_checkTof) {
+		if(fCheckTof) {
 			NTuplePtr nt10(ntupleSvc(), "FILE1/tof2");
-			if ( nt10 ) m_tuple_tof_ob = nt10;
+			if ( nt10 ) TupleTofOB = nt10;
 			else {
-				m_tuple_tof_ob = ntupleSvc()->book("FILE1/tof2", CLID_ColumnWiseTuple, "ks N-Tuple example");
-				if(m_tuple_tof_ob) {
-					m_tuple_tof_ob->addItem("ptrk", m_ptot_btof2); // momentum of the track as reconstructed by MDC
-					m_tuple_tof_ob->addItem("path", m_path_btof2); // path length
-					m_tuple_tof_ob->addItem("tof",  m_tof_btof2);  // time of flight
-					m_tuple_tof_ob->addItem("cntr", m_cntr_btof2); // ToF counter ID
-					m_tuple_tof_ob->addItem("ph",   m_ph_btof2);   // ToF pulse height
-					m_tuple_tof_ob->addItem("zhit", m_zhit_btof2); // track extrapolate Z or R Hit position
-					m_tuple_tof_ob->addItem("qual", m_qual_btof2); // data quality of reconstruction
-					m_tuple_tof_ob->addItem("te",   m_te_btof2);   // difference with ToF in electron hypothesis
-					m_tuple_tof_ob->addItem("tmu",  m_tmu_btof2);  // difference with ToF in muon hypothesis
-					m_tuple_tof_ob->addItem("tpi",  m_tpi_btof2);  // difference with ToF in charged pion hypothesis
-					m_tuple_tof_ob->addItem("tk",   m_tk_btof2);   // difference with ToF in charged kaon hypothesis
-					m_tuple_tof_ob->addItem("tp",   m_tp_btof2);   // difference with ToF in proton hypothesis
+				TupleTofOB = ntupleSvc()->book("FILE1/tof2", CLID_ColumnWiseTuple, "ks N-Tuple example");
+				if(TupleTofOB) {
+					TupleTofOB->addItem("ptrk", fPtotTofOB); // momentum of the track as reconstructed by MDC
+					TupleTofOB->addItem("path", fPathTofOB); // path length
+					TupleTofOB->addItem("tof",  fTofOB);  // time of flight
+					TupleTofOB->addItem("cntr", fCntrTofOB); // ToF counter ID
+					TupleTofOB->addItem("ph",   fPhTofOB);   // ToF pulse height
+					TupleTofOB->addItem("zhit", fZhitTofOB); // track extrapolate Z or R Hit position
+					TupleTofOB->addItem("qual", fQualTofOB); // data quality of reconstruction
+					TupleTofOB->addItem("te",   fElectronTofOB);   // difference with ToF in electron hypothesis
+					TupleTofOB->addItem("tmu",  fMuonTofOB);  // difference with ToF in muon hypothesis
+					TupleTofOB->addItem("tpi",  fProtoniTofOB);  // difference with ToF in charged pion hypothesis
+					TupleTofOB->addItem("tk",   fKaonTofOB);   // difference with ToF in charged kaon hypothesis
+					TupleTofOB->addItem("tp",   fProtonTofOB);   // difference with ToF in proton hypothesis
 				}
 				else {
-					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_tof_ob) << endmsg;
+					log << MSG::ERROR << "    Cannot book N-tuple:" << long(TupleTofOB) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
@@ -337,18 +337,18 @@ StatusCode Rhopi::initialize(){
 
 	// * NTuple: Track PID information (pid) * //
 		NTuplePtr nt11(ntupleSvc(), "FILE1/pid");
-		if ( nt11 ) m_tuple_pid = nt11;
+		if ( nt11 ) fTuplePID = nt11;
 		else {
-			m_tuple_pid = ntupleSvc()->book("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
-			if(m_tuple_pid) {
-				m_tuple_pid->addItem("ptrk", m_ptrk_pid); // momentum of the track
-				m_tuple_pid->addItem("cost", m_cost_pid); // theta angle of the track
-				m_tuple_pid->addItem("dedx", m_dedx_pid); // Chi2 of the dedx of the track
-				m_tuple_pid->addItem("tof1", m_tof1_pid); // Chi2 of the inner barrel ToF of the track
-				m_tuple_pid->addItem("tof2", m_tof2_pid); // Chi2 of the outer barrel ToF of the track
-				m_tuple_pid->addItem("prob", m_prob_pid); // probability that it is a pion
+			fTuplePID = ntupleSvc()->book("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
+			if(fTuplePID) {
+				fTuplePID->addItem("ptrk", fPtrackPID); // momentum of the track
+				fTuplePID->addItem("cost", fCostPID); // theta angle of the track
+				fTuplePID->addItem("dedx", fDedxPID); // Chi2 of the dedx of the track
+				fTuplePID->addItem("tof1", fTof1PID); // Chi2 of the inner barrel ToF of the track
+				fTuplePID->addItem("tof2", fTof2PID); // Chi2 of the outer barrel ToF of the track
+				fTuplePID->addItem("prob", fProbPID); // probability that it is a pion
 			} else {
-				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_pid) << endmsg;
+				log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTuplePID) << endmsg;
 				return StatusCode::FAILURE;
 			}
 		}
@@ -406,8 +406,8 @@ StatusCode Rhopi::execute() {
 		if(vtxsvc->isVertexValid()){
 			double* dbv = vtxsvc->PrimaryVertex();
 			double* vv = vtxsvc->SigmaPrimaryVertex();
-			// HepVector dbv = m_reader.PrimaryVertex(runNo);
-			// HepVector vv  = m_reader.SigmaPrimaryVertex(runNo);
+			// HepVector dbv = fReader.PrimaryVertex(runNo);
+			// HepVector vv  = fReader.SigmaPrimaryVertex(runNo);
 			xorigin.setX(dbv[0]);
 			xorigin.setY(dbv[1]);
 			xorigin.setZ(dbv[2]);
@@ -453,20 +453,20 @@ StatusCode Rhopi::execute() {
 			double Rvphi0 = vecipa[1];
 
 			// * WRITE primary vertex position info ("vxyz" branch) *
-			m_vx0    = x0;     // primary x-vertex as determined by MDC
-			m_vy0    = y0;     // primary y-vertex as determined by MDC
-			m_vz0    = z0;     // primary z-vertex as determined by MDC
-			m_vr0    = Rxy;    // distance from origin in xy-plane
-			m_rvxy0  = Rvxy0;  // nearest distance to IP in xy plane
-			m_rvz0   = Rvz0;   // nearest distance to IP in z direction
-			m_rvphi0 = Rvphi0; // angle in the xy-plane (?)
-			m_tuple_vxyz->write(); // "vxyz" branch
+			fVx0    = x0;     // primary x-vertex as determined by MDC
+			fVy0    = y0;     // primary y-vertex as determined by MDC
+			fVz0    = z0;     // primary z-vertex as determined by MDC
+			fVr0    = Rxy;    // distance from origin in xy-plane
+			fRvxy0  = Rvxy0;  // nearest distance to IP in xy plane
+			fRvz0   = Rvz0;   // nearest distance to IP in z direction
+			fRvphi0 = Rvphi0; // angle in the xy-plane (?)
+			fTupleVxyz->write(); // "vxyz" branch
 
 			// * Apply vertex cuts *
-			if(fabs(z0)    >= m_vz0cut)   continue;
-			if(fabs(Rxy)   >= m_vr0cut)   continue;
-			if(fabs(Rvz0)  >= m_rvz0cut)  continue;
-			if(fabs(Rvxy0) >= m_rvxy0cut) continue;
+			if(fabs(z0)    >= fVz0cut)   continue;
+			if(fabs(Rxy)   >= fVr0cut)   continue;
+			if(fabs(Rvz0)  >= fRvz0cut)  continue;
+			if(fabs(Rvxy0) >= fRvxy0cut) continue;
 
 			// * Add charged track to vector *
 			iGood.push_back(i);
@@ -526,16 +526,16 @@ StatusCode Rhopi::execute() {
 			dang = dang * 180 / (CLHEP::pi);
 
 			// * WRITE photon info ("photon" branch)
-			m_dthe = dthe; // theta difference with nearest charged track (degrees)
-			m_dphi = dphi; // phi difference with nearest charged track (degrees)
-			m_dang = dang; // angle difference with nearest charged track
-			m_eraw = eraw; // energy of the photon
-			m_tuple_ang->write(); // "photon" branch
+			fDeltaTheta = dthe; // theta difference with nearest charged track (degrees)
+			fDeltaPhi = dphi; // phi difference with nearest charged track (degrees)
+			fDeltaAngle = dang; // angle difference with nearest charged track
+			fEraw = eraw; // energy of the photon
+			fTupleAngles->write(); // "photon" branch
 
 			// * Apply photon cuts
-			if(eraw < m_energyThreshold) continue;
-			if((fabs(dthe) < m_gammaThetaCut) && (fabs(dphi) < m_gammaPhiCut) ) continue;
-			if(fabs(dang) < m_gammaAngleCut) continue;
+			if(eraw < fEnergyThreshold) continue;
+			if((fabs(dthe) < fGammaThetaCut) && (fabs(dphi) < fGammaPhiCut) ) continue;
+			if(fabs(dang) < fGammaAngleCut) continue;
 
 			// * Add photon track to vector
 			iGam.push_back(i);
@@ -552,7 +552,7 @@ StatusCode Rhopi::execute() {
 
 
 	// * Check charged track dEdx PID information * //
-		if(m_checkDedx) {
+		if(fCheckDedx) {
 			for(int i = 0; i < nGood; ++i) {
 
 				// * Get track *
@@ -563,23 +563,23 @@ StatusCode Rhopi::execute() {
 				RecMdcDedx* dedxTrk = (*itTrk)->mdcDedx();
 
 				// * WRITE energy loss PID info ("dedx" branch) *
-				m_ptrk   = mdcTrk->p();             // momentum of the track
-				m_chie   = dedxTrk->chiE();         // chi2 in case of electron
-				m_chimu  = dedxTrk->chiMu();        // chi2 in case of muon
-				m_chipi  = dedxTrk->chiPi();        // chi2 in case of pion
-				m_chik   = dedxTrk->chiK();         // chi2 in case of kaon
-				m_chip   = dedxTrk->chiP();         // chi2 in case of proton
-				m_probPH = dedxTrk->probPH();       // most probable pulse height from truncated mean
-				m_normPH = dedxTrk->normPH();       // normalized pulse height
-				m_ghit   = dedxTrk->numGoodHits();  // number of good hits
-				m_thit   = dedxTrk->numTotalHits(); // total number of hits
-				m_tuple_dedx->write(); // "dedx" branch
+				fPtrack   = mdcTrk->p();             // momentum of the track
+				fChi2e   = dedxTrk->chiE();         // chi2 in case of electron
+				fChi2mu  = dedxTrk->chiMu();        // chi2 in case of muon
+				fChi2pi  = dedxTrk->chiPi();        // chi2 in case of pion
+				fChi2k   = dedxTrk->chiK();         // chi2 in case of kaon
+				fChi2p   = dedxTrk->chiP();         // chi2 in case of proton
+				fProbPH = dedxTrk->probPH();       // most probable pulse height from truncated mean
+				fNormPH = dedxTrk->normPH();       // normalized pulse height
+				fGhit   = dedxTrk->numGoodHits();  // number of good hits
+				fThit   = dedxTrk->numTotalHits(); // total number of hits
+				fTupleDedx->write(); // "dedx" branch
 			}
 		}
 
 
 	// * Check charged track ToF PID information * //
-		if(m_checkTof) {
+		if(fCheckTof) {
 			for(int i = 0; i < nGood; ++i) {
 				EvtRecTrackIterator  itTrk = evtRecTrkCol->begin() + iGood[i];
 				if(!(*itTrk)->isMdcTrackValid()) continue;
@@ -618,19 +618,19 @@ StatusCode Rhopi::execute() {
 						}
 
 						// * WRITE ToF end cap info ("tofe" branch) *
-						m_ptot_etof = ptrk;          // momentum of the track as reconstructed by MDC
-						m_path_etof = path;          // path length
-						m_tof_etof  = tof;           // time of flight
-						m_cntr_etof = cntr;          // ToF counter ID
-						m_ph_etof   = ph;            // ToF pulse height
-						m_rhit_etof = rhit;          // track extrapolate Z or R Hit position
-						m_qual_etof = qual;          // data quality of reconstruction
-						m_te_etof   = tof - texp[0]; // difference with ToF in electron hypothesis
-						m_tmu_etof  = tof - texp[1]; // difference with ToF in muon hypothesis
-						m_tpi_etof  = tof - texp[2]; // difference with ToF in charged pion hypothesis
-						m_tk_etof   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
-						m_tp_etof   = tof - texp[4]; // difference with ToF in proton hypothesis
-						m_tuple_tof_ec->write(); // "tofe" branch
+						fPtotTofEC = ptrk;          // momentum of the track as reconstructed by MDC
+						fPathTofEC = path;          // path length
+						fTofEC  = tof;           // time of flight
+						fCntrTofEC = cntr;          // ToF counter ID
+						fPhTofEC   = ph;            // ToF pulse height
+						fRhitTofEC = rhit;          // track extrapolate Z or R Hit position
+						fQualTofEC = qual;          // data quality of reconstruction
+						fElectronTofEC   = tof - texp[0]; // difference with ToF in electron hypothesis
+						fMuonTofEC  = tof - texp[1]; // difference with ToF in muon hypothesis
+						fProtoniTofEC  = tof - texp[2]; // difference with ToF in charged pion hypothesis
+						fKaonTofEC   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
+						fProtonTofEC   = tof - texp[4]; // difference with ToF in proton hypothesis
+						fTupleTofEC->write(); // "tofe" branch
 					}
 
 					// * If ebarrel ToF ToF detector: *
@@ -651,19 +651,19 @@ StatusCode Rhopi::execute() {
 							}
 
 							// * WRITE ToF inner barrel info ("tof1" branch) *
-							m_ptot_btof1 = ptrk;          // momentum of the track as reconstructed by MDC
-							m_path_btof1 = path;          // path length
-							m_tof_btof1  = tof;           // time of flight
-							m_cntr_btof1 = cntr;          // ToF counter ID
-							m_ph_btof1   = ph;            // ToF pulse height
-							m_zhit_btof1 = rhit;          // track extrapolate Z or R Hit position
-							m_qual_btof1 = qual;          // data quality of reconstruction
-							m_te_btof1   = tof - texp[0]; // difference with ToF in electron hypothesis
-							m_tmu_btof1  = tof - texp[1]; // difference with ToF in muon hypothesis
-							m_tpi_btof1  = tof - texp[2]; // difference with ToF in charged pion hypothesis
-							m_tk_btof1   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
-							m_tp_btof1   = tof - texp[4]; // difference with ToF in proton hypothesis
-							m_tuple_tof_ib->write(); // "tof1" branch
+							fPtotTofIB = ptrk;          // momentum of the track as reconstructed by MDC
+							fPathTofIB = path;          // path length
+							fTofIB  = tof;           // time of flight
+							fCntrTofIB = cntr;          // ToF counter ID
+							fPhTofIB   = ph;            // ToF pulse height
+							fZhitTofIB = rhit;          // track extrapolate Z or R Hit position
+							fQualTofIB = qual;          // data quality of reconstruction
+							fElectronTofIB   = tof - texp[0]; // difference with ToF in electron hypothesis
+							fMuonTofIB  = tof - texp[1]; // difference with ToF in muon hypothesis
+							fProtoniTofIB  = tof - texp[2]; // difference with ToF in charged pion hypothesis
+							fKaonTofIB   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
+							fProtonTofIB   = tof - texp[4]; // difference with ToF in proton hypothesis
+							TupleTofIB->write(); // "tof1" branch
 						}
 
 						if(hitStatus.layer() == 2) { // * outer barrel ToF detector
@@ -681,19 +681,19 @@ StatusCode Rhopi::execute() {
 							}
 
 							// * WRITE ToF outer barrel info ("tof2" branch) *
-							m_ptot_btof2 = ptrk;          // momentum of the track as reconstructed by MDC
-							m_path_btof2 = path;          // path length
-							m_tof_btof2  = tof;           // time of flight
-							m_cntr_btof2 = cntr;          // ToF counter ID
-							m_ph_btof2   = ph;            // ToF pulse height
-							m_zhit_btof2 = rhit;          // track extrapolate Z or R Hit position
-							m_qual_btof2 = qual;          // data quality of reconstruction
-							m_te_btof2   = tof - texp[0]; // difference with ToF in electron hypothesis
-							m_tmu_btof2  = tof - texp[1]; // difference with ToF in muon hypothesis
-							m_tpi_btof2  = tof - texp[2]; // difference with ToF in charged pion hypothesis
-							m_tk_btof2   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
-							m_tp_btof2   = tof - texp[4]; // difference with ToF in proton hypothesis
-							m_tuple_tof_ob->write(); // "tof2" branch
+							fPtotTofOB = ptrk;          // momentum of the track as reconstructed by MDC
+							fPathTofOB = path;          // path length
+							fTofOB  = tof;           // time of flight
+							fCntrTofOB = cntr;          // ToF counter ID
+							fPhTofOB   = ph;            // ToF pulse height
+							fZhitTofOB = rhit;          // track extrapolate Z or R Hit position
+							fQualTofOB = qual;          // data quality of reconstruction
+							fElectronTofOB   = tof - texp[0]; // difference with ToF in electron hypothesis
+							fMuonTofOB  = tof - texp[1]; // difference with ToF in muon hypothesis
+							fProtoniTofOB  = tof - texp[2]; // difference with ToF in charged pion hypothesis
+							fKaonTofOB   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
+							fProtonTofOB   = tof - texp[4]; // difference with ToF in proton hypothesis
+							TupleTofOB->write(); // "tof2" branch
 						}
 					}
 				}
@@ -742,13 +742,13 @@ StatusCode Rhopi::execute() {
 			RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
 
 			// * WRITE particle identification info ("pid" branch) *
-			m_ptrk_pid = mdcTrk->p();          // momentum of the track
-			m_cost_pid = cos(mdcTrk->theta()); // theta angle of the track
-			m_dedx_pid = pid->chiDedx(2);      // Chi squared of the dedx of the track
-			m_tof1_pid = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
-			m_tof2_pid = pid->chiTof2(2);      // Chi squared of the outer barrel ToF of the track
-			m_prob_pid = pid->probPion();      // probability that it is a pion
-			m_tuple_pid->write(); // "pid" branch
+			fPtrackPID = mdcTrk->p();          // momentum of the track
+			fCostPID = cos(mdcTrk->theta()); // theta angle of the track
+			fDedxPID = pid->chiDedx(2);      // Chi squared of the dedx of the track
+			fTof1PID = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
+			fTof2PID = pid->chiTof2(2);      // Chi squared of the outer barrel ToF of the track
+			fProbPID = pid->probPion();      // probability that it is a pion
+			fTuplePID->write(); // "pid" branch
 
 			if(pid->probPion() < 0.001 || (pid->probPion() < pid->probKaon())) continue;
 			if(pid->probPion() < 0.001) continue;
@@ -823,9 +823,9 @@ StatusCode Rhopi::execute() {
 				pTot += p2g;
 
 				// * WRITE total energy and pi^0 candidate inv. mass ("etot" branch) *
-				m_m2gg = p2g.m();  // invariant mass of the two gammas
-				m_etot = pTot.e(); // total energy of pi^+, pi^ and the two gammas
-				m_tuple_mgg->write(); // "etot" branch
+				fMtoGG = p2g.m();  // invariant mass of the two gammas
+				fEtot = pTot.e(); // total energy of pi^+, pi^ and the two gammas
+				fTupleMgg->write(); // "etot" branch
 			}
 		}
 
@@ -874,7 +874,7 @@ StatusCode Rhopi::execute() {
 
 
 	// * Apply Kalman 4-constrain kinematic fit * //
-		if(m_test4C) {
+		if(fElectronst4C) {
 			HepLorentzVector ecms(0.034, 0, 0, Ecms);
 			double chisq = 9999.;
 			int ig1 = -1;
@@ -902,8 +902,8 @@ StatusCode Rhopi::execute() {
 			}
 
 
-	// NOTE: Ncut4 -- fit4c passed and ChiSq less than m_maxChiSq
-			if(chisq < m_maxChiSq) {
+	// NOTE: Ncut4 -- fit4c passed and ChiSq less than fMaxChiSq
+			if(chisq < fMaxChiSq) {
 				RecEmcShower *g1Trk = (*(evtRecTrkCol->begin()+ig1))->emcShower();
 				RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+ig2))->emcShower();
 				kkmfit->init();
@@ -916,9 +916,9 @@ StatusCode Rhopi::execute() {
 					HepLorentzVector ppi0 = kkmfit->pfit(2) + kkmfit->pfit(3);
 
 					// * WRITE pi^0 information from EMCal ("fit4c" branch) *
-					m_mpi0 = ppi0.m();        // invariant pi0 mass according to Kalman kinematic fit
-					m_chi1 = kkmfit->chisq(); // chi square of the Kalman kinematic fit
-					m_tuple_fit4c->write(); // "fit4c" branch
+					fMpi0 = ppi0.m();        // invariant pi0 mass according to Kalman kinematic fit
+					fChi1 = kkmfit->chisq(); // chi square of the Kalman kinematic fit
+					fTupleFit4C->write(); // "fit4c" branch
 					Ncut4++; // ChiSq has to be less than 200 and fit4c has to be passed
 				}
 			}
@@ -928,7 +928,7 @@ StatusCode Rhopi::execute() {
 	// * Apply Kalman kinematic fit * //
 	// NOTE: Ncut5 -- Kalman kinematic fit 5c is successful
 	// NOTE: Ncut6 -- J/psi -> rho0 pi0 (cut on invariant mass window)
-		if(m_test5C) {
+		if(fElectronst5C) {
 			HepLorentzVector ecms(0.034, 0, 0, Ecms);
 			double chisq = 9999.;
 			int ig1 = -1;
@@ -960,7 +960,7 @@ StatusCode Rhopi::execute() {
 
 			log << MSG::INFO << " chisq = " << chisq << endreq;
 
-			if(chisq < m_maxChiSq) {
+			if(chisq < fMaxChiSq) {
 				RecEmcShower* g1Trk = (*(evtRecTrkCol->begin()+ig1))->emcShower();
 				RecEmcShower* g2Trk = (*(evtRecTrkCol->begin()+ig2))->emcShower();
 				kkmfit->init();
@@ -982,21 +982,21 @@ StatusCode Rhopi::execute() {
 					double fcos = abs(eg1-eg2)/ppi0.rho();
 
 					// * WRITE inv. mass from EMCal info ("fit5c" branch) *
-					m_chi2 = kkmfit->chisq(); // chi squared of the Kalman kinematic fit
-					m_mrho0 = prho0.m();      // inv. mass pi^+ pi^- (rho^0)
-					m_mrhop = prhop.m();      // inv. mass pi^0 pi^+ (rho^+)
-					m_mrhom = prhom.m();      // inv. mass pi^0 pi^- (rho^-)
-					m_tuple_fit5c->write(); // "fit5c" branch
+					fChi2 = kkmfit->chisq(); // chi squared of the Kalman kinematic fit
+					fMrho0 = prho0.m();      // inv. mass pi^+ pi^- (rho^0)
+					fMrhop = prhop.m();      // inv. mass pi^0 pi^+ (rho^+)
+					fMrhom = prhom.m();      // inv. mass pi^0 pi^- (rho^-)
+					fTupleFit5C->write(); // "fit5c" branch
 					Ncut5++; // Kalman kinematic fit 5c is successful
 
 
 					// * Measure the photon detection efficiences via J/psi -> rho0 pi0 * //
-					if(fabs(prho0.m() - mrho0) < m_dmrho0) {
+					if(fabs(prho0.m() - mrho0) < fDeltaMrho0) {
 						if(fabs(fcos) < 0.99) {
 							// * WRITE photon detection efficiency info ("geff" branch) *
-							m_fcos = (eg1-eg2) / ppi0.rho();  // E/p ratio for pi^0 candidate
-							m_elow = (eg1 < eg2) ? eg1 : eg2; // lowest energy of the two gammas
-							m_tuple_photon->write(); // "geff" branch
+							fFcos = (eg1-eg2) / ppi0.rho();  // E/p ratio for pi^0 candidate
+							fElow = (eg1 < eg2) ? eg1 : eg2; // lowest energy of the two gammas
+							fTuplePhoton->write(); // "geff" branch
 							Ncut6++; // 0.620 < mass of rho0 < 0.920
 						}
 					} // rho0 cut

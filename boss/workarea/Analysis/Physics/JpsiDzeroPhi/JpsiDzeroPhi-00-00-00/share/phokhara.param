@@ -10,7 +10,7 @@
 0.497648d0    GeV ---------- Neutral kaon mass  --------- mKn
 1.115683d0    GeV ---------- Lambda mass        --------- mlamb
 -------------------      PDG 2004     -------------------------------
-1.019456d0    GeV ---------- Phi mass    ----------- mm_ph
+1.019456d0    GeV ---------- Phi mass    ----------- mfPh
 0.00426d0     GeV ---------- Phi width   ----------- gg_ph
 2.98d-4           ---------- Br(phi->e+e-) --------- Br_phi_ee
 0.491d0           ---------- Br(phi->K+K-) --------- Br_phi_KK
@@ -111,9 +111,9 @@
 1.195d0         ----------- C_om0          -----------  c_om0_Kp
 -0.112d0        ----------- C_om1          -----------  c_om1_Kp
 -0.083d0        ----------- C_om2          -----------  c_om2_Kp
-1.019372d0  GeV ----------- Phi_0 mass     -----------  m_phi0_Kp
+1.019372d0  GeV ----------- Phi_0 mass     -----------  fPhi0_Kp
 0.00436d0   GeV ----------- Phi_0 width    -----------  g_phi0_Kp
-1.68d0      GeV ----------- Phi_1 mass     -----------  m_phi1_Kp
+1.68d0      GeV ----------- Phi_1 mass     -----------  fPhi1_Kp
 0.15d0      GeV ----------- Phi_1 width    -----------  g_phi1_Kp
 0.783d0     GeV ----------- Omega_0 mass   -----------  m_om0_Kp
 0.0084d0    GeV ----------- Omega_0 width  -----------  g_om0_Kp
@@ -162,7 +162,7 @@
 -0.76634311d0   GeV^-3 ----   C   --------------------  jj_3pi
 -1.11919736d0   GeV^-3 ----   D   --------------------  kk_3pi
 ------- pion 9 ----- Lambda (-> pi^- p) Lambda bar (-> pi^+ pbar) --
-1.01946d0    --------------  Phi mass    ------------  mm_phi_lam
+1.01946d0    --------------  Phi mass    ------------  mfPhi_lam
 0.78265d0    --------------  Omega mass  ------------  mm_om_lam
 1.793d0      --------------  Anom. magnetic moment --  mu_lamb
 0.642d0      --------------  Alpha_lamb  ------------  alpha_lamb      

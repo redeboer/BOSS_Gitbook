@@ -38,34 +38,34 @@ public:
 private:
 
 	// * Reader for beam info * //
-	// ReadBeamParFromDb m_reader;
+	// ReadBeamParFromDb fReader;
 
 	// ! ------- DECLARE CUTS HERE ------- ! //
 		// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `Rhopi::Rhopi` constructor (see `.cxx` file).
 
 		// * Declare r0, z0 cut for charged tracks *
-		double m_vr0cut;
-		double m_vz0cut;
-		double m_rvz0cut;
-		double m_rvxy0cut;
+		double fVr0cut;
+		double fVz0cut;
+		double fRvz0cut;
+		double fRvxy0cut;
 
 		// * Declare energy, dphi, dthe cuts for fake gamma's *
-		double m_energyThreshold;
-		double m_gammaPhiCut;
-		double m_gammaThetaCut;
-		double m_gammaAngleCut;
+		double fEnergyThreshold;
+		double fGammaPhiCut;
+		double fGammaThetaCut;
+		double fGammaAngleCut;
 
 		// * Declare invariant mass window cut *
-		double m_dmrho0; // width of inv. mass window around mrho0
+		double fDeltaMrho0; // width of inv. mass window around mrho0
 
 		// * Declare whether to test the success of the 4- and 5-constraint fits *
-		bool m_test4C;
-		bool m_test5C;
-		double m_maxChiSq;
+		bool fElectronst4C;
+		bool fElectronst5C;
+		double fMaxChiSq;
 
 		// * Declare whether or not to check success of Particle Identification *
-		bool m_checkDedx;
-		bool m_checkTof;
+		bool fCheckDedx;
+		bool fCheckTof;
 
 
 	// ! ------- DECLARE NTUPLES HERE ------- ! //
@@ -73,110 +73,110 @@ private:
 		// Note that the NTuple::Items are added to the NTuple during the Rhopi::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Vertex information of the charged tracks *
-		NTuple::Tuple* m_tuple_vxyz;
-			NTuple::Item<double> m_vx0;
-			NTuple::Item<double> m_vy0;
-			NTuple::Item<double> m_vz0;
-			NTuple::Item<double> m_vr0;
-			NTuple::Item<double> m_rvxy0;
-			NTuple::Item<double> m_rvz0;
-			NTuple::Item<double> m_rvphi0;
+		NTuple::Tuple* fTupleVxyz;
+			NTuple::Item<double> fVx0;
+			NTuple::Item<double> fVy0;
+			NTuple::Item<double> fVz0;
+			NTuple::Item<double> fVr0;
+			NTuple::Item<double> fRvxy0;
+			NTuple::Item<double> fRvz0;
+			NTuple::Item<double> fRvphi0;
 
 		// * 'Fake' photon (angles) *
-		NTuple::Tuple* m_tuple_ang;
-			NTuple::Item<double> m_dthe;
-			NTuple::Item<double> m_dphi;
-			NTuple::Item<double> m_dang;
-			NTuple::Item<double> m_eraw;
+		NTuple::Tuple* fTupleAngles;
+			NTuple::Item<double> fDeltaTheta;
+			NTuple::Item<double> fDeltaPhi;
+			NTuple::Item<double> fDeltaAngle;
+			NTuple::Item<double> fEraw;
 
 		// * Raw invariant mass of the two gammas and their total energy *
-		NTuple::Tuple* m_tuple_mgg;
-			NTuple::Item<double> m_m2gg;
-			NTuple::Item<double> m_etot;
+		NTuple::Tuple* fTupleMgg;
+			NTuple::Item<double> fMtoGG;
+			NTuple::Item<double> fEtot;
 
 		// * 4-constraint (4C) fit information *
-		NTuple::Tuple* m_tuple_fit4c;
-			NTuple::Item<double> m_chi1;
-			NTuple::Item<double> m_mpi0;
+		NTuple::Tuple* fTupleFit4C;
+			NTuple::Item<double> fChi1;
+			NTuple::Item<double> fMpi0;
 
 		// * 5-constraint (5C) fit information *
-		NTuple::Tuple* m_tuple_fit5c;
-			NTuple::Item<double> m_chi2;
-			NTuple::Item<double> m_mrho0;
-			NTuple::Item<double> m_mrhop;
-			NTuple::Item<double> m_mrhom;
+		NTuple::Tuple* fTupleFit5C;
+			NTuple::Item<double> fChi2;
+			NTuple::Item<double> fMrho0;
+			NTuple::Item<double> fMrhop;
+			NTuple::Item<double> fMrhom;
 
 		// * Photons *
-		NTuple::Tuple* m_tuple_photon;
-			NTuple::Item<double> m_fcos;
-			NTuple::Item<double> m_elow;
+		NTuple::Tuple* fTuplePhoton;
+			NTuple::Item<double> fFcos;
+			NTuple::Item<double> fElow;
 
 		// * Energy loss dE/dx *
-		NTuple::Tuple* m_tuple_dedx;
-			NTuple::Item<double> m_ptrk;
-			NTuple::Item<double> m_chie;
-			NTuple::Item<double> m_chimu;
-			NTuple::Item<double> m_chipi;
-			NTuple::Item<double> m_chik;
-			NTuple::Item<double> m_chip;
-			NTuple::Item<double> m_probPH;
-			NTuple::Item<double> m_normPH;
-			NTuple::Item<double> m_ghit;
-			NTuple::Item<double> m_thit;
+		NTuple::Tuple* fTupleDedx;
+			NTuple::Item<double> fPtrack;
+			NTuple::Item<double> fChi2e;
+			NTuple::Item<double> fChi2mu;
+			NTuple::Item<double> fChi2pi;
+			NTuple::Item<double> fChi2k;
+			NTuple::Item<double> fChi2p;
+			NTuple::Item<double> fProbPH;
+			NTuple::Item<double> fNormPH;
+			NTuple::Item<double> fGhit;
+			NTuple::Item<double> fThit;
 
 		// * End cap ToF decector *
-		NTuple::Tuple* m_tuple_tof_ec;
-			NTuple::Item<double> m_ptot_etof;
-			NTuple::Item<double> m_path_etof;
-			NTuple::Item<double> m_tof_etof;
-			NTuple::Item<double> m_cntr_etof;
-			NTuple::Item<double> m_te_etof;
-			NTuple::Item<double> m_tmu_etof;
-			NTuple::Item<double> m_tpi_etof;
-			NTuple::Item<double> m_tk_etof;
-			NTuple::Item<double> m_tp_etof;
-			NTuple::Item<double> m_ph_etof;
-			NTuple::Item<double> m_rhit_etof;
-			NTuple::Item<double> m_qual_etof;
+		NTuple::Tuple* fTupleTofEC;
+			NTuple::Item<double> fPtotTofEC;
+			NTuple::Item<double> fPathTofEC;
+			NTuple::Item<double> fTofEC;
+			NTuple::Item<double> fCntrTofEC;
+			NTuple::Item<double> fElectronTofEC;
+			NTuple::Item<double> fMuonTofEC;
+			NTuple::Item<double> fProtoniTofEC;
+			NTuple::Item<double> fKaonTofEC;
+			NTuple::Item<double> fProtonTofEC;
+			NTuple::Item<double> fPhTofEC;
+			NTuple::Item<double> fRhitTofEC;
+			NTuple::Item<double> fQualTofEC;
 
 		// * Inner barrel ToF decector *
-		NTuple::Tuple* m_tuple_tof_ib;
-			NTuple::Item<double> m_ptot_btof1;
-			NTuple::Item<double> m_path_btof1;
-			NTuple::Item<double> m_tof_btof1;
-			NTuple::Item<double> m_cntr_btof1;
-			NTuple::Item<double> m_te_btof1;
-			NTuple::Item<double> m_tmu_btof1;
-			NTuple::Item<double> m_tpi_btof1;
-			NTuple::Item<double> m_tk_btof1;
-			NTuple::Item<double> m_tp_btof1;
-			NTuple::Item<double> m_ph_btof1;
-			NTuple::Item<double> m_zhit_btof1;
-			NTuple::Item<double> m_qual_btof1;
+		NTuple::Tuple* TupleTofIB;
+			NTuple::Item<double> fPtotTofIB;
+			NTuple::Item<double> fPathTofIB;
+			NTuple::Item<double> fTofIB;
+			NTuple::Item<double> fCntrTofIB;
+			NTuple::Item<double> fElectronTofIB;
+			NTuple::Item<double> fMuonTofIB;
+			NTuple::Item<double> fProtoniTofIB;
+			NTuple::Item<double> fKaonTofIB;
+			NTuple::Item<double> fProtonTofIB;
+			NTuple::Item<double> fPhTofIB;
+			NTuple::Item<double> fZhitTofIB;
+			NTuple::Item<double> fQualTofIB;
 
 		// * Outer barrel ToF decector *
-		NTuple::Tuple* m_tuple_tof_ob;
-			NTuple::Item<double> m_ptot_btof2;
-			NTuple::Item<double> m_path_btof2;
-			NTuple::Item<double> m_tof_btof2;
-			NTuple::Item<double> m_cntr_btof2;
-			NTuple::Item<double> m_te_btof2;
-			NTuple::Item<double> m_tmu_btof2;
-			NTuple::Item<double> m_tpi_btof2;
-			NTuple::Item<double> m_tk_btof2;
-			NTuple::Item<double> m_tp_btof2;
-			NTuple::Item<double> m_ph_btof2;
-			NTuple::Item<double> m_zhit_btof2;
-			NTuple::Item<double> m_qual_btof2;
+		NTuple::Tuple* TupleTofOB;
+			NTuple::Item<double> fPtotTofOB;
+			NTuple::Item<double> fPathTofOB;
+			NTuple::Item<double> fTofOB;
+			NTuple::Item<double> fCntrTofOB;
+			NTuple::Item<double> fElectronTofOB;
+			NTuple::Item<double> fMuonTofOB;
+			NTuple::Item<double> fProtoniTofOB;
+			NTuple::Item<double> fKaonTofOB;
+			NTuple::Item<double> fProtonTofOB;
+			NTuple::Item<double> fPhTofOB;
+			NTuple::Item<double> fZhitTofOB;
+			NTuple::Item<double> fQualTofOB;
 
 		// * Particle ID info *
-		NTuple::Tuple* m_tuple_pid;
-			NTuple::Item<double> m_ptrk_pid;
-			NTuple::Item<double> m_cost_pid;
-			NTuple::Item<double> m_dedx_pid;
-			NTuple::Item<double> m_tof1_pid;
-			NTuple::Item<double> m_tof2_pid;
-			NTuple::Item<double> m_prob_pid;
+		NTuple::Tuple* fTuplePID;
+			NTuple::Item<double> fPtrackPID;
+			NTuple::Item<double> fCostPID;
+			NTuple::Item<double> fDedxPID;
+			NTuple::Item<double> fTof1PID;
+			NTuple::Item<double> fTof2PID;
+			NTuple::Item<double> fProbPID;
 
 };
 
