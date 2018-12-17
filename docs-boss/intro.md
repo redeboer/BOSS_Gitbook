@@ -1,12 +1,17 @@
+---
+description: >-
+  This page contains a short introduction to the two major tools on which the
+  BOSS framework has been built. If you can't wait installing BOSS, you can
+  choose to skip this section.
+---
+
 # The BOSS Analysis Framework
 
 {% hint style="warning" %}
-**This tutorial is still being developed.**
+**@todo** Write introduction to the [BESIII Offline Software System \(BOSS\)](http://english.ihep.cas.cn/bes/doc/2247.html).
 {% endhint %}
 
-@todo Write introduction to the [BESIII Offline Software System \(BOSS\)](http://english.ihep.cas.cn/bes/doc/2247.html).
-
-* Built on Gaudi \(which in turn was developed by LHCb\)
+* Built on [Gaudi](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html) \(which in turn was developed by LHCb\)
 
 ## Configuration Management Tool \(CMT\)
 

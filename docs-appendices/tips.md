@@ -1,6 +1,10 @@
-# Tips & Tricks
+---
+description: >-
+  This page is used to collect notes on any problems encountered in BOSS or in
+  performing analysis on BOSS output.
+---
 
-## Tips, Tricks, and Troubleshooting <a id="tips"></a>
+# Tips, Tricks, and Troubleshooting
 
 ## Tips & Tricks
 
@@ -18,12 +22,14 @@ Although I recognise that any programmer will and should develop her or his own 
 
 If you do not like to keep having to enter your password
 
-```text
+```bash
 ssh-keygen
 ```
 
 {% hint style="warning" %}
-**Todo**: Complete step by step tutorial.
+**@todo**: Add link.
+
+**@todo**: Complete step by step tutorial.
 {% endhint %}
 
 ### Compiling

@@ -1,3 +1,10 @@
+---
+description: >-
+  BOSS packages are your own modifications of BOSS. You usually design a BOSS
+  package when you want to run a Monte Carlo simulation or make an event
+  selection from BESIII data available on the server.
+---
+
 # Set up a BOSS package
 
 ## How to set up a BOSS package? <a id="how-to-set-up-a-boss-package"></a>
@@ -203,8 +210,6 @@ Note that in [Step 5 when we set up the work area](https://besiii.gitbook.io/bos
 * `​`[`TestRelease-00-01-00`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-01-00) is the version used in _BOSS Afterburner_
 
 ### Other example packages
-
-See next section:
 
 {% page-ref page="rhopi.md" %}
 

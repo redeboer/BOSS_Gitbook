@@ -1,5 +1,9 @@
 # Ideas for a RooFit wrapper
 
+{% hint style="danger" %}
+**This part of the tutorial is not yet finished.**
+{% endhint %}
+
 ## `RooFit` wrapper?
 
 Probably won't be developed in the _BOSS Afterburner_. For now, `RooFit` procedures are enveloped in the `CommonFunctions.h` header.

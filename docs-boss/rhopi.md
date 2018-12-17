@@ -1,4 +1,4 @@
-# The RhopiAlg package
+# The RhopiAlg package and others
 
 ## The `Rhopi` algorithm
 

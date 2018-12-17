@@ -1,3 +1,9 @@
+---
+description: >-
+  Before setting up the BOSS environment, it is important to understand the
+  structure of the IHEP server on which you will be doing most of your work.
+---
+
 # Organisation of the IHEP server
 
 The IHEP server runs on [Scientific Linux CERN](https://linux.web.cern.ch/linux/scientific.shtml) \(SLC\). The server offers several versions. Usually, people use either SLC5, SLC6, or SLC7. The domain names for these are `lxslc7.ihep.ac.cn`, where the `7` in this case refers to SLC7. If you are running on Linux or a Linux terminal, the server can be easily accessed using:

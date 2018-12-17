@@ -1,3 +1,7 @@
+---
+description: This page is used to collect links to useful webpages.
+---
+
 # Further reading
 
 {% hint style="info" %}
@@ -30,7 +34,7 @@
   * [http://www.hep.umn.edu/bes3/MN\_BES3\_files/BESIII\_intro\_shencp.pdf](http://www.hep.umn.edu/bes3/MN_BES3_files/BESIII_intro_shencp.pdf)
   * [BES environment installation unofficial paper](https://www.phys.hawaii.edu/~besdata/paper/BESinstall.pdf)
 * [http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome](http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome) \(TWiki\)
-* [https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong\_Li.pdf](https://indico.cern.ch/event/408139/contributions/979815/attachments/815741/1117758/CHEP06-Weidong_Li.pdf)
+* On GaudiKernel: [https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html)
 
 > ## Tools <a id="tools"></a>
 >

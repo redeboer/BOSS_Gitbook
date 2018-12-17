@@ -1,6 +1,13 @@
+---
+description: >-
+  When you have prepared some packages in your BOSS workarea, you can run run
+  them on the server. This is done through so called job option files that you
+  run with boss.exe.
+---
+
 # Running jobs
 
-Particle physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In **BOSS**, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on **BOSS**:
+Particle physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In BOSS, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on BOSS:
 
 1. **`sim`**: you perform a Monte Carlo simulation and generate a raw data file \(`rtraw`\).
 2. **`rec`**: you reconstruct particle tracks from the raw data and write out a reconstructed data file \(`dst`\).
@@ -8,19 +15,22 @@ Particle physicists perform analyses on either data from measurements or on data
 
 When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. \(See [Organisation of the IHEP server](https://github.com/redeboer/BOSS_Afterburner/tree/902bbfd0a1c109e93d69e39a384ddfed810d8a02/organisation-of-the-ihep-server/README.md), under "Reconstructed data sets", for where these files are located.\)
 
-The steps are performed from your `jobOptions*.txt` files of your own package in your work area. These files are executed using the `boss.exe` command. As an example, you can run the `jobOptions` in in the `TestRelease` package:
+The steps are performed from `jobOptions*.txt` files of your own package in your work area. These files are executed using the `boss.exe` command. Usually, you use the `TestRelease` package to run other packages. In the case of `RhopiAlg`:
 
 ```bash
-cd /ihepbatch/bes/$USER/TestRelease/TestRelease-*/run/boss.exe jobOptions_sim.txtboss.exe jobOptions_rec.txtboss.exe jobOptions_ana_rhopi.txt
+cd "$BOSSWORKAREA/workarea/TestRelease/TestRelease-*/run/"
+boss.exe jobOptions_sim.txt
+boss.exe jobOptions_rec.txt
+boss.exe jobOptions_ana_rhopi.txt
 ```
 
-This is essentially it! Of course, for your own analysis, you will have to tweak the parameters in these `jobOptions_*.txt` files and, more importantly, modify the `RhopiAlg` source code to your own tastes.
+This is essentially it! Of course, for your own analysis, you will have to tweak the parameters in these `jobOptions_*.txt` files and in `TestRelease` to integrate and run your own packages.
 
 In the following, we will go through some extra tricks that you will need to master in order to do computational intensive analyses using **BOSS**.
 
 ## Submitting a job <a id="submitting-a-job"></a>
 
-The `TestRelease` example typically simulates, reconstructs, and analyses only 10 events. For serious work, you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queue'. For this, there are two options: either you submit them using the command `hep_sub` or using the command `boss.conder`. The latter is easiest: you can use it just like `boss.exe`.
+The `TestRelease` package typically simulates, reconstructs, and analyses only 10 events. For serious work, you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queue'. For this, there are two options: either you submit them using the command `hep_sub` or using the command `boss.conder`. The latter is easiest: you can use it just like `boss.exe`.
 
 With `hep_sub`, however, you essentially forward a shell script to the queue, which then executes the commands in there. So you'll have to make that first. Let's say, you make a shell script `test.sh` in the `run` folder that looks like this:
 
@@ -79,5 +89,11 @@ Usage of both the relevant functions in the `CommonFunctions.sh` script and of t
 #### Analysing all events
 
 In data analysis, you usually want to use all events available: cuts are applied to get rid of events you don't want. It is therefore better to use **`-1`**, which stands for '_all_ events', for the maximum number of events in `ApplicationMgr.EvtMax`.
+{% endhint %}
+
+{% hint style="danger" %}
+Currently, this it the end of the tutorial. The rest is still under development.
+
+Since this tutorial is still being tested, please provide any comments or feedback you have to [remco.de.boer@ihep.ac.cn](mailto:remco.de.boer@ihep.ac.cn).
 {% endhint %}
 
