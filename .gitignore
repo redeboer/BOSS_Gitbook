@@ -5,14 +5,12 @@ desktop.ini
 data/**/**.dst
 data/**/**.log
 data/**/**.raw
-data/**/**.root
+data/**/*.root
 data/**/**.rtraw
-log/**/**.log
 plots/**/**.eps
-plots/**/**.pdf
-plots/**/**.png
-plots/**/**.root
-scripts/**/**.log
+plots/**/*.pdf
+plots/**/*.png
+plots/**/*.root
 
 # Ignore jobs
 jobs/ana/**.txt
