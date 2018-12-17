@@ -69,6 +69,7 @@
 		cd "${BOSSWORKAREA}/workarea/${subfolder}"
 	}
 	export cdworkarea # navigate to workarea (optional argument: subfolder)
+	alias cdjobs="cdafterburner jobs"
 	alias cdomega="cdworkarea Analysis/Physics/JpsiDzeroOmega/JpsiDzeroOmega-00-00-00"
 	alias cdphi="cdworkarea Analysis/Physics/JpsiDzeroPhi/JpsiDzeroPhi-00-00-00"
 	alias cdrhopi="cdworkarea Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00"
