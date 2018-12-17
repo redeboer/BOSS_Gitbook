@@ -3,12 +3,18 @@ desktop.ini
 
 # Ignore folder contents
 data/**/**.dst
-data/**/*.log
 data/**/**.log
 data/**/**.raw
-data/**/*.root
 data/**/**.rtraw
+data/**/*.dst
+data/**/*.log
+data/**/*.root
+data/**/*.rtraw
 plots/**/**.eps
+plots/**/**.pdf
+plots/**/**.png
+plots/**/**.root
+plots/**/*.eps
 plots/**/*.pdf
 plots/**/*.png
 plots/**/*.root

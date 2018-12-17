@@ -144,13 +144,13 @@ StatusCode DzeroOmega::initialize(){
 		else {
 			fTupleVxyz = ntupleSvc()->book("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
 			if(fTupleVxyz) {
-				fTupleVxyz->addItem("vx0",     fVx0);     // primary x-vertex as determined by MDC
-				fTupleVxyz->addItem("vy0",     fVy0);     // primary y-vertex as determined by MDC
-				fTupleVxyz->addItem("vz0",     fVz0);     // primary z-vertex as determined by MDC
-				fTupleVxyz->addItem("vr0",     fVr0);     // distance from origin in xy-plane
-				fTupleVxyz->addItem("rvxy0",   fRvxy0);   // nearest distance to IP in xy plane
-				fTupleVxyz->addItem("rvz0",    fRvz0);    // nearest distance to IP in z direction
-				fTupleVxyz->addItem("rvphi0",  fRvphi0);  // angle in the xy-plane (?)
+				fTupleVxyz->addItem("vx0",    fVx0);     // primary x-vertex as determined by MDC
+				fTupleVxyz->addItem("vy0",    fVy0);     // primary y-vertex as determined by MDC
+				fTupleVxyz->addItem("vz0",    fVz0);     // primary z-vertex as determined by MDC
+				fTupleVxyz->addItem("vr0",    fVr0);     // distance from origin in xy-plane
+				fTupleVxyz->addItem("rvxy0",  fRvxy0);   // nearest distance to IP in xy plane
+				fTupleVxyz->addItem("rvz0",   fRvz0);    // nearest distance to IP in z direction
+				fTupleVxyz->addItem("rvphi0", fRvphi0);  // angle in the xy-plane (?)
 			}
 			else {
 				log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleVxyz) << endmsg;
