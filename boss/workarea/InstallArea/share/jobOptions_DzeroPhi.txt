@@ -1,0 +1,21 @@
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+ApplicationMgr.DLLs   += {"DzeroPhi"};
+ApplicationMgr.TopAlg += {"DzeroPhi"};
+
+// * Define r0, z0 cut for charged tracks *
+DzeroPhi.Vr0cut    = 9999.; // 1.0
+DzeroPhi.Vz0cut    = 9999.; // 5.0
+DzeroPhi.Vrvz0cut  =   10.;
+DzeroPhi.Vrvxy0cut =    1.;
+
+// * Define energy, dphi, dthe cuts for fake gamma's *
+DzeroPhi.EnergyThreshold = 0.04;
+DzeroPhi.GammaPhiCut     = 20.0;
+DzeroPhi.GammaThetaCut   = 20.0;
+DzeroPhi.GammaAngleCut   = 20.0;
+
+// * Define invariant mass window cut *
+DzeroPhi.dM_rho0 = .150;
+
+// * Whether to test the success of the 4- and 5-constraint fits *
+DzeroPhi.MaxChiSq = 200.; // chisq for both fits should be less

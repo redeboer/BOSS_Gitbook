@@ -98,8 +98,8 @@ private:
 			NTuple::Item<double> fChi1;
 			NTuple::Item<double> fMpi0;
 
-		// * 5-constraint (5C) fit information *
-		NTuple::Tuple* fTupleFit5C;
+		// * 5-constraint (6C) fit information *
+		NTuple::Tuple* fTupleFit6C;
 			NTuple::Item<double> fChi2;
 			NTuple::Item<double> fMrho0;
 			NTuple::Item<double> fMrhop;

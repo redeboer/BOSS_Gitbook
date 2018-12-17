@@ -475,8 +475,8 @@ StatusCode DzeroOmega::execute() {
 		}
 
 	// * Write multiplicities ("mult" branch) * //
-		log << MSG::DEBUG << "ngood, totcharge = " << iGood.size() << " , " << nCharge << endreq;
-		if((iGood.size() != 2) || (nCharge!=0)) return StatusCode::SUCCESS;
+		log << MSG::DEBUG << "ngood, totcharge = " << iGood.size() << " , " << fNmdc << endreq;
+		if((iGood.size() != 2) || (fNmdc!=0)) return StatusCode::SUCCESS;
 		fNtotal   = evtRecEvent->totalTracks();
 		fNneutral = evtRecEvent->totalNeutral();
 		fNcharge  = evtRecEvent->totalCharged();
@@ -841,53 +841,51 @@ StatusCode DzeroOmega::execute() {
 
 
 	// * Apply Kalman 4-constrain kinematic fit * //
-		if(fElectronst4C) {
-			HepLorentzVector ecms(0.034, 0, 0, Ecms);
-			double chisq = 9999.;
-			int ig1 = -1;
-			int ig2 = -1;
-			// * Run over all gamma pairs and find the pair with the best chi2
-			for(int i = 0; i < nGam-1; ++i) {
-				RecEmcShower *g1Trk = (*(evtRecTrkCol->begin()+iGam[i]))->emcShower();
-				for(int j = i+1; j < nGam; j++) {
-					RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+iGam[j]))->emcShower();
-					kkmfit->init();
-					kkmfit->AddTrack(0, wpip);       // 1c: pos. pion
-					kkmfit->AddTrack(1, wpim);       // 2c: neg. pion
-					kkmfit->AddTrack(2, 0.0, g1Trk); // 3c: first gamma track
-					kkmfit->AddTrack(3, 0.0, g2Trk); // 4c: seconnd gamma track
-					kkmfit->AddFourMomentum(0, ecms);
-					if(kkmfit->Fit()) {
-						double chi2 = kkmfit->chisq();
-						if(chi2 < chisq) {
-							chisq = chi2;
-							ig1 = iGam[i];
-							ig2 = iGam[j];
-						}
+		HepLorentzVector ecms(0.034, 0, 0, Ecms);
+		double chisq = 9999.;
+		int ig1 = -1;
+		int ig2 = -1;
+		// * Run over all gamma pairs and find the pair with the best chi2
+		for(int i = 0; i < nGam-1; ++i) {
+			RecEmcShower *g1Trk = (*(evtRecTrkCol->begin()+iGam[i]))->emcShower();
+			for(int j = i+1; j < nGam; j++) {
+				RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+iGam[j]))->emcShower();
+				kkmfit->init();
+				kkmfit->AddTrack(0, wpip);       // 1c: pos. pion
+				kkmfit->AddTrack(1, wpim);       // 2c: neg. pion
+				kkmfit->AddTrack(2, 0.0, g1Trk); // 3c: first gamma track
+				kkmfit->AddTrack(3, 0.0, g2Trk); // 4c: seconnd gamma track
+				kkmfit->AddFourMomentum(0, ecms);
+				if(kkmfit->Fit()) {
+					double chi2 = kkmfit->chisq();
+					if(chi2 < chisq) {
+						chisq = chi2;
+						ig1 = iGam[i];
+						ig2 = iGam[j];
 					}
 				}
 			}
+		}
 
 
 	// NOTE: Ncut4 -- fit4c passed and ChiSq less than fMaxChiSq
-			if(chisq < fMaxChiSq) {
-				RecEmcShower *g1Trk = (*(evtRecTrkCol->begin()+ig1))->emcShower();
-				RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+ig2))->emcShower();
-				kkmfit->init();
-				kkmfit->AddTrack(0, wpip);      // 1c: pos. pion
-				kkmfit->AddTrack(1, wpim);      // 2c: neg. pion
-				kkmfit->AddTrack(2, 0., g1Trk); // 3c: first gamma track
-				kkmfit->AddTrack(3, 0., g2Trk); // 4c: second gamma track
-				kkmfit->AddFourMomentum(0, ecms);
-				if(kkmfit->Fit()) {
-					HepLorentzVector ppi0 = kkmfit->pfit(2) + kkmfit->pfit(3);
+		if(chisq < fMaxChiSq) {
+			RecEmcShower *g1Trk = (*(evtRecTrkCol->begin()+ig1))->emcShower();
+			RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+ig2))->emcShower();
+			kkmfit->init();
+			kkmfit->AddTrack(0, wpip);      // 1c: pos. pion
+			kkmfit->AddTrack(1, wpim);      // 2c: neg. pion
+			kkmfit->AddTrack(2, 0., g1Trk); // 3c: first gamma track
+			kkmfit->AddTrack(3, 0., g2Trk); // 4c: second gamma track
+			kkmfit->AddFourMomentum(0, ecms);
+			if(kkmfit->Fit()) {
+				HepLorentzVector ppi0 = kkmfit->pfit(2) + kkmfit->pfit(3);
 
-					// * WRITE pi^0 information from EMCal ("fit4c" branch) *
-					fMpi0 = ppi0.m();        // invariant pi0 mass according to Kalman kinematic fit
-					fChi1 = kkmfit->chisq(); // chi square of the Kalman kinematic fit
-					fTupleFit4C->write(); // "fit4c" branch
-					Ncut4++; // ChiSq has to be less than 200 and fit4c has to be passed
-				}
+				// * WRITE pi^0 information from EMCal ("fit4c" branch) *
+				fMpi0 = ppi0.m();        // invariant pi0 mass according to Kalman kinematic fit
+				fChi1 = kkmfit->chisq(); // chi square of the Kalman kinematic fit
+				fTupleFit4C->write(); // "fit4c" branch
+				Ncut4++; // ChiSq has to be less than 200 and fit4c has to be passed
 			}
 		}
 
@@ -895,79 +893,77 @@ StatusCode DzeroOmega::execute() {
 	// * Apply Kalman kinematic fit * //
 	// NOTE: Ncut5 -- Kalman kinematic fit 5c is successful
 	// NOTE: Ncut6 -- J/psi -> rho0 pi0 (cut on invariant mass window)
-		if(fElectronst5C) {
-			HepLorentzVector ecms(0.034, 0, 0, Ecms);
-			double chisq = 9999.;
-			int ig1 = -1;
-			int ig2 = -1;
-			// * Find the best combination over all possible pi+ pi- gamma gamma pair
-			for(int i = 0; i < nGam-1; ++i) {
-				RecEmcShower *g1Trk = (*(evtRecTrkCol->begin()+iGam[i]))->emcShower();
-				for(int j = i+1; j < nGam; j++) {
-					RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+iGam[j]))->emcShower();
-					kkmfit->init();
-					kkmfit->AddTrack(0, wpip);            // 1c: pos. pion
-					kkmfit->AddTrack(1, wpim);            // 2c: neg. pion
-					kkmfit->AddTrack(2, 0., g1Trk);       // 3c: first gamma track
-					kkmfit->AddTrack(3, 0., g2Trk);       // 4c: second gamma track
-					kkmfit->AddResonance(0, 0.135, 2, 3); // 5c: pi0 resonance
-					kkmfit->AddFourMomentum(1, ecms);
-					if(!kkmfit->Fit(0)) continue;
-					if(!kkmfit->Fit(1)) continue;
-					if(kkmfit->Fit()) {
-						double chi2 = kkmfit->chisq();
-						if(chi2 < chisq) {
-							chisq = chi2;
-							ig1 = iGam[i];
-							ig2 = iGam[j];
-						}
-					}
-				}
-			}
-
-			log << MSG::INFO << " chisq = " << chisq << endreq;
-
-			if(chisq < fMaxChiSq) {
-				RecEmcShower* g1Trk = (*(evtRecTrkCol->begin()+ig1))->emcShower();
-				RecEmcShower* g2Trk = (*(evtRecTrkCol->begin()+ig2))->emcShower();
+		HepLorentzVector ecms(0.034, 0, 0, Ecms);
+		double chisq = 9999.;
+		int ig1 = -1;
+		int ig2 = -1;
+		// * Find the best combination over all possible pi+ pi- gamma gamma pair
+		for(int i = 0; i < nGam-1; ++i) {
+			RecEmcShower *g1Trk = (*(evtRecTrkCol->begin()+iGam[i]))->emcShower();
+			for(int j = i+1; j < nGam; j++) {
+				RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+iGam[j]))->emcShower();
 				kkmfit->init();
-				kkmfit->AddTrack(0, wpip);            // 1c: pi^+ track
-				kkmfit->AddTrack(1, wpim);            // 2c: pi^- track
+				kkmfit->AddTrack(0, wpip);            // 1c: pos. pion
+				kkmfit->AddTrack(1, wpim);            // 2c: neg. pion
 				kkmfit->AddTrack(2, 0., g1Trk);       // 3c: first gamma track
 				kkmfit->AddTrack(3, 0., g2Trk);       // 4c: second gamma track
 				kkmfit->AddResonance(0, 0.135, 2, 3); // 5c: pi0 resonance
 				kkmfit->AddFourMomentum(1, ecms);
-
-				// * Kalman kinematic fit6c * //
-				if(kkmfit->Fit()){
-					HepLorentzVector ppi0  = kkmfit->pfit(2) + kkmfit->pfit(3); // inv. mass Gamma Gamma (pi^0)
-					HepLorentzVector prho0 = kkmfit->pfit(0) + kkmfit->pfit(1); // inv. mass pi^+ pi^- (rho^0)
-					HepLorentzVector prhop = ppi0 + kkmfit->pfit(0);            // inv. mass pi^0 pi^+ (rho^+)
-					HepLorentzVector prhom = ppi0 + kkmfit->pfit(1);            // inv. mass pi^0 pi^- (rho^-)
-					double eg1 = (kkmfit->pfit(2)).e();
-					double eg2 = (kkmfit->pfit(3)).e();
-					double fcos = abs(eg1-eg2)/ppi0.rho();
-
-					// * WRITE inv. mass from EMCal info ("fit6c" branch) *
-					fChi2 = kkmfit->chisq(); // chi squared of the Kalman kinematic fit
-					fMrho0 = prho0.m();      // inv. mass pi^+ pi^- (rho^0)
-					fMrhop = prhop.m();      // inv. mass pi^0 pi^+ (rho^+)
-					fMrhom = prhom.m();      // inv. mass pi^0 pi^- (rho^-)
-					fTupleFit6C->write(); // "fit6c" branch
-					Ncut5++; // Kalman kinematic fit 5c is successful
-
-
-					// * Measure the photon detection efficiences via J/psi -> rho0 pi0 * //
-					if(fabs(prho0.m() - mrho0) < fDeltaMrho0) {
-						if(fabs(fcos) < 0.99) {
-							// * WRITE photon detection efficiency info ("geff" branch) *
-							fFcos = (eg1-eg2) / ppi0.rho();  // E/p ratio for pi^0 candidate
-							fElow = (eg1 < eg2) ? eg1 : eg2; // lowest energy of the two gammas
-							fTuplePhoton->write(); // "geff" branch
-							Ncut6++; // 0.620 < mass of rho0 < 0.920
-						}
-					} // rho0 cut
+				if(!kkmfit->Fit(0)) continue;
+				if(!kkmfit->Fit(1)) continue;
+				if(kkmfit->Fit()) {
+					double chi2 = kkmfit->chisq();
+					if(chi2 < chisq) {
+						chisq = chi2;
+						ig1 = iGam[i];
+						ig2 = iGam[j];
+					}
 				}
+			}
+		}
+
+		log << MSG::INFO << " chisq = " << chisq << endreq;
+
+		if(chisq < fMaxChiSq) {
+			RecEmcShower* g1Trk = (*(evtRecTrkCol->begin()+ig1))->emcShower();
+			RecEmcShower* g2Trk = (*(evtRecTrkCol->begin()+ig2))->emcShower();
+			kkmfit->init();
+			kkmfit->AddTrack(0, wpip);            // 1c: pi^+ track
+			kkmfit->AddTrack(1, wpim);            // 2c: pi^- track
+			kkmfit->AddTrack(2, 0., g1Trk);       // 3c: first gamma track
+			kkmfit->AddTrack(3, 0., g2Trk);       // 4c: second gamma track
+			kkmfit->AddResonance(0, 0.135, 2, 3); // 5c: pi0 resonance
+			kkmfit->AddFourMomentum(1, ecms);
+
+			// * Kalman kinematic fit6c * //
+			if(kkmfit->Fit()){
+				HepLorentzVector ppi0  = kkmfit->pfit(2) + kkmfit->pfit(3); // inv. mass Gamma Gamma (pi^0)
+				HepLorentzVector prho0 = kkmfit->pfit(0) + kkmfit->pfit(1); // inv. mass pi^+ pi^- (rho^0)
+				HepLorentzVector prhop = ppi0 + kkmfit->pfit(0);            // inv. mass pi^0 pi^+ (rho^+)
+				HepLorentzVector prhom = ppi0 + kkmfit->pfit(1);            // inv. mass pi^0 pi^- (rho^-)
+				double eg1 = (kkmfit->pfit(2)).e();
+				double eg2 = (kkmfit->pfit(3)).e();
+				double fcos = abs(eg1-eg2)/ppi0.rho();
+
+				// * WRITE inv. mass from EMCal info ("fit6c" branch) *
+				fChi2 = kkmfit->chisq(); // chi squared of the Kalman kinematic fit
+				fMrho0 = prho0.m();      // inv. mass pi^+ pi^- (rho^0)
+				fMrhop = prhop.m();      // inv. mass pi^0 pi^+ (rho^+)
+				fMrhom = prhom.m();      // inv. mass pi^0 pi^- (rho^-)
+				fTupleFit6C->write(); // "fit6c" branch
+				Ncut5++; // Kalman kinematic fit 5c is successful
+
+
+				// * Measure the photon detection efficiences via J/psi -> rho0 pi0 * //
+				if(fabs(prho0.m() - mrho0) < fDeltaMrho0) {
+					if(fabs(fcos) < 0.99) {
+						// * WRITE photon detection efficiency info ("geff" branch) *
+						fFcos = (eg1-eg2) / ppi0.rho();  // E/p ratio for pi^0 candidate
+						fElow = (eg1 < eg2) ? eg1 : eg2; // lowest energy of the two gammas
+						fTuplePhoton->write(); // "geff" branch
+						Ncut6++; // 0.620 < mass of rho0 < 0.920
+					}
+				} // rho0 cut
 			}
 		}
 
@@ -992,7 +988,7 @@ StatusCode DzeroOmega::finalize() {
 	// * Print flow chart * //
 		cout << "Resulting FLOW CHART:" << endl;
 		cout << "  (0) Total number of events: " << Ncut0 << endl;
-		cout << "  (1) iGood.size()==2, nCharge==0:   " << Ncut1 << endl;
+		cout << "  (1) Vertex cut              " << Ncut1 << endl;
 		cout << "  (2) nGam>=2:                " << Ncut2 << endl;
 		cout << "  (3) Pass PID:               " << Ncut3 << endl;
 		cout << "  (4) Pass 4C Kalman fit:     " << Ncut4 << endl;
