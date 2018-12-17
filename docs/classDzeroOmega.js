@@ -87,7 +87,7 @@ var classDzeroOmega =
     [ "fTupleAngles", "classDzeroOmega.html#ad565f7dc58fd6e11a6624fc2ceaf99e8", null ],
     [ "fTupleDedx", "classDzeroOmega.html#a535492653f5ac1afe53a4c70f6753272", null ],
     [ "fTupleFit4C", "classDzeroOmega.html#a92859eb956ea0a759d86d8418a56cd9d", null ],
-    [ "fTupleFit5C", "classDzeroOmega.html#aa063d5aa34c5b11610b153c4a04a3a7a", null ],
+    [ "fTupleFit6C", "classDzeroOmega.html#aaa13f8a9032407ba519d5391e280c2b3", null ],
     [ "fTupleMgg", "classDzeroOmega.html#a35fdadd350e87574fcfaa38d1b4ce057", null ],
     [ "fTupleMult", "classDzeroOmega.html#a0044f8833e3da1c4d6ef03986dd9dc25", null ],
     [ "fTuplePhoton", "classDzeroOmega.html#a3d978ef08c85e2033b58ef038f005bc7", null ],

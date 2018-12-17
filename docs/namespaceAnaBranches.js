@@ -4,6 +4,7 @@ var namespaceAnaBranches =
     [ "etot", "namespaceAnaBranches_1_1etot.html", null ],
     [ "fit4c", "namespaceAnaBranches_1_1fit4c.html", null ],
     [ "fit5c", "namespaceAnaBranches_1_1fit5c.html", null ],
+    [ "fit6c", "namespaceAnaBranches_1_1fit6c.html", null ],
     [ "geff", "namespaceAnaBranches_1_1geff.html", null ],
     [ "photon", "namespaceAnaBranches_1_1photon.html", null ],
     [ "pid", "namespaceAnaBranches_1_1pid.html", null ],

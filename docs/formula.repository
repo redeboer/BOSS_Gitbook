@@ -1,18 +1,24 @@
 \form#0:$ J/\psi \rightarrow D^0 \phi $
-\form#1:$ M_{\mathrm{inv}} = 0 $
-\form#2:$ e^- $
-\form#3:$ \mu^- $
-\form#4:$ \pi^+ $
-\form#5:$ \pi^0 $
-\form#6:$ \rho^\pm $
-\form#7:$ \rho^0 $
-\form#8:$ K^\pm $
-\form#9:$ p $
-\form#10:$ dE/dx $
-\form#11:$ \gamma $
-\form#12:$ \rho^0, \rho^-, \rho^+ $
-\form#13:$ M_{\pi^+ \pi^-} $
-\form#14:$ M_{\pi^0 \pi^+} $
-\form#15:$ \rho^+ $
-\form#16:$ M_{\pi^0 \pi^-} $
-\form#17:$ \rho^- $
+\form#1:$ dE/dx $
+\form#2:$ \pi^0 $
+\form#3:$ \rho^0, \rho^-, \rho^+ $
+\form#4:$ M_{K^-pi^+} $
+\form#5:$ D^0 $
+\form#6:$ M_{K^+K^+ } $
+\form#7:$ \phi $
+\form#8:$ M_{D^0phi } $
+\form#9:$ J/\psi $
+\form#10:$ M_{\mathrm{inv}} = 0 $
+\form#11:$ e^- $
+\form#12:$ \mu^- $
+\form#13:$ \pi^+ $
+\form#14:$ \rho^\pm $
+\form#15:$ \rho^0 $
+\form#16:$ K^\pm $
+\form#17:$ p $
+\form#18:$ \gamma $
+\form#19:$ M_{\pi^+ \pi^-} $
+\form#20:$ M_{\pi^0 \pi^+} $
+\form#21:$ \rho^+ $
+\form#22:$ M_{\pi^0 \pi^-} $
+\form#23:$ \rho^- $

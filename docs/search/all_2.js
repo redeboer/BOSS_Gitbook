@@ -3,7 +3,7 @@ var searchData=
   ['c',['c',['../FitObjectDoubleGauss_8h.html#a0a3fe909db3ec7ff62f0a04f2d19b60f',1,'c():&#160;FitObjectDoubleGauss.h'],['../RooFitMacro_8C.html#a63b96401309cc0c66ce6c88f1783d7c2',1,'c():&#160;RooFitMacro.C']]],
   ['cd',['cd',['../RooFitMacro_8C.html#a830b866985ab6ffa6a05bce1518ed25d',1,'RooFitMacro.C']]],
   ['checkifnullptr',['CheckIfNullPtr',['../namespaceCommonFunctions.html#a32a4ab4b3306087b23bc6b8a08068fc4',1,'CommonFunctions']]],
-  ['chi2',['chi2',['../namespaceAnaBranches_1_1fit4c.html#afe561d0f9578461c4942409cabcec18e',1,'AnaBranches::fit4c::chi2()'],['../namespaceAnaBranches_1_1fit5c.html#a8ec91a8bc3cf8e28c251fe3a8a359253',1,'AnaBranches::fit5c::chi2()']]],
+  ['chi2',['chi2',['../namespaceAnaBranches_1_1fit4c.html#afe561d0f9578461c4942409cabcec18e',1,'AnaBranches::fit4c::chi2()'],['../namespaceAnaBranches_1_1fit6c.html#afbea5f6c8eb7414601fe01f88b932c9e',1,'AnaBranches::fit6c::chi2()'],['../namespaceAnaBranches_1_1fit5c.html#a8ec91a8bc3cf8e28c251fe3a8a359253',1,'AnaBranches::fit5c::chi2()']]],
   ['chie',['chie',['../namespaceAnaBranches_1_1dedx.html#ad14eaa3e0bc916bcf00ddb32d625c000',1,'AnaBranches::dedx']]],
   ['chik',['chik',['../namespaceAnaBranches_1_1dedx.html#a4d155e4bffa02c9b1b106f21cd1bac7e',1,'AnaBranches::dedx']]],
   ['chimu',['chimu',['../namespaceAnaBranches_1_1dedx.html#a75b476cb77055cfcfcd16e6851c2867c',1,'AnaBranches::dedx']]],

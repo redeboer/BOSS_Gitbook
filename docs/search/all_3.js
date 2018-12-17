@@ -2,8 +2,8 @@ var searchData=
 [
   ['dang',['dang',['../namespaceAnaBranches_1_1photon.html#a3f37b0e1d44a6d7f210e6fd5ac87e27e',1,'AnaBranches::photon']]],
   ['declare_5ffactory_5fentries',['DECLARE_FACTORY_ENTRIES',['../DzeroOmega__entries_8cxx.html#a946a13a16336399e92a68ca0a4d10205',1,'DECLARE_FACTORY_ENTRIES(DzeroOmega):&#160;DzeroOmega_entries.cxx'],['../DzeroPhi__entries_8cxx.html#af3a54c9584ff4e0f5f4d752826d9b411',1,'DECLARE_FACTORY_ENTRIES(DzeroPhi):&#160;DzeroPhi_entries.cxx'],['../Rhopi__entries_8cxx.html#a992614462a78b9c426d43e7a27a3be56',1,'DECLARE_FACTORY_ENTRIES(RhopiAlg):&#160;Rhopi_entries.cxx']]],
-  ['dedx',['dedx',['../classRhopiRootChain.html#aee7e3f867135ec2b569692bcbed3a77e',1,'RhopiRootChain::dedx()'],['../classRhopiRootFile.html#a10c9efcad65e600e7bcd6cbc7ec96cd4',1,'RhopiRootFile::dedx()'],['../namespaceAnaBranches_1_1pid.html#a7494828a036d8c70b4e7fbe8804a10be',1,'AnaBranches::pid::dedx()']]],
-  ['destruct',['Destruct',['../classBOSSRootChain.html#a639e7dccc2e76225a4172295df017a2a',1,'BOSSRootChain::Destruct()'],['../classBOSSRootFile.html#aa998ff5e02eb2c6b13aee8a1d1862b48',1,'BOSSRootFile::Destruct()'],['../classRhopiRootChain.html#a4cf5d43f610aae5cd78e8c5269a5a45f',1,'RhopiRootChain::Destruct()'],['../classRhopiRootFile.html#a0106032e714856168d0d7ab138c1876a',1,'RhopiRootFile::Destruct()']]],
+  ['dedx',['dedx',['../classDzeroPhiRootFile.html#a30fd456687988af6848af361e59567ba',1,'DzeroPhiRootFile::dedx()'],['../classRhopiRootChain.html#aee7e3f867135ec2b569692bcbed3a77e',1,'RhopiRootChain::dedx()'],['../classRhopiRootFile.html#a10c9efcad65e600e7bcd6cbc7ec96cd4',1,'RhopiRootFile::dedx()'],['../namespaceAnaBranches_1_1pid.html#a7494828a036d8c70b4e7fbe8804a10be',1,'AnaBranches::pid::dedx()']]],
+  ['destruct',['Destruct',['../classBOSSRootChain.html#a639e7dccc2e76225a4172295df017a2a',1,'BOSSRootChain::Destruct()'],['../classBOSSRootFile.html#aa998ff5e02eb2c6b13aee8a1d1862b48',1,'BOSSRootFile::Destruct()'],['../classDzeroPhiRootFile.html#a0432edd7c3f825245d80f61f44f88850',1,'DzeroPhiRootFile::Destruct()'],['../classRhopiRootChain.html#a4cf5d43f610aae5cd78e8c5269a5a45f',1,'RhopiRootChain::Destruct()'],['../classRhopiRootFile.html#a0106032e714856168d0d7ab138c1876a',1,'RhopiRootFile::Destruct()']]],
   ['determinenamelatex',['DetermineNameLaTeX',['../classParticle.html#ae97e941db471dbe130c5aa7277d8c224',1,'Particle']]],
   ['determinereconstructionparameters',['DetermineReconstructionParameters',['../classReconstructedParticle.html#a606b46b3150f197eaa289912f1c5e7a3',1,'ReconstructedParticle']]],
   ['dh',['dh',['../RooFitMacro_8C.html#a207387d89f4818ec411575ea129674e6',1,'RooFitMacro.C']]],
@@ -21,5 +21,8 @@ var searchData=
   ['dzerophi_2ecxx',['DzeroPhi.cxx',['../DzeroPhi_8cxx.html',1,'']]],
   ['dzerophi_2eh',['DzeroPhi.h',['../DzeroPhi_8h.html',1,'']]],
   ['dzerophi_5fentries_2ecxx',['DzeroPhi_entries.cxx',['../DzeroPhi__entries_8cxx.html',1,'']]],
-  ['dzerophi_5fload_2ecxx',['DzeroPhi_load.cxx',['../DzeroPhi__load_8cxx.html',1,'']]]
+  ['dzerophi_5fload_2ecxx',['DzeroPhi_load.cxx',['../DzeroPhi__load_8cxx.html',1,'']]],
+  ['dzerophirootfile',['DzeroPhiRootFile',['../classDzeroPhiRootFile.html',1,'DzeroPhiRootFile'],['../classDzeroPhiRootFile.html#adc928bd8dc1f32cb719438dca486aff0',1,'DzeroPhiRootFile::DzeroPhiRootFile()'],['../classDzeroPhiRootFile.html#a1b9690894d34b7d298e8965a5a3ad86a',1,'DzeroPhiRootFile::DzeroPhiRootFile(const char *filename)']]],
+  ['dzerophirootfile_2eh',['DzeroPhiRootFile.h',['../DzeroPhiRootFile_8h.html',1,'']]],
+  ['dzerophirootnamespace_2eh',['DzeroPhiRootNamespace.h',['../DzeroPhiRootNamespace_8h.html',1,'']]]
 ];

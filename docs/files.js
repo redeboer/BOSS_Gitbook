@@ -20,8 +20,13 @@ var files =
     ] ],
     [ "DzeroPhi_entries.cxx", "DzeroPhi__entries_8cxx.html", "DzeroPhi__entries_8cxx" ],
     [ "DzeroPhi_load.cxx", "DzeroPhi__load_8cxx.html", null ],
+    [ "DzeroPhiRootFile.h", "DzeroPhiRootFile_8h.html", [
+      [ "DzeroPhiRootFile", "classDzeroPhiRootFile.html", "classDzeroPhiRootFile" ]
+    ] ],
+    [ "DzeroPhiRootNamespace.h", "DzeroPhiRootNamespace_8h.html", "DzeroPhiRootNamespace_8h" ],
     [ "FitDoubleGaussian_TH1Fit.C", "FitDoubleGaussian__TH1Fit_8C.html", "FitDoubleGaussian__TH1Fit_8C" ],
     [ "FitInvMassSignal.C", "FitInvMassSignal_8C.html", "FitInvMassSignal_8C" ],
+    [ "FitInvMassSignal_DzeroPhi.C", "FitInvMassSignal__DzeroPhi_8C.html", "FitInvMassSignal__DzeroPhi_8C" ],
     [ "FitInvMassSignal_new.C", "FitInvMassSignal__new_8C.html", "FitInvMassSignal__new_8C" ],
     [ "FitObject.h", "FitObject_8h.html", [
       [ "FitObject", "classFitObject.html", "classFitObject" ]
