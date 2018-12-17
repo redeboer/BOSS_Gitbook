@@ -319,7 +319,6 @@ StatusCode DzeroPhi::execute() {
 		log << MSG::DEBUG << "run, evtnum = "
 		    << runNo << " , "
 		    << evtNo << endreq;
-		cout << "event number: " << evtNo << endl;
 		Ncut0++; // counter for all events
 
 		// * Load event information and track collection *
@@ -399,7 +398,7 @@ StatusCode DzeroPhi::execute() {
 			fRvxy0  = Rvxy0;  // nearest distance to IP in xy plane
 			fRvz0   = Rvz0;   // nearest distance to IP in z direction
 			fRvphi0 = Rvphi0; // angle in the xy-plane (?)
-			fTupleVxyz->write(); // "vxyz" branch
+			// fTupleVxyz->write(); // "vxyz" branch
 
 			// * Apply vertex cuts *
 			if(fabs(z0)    >= fVz0cut)   continue;
