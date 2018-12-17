@@ -9,6 +9,7 @@ var hierarchy =
       [ "RhopiRootChain", "classRhopiRootChain.html", null ]
     ] ],
     [ "BOSSRootFile", "classBOSSRootFile.html", [
+      [ "DzeroPhiRootFile", "classDzeroPhiRootFile.html", null ],
       [ "RhopiRootFile", "classRhopiRootFile.html", null ]
     ] ],
     [ "FitObject", "classFitObject.html", [
