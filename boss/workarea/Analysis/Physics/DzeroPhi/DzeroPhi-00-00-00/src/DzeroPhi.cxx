@@ -438,7 +438,7 @@ StatusCode DzeroPhi::execute() {
 			fNormPH = dedxTrk->normPH();       // normalized pulse height
 			fGhit   = dedxTrk->numGoodHits();  // number of good hits
 			fThit   = dedxTrk->numTotalHits(); // total number of hits
-			fTupleDedx->write(); // "dedx" branch
+			// fTupleDedx->write(); // "dedx" branch
 		}
 
 
@@ -492,7 +492,7 @@ StatusCode DzeroPhi::execute() {
 					fProtoniTofEC  = tof - texp[2]; // difference with ToF in charged pion hypothesis
 					fKaonTofEC   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
 					fProtonTofEC   = tof - texp[4]; // difference with ToF in proton hypothesis
-					fTupleTofEC->write(); // "tofe" branch
+					// fTupleTofEC->write(); // "tofe" branch
 				}
 
 				// * If barrel ToF detector: *
@@ -526,7 +526,7 @@ StatusCode DzeroPhi::execute() {
 						fProtoniTofIB  = tof - texp[2]; // difference with ToF in charged pion hypothesis
 						fKaonTofIB   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
 						fProtonTofIB   = tof - texp[4]; // difference with ToF in proton hypothesis
-						TupleTofIB->write(); // "tof1" branch
+						// TupleTofIB->write(); // "tof1" branch
 					}
 
 					// * Outer barrel ToF detector
@@ -557,7 +557,7 @@ StatusCode DzeroPhi::execute() {
 						fProtoniTofOB  = tof - texp[2]; // difference with ToF in charged pion hypothesis
 						fKaonTofOB   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
 						fProtonTofOB   = tof - texp[4]; // difference with ToF in proton hypothesis
-						TupleTofOB->write(); // "tof2" branch
+						// TupleTofOB->write(); // "tof2" branch
 					}
 
 				}
@@ -596,7 +596,7 @@ StatusCode DzeroPhi::execute() {
 			fTof1PID = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
 			fTof2PID = pid->chiTof2(2);      // Chi squared of the outer barrel ToF of the track
 			fProbPID = pid->probPion();      // probability that it is a pion
-			fTuplePID->write(); // "pid" branch
+			// fTuplePID->write(); // "pid" branch
 
 			// * If more likely to be pion (pi+-) *
 			if(pid->probPion() > pid->probKaon()) {
