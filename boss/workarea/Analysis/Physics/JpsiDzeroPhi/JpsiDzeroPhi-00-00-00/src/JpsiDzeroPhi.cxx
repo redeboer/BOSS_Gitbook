@@ -151,7 +151,7 @@ StatusCode JpsiDzeroPhi::initialize(){
 				m_tuple_fit4c->addItem("mD0",   m_mD0);   // inv. mass K^- pi^+ (D^0)
 				m_tuple_fit4c->addItem("mphi",  m_mphi);  // inv. mass K^+ K^+  (phi)
 				m_tuple_fit4c->addItem("mJpsi", m_mJpsi); // inv. mass D^0 phi  (J/psi)
-				m_tuple_fit4c->addItem("chi2",  m_chi2);  // chi squared of the Kalman kinematic fit
+				m_tuple_fit4c->addItem("chi2",  m_chisq); // chi squared of the Kalman kinematic fit
 			}
 			else {
 				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_fit4c) << endmsg;
@@ -168,7 +168,7 @@ StatusCode JpsiDzeroPhi::initialize(){
 				m_tuple_fit6c->addItem("mD0",   m_mD0);   // inv. mass K^- pi^+ (D^0)
 				m_tuple_fit6c->addItem("mphi",  m_mphi);  // inv. mass K^+ K^+  (phi)
 				m_tuple_fit6c->addItem("mJpsi", m_mJpsi); // inv. mass D^0 phi  (J/psi)
-				m_tuple_fit6c->addItem("chi2",  m_chi2);  // chi squared of the Kalman kinematic fit
+				m_tuple_fit6c->addItem("chi2",  m_chisq); // chi squared of the Kalman kinematic fit
 			}
 			else {
 				log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple_fit6c) << endmsg;
@@ -803,8 +803,8 @@ StatusCode JpsiDzeroPhi::execute() {
 			chisq2 = kkmfit2->chisq();
 
 		// * Get best Kalman fit
-		KalmanKinematicFit *kkmfit = nullptr;
-		double chisq = 999999.;
+		kkmfit = nullptr;
+		chisq = 999999.;
 		if(chisq1 < chisq2) { kkmfit = kkmfit1; chisq = chisq1; }
 		else                { kkmfit = kkmfit2; chisq = chisq2; }
 
@@ -820,6 +820,11 @@ StatusCode JpsiDzeroPhi::execute() {
 			m_tuple_fit6c->write(); // "fit6c" branch
 			Ncut4++; // Kalman kinematic fit 6c is successful
 		}
+
+	// * Clean objects for this event * //
+		if(kkmfit)  delete kkmfit;
+		if(kkmfit1) delete kkmfit1;
+		if(kkmfit2) delete kkmfit2;
 
 	return StatusCode::SUCCESS;
 }

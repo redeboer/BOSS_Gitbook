@@ -79,6 +79,7 @@ private:
 		NTuple::Tuple* m_tuple_fit6c;
 			NTuple::Item<double> m_mD0;
 			NTuple::Item<double> m_mphi;
+			NTuple::Item<double> m_mJpsi;
 			NTuple::Item<double> m_chisq;
 
 		// * Energy loss dE/dx *
