@@ -151,10 +151,6 @@ StatusCode DzeroOmega::initialize(){
 				fTupleVxyz->addItem("rvxy0",   fRvxy0);   // nearest distance to IP in xy plane
 				fTupleVxyz->addItem("rvz0",    fRvz0);    // nearest distance to IP in z direction
 				fTupleVxyz->addItem("rvphi0",  fRvphi0);  // angle in the xy-plane (?)
-				fTupleVxyz->addItem("Ntotal",  fNtotal);  // total number of events per track
-				fTupleVxyz->addItem("Ncharge", fNcharge); // number of charged tracks
-				fTupleVxyz->addItem("Nmdc",    fNmdc);    // number of charged tracks in MDC
-				fTupleVxyz->addItem("Ngood",   fNgood);   // number of 'good' charged tracks
 			}
 			else {
 				log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleVxyz) << endmsg;
