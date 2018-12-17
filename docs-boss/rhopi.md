@@ -53,7 +53,7 @@ See [header `.h` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/
 **To be developed!**
 {% endhint %}
 
-### `JpsiDzeroOmega`
+### `DzeroOmega`
 
 Decay channel: $$J/\psi \rightarrow D^0 \omega \rightarrow K^-\pi^+ + \pi^+\pi^-\pi^0$$.
 
@@ -62,7 +62,7 @@ Decay channel: $$J/\psi \rightarrow D^0 \omega \rightarrow K^-\pi^+ + \pi^+\pi^-
 * PDG 2018 listing for $$\omega(782)$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
 * PDG 2018 listing for $$K^\pm$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-K-plus-minus.pdf).
 
-### `JpsiDzeroPhi`
+### `DzeroPhi`
 
 Decay channel: $$J/\psi \rightarrow D^0 \phi \rightarrow K^-\pi^+ + K^+K^-$$.
 
