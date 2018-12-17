@@ -2,17 +2,17 @@
 desktop.ini
 
 # Ignore folder contents
-data/**/*.dst
-data/**/*.log
-data/**/*.raw
-data/**/*.root
-data/**/*.rtraw
-log/**/*.log
-plots/**/*.eps
-plots/**/*.pdf
-plots/**/*.png
-plots/**/*.root
-scripts/**/*.log
+data/**/**.dst
+data/**/**.log
+data/**/**.raw
+data/**/**.root
+data/**/**.rtraw
+log/**/**.log
+plots/**/**.eps
+plots/**/**.pdf
+plots/**/**.png
+plots/**/**.root
+scripts/**/**.log
 
 # Ignore jobs
 jobs/ana/**.txt
