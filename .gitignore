@@ -3,6 +3,7 @@ desktop.ini
 
 # Ignore folder contents
 data/**/**.dst
+data/**/*.log
 data/**/**.log
 data/**/**.raw
 data/**/*.root
