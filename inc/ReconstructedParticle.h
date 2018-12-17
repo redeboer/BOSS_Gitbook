@@ -323,8 +323,32 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 				fFitRange             = {.50, 1.42};
 				fPlotRange            = {.30, 1.7};
 				break;
+			case 421: // D0 meson
+				fMassOffset           = .05;
+				fBWPureWidth          = .8;
+				fBWConvolutedWidth    = .0004;
+				fDoubleGaussianWidths = {.0542, .209};
+				fFitRange             = {1.5, 2.1};
+				fPlotRange            = {1.5, 2.1};
+				break;
+			case 333: // phi meson
+				fMassOffset           = .05;
+				fBWPureWidth          = .8;
+				fBWConvolutedWidth    = .0004;
+				fDoubleGaussianWidths = {.0542, .209};
+				fFitRange             = {.8, 1.2};
+				fPlotRange            = {.8, 1.2};
+				break;
+			case 443: // J/psi meson
+				fMassOffset           = .05;
+				fBWPureWidth          = .8;
+				fBWConvolutedWidth    = .0004;
+				fDoubleGaussianWidths = {.0542, .209};
+				fFitRange             = {2.5, 3.5};
+				fPlotRange            = {2.5, 3.5};
+				break;
 			default:
-				std::cout << "ERROR: No particle defined for PDG code " << fParticlePDG->PdgCode() << " (" << fParticlePDG->GetName() << ")" << std::endl;
+				std::cout << "ERROR: No particle reconstruction defined for PDG code " << fParticlePDG->PdgCode() << " (" << fParticlePDG->GetName() << ")" << std::endl;
 				break;
 		}
 	}
