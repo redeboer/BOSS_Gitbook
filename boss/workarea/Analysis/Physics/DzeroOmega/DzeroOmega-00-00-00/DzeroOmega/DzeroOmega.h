@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_JpsiDzeroOmega_H
-#define Physics_Analysis_JpsiDzeroOmega_H
+#ifndef Physics_Analysis_DzeroOmega_H
+#define Physics_Analysis_DzeroOmega_H
 
 /**
  * @brief    Analyse \f$ J/\psi \rightarrow D^0 \phi \f$ events.
@@ -22,11 +22,11 @@
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
-class JpsiDzeroOmega : public Algorithm
+class DzeroOmega : public Algorithm
 {
 public:
 	// * Constructor and destructors *
-	JpsiDzeroOmega(const std::string& name, ISvcLocator* pSvcLocator);
+	DzeroOmega(const std::string& name, ISvcLocator* pSvcLocator);
 
 	// * Algorithm steps *
 	StatusCode initialize();
@@ -39,7 +39,7 @@ private:
 	// ReadBeamParFromDb m_reader;
 
 	// ! ------- DECLARE CUTS HERE ------- ! //
-		// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `JpsiDzeroOmega::JpsiDzeroOmega` constructor (see `.cxx` file).
+		// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `DzeroOmega::DzeroOmega` constructor (see `.cxx` file).
 
 		// * Declare r0, z0 cut for charged tracks *
 		double m_vr0cut;
@@ -68,7 +68,7 @@ private:
 
 	// ! ------- DECLARE NTUPLES HERE ------- ! //
 		// NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem.
-		// Note that the NTuple::Items are added to the NTuple during the JpsiDzeroOmega::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
+		// Note that the NTuple::Items are added to the NTuple during the DzeroOmega::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Vertex information of the charged tracks *
 		NTuple::Tuple* m_tuple_vxyz;

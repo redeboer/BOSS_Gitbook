@@ -23,7 +23,7 @@
 	#include "GaudiKernel/PropertyMgr.h"
 	#include "GaudiKernel/SmartDataPtr.h"
 	#include "ParticleID/ParticleID.h"
-	#include "JpsiDzeroOmega/JpsiDzeroOmega.h"
+	#include "DzeroOmega/DzeroOmega.h"
 	#include "TMath.h"
 	#include "VertexFit/Helix.h"
 	#include "VertexFit/IVertexDbSvc.h"
@@ -79,11 +79,11 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 /**
- * @brief Constructor for the `JpsiDzeroOmega` algorithm.
- * @details Here, you should declare properties: give them a name, assign a parameter (data member of `JpsiDzeroOmega`), and if required a documentation string. Note that you should define the paramters themselves in the header (JpsiDzeroOmega/JpsiDzeroOmega.h) and that you should assign the values in `share/jopOptions_JpsiDzeroOmega.txt`.
+ * @brief Constructor for the `DzeroOmega` algorithm.
+ * @details Here, you should declare properties: give them a name, assign a parameter (data member of `DzeroOmega`), and if required a documentation string. Note that you should define the paramters themselves in the header (DzeroOmega/DzeroOmega.h) and that you should assign the values in `share/jopOptions_DzeroOmega.txt`.
  */
 // Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
-JpsiDzeroOmega::JpsiDzeroOmega(const std::string& name, ISvcLocator* pSvcLocator) :
+DzeroOmega::DzeroOmega(const std::string& name, ISvcLocator* pSvcLocator) :
 	Algorithm(name, pSvcLocator) {
 
 	// * Define r0, z0 cut for charged tracks *
@@ -121,7 +121,7 @@ JpsiDzeroOmega::JpsiDzeroOmega(const std::string& name, ISvcLocator* pSvcLocator
  * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
  * @details Define and load NTuples here.
  */
-StatusCode JpsiDzeroOmega::initialize(){
+StatusCode DzeroOmega::initialize(){
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "In initialize():" << endmsg;
@@ -365,7 +365,7 @@ StatusCode JpsiDzeroOmega::initialize(){
 /**
  * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
  */
-StatusCode JpsiDzeroOmega::execute() {
+StatusCode DzeroOmega::execute() {
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "In execute():" << endreq;
@@ -781,7 +781,7 @@ StatusCode JpsiDzeroOmega::execute() {
 		}
 
 
-	// * JpsiDzeroOmega without PID * //
+	// * DzeroOmega without PID * //
 		// for(int i = 0; i < nGood; ++i) { 
 			// EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
 			// RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
@@ -1017,7 +1017,7 @@ StatusCode JpsiDzeroOmega::execute() {
  * @brief Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events.
  * @details Prints the flow chart to the terminal, so make sure you save this output!
  */
-StatusCode JpsiDzeroOmega::finalize() {
+StatusCode DzeroOmega::finalize() {
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "in finalize()" << endmsg;
