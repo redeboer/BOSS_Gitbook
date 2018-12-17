@@ -187,6 +187,9 @@ TTree* BOSSRootFile::FindTree(const char* treeName)
 	// * Pass TTree pointer if the name matches
 	if(!tree) {
 		std::cout << "ERROR: TTree \"" << treeName << "\" does not exist in file \"" << fFile.GetName() << "\"" << std::endl;
+		std::cout << std::endl << "Try:" << std::endl;
+		fFile.ls();
+		std::terminate();
 	}
 	return tree;
 }
