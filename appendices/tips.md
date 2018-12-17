@@ -1,9 +1,3 @@
----
-description: >-
-  This page is used to collect notes on any problems encountered in BOSS or in
-  performing analysis on BOSS output.
----
-
 # Tips, Tricks, and Troubleshooting
 
 ## Tips & Tricks
@@ -80,7 +74,33 @@ C:\Users\<your user name>\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonW
 
 ## Troubleshooting
 
-_For the moment, I use this section to collect issues I encounter and provide a solution where possble_
+_For the moment, I use this section to collect issues I encounter and provide a solution where possible._
 
-* **I lost read-write access.** One easy command to solve it: use `klog` and enter your password. You should now be able to read-write in _all_ your sessions.
+### **I lost read-write access**
+
+One easy command to solve it: use `klog` and enter your password. You should now be able to read-write in _all_ your sessions.
+
+### I'm sure my job is set up correctly, but it keeps resulting in:
+
+```text
+JobOptionsSvc       ERROR # =======> <package>/share/jobOptions_<package>.txt
+JobOptionsSvc       ERROR # (22,1): parse error
+...
+JobOptionsSvc       FATAL Job options errors.
+ApplicationMgr      FATAL Error initializing JobOptionsSvc
+```
+
+Yep, this is a weird one... So far, the cause was usually that the `jobOptions_*.txt` ends in a comment. You can solve it by adding a new line to the file.
+
+### I cannot run a bash script, but I'm sure it should work
+
+It could be that you wrote the `.sh` script on Windows and the file wasn't stored with Linux line endings. You can change these line endings back to Linux using:
+
+```bash
+sed -i 's/\r$//' $fileName
+```
+
+{% hint style="info" %}
+This command is also available is used `source` to load [`jobs/CommonFunctions.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/CommonFunctions.sh), you can use the function `ChangeLineEndingsFromWindowsToUnix`.
+{% endhint %}
 

@@ -1,10 +1,3 @@
----
-description: >-
-  BOSS packages are your own modifications of BOSS. You usually design a BOSS
-  package when you want to run a Monte Carlo simulation or make an event
-  selection from BESIII data available on the server.
----
-
 # Set up a BOSS package
 
 ## How to set up a BOSS package? <a id="how-to-set-up-a-boss-package"></a>

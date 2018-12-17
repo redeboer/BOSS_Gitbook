@@ -1,10 +1,3 @@
----
-description: >-
-  This section section explains the essential step of installing the BOSS
-  environment in your user account on the IHEP server. If you haven't done so
-  yet, follow the steps here.
----
-
 # Setup of your BOSS environment
 
 

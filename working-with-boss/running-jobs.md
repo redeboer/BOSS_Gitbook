@@ -1,10 +1,3 @@
----
-description: >-
-  When you have prepared some packages in your BOSS workarea, you can run run
-  them on the server. This is done through so called job option files that you
-  run with boss.exe.
----
-
 # Running jobs
 
 Particle physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In BOSS, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on BOSS:

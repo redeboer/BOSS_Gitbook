@@ -1,7 +1,3 @@
----
-description: This page is used to collect links to useful webpages.
----
-
 # Further reading
 
 {% hint style="info" %}

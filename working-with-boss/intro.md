@@ -1,10 +1,3 @@
----
-description: >-
-  This page contains a short introduction to the two major tools on which the
-  BOSS framework has been built. If you can't wait installing BOSS, you can
-  choose to skip this section.
----
-
 # The BOSS Analysis Framework
 
 {% hint style="warning" %}
