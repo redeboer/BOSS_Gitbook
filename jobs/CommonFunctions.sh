@@ -218,7 +218,7 @@
 			local filename="${filename%.*}"
 			local prefix="${path}/${filename}_"
 		# * Split input file * #
-		rm -f "${prefix}???.${extension}" #! remove existing files
+		rm -f "${prefix}"???".${extension}" #! remove existing files
 		split -d -a3 -l${maxNLines} "${fileToSplit}" "${prefix}"
 		# * Append extension again (if original file has one) * #
 		# shopt -s extglob # for regex

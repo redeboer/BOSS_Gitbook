@@ -26,6 +26,7 @@ jobs/rec/**.txt
 jobs/sim/**.txt
 jobs/sub/**.sh
 jobs/sub/**.sh.*.*
+jobs/**/sed*
 
 # Ignore settings
 **.code-workspace

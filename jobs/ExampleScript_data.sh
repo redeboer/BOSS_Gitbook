@@ -13,7 +13,7 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-	analysisType="rhopi_data" # default argument
+	analysisType="rhopi" # default argument
 	if [ $# == 1 ]; then
 		analysisType="$1"
 	fi
@@ -24,11 +24,11 @@ gExampleFromFile=0
 if [ ${gExampleFromFile} == 1 ]; then
 	# * This will create your job files based on a file listing dst files and directories
 	CreateFilenameInventoryFromFile "filenames/ExampleFile_DstFiles" "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection.txt" 20 "dst"
-	bash CreateJobFiles_data.sh "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_*.txt" "$analysisType" -1
+	bash CreateJobFiles_data.sh "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_*.txt" "${analysisType}_data" -1
 else
 	# * This will create your job files based on a directory containing dst files
 	CreateFilenameInventoryFromDirectory "/besfs3/offline/data/703-1/jpsi/round02/dst/" "filenames/besfs3_offline_data_703-1_jpsi_round02_dst.txt" 100 "dst"
-	bash CreateJobFiles_data.sh "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_*.txt" "$analysisType" -1
+	bash CreateJobFiles_data.sh "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_*.txt" "${analysisType}_data" -1
 fi
 
 bash SubmitAll.sh "$analysisType"
