@@ -27,8 +27,8 @@ if [ ${gExampleFromFile} == 1 ]; then
 	bash CreateJobFiles_data.sh "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_*.txt" "$analysisType" -1
 else
 	# * This will create your job files based on a directory containing dst files
-	CreateFilenameInventoryFromDirectory "/besfs3/offline/data/703-1/jpsi/round02/dst/090612/" "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_090612.txt" 20 "dst"
-	bash CreateJobFiles_data.sh "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_090612_*.txt" "$analysisType" -1
+	CreateFilenameInventoryFromDirectory "/besfs3/offline/data/703-1/jpsi/round02/dst/" "filenames/besfs3_offline_data_703-1_jpsi_round02_dst.txt" 100 "dst"
+	bash CreateJobFiles_data.sh "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_*.txt" "$analysisType" -1
 fi
 
 bash SubmitAll.sh "$analysisType"
