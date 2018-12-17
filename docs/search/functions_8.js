@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['jpsidzeroomega',['JpsiDzeroOmega',['../classJpsiDzeroOmega.html#a3429641a74526a7024ae831873e1cb3b',1,'JpsiDzeroOmega']]],
-  ['jpsidzerophi',['JpsiDzeroPhi',['../classJpsiDzeroPhi.html#ad441e16bcf642727fd35962f6416ef18',1,'JpsiDzeroPhi']]]
+  ['k',['K',['../namespaceSettings_1_1Particles.html#abce29a1f057a1b534fcac561320c7c44',1,'Settings::Particles']]],
+  ['k0',['K0',['../namespaceSettings_1_1Particles.html#a05993391739a93b43dba53da3d9f00ff',1,'Settings::Particles']]]
 ];

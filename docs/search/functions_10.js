@@ -1,10 +1,19 @@
 var searchData=
 [
-  ['ratios',['ratios',['../FitObjectDoubleGauss_8h.html#ae97d0f10e8761141d98f7f1f6759d4a5',1,'FitObjectDoubleGauss.h']]],
-  ['reconstructedparticle',['ReconstructedParticle',['../classReconstructedParticle.html#a92d433507c9aaa350dd5999eff1c5cab',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode)'],['../classReconstructedParticle.html#a4d4ac611435e63765574304852ec23e6',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode)'],['../classReconstructedParticle.html#a38b19a3d3f5b338ac7e5e553cc925442',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode, const char *daughters)'],['../classReconstructedParticle.html#a95cf3aff593e7dbbb86849109cadc894',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode, const char *daughters)']]],
-  ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#a5a404d3db862276fa70b85a353496d4e',1,'Settings::Particles']]],
-  ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],
-  ['rhopi',['Rhopi',['../classRhopi.html#ab871fad73488bb6fa152c421b5f4bdd3',1,'Rhopi']]],
-  ['rhopirootchain',['RhopiRootChain',['../classRhopiRootChain.html#ae5feb0475f7c45a3c3787cfaf775da71',1,'RhopiRootChain::RhopiRootChain()'],['../classRhopiRootChain.html#a2f4696b928a2bdf3b65508a00bfe5028',1,'RhopiRootChain::RhopiRootChain(const char *directoryPath, const char *analysisName)']]],
-  ['rhopirootfile',['RhopiRootFile',['../classRhopiRootFile.html#a108fb195008d97baf4bde456992e7e68',1,'RhopiRootFile::RhopiRootFile()'],['../classRhopiRootFile.html#a3cc840716db92059777db1574dcbfd23',1,'RhopiRootFile::RhopiRootFile(const char *filename)']]]
+  ['saveas',['SaveAs',['../FitObjectDoubleGauss_8h.html#a0479cbe8fdfd107b39ee0c27c431cf68',1,'FitObjectDoubleGauss.h']]],
+  ['sbratio',['sbratio',['../FitObjectDoubleGauss_8h.html#a81eb07359ee972c67cdae96a02b5ce4b',1,'FitObjectDoubleGauss.h']]],
+  ['setaxisrange',['SetAxisRange',['../FitObjectDoubleGauss_8h.html#a784f51a8cf598d197fe2974582542afd',1,'FitObjectDoubleGauss.h']]],
+  ['setbatch',['SetBatch',['../FitObjectDoubleGauss_8h.html#ace763ecf8566518fa717790652b5f786',1,'FitObjectDoubleGauss.h']]],
+  ['setbranchaddress',['SetBranchAddress',['../classBOSSRootChain.html#ace5af0bff981d3283f12c359c9f18c21',1,'BOSSRootChain::SetBranchAddress()'],['../classBOSSRootFile.html#a04105374cbf3e7a745edf371afee4111',1,'BOSSRootFile::SetBranchAddress()']]],
+  ['setchain',['SetChain',['../classRhopiRootChain.html#af2ba8d92bfbe26e4ce319f4c6a7a60c2',1,'RhopiRootChain']]],
+  ['setdaughterlabel',['SetDaughterLabel',['../classReconstructedParticle.html#a07eb465bf055a192e36f364dfb4ae7ef',1,'ReconstructedParticle']]],
+  ['setinvmassdistr',['SetInvMassDistr',['../classFitObject.html#aeba287acaae08b9e97dc061a3c69a045',1,'FitObject']]],
+  ['setleftmargin',['SetLeftMargin',['../RooFitMacro_8C.html#a48661e18ee7ffd45394c8a636b1dd9b8',1,'RooFitMacro.C']]],
+  ['setlogscale',['SetLogScale',['../namespaceCommonFunctions.html#abb1b4f83b1c4ccdf64cd1700b123bcd3',1,'CommonFunctions']]],
+  ['setmassparameter',['SetMassParameter',['../classFitObjectDoubleGauss.html#aba46a1ef64c7e459a55e79cd3d32b08c',1,'FitObjectDoubleGauss']]],
+  ['setmassparameteraroundzero',['SetMassParameterAroundZero',['../classFitObjectDoubleGauss.html#ac95930a0892c0c5103f9ca807cb4a425',1,'FitObjectDoubleGauss']]],
+  ['setroorealvar',['SetRooRealVar',['../classFitObject.html#a5ddbcf189d858ce62d1b70f086380754',1,'FitObject']]],
+  ['setsignalarguments',['SetSignalArguments',['../classFitObject.html#ad1ef598cd6da83b6667aabab2e864043',1,'FitObject::SetSignalArguments()'],['../classFitObjectDoubleGauss.html#aa626fd68c7a3504c6a1ad1f73b67c6d5',1,'FitObjectDoubleGauss::SetSignalArguments()']]],
+  ['sigma',['sigma',['../RooFitMacro_8C.html#ac3cab5530393619c5b422ba240a3dd3a',1,'RooFitMacro.C']]],
+  ['staton',['statOn',['../RooFitMacro_8C.html#a5065ba2967b1334a14ba20cb50f857e3',1,'RooFitMacro.C']]]
 ];

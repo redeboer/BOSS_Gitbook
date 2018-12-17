@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['jpsidzeroomega_2ecxx',['JpsiDzeroOmega.cxx',['../JpsiDzeroOmega_8cxx.html',1,'']]],
-  ['jpsidzeroomega_2eh',['JpsiDzeroOmega.h',['../JpsiDzeroOmega_8h.html',1,'']]],
-  ['jpsidzeroomega_5fentries_2ecxx',['JpsiDzeroOmega_entries.cxx',['../JpsiDzeroOmega__entries_8cxx.html',1,'']]],
-  ['jpsidzeroomega_5fload_2ecxx',['JpsiDzeroOmega_load.cxx',['../JpsiDzeroOmega__load_8cxx.html',1,'']]],
-  ['jpsidzerophi_2ecxx',['JpsiDzeroPhi.cxx',['../JpsiDzeroPhi_8cxx.html',1,'']]],
-  ['jpsidzerophi_2eh',['JpsiDzeroPhi.h',['../JpsiDzeroPhi_8h.html',1,'']]],
-  ['jpsidzerophi_5fentries_2ecxx',['JpsiDzeroPhi_entries.cxx',['../JpsiDzeroPhi__entries_8cxx.html',1,'']]],
-  ['jpsidzerophi_5fload_2ecxx',['JpsiDzeroPhi_load.cxx',['../JpsiDzeroPhi__load_8cxx.html',1,'']]]
+  ['fitdoublegaussian_5fth1fit_2ec',['FitDoubleGaussian_TH1Fit.C',['../FitDoubleGaussian__TH1Fit_8C.html',1,'']]],
+  ['fitinvmasssignal_2ec',['FitInvMassSignal.C',['../FitInvMassSignal_8C.html',1,'']]],
+  ['fitinvmasssignal_5fnew_2ec',['FitInvMassSignal_new.C',['../FitInvMassSignal__new_8C.html',1,'']]],
+  ['fitobject_2eh',['FitObject.h',['../FitObject_8h.html',1,'']]],
+  ['fitobjectdoublegauss_2eh',['FitObjectDoubleGauss.h',['../FitObjectDoubleGauss_8h.html',1,'']]],
+  ['frameworksettings_2eh',['FrameworkSettings.h',['../FrameworkSettings_8h.html',1,'']]]
 ];

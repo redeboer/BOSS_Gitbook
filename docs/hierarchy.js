@@ -1,8 +1,8 @@
 var hierarchy =
 [
     [ "Algorithm", null, [
-      [ "JpsiDzeroOmega", "classJpsiDzeroOmega.html", null ],
-      [ "JpsiDzeroPhi", "classJpsiDzeroPhi.html", null ],
+      [ "DzeroOmega", "classDzeroOmega.html", null ],
+      [ "DzeroPhi", "classDzeroPhi.html", null ],
       [ "Rhopi", "classRhopi.html", null ]
     ] ],
     [ "BOSSRootChain", "classBOSSRootChain.html", [

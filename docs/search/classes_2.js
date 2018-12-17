@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['jpsidzeroomega',['JpsiDzeroOmega',['../classJpsiDzeroOmega.html',1,'']]],
-  ['jpsidzerophi',['JpsiDzeroPhi',['../classJpsiDzeroPhi.html',1,'']]]
+  ['fitobject',['FitObject',['../classFitObject.html',1,'']]],
+  ['fitobjectdoublegauss',['FitObjectDoubleGauss',['../classFitObjectDoubleGauss.html',1,'']]]
 ];
