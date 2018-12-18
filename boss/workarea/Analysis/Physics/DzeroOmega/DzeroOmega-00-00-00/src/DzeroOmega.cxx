@@ -6,6 +6,7 @@
 	#include "CLHEP/Vector/ThreeVector.h"
 	#include "CLHEP/Vector/TwoVector.h"
 	#include "DstEvent/TofHitStatus.h"
+	#include "DzeroOmega/DzeroOmega.h"
 	#include "EventModel/Event.h"
 	#include "EventModel/EventHeader.h"
 	#include "EventModel/EventModel.h"
@@ -22,15 +23,14 @@
 	#include "GaudiKernel/NTuple.h"
 	#include "GaudiKernel/PropertyMgr.h"
 	#include "GaudiKernel/SmartDataPtr.h"
+	#include "NTupleMap/NTupleMap.h"
 	#include "ParticleID/ParticleID.h"
-	#include "DzeroOmega/DzeroOmega.h"
 	#include "TMath.h"
+	#include "TString.h"
 	#include "VertexFit/Helix.h"
 	#include "VertexFit/IVertexDbSvc.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include "VertexFit/VertexFit.h"
-	#include "NTupleMap/NTupleMap.h"
-	#include "TString"
 	#include <vector>
 	// #include "VertexFit/KinematicFit.h"
 	#ifndef ENABLE_BACKWARDS_COMPATIBILITY
@@ -121,10 +121,9 @@ StatusCode DzeroOmega::initialize() {
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "In initialize():" << endmsg;
-	NTuplePtr nt; // will be used below
 
 	// * Book NTuple: Multiplicities * //
-		nt = BookNTuple("mult");
+		NTuplePtr nt = BookNTuple("mult");
 		if(!nt) return StatusCode::FAILURE;
 		nt->addItem("Ntotal",   fNtotal);
 		nt->addItem("Nneutral", fNneutral);
