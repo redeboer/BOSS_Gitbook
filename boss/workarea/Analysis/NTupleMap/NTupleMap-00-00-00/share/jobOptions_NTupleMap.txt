@@ -1,0 +1,21 @@
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+ApplicationMgr.DLLs   += {"NTupleMap"};
+ApplicationMgr.TopAlg += {"NTupleMap"};
+
+// * Define r0, z0 cut for charged tracks *
+NTupleMap.Vr0cut    = 9999.; // 1.0
+NTupleMap.Vz0cut    = 9999.; // 5.0
+NTupleMap.Vrvz0cut  =   10.;
+NTupleMap.Vrvxy0cut =    1.;
+
+// * Define energy, dphi, dthe cuts for fake gamma's *
+NTupleMap.EnergyThreshold = 0.04;
+NTupleMap.GammaPhiCut     = 20.0;
+NTupleMap.GammaThetaCut   = 20.0;
+NTupleMap.GammaAngleCut   = 20.0;
+
+// * Define invariant mass window cut *
+NTupleMap.dM_rho0 = .150;
+
+// * Whether to test the success of the 4- and 5-constraint fits *
+NTupleMap.MaxChiSq = 200.; // chisq for both fits should be less

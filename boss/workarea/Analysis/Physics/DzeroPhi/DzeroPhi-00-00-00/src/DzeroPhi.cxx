@@ -17,7 +17,6 @@
 	#include "GaudiKernel/IHistogramSvc.h"
 	#include "GaudiKernel/INTupleSvc.h"
 	#include "GaudiKernel/ISvcLocator.h"
-	#include "GaudiKernel/ISvcLocator.h"
 	#include "GaudiKernel/MsgStream.h"
 	#include "GaudiKernel/NTuple.h"
 	#include "GaudiKernel/PropertyMgr.h"

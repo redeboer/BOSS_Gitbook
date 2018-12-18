@@ -33,10 +33,13 @@ public:
 	StatusCode execute();
 	StatusCode finalize();
 
+	// * Private methods * //
+	NTuplePtr BookNTuple(const char* tupleName);
+
 private:
 
-	// * Reader for beam info * //
-	// ReadBeamParFromDb fReader;
+	// * Container for NTuples * //
+	std::map<std::string, NTuplePtr> fNTupleMap;
 
 	// ! ------- DECLARE CUTS HERE ------- ! //
 		// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `DzeroPhi::DzeroPhi` constructor (see `.cxx` file).
@@ -65,7 +68,6 @@ private:
 		// Note that the NTuple::Items are added to the NTuple during the DzeroPhi::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Vertex information of the charged tracks *
-		NTuple::Tuple* fTupleVxyz;
 			NTuple::Item<double> fVx0;
 			NTuple::Item<double> fVy0;
 			NTuple::Item<double> fVz0;
@@ -75,15 +77,12 @@ private:
 			NTuple::Item<double> fRvphi0;
 
 		// * 4- and 6-constraint (4C/6C) fit information *
-		NTuple::Tuple* fTupleFit4C;
-		NTuple::Tuple* fTupleFit6C;
 			NTuple::Item<double> fM_D0;
 			NTuple::Item<double> fM_phi;
 			NTuple::Item<double> fM_Jpsi;
 			NTuple::Item<double> fChi2sq;
 
 		// * Energy loss dE/dx *
-		NTuple::Tuple* fTupleDedx;
 			NTuple::Item<double> fPtrack;
 			NTuple::Item<double> fChi2e;
 			NTuple::Item<double> fChi2mu;
@@ -96,7 +95,6 @@ private:
 			NTuple::Item<double> fThit;
 
 		// * End cap ToF decector *
-		NTuple::Tuple* fTupleTofEC;
 			NTuple::Item<double> fPtotTofEC;
 			NTuple::Item<double> fPathTofEC;
 			NTuple::Item<double> fTofEC;
@@ -141,7 +139,6 @@ private:
 			NTuple::Item<double> fQualTofOB;
 
 		// * Particle ID info *
-		NTuple::Tuple* fTuplePID;
 			NTuple::Item<double> fPtrackPID;
 			NTuple::Item<double> fCostPID;
 			NTuple::Item<double> fDedxPID;

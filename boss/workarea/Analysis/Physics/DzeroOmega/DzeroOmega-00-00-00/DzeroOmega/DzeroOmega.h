@@ -15,6 +15,8 @@
 	#include "GaudiKernel/AlgFactory.h"
 	#include "GaudiKernel/Algorithm.h"
 	#include "GaudiKernel/NTuple.h"
+	#include <map>
+	#include <string>
 
 
 
@@ -24,15 +26,21 @@
 class DzeroOmega : public Algorithm
 {
 public:
-	// * Constructor and destructors *
+	// * Constructor and destructors * //
 	DzeroOmega(const std::string& name, ISvcLocator* pSvcLocator);
 
-	// * Algorithm steps *
+	// * Algorithm steps * //
 	StatusCode initialize();
 	StatusCode execute();
 	StatusCode finalize();
 
+	// * Private methods * //
+	NTuplePtr BookNTuple(const char* tupleName);
+
 private:
+
+	// * Container for NTuples * //
+	std::map<std::string, NTuplePtr> fNTupleMap;
 
 	// * Reader for beam info * //
 	// ReadBeamParFromDb fReader;
@@ -64,118 +72,106 @@ private:
 		// Note that the NTuple::Items are added to the NTuple during the DzeroOmega::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Multiplicities *
-		NTuple::Tuple* fTupleMult;
-			NTuple::Item<int>    fNtotal;   // total number of events per track
-			NTuple::Item<int>    fNneutral; // number of neutral tracks
-			NTuple::Item<int>    fNcharge;  // number of charged tracks
-			NTuple::Item<int>    fNmdc;     // number of charged tracks in MDC
-			NTuple::Item<int>    fNgood;    // number of 'good' charged tracks
+			NTuple::Item<int> fNtotal;   //!< Total number of events per track.
+			NTuple::Item<int> fNneutral; //!< Number of charged tracks.
+			NTuple::Item<int> fNcharge;  //!< Number of charged tracks.
+			NTuple::Item<int> fNmdc;     //!< Number of charged tracks in MDC.
+			NTuple::Item<int> fNgood;    //!< Number of 'good' charged tracks.
 
 		// * Vertex information of the charged tracks *
-		NTuple::Tuple* fTupleVxyz;
-			NTuple::Item<double> fVx0;
-			NTuple::Item<double> fVy0;
-			NTuple::Item<double> fVz0;
-			NTuple::Item<double> fVr0;
-			NTuple::Item<double> fRvxy0;
-			NTuple::Item<double> fRvz0;
-			NTuple::Item<double> fRvphi0;
+			NTuple::Item<double> fVx0;    //!< Primary x-vertex as determined by MDC.
+			NTuple::Item<double> fVy0;    //!< Primary y-vertex as determined by MDC.
+			NTuple::Item<double> fVz0;    //!< Primary z-vertex as determined by MDC.
+			NTuple::Item<double> fVr0;    //!< Distance from origin in xy-plane.
+			NTuple::Item<double> fRvxy0;  //!< Nearest distance to IP in xy plane.
+			NTuple::Item<double> fRvz0;   //!< Nearest distance to IP in z direction.
+			NTuple::Item<double> fRvphi0; //!< Angle in the xy-plane (?).
 
 		// * 'Fake' photon (angles) *
-		NTuple::Tuple* fTupleAngles;
-			NTuple::Item<double> fDeltaTheta;
-			NTuple::Item<double> fDeltaPhi;
-			NTuple::Item<double> fDeltaAngle;
-			NTuple::Item<double> fEraw;
+			NTuple::Item<double> fDeltaTheta; //!< Theta difference with nearest charged track (degrees).
+			NTuple::Item<double> fDeltaPhi;   //!< Phi difference with nearest charged track (degrees).
+			NTuple::Item<double> fDeltaAngle; //!< Angle difference with nearest charged track.
+			NTuple::Item<double> fEraw;       //!< Energy of the photon.
 
 		// * Raw invariant mass of the two gammas and their total energy *
-		NTuple::Tuple* fTupleMgg;
-			NTuple::Item<double> fMtoGG;
-			NTuple::Item<double> fEtot;
+			NTuple::Item<double> fMtoGG; //!< Invariant mass of the two gammas.
+			NTuple::Item<double> fEtot;  //!< Total energy of pi^+, pi^ and the two gammas.
 
 		// * 4-constraint (4C) fit information *
-		NTuple::Tuple* fTupleFit4C;
-			NTuple::Item<double> fChi1;
-			NTuple::Item<double> fMpi0;
+			NTuple::Item<double> fChi1; //!< Invariant pi0 mass according to Kalman kinematic fit.
+			NTuple::Item<double> fMpi0; //!< Chi square of the Kalman kinematic fit.
 
 		// * 5-constraint (6C) fit information *
-		NTuple::Tuple* fTupleFit6C;
-			NTuple::Item<double> fChi2;
-			NTuple::Item<double> fMrho0;
-			NTuple::Item<double> fMrhop;
-			NTuple::Item<double> fMrhom;
+			NTuple::Item<double> fChi2;  //!< Chi squared of the Kalman kinematic fit.
+			NTuple::Item<double> fMrho0; //!< Inv. mass pi^+ pi^- (rho^0).
+			NTuple::Item<double> fMrhop; //!< Inv. mass pi^0 pi^+ (rho^+).
+			NTuple::Item<double> fMrhom; //!< Inv. mass pi^0 pi^- (rho^-).
 
 		// * Photons *
-		NTuple::Tuple* fTuplePhoton;
-			NTuple::Item<double> fFcos;
-			NTuple::Item<double> fElow;
+			NTuple::Item<double> fFcos; //!< E/p ratio for pi^0 candidate.
+			NTuple::Item<double> fElow; //!< Lowest energy of the two gammas.
 
 		// * Energy loss dE/dx *
-		NTuple::Tuple* fTupleDedx;
-			NTuple::Item<double> fPtrack;
-			NTuple::Item<double> fChi2e;
-			NTuple::Item<double> fChi2mu;
-			NTuple::Item<double> fChi2pi;
-			NTuple::Item<double> fChi2k;
-			NTuple::Item<double> fChi2p;
-			NTuple::Item<double> fProbPH;
-			NTuple::Item<double> fNormPH;
-			NTuple::Item<double> fGhit;
-			NTuple::Item<double> fThit;
+			NTuple::Item<double> fPtrack; //!< Momentum of the track.
+			NTuple::Item<double> fChi2e;  //!< Chi2 in case of electron.
+			NTuple::Item<double> fChi2mu; //!< Chi2 in case of muon.
+			NTuple::Item<double> fChi2pi; //!< Chi2 in case of pion.
+			NTuple::Item<double> fChi2k;  //!< Chi2 in case of kaon.
+			NTuple::Item<double> fChi2p;  //!< Chi2 in case of proton.
+			NTuple::Item<double> fProbPH; //!< Most probable pulse height from truncated mean.
+			NTuple::Item<double> fNormPH; //!< Normalized pulse height.
+			NTuple::Item<double> fGhit;   //!< Number of good hits.
+			NTuple::Item<double> fThit;   //!< Total number of hits.
 
 		// * End cap ToF decector *
-		NTuple::Tuple* fTupleTofEC;
-			NTuple::Item<double> fPtotTofEC;
-			NTuple::Item<double> fPathTofEC;
-			NTuple::Item<double> fTofEC;
-			NTuple::Item<double> fCntrTofEC;
-			NTuple::Item<double> fElectronTofEC;
-			NTuple::Item<double> fMuonTofEC;
-			NTuple::Item<double> fProtoniTofEC;
-			NTuple::Item<double> fKaonTofEC;
-			NTuple::Item<double> fProtonTofEC;
-			NTuple::Item<double> fPhTofEC;
-			NTuple::Item<double> fRhitTofEC;
-			NTuple::Item<double> fQualTofEC;
+			NTuple::Item<double> fPtotTofEC;     //!< Momentum of the track as reconstructed by MDC.
+			NTuple::Item<double> fPathTofEC;     //!< Path length.
+			NTuple::Item<double> fTofEC;         //!< Time of flight.
+			NTuple::Item<double> fCntrTofEC;     //!< ToF counter ID.
+			NTuple::Item<double> fElectronTofEC; //!< ToF pulse height.
+			NTuple::Item<double> fMuonTofEC;     //!< Track extrapolate Z or R Hit position.
+			NTuple::Item<double> fProtoniTofEC;  //!< Data quality of reconstruction.
+			NTuple::Item<double> fKaonTofEC;     //!< Difference with ToF in electron hypothesis.
+			NTuple::Item<double> fProtonTofEC;   //!< Difference with ToF in muon hypothesis.
+			NTuple::Item<double> fPhTofEC;       //!< Difference with ToF in charged pion hypothesis.
+			NTuple::Item<double> fRhitTofEC;     //!< Difference with ToF in charged kaon hypothesis.
+			NTuple::Item<double> fQualTofEC;     //!< Difference with ToF in proton hypothesis.
 
 		// * Inner barrel ToF decector *
-		NTuple::Tuple* TupleTofIB;
-			NTuple::Item<double> fPtotTofIB;
-			NTuple::Item<double> fPathTofIB;
-			NTuple::Item<double> fTofIB;
-			NTuple::Item<double> fCntrTofIB;
-			NTuple::Item<double> fElectronTofIB;
-			NTuple::Item<double> fMuonTofIB;
-			NTuple::Item<double> fProtoniTofIB;
-			NTuple::Item<double> fKaonTofIB;
-			NTuple::Item<double> fProtonTofIB;
-			NTuple::Item<double> fPhTofIB;
-			NTuple::Item<double> fZhitTofIB;
-			NTuple::Item<double> fQualTofIB;
+			NTuple::Item<double> fPtotTofIB;     //!< Momentum of the track as reconstructed by MDC.
+			NTuple::Item<double> fPathTofIB;     //!< Path length.
+			NTuple::Item<double> fTofIB;         //!< Time of flight.
+			NTuple::Item<double> fCntrTofIB;     //!< ToF counter ID.
+			NTuple::Item<double> fElectronTofIB; //!< ToF pulse height.
+			NTuple::Item<double> fMuonTofIB;     //!< Track extrapolate Z or R Hit position.
+			NTuple::Item<double> fProtoniTofIB;  //!< Data quality of reconstruction.
+			NTuple::Item<double> fKaonTofIB;     //!< Difference with ToF in electron hypothesis.
+			NTuple::Item<double> fProtonTofIB;   //!< Difference with ToF in muon hypothesis.
+			NTuple::Item<double> fPhTofIB;       //!< Difference with ToF in charged pion hypothesis.
+			NTuple::Item<double> fZhitTofIB;     //!< Difference with ToF in charged kaon hypothesis.
+			NTuple::Item<double> fQualTofIB;     //!< Difference with ToF in proton hypothesis.
 
 		// * Outer barrel ToF decector *
-		NTuple::Tuple* TupleTofOB;
-			NTuple::Item<double> fPtotTofOB;
-			NTuple::Item<double> fPathTofOB;
-			NTuple::Item<double> fTofOB;
-			NTuple::Item<double> fCntrTofOB;
-			NTuple::Item<double> fElectronTofOB;
-			NTuple::Item<double> fMuonTofOB;
-			NTuple::Item<double> fProtoniTofOB;
-			NTuple::Item<double> fKaonTofOB;
-			NTuple::Item<double> fProtonTofOB;
-			NTuple::Item<double> fPhTofOB;
-			NTuple::Item<double> fZhitTofOB;
-			NTuple::Item<double> fQualTofOB;
+			NTuple::Item<double> fPtotTofOB;     //!< Momentum of the track as reconstructed by MDC.
+			NTuple::Item<double> fPathTofOB;     //!< Path length.
+			NTuple::Item<double> fTofOB;         //!< Time of flight.
+			NTuple::Item<double> fCntrTofOB;     //!< ToF counter ID.
+			NTuple::Item<double> fElectronTofOB; //!< ToF pulse height.
+			NTuple::Item<double> fMuonTofOB;     //!< Track extrapolate Z or R Hit position.
+			NTuple::Item<double> fProtoniTofOB;  //!< Data quality of reconstruction.
+			NTuple::Item<double> fKaonTofOB;     //!< Difference with ToF in electron hypothesis.
+			NTuple::Item<double> fProtonTofOB;   //!< Difference with ToF in muon hypothesis.
+			NTuple::Item<double> fPhTofOB;       //!< Difference with ToF in charged pion hypothesis.
+			NTuple::Item<double> fZhitTofOB;     //!< Difference with ToF in charged kaon hypothesis.
+			NTuple::Item<double> fQualTofOB;     //!< Difference with ToF in proton hypothesis.
 
 		// * Particle ID info *
-		NTuple::Tuple* fTuplePID;
-			NTuple::Item<double> fPtrackPID;
-			NTuple::Item<double> fCostPID;
-			NTuple::Item<double> fDedxPID;
-			NTuple::Item<double> fTof1PID;
-			NTuple::Item<double> fTof2PID;
-			NTuple::Item<double> fProbPID;
+			NTuple::Item<double> fPtrackPID; //!< Momentum of the track.
+			NTuple::Item<double> fCostPID;   //!< Theta angle of the track.
+			NTuple::Item<double> fDedxPID;   //!< Chi2 of the dedx of the track.
+			NTuple::Item<double> fTof1PID;   //!< Chi2 of the inner barrel ToF of the track.
+			NTuple::Item<double> fTof2PID;   //!< Chi2 of the outer barrel ToF of the track.
+			NTuple::Item<double> fProbPID;   //!< Probability that it is a pion.
 
 };
 
