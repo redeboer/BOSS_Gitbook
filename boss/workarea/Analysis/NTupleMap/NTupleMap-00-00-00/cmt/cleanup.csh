@@ -1,4 +1,4 @@
-# echo "cleanup NTupleMap NTupleMap-00-00-00 in /besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics"
+# echo "cleanup NTupleMap NTupleMap-00-00-00 in /besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis"
 
 if ( $?CMTROOT == 0 ) then
   setenv CMTROOT /afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/contrib/CMT/v1r25
@@ -8,9 +8,9 @@ set cmtNTupleMaptempfile=`${CMTROOT}/mgr/cmt -quiet build temporary_name`
 if $status != 0 then
   set cmtNTupleMaptempfile=/tmp/cmt.$$
 endif
-${CMTROOT}/mgr/cmt cleanup -csh -pack=NTupleMap -version=NTupleMap-00-00-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  $* >${cmtNTupleMaptempfile}
+${CMTROOT}/mgr/cmt cleanup -csh -pack=NTupleMap -version=NTupleMap-00-00-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis  $* >${cmtNTupleMaptempfile}
 if ( $status != 0 ) then
-  echo "${CMTROOT}/mgr/cmt cleanup -csh -pack=NTupleMap -version=NTupleMap-00-00-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  $* >${cmtNTupleMaptempfile}"
+  echo "${CMTROOT}/mgr/cmt cleanup -csh -pack=NTupleMap -version=NTupleMap-00-00-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis  $* >${cmtNTupleMaptempfile}"
   set cmtcleanupstatus=2
   /bin/rm -f ${cmtNTupleMaptempfile}
   unset cmtNTupleMaptempfile

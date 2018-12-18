@@ -1,12 +1,37 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-	#include "GaudiKernel/AlgFactory.h"
+	#include "GaudiKernel/Bootstrap.h"
+	#include "GaudiKernel/IDataProviderSvc.h"
+	#include "GaudiKernel/IHistogramSvc.h"
 	#include "GaudiKernel/INTupleSvc.h"
+	#include "GaudiKernel/ISvcLocator.h"
+	#include "GaudiKernel/MsgStream.h"
+	#include "GaudiKernel/NTuple.h"
+	#include "GaudiKernel/PropertyMgr.h"
+	#include "GaudiKernel/SmartDataPtr.h"
 	#include "NTupleMap/NTupleMap.h"
 	#include "TString.h"
 	#include <map>
 	#include <string>
+
+
+	#include "GaudiKernel/AlgFactory.h"
+	#include "GaudiKernel/Bootstrap.h"
+	#include "GaudiKernel/IDataProviderSvc.h"
+	#include "GaudiKernel/IHistogramSvc.h"
+	#include "GaudiKernel/INTupleSvc.h"
+	#include "GaudiKernel/ISvcLocator.h"
+	#include "GaudiKernel/MsgStream.h"
+	#include "GaudiKernel/NTuple.h"
+	#include "GaudiKernel/PropertyMgr.h"
+	#include "GaudiKernel/SmartDataPtr.h"
+	#include "TMath.h"
+	#include "VertexFit/Helix.h"
+	#include "VertexFit/IVertexDbSvc.h"
+	#include "VertexFit/KalmanKinematicFit.h"
+	#include "VertexFit/VertexFit.h"
+
 
 // * ================================= * //
 // * -------- PRIVATE METHODS -------- * //

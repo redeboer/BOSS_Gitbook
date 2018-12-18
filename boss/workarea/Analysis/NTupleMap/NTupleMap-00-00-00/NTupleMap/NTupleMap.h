@@ -12,6 +12,8 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+	#include "GaudiKernel/AlgFactory.h"
+	#include "GaudiKernel/Algorithm.h"
 	#include "GaudiKernel/NTuple.h"
 	#include <map>
 	#include <string>
@@ -24,6 +26,7 @@
 class NTupleMap
 {
 public:
+	// NTupleMap(const std::string& name, ISvcLocator* pSvcLocator) : Algorithm(name, pSvcLocator) {};
 
 protected:
 	NTuplePtr BookNTuple(const char* tupleName);
