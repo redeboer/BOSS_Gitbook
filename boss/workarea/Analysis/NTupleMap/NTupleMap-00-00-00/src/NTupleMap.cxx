@@ -1,6 +1,7 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+	#include "GaudiKernel/Algorithm.h"
 	#include "GaudiKernel/Bootstrap.h"
 	#include "GaudiKernel/IDataProviderSvc.h"
 	#include "GaudiKernel/IHistogramSvc.h"
@@ -14,23 +15,6 @@
 	#include "TString.h"
 	#include <map>
 	#include <string>
-
-
-	#include "GaudiKernel/AlgFactory.h"
-	#include "GaudiKernel/Bootstrap.h"
-	#include "GaudiKernel/IDataProviderSvc.h"
-	#include "GaudiKernel/IHistogramSvc.h"
-	#include "GaudiKernel/INTupleSvc.h"
-	#include "GaudiKernel/ISvcLocator.h"
-	#include "GaudiKernel/MsgStream.h"
-	#include "GaudiKernel/NTuple.h"
-	#include "GaudiKernel/PropertyMgr.h"
-	#include "GaudiKernel/SmartDataPtr.h"
-	#include "TMath.h"
-	#include "VertexFit/Helix.h"
-	#include "VertexFit/IVertexDbSvc.h"
-	#include "VertexFit/KalmanKinematicFit.h"
-	#include "VertexFit/VertexFit.h"
 
 
 // * ================================= * //
@@ -47,7 +31,7 @@ NTuplePtr NTupleMap::BookNTuple(const char* tupleName) {
 	NTuplePtr nt(ntupleSvc(), bookName); // attempt to get from file
 	if(!nt) { // if not available in file, book a new one
 		nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, "ks N-Tuple example");
-		if(!nt) log << MSG::ERROR << "    Cannot book N-tuple:" << long(fNTupleMap[tupleName]) << endmsg;
+		// if(!nt) log << MSG::ERROR << "    Cannot book N-tuple:" << long(fNTupleMap[tupleName]) << endmsg;
 	}
 	fNTupleMap[tupleName] = nt;
 	return nt;

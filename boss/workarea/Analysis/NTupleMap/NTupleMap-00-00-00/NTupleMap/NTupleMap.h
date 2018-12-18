@@ -23,10 +23,11 @@
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
-class NTupleMap
+class NTupleMap : public Algorithm
 {
 public:
-	// NTupleMap(const std::string& name, ISvcLocator* pSvcLocator) : Algorithm(name, pSvcLocator) {};
+	// * Constructor and destructors *
+	NTupleMap(const std::string& name, ISvcLocator* pSvcLocator) : Algorithm(name, pSvcLocator) {};
 
 protected:
 	NTuplePtr BookNTuple(const char* tupleName);
