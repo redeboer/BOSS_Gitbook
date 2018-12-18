@@ -34,16 +34,14 @@ public:
 	StatusCode execute();
 	StatusCode finalize();
 
+private:
+
 	// * Private methods * //
 	NTuplePtr BookNTuple(const char* tupleName);
 
-private:
-
-	// * Container for NTuples * //
+	// * Private data members * //
 	std::map<std::string, NTuplePtr> fNTupleMap;
-
-	// * Reader for beam info * //
-	// ReadBeamParFromDb fReader;
+		//!< Map for `NTuplePtr`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
 
 	// ! ------- DECLARE CUTS HERE ------- ! //
 		// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `DzeroOmega::DzeroOmega` constructor (see `.cxx` file).

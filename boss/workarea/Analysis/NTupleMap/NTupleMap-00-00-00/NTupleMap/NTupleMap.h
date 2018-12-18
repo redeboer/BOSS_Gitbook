@@ -30,6 +30,7 @@ public:
 	NTupleMap(const std::string& name, ISvcLocator* pSvcLocator) : Algorithm(name, pSvcLocator) {};
 
 protected:
+	// * Private data members * //
 	NTuplePtr BookNTuple(const char* tupleName);
 	std::map<std::string, NTuplePtr> fNTupleMap;
 		//!< Map for `NTuplePtr`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
