@@ -31,6 +31,7 @@ var searchData=
   ['getparticlepdg',['GetParticlePDG',['../classParticle.html#aa9f7152d465aadc5f9414edc45a47386',1,'Particle']]],
   ['getpdgcode',['GetPDGCode',['../classParticle.html#a4b8ac08a6780525067a126f69e42def7',1,'Particle']]],
   ['getplotrange',['GetPlotRange',['../classReconstructedParticle.html#aec7bbf487e76d3fc2c5cdb1b61fbd6bf',1,'ReconstructedParticle::GetPlotRange() const'],['../classReconstructedParticle.html#a6731ad7c08ab43cfc7dde67fb7ee47c3',1,'ReconstructedParticle::GetPlotRange(double &amp;from, double &amp;to) const']]],
+  ['gettofinformation',['GetTofInformation',['../classDzeroPhi.html#a495d0d57e4db5a6bbf56db08832ee55e',1,'DzeroPhi']]],
   ['getuppermass',['GetUpperMass',['../classReconstructedParticle.html#add109d84e447cce041b5c0289ba4526e',1,'ReconstructedParticle']]],
   ['getxaxis',['GetXaxis',['../RooFitMacro_8C.html#a0d0604c49c2f21bc6bc844af99825f6f',1,'RooFitMacro.C']]],
   ['gfiletoload',['gFileToLoad',['../CompareChainVsHadd_8C.html#aa3dda915a68202f6344b5bb828e71e0e',1,'CompareChainVsHadd.C']]],
