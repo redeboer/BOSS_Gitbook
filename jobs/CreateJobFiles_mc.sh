@@ -7,7 +7,7 @@
 # *         USAGE: bash CreateJobFiles.sh <number of jobs> <number of events>
 # *     ARGUMENTS: 1) number of job files to be created (default is 25)
 # *                2) number of events per job (default is 10,000)
-# *                3) analysis type name (default is "rhopi_mc")
+# *                3) analysis type name (default is "rhopi")
 # * ===============================================================================
 
 set -e # exit if a command or function exits with a non-zero status
@@ -34,13 +34,13 @@ set -e # exit if a command or function exits with a non-zero status
 	fi
 	# * (2) number of events per job (optional -- default is 10,000)
 	nEventsPerJob=10000 # default argument
-	if [ $# -ge 3 ]; then
-		nEventsPerJob=${3}
+	if [ $# -ge 2 ]; then
+		nEventsPerJob=${2}
 	fi
-	# * (3) analysis type name (optional -- default is "rhopi_mc")
-	analysisType="rhopi_mc" # default argument
-	if [ $# -ge 4 ]; then
-		analysisType="${4}"
+	# * (3) analysis type name (optional -- default is "rhopi")
+	analysisType="rhopi" # default argument
+	if [ $# -ge 3 ]; then
+		analysisType="${3}"
 	fi
 
 
@@ -64,21 +64,21 @@ set -e # exit if a command or function exits with a non-zero status
 # * ============================= * #
 
 	# * User input
-	echo "This will create ${nJobs} \"ana_${analysisType}.txt\" job files with ${nEventsPerJob} events each in folder:"
+	echo "This will create ${nJobs} \"ana_${analysisType}_mc.txt\" job files with ${nEventsPerJob} events each in folder:"
 	echo "   \"${scriptFolder}\"."
 
-	AskForInput "To continue, press ENTER, else Ctrl+C ..."
+	AskForInput "\nTo continue, press ENTER, else Ctrl+C ..."
 
 	# * Create and EMPTY scripts directory
-	CreateOrEmptyDirectory "${scriptFolder}" "ana"  "${analysisType}"
-	CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${analysisType}"
-	CreateOrEmptyDirectory "${scriptFolder}" "sim"  "${analysisType}"
-	CreateOrEmptyDirectory "${scriptFolder}" "rec"  "${analysisType}"
+	CreateOrEmptyDirectory "${scriptFolder}" "ana"  "${analysisType}_mc"
+	CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${analysisType}_mc"
+	CreateOrEmptyDirectory "${scriptFolder}" "sim"  "${analysisType}_mc"
+	CreateOrEmptyDirectory "${scriptFolder}" "rec"  "${analysisType}_mc"
 	# * Create and EMPTY output directory
-	CreateOrEmptyDirectory "${outputFolder}" "raw"  "${analysisType}"
-	CreateOrEmptyDirectory "${outputFolder}" "dst"  "${analysisType}"
-	CreateOrEmptyDirectory "${outputFolder}" "root" "${analysisType}"
-	CreateOrEmptyDirectory "${outputFolder}" "log"  "${analysisType}"
+	CreateOrEmptyDirectory "${outputFolder}" "raw"  "${analysisType}_mc"
+	CreateOrEmptyDirectory "${outputFolder}" "dst"  "${analysisType}_mc"
+	CreateOrEmptyDirectory "${outputFolder}" "root" "${analysisType}_mc"
+	CreateOrEmptyDirectory "${outputFolder}" "log"  "${analysisType}_mc"
 
 	# * Loop over jobs
 	for jobNo in $(seq 0 $((${nJobs} - 1))); do
@@ -86,12 +86,12 @@ set -e # exit if a command or function exits with a non-zero status
 		echo -en "\e[0K\rCreating files for job $(($jobNo+1))/${nJobs}..." # overwrite previous line
 
 		# * Generate the analyse files (ana)
-		templateName="${scriptFolder}/templates/jobOptions_ana_${analysisType}.txt"
-		outputFile="${scriptFolder}/ana/ana_${analysisType}_${jobNo}.txt"
+		templateName="${scriptFolder}/templates/jobOptions_ana_${analysisType}_mc.txt"
+		outputFile="${scriptFolder}/ana/ana_${analysisType}_mc_${jobNo}.txt"
 		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
-			{sub(/DSTFILE/,"dst/rec_'${analysisType}'_'${jobNo}'.dst")}
-			{sub(/ROOTFILE/,"root/ana_'${analysisType}'_'${jobNo}'.root")}
+			{sub(/DSTFILE/,"dst/rec_'${analysisType}'_mc_'${jobNo}'.dst")}
+			{sub(/ROOTFILE/,"root/ana_'${analysisType}'_mc_'${jobNo}'.root")}
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 			{sub(/NEVENTS/,'${nEventsPerJob}')}
 			{if(flag == 1) {print $0} else {next} }' \
@@ -100,11 +100,11 @@ set -e # exit if a command or function exits with a non-zero status
 		chmod +x "${outputFile}"
 
 		# * Generate the simulation files (sim)
-		templateName="${scriptFolder}/templates/jobOptions_sim_${analysisType}.txt"
-		outputFile="${scriptFolder}/sim/sim_${analysisType}_${jobNo}.txt"
+		templateName="${scriptFolder}/templates/jobOptions_sim.txt"
+		outputFile="${scriptFolder}/sim/sim_${analysisType}_mc_${jobNo}.txt"
 		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
-			{sub(/RDF/,"raw/sim_'${analysisType}'_'${jobNo}'.rtraw")}
+			{sub(/RDF/,"raw/sim_'${analysisType}'_mc_'${jobNo}'.rtraw")}
 			{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 			{sub(/RAND/,'$(($(date +%s%N) % 1000000000))')}
@@ -116,12 +116,12 @@ set -e # exit if a command or function exits with a non-zero status
 		chmod +x "${outputFile}"
 
 		# * Generate the reconstruction files (rec)
-		templateName="${scriptFolder}/templates/jobOptions_rec_${analysisType}.txt"
-		outputFile="${scriptFolder}/rec/rec_${analysisType}_${jobNo}.txt"
+		templateName="${scriptFolder}/templates/jobOptions_rec.txt"
+		outputFile="${scriptFolder}/rec/rec_${analysisType}_mc_${jobNo}.txt"
 		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
-			{sub(/RDF/,"raw/sim_'${analysisType}'_'${jobNo}'.rtraw")}
-			{sub(/DSTFILE/,"dst/rec_'${analysisType}'_'${jobNo}'.dst")}
+			{sub(/RDF/,"raw/sim_'${analysisType}'_mc_'${jobNo}'.rtraw")}
+			{sub(/DSTFILE/,"dst/rec_'${analysisType}'_mc_'${jobNo}'.dst")}
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 			{sub(/RAND/,'$(($(date +%s%N) % 1000000000))')}
 			{sub(/NEVENTS/,'${nEventsPerJob}')}
@@ -132,17 +132,17 @@ set -e # exit if a command or function exits with a non-zero status
 
 		# * Generate the submit files (sub)
 		templateName="${scriptFolder}/templates/submit_mc.sh"
-		outputFile="${scriptFolder}/sub/sub_${analysisType}_${jobNo}.sh"
+		outputFile="${scriptFolder}/sub/sub_${analysisType}_mc_${jobNo}.sh"
 		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
 			{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
-			{sub(/SIM_BOS/,"sim/sim_'${analysisType}'_'${jobNo}'.txt")}
-			{sub(/SIM_LOG/,"log/sim_'${analysisType}'_'${jobNo}'.log")}
-			{sub(/REC_BOS/,"rec/rec_'${analysisType}'_'${jobNo}'.txt")}
-			{sub(/REC_LOG/,"log/rec_'${analysisType}'_'${jobNo}'.log")}
-			{sub(/ANA_BOS/,"ana/ana_'${analysisType}'_'${jobNo}'.txt")}
-			{sub(/ANA_LOG/,"log/ana_'${analysisType}'_'${jobNo}'.log")}
+			{sub(/SIM_BOS/,"sim/sim_'${analysisType}'_mc_'${jobNo}'.txt")}
+			{sub(/SIM_LOG/,"log/sim_'${analysisType}'_mc_'${jobNo}'.log")}
+			{sub(/REC_BOS/,"rec/rec_'${analysisType}'_mc_'${jobNo}'.txt")}
+			{sub(/REC_LOG/,"log/rec_'${analysisType}'_mc_'${jobNo}'.log")}
+			{sub(/ANA_BOS/,"ana/ana_'${analysisType}'_mc_'${jobNo}'.txt")}
+			{sub(/ANA_LOG/,"log/ana_'${analysisType}'_mc_'${jobNo}'.log")}
 			{if(flag == 1) {print $0} else {next} }' \
 		"${templateName}" > "${outputFile}"
 		ChangeLineEndingsFromWindowsToUnix "${outputFile}"

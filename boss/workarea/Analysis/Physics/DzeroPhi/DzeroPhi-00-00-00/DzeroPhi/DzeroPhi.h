@@ -20,6 +20,7 @@
 	#include "EvtRecEvent/EvtRecTrack.h"
 	#include "GaudiKernel/AlgFactory.h"
 	#include "GaudiKernel/Algorithm.h"
+	#include "GaudiKernel/MsgStream.h"
 	#include "GaudiKernel/NTuple.h"
 	#include "GaudiKernel/SmartRefVector.h"
 	#include "TofRecEvent/RecTofTrack.h"
@@ -50,6 +51,7 @@ private:
 	void GetTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName);
 
 	// * Private data members * //
+	MsgStream fLog;
 	std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
 	std::vector<EvtRecTrack*>::iterator fTrackIterator; //!< Iterator for looping over the collection of charged and neutral tracks (`EvtRecTrackCol`).
 	std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will contain a selection of pointers to 'good' charged tracks.
@@ -82,7 +84,7 @@ private:
 
 	// ! ------- DECLARE NTUPLES HERE ------- ! //
 		// NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem.
-		// Note that the NTuple::Items are added to the NTuple during the DzeroPhi::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
+		// Note that the NTuple::Items have to be added to the NTuple during the DzeroPhi::initialize() step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Multiplicities *
 			bool fDoMult; //!< Package property that determines whether or not to write multiplicities and primary vertex info.

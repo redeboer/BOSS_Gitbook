@@ -12,6 +12,11 @@
 
 source CommonFunctions.sh
 
-analysisType="rhopi_mc"
-bash CreateJobFiles_mc.sh 3 2 "$analysisType"
-bash SubmitAll.sh "$analysisType"
+# * Scripts parameters * #
+	analysisType="rhopi" # default argument
+	if [ $# == 1 ]; then
+		analysisType="$1"
+	fi
+
+bash CreateJobFiles_mc.sh 3 2 "${analysisType}"
+bash SubmitAll.sh "${analysisType}_mc"

@@ -11,7 +11,6 @@
 	#include "GaudiKernel/IHistogramSvc.h"
 	#include "GaudiKernel/INTupleSvc.h"
 	#include "GaudiKernel/ISvcLocator.h"
-	#include "GaudiKernel/MsgStream.h"
 	#include "GaudiKernel/NTuple.h"
 	#include "GaudiKernel/PropertyMgr.h"
 	#include "GaudiKernel/SmartDataPtr.h"
@@ -22,8 +21,8 @@
 	#include "VertexFit/IVertexDbSvc.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include "VertexFit/VertexFit.h"
-	#include <map>
 	#include <string>
+	#include <utility>
 	#ifndef ENABLE_BACKWARDS_COMPATIBILITY
 		typedef HepGeom::Point3D<double> HepPoint3D;
 	#endif
@@ -73,9 +72,10 @@
  */
 // Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 DzeroPhi::DzeroPhi(const std::string& name, ISvcLocator* pSvcLocator) :
-	Algorithm(name, pSvcLocator) {
+	Algorithm(name, pSvcLocator), fLog(msgSvc(), name) {
 
 	// * Whether or not to fill a tree/NTuple *
+	declareProperty("doMult",  fDoMult);
 	declareProperty("doVxyz",  fDoVxyz);
 	declareProperty("doFit4c", fDoFit4c);
 	declareProperty("doFit6c", fDoFit6c);
@@ -114,147 +114,128 @@ DzeroPhi::DzeroPhi(const std::string& name, ISvcLocator* pSvcLocator) :
  * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
  * @details Define and load NTuples here.
  */
-StatusCode DzeroPhi::initialize(){
+StatusCode DzeroPhi::initialize() {
 
-	MsgStream log(msgSvc(), name());
-	log << MSG::INFO << "In initialize():" << endmsg;
+	fLog << MSG::INFO << "In initialize():" << endmsg;
 	NTuplePtr nt(ntupleSvc(), ""); // temporary NTuplePtr
 
 	// * Book NTuple: Multiplicities * //
-		if(fDoVxyz) {
-			NTuplePtr nt = BookNTuple("mult");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("Ntotal",   fEvent_Ntotal);
-			nt->addItem("Ncharge",  fEvent_Ncharge);
-			nt->addItem("Nneutral", fEvent_Nneutral);
-			nt->addItem("vx0",      fEvent_Vx0);
-			nt->addItem("vy0",      fEvent_Vy0);
-			nt->addItem("vz0",      fEvent_Vz0);
-			nt->addItem("Ngood",    fEvent_Ngood);
-			nt->addItem("Nmdc",     fEvent_Nmdc); // @todo Check if this makes sense at all
-			nt->addItem("fEvent_NKaonPos", fEvent_NKaonPos);
-			nt->addItem("fEvent_NKaonNeg", fEvent_NKaonNeg);
-			nt->addItem("fEvent_NPionPos", fEvent_NPionPos);
-		}
+		nt = BookNTuple("mult");
+		if(!nt) return StatusCode::FAILURE;
+		nt->addItem("Ntotal",   fEvent_Ntotal);
+		nt->addItem("Ncharge",  fEvent_Ncharge);
+		nt->addItem("Nneutral", fEvent_Nneutral);
+		nt->addItem("vx0",      fEvent_Vx0);
+		nt->addItem("vy0",      fEvent_Vy0);
+		nt->addItem("vz0",      fEvent_Vz0);
+		nt->addItem("Ngood",    fEvent_Ngood);
+		nt->addItem("Nmdc",     fEvent_Nmdc); // @todo Check if this makes sense at all
+		nt->addItem("fEvent_NKaonPos", fEvent_NKaonPos);
+		nt->addItem("fEvent_NKaonNeg", fEvent_NKaonNeg);
+		nt->addItem("fEvent_NPionPos", fEvent_NPionPos);
 
 	// * Book NTuple: Vertex position * //
-		if(fDoVxyz) {
-			nt = BookNTuple("vxyz");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("vx",    fTrack_Vx);
-			nt->addItem("vy",    fTrack_Vy);
-			nt->addItem("vz",    fTrack_Vz);
-			nt->addItem("vr",    fTrack_Vr);
-			nt->addItem("rvxy",  fTrack_Rvxy);
-			nt->addItem("rvz",   fTrack_Rvz);
-			nt->addItem("rvphi", fTrack_Rvphi);
-			nt->addItem("phi",   fTrack_phi);
-			nt->addItem("p",     fTrack_p);
-		}
+		nt = BookNTuple("vxyz");
+		if(!nt) return StatusCode::FAILURE;
+		nt->addItem("vx",    fTrack_Vx);
+		nt->addItem("vy",    fTrack_Vy);
+		nt->addItem("vz",    fTrack_Vz);
+		nt->addItem("vr",    fTrack_Vr);
+		nt->addItem("rvxy",  fTrack_Rvxy);
+		nt->addItem("rvz",   fTrack_Rvz);
+		nt->addItem("rvphi", fTrack_Rvphi);
+		nt->addItem("phi",   fTrack_phi);
+		nt->addItem("p",     fTrack_p);
 
 	// * Book NTuple: 4-contraints for Kalman kinematic fit * //
-		if(fDoFit4c) {
-			nt = BookNTuple("fit4c");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("mD0",   fM_D0);
-			nt->addItem("mphi",  fM_phi);
-			nt->addItem("mJpsi", fM_Jpsi);
-			nt->addItem("chi2",  fChi2sq);
-		}
+		nt = BookNTuple("fit4c");
+		if(!nt) return StatusCode::FAILURE;
+		nt->addItem("mD0",   fM_D0);
+		nt->addItem("mphi",  fM_phi);
+		nt->addItem("mJpsi", fM_Jpsi);
+		nt->addItem("chi2",  fChi2sq);
 
 	// * Book NTuple: 6-contraints for Kalman kinematic fit * //
-		if(fDoFit6c) {
-			nt = BookNTuple("fit6c");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("mD0",   fM_D0);
-			nt->addItem("mphi",  fM_phi);
-			nt->addItem("mJpsi", fM_Jpsi);
-			nt->addItem("chi2",  fChi2sq);
-		}
+		nt = BookNTuple("fit6c");
+		if(!nt) return StatusCode::FAILURE;
+		nt->addItem("mD0",   fM_D0);
+		nt->addItem("mphi",  fM_phi);
+		nt->addItem("mJpsi", fM_Jpsi);
+		nt->addItem("chi2",  fChi2sq);
 
 	// * Book NTuple: dE/dx PID branch * //
-		if(fDoDedx) {
-			nt = BookNTuple("dedx");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("ptrk",   fTrack_p);
-			nt->addItem("chie",   fChi2e);
-			nt->addItem("chimu",  fChi2mu);
-			nt->addItem("chipi",  fChi2pi);
-			nt->addItem("chik",   fChi2k);
-			nt->addItem("chip",   fChi2p);
-			nt->addItem("probPH", fProbPH);
-			nt->addItem("normPH", fNormPH);
-			nt->addItem("ghit",   fGhit);
-			nt->addItem("thit",   fThit);
-		}
+		nt = BookNTuple("dedx");
+		if(!nt) return StatusCode::FAILURE;
+		nt->addItem("ptrk",   fTrack_p);
+		nt->addItem("chie",   fChi2e);
+		nt->addItem("chimu",  fChi2mu);
+		nt->addItem("chipi",  fChi2pi);
+		nt->addItem("chik",   fChi2k);
+		nt->addItem("chip",   fChi2p);
+		nt->addItem("probPH", fProbPH);
+		nt->addItem("normPH", fNormPH);
+		nt->addItem("ghit",   fGhit);
+		nt->addItem("thit",   fThit);
 
 	// * Book NTuple: ToF endcap branch * //
-		if(fDoTofEC) {
-			nt = BookNTuple("tofe");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("ptrk", fPtotTof);
-			nt->addItem("path", fPathTof);
-			nt->addItem("tof",  fTof);
-			nt->addItem("cntr", fCntrTof);
-			nt->addItem("ph",   fPhTof);
-			nt->addItem("rhit", fRhitTof);
-			nt->addItem("qual", fQualTof);
-			nt->addItem("te",   fElectronTof);
-			nt->addItem("tmu",  fMuonTof);
-			nt->addItem("tpi",  fProtoniTof);
-			nt->addItem("tk",   fKaonTof);
-			nt->addItem("tp",   fProtonTof);
-		}
+		nt = BookNTuple("tofe");
+		if(!nt) return StatusCode::FAILURE;
+		nt->addItem("ptrk", fPtotTof);
+		nt->addItem("path", fPathTof);
+		nt->addItem("tof",  fTof);
+		nt->addItem("cntr", fCntrTof);
+		nt->addItem("ph",   fPhTof);
+		nt->addItem("rhit", fRhitTof);
+		nt->addItem("qual", fQualTof);
+		nt->addItem("te",   fElectronTof);
+		nt->addItem("tmu",  fMuonTof);
+		nt->addItem("tpi",  fProtoniTof);
+		nt->addItem("tk",   fKaonTof);
+		nt->addItem("tp",   fProtonTof);
 
 	// * Book NTuple: ToF inner barrel branch * //
-		if(fDoTofIB) {
-			nt = BookNTuple("tof1");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("ptrk", fPtotTof);
-			nt->addItem("path", fPathTof);
-			nt->addItem("tof",  fTof);
-			nt->addItem("cntr", fCntrTof);
-			nt->addItem("ph",   fPhTof);
-			nt->addItem("zhit", fRhitTof);
-			nt->addItem("qual", fQualTof);
-			nt->addItem("te",   fElectronTof);
-			nt->addItem("tmu",  fMuonTof);
-			nt->addItem("tpi",  fProtoniTof);
-			nt->addItem("tk",   fKaonTof);
-			nt->addItem("tp",   fProtonTof);
-		}
+		nt = BookNTuple("tof1");
+		if(!nt) return StatusCode::FAILURE;
+		nt->addItem("ptrk", fPtotTof);
+		nt->addItem("path", fPathTof);
+		nt->addItem("tof",  fTof);
+		nt->addItem("cntr", fCntrTof);
+		nt->addItem("ph",   fPhTof);
+		nt->addItem("zhit", fRhitTof);
+		nt->addItem("qual", fQualTof);
+		nt->addItem("te",   fElectronTof);
+		nt->addItem("tmu",  fMuonTof);
+		nt->addItem("tpi",  fProtoniTof);
+		nt->addItem("tk",   fKaonTof);
+		nt->addItem("tp",   fProtonTof);
 
 	// * Book NTuple: ToF outer barrel branch * //
-		if(fDoTofOB) {
-			nt = BookNTuple("tof2");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("ptrk", fPtotTof);
-			nt->addItem("path", fPathTof);
-			nt->addItem("tof",  fTof);
-			nt->addItem("cntr", fCntrTof);
-			nt->addItem("ph",   fPhTof);
-			nt->addItem("zhit", fRhitTof);
-			nt->addItem("qual", fQualTof);
-			nt->addItem("te",   fElectronTof);
-			nt->addItem("tmu",  fMuonTof);
-			nt->addItem("tpi",  fProtoniTof);
-			nt->addItem("tk",   fKaonTof);
-			nt->addItem("tp",   fProtonTof);
-		}
+		nt = BookNTuple("tof2");
+		if(!nt) return StatusCode::FAILURE;
+		nt->addItem("ptrk", fPtotTof);
+		nt->addItem("path", fPathTof);
+		nt->addItem("tof",  fTof);
+		nt->addItem("cntr", fCntrTof);
+		nt->addItem("ph",   fPhTof);
+		nt->addItem("zhit", fRhitTof);
+		nt->addItem("qual", fQualTof);
+		nt->addItem("te",   fElectronTof);
+		nt->addItem("tmu",  fMuonTof);
+		nt->addItem("tpi",  fProtoniTof);
+		nt->addItem("tk",   fKaonTof);
+		nt->addItem("tp",   fProtonTof);
 
 	// * Book NTuple: Track PID information * //
-		if(fDoPID) {
-			nt = BookNTuple("pid");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("ptrk", fTrack_p);
-			nt->addItem("cost", fCostPID);
-			nt->addItem("dedx", fDedxPID);
-			nt->addItem("tof1", fTof1PID);
-			nt->addItem("tof2", fTof2PID);
-			nt->addItem("prob", fProbPID);
-		}
+		nt = BookNTuple("pid");
+		if(!nt) return StatusCode::FAILURE;
+		nt->addItem("ptrk", fTrack_p);
+		nt->addItem("cost", fCostPID);
+		nt->addItem("dedx", fDedxPID);
+		nt->addItem("tof1", fTof1PID);
+		nt->addItem("tof2", fTof2PID);
+		nt->addItem("prob", fProbPID);
 
-	log << MSG::INFO << "Successfully returned from initialize()" << endmsg;
+	fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
 	return StatusCode::SUCCESS;
 
 }
@@ -268,9 +249,7 @@ StatusCode DzeroPhi::initialize(){
  * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
  */
 StatusCode DzeroPhi::execute() {
-
-	MsgStream log(msgSvc(), name());
-	log << MSG::INFO << "In execute():" << endreq;
+	fLog << MSG::INFO << "In execute():" << endreq;
 
 	// * Load next event from DST file * //
 
@@ -280,18 +259,24 @@ StatusCode DzeroPhi::execute() {
 			http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html (class)
 			http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html (typedef EvtRecTrackCol)
 			*/
+		fLog << MSG::DEBUG << "Loading EventHeader, EvtRecEvent, and EvtRecTrackCol" << endreq;
 		SmartDataPtr<Event::EventHeader> eventHeader (eventSvc(), "/Event/EventHeader");
 		SmartDataPtr<EvtRecEvent>        evtRecEvent (eventSvc(), EventModel::EvtRec::EvtRecEvent);
 		SmartDataPtr<EvtRecTrackCol>     evtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
+		fLog << MSG::DEBUG
+			<< "eventHeader = "    << eventHeader.ptr()
+			<< ", evtRecEvent = "  << evtRecEvent.ptr()
+			<< ", evtRecTrkCol = " << evtRecTrkCol.ptr()
+			<< endreq;
 
 		// * Log run number, event number, and number of events *
 		fEvent_Ntotal   = evtRecEvent->totalTracks();
 		fEvent_Ncharge  = evtRecEvent->totalCharged();
 		fEvent_Nneutral = evtRecEvent->totalNeutral();
-		log << MSG::DEBUG
-			<< "run "           << eventHeader->runNumber()   << ", "
-			<< "evtent number " << eventHeader->eventNumber() << endreq;
-		log << MSG::DEBUG
+		fLog << MSG::DEBUG
+			<< "RUN "          << eventHeader->runNumber()   << ", "
+			<< "event number " << eventHeader->eventNumber() << endreq;
+		fLog << MSG::DEBUG
 			<< "Ncharged = " << fEvent_Ncharge  << ", "
 			<< "Nneutral = " << fEvent_Nneutral << ", "
 			<< "Ntotal = "   << fEvent_Ntotal   << endreq;
@@ -310,12 +295,14 @@ StatusCode DzeroPhi::execute() {
 
 
 	// * LOOP OVER CHARGED TRACKS: select 'good' charged tracks * //
+		fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endreq;
 		fEvent_Nmdc = 0; // @todo Check if this makes sense at all
 		fGoodChargedTracks.clear();
 		for(int i = 0; i < evtRecEvent->totalCharged(); ++i) {
 		// Note: the first part of the set of reconstructed tracks are the charged tracks
 
 			// * Check if valid according to MDC
+			fLog << MSG::DEBUG << "   charged track " << i << "/" << evtRecEvent->totalCharged() << endreq;
 			fTrackIterator = evtRecTrkCol->begin() + i; 
 			if(!(*fTrackIterator)->isMdcTrackValid()) continue;
 
@@ -503,8 +490,8 @@ StatusCode DzeroPhi::execute() {
 		}
 
 	// * WRITE event info ("mult" branch) * //
-		log << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << fEvent_Nmdc << endreq;
-		if(fDoVxyz) {
+		fLog << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << fEvent_Nmdc << endreq;
+		if(fDoMult) {
 			fEvent_Ngood = fGoodChargedTracks.size();
 			fEvent_NKaonNeg = fKaonNeg.size();
 			fEvent_NKaonPos = fKaonPos.size();
@@ -659,11 +646,6 @@ StatusCode DzeroPhi::execute() {
 			fNTupleMap["fit6c"]->write();
 		}
 
-	// * Clean objects for this event * //
-		if(kkmfit)  delete kkmfit;
-		if(kkmfit1) delete kkmfit1;
-		if(kkmfit2) delete kkmfit2;
-
 	return StatusCode::SUCCESS;
 }
 
@@ -697,9 +679,10 @@ NTuplePtr DzeroPhi::BookNTuple(const char* tupleName)
 	NTuplePtr nt(ntupleSvc(), bookName); // attempt to get from file
 	if(!nt) { // if not available in file, book a new one
 		nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, "ks N-Tuple example");
-		// if(!nt) log << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << endmsg;
+		if(!nt) fLog << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << " (" << tupleName << ")" << endmsg;
 	}
-	fNTupleMap[tupleName] = nt;
+	// fNTupleMap[tupleName] = nt.ptr();
+	fNTupleMap.insert(make_pair(tupleName, nt.ptr()));
 	return nt;
 }
 
