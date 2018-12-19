@@ -885,11 +885,11 @@ StatusCode Rhopi::execute() {
 				for(int j = i+1; j < nGam; j++) {
 					RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+iGam[j]))->emcShower();
 					kkmfit->init();
-					kkmfit->AddTrack(0, wpip);       // 1c: pos. pion
-					kkmfit->AddTrack(1, wpim);       // 2c: neg. pion
-					kkmfit->AddTrack(2, 0.0, g1Trk); // 3c: first gamma track
-					kkmfit->AddTrack(3, 0.0, g2Trk); // 4c: seconnd gamma track
-					kkmfit->AddFourMomentum(0, ecms);
+					kkmfit->AddTrack(0, wpip);       // pos. pion
+					kkmfit->AddTrack(1, wpim);       // neg. pion
+					kkmfit->AddTrack(2, 0.0, g1Trk); // first gamma track
+					kkmfit->AddTrack(3, 0.0, g2Trk); // seconnd gamma track
+					kkmfit->AddFourMomentum(0, ecms); // 4 constraints: CMS energy and momentum
 					if(kkmfit->Fit()) {
 						double chi2 = kkmfit->chisq();
 						if(chi2 < chisq) {
@@ -907,11 +907,11 @@ StatusCode Rhopi::execute() {
 				RecEmcShower *g1Trk = (*(evtRecTrkCol->begin()+ig1))->emcShower();
 				RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+ig2))->emcShower();
 				kkmfit->init();
-				kkmfit->AddTrack(0, wpip);      // 1c: pos. pion
-				kkmfit->AddTrack(1, wpim);      // 2c: neg. pion
-				kkmfit->AddTrack(2, 0., g1Trk); // 3c: first gamma track
-				kkmfit->AddTrack(3, 0., g2Trk); // 4c: second gamma track
-				kkmfit->AddFourMomentum(0, ecms);
+				kkmfit->AddTrack(0, wpip);      // pos. pion
+				kkmfit->AddTrack(1, wpim);      // neg. pion
+				kkmfit->AddTrack(2, 0., g1Trk); // first gamma track
+				kkmfit->AddTrack(3, 0., g2Trk); // second gamma track
+				kkmfit->AddFourMomentum(0, ecms); // 4 constraints: CMS energy and momentum
 				if(kkmfit->Fit()) {
 					HepLorentzVector ppi0 = kkmfit->pfit(2) + kkmfit->pfit(3);
 
@@ -939,12 +939,12 @@ StatusCode Rhopi::execute() {
 				for(int j = i+1; j < nGam; j++) {
 					RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+iGam[j]))->emcShower();
 					kkmfit->init();
-					kkmfit->AddTrack(0, wpip);            // 1c: pos. pion
-					kkmfit->AddTrack(1, wpim);            // 2c: neg. pion
-					kkmfit->AddTrack(2, 0., g1Trk);       // 3c: first gamma track
-					kkmfit->AddTrack(3, 0., g2Trk);       // 4c: second gamma track
-					kkmfit->AddResonance(0, 0.135, 2, 3); // 5c: pi0 resonance
-					kkmfit->AddFourMomentum(1, ecms);
+					kkmfit->AddTrack(0, wpip);            // pos. pion
+					kkmfit->AddTrack(1, wpim);            // neg. pion
+					kkmfit->AddTrack(2, 0., g1Trk);       // first gamma track
+					kkmfit->AddTrack(3, 0., g2Trk);       // second gamma track
+					kkmfit->AddResonance(0, 0.135, 2, 3); // 5th constraint: pi0 resonance
+					kkmfit->AddFourMomentum(1, ecms); // 4 constraints: CMS energy and momentum
 					if(!kkmfit->Fit(0)) continue;
 					if(!kkmfit->Fit(1)) continue;
 					if(kkmfit->Fit()) {
@@ -964,12 +964,12 @@ StatusCode Rhopi::execute() {
 				RecEmcShower* g1Trk = (*(evtRecTrkCol->begin()+ig1))->emcShower();
 				RecEmcShower* g2Trk = (*(evtRecTrkCol->begin()+ig2))->emcShower();
 				kkmfit->init();
-				kkmfit->AddTrack(0, wpip);            // 1c: pi^+ track
-				kkmfit->AddTrack(1, wpim);            // 2c: pi^- track
-				kkmfit->AddTrack(2, 0., g1Trk);       // 3c: first gamma track
-				kkmfit->AddTrack(3, 0., g2Trk);       // 4c: second gamma track
-				kkmfit->AddResonance(0, 0.135, 2, 3); // 5c: pi0 resonance
-				kkmfit->AddFourMomentum(1, ecms);
+				kkmfit->AddTrack(0, wpip);            // pi^+ track
+				kkmfit->AddTrack(1, wpim);            // pi^- track
+				kkmfit->AddTrack(2, 0., g1Trk);       // first gamma track
+				kkmfit->AddTrack(3, 0., g2Trk);       // second gamma track
+				kkmfit->AddResonance(0, 0.135, 2, 3); // 5th constraint: pi0 resonance
+				kkmfit->AddFourMomentum(1, ecms); // 4 constraints: CMS energy and momentum
 
 				// * Kalman kinematic fit5c * //
 				if(kkmfit->Fit()){

@@ -1,16 +1,10 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-	#include "CLHEP/Geometry/Point3D.h"
-	#include "CLHEP/Vector/LorentzVector.h"
-	#include "CLHEP/Vector/ThreeVector.h"
-	#include "CLHEP/Vector/TwoVector.h"
 	#include "DstEvent/TofHitStatus.h"
 	#include "EventModel/Event.h"
 	#include "EventModel/EventHeader.h"
 	#include "EventModel/EventModel.h"
-	#include "EvtRecEvent/EvtRecEvent.h"
-	#include "EvtRecEvent/EvtRecTrack.h"
 	#include "GaudiKernel/AlgFactory.h"
 	#include "GaudiKernel/Bootstrap.h"
 	#include "GaudiKernel/IDataProviderSvc.h"
@@ -30,8 +24,6 @@
 	#include "VertexFit/VertexFit.h"
 	#include <map>
 	#include <string>
-	#include <vector>
-	// #include "VertexFit/KinematicFit.h"
 	#ifndef ENABLE_BACKWARDS_COMPATIBILITY
 		typedef HepGeom::Point3D<double> HepPoint3D;
 	#endif
@@ -52,29 +44,23 @@
 		const double mD0  = 1.86483;    // mass of D0
 		const double mphi = 1.019461;   // mass of phi
 		const double mrho = 0.77526;    // mass of rho0
-		const std::vector<const double> xmass {
+		const double xmass[] {
 			0.000511, // electron
 			0.105658, // muon
 			0.139570, // charged pion
 			0.493677, // charged kaon
 			0.938272  // proton
 		};
+		const int nmass = sizeof(xmass)/sizeof(*xmass);
 		const double velc_cm = 29.9792458; // tof_path unit in cm.
 		const double velc_mm = 299.792458; // tof path unit in mm
 		const double Ecms = 3.097;// center-of-mass energy
 
 
 	// * Typedefs * //
-		typedef std::vector<int> Vint;
+		typedef std::vector<EvtRecTrackIterator>::iterator Vit;
 		typedef std::vector<HepLorentzVector> Vp4;
-
-
-	// * Counters for generating cut flow * //
-		int Ncut0; // counter for all events (no cuts)
-		int Ncut1; // vertex cuts
-		int Ncut2; // pass PID
-		int Ncut3; // pass fit4c
-		int Ncut4; // pass fit6c
+		typedef std::vector<int> Vint;
 
 
 
@@ -89,6 +75,16 @@
 DzeroPhi::DzeroPhi(const std::string& name, ISvcLocator* pSvcLocator) :
 	Algorithm(name, pSvcLocator) {
 
+	// * Whether or not to fill a tree/NTuple *
+	declareProperty("doVxyz",  fDoVxyz);
+	declareProperty("doFit4c", fDoFit4c);
+	declareProperty("doFit6c", fDoFit6c);
+	declareProperty("doDedx",  fDoDedx);
+	declareProperty("doTofEC", fDoTofEC);
+	declareProperty("doTofIB", fDoTofIB);
+	declareProperty("doTofOB", fDoTofOB);
+	declareProperty("doPID",   fDoPID);
+
 	// * Define r0, z0 cut for charged tracks *
 	declareProperty("Vr0cut",    fVr0cut);
 	declareProperty("Vz0cut",    fVz0cut);
@@ -102,10 +98,10 @@ DzeroPhi::DzeroPhi(const std::string& name, ISvcLocator* pSvcLocator) :
 	declareProperty("GammaAngleCut",   fGammaAngleCut);
 
 	// * Define invariant mass window cut *
-	declareProperty("dM_rho0", fDeltaMrho0 = .150);
+	declareProperty("dM_rho0", fDeltaMrho0);
 
 	// * Whether to test the success of the 4- and 5-constraint fits *
-	declareProperty("MaxChiSq", fMaxChiSq); // chisq for both fits should be less
+	declareProperty("MaxChiSq", fMaxChiSq);
 
 }
 
@@ -122,105 +118,141 @@ StatusCode DzeroPhi::initialize(){
 
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "In initialize():" << endmsg;
+	NTuplePtr nt(ntupleSvc(), ""); // temporary NTuplePtr
+
+	// * Book NTuple: Multiplicities * //
+		if(fDoVxyz) {
+			NTuplePtr nt = BookNTuple("mult");
+			if(!nt) return StatusCode::FAILURE;
+			nt->addItem("Ntotal",   fEvent_Ntotal);
+			nt->addItem("Ncharge",  fEvent_Ncharge);
+			nt->addItem("Nneutral", fEvent_Nneutral);
+			nt->addItem("vx0",      fEvent_Vx0);
+			nt->addItem("vy0",      fEvent_Vy0);
+			nt->addItem("vz0",      fEvent_Vz0);
+			nt->addItem("Ngood",    fEvent_Ngood);
+			nt->addItem("Nmdc",     fEvent_Nmdc); // @todo Check if this makes sense at all
+			nt->addItem("fEvent_NKaonPos", fEvent_NKaonPos);
+			nt->addItem("fEvent_NKaonNeg", fEvent_NKaonNeg);
+			nt->addItem("fEvent_NPionPos", fEvent_NPionPos);
+		}
 
 	// * Book NTuple: Vertex position * //
-		NTuplePtr nt = BookNTuple("vxyz");
-		if(!nt) return StatusCode::FAILURE;
-		nt->addItem("vx0",    fVx0);
-		nt->addItem("vy0",    fVy0);
-		nt->addItem("vz0",    fVz0);
-		nt->addItem("vr0",    fVr0);
-		nt->addItem("rvxy0",  fRvxy0);
-		nt->addItem("rvz0",   fRvz0);
-		nt->addItem("rvphi0", fRvphi0);
+		if(fDoVxyz) {
+			nt = BookNTuple("vxyz");
+			if(!nt) return StatusCode::FAILURE;
+			nt->addItem("vx",    fTrack_Vx);
+			nt->addItem("vy",    fTrack_Vy);
+			nt->addItem("vz",    fTrack_Vz);
+			nt->addItem("vr",    fTrack_Vr);
+			nt->addItem("rvxy",  fTrack_Rvxy);
+			nt->addItem("rvz",   fTrack_Rvz);
+			nt->addItem("rvphi", fTrack_Rvphi);
+			nt->addItem("phi",   fTrack_phi);
+			nt->addItem("p",     fTrack_p);
+		}
 
-	// * Book NTuple: Neutral pion (pi0) fit branch * //
-		nt = BookNTuple("fit4c");
-		if(!nt) return StatusCode::FAILURE;
-		nt->addItem("mD0",   fM_D0);
-		nt->addItem("mphi",  fM_phi);
-		nt->addItem("mJpsi", fM_Jpsi);
-		nt->addItem("chi2",  fChi2sq);
+	// * Book NTuple: 4-contraints for Kalman kinematic fit * //
+		if(fDoFit4c) {
+			nt = BookNTuple("fit4c");
+			if(!nt) return StatusCode::FAILURE;
+			nt->addItem("mD0",   fM_D0);
+			nt->addItem("mphi",  fM_phi);
+			nt->addItem("mJpsi", fM_Jpsi);
+			nt->addItem("chi2",  fChi2sq);
+		}
 
-	// * Book NTuple: Rho fit branch * //
-		nt = BookNTuple("fit6c");
-		if(!nt) return StatusCode::FAILURE;
-		nt->addItem("mD0",   fM_D0);
-		nt->addItem("mphi",  fM_phi);
-		nt->addItem("mJpsi", fM_Jpsi);
-		nt->addItem("chi2",  fChi2sq);
+	// * Book NTuple: 6-contraints for Kalman kinematic fit * //
+		if(fDoFit6c) {
+			nt = BookNTuple("fit6c");
+			if(!nt) return StatusCode::FAILURE;
+			nt->addItem("mD0",   fM_D0);
+			nt->addItem("mphi",  fM_phi);
+			nt->addItem("mJpsi", fM_Jpsi);
+			nt->addItem("chi2",  fChi2sq);
+		}
 
-	// * Book NTuple: Import dE/dx PID branch * //
-		nt = BookNTuple("dedx");
-		if(!nt) return StatusCode::FAILURE;
-		nt->addItem("ptrk",   fPtrack);
-		nt->addItem("chie",   fChi2e);
-		nt->addItem("chimu",  fChi2mu);
-		nt->addItem("chipi",  fChi2pi);
-		nt->addItem("chik",   fChi2k);
-		nt->addItem("chip",   fChi2p);
-		nt->addItem("probPH", fProbPH);
-		nt->addItem("normPH", fNormPH);
-		nt->addItem("ghit",   fGhit);
-		nt->addItem("thit",   fThit);
+	// * Book NTuple: dE/dx PID branch * //
+		if(fDoDedx) {
+			nt = BookNTuple("dedx");
+			if(!nt) return StatusCode::FAILURE;
+			nt->addItem("ptrk",   fTrack_p);
+			nt->addItem("chie",   fChi2e);
+			nt->addItem("chimu",  fChi2mu);
+			nt->addItem("chipi",  fChi2pi);
+			nt->addItem("chik",   fChi2k);
+			nt->addItem("chip",   fChi2p);
+			nt->addItem("probPH", fProbPH);
+			nt->addItem("normPH", fNormPH);
+			nt->addItem("ghit",   fGhit);
+			nt->addItem("thit",   fThit);
+		}
 
 	// * Book NTuple: ToF endcap branch * //
-		nt = BookNTuple("tofe");
-		if(!nt) return StatusCode::FAILURE;
-		nt->addItem("ptrk", fPtotTof);
-		nt->addItem("path", fPathTof);
-		nt->addItem("tof",  fTof);
-		nt->addItem("cntr", fCntrTof);
-		nt->addItem("ph",   fPhTof);
-		nt->addItem("rhit", fRhitTof);
-		nt->addItem("qual", fQualTof);
-		nt->addItem("te",   fElectronTof);
-		nt->addItem("tmu",  fMuonTof);
-		nt->addItem("tpi",  fProtoniTof);
-		nt->addItem("tk",   fKaonTof);
-		nt->addItem("tp",   fProtonTof);
+		if(fDoTofEC) {
+			nt = BookNTuple("tofe");
+			if(!nt) return StatusCode::FAILURE;
+			nt->addItem("ptrk", fPtotTof);
+			nt->addItem("path", fPathTof);
+			nt->addItem("tof",  fTof);
+			nt->addItem("cntr", fCntrTof);
+			nt->addItem("ph",   fPhTof);
+			nt->addItem("rhit", fRhitTof);
+			nt->addItem("qual", fQualTof);
+			nt->addItem("te",   fElectronTof);
+			nt->addItem("tmu",  fMuonTof);
+			nt->addItem("tpi",  fProtoniTof);
+			nt->addItem("tk",   fKaonTof);
+			nt->addItem("tp",   fProtonTof);
+		}
 
-	// * Book NTuple: TToF inner barrel branch * //
-		nt = BookNTuple("tof1");
-		if(!nt) return StatusCode::FAILURE;
-		nt->addItem("ptrk", fPtotTof);
-		nt->addItem("path", fPathTof);
-		nt->addItem("tof",  fTof);
-		nt->addItem("cntr", fCntrTof);
-		nt->addItem("ph",   fPhTof);
-		nt->addItem("zhit", fZhitTof);
-		nt->addItem("qual", fQualTof);
-		nt->addItem("te",   fElectronTof);
-		nt->addItem("tmu",  fMuonTof);
-		nt->addItem("tpi",  fProtoniTof);
-		nt->addItem("tk",   fKaonTof);
-		nt->addItem("tp",   fProtonTof);
+	// * Book NTuple: ToF inner barrel branch * //
+		if(fDoTofIB) {
+			nt = BookNTuple("tof1");
+			if(!nt) return StatusCode::FAILURE;
+			nt->addItem("ptrk", fPtotTof);
+			nt->addItem("path", fPathTof);
+			nt->addItem("tof",  fTof);
+			nt->addItem("cntr", fCntrTof);
+			nt->addItem("ph",   fPhTof);
+			nt->addItem("zhit", fRhitTof);
+			nt->addItem("qual", fQualTof);
+			nt->addItem("te",   fElectronTof);
+			nt->addItem("tmu",  fMuonTof);
+			nt->addItem("tpi",  fProtoniTof);
+			nt->addItem("tk",   fKaonTof);
+			nt->addItem("tp",   fProtonTof);
+		}
 
-	// * Book NTuple: check ToF outer barrel branch * //
-		nt = BookNTuple("tof2");
-		if(!nt) return StatusCode::FAILURE;
-		nt->addItem("ptrk", fPtotTof);
-		nt->addItem("path", fPathTof);
-		nt->addItem("tof",  fTof);
-		nt->addItem("cntr", fCntrTof);
-		nt->addItem("ph",   fPhTof);
-		nt->addItem("zhit", fZhitTof);
-		nt->addItem("qual", fQualTof);
-		nt->addItem("te",   fElectronTof);
-		nt->addItem("tmu",  fMuonTof);
-		nt->addItem("tpi",  fProtoniTof);
-		nt->addItem("tk",   fKaonTof);
-		nt->addItem("tp",   fProtonTof);
+	// * Book NTuple: ToF outer barrel branch * //
+		if(fDoTofOB) {
+			nt = BookNTuple("tof2");
+			if(!nt) return StatusCode::FAILURE;
+			nt->addItem("ptrk", fPtotTof);
+			nt->addItem("path", fPathTof);
+			nt->addItem("tof",  fTof);
+			nt->addItem("cntr", fCntrTof);
+			nt->addItem("ph",   fPhTof);
+			nt->addItem("zhit", fRhitTof);
+			nt->addItem("qual", fQualTof);
+			nt->addItem("te",   fElectronTof);
+			nt->addItem("tmu",  fMuonTof);
+			nt->addItem("tpi",  fProtoniTof);
+			nt->addItem("tk",   fKaonTof);
+			nt->addItem("tp",   fProtonTof);
+		}
 
 	// * Book NTuple: Track PID information * //
-		nt = BookNTuple("pid");
-		if(!nt) return StatusCode::FAILURE;
-		nt->addItem("ptrk", fPtrackPID);
-		nt->addItem("cost", fCostPID);
-		nt->addItem("dedx", fDedxPID);
-		nt->addItem("tof1", fTof1PID);
-		nt->addItem("tof2", fTof2PID);
-		nt->addItem("prob", fProbPID);
+		if(fDoPID) {
+			nt = BookNTuple("pid");
+			if(!nt) return StatusCode::FAILURE;
+			nt->addItem("ptrk", fTrack_p);
+			nt->addItem("cost", fCostPID);
+			nt->addItem("dedx", fDedxPID);
+			nt->addItem("tof1", fTof1PID);
+			nt->addItem("tof2", fTof2PID);
+			nt->addItem("prob", fProbPID);
+		}
 
 	log << MSG::INFO << "Successfully returned from initialize()" << endmsg;
 	return StatusCode::SUCCESS;
@@ -241,275 +273,189 @@ StatusCode DzeroPhi::execute() {
 	log << MSG::INFO << "In execute():" << endreq;
 
 	// * Load next event from DST file * //
-	// NOTE: Ncut0 -- no cut yet
 
-		// * Load DST file info *
-		SmartDataPtr<Event::EventHeader> eventHeader(eventSvc(), "/Event/EventHeader");
-		int runNo = eventHeader->runNumber();
-		int evtNo = eventHeader->eventNumber();
-		log << MSG::DEBUG << "run, evtnum = "
-		    << runNo << " , "
-		    << evtNo << endreq;
-		Ncut0++; // counter for all events
-
-		// * Load event information and track collection *
+		// * Load event info *
 			/*
 			http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html (namespace)
 			http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html (class)
 			http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html (typedef EvtRecTrackCol)
 			*/
-		SmartDataPtr<EvtRecEvent>    evtRecEvent (eventSvc(), EventModel::EvtRec::EvtRecEvent);
-		SmartDataPtr<EvtRecTrackCol> evtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
+		SmartDataPtr<Event::EventHeader> eventHeader (eventSvc(), "/Event/EventHeader");
+		SmartDataPtr<EvtRecEvent>        evtRecEvent (eventSvc(), EventModel::EvtRec::EvtRecEvent);
+		SmartDataPtr<EvtRecTrackCol>     evtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
 
-		// * Log number of events *
-		log << MSG::DEBUG << "Ncharged, Nneutral, Ntotal = "
-		    << evtRecEvent->totalCharged() << ", "
-		    << evtRecEvent->totalNeutral() << ", "
-		    << evtRecEvent->totalTracks() << endreq;
+		// * Log run number, event number, and number of events *
+		fEvent_Ntotal   = evtRecEvent->totalTracks();
+		fEvent_Ncharge  = evtRecEvent->totalCharged();
+		fEvent_Nneutral = evtRecEvent->totalNeutral();
+		log << MSG::DEBUG
+			<< "run "           << eventHeader->runNumber()   << ", "
+			<< "evtent number " << eventHeader->eventNumber() << endreq;
+		log << MSG::DEBUG
+			<< "Ncharged = " << fEvent_Ncharge  << ", "
+			<< "Nneutral = " << fEvent_Nneutral << ", "
+			<< "Ntotal = "   << fEvent_Ntotal   << endreq;
 
 
 	// * Set vertex origin * //
-		Hep3Vector xorigin(0,0,0);
 		IVertexDbSvc* vtxsvc;
 		Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
 		if(vtxsvc->isVertexValid()){
 			double* dbv = vtxsvc->PrimaryVertex();
 			double* vv = vtxsvc->SigmaPrimaryVertex();
-			// HepVector dbv = fReader.PrimaryVertex(runNo);
-			// HepVector vv  = fReader.SigmaPrimaryVertex(runNo);
-			xorigin.setX(dbv[0]);
-			xorigin.setY(dbv[1]);
-			xorigin.setZ(dbv[2]);
+			fEvent_Vx0 = dbv[0];
+			fEvent_Vy0 = dbv[1];
+			fEvent_Vz0 = dbv[2];
 		}
 
 
 	// * LOOP OVER CHARGED TRACKS: select 'good' charged tracks * //
-	// NOTE: Ncut1 -- vertex cuts
-		// The first part of the set of reconstructed tracks are the charged tracks
-		int nCharge = 0;
-			//!< Number of charged tracks as identified by the MDC.
-		Vint iGood;
-			//!< vector of integers that give the position of tracks in the `evtRecEvent` marked good.
+		fEvent_Nmdc = 0; // @todo Check if this makes sense at all
+		fGoodChargedTracks.clear();
 		for(int i = 0; i < evtRecEvent->totalCharged(); ++i) {
+		// Note: the first part of the set of reconstructed tracks are the charged tracks
 
-			// * Get track: beginning of all tracks + event number
-			EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + i; 
-			if(!(*itTrk)->isMdcTrackValid()) continue;
+			// * Check if valid according to MDC
+			fTrackIterator = evtRecTrkCol->begin() + i; 
+			if(!(*fTrackIterator)->isMdcTrackValid()) continue;
 
 			// * Get track info from Main Drift Chamber
-			RecMdcTrack *mdcTrk = (*itTrk)->mdcTrack();
-			double pch  = mdcTrk->p();
-			double x0   = mdcTrk->x();
-			double y0   = mdcTrk->y();
-			double z0   = mdcTrk->z();
-			double phi0 = mdcTrk->helix(1);
-
-			// * Get vertex origin
-			double Rxy  =
-				(x0 - xorigin.x()) * cos(phi0) +
-				(y0 - xorigin.y()) * sin(phi0);
+			RecMdcTrack *mdcTrk = (*fTrackIterator)->mdcTrack();
+			fTrack_p  = mdcTrk->p();
+			fTrack_Vx = mdcTrk->x();
+			fTrack_Vy = mdcTrk->y();
+			fTrack_Vz = mdcTrk->z();
+			fTrack_phi = mdcTrk->helix(1);
+			fTrack_Vr =
+				(fTrack_Vx - fEvent_Vx0) * cos(fTrack_phi) +
+				(fTrack_Vy - fEvent_Vy0) * sin(fTrack_phi);
 
 			// * Get radii of vertex
 			HepVector a = mdcTrk->helix();
 			HepSymMatrix Ea = mdcTrk->err();
-			HepPoint3D point0(0., 0., 0.); // the initial point for MDC recosntruction
-			HepPoint3D IP(xorigin[0], xorigin[1], xorigin[2]);
+			HepPoint3D point0(0., 0., 0.); // initial point for MDC reconstruction
+			HepPoint3D IP(fEvent_Vx0, fEvent_Vy0, fEvent_Vz0);
 			VFHelix helixip(point0, a, Ea);
 			helixip.pivot(IP);
 			HepVector vecipa = helixip.a();
-			double Rvxy0  = fabs(vecipa[0]); // nearest distance to IP in xy plane
-			double Rvz0   = vecipa[3];       // nearest distance to IP in z direction
-			double Rvphi0 = vecipa[1];
+			fTrack_Rvxy  = fabs(vecipa[0]); // nearest distance to IP in xy plane
+			fTrack_Rvz   = vecipa[3];       // nearest distance to IP in z direction
+			fTrack_Rvphi = vecipa[1]; // angle in the xy-plane (?)
 
-			// * WRITE primary vertex position info ("vxyz" branch) *
-			fVx0    = x0;     // primary x-vertex as determined by MDC
-			fVy0    = y0;     // primary y-vertex as determined by MDC
-			fVz0    = z0;     // primary z-vertex as determined by MDC
-			fVr0    = Rxy;    // distance from origin in xy-plane
-			fRvxy0  = Rvxy0;  // nearest distance to IP in xy plane
-			fRvz0   = Rvz0;   // nearest distance to IP in z direction
-			fRvphi0 = Rvphi0; // angle in the xy-plane (?)
-			fNTupleMap["vxyz"]->write();
+			// * Apply vertex cuts
+			if(fabs(fTrack_Vz)   >= fVz0cut)   continue;
+			if(fabs(fTrack_Vr)   >= fVr0cut)   continue;
+			if(fabs(fTrack_Rvz)  >= fRvz0cut)  continue;
+			if(fabs(fTrack_Rvxy) >= fRvxy0cut) continue;
 
-			// * Apply vertex cuts *
-			if(fabs(z0)    >= fVz0cut)   continue;
-			if(fabs(Rxy)   >= fVr0cut)   continue;
-			if(fabs(Rvz0)  >= fRvz0cut)  continue;
-			if(fabs(Rvxy0) >= fRvxy0cut) continue;
+			// * Add charged track to vector
+			fGoodChargedTracks.push_back(*fTrackIterator);
+			fEvent_Nmdc += mdcTrk->charge(); // @todo Check if this makes sense at all
 
-			// * Add charged track to vector *
-			iGood.push_back(i);
-			nCharge += mdcTrk->charge();
+			// * WRITE primary vertex position info ("vxyz" branch)
+			if(fDoVxyz) fNTupleMap["vxyz"]->write();
 
 		}
-
-		// * Finish Good Charged Track Selection * //
-		log << MSG::DEBUG << "ngood, totcharge = " << iGood.size() << " , " << nCharge << endreq;
-		Ncut1++; // vertex cuts
 
 
 	// * Store dE/dx PID information * //
-		for(int i = 0; i < iGood.size(); ++i) {
+		if(fDoDedx) {
+			fTrackIterator = fGoodChargedTracks.begin();
+			for(; fTrackIterator != fGoodChargedTracks.end(); ++fTrackIterator) {
 
-			// * Get track *
-			EvtRecTrackIterator  itTrk = evtRecTrkCol->begin() + iGood[i];
-			if(!(*itTrk)->isMdcTrackValid()) continue;
-			if(!(*itTrk)->isMdcDedxValid())  continue;
-			RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
-			RecMdcDedx* dedxTrk = (*itTrk)->mdcDedx();
+				// * Check if dE/dx and MDC info exists *
+				if(!(*fTrackIterator)->isMdcTrackValid()) continue;
+				if(!(*fTrackIterator)->isMdcDedxValid())  continue;
+				RecMdcTrack* mdcTrk = (*fTrackIterator)->mdcTrack();
+				RecMdcDedx* dedxTrk = (*fTrackIterator)->mdcDedx();
 
-			// * WRITE energy loss PID info ("dedx" branch) *
-			fPtrack   = mdcTrk->p();
-			fChi2e   = dedxTrk->chiE();
-			fChi2mu  = dedxTrk->chiMu();
-			fChi2pi  = dedxTrk->chiPi();
-			fChi2k   = dedxTrk->chiK();
-			fChi2p   = dedxTrk->chiP();
-			fProbPH = dedxTrk->probPH();
-			fNormPH = dedxTrk->normPH();
-			fGhit   = dedxTrk->numGoodHits();
-			fThit   = dedxTrk->numTotalHits();
-			fNTupleMap["dedx"]->write();
-		}
+				// * WRITE energy loss PID info ("dedx" branch) *
+				fTrack_p = mdcTrk->p();
+				fChi2e   = dedxTrk->chiE();
+				fChi2mu  = dedxTrk->chiMu();
+				fChi2pi  = dedxTrk->chiPi();
+				fChi2k   = dedxTrk->chiK();
+				fChi2p   = dedxTrk->chiP();
+				fProbPH  = dedxTrk->probPH();
+				fNormPH  = dedxTrk->normPH();
+				fGhit    = dedxTrk->numGoodHits();
+				fThit    = dedxTrk->numTotalHits();
+				fNTupleMap["dedx"]->write();
+
+			} // end of loop over all charged track
+		} // end of fDoDedx
 
 
 	// * Store Time-of-Flight information * //
-		for(int i = 0; i < iGood.size(); ++i) {
-			EvtRecTrackIterator  itTrk = evtRecTrkCol->begin() + iGood[i];
-			if(!(*itTrk)->isMdcTrackValid()) continue;
-			if(!(*itTrk)->isTofTrackValid()) continue;
+		if(fDoTofEC || fDoTofIB || fDoTofOB) {
+			fTrackIterator = fGoodChargedTracks.begin();
+			for(; fTrackIterator != fGoodChargedTracks.end(); ++fTrackIterator) {
 
-			RecMdcTrack * mdcTrk = (*itTrk)->mdcTrack();
-			SmartRefVector<RecTofTrack> tofTrkCol = (*itTrk)->tofTrack();
+				// * Check if MDC and TOF info for track are valid *
+				if(!(*fTrackIterator)->isMdcTrackValid()) continue;
+				if(!(*fTrackIterator)->isTofTrackValid()) continue;
 
-			double ptrk = mdcTrk->p();
-
-			SmartRefVector<RecTofTrack>::iterator iter_tof = tofTrkCol.begin();
-			for(;iter_tof != tofTrkCol.end(); ++iter_tof) {
-
-				// * Test hit status *
-				TofHitStatus hitStatus;
-				hitStatus.setStatus((*iter_tof)->status());
-				if(!hitStatus.is_counter()) continue;
-
-				// * If barrel ToF detector: *
-				if(hitStatus.is_barrel()) {
-
-					// * INNER barrel ToF detector
-					if(hitStatus.layer() == 1) {
-						// * Get ToF info
-						fPtotTof = ptrk;
-						fPathTof = (*iter_tof)->path();
-						fTof     = (*iter_tof)->tof();
-						fPhTof   = (*iter_tof)->ph();
-						fZhitTof = (*iter_tof)->zrhit();
-						fQualTof = 0.+(*iter_tof)->quality();
-						fCntrTof = 0.+(*iter_tof)->tofID();
-						// * Get ToF for each particle hypothesis
-						std::vector<double> texp(xmass.size());
-						for(auto j = 0; j < texp.size(); j++) {
-							double gb = fPtotTof/xmass[j]; // v = p/m (non-relativistic velocity)
-							double beta = gb/sqrt(1+gb*gb);
-							texp[j] = 10 * fPathTof /beta/velc_mm; // hypothesis ToF
+				// * Get momentum as determined by MDC *
+				RecMdcTrack * mdcTrk = (*fTrackIterator)->mdcTrack();
+				double ptrk = mdcTrk->p();
+				SmartRefVector<RecTofTrack> tofTrkCol = (*fTrackIterator)->tofTrack();
+				SmartRefVector<RecTofTrack>::iterator iter_tof = tofTrkCol.begin();
+				for(; iter_tof != tofTrkCol.end(); ++iter_tof) {
+					TofHitStatus hitStatus;
+					hitStatus.setStatus((*iter_tof)->status());
+					if(!hitStatus.is_counter()) continue;
+					if(hitStatus.is_barrel()) {
+						if(hitStatus.layer() == 1) { // inner barrel
+							if(fDoTofIB) GetTofInformation(iter_tof, ptrk, "tof1");
+						} else if(hitStatus.layer() == 2) { // outer barrel
+							if(fDoTofOB) GetTofInformation(iter_tof, ptrk, "tof2");
 						}
-						// * WRITE ToF inner barrel info ("tof1" branch)
-						fElectronTof = tof - texp[0];
-						fMuonTof     = tof - texp[1];
-						fProtoniTof  = tof - texp[2];
-						fKaonTof     = tof - texp[3];
-						fProtonTof   = tof - texp[4];
-						fNTupleMap["tof1"]->write();
 					}
-
-					// * Outer barrel ToF detector
-					if(hitStatus.layer() == 2) {
-						// * Get ToF info
-						fPtotTof = ptrk;
-						fPathTof = (*iter_tof)->path();
-						fTof     = (*iter_tof)->tof();
-						fPhTof   = (*iter_tof)->ph();
-						fZhitTof = (*iter_tof)->zrhit();
-						fQualTof = 0.+(*iter_tof)->quality();
-						fCntrTof = 0.+(*iter_tof)->tofID();
-						// * Get ToF for each particle hypothesis
-						std::vector<double> texp(xmass.size());
-						for(auto j = 0; j < texp.size(); j++) {
-							double gb = fPtotTof/xmass[j]; // v = p/m (non-relativistic velocity)
-							double beta = gb/sqrt(1+gb*gb);
-							texp[j] = 10 * fPathTof /beta/velc_mm; // hypothesis ToF
-						}
-						// * WRITE ToF outer barrel info ("tof2" branch)
-						fElectronTof = tof - texp[0];
-						fMuonTof     = tof - texp[1];
-						fProtoniTof  = tof - texp[2];
-						fKaonTof     = tof - texp[3];
-						fProtonTof   = tof - texp[4];
-						fNTupleMap["tof2"]->write();
-					}
-
+					else if(fDoTofEC && hitStatus.layer() == 0) // end cap
+						GetTofInformation(iter_tof, ptrk, "tofe");
 				}
 
-				// * If end cap ToF detector: *
-				else if(hitStatus.layer() == 0) {
-					// * Get ToF info
-					fPtotTof = ptrk;
-					fPathTof = (*iter_tof)->path();
-					fTof     = (*iter_tof)->tof();
-					fPhTof   = (*iter_tof)->ph();
-					fZhitTof = (*iter_tof)->zrhit();
-					fQualTof = 0.+(*iter_tof)->quality();
-					fCntrTof = 0.+(*iter_tof)->tofID();
-					// * Get ToF for each particle hypothesis
-					std::vector<double> texp(xmass.size());
-					for(auto j = 0; j < texp.size(); j++) {
-						double gb = fPtotTof/xmass[j]; // v = p/m (non-relativistic velocity)
-						double beta = gb/sqrt(1+gb*gb);
-						texp[j] = 10 * fPathTof /beta/velc_mm; // hypothesis ToF
-					}
-					// * WRITE ToF end cap info ("tofe" branch)
-					fElectronTof = tof - texp[0];
-					fMuonTof     = tof - texp[1];
-					fProtoniTof  = tof - texp[2];
-					fKaonTof     = tof - texp[3];
-					fProtonTof   = tof - texp[4];
-					fNTupleMap["tofe"]->write();
-				}
-			}
-		} // loop all charged track
+			} // loop all charged track
+		} // end of fDoTofEC, fDoTofIB, fDoTofOB
 
 
-	// * Get 4-momentum for each kaon and each pi+ * //
-		Vint iKm, iKp, ipip; // serves as collection of pointers to which tracks in the collection are good
-		Vp4  pKm, pKp, ppip; // vector of momenta
+	// * Create a selection of charged decay products * //
+
+		// * Clear lists of decay products and initialise PID instance *
+		fKaonNeg.clear();
+		fKaonPos.clear();
+		fPionPos.clear();
 		ParticleID *pid = ParticleID::instance();
-		for(int i = 0; i < iGood.size(); ++i) {
 
-			// * Get 'good' track
-			EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
+		// * Loop over collection of 'good' charged tracks *
+		fTrackIterator = fGoodChargedTracks.begin();
+		for(; fTrackIterator != fGoodChargedTracks.end(); ++fTrackIterator) {
 
 			// * Initialise PID sub-system
 			// if(pid) delete pid;
 			pid->init();
 			pid->setMethod(pid->methodProbability());
-			// pid->setMethod(pid->methodLikelihood()); // for Likelihood Method
+			// pid->setMethod(pid->methodLikelihood()); // for likelihood Method
 			pid->setChiMinCut(4);
-			pid->setRecTrack(*itTrk);
+			pid->setRecTrack(*fTrackIterator);
 			pid->usePidSys(pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE()); // use PID sub-system
 			pid->identify(pid->onlyPion() | pid->onlyKaon()); // seperater Pion/Kaon
 			pid->calculate();
 			if(!(pid->IsPidInfoValid())) continue;
 
 			// * Get MDC track info *
-			RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
+			RecMdcTrack* mdcTrk = (*fTrackIterator)->mdcTrack();
 
 			// * WRITE particle identification info ("pid" branch) *
-			fPtrackPID = mdcTrk->p();          // momentum of the track
-			fCostPID = cos(mdcTrk->theta()); // theta angle of the track
-			fDedxPID = pid->chiDedx(2);      // Chi squared of the dedx of the track
-			fTof1PID = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
-			fTof2PID = pid->chiTof2(2);      // Chi squared of the outer barrel ToF of the track
-			fProbPID = pid->probPion();      // probability that it is a pion
-			fNTupleMap["pid"]->write();
+			if(fDoPID) {
+				fTrack_p = mdcTrk->p();
+				fCostPID = cos(mdcTrk->theta());
+				fDedxPID = pid->chiDedx(2);
+				fTof1PID = pid->chiTof1(2);
+				fTof2PID = pid->chiTof2(2);
+				fProbPID = pid->probPion();
+				fNTupleMap["pid"]->write();
+			}
 
 			// * If more likely to be pion (pi+-) *
 			if(pid->probPion() > pid->probKaon()) {
@@ -517,86 +463,70 @@ StatusCode DzeroPhi::execute() {
 				// * Check if indeed a pion
 				if(pid->probPion() < 0.001) continue;
 				if(pid->pdf(2) < pid->pdf(3)) continue;
-					// for Likelihood Method (0=electron 1=muon 2=pion 3=kaon 4=proton)
+					// for likelihood method (0=electron 1=muon 2=pion 3=kaon 4=proton)
 
 				// * Get MDC Kalman track
-				RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();
+				RecMdcKalTrack* mdcKalTrk = (*fTrackIterator)->mdcKalTrack();
 					// after ParticleID, use RecMdcKalTrack substitute RecMdcTrack
 				RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
 					// PID can set to electron, muon, pion (default), kaon and proton
 
 				// * If positive pion
-				if(mdcKalTrk->charge() > 0) {
-					HepLorentzVector ptrk;
-					ptrk.setPx(mdcKalTrk->px());
-					ptrk.setPy(mdcKalTrk->py());
-					ptrk.setPz(mdcKalTrk->pz());
-					double p3 = ptrk.mag();
-					ptrk.setE(sqrt(p3*p3 + mpi*mpi));
-					// ptrk = ptrk.boost(-0.011,0,0); // boost to cms
-					ipip.push_back(iGood[i]);
-					ppip.push_back(ptrk);
-				}
+				if(mdcKalTrk->charge() > 0)
+					fPionPos.push_back(*fTrackIterator);
 
 			}
-			// * If more likely to be kaon (K+-)
+
+			// * If more likely to be kaon (K+-) *
 			else {
 
 				// * Check if indeed a kaon
-				if(pid->probPion() < 0.001) continue;
+				if(pid->probKaon() < 0.001) continue;
 				if(pid->pdf(3) < pid->pdf(2)) continue;
-					// for Likelihood Method (0=electron 1=muon 2=pion 3=kaon 4=proton)
+					// for likelihood method (0=electron 1=muon 2=pion 3=kaon 4=proton)
 
 				// * Get MDC Kalman track
-				RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();
+				RecMdcKalTrack* mdcKalTrk = (*fTrackIterator)->mdcKalTrack();
 					// after ParticleID, use RecMdcKalTrack substitute RecMdcTrack
 				RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
 					// PID can set to electron, muon, pion (default), kaon and proton
 
-				// * If positive kaon
-				if(mdcKalTrk->charge() > 0) {
-					HepLorentzVector ptrk;
-					ptrk.setPx(mdcKalTrk->px());
-					ptrk.setPy(mdcKalTrk->py());
-					ptrk.setPz(mdcKalTrk->pz());
-					double p3 = ptrk.mag();
-					ptrk.setE(sqrt(p3*p3 + mK*mK));
-					// ptrk = ptrk.boost(-0.011,0,0); // boost to cms
-					iKp.push_back(iGood[i]);
-					pKp.push_back(ptrk);
-				}
 				// * If negative kaon
-				else {
-					HepLorentzVector ptrk;
-					ptrk.setPx(mdcKalTrk->px());
-					ptrk.setPy(mdcKalTrk->py());
-					ptrk.setPz(mdcKalTrk->pz());
-					double p3 = ptrk.mag();
-					ptrk.setE(sqrt(p3*p3 + mK*mK));
-					// ptrk = ptrk.boost(-0.011,0,0); // boost to cms
-					iKm.push_back(iGood[i]);
-					pKm.push_back(ptrk);
-				}
+				if(mdcKalTrk->charge() < 0)
+					fKaonNeg.push_back(*fTrackIterator);
+
+				// * If positive kaon
+				else
+					fKaonPos.push_back(*fTrackIterator);
+
 			}
 		}
 
+	// * WRITE event info ("mult" branch) * //
+		log << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << fEvent_Nmdc << endreq;
+		if(fDoVxyz) {
+			fEvent_Ngood = fGoodChargedTracks.size();
+			fEvent_NKaonNeg = fKaonNeg.size();
+			fEvent_NKaonPos = fKaonPos.size();
+			fEvent_NPionPos = fPionPos.size();
+			fNTupleMap["mult"]->write();
+		} // end of fDoVxyz
 
-	// * Cut on number of particles * //
-	// ! TODO Test if procedure can be made to work for arbitrary number of kaons and pions
-	// NOTE: Ncut2 -- only events that numerically agree with Jpsi --> K- pi+ K- K+ (D0 phi)
-		if(iKm.size()  != 2) return SUCCESS; // only two K-'s
-		if(ipip.size() != 1) return SUCCESS; // only one pi+
-		if(iKp.size()  != 1) return SUCCESS; // only one K+
-		Ncut2++;
+
+	// ! Cut on number of particles ! //
+	// @todo Test if procedure can be made to work for arbitrary number of kaons and pions
+		if(fKaonNeg.size() != 2) return SUCCESS; //!< Only select events that contains two \f$K^-\f$'s.
+		if(fKaonPos.size() != 1) return SUCCESS; //!< Only select events that contains one \f$\pi^+\f$.
+		if(fPionPos.size() != 1) return SUCCESS; //!< Only select events that contains one \f$K^+\f$.
 
 
 	// * Test all combinations with K- and store the ones closes to D0 and to phi * //
 
 		// * Get Kalman tracks
-		RecMdcKalTrack *pipTrk = (*(evtRecTrkCol->begin()+ipip[0]))->mdcKalTrack();
-		RecMdcKalTrack *KpTrk  = (*(evtRecTrkCol->begin()+iKp[0])) ->mdcKalTrack();
-		RecMdcKalTrack *KmTrk1 = (*(evtRecTrkCol->begin()+iKm[0])) ->mdcKalTrack();
-		RecMdcKalTrack *KmTrk2 = (*(evtRecTrkCol->begin()+iKm[1])) ->mdcKalTrack();
+		RecMdcKalTrack *pipTrk = (*(fPionPos.begin()))  ->mdcKalTrack();
+		RecMdcKalTrack *KpTrk  = (*(fKaonPos.begin()))  ->mdcKalTrack();
+		RecMdcKalTrack *KmTrk1 = (*(fKaonNeg.begin()))  ->mdcKalTrack();
+		RecMdcKalTrack *KmTrk2 = (*(fKaonNeg.begin()+1))->mdcKalTrack();
 
 		// * Get W-tracks
 		WTrackParameter wvpipTrk(mpi, pipTrk->getZHelix(), pipTrk->getZError());
@@ -636,7 +566,6 @@ StatusCode DzeroPhi::execute() {
 
 
 	// * Find Kalman 4-constraint kinematic fit with smallest chi squared * //
-	// NOTE: Ncut3 -- fit4c passed and ChiSq less than fMaxChiSq
 
 		// * Some local declarations
 		HepLorentzVector ecms(0.034, 0, 0, Ecms);
@@ -647,20 +576,20 @@ StatusCode DzeroPhi::execute() {
 
 		// * Get Kalman fit for first combination with K-
 		kkmfit1->init();
-		kkmfit1->AddTrack(0, wKm1);  // 1c: K- (1st occurrence)
-		kkmfit1->AddTrack(1, wpip);  // 2c: pi+
-		kkmfit1->AddTrack(2, wKm2);  // 3c: K- (2nd occurrence)
-		kkmfit1->AddTrack(3, wKp);   // 4c: K+
+		kkmfit1->AddTrack(0, wKm1);  // K- (1st occurrence)
+		kkmfit1->AddTrack(1, wpip);  // pi+
+		kkmfit1->AddTrack(2, wKm2);  // K- (2nd occurrence)
+		kkmfit1->AddTrack(3, wKp);   // K+
 		kkmfit1->AddFourMomentum(0, ecms);
 		if(kkmfit1->Fit()) chisq1 = kkmfit1->chisq();
 
 		// * Get Kalman fit for second combination with K-
 		kkmfit2->init();
-		kkmfit2->AddTrack(0, wKm2);  // 1c: K- (2nd occurrence)
-		kkmfit2->AddTrack(1, wpip);  // 2c: pi+
-		kkmfit2->AddTrack(2, wKm1);  // 3c: K- (1st occurrence)
-		kkmfit2->AddTrack(3, wKp);   // 4c: K+
-		kkmfit2->AddFourMomentum(0, ecms);
+		kkmfit2->AddTrack(0, wKm2);  // K- (2nd occurrence)
+		kkmfit2->AddTrack(1, wpip);  // pi+
+		kkmfit2->AddTrack(2, wKm1);  // K- (1st occurrence)
+		kkmfit2->AddTrack(3, wKp);   // K+
+		kkmfit2->AddFourMomentum(0, ecms); // 4 constraints: CMS energy and momentum
 		if(kkmfit2->Fit()) chisq2 = kkmfit2->chisq();
 
 		// * Get best Kalman fit
@@ -670,7 +599,7 @@ StatusCode DzeroPhi::execute() {
 		else                { kkmfit = kkmfit2; chisq = chisq2; }
 
 		// * WRITE D0 and phi information from 4-constraint fit ("fit4c" branch)
-		if(kkmfit && chisq < fMaxChiSq) {
+		if(fDoFit4c && kkmfit && chisq < fMaxChiSq) {
 			HepLorentzVector pD0  = kkmfit->pfit(0) + kkmfit->pfit(1);
 			HepLorentzVector pphi = kkmfit->pfit(2) + kkmfit->pfit(3);
 			HepLorentzVector pJpsi = pD0 + pphi;
@@ -679,12 +608,10 @@ StatusCode DzeroPhi::execute() {
 			fM_Jpsi = pJpsi.m(); // invariant Jpsi mass according to Kalman kinematic fit
 			fChi2sq = chisq;    // chi square of the Kalman kinematic fit
 			fNTupleMap["fit4c"]->write();
-			Ncut3++; // ChiSq has to be less than 200 and fit4c has to be passed
 		}
 
 
 	// * Find Kalman 5-constraint kinematic fit with smallest chi squared * //
-	// NOTE: Ncut4 -- fit4c passed and ChiSq less than fMaxChiSq
 
 		// * Some local declarations
 		chisq1 = 999999.;
@@ -692,25 +619,25 @@ StatusCode DzeroPhi::execute() {
 
 		// * Get Kalman fit for first combination with K-
 		kkmfit1->init();
-		kkmfit1->AddTrack(0, wKm1);           // 1c: K- (1st occurrence)
-		kkmfit1->AddTrack(1, wpip);           // 2c: pi+
-		kkmfit1->AddTrack(2, wKm2);           // 3c: K- (2nd occurrence)
-		kkmfit1->AddTrack(3, wKp);            // 4c: K+
-		kkmfit1->AddResonance(0, mD0,  0, 1); // 5c: D0 resonance
-		kkmfit1->AddResonance(1, mphi, 2, 3); // 6c: phi resonance
-		kkmfit1->AddFourMomentum(2, ecms);
+		kkmfit1->AddTrack(0, wKm1);           // K- (1st occurrence)
+		kkmfit1->AddTrack(1, wpip);           // pi+
+		kkmfit1->AddTrack(2, wKm2);           // K- (2nd occurrence)
+		kkmfit1->AddTrack(3, wKp);            // K+
+		kkmfit1->AddResonance(0, mD0,  0, 1); // 5th constraint: D0 resonance
+		kkmfit1->AddResonance(1, mphi, 2, 3); // 6th constraint: phi resonance
+		kkmfit1->AddFourMomentum(2, ecms); // 4 constraints: CMS energy and momentum
 		if(kkmfit1->Fit(0) && kkmfit1->Fit(1) && kkmfit1->Fit(2) && kkmfit1->Fit())
 			chisq1 = kkmfit1->chisq();
 
 		// * Get Kalman fit for second combination with K-
 		kkmfit2->init();
-		kkmfit2->AddTrack(0, wKm2);           // 1c: K- (2nd occurrence)
-		kkmfit2->AddTrack(1, wpip);           // 2c: pi+
-		kkmfit2->AddTrack(2, wKm1);           // 3c: K- (1st occurrence)
-		kkmfit2->AddTrack(3, wKp);            // 4c: K+
-		kkmfit2->AddResonance(0, mD0,  0, 1); // 5c: D0 resonance
-		kkmfit2->AddResonance(1, mphi, 2, 3); // 6c: phi resonance
-		kkmfit2->AddFourMomentum(2, ecms);
+		kkmfit2->AddTrack(0, wKm2);           // K- (2nd occurrence)
+		kkmfit2->AddTrack(1, wpip);           // pi+
+		kkmfit2->AddTrack(2, wKm1);           // K- (1st occurrence)
+		kkmfit2->AddTrack(3, wKp);            // K+
+		kkmfit2->AddResonance(0, mD0,  0, 1); // 5th constraint: D0 resonance
+		kkmfit2->AddResonance(1, mphi, 2, 3); // 6th constraint: phi resonance
+		kkmfit2->AddFourMomentum(2, ecms); // 4 constraints: CMS energy and momentum
 		if(kkmfit2->Fit(0) && kkmfit2->Fit(1) && kkmfit2->Fit(2) && kkmfit2->Fit())
 			chisq2 = kkmfit2->chisq();
 
@@ -721,16 +648,15 @@ StatusCode DzeroPhi::execute() {
 		else                { kkmfit = kkmfit2; chisq = chisq2; }
 
 		// * WRITE D0 and phi information from 5-constraint fit ("fit6c" branch)
-		if(kkmfit && chisq < fMaxChiSq) {
+		if(fDoFit6c && kkmfit && chisq < fMaxChiSq) {
 			HepLorentzVector pD0  = kkmfit->pfit(0) + kkmfit->pfit(1);
 			HepLorentzVector pphi = kkmfit->pfit(2) + kkmfit->pfit(3);
 			HepLorentzVector pJpsi = pD0 + pphi;
-			fM_D0   = pD0.m();   // invariant D0 mass according to Kalman kinematic fit
-			fM_phi  = pphi.m();  // invariant phi mass according to Kalman kinematic fit
-			fM_Jpsi = pJpsi.m(); // invariant Jpsi mass according to Kalman kinematic fit
-			fChi2sq = chisq;    // chi square of the Kalman kinematic fit
+			fM_D0   = pD0.m();
+			fM_phi  = pphi.m();
+			fM_Jpsi = pJpsi.m();
+			fChi2sq = chisq;
 			fNTupleMap["fit6c"]->write();
-			Ncut4++; // Kalman kinematic fit 6c is successful
 		}
 
 	// * Clean objects for this event * //
@@ -747,24 +673,10 @@ StatusCode DzeroPhi::execute() {
 // * -------- FINALIZE -------- * //
 // * ========================== * //
 /**
- * @brief Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events.
- * @details Prints the flow chart to the terminal, so make sure you save this output!
+ * @brief Currently does nothing. Cut flow could be printed in this step.
+ * @todo Add log output to `finalize` step.
  */
 StatusCode DzeroPhi::finalize() {
-
-	MsgStream log(msgSvc(), name());
-	log << MSG::INFO << "in finalize()" << endmsg;
-
-	// * Print flow chart * //
-		cout << "Resulting FLOW CHART:" << endl;
-		cout << "  (0) Total number of events: " << Ncut0 << endl;
-		cout << "  (1) Vertex cuts:            " << Ncut1 << endl;
-		cout << "  (3) Pass PID:               " << Ncut2 << endl;
-		cout << "  (4) Pass 4C Kalman fit:     " << Ncut3 << endl;
-		cout << "  (5) Pass 6C Kalman fit:     " << Ncut4 << endl;
-		cout << endl ;
-
-	log << MSG::INFO << "Successfully returned from finalize()" << endmsg;
 	return StatusCode::SUCCESS;
 }
 
@@ -779,13 +691,43 @@ StatusCode DzeroPhi::finalize() {
  *
  * @param tupleName This will not only be the name of your `NTuple`, but also the name of the `TTree` in the output ROOT file when you use `NTuple::write()`. The name used here is also used as identifier in `NTuplePtr` map `fNTupleMap`. In other words, you can get any of the `NTuplePtr`s in this map by using `fNTupleMap[<tuple name>]`. If there is no `NTuple` of this name, it will return a `nullptr`.
  */
-NTuplePtr NTupleMap::BookNTuple(const char* tupleName) {
+NTuplePtr DzeroPhi::BookNTuple(const char* tupleName)
+{
 	const char* bookName = Form("FILE1/%s", tupleName);
 	NTuplePtr nt(ntupleSvc(), bookName); // attempt to get from file
 	if(!nt) { // if not available in file, book a new one
 		nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, "ks N-Tuple example");
-		// if(!nt) log << MSG::ERROR << "    Cannot book N-tuple:" << long(fNTupleMap[tupleName]) << endmsg;
+		// if(!nt) log << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << endmsg;
 	}
 	fNTupleMap[tupleName] = nt;
 	return nt;
+}
+
+/**
+ * @brief
+ */
+void DzeroPhi::GetTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName)
+{
+	// * Get ToF info
+	fPtotTof = ptrk;
+	fPathTof = (*iter_tof)->path();
+	fTof     = (*iter_tof)->tof();
+	fPhTof   = (*iter_tof)->ph();
+	fRhitTof = (*iter_tof)->zrhit();
+	fQualTof = 0.+(*iter_tof)->quality();
+	fCntrTof = 0.+(*iter_tof)->tofID();
+	// * Get ToF for each particle hypothesis
+	std::vector<double> texp(nmass);
+	for(size_t j = 0; j < texp.size(); ++j) {
+		double gb = fPtotTof/xmass[j]; // v = p/m (non-relativistic velocity)
+		double beta = gb/sqrt(1+gb*gb);
+		texp[j] = 10 * fPathTof /beta/velc_mm; // hypothesis ToF
+	}
+	// * WRITE ToF info
+	fElectronTof = fPathTof - texp[0];
+	fMuonTof     = fPathTof - texp[1];
+	fProtoniTof  = fPathTof - texp[2];
+	fKaonTof     = fPathTof - texp[3];
+	fProtonTof   = fPathTof - texp[4];
+	fNTupleMap[tupleName]->write();
 }

@@ -270,12 +270,10 @@ StatusCode DzeroOmega::execute() {
 
 		// * Load DST file info *
 		SmartDataPtr<Event::EventHeader> eventHeader(eventSvc(), "/Event/EventHeader");
-		int runNo = eventHeader->runNumber();
-		int evtNo = eventHeader->eventNumber();
 		log << MSG::DEBUG << "run, evtnum = "
-		    << runNo << " , "
-		    << evtNo << endreq;
-		cout << "event number: " << evtNo << endl;
+		    << eventHeader->runNumber() << " , "
+		    << eventHeader->eventNumber() << endreq;
+		cout << "event number: " << eventHeader->eventNumber() << endl;
 		Ncut0++; // counter for all events
 
 		// * Load event information and track collection *
@@ -301,8 +299,6 @@ StatusCode DzeroOmega::execute() {
 		if(vtxsvc->isVertexValid()){
 			double* dbv = vtxsvc->PrimaryVertex();
 			double* vv = vtxsvc->SigmaPrimaryVertex();
-			// HepVector dbv = fReader.PrimaryVertex(runNo);
-			// HepVector vv  = fReader.SigmaPrimaryVertex(runNo);
 			xorigin.setX(dbv[0]);
 			xorigin.setY(dbv[1]);
 			xorigin.setZ(dbv[2]);
