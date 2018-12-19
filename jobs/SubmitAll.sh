@@ -5,7 +5,7 @@
 # *  ORGANIZATION: IHEP, CAS (Beijing, CHINA)
 # *       CREATED: 22 October 2018
 # *         USAGE: bash SubmitAll.sh <analysis name>
-# *     ARGUMENTS: $1 analysis name (e.g. "rhopi")
+# *     ARGUMENTS: $1 analysis name (e.g. "RhopiAlg")
 # * ===============================================================================
 
 # * ===================================================== * #

@@ -13,7 +13,7 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-	analysisType="rhopi" # default argument
+	analysisType="RhopiAlg" # default argument
 	if [ $# == 1 ]; then
 		analysisType="$1"
 	fi

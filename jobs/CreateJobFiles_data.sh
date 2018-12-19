@@ -7,7 +7,7 @@
 # *         USAGE: bash CreateJobFiles_data.sh <search term> <analysis name> <number of events>
 # *     ARGUMENTS: 1) input file that will be used to create the list of dst files,
 # *                   use wild cards to add more files (check default value below)
-# *                2) analysis type name (default is "rhopi_data")
+# *                2) analysis type name (default is "RhopiAlg_data")
 # *                3) number of events per job (default is -1, i.e. all events)
 # * ===============================================================================
 
@@ -31,8 +31,8 @@ set -e # exit if a command or function exits with a non-zero status
 	# * (1) input files that will be used to create the list of dst files
 	searchTerm="filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_*.txt"
 	if [ $# -ge 1 ]; then searchTerm="${1}"; fi
-	# * (2) analysis type name (optional -- default is "rhopi_data")
-	analysisType="rhopi_data" # default argument
+	# * (2) analysis type name (optional -- default is "RhopiAlg_data")
+	analysisType="RhopiAlg_data" # default argument
 	if [ $# -ge 2 ]; then analysisType="${2}"; fi
 	# * (3) number of events per job (optional -- default is -1, i.e. all events)
 	nEventsPerJob=-1 # default argument

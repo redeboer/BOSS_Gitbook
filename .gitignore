@@ -44,6 +44,7 @@ jobs/**/sed*
 **.shstamp
 **.stamp
 fort.*
+core.*
 
 # Ignore CVS files
 CVS

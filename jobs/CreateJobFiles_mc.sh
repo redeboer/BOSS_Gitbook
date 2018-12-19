@@ -7,7 +7,7 @@
 # *         USAGE: bash CreateJobFiles.sh <number of jobs> <number of events>
 # *     ARGUMENTS: 1) number of job files to be created (default is 25)
 # *                2) number of events per job (default is 10,000)
-# *                3) analysis type name (default is "rhopi")
+# *                3) analysis type name (default is "RhopiAlg")
 # * ===============================================================================
 
 set -e # exit if a command or function exits with a non-zero status
@@ -37,8 +37,8 @@ set -e # exit if a command or function exits with a non-zero status
 	if [ $# -ge 2 ]; then
 		nEventsPerJob=${2}
 	fi
-	# * (3) analysis type name (optional -- default is "rhopi")
-	analysisType="rhopi" # default argument
+	# * (3) analysis type name (optional -- default is "RhopiAlg")
+	analysisType="RhopiAlg" # default argument
 	if [ $# -ge 3 ]; then
 		analysisType="${3}"
 	fi

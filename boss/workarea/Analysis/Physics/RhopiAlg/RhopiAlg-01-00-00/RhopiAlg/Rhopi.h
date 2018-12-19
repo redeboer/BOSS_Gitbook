@@ -24,11 +24,11 @@
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
-class Rhopi : public Algorithm
+class RhopiAlg : public Algorithm
 {
 public:
 	// * Constructor and destructors *
-	Rhopi(const std::string& name, ISvcLocator* pSvcLocator);
+	RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator);
 
 	// * Algorithm steps *
 	StatusCode initialize();
@@ -41,7 +41,7 @@ private:
 	// ReadBeamParFromDb fReader;
 
 	// ! ------- DECLARE CUTS HERE ------- ! //
-		// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `Rhopi::Rhopi` constructor (see `.cxx` file).
+		// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `RhopiAlg::RhopiAlg` constructor (see `.cxx` file).
 
 		// * Declare r0, z0 cut for charged tracks *
 		double fVr0cut;
@@ -70,7 +70,7 @@ private:
 
 	// ! ------- DECLARE NTUPLES HERE ------- ! //
 		// NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem.
-		// Note that the NTuple::Items are added to the NTuple during the Rhopi::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
+		// Note that the NTuple::Items are added to the NTuple during the RhopiAlg::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Vertex information of the charged tracks *
 		NTuple::Tuple* fTupleVxyz;
