@@ -7,7 +7,7 @@
 ## Introduction
 
 {% hint style="warning" %}
-**@todo** Explain how to create your own decay card \(`.dec`\) based on the generator definitions in `DECAY.DEC`.
+**@todo** Explain how to create your own decay card \(`.dec`\) based on the generator definitions in [`DECAY.DEC`](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Generator/BesEvtGen/BesEvtGen-00-04-00/share/DECAY.DEC).
 {% endhint %}
 
 ### Exclusive Monte Carlo Simulation
@@ -25,6 +25,6 @@
 ### Setting width to 0
 
 {% hint style="warning" %}
-**@todo** Explain how to replace `pdt.table` in`BesEvtGen`.
+**@todo** Explain how to replace [`pdt.table`](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Generator/BesEvtGen/BesEvtGen-00-04-00/share/pdt.table) in [`BesEvtGen`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Generator/BesEvtGen).
 {% endhint %}
 
