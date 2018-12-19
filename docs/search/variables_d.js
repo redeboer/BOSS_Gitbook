@@ -11,6 +11,6 @@ var searchData=
   ['tofunitmm',['TofUnitMm',['../namespaceSettings_1_1Detector.html#abb477379321d99bd67bac345e4764fe0',1,'Settings::Detector']]],
   ['tp',['tp',['../namespaceAnaBranches_1_1tof1.html#a0c67a9746f3ec984a9daae59907d2b88',1,'AnaBranches::tof1::tp()'],['../namespaceAnaBranches_1_1tof2.html#a76879db4482d62f0d6c6ab9158dc48fd',1,'AnaBranches::tof2::tp()'],['../namespaceAnaBranches_1_1tofe.html#aabdb17458a177b37c960aa43321165a0',1,'AnaBranches::tofe::tp()']]],
   ['tpi',['tpi',['../namespaceAnaBranches_1_1tof1.html#a9bd1458f329c515bb6e284ceff734bde',1,'AnaBranches::tof1::tpi()'],['../namespaceAnaBranches_1_1tof2.html#afb5b564753b488adcbf62b32cd24cac8',1,'AnaBranches::tof2::tpi()'],['../namespaceAnaBranches_1_1tofe.html#a1f48ae33244693a44fb9002ee1108822',1,'AnaBranches::tofe::tpi()']]],
-  ['tupletofib',['TupleTofIB',['../classDzeroOmega.html#ae3c17f69d0deb0c7d7e80509a2e67dfd',1,'DzeroOmega::TupleTofIB()'],['../classDzeroPhi.html#adccd42de0583372570696cc1462ffe83',1,'DzeroPhi::TupleTofIB()'],['../classRhopi.html#a4df527cf1701438ce034a1c20ad3aa56',1,'Rhopi::TupleTofIB()']]],
-  ['tupletofob',['TupleTofOB',['../classDzeroOmega.html#ad6bee91902facb2a3cfb7cc67f35fa1a',1,'DzeroOmega::TupleTofOB()'],['../classDzeroPhi.html#a2047b851378b339908ea2f3a9581a825',1,'DzeroPhi::TupleTofOB()'],['../classRhopi.html#a80910acf9482c4754b13866f842524ac',1,'Rhopi::TupleTofOB()']]]
+  ['tupletofib',['TupleTofIB',['../classRhopi.html#a4df527cf1701438ce034a1c20ad3aa56',1,'Rhopi']]],
+  ['tupletofob',['TupleTofOB',['../classRhopi.html#a80910acf9482c4754b13866f842524ac',1,'Rhopi']]]
 ];

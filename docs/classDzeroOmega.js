@@ -1,6 +1,7 @@
 var classDzeroOmega =
 [
     [ "DzeroOmega", "classDzeroOmega.html#ac0a4a425efa50abc4a30e6c6d5231bd4", null ],
+    [ "BookNTuple", "classDzeroOmega.html#a1f75428cc3a975062f04849d35f0ad33", null ],
     [ "execute", "classDzeroOmega.html#a31d94698f4b0eb65e6a70f25c163c986", null ],
     [ "finalize", "classDzeroOmega.html#a3c2f2a7e59ef1401fb436d3c06356766", null ],
     [ "initialize", "classDzeroOmega.html#aa58e523c2330719b18ca788365e344cd", null ],
@@ -50,6 +51,7 @@ var classDzeroOmega =
     [ "fNneutral", "classDzeroOmega.html#a9846b9f6a6392c23b945fc65d74dd8c7", null ],
     [ "fNormPH", "classDzeroOmega.html#a47c8a780da3eaa6605f3335c98d583b7", null ],
     [ "fNtotal", "classDzeroOmega.html#a4717c66b47193b0f906a129adbe8b642", null ],
+    [ "fNTupleMap", "classDzeroOmega.html#ac3119f77256540615910fbe5cf1b6e3c", null ],
     [ "fPathTofEC", "classDzeroOmega.html#a766894f9e3bf164bb4b3752872770d99", null ],
     [ "fPathTofIB", "classDzeroOmega.html#a446628468bc26e109182fdc0aec03ddc", null ],
     [ "fPathTofOB", "classDzeroOmega.html#ab29cfaa25445f36cef174f334467a356", null ],
@@ -84,16 +86,6 @@ var classDzeroOmega =
     [ "fTofEC", "classDzeroOmega.html#a9bb6d4e2d5df2c4ef0e51ab36cd5251e", null ],
     [ "fTofIB", "classDzeroOmega.html#a25de14360a8d3cfc4d5b068349f520f9", null ],
     [ "fTofOB", "classDzeroOmega.html#a7696a32a83c17be4effb471de03eff1a", null ],
-    [ "fTupleAngles", "classDzeroOmega.html#ad565f7dc58fd6e11a6624fc2ceaf99e8", null ],
-    [ "fTupleDedx", "classDzeroOmega.html#a535492653f5ac1afe53a4c70f6753272", null ],
-    [ "fTupleFit4C", "classDzeroOmega.html#a92859eb956ea0a759d86d8418a56cd9d", null ],
-    [ "fTupleFit6C", "classDzeroOmega.html#aaa13f8a9032407ba519d5391e280c2b3", null ],
-    [ "fTupleMgg", "classDzeroOmega.html#a35fdadd350e87574fcfaa38d1b4ce057", null ],
-    [ "fTupleMult", "classDzeroOmega.html#a0044f8833e3da1c4d6ef03986dd9dc25", null ],
-    [ "fTuplePhoton", "classDzeroOmega.html#a3d978ef08c85e2033b58ef038f005bc7", null ],
-    [ "fTuplePID", "classDzeroOmega.html#a563add6862bdf9aa67dc4401444401dd", null ],
-    [ "fTupleTofEC", "classDzeroOmega.html#a72a587a5932f9f81a3b68da4f820a13c", null ],
-    [ "fTupleVxyz", "classDzeroOmega.html#a5974abb8518535fb9a371fb80349a6b7", null ],
     [ "fVr0", "classDzeroOmega.html#a9357ea5a4b4c0eb85ff6889d35658d55", null ],
     [ "fVr0cut", "classDzeroOmega.html#a141b3db9589c65a755da327498a6705b", null ],
     [ "fVx0", "classDzeroOmega.html#afb195807db6ab8a58beb5ca570dea432", null ],
@@ -101,7 +93,5 @@ var classDzeroOmega =
     [ "fVz0", "classDzeroOmega.html#a818c241b20cc26a3b25ee25c056fbe7e", null ],
     [ "fVz0cut", "classDzeroOmega.html#a6476d0829af0881c75e9a7998260ecec", null ],
     [ "fZhitTofIB", "classDzeroOmega.html#ae3104670a9eb29b1e5f93a7b20c9f647", null ],
-    [ "fZhitTofOB", "classDzeroOmega.html#ab743931d3125013535645de16d3058d6", null ],
-    [ "TupleTofIB", "classDzeroOmega.html#ae3c17f69d0deb0c7d7e80509a2e67dfd", null ],
-    [ "TupleTofOB", "classDzeroOmega.html#ad6bee91902facb2a3cfb7cc67f35fa1a", null ]
+    [ "fZhitTofOB", "classDzeroOmega.html#ab743931d3125013535645de16d3058d6", null ]
 ];

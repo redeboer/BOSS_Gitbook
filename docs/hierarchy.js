@@ -3,6 +3,7 @@ var hierarchy =
     [ "Algorithm", null, [
       [ "DzeroOmega", "classDzeroOmega.html", null ],
       [ "DzeroPhi", "classDzeroPhi.html", null ],
+      [ "NTupleMap", "classNTupleMap.html", null ],
       [ "Rhopi", "classRhopi.html", null ]
     ] ],
     [ "BOSSRootChain", "classBOSSRootChain.html", [

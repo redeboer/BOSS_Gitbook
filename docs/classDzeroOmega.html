@@ -81,6 +81,7 @@ $(document).ready(function(){initNavTree('classDzeroOmega.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classDzeroOmega-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -116,8 +117,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3c2f2a7e59ef1401fb436d3c06356766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>finalize</code> method of <code>Algorithm</code>.  <a href="#a3c2f2a7e59ef1401fb436d3c06356766">More...</a><br /></td></tr>
 <tr class="separator:a3c2f2a7e59ef1401fb436d3c06356766"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a1f75428cc3a975062f04849d35f0ad33"><td class="memItemLeft" align="right" valign="top">NTuplePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a1f75428cc3a975062f04849d35f0ad33">BookNTuple</a> (const char *tupleName)</td></tr>
+<tr class="separator:a1f75428cc3a975062f04849d35f0ad33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:ac3119f77256540615910fbe5cf1b6e3c"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuplePtr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ac3119f77256540615910fbe5cf1b6e3c">fNTupleMap</a></td></tr>
+<tr class="memdesc:ac3119f77256540615910fbe5cf1b6e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map for <code>NTuplePtr</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>.  <a href="#ac3119f77256540615910fbe5cf1b6e3c">More...</a><br /></td></tr>
+<tr class="separator:ac3119f77256540615910fbe5cf1b6e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a141b3db9589c65a755da327498a6705b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a141b3db9589c65a755da327498a6705b">fVr0cut</a></td></tr>
 <tr class="separator:a141b3db9589c65a755da327498a6705b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6476d0829af0881c75e9a7998260ecec"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a6476d0829af0881c75e9a7998260ecec">fVz0cut</a></td></tr>
@@ -138,185 +147,239 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ae3357c0d6dcba1fd31c8f3aa5e4aa697"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64f48edd2b7d952d5cff6807e2d35959"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a64f48edd2b7d952d5cff6807e2d35959">fMaxChiSq</a></td></tr>
 <tr class="separator:a64f48edd2b7d952d5cff6807e2d35959"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0044f8833e3da1c4d6ef03986dd9dc25"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a0044f8833e3da1c4d6ef03986dd9dc25">fTupleMult</a></td></tr>
-<tr class="separator:a0044f8833e3da1c4d6ef03986dd9dc25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4717c66b47193b0f906a129adbe8b642"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a4717c66b47193b0f906a129adbe8b642">fNtotal</a></td></tr>
+<tr class="memdesc:a4717c66b47193b0f906a129adbe8b642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of events per track.  <a href="#a4717c66b47193b0f906a129adbe8b642">More...</a><br /></td></tr>
 <tr class="separator:a4717c66b47193b0f906a129adbe8b642"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9846b9f6a6392c23b945fc65d74dd8c7"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a9846b9f6a6392c23b945fc65d74dd8c7">fNneutral</a></td></tr>
+<tr class="memdesc:a9846b9f6a6392c23b945fc65d74dd8c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of charged tracks.  <a href="#a9846b9f6a6392c23b945fc65d74dd8c7">More...</a><br /></td></tr>
 <tr class="separator:a9846b9f6a6392c23b945fc65d74dd8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82c298baf9394af0373ba4c1d844f975"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a82c298baf9394af0373ba4c1d844f975">fNcharge</a></td></tr>
+<tr class="memdesc:a82c298baf9394af0373ba4c1d844f975"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of charged tracks.  <a href="#a82c298baf9394af0373ba4c1d844f975">More...</a><br /></td></tr>
 <tr class="separator:a82c298baf9394af0373ba4c1d844f975"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2ac81b651122d7f042283eddf5c8681"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ab2ac81b651122d7f042283eddf5c8681">fNmdc</a></td></tr>
+<tr class="memdesc:ab2ac81b651122d7f042283eddf5c8681"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of charged tracks in MDC.  <a href="#ab2ac81b651122d7f042283eddf5c8681">More...</a><br /></td></tr>
 <tr class="separator:ab2ac81b651122d7f042283eddf5c8681"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d91ac87a5b14a9315e4a7cec0220887"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a8d91ac87a5b14a9315e4a7cec0220887">fNgood</a></td></tr>
+<tr class="memdesc:a8d91ac87a5b14a9315e4a7cec0220887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of 'good' charged tracks.  <a href="#a8d91ac87a5b14a9315e4a7cec0220887">More...</a><br /></td></tr>
 <tr class="separator:a8d91ac87a5b14a9315e4a7cec0220887"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5974abb8518535fb9a371fb80349a6b7"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a5974abb8518535fb9a371fb80349a6b7">fTupleVxyz</a></td></tr>
-<tr class="separator:a5974abb8518535fb9a371fb80349a6b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb195807db6ab8a58beb5ca570dea432"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#afb195807db6ab8a58beb5ca570dea432">fVx0</a></td></tr>
+<tr class="memdesc:afb195807db6ab8a58beb5ca570dea432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary x-vertex as determined by MDC.  <a href="#afb195807db6ab8a58beb5ca570dea432">More...</a><br /></td></tr>
 <tr class="separator:afb195807db6ab8a58beb5ca570dea432"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab25418469a5b2e4d61fc8959385bdc14"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ab25418469a5b2e4d61fc8959385bdc14">fVy0</a></td></tr>
+<tr class="memdesc:ab25418469a5b2e4d61fc8959385bdc14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary y-vertex as determined by MDC.  <a href="#ab25418469a5b2e4d61fc8959385bdc14">More...</a><br /></td></tr>
 <tr class="separator:ab25418469a5b2e4d61fc8959385bdc14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a818c241b20cc26a3b25ee25c056fbe7e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a818c241b20cc26a3b25ee25c056fbe7e">fVz0</a></td></tr>
+<tr class="memdesc:a818c241b20cc26a3b25ee25c056fbe7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary z-vertex as determined by MDC.  <a href="#a818c241b20cc26a3b25ee25c056fbe7e">More...</a><br /></td></tr>
 <tr class="separator:a818c241b20cc26a3b25ee25c056fbe7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9357ea5a4b4c0eb85ff6889d35658d55"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a9357ea5a4b4c0eb85ff6889d35658d55">fVr0</a></td></tr>
+<tr class="memdesc:a9357ea5a4b4c0eb85ff6889d35658d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance from origin in xy-plane.  <a href="#a9357ea5a4b4c0eb85ff6889d35658d55">More...</a><br /></td></tr>
 <tr class="separator:a9357ea5a4b4c0eb85ff6889d35658d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefbb5791dce0197be6a7066165aef5ad"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#aefbb5791dce0197be6a7066165aef5ad">fRvxy0</a></td></tr>
+<tr class="memdesc:aefbb5791dce0197be6a7066165aef5ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nearest distance to IP in xy plane.  <a href="#aefbb5791dce0197be6a7066165aef5ad">More...</a><br /></td></tr>
 <tr class="separator:aefbb5791dce0197be6a7066165aef5ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab892c6c62cbc2f7ad8e3bd5aa2927dce"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ab892c6c62cbc2f7ad8e3bd5aa2927dce">fRvz0</a></td></tr>
+<tr class="memdesc:ab892c6c62cbc2f7ad8e3bd5aa2927dce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nearest distance to IP in z direction.  <a href="#ab892c6c62cbc2f7ad8e3bd5aa2927dce">More...</a><br /></td></tr>
 <tr class="separator:ab892c6c62cbc2f7ad8e3bd5aa2927dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51bd5965019407a5c7a5c6d8c6f77931"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a51bd5965019407a5c7a5c6d8c6f77931">fRvphi0</a></td></tr>
+<tr class="memdesc:a51bd5965019407a5c7a5c6d8c6f77931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Angle in the xy-plane (?).  <a href="#a51bd5965019407a5c7a5c6d8c6f77931">More...</a><br /></td></tr>
 <tr class="separator:a51bd5965019407a5c7a5c6d8c6f77931"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad565f7dc58fd6e11a6624fc2ceaf99e8"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ad565f7dc58fd6e11a6624fc2ceaf99e8">fTupleAngles</a></td></tr>
-<tr class="separator:ad565f7dc58fd6e11a6624fc2ceaf99e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dc2142ef0f66d31aafe702392230391"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a9dc2142ef0f66d31aafe702392230391">fDeltaTheta</a></td></tr>
+<tr class="memdesc:a9dc2142ef0f66d31aafe702392230391"><td class="mdescLeft">&#160;</td><td class="mdescRight">Theta difference with nearest charged track (degrees).  <a href="#a9dc2142ef0f66d31aafe702392230391">More...</a><br /></td></tr>
 <tr class="separator:a9dc2142ef0f66d31aafe702392230391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15eea30554760a5983c72cd7791d74aa"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a15eea30554760a5983c72cd7791d74aa">fDeltaPhi</a></td></tr>
+<tr class="memdesc:a15eea30554760a5983c72cd7791d74aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Phi difference with nearest charged track (degrees).  <a href="#a15eea30554760a5983c72cd7791d74aa">More...</a><br /></td></tr>
 <tr class="separator:a15eea30554760a5983c72cd7791d74aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e41ddbaef492462fa89a6e4b897fd62"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a4e41ddbaef492462fa89a6e4b897fd62">fDeltaAngle</a></td></tr>
+<tr class="memdesc:a4e41ddbaef492462fa89a6e4b897fd62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Angle difference with nearest charged track.  <a href="#a4e41ddbaef492462fa89a6e4b897fd62">More...</a><br /></td></tr>
 <tr class="separator:a4e41ddbaef492462fa89a6e4b897fd62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a911a2837e7de6e10628809495704da97"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a911a2837e7de6e10628809495704da97">fEraw</a></td></tr>
+<tr class="memdesc:a911a2837e7de6e10628809495704da97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Energy of the photon.  <a href="#a911a2837e7de6e10628809495704da97">More...</a><br /></td></tr>
 <tr class="separator:a911a2837e7de6e10628809495704da97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35fdadd350e87574fcfaa38d1b4ce057"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a35fdadd350e87574fcfaa38d1b4ce057">fTupleMgg</a></td></tr>
-<tr class="separator:a35fdadd350e87574fcfaa38d1b4ce057"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40fa8fdcadf4d74e6b2bbc13184dd7c5"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a40fa8fdcadf4d74e6b2bbc13184dd7c5">fMtoGG</a></td></tr>
+<tr class="memdesc:a40fa8fdcadf4d74e6b2bbc13184dd7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invariant mass of the two gammas.  <a href="#a40fa8fdcadf4d74e6b2bbc13184dd7c5">More...</a><br /></td></tr>
 <tr class="separator:a40fa8fdcadf4d74e6b2bbc13184dd7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec0dac7df5ec7df472f7e0097f6f147a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#aec0dac7df5ec7df472f7e0097f6f147a">fEtot</a></td></tr>
+<tr class="memdesc:aec0dac7df5ec7df472f7e0097f6f147a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total energy of pi^+, pi^ and the two gammas.  <a href="#aec0dac7df5ec7df472f7e0097f6f147a">More...</a><br /></td></tr>
 <tr class="separator:aec0dac7df5ec7df472f7e0097f6f147a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92859eb956ea0a759d86d8418a56cd9d"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a92859eb956ea0a759d86d8418a56cd9d">fTupleFit4C</a></td></tr>
-<tr class="separator:a92859eb956ea0a759d86d8418a56cd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e86319801d318135d0916918fef970f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a1e86319801d318135d0916918fef970f">fChi1</a></td></tr>
+<tr class="memdesc:a1e86319801d318135d0916918fef970f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invariant pi0 mass according to Kalman kinematic fit.  <a href="#a1e86319801d318135d0916918fef970f">More...</a><br /></td></tr>
 <tr class="separator:a1e86319801d318135d0916918fef970f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37ebc9685dbfb908bd92b1301e14fe7e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a37ebc9685dbfb908bd92b1301e14fe7e">fMpi0</a></td></tr>
+<tr class="memdesc:a37ebc9685dbfb908bd92b1301e14fe7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi square of the Kalman kinematic fit.  <a href="#a37ebc9685dbfb908bd92b1301e14fe7e">More...</a><br /></td></tr>
 <tr class="separator:a37ebc9685dbfb908bd92b1301e14fe7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa13f8a9032407ba519d5391e280c2b3"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#aaa13f8a9032407ba519d5391e280c2b3">fTupleFit6C</a></td></tr>
-<tr class="separator:aaa13f8a9032407ba519d5391e280c2b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac952145fbc698fcf8e9dcff060d46042"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ac952145fbc698fcf8e9dcff060d46042">fChi2</a></td></tr>
+<tr class="memdesc:ac952145fbc698fcf8e9dcff060d46042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared of the Kalman kinematic fit.  <a href="#ac952145fbc698fcf8e9dcff060d46042">More...</a><br /></td></tr>
 <tr class="separator:ac952145fbc698fcf8e9dcff060d46042"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ad03f4aad52dc22cda7d2f18f4c918c"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a9ad03f4aad52dc22cda7d2f18f4c918c">fMrho0</a></td></tr>
+<tr class="memdesc:a9ad03f4aad52dc22cda7d2f18f4c918c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inv. mass pi^+ pi^- (rho^0).  <a href="#a9ad03f4aad52dc22cda7d2f18f4c918c">More...</a><br /></td></tr>
 <tr class="separator:a9ad03f4aad52dc22cda7d2f18f4c918c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86d093900c3b65d85c95699149cf4bd9"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a86d093900c3b65d85c95699149cf4bd9">fMrhop</a></td></tr>
+<tr class="memdesc:a86d093900c3b65d85c95699149cf4bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inv. mass pi^0 pi^+ (rho^+).  <a href="#a86d093900c3b65d85c95699149cf4bd9">More...</a><br /></td></tr>
 <tr class="separator:a86d093900c3b65d85c95699149cf4bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e78db198ea7dd5cbf5209ebfcabaac7"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a4e78db198ea7dd5cbf5209ebfcabaac7">fMrhom</a></td></tr>
+<tr class="memdesc:a4e78db198ea7dd5cbf5209ebfcabaac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inv. mass pi^0 pi^- (rho^-).  <a href="#a4e78db198ea7dd5cbf5209ebfcabaac7">More...</a><br /></td></tr>
 <tr class="separator:a4e78db198ea7dd5cbf5209ebfcabaac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d978ef08c85e2033b58ef038f005bc7"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a3d978ef08c85e2033b58ef038f005bc7">fTuplePhoton</a></td></tr>
-<tr class="separator:a3d978ef08c85e2033b58ef038f005bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a293c172ee19dcd74b9c7488321a161ff"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a293c172ee19dcd74b9c7488321a161ff">fFcos</a></td></tr>
+<tr class="memdesc:a293c172ee19dcd74b9c7488321a161ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">E/p ratio for pi^0 candidate.  <a href="#a293c172ee19dcd74b9c7488321a161ff">More...</a><br /></td></tr>
 <tr class="separator:a293c172ee19dcd74b9c7488321a161ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65db5b2789e9561b856a4526a019b983"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a65db5b2789e9561b856a4526a019b983">fElow</a></td></tr>
+<tr class="memdesc:a65db5b2789e9561b856a4526a019b983"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lowest energy of the two gammas.  <a href="#a65db5b2789e9561b856a4526a019b983">More...</a><br /></td></tr>
 <tr class="separator:a65db5b2789e9561b856a4526a019b983"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a535492653f5ac1afe53a4c70f6753272"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a535492653f5ac1afe53a4c70f6753272">fTupleDedx</a></td></tr>
-<tr class="separator:a535492653f5ac1afe53a4c70f6753272"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d07f3a17d371702fb760c540920db6e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a0d07f3a17d371702fb760c540920db6e">fPtrack</a></td></tr>
+<tr class="memdesc:a0d07f3a17d371702fb760c540920db6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track.  <a href="#a0d07f3a17d371702fb760c540920db6e">More...</a><br /></td></tr>
 <tr class="separator:a0d07f3a17d371702fb760c540920db6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8259e3a9dd490c18e1527a110c010e63"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a8259e3a9dd490c18e1527a110c010e63">fChi2e</a></td></tr>
+<tr class="memdesc:a8259e3a9dd490c18e1527a110c010e63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi2 in case of electron.  <a href="#a8259e3a9dd490c18e1527a110c010e63">More...</a><br /></td></tr>
 <tr class="separator:a8259e3a9dd490c18e1527a110c010e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fd759f79431f8a4e94506a75e861e86"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a1fd759f79431f8a4e94506a75e861e86">fChi2mu</a></td></tr>
+<tr class="memdesc:a1fd759f79431f8a4e94506a75e861e86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi2 in case of muon.  <a href="#a1fd759f79431f8a4e94506a75e861e86">More...</a><br /></td></tr>
 <tr class="separator:a1fd759f79431f8a4e94506a75e861e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace41ae91852e0862d9c4eebb83386b11"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ace41ae91852e0862d9c4eebb83386b11">fChi2pi</a></td></tr>
+<tr class="memdesc:ace41ae91852e0862d9c4eebb83386b11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi2 in case of pion.  <a href="#ace41ae91852e0862d9c4eebb83386b11">More...</a><br /></td></tr>
 <tr class="separator:ace41ae91852e0862d9c4eebb83386b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad526565409cbcdf135679554a70ad53b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ad526565409cbcdf135679554a70ad53b">fChi2k</a></td></tr>
+<tr class="memdesc:ad526565409cbcdf135679554a70ad53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi2 in case of kaon.  <a href="#ad526565409cbcdf135679554a70ad53b">More...</a><br /></td></tr>
 <tr class="separator:ad526565409cbcdf135679554a70ad53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06a9a34c395430118b83ce6faf9de53f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a06a9a34c395430118b83ce6faf9de53f">fChi2p</a></td></tr>
+<tr class="memdesc:a06a9a34c395430118b83ce6faf9de53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi2 in case of proton.  <a href="#a06a9a34c395430118b83ce6faf9de53f">More...</a><br /></td></tr>
 <tr class="separator:a06a9a34c395430118b83ce6faf9de53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64cb71bd302f496412932efd91cbfbe8"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a64cb71bd302f496412932efd91cbfbe8">fProbPH</a></td></tr>
+<tr class="memdesc:a64cb71bd302f496412932efd91cbfbe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Most probable pulse height from truncated mean.  <a href="#a64cb71bd302f496412932efd91cbfbe8">More...</a><br /></td></tr>
 <tr class="separator:a64cb71bd302f496412932efd91cbfbe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47c8a780da3eaa6605f3335c98d583b7"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a47c8a780da3eaa6605f3335c98d583b7">fNormPH</a></td></tr>
+<tr class="memdesc:a47c8a780da3eaa6605f3335c98d583b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalized pulse height.  <a href="#a47c8a780da3eaa6605f3335c98d583b7">More...</a><br /></td></tr>
 <tr class="separator:a47c8a780da3eaa6605f3335c98d583b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e324bcae7d18e063c438ea15e6777fe"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a1e324bcae7d18e063c438ea15e6777fe">fGhit</a></td></tr>
+<tr class="memdesc:a1e324bcae7d18e063c438ea15e6777fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of good hits.  <a href="#a1e324bcae7d18e063c438ea15e6777fe">More...</a><br /></td></tr>
 <tr class="separator:a1e324bcae7d18e063c438ea15e6777fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d3aad5189b527e6d602d6268cce8820"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a4d3aad5189b527e6d602d6268cce8820">fThit</a></td></tr>
+<tr class="memdesc:a4d3aad5189b527e6d602d6268cce8820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of hits.  <a href="#a4d3aad5189b527e6d602d6268cce8820">More...</a><br /></td></tr>
 <tr class="separator:a4d3aad5189b527e6d602d6268cce8820"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72a587a5932f9f81a3b68da4f820a13c"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a72a587a5932f9f81a3b68da4f820a13c">fTupleTofEC</a></td></tr>
-<tr class="separator:a72a587a5932f9f81a3b68da4f820a13c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f2a6c0c983df88e5defc64c6cebdc6e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a6f2a6c0c983df88e5defc64c6cebdc6e">fPtotTofEC</a></td></tr>
+<tr class="memdesc:a6f2a6c0c983df88e5defc64c6cebdc6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#a6f2a6c0c983df88e5defc64c6cebdc6e">More...</a><br /></td></tr>
 <tr class="separator:a6f2a6c0c983df88e5defc64c6cebdc6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a766894f9e3bf164bb4b3752872770d99"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a766894f9e3bf164bb4b3752872770d99">fPathTofEC</a></td></tr>
+<tr class="memdesc:a766894f9e3bf164bb4b3752872770d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#a766894f9e3bf164bb4b3752872770d99">More...</a><br /></td></tr>
 <tr class="separator:a766894f9e3bf164bb4b3752872770d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bb6d4e2d5df2c4ef0e51ab36cd5251e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a9bb6d4e2d5df2c4ef0e51ab36cd5251e">fTofEC</a></td></tr>
+<tr class="memdesc:a9bb6d4e2d5df2c4ef0e51ab36cd5251e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time of flight.  <a href="#a9bb6d4e2d5df2c4ef0e51ab36cd5251e">More...</a><br /></td></tr>
 <tr class="separator:a9bb6d4e2d5df2c4ef0e51ab36cd5251e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3068e41b4b5133cf232cdfd97f72cabd"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a3068e41b4b5133cf232cdfd97f72cabd">fCntrTofEC</a></td></tr>
+<tr class="memdesc:a3068e41b4b5133cf232cdfd97f72cabd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#a3068e41b4b5133cf232cdfd97f72cabd">More...</a><br /></td></tr>
 <tr class="separator:a3068e41b4b5133cf232cdfd97f72cabd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbf1d4a93a204b8c50e3d790031c44e2"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#adbf1d4a93a204b8c50e3d790031c44e2">fElectronTofEC</a></td></tr>
+<tr class="memdesc:adbf1d4a93a204b8c50e3d790031c44e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#adbf1d4a93a204b8c50e3d790031c44e2">More...</a><br /></td></tr>
 <tr class="separator:adbf1d4a93a204b8c50e3d790031c44e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d9d9f6fa44398f037f24207a825c9bb"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a6d9d9f6fa44398f037f24207a825c9bb">fMuonTofEC</a></td></tr>
+<tr class="memdesc:a6d9d9f6fa44398f037f24207a825c9bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate Z or R Hit position.  <a href="#a6d9d9f6fa44398f037f24207a825c9bb">More...</a><br /></td></tr>
 <tr class="separator:a6d9d9f6fa44398f037f24207a825c9bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a172a9320209e98bdb287a2af07d3ed83"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a172a9320209e98bdb287a2af07d3ed83">fProtoniTofEC</a></td></tr>
+<tr class="memdesc:a172a9320209e98bdb287a2af07d3ed83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#a172a9320209e98bdb287a2af07d3ed83">More...</a><br /></td></tr>
 <tr class="separator:a172a9320209e98bdb287a2af07d3ed83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bf038f083703647b8f7f6a701f6ea99"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a1bf038f083703647b8f7f6a701f6ea99">fKaonTofEC</a></td></tr>
+<tr class="memdesc:a1bf038f083703647b8f7f6a701f6ea99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#a1bf038f083703647b8f7f6a701f6ea99">More...</a><br /></td></tr>
 <tr class="separator:a1bf038f083703647b8f7f6a701f6ea99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a448e5ac874a9ccf1164537922ca33638"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a448e5ac874a9ccf1164537922ca33638">fProtonTofEC</a></td></tr>
+<tr class="memdesc:a448e5ac874a9ccf1164537922ca33638"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#a448e5ac874a9ccf1164537922ca33638">More...</a><br /></td></tr>
 <tr class="separator:a448e5ac874a9ccf1164537922ca33638"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2a4648ffa1035976d6d8bfba124a03e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ae2a4648ffa1035976d6d8bfba124a03e">fPhTofEC</a></td></tr>
+<tr class="memdesc:ae2a4648ffa1035976d6d8bfba124a03e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#ae2a4648ffa1035976d6d8bfba124a03e">More...</a><br /></td></tr>
 <tr class="separator:ae2a4648ffa1035976d6d8bfba124a03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace178b74fea85cbad919eac8dfc24fab"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ace178b74fea85cbad919eac8dfc24fab">fRhitTofEC</a></td></tr>
+<tr class="memdesc:ace178b74fea85cbad919eac8dfc24fab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#ace178b74fea85cbad919eac8dfc24fab">More...</a><br /></td></tr>
 <tr class="separator:ace178b74fea85cbad919eac8dfc24fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb52e1f1cdf85978e1c6eaa74e886a68"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#aeb52e1f1cdf85978e1c6eaa74e886a68">fQualTofEC</a></td></tr>
+<tr class="memdesc:aeb52e1f1cdf85978e1c6eaa74e886a68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#aeb52e1f1cdf85978e1c6eaa74e886a68">More...</a><br /></td></tr>
 <tr class="separator:aeb52e1f1cdf85978e1c6eaa74e886a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3c17f69d0deb0c7d7e80509a2e67dfd"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ae3c17f69d0deb0c7d7e80509a2e67dfd">TupleTofIB</a></td></tr>
-<tr class="separator:ae3c17f69d0deb0c7d7e80509a2e67dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bd6a8c4d461b9c87dd40bb2a8c876ec"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a6bd6a8c4d461b9c87dd40bb2a8c876ec">fPtotTofIB</a></td></tr>
+<tr class="memdesc:a6bd6a8c4d461b9c87dd40bb2a8c876ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#a6bd6a8c4d461b9c87dd40bb2a8c876ec">More...</a><br /></td></tr>
 <tr class="separator:a6bd6a8c4d461b9c87dd40bb2a8c876ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a446628468bc26e109182fdc0aec03ddc"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a446628468bc26e109182fdc0aec03ddc">fPathTofIB</a></td></tr>
+<tr class="memdesc:a446628468bc26e109182fdc0aec03ddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#a446628468bc26e109182fdc0aec03ddc">More...</a><br /></td></tr>
 <tr class="separator:a446628468bc26e109182fdc0aec03ddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25de14360a8d3cfc4d5b068349f520f9"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a25de14360a8d3cfc4d5b068349f520f9">fTofIB</a></td></tr>
+<tr class="memdesc:a25de14360a8d3cfc4d5b068349f520f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time of flight.  <a href="#a25de14360a8d3cfc4d5b068349f520f9">More...</a><br /></td></tr>
 <tr class="separator:a25de14360a8d3cfc4d5b068349f520f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dc56e7a7c10355c7d04aab2b0a37a8a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a6dc56e7a7c10355c7d04aab2b0a37a8a">fCntrTofIB</a></td></tr>
+<tr class="memdesc:a6dc56e7a7c10355c7d04aab2b0a37a8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#a6dc56e7a7c10355c7d04aab2b0a37a8a">More...</a><br /></td></tr>
 <tr class="separator:a6dc56e7a7c10355c7d04aab2b0a37a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72184f16190afacc78183dbf8fb95edb"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a72184f16190afacc78183dbf8fb95edb">fElectronTofIB</a></td></tr>
+<tr class="memdesc:a72184f16190afacc78183dbf8fb95edb"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#a72184f16190afacc78183dbf8fb95edb">More...</a><br /></td></tr>
 <tr class="separator:a72184f16190afacc78183dbf8fb95edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fac7f710a20fca49611e38e4b008b25"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a1fac7f710a20fca49611e38e4b008b25">fMuonTofIB</a></td></tr>
+<tr class="memdesc:a1fac7f710a20fca49611e38e4b008b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate Z or R Hit position.  <a href="#a1fac7f710a20fca49611e38e4b008b25">More...</a><br /></td></tr>
 <tr class="separator:a1fac7f710a20fca49611e38e4b008b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a575e7caf2c38b92d97733fca23fde35f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a575e7caf2c38b92d97733fca23fde35f">fProtoniTofIB</a></td></tr>
+<tr class="memdesc:a575e7caf2c38b92d97733fca23fde35f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#a575e7caf2c38b92d97733fca23fde35f">More...</a><br /></td></tr>
 <tr class="separator:a575e7caf2c38b92d97733fca23fde35f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7149faa6cfa3236b9b42aafee24349a4"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a7149faa6cfa3236b9b42aafee24349a4">fKaonTofIB</a></td></tr>
+<tr class="memdesc:a7149faa6cfa3236b9b42aafee24349a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#a7149faa6cfa3236b9b42aafee24349a4">More...</a><br /></td></tr>
 <tr class="separator:a7149faa6cfa3236b9b42aafee24349a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f80b130a2668596e296f500886c6c51"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a8f80b130a2668596e296f500886c6c51">fProtonTofIB</a></td></tr>
+<tr class="memdesc:a8f80b130a2668596e296f500886c6c51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#a8f80b130a2668596e296f500886c6c51">More...</a><br /></td></tr>
 <tr class="separator:a8f80b130a2668596e296f500886c6c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1108df1cba9854ab78fbd5d9afa835b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ab1108df1cba9854ab78fbd5d9afa835b">fPhTofIB</a></td></tr>
+<tr class="memdesc:ab1108df1cba9854ab78fbd5d9afa835b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#ab1108df1cba9854ab78fbd5d9afa835b">More...</a><br /></td></tr>
 <tr class="separator:ab1108df1cba9854ab78fbd5d9afa835b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3104670a9eb29b1e5f93a7b20c9f647"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ae3104670a9eb29b1e5f93a7b20c9f647">fZhitTofIB</a></td></tr>
+<tr class="memdesc:ae3104670a9eb29b1e5f93a7b20c9f647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#ae3104670a9eb29b1e5f93a7b20c9f647">More...</a><br /></td></tr>
 <tr class="separator:ae3104670a9eb29b1e5f93a7b20c9f647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93da7093b63d877519c2142ef3cbd47e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a93da7093b63d877519c2142ef3cbd47e">fQualTofIB</a></td></tr>
+<tr class="memdesc:a93da7093b63d877519c2142ef3cbd47e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#a93da7093b63d877519c2142ef3cbd47e">More...</a><br /></td></tr>
 <tr class="separator:a93da7093b63d877519c2142ef3cbd47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6bee91902facb2a3cfb7cc67f35fa1a"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ad6bee91902facb2a3cfb7cc67f35fa1a">TupleTofOB</a></td></tr>
-<tr class="separator:ad6bee91902facb2a3cfb7cc67f35fa1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8ac991275e2b9c525923790acbc9f26"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#af8ac991275e2b9c525923790acbc9f26">fPtotTofOB</a></td></tr>
+<tr class="memdesc:af8ac991275e2b9c525923790acbc9f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#af8ac991275e2b9c525923790acbc9f26">More...</a><br /></td></tr>
 <tr class="separator:af8ac991275e2b9c525923790acbc9f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab29cfaa25445f36cef174f334467a356"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ab29cfaa25445f36cef174f334467a356">fPathTofOB</a></td></tr>
+<tr class="memdesc:ab29cfaa25445f36cef174f334467a356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#ab29cfaa25445f36cef174f334467a356">More...</a><br /></td></tr>
 <tr class="separator:ab29cfaa25445f36cef174f334467a356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7696a32a83c17be4effb471de03eff1a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a7696a32a83c17be4effb471de03eff1a">fTofOB</a></td></tr>
+<tr class="memdesc:a7696a32a83c17be4effb471de03eff1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time of flight.  <a href="#a7696a32a83c17be4effb471de03eff1a">More...</a><br /></td></tr>
 <tr class="separator:a7696a32a83c17be4effb471de03eff1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf7a683bfddf6ad5c131edf3fe2cd8f0"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#adf7a683bfddf6ad5c131edf3fe2cd8f0">fCntrTofOB</a></td></tr>
+<tr class="memdesc:adf7a683bfddf6ad5c131edf3fe2cd8f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#adf7a683bfddf6ad5c131edf3fe2cd8f0">More...</a><br /></td></tr>
 <tr class="separator:adf7a683bfddf6ad5c131edf3fe2cd8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2d8cec9bda2186219ecfd48df9bfdad"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ac2d8cec9bda2186219ecfd48df9bfdad">fElectronTofOB</a></td></tr>
+<tr class="memdesc:ac2d8cec9bda2186219ecfd48df9bfdad"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#ac2d8cec9bda2186219ecfd48df9bfdad">More...</a><br /></td></tr>
 <tr class="separator:ac2d8cec9bda2186219ecfd48df9bfdad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30f2d9ae5cb329003171601016c1b5d1"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a30f2d9ae5cb329003171601016c1b5d1">fMuonTofOB</a></td></tr>
+<tr class="memdesc:a30f2d9ae5cb329003171601016c1b5d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate Z or R Hit position.  <a href="#a30f2d9ae5cb329003171601016c1b5d1">More...</a><br /></td></tr>
 <tr class="separator:a30f2d9ae5cb329003171601016c1b5d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5ff8e71d88ed987b0af541dfa1dc00f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ad5ff8e71d88ed987b0af541dfa1dc00f">fProtoniTofOB</a></td></tr>
+<tr class="memdesc:ad5ff8e71d88ed987b0af541dfa1dc00f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#ad5ff8e71d88ed987b0af541dfa1dc00f">More...</a><br /></td></tr>
 <tr class="separator:ad5ff8e71d88ed987b0af541dfa1dc00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72956d87124e5d1b2f3b3543cc798204"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a72956d87124e5d1b2f3b3543cc798204">fKaonTofOB</a></td></tr>
+<tr class="memdesc:a72956d87124e5d1b2f3b3543cc798204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#a72956d87124e5d1b2f3b3543cc798204">More...</a><br /></td></tr>
 <tr class="separator:a72956d87124e5d1b2f3b3543cc798204"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4a25e247204f896277a644c6f7800a9"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ad4a25e247204f896277a644c6f7800a9">fProtonTofOB</a></td></tr>
+<tr class="memdesc:ad4a25e247204f896277a644c6f7800a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#ad4a25e247204f896277a644c6f7800a9">More...</a><br /></td></tr>
 <tr class="separator:ad4a25e247204f896277a644c6f7800a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a957bfc5176afe48ff22f9e7cef666efb"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a957bfc5176afe48ff22f9e7cef666efb">fPhTofOB</a></td></tr>
+<tr class="memdesc:a957bfc5176afe48ff22f9e7cef666efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#a957bfc5176afe48ff22f9e7cef666efb">More...</a><br /></td></tr>
 <tr class="separator:a957bfc5176afe48ff22f9e7cef666efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab743931d3125013535645de16d3058d6"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ab743931d3125013535645de16d3058d6">fZhitTofOB</a></td></tr>
+<tr class="memdesc:ab743931d3125013535645de16d3058d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#ab743931d3125013535645de16d3058d6">More...</a><br /></td></tr>
 <tr class="separator:ab743931d3125013535645de16d3058d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f3740a9fc0c1cc56d166b7137fbb40d"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a7f3740a9fc0c1cc56d166b7137fbb40d">fQualTofOB</a></td></tr>
+<tr class="memdesc:a7f3740a9fc0c1cc56d166b7137fbb40d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#a7f3740a9fc0c1cc56d166b7137fbb40d">More...</a><br /></td></tr>
 <tr class="separator:a7f3740a9fc0c1cc56d166b7137fbb40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a563add6862bdf9aa67dc4401444401dd"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a563add6862bdf9aa67dc4401444401dd">fTuplePID</a></td></tr>
-<tr class="separator:a563add6862bdf9aa67dc4401444401dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a970c9f6e2d55d6dc570fcc236aff3331"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a970c9f6e2d55d6dc570fcc236aff3331">fPtrackPID</a></td></tr>
+<tr class="memdesc:a970c9f6e2d55d6dc570fcc236aff3331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track.  <a href="#a970c9f6e2d55d6dc570fcc236aff3331">More...</a><br /></td></tr>
 <tr class="separator:a970c9f6e2d55d6dc570fcc236aff3331"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3b235ef1d2fe3ace305b5af8dee05a0"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#ae3b235ef1d2fe3ace305b5af8dee05a0">fCostPID</a></td></tr>
+<tr class="memdesc:ae3b235ef1d2fe3ace305b5af8dee05a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Theta angle of the track.  <a href="#ae3b235ef1d2fe3ace305b5af8dee05a0">More...</a><br /></td></tr>
 <tr class="separator:ae3b235ef1d2fe3ace305b5af8dee05a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa329ff86026c884b8909eea87650650d"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#aa329ff86026c884b8909eea87650650d">fDedxPID</a></td></tr>
+<tr class="memdesc:aa329ff86026c884b8909eea87650650d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi2 of the dedx of the track.  <a href="#aa329ff86026c884b8909eea87650650d">More...</a><br /></td></tr>
 <tr class="separator:aa329ff86026c884b8909eea87650650d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd1e5c19490d32be78f6f3f68ee60c93"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#acd1e5c19490d32be78f6f3f68ee60c93">fTof1PID</a></td></tr>
+<tr class="memdesc:acd1e5c19490d32be78f6f3f68ee60c93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi2 of the inner barrel ToF of the track.  <a href="#acd1e5c19490d32be78f6f3f68ee60c93">More...</a><br /></td></tr>
 <tr class="separator:acd1e5c19490d32be78f6f3f68ee60c93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaadc7efed43fb619d45045bafcf5f9be"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#aaadc7efed43fb619d45045bafcf5f9be">fTof2PID</a></td></tr>
+<tr class="memdesc:aaadc7efed43fb619d45045bafcf5f9be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi2 of the outer barrel ToF of the track.  <a href="#aaadc7efed43fb619d45045bafcf5f9be">More...</a><br /></td></tr>
 <tr class="separator:aaadc7efed43fb619d45045bafcf5f9be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7caa6d85cb194ca6ae74b2712fc3f03e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroOmega.html#a7caa6d85cb194ca6ae74b2712fc3f03e">fProbPID</a></td></tr>
+<tr class="memdesc:a7caa6d85cb194ca6ae74b2712fc3f03e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probability that it is a pion.  <a href="#a7caa6d85cb194ca6ae74b2712fc3f03e">More...</a><br /></td></tr>
 <tr class="separator:a7caa6d85cb194ca6ae74b2712fc3f03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -324,7 +387,7 @@ Private Attributes</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>December 17th, 2018 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00024">24</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00026">26</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac0a4a425efa50abc4a30e6c6d5231bd4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac0a4a425efa50abc4a30e6c6d5231bd4">&#9670;&nbsp;</a></span>DzeroOmega()</h2>
@@ -355,11 +418,37 @@ Private Attributes</h2></td></tr>
 <p>Constructor for the <code><a class="el" href="classDzeroOmega.html" title="Analyse  events. ">DzeroOmega</a></code> algorithm. </p>
 <p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classDzeroOmega.html" title="Analyse  events. ">DzeroOmega</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="DzeroOmega_8h.html">DzeroOmega/DzeroOmega.h</a>) and that you should assign the values in <code>share/jopOptions_DzeroOmega.txt</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8cxx_source.html#l00086">86</a> of file <a class="el" href="DzeroOmega_8cxx_source.html">DzeroOmega.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8cxx_source.html#l00088">88</a> of file <a class="el" href="DzeroOmega_8cxx_source.html">DzeroOmega.cxx</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1f75428cc3a975062f04849d35f0ad33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f75428cc3a975062f04849d35f0ad33">&#9670;&nbsp;</a></span>BookNTuple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuplePtr DzeroOmega::BookNTuple </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a31d94698f4b0eb65e6a70f25c163c986"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a31d94698f4b0eb65e6a70f25c163c986">&#9670;&nbsp;</a></span>execute()</h2>
 
@@ -380,7 +469,7 @@ Private Attributes</h2></td></tr>
 <p>&lt; Number of charged tracks as identified by the MDC.</p>
 <p>&lt; vector of integers that give the position of tracks in the <code>evtRecEvent</code> marked good. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8cxx_source.html#l00368">368</a> of file <a class="el" href="DzeroOmega_8cxx_source.html">DzeroOmega.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8cxx_source.html#l00263">263</a> of file <a class="el" href="DzeroOmega_8cxx_source.html">DzeroOmega.cxx</a>.</p>
 
 </div>
 </div>
@@ -403,7 +492,7 @@ Private Attributes</h2></td></tr>
 <p>This function is only called once, after running over all events.</p>
 <p>Prints the flow chart to the terminal, so make sure you save this output! </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8cxx_source.html#l00983">983</a> of file <a class="el" href="DzeroOmega_8cxx_source.html">DzeroOmega.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8cxx_source.html#l00878">878</a> of file <a class="el" href="DzeroOmega_8cxx_source.html">DzeroOmega.cxx</a>.</p>
 
 </div>
 </div>
@@ -426,7 +515,7 @@ Private Attributes</h2></td></tr>
 <p>This function is called only once in the beginning.</p>
 <p>Define and load NTuples here. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8cxx_source.html#l00118">118</a> of file <a class="el" href="DzeroOmega_8cxx_source.html">DzeroOmega.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8cxx_source.html#l00120">120</a> of file <a class="el" href="DzeroOmega_8cxx_source.html">DzeroOmega.cxx</a>.</p>
 
 </div>
 </div>
@@ -451,7 +540,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00098">98</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Invariant pi0 mass according to Kalman kinematic fit. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00099">99</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -474,6 +565,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Chi squared of the Kalman kinematic fit. </p>
 
 <p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00103">103</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
@@ -499,7 +592,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00116">116</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Chi2 in case of electron. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00114">114</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -523,7 +618,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00119">119</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Chi2 in case of kaon. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00117">117</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -547,7 +644,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00117">117</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Chi2 in case of muon. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00115">115</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -571,7 +670,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00120">120</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Chi2 in case of proton. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00118">118</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -595,7 +696,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00118">118</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Chi2 in case of pion. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00116">116</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -619,7 +722,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00131">131</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>ToF counter ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00128">128</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -643,7 +748,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00146">146</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>ToF counter ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00142">142</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -667,7 +774,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00161">161</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>ToF counter ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00156">156</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -691,7 +800,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00174">174</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Theta angle of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00168">168</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -715,7 +826,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00175">175</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Chi2 of the dedx of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00169">169</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -739,7 +852,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00088">88</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Angle difference with nearest charged track. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00091">91</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -763,7 +878,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00056">56</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00062">62</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -787,7 +902,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00087">87</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Phi difference with nearest charged track (degrees). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00090">90</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -811,7 +928,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00086">86</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Theta difference with nearest charged track (degrees). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00089">89</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -835,7 +954,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00132">132</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>ToF pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00129">129</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -859,7 +980,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00147">147</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>ToF pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00143">143</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -883,7 +1006,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00162">162</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>ToF pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00157">157</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -907,7 +1032,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00111">111</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Lowest energy of the two gammas. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00110">110</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -931,7 +1058,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00050">50</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00056">56</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -955,7 +1082,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00089">89</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Energy of the photon. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00092">92</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -979,7 +1108,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00094">94</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Total energy of pi^+, pi^ and the two gammas. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00096">96</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1003,7 +1134,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00110">110</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>E/p ratio for pi^0 candidate. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00109">109</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1027,7 +1160,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00053">53</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00059">59</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1051,7 +1184,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00051">51</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00057">57</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1075,7 +1208,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00052">52</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00058">58</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1099,7 +1232,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00123">123</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Number of good hits. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00121">121</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1123,7 +1258,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00135">135</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in electron hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00132">132</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1147,7 +1284,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00150">150</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in electron hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00146">146</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1171,7 +1310,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00165">165</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in electron hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00160">160</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1195,7 +1336,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00059">59</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00065">65</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1219,7 +1360,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00099">99</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Chi square of the Kalman kinematic fit. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00100">100</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1242,6 +1385,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Inv. mass pi^+ pi^- (rho^0). </p>
 
 <p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00104">104</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
@@ -1267,6 +1412,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Inv. mass pi^0 pi^- (rho^-). </p>
+
 <p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00106">106</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
@@ -1290,6 +1437,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Inv. mass pi^0 pi^+ (rho^+). </p>
 
 <p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00105">105</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
@@ -1315,7 +1464,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00093">93</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Invariant mass of the two gammas. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00095">95</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1339,7 +1490,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00133">133</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Track extrapolate Z or R Hit position. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00130">130</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1363,7 +1516,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00148">148</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Track extrapolate Z or R Hit position. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00144">144</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1387,7 +1542,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00163">163</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Track extrapolate Z or R Hit position. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00158">158</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1411,7 +1568,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00070">70</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Number of charged tracks. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00075">75</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1435,7 +1594,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00072">72</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Number of 'good' charged tracks. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00077">77</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1459,7 +1620,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00071">71</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Number of charged tracks in MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00076">76</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1483,7 +1646,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00069">69</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Number of charged tracks. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00074">74</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1507,7 +1672,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00122">122</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Normalized pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00120">120</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1531,7 +1698,35 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00068">68</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Total number of events per track. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00073">73</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+
+</div>
+</div>
+<a id="ac3119f77256540615910fbe5cf1b6e3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3119f77256540615910fbe5cf1b6e3c">&#9670;&nbsp;</a></span>fNTupleMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuplePtr&gt; DzeroOmega::fNTupleMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Map for <code>NTuplePtr</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00043">43</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1555,7 +1750,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00129">129</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Path length. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00126">126</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1579,7 +1776,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00144">144</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Path length. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00140">140</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1603,7 +1802,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00159">159</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Path length. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00154">154</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1627,7 +1828,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00137">137</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in charged pion hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00134">134</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1651,7 +1854,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00152">152</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in charged pion hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00148">148</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1675,7 +1880,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00167">167</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in charged pion hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00162">162</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1699,7 +1906,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00121">121</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Most probable pulse height from truncated mean. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00119">119</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1723,7 +1932,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00178">178</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Probability that it is a pion. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00172">172</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1747,7 +1958,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00134">134</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Data quality of reconstruction. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00131">131</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1771,7 +1984,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00149">149</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Data quality of reconstruction. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00145">145</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1795,7 +2010,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00164">164</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Data quality of reconstruction. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00159">159</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1819,7 +2036,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00136">136</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in muon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00133">133</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1843,7 +2062,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00151">151</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in muon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00147">147</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1867,7 +2088,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00166">166</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in muon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00161">161</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1891,7 +2114,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00128">128</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Momentum of the track as reconstructed by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00125">125</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1915,7 +2140,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00143">143</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Momentum of the track as reconstructed by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00139">139</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1939,7 +2166,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00158">158</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Momentum of the track as reconstructed by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00153">153</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1963,7 +2192,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00115">115</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Momentum of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00113">113</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -1987,7 +2218,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00173">173</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Momentum of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00167">167</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2011,7 +2244,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00139">139</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in proton hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00136">136</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2035,7 +2270,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00154">154</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in proton hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00150">150</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2059,7 +2296,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00169">169</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in proton hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00164">164</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2083,7 +2322,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00138">138</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in charged kaon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00135">135</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2107,7 +2348,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00082">82</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Angle in the xy-plane (?). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00086">86</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2131,7 +2374,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00080">80</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Nearest distance to IP in xy plane. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00084">84</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2155,7 +2400,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00047">47</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00053">53</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2179,7 +2424,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00081">81</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Nearest distance to IP in z direction. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00085">85</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2203,7 +2450,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00046">46</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00052">52</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2227,7 +2474,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00124">124</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Total number of hits. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00122">122</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2251,7 +2500,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00176">176</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Chi2 of the inner barrel ToF of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00170">170</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2275,7 +2526,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00177">177</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Chi2 of the outer barrel ToF of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00171">171</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2299,7 +2552,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00130">130</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Time of flight. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00127">127</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2323,7 +2578,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00145">145</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Time of flight. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00141">141</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2347,247 +2604,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00160">160</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Time of flight. </p>
 
-</div>
-</div>
-<a id="ad565f7dc58fd6e11a6624fc2ceaf99e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad565f7dc58fd6e11a6624fc2ceaf99e8">&#9670;&nbsp;</a></span>fTupleAngles</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::fTupleAngles</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00085">85</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
-
-</div>
-</div>
-<a id="a535492653f5ac1afe53a4c70f6753272"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a535492653f5ac1afe53a4c70f6753272">&#9670;&nbsp;</a></span>fTupleDedx</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::fTupleDedx</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00114">114</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
-
-</div>
-</div>
-<a id="a92859eb956ea0a759d86d8418a56cd9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92859eb956ea0a759d86d8418a56cd9d">&#9670;&nbsp;</a></span>fTupleFit4C</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::fTupleFit4C</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00097">97</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
-
-</div>
-</div>
-<a id="aaa13f8a9032407ba519d5391e280c2b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa13f8a9032407ba519d5391e280c2b3">&#9670;&nbsp;</a></span>fTupleFit6C</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::fTupleFit6C</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00102">102</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
-
-</div>
-</div>
-<a id="a35fdadd350e87574fcfaa38d1b4ce057"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35fdadd350e87574fcfaa38d1b4ce057">&#9670;&nbsp;</a></span>fTupleMgg</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::fTupleMgg</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00092">92</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
-
-</div>
-</div>
-<a id="a0044f8833e3da1c4d6ef03986dd9dc25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0044f8833e3da1c4d6ef03986dd9dc25">&#9670;&nbsp;</a></span>fTupleMult</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::fTupleMult</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00067">67</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
-
-</div>
-</div>
-<a id="a3d978ef08c85e2033b58ef038f005bc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d978ef08c85e2033b58ef038f005bc7">&#9670;&nbsp;</a></span>fTuplePhoton</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::fTuplePhoton</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00109">109</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
-
-</div>
-</div>
-<a id="a563add6862bdf9aa67dc4401444401dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a563add6862bdf9aa67dc4401444401dd">&#9670;&nbsp;</a></span>fTuplePID</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::fTuplePID</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00172">172</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
-
-</div>
-</div>
-<a id="a72a587a5932f9f81a3b68da4f820a13c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72a587a5932f9f81a3b68da4f820a13c">&#9670;&nbsp;</a></span>fTupleTofEC</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::fTupleTofEC</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00127">127</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
-
-</div>
-</div>
-<a id="a5974abb8518535fb9a371fb80349a6b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5974abb8518535fb9a371fb80349a6b7">&#9670;&nbsp;</a></span>fTupleVxyz</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::fTupleVxyz</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00075">75</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00155">155</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2611,7 +2630,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00079">79</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Distance from origin in xy-plane. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00083">83</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2635,7 +2656,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00044">44</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00050">50</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2659,7 +2680,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00076">76</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Primary x-vertex as determined by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00080">80</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2683,7 +2706,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00077">77</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Primary y-vertex as determined by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00081">81</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2707,7 +2732,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00078">78</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Primary z-vertex as determined by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00082">82</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2731,7 +2758,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00045">45</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00051">51</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2755,7 +2782,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00153">153</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in charged kaon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00149">149</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>
@@ -2779,55 +2808,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00168">168</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p>Difference with ToF in charged kaon hypothesis. </p>
 
-</div>
-</div>
-<a id="ae3c17f69d0deb0c7d7e80509a2e67dfd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3c17f69d0deb0c7d7e80509a2e67dfd">&#9670;&nbsp;</a></span>TupleTofIB</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::TupleTofIB</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00142">142</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
-
-</div>
-</div>
-<a id="ad6bee91902facb2a3cfb7cc67f35fa1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6bee91902facb2a3cfb7cc67f35fa1a">&#9670;&nbsp;</a></span>TupleTofOB</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Tuple* DzeroOmega::TupleTofOB</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00157">157</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroOmega_8h_source.html#l00163">163</a> of file <a class="el" href="DzeroOmega_8h_source.html">DzeroOmega.h</a>.</p>
 
 </div>
 </div>

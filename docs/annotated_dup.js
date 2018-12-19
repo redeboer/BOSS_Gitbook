@@ -9,6 +9,7 @@ var annotated_dup =
     [ "DzeroPhiRootFile", "classDzeroPhiRootFile.html", "classDzeroPhiRootFile" ],
     [ "FitObject", "classFitObject.html", "classFitObject" ],
     [ "FitObjectDoubleGauss", "classFitObjectDoubleGauss.html", "classFitObjectDoubleGauss" ],
+    [ "NTupleMap", "classNTupleMap.html", "classNTupleMap" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],
     [ "Rhopi", "classRhopi.html", "classRhopi" ],

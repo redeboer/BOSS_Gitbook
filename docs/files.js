@@ -33,6 +33,12 @@ var files =
     ] ],
     [ "FitObjectDoubleGauss.h", "FitObjectDoubleGauss_8h.html", "FitObjectDoubleGauss_8h" ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
+    [ "NTupleMap.cxx", "NTupleMap_8cxx.html", null ],
+    [ "NTupleMap.h", "NTupleMap_8h.html", [
+      [ "NTupleMap", "classNTupleMap.html", "classNTupleMap" ]
+    ] ],
+    [ "NTupleMap_entries.cxx", "NTupleMap__entries_8cxx.html", "NTupleMap__entries_8cxx" ],
+    [ "NTupleMap_load.cxx", "NTupleMap__load_8cxx.html", null ],
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],
     [ "PlotRhopi.C", "PlotRhopi_8C.html", "PlotRhopi_8C" ],
     [ "QuickPlotRhopi.C", "QuickPlotRhopi_8C.html", "QuickPlotRhopi_8C" ],
