@@ -4,10 +4,10 @@
 # *        AUTHOR: Remco de Boer (@IHEP), EMAIL: remco.de.boer@ihep.ac.cn
 # *  ORGANIZATION: IHEP, CAS (Beijing, CHINA)
 # *       CREATED: 8 November 2018
-# *         USAGE: bash CreateJobFiles_data.sh <search term> <analysis name> <number of events>
+# *         USAGE: bash CreateJobFiles_data.sh <search term> <package name> <number of events>
 # *     ARGUMENTS: 1) input file that will be used to create the list of dst files,
 # *                   use wild cards to add more files (check default value below)
-# *                2) analysis type name (default is "RhopiAlg_data")
+# *                2) package name (default is "RhopiAlg_data")
 # *                3) number of events per job (default is -1, i.e. all events)
 # * ===============================================================================
 
@@ -31,9 +31,9 @@ set -e # exit if a command or function exits with a non-zero status
 	# * (1) input files that will be used to create the list of dst files
 	searchTerm="filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_*.txt"
 	if [ $# -ge 1 ]; then searchTerm="${1}"; fi
-	# * (2) analysis type name (optional -- default is "RhopiAlg_data")
-	analysisType="RhopiAlg_data" # default argument
-	if [ $# -ge 2 ]; then analysisType="${2}"; fi
+	# * (2) package name (optional -- default is "RhopiAlg_data")
+	packageName="RhopiAlg_data" # default argument
+	if [ $# -ge 2 ]; then packageName="${2}"; fi
 	# * (3) number of events per job (optional -- default is -1, i.e. all events)
 	nEventsPerJob=-1 # default argument
 	if [ $# -ge 3 ]; then nEventsPerJob=${3}; fi
@@ -64,7 +64,7 @@ set -e # exit if a command or function exits with a non-zero status
 # * ============================= * #
 
 	# * User input * #
-		echo "This will create \"ana_${analysisType}\" job files with ${nEventsPerJob} events each."
+		echo "This will create \"ana_${packageName}\" job files with ${nEventsPerJob} events each."
 		echo "Job option files will be written to folder:"
 		echo "   \"${scriptFolder}/ana\""
 		echo
@@ -73,13 +73,13 @@ set -e # exit if a command or function exits with a non-zero status
 		AskForInput "\nTo continue, press ENTER, else Ctrl+C ..."
 
 	# * Create and EMPTY scripts directory (no need for sim and rec in data analysis) * #
-		CreateOrEmptyDirectory "${scriptFolder}" "ana"  "${analysisType}"
-		CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${analysisType}"
+		CreateOrEmptyDirectory "${scriptFolder}" "ana"  "${packageName}"
+		CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${packageName}"
 	# * Create and EMPTY output directory * #
-		CreateOrEmptyDirectory "${outputFolder}" "dst"  "${analysisType}"
-		CreateOrEmptyDirectory "${outputFolder}" "log"  "${analysisType}"
-		CreateOrEmptyDirectory "${outputFolder}" "raw"  "${analysisType}"
-		CreateOrEmptyDirectory "${outputFolder}" "root" "${analysisType}"
+		CreateOrEmptyDirectory "${outputFolder}" "dst"  "${packageName}"
+		CreateOrEmptyDirectory "${outputFolder}" "log"  "${packageName}"
+		CreateOrEmptyDirectory "${outputFolder}" "raw"  "${packageName}"
+		CreateOrEmptyDirectory "${outputFolder}" "root" "${packageName}"
 
 	# * Loop over input files * #
 		jobNo=0 # set counter
@@ -91,12 +91,12 @@ set -e # exit if a command or function exits with a non-zero status
 				FormatTextFileToCppVectorArguments "${file}"
 
 			# * Generate the analyse files (ana)
-				templateName="${scriptFolder}/templates/jobOptions_ana_${analysisType}.txt"
+				templateName="${scriptFolder}/templates/jobOptions_ana_${packageName}.txt"
 				CheckIfFileExists "${templateName}"
-				outputFile="${scriptFolder}/ana/ana_${analysisType}_${jobNo}.txt"
+				outputFile="${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt"
 				# Replace simple parameters in template
 				awk '{flag = 1}
-					{sub(/ROOTFILE/,"root/ana_'${analysisType}'_'${jobNo}'.root")}
+					{sub(/ROOTFILE/,"root/ana_'${packageName}'_'${jobNo}'.root")}
 					{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 					{sub(/NEVENTS/,'${nEventsPerJob}')}
 					{if(flag == 1) {print $0} else {next} }' \
@@ -111,13 +111,13 @@ set -e # exit if a command or function exits with a non-zero status
 
 			# * Generate the submit files (sub)
 				templateName="${scriptFolder}/templates/submit_data.sh"
-				outputFile="${scriptFolder}/sub/sub_${analysisType}_${jobNo}.sh"
+				outputFile="${scriptFolder}/sub/sub_${packageName}_${jobNo}.sh"
 				CheckIfFileExists "${templateName}"
 				awk '{flag = 1}
 					{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
 					{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
-					{sub(/ANA_BOS/,"ana/ana_'${analysisType}'_'${jobNo}'.txt")}
-					{sub(/ANA_LOG/,"log/ana_'${analysisType}'_'${jobNo}'.log")}
+					{sub(/ANA_BOS/,"ana/ana_'${packageName}'_'${jobNo}'.txt")}
+					{sub(/ANA_LOG/,"log/ana_'${packageName}'_'${jobNo}'.log")}
 					{if(flag == 1) {print $0} else {next} }' \
 				"${templateName}" > "${outputFile}"
 				ChangeLineEndingsFromWindowsToUnix "${outputFile}"
@@ -134,6 +134,6 @@ set -e # exit if a command or function exits with a non-zero status
 # * ------- Final terminal output ------- * #
 # * ===================================== * #
 	PrintSuccessMessage \
-		"Succesfully created ${jobNo} \"${analysisType}\" job files with ${nEventsPerJob} events each\n"
+		"Succesfully created ${jobNo} \"${packageName}\" job files with ${nEventsPerJob} events each\n"
 
 set +e # exit if a command or function exits with a non-zero status

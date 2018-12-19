@@ -1,13 +1,13 @@
 #!/bin/bash -
 # * ===============================================================================
 # *   DESCRIPTION: Batch create jobOption files based on a template
-# *        AUTHOR: Remco de Boer (@IHEP), EMAIL: remco.de.boer@ihep.ac.cn
+# *        AUTHOR: Remco de Boer <remco.de.boer@ihep.ac.cn>
 # *  ORGANIZATION: IHEP, CAS (Beijing, CHINA)
 # *       CREATED: 22 October 2018
-# *         USAGE: bash CreateJobFiles.sh <number of jobs> <number of events>
-# *     ARGUMENTS: 1) number of job files to be created (default is 25)
-# *                2) number of events per job (default is 10,000)
-# *                3) analysis type name (default is "RhopiAlg")
+# *         USAGE: bash CreateJobFiles.sh <package name> <number of jobs> <number of events>
+# *     ARGUMENTS: 1) package name (default is "RhopiAlg")
+# *                2) number of job files to be created (default is 25)
+# *                3) number of events per job (default is 10,000)
 # * ===============================================================================
 
 set -e # exit if a command or function exits with a non-zero status
@@ -27,20 +27,20 @@ set -e # exit if a command or function exits with a non-zero status
 # ! ================================ ! #
 # ! ------- Script arguments ------- ! #
 # ! ================================ ! #
-	# * (1) number of jobOption files and submit scripts that need to be generated
-	nJobs=25 # default argument
+	# * (1) package name (optional -- default is "RhopiAlg")
+	packageName="RhopiAlg" # default argument
 	if [ $# -ge 1 ]; then
-		nJobs=${1}
+		packageName="${1}"
 	fi
-	# * (2) number of events per job (optional -- default is 10,000)
-	nEventsPerJob=10000 # default argument
+	# * (2) number of jobOption files and submit scripts that need to be generated
+	nJobs=25 # default argument
 	if [ $# -ge 2 ]; then
-		nEventsPerJob=${2}
+		nJobs=${2}
 	fi
-	# * (3) analysis type name (optional -- default is "RhopiAlg")
-	analysisType="RhopiAlg" # default argument
+	# * (3) number of events per job (optional -- default is 10,000)
+	nEventsPerJob=10000 # default argument
 	if [ $# -ge 3 ]; then
-		analysisType="${3}"
+		nEventsPerJob=${3}
 	fi
 
 
@@ -64,21 +64,21 @@ set -e # exit if a command or function exits with a non-zero status
 # * ============================= * #
 
 	# * User input
-	echo "This will create ${nJobs} \"ana_${analysisType}_mc.txt\" job files with ${nEventsPerJob} events each in folder:"
+	echo "This will create ${nJobs} \"ana_${packageName}_mc.txt\" job files with ${nEventsPerJob} events each in folder:"
 	echo "   \"${scriptFolder}\"."
 
 	AskForInput "\nTo continue, press ENTER, else Ctrl+C ..."
 
 	# * Create and EMPTY scripts directory
-	CreateOrEmptyDirectory "${scriptFolder}" "ana"  "${analysisType}_mc"
-	CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${analysisType}_mc"
-	CreateOrEmptyDirectory "${scriptFolder}" "sim"  "${analysisType}_mc"
-	CreateOrEmptyDirectory "${scriptFolder}" "rec"  "${analysisType}_mc"
+	CreateOrEmptyDirectory "${scriptFolder}" "ana"  "${packageName}_mc"
+	CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${packageName}_mc"
+	CreateOrEmptyDirectory "${scriptFolder}" "sim"  "${packageName}_mc"
+	CreateOrEmptyDirectory "${scriptFolder}" "rec"  "${packageName}_mc"
 	# * Create and EMPTY output directory
-	CreateOrEmptyDirectory "${outputFolder}" "raw"  "${analysisType}_mc"
-	CreateOrEmptyDirectory "${outputFolder}" "dst"  "${analysisType}_mc"
-	CreateOrEmptyDirectory "${outputFolder}" "root" "${analysisType}_mc"
-	CreateOrEmptyDirectory "${outputFolder}" "log"  "${analysisType}_mc"
+	CreateOrEmptyDirectory "${outputFolder}" "raw"  "${packageName}_mc"
+	CreateOrEmptyDirectory "${outputFolder}" "dst"  "${packageName}_mc"
+	CreateOrEmptyDirectory "${outputFolder}" "root" "${packageName}_mc"
+	CreateOrEmptyDirectory "${outputFolder}" "log"  "${packageName}_mc"
 
 	# * Loop over jobs
 	for jobNo in $(seq 0 $((${nJobs} - 1))); do
@@ -86,12 +86,12 @@ set -e # exit if a command or function exits with a non-zero status
 		echo -en "\e[0K\rCreating files for job $(($jobNo+1))/${nJobs}..." # overwrite previous line
 
 		# * Generate the analyse files (ana)
-		templateName="${scriptFolder}/templates/jobOptions_ana_${analysisType}_mc.txt"
-		outputFile="${scriptFolder}/ana/ana_${analysisType}_mc_${jobNo}.txt"
+		templateName="${scriptFolder}/templates/jobOptions_ana_${packageName}_mc.txt"
+		outputFile="${scriptFolder}/ana/ana_${packageName}_mc_${jobNo}.txt"
 		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
-			{sub(/DSTFILE/,"dst/rec_'${analysisType}'_mc_'${jobNo}'.dst")}
-			{sub(/ROOTFILE/,"root/ana_'${analysisType}'_mc_'${jobNo}'.root")}
+			{sub(/DSTFILE/,"dst/rec_'${packageName}'_mc_'${jobNo}'.dst")}
+			{sub(/ROOTFILE/,"root/ana_'${packageName}'_mc_'${jobNo}'.root")}
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 			{sub(/NEVENTS/,'${nEventsPerJob}')}
 			{if(flag == 1) {print $0} else {next} }' \
@@ -101,14 +101,14 @@ set -e # exit if a command or function exits with a non-zero status
 
 		# * Generate the simulation files (sim)
 		templateName="${scriptFolder}/templates/jobOptions_sim.txt"
-		outputFile="${scriptFolder}/sim/sim_${analysisType}_mc_${jobNo}.txt"
+		outputFile="${scriptFolder}/sim/sim_${packageName}_mc_${jobNo}.txt"
 		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
-			{sub(/RDF/,"raw/sim_'${analysisType}'_mc_'${jobNo}'.rtraw")}
+			{sub(/RDF/,"raw/sim_'${packageName}'_mc_'${jobNo}'.rtraw")}
 			{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 			{sub(/RAND/,'$(($(date +%s%N) % 1000000000))')}
-			{sub(/DEC/,"dec/'${analysisType}'.dec")}
+			{sub(/DEC/,"dec/'${packageName}'.dec")}
 			{sub(/NEVENTS/,'${nEventsPerJob}')}
 			{if(flag == 1) {print $0} else {next} }' \
 		${templateName} > "${outputFile}"
@@ -117,11 +117,11 @@ set -e # exit if a command or function exits with a non-zero status
 
 		# * Generate the reconstruction files (rec)
 		templateName="${scriptFolder}/templates/jobOptions_rec.txt"
-		outputFile="${scriptFolder}/rec/rec_${analysisType}_mc_${jobNo}.txt"
+		outputFile="${scriptFolder}/rec/rec_${packageName}_mc_${jobNo}.txt"
 		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
-			{sub(/RDF/,"raw/sim_'${analysisType}'_mc_'${jobNo}'.rtraw")}
-			{sub(/DSTFILE/,"dst/rec_'${analysisType}'_mc_'${jobNo}'.dst")}
+			{sub(/RDF/,"raw/sim_'${packageName}'_mc_'${jobNo}'.rtraw")}
+			{sub(/DSTFILE/,"dst/rec_'${packageName}'_mc_'${jobNo}'.dst")}
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
 			{sub(/RAND/,'$(($(date +%s%N) % 1000000000))')}
 			{sub(/NEVENTS/,'${nEventsPerJob}')}
@@ -132,17 +132,17 @@ set -e # exit if a command or function exits with a non-zero status
 
 		# * Generate the submit files (sub)
 		templateName="${scriptFolder}/templates/submit_mc.sh"
-		outputFile="${scriptFolder}/sub/sub_${analysisType}_mc_${jobNo}.sh"
+		outputFile="${scriptFolder}/sub/sub_${packageName}_mc_${jobNo}.sh"
 		CheckIfFileExists "${templateName}"
 		awk '{flag = 1}
 			{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
 			{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
-			{sub(/SIM_BOS/,"sim/sim_'${analysisType}'_mc_'${jobNo}'.txt")}
-			{sub(/SIM_LOG/,"log/sim_'${analysisType}'_mc_'${jobNo}'.log")}
-			{sub(/REC_BOS/,"rec/rec_'${analysisType}'_mc_'${jobNo}'.txt")}
-			{sub(/REC_LOG/,"log/rec_'${analysisType}'_mc_'${jobNo}'.log")}
-			{sub(/ANA_BOS/,"ana/ana_'${analysisType}'_mc_'${jobNo}'.txt")}
-			{sub(/ANA_LOG/,"log/ana_'${analysisType}'_mc_'${jobNo}'.log")}
+			{sub(/SIM_BOS/,"sim/sim_'${packageName}'_mc_'${jobNo}'.txt")}
+			{sub(/SIM_LOG/,"log/sim_'${packageName}'_mc_'${jobNo}'.log")}
+			{sub(/REC_BOS/,"rec/rec_'${packageName}'_mc_'${jobNo}'.txt")}
+			{sub(/REC_LOG/,"log/rec_'${packageName}'_mc_'${jobNo}'.log")}
+			{sub(/ANA_BOS/,"ana/ana_'${packageName}'_mc_'${jobNo}'.txt")}
+			{sub(/ANA_LOG/,"log/ana_'${packageName}'_mc_'${jobNo}'.log")}
 			{if(flag == 1) {print $0} else {next} }' \
 		"${templateName}" > "${outputFile}"
 		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
@@ -156,6 +156,6 @@ set -e # exit if a command or function exits with a non-zero status
 # * ------- Final terminal output ------- * #
 # * ===================================== * #
 	PrintSuccessMessage \
-		"Succesfully created ${nJobs} \"${analysisType}\" job files with ${nEventsPerJob} events each\n"
+		"Succesfully created ${nJobs} \"${packageName}\" job files with ${nEventsPerJob} events each\n"
 
 set +e # exit if a command or function exits with a non-zero status
