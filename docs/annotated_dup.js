@@ -12,7 +12,7 @@ var annotated_dup =
     [ "NTupleMap", "classNTupleMap.html", "classNTupleMap" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],
-    [ "Rhopi", "classRhopi.html", "classRhopi" ],
+    [ "RhopiAlg", "classRhopiAlg.html", "classRhopiAlg" ],
     [ "RhopiRootChain", "classRhopiRootChain.html", "classRhopiRootChain" ],
     [ "RhopiRootFile", "classRhopiRootFile.html", "classRhopiRootFile" ]
 ];

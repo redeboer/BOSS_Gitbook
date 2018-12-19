@@ -4,7 +4,7 @@ var hierarchy =
       [ "DzeroOmega", "classDzeroOmega.html", null ],
       [ "DzeroPhi", "classDzeroPhi.html", null ],
       [ "NTupleMap", "classNTupleMap.html", null ],
-      [ "Rhopi", "classRhopi.html", null ]
+      [ "RhopiAlg", "classRhopiAlg.html", null ]
     ] ],
     [ "BOSSRootChain", "classBOSSRootChain.html", [
       [ "RhopiRootChain", "classRhopiRootChain.html", null ]

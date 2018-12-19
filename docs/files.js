@@ -47,7 +47,7 @@ var files =
     ] ],
     [ "Rhopi.cxx", "Rhopi_8cxx.html", "Rhopi_8cxx" ],
     [ "Rhopi.h", "Rhopi_8h.html", [
-      [ "Rhopi", "classRhopi.html", "classRhopi" ]
+      [ "RhopiAlg", "classRhopiAlg.html", "classRhopiAlg" ]
     ] ],
     [ "Rhopi_entries.cxx", "Rhopi__entries_8cxx.html", "Rhopi__entries_8cxx" ],
     [ "Rhopi_load.cxx", "Rhopi__load_8cxx.html", null ],
