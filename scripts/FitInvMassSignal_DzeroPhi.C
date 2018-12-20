@@ -32,28 +32,33 @@ void FitInvMassSignal()
 	// * Open DzeroPhi input file * //
 		DzeroPhiRootFile file("../data/root/ana_DzeroPhi_mc_result2.root");
 		if(file.IsZombie()) return;
+TCanvas c;
+file.FindTree("fit4c")->Draw("mD0");   c.SaveAs("mD0.pdf");
+file.FindTree("fit4c")->Draw("mJpsi"); c.SaveAs("mJpsi.pdf");
+file.FindTree("fit4c")->Draw("mphi");  c.SaveAs("mphi.pdf");
+file.FindTree("fit4c")->Draw("chi2");  c.SaveAs("chi2.pdf");
 
 	// * Particles to reconstruct * //
-		ReconstructedParticle D0  ( 421, "K^{-}#pi^{+}"); // neutral D meson
-		ReconstructedParticle phi ( 333, "K^{+}K^{-}");   // neutral phi meson
-		ReconstructedParticle Jpsi( 443, "#D^{0}#phi");   // J/psi meson
+		// ReconstructedParticle D0  ( 421, "K^{-}#pi^{+}"); // neutral D meson
+		// ReconstructedParticle phi ( 333, "K^{+}K^{-}");   // neutral phi meson
+		// ReconstructedParticle Jpsi( 443, "#D^{0}#phi");   // J/psi meson
 
 	// * Create invariant mass histogram * //
-		TH1D hist_D0   = CreateInvariantMassHistogram(D0,   200);
-		TH1D hist_phi  = CreateInvariantMassHistogram(phi,  200);
-		TH1D hist_Jpsi = CreateInvariantMassHistogram(Jpsi, 200);
+		// TH1D hist_D0   = CreateInvariantMassHistogram(D0,   200);
+		// TH1D hist_phi  = CreateInvariantMassHistogram(phi,  200);
+		// TH1D hist_Jpsi = CreateInvariantMassHistogram(Jpsi, 200);
 
 	// * Loop the tree to fill inv mass spectrums * //
-		auto fit_lambda = [] (TH1D& D0, TH1D& phi, TH1D& Jpsi) {
-			D0.Fill  (fit6c::mD0);
-			phi.Fill (fit6c::mphi);
-			Jpsi.Fill(fit6c::mJpsi);
-		};
-		LoopTree(file.FindTree("fit4c"), fit_lambda, hist_D0, hist_phi, hist_Jpsi);
-		LoopTree(file.FindTree("fit6c"), fit_lambda, hist_D0, hist_phi, hist_Jpsi);
+		// auto fit_lambda = [] (TH1D& D0, TH1D& phi, TH1D& Jpsi) {
+		// 	D0.Fill  (fit4c::mD0);
+		// 	phi.Fill (fit4c::mphi);
+		// 	Jpsi.Fill(fit4c::mJpsi);
+		// };
+		// LoopTree(file.FindTree("fit4c"), fit_lambda, hist_D0, hist_phi, hist_Jpsi);
+		// LoopTree(file.FindTree("fit6c"), fit_lambda, hist_D0, hist_phi, hist_Jpsi);
 
 	// * Fit double gaussian * //
-		DrawAndSave(hist_D0, "testD0.pdf");
+		// DrawAndSave(hist_D0, "testD0.pdf");
 		// FitDoubleGaussian(hist_phi,  phi,  2);
 		// FitDoubleGaussian(hist_Jpsi, Jpsi, 2);
 

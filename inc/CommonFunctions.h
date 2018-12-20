@@ -83,7 +83,7 @@ namespace CommonFunctions //!< Namespace that contains functions that you want t
 	}
 
 	/**
-	 * @brief Create a histogram object.
+	 * @brief Create a histogram object especially for invariant mass analysis.
 	 */
 	TH1D CreateInvariantMassHistogram(const ReconstructedParticle& particle, const int nBins = 200)
 	{
