@@ -37,8 +37,8 @@ var NAVTREEINDEX =
 [
 "BOSSRootChain_8h.html",
 "Particle_8h_source.html",
-"classDzeroOmega.html#a9dc2142ef0f66d31aafe702392230391",
-"classReconstructedParticle.html#aec7bbf487e76d3fc2c5cdb1b61fbd6bf"
+"classDzeroOmega.html#a9ad03f4aad52dc22cda7d2f18f4c918c",
+"classReconstructedParticle.html#adbe16e585bef542b6d17cf8becc7b538"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

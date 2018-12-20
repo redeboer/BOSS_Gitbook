@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"classReconstructedParticle.html#adbe16e585bef542b6d17cf8becc7b538":[2,0,12,32],
+"classReconstructedParticle.html#add109d84e447cce041b5c0289ba4526e":[2,0,12,21],
 "classReconstructedParticle.html#aec7bbf487e76d3fc2c5cdb1b61fbd6bf":[2,0,12,19],
 "classReconstructedParticle.html#af6799482466f01c8e2979615ad18f2ea":[2,0,12,12],
 "classRhopiAlg.html":[2,0,13],
@@ -185,8 +187,8 @@ var NAVTREEINDEX3 =
 "functions_s.html":[2,3,0,14],
 "functions_t.html":[2,3,0,15],
 "functions_v.html":[2,3,0,16],
-"functions_vars.html":[2,3,2],
 "functions_vars.html":[2,3,2,0],
+"functions_vars.html":[2,3,2],
 "functions_vars_t.html":[2,3,2,1],
 "functions_w.html":[2,3,0,17],
 "globals.html":[3,1,0],
@@ -196,8 +198,8 @@ var NAVTREEINDEX3 =
 "globals_vars.html":[3,1,2],
 "hierarchy.html":[2,2],
 "index.html":[],
-"namespaceAnaBranches.html":[1,0,0],
 "namespaceAnaBranches.html":[2,0,0],
+"namespaceAnaBranches.html":[1,0,0],
 "namespaceAnaBranches_1_1dedx.html":[1,0,0,0],
 "namespaceAnaBranches_1_1etot.html":[1,0,0,1],
 "namespaceAnaBranches_1_1fit4c.html":[1,0,0,2],

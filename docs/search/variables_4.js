@@ -210,7 +210,7 @@ var searchData=
   ['ftrack_5fvy',['fTrack_Vy',['../classDzeroPhi.html#a91dee1089298a70097a42b22dc3a2cc1',1,'DzeroPhi']]],
   ['ftrack_5fvz',['fTrack_Vz',['../classDzeroPhi.html#a1d94eee1915707255dbaa0648703a391',1,'DzeroPhi']]],
   ['ftrackiterator',['fTrackIterator',['../classDzeroPhi.html#ac6d7798eb086bf6a5e0edba805aa68b3',1,'DzeroPhi']]],
-  ['ftrees',['fTrees',['../classBOSSRootFile.html#ab13dafde6019b134503c6a75aeee4884',1,'BOSSRootFile']]],
+  ['ftrees',['fTrees',['../classBOSSRootFile.html#a933f726537f62958b567172e3ddf885d',1,'BOSSRootFile']]],
   ['ftupleangles',['fTupleAngles',['../classRhopiAlg.html#a188bc0198dd44ae64e236099f2409c56',1,'RhopiAlg']]],
   ['ftuplededx',['fTupleDedx',['../classRhopiAlg.html#a4bc326b667210f3d1cde8f2b12889c6f',1,'RhopiAlg']]],
   ['ftuplefit4c',['fTupleFit4C',['../classRhopiAlg.html#ac9c83f29cbf8dcd882f21e0f41d72ee6',1,'RhopiAlg']]],

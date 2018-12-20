@@ -158,6 +158,7 @@
 	/**
 	 * @brief Look for a tree in the files and get its `TTree`.
 	 * @param treeName Name of the `TTree` that you are looking for.
+	 * @param terminate Set to `true` if you want to terminate the entire programme if the `TTree` is not found. This can be useful if you want to avoid segmenation violations later.
 	 * @return TTree* Tree object that contains the trees. Returns a `nullptr` if this `TTree` does not exist.
 	 */
 	TTree* BOSSRootFile::FindTree(const char* treeName, bool terminate)
@@ -240,14 +241,9 @@
 	/**
 	 * @brief Plot a distribution of one of the branches in the file.
 	 *
-	 * @param tree       `TTree` that you want to plot.
-	 * @param branchName Names of the branches that you are looking.
-	 * @param nBins      The number of bins that you want to have in the resulting histogram.
-	 * @param x1         Determines left side of the plot range.
-	 * @param x2         Determines right side of the plot range.
-	 * @param title      Determines title of the plot.
-	 * @param opt        Draw options.
-	 * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
+	 * @param tree        `TTree` that you want to plot.
+	 * @param branchNames Names of the branches that you want to plot. See https://root.cern.ch/doc/master/classTTree.html for how this works.
+	 * @param option      Draw options.
 	 */
 	void BOSSRootFile::PlotDistribution(
 		TTree* tree, const TString& branchNames, Option_t* option)
@@ -268,14 +264,9 @@
 	/**
 	 * @brief Plot a distribution of one of the branches in the file.
 	 *
-	 * @param treeName   Name of the tree you want to plot.
-	 * @param branchName Names of the branches that you are looking.
-	 * @param nBins      The number of bins that you want to have in the resulting histogram.
-	 * @param x1         Determines left side of the plot range.
-	 * @param x2         Determines right side of the plot range.
-	 * @param title      Determines title of the plot.
-	 * @param opt        Draw options.
-	 * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
+	 * @param treeName    Name of the tree you want to plot.
+	 * @param branchNames Names of the branches that you want to plot. See https://root.cern.ch/doc/master/classTTree.html for how this works.
+	 * @param option      Draw options.
 	 */
 	void BOSSRootFile::PlotDistribution(
 		const char* treeName, const TString& branchNames, Option_t* option)

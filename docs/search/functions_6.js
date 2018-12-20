@@ -11,7 +11,6 @@ var searchData=
   ['getgaussiansmallwidth',['GetGaussianSmallWidth',['../classReconstructedParticle.html#a1d001ba4d78e206c1644d35cbd2628da',1,'ReconstructedParticle']]],
   ['getgaussianwidewidth',['GetGaussianWideWidth',['../classReconstructedParticle.html#a1ab06406414402dd711144353c03d5ad',1,'ReconstructedParticle']]],
   ['getlistofchains',['GetListOfChains',['../classBOSSRootChain.html#a59cb568e9e52a54b640928bdadd286ac',1,'BOSSRootChain']]],
-  ['getlistofttrees',['GetListOfTTrees',['../classBOSSRootFile.html#a55a8ce3e66f1671ccdbb90cfd06285a3',1,'BOSSRootFile']]],
   ['getlowermass',['GetLowerMass',['../classReconstructedParticle.html#a5b421a272556f4fe7bc59e0b6a7fce3d',1,'ReconstructedParticle']]],
   ['getmass',['GetMass',['../classParticle.html#ad34f1d39fb95328fcfb59d74f71a736c',1,'Particle']]],
   ['getmassoffsetpercentage',['GetMassOffsetPercentage',['../classReconstructedParticle.html#a130e103764c1162501de2c1f023c30b5',1,'ReconstructedParticle']]],
