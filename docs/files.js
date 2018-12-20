@@ -20,10 +20,7 @@ var files =
     ] ],
     [ "DzeroPhi_entries.cxx", "DzeroPhi__entries_8cxx.html", "DzeroPhi__entries_8cxx" ],
     [ "DzeroPhi_load.cxx", "DzeroPhi__load_8cxx.html", null ],
-    [ "DzeroPhiRootFile.h", "DzeroPhiRootFile_8h.html", [
-      [ "DzeroPhiRootFile", "classDzeroPhiRootFile.html", "classDzeroPhiRootFile" ]
-    ] ],
-    [ "DzeroPhiRootNamespace.h", "DzeroPhiRootNamespace_8h.html", "DzeroPhiRootNamespace_8h" ],
+    [ "DzeroPhiRootFile.h", "DzeroPhiRootFile_8h.html", "DzeroPhiRootFile_8h" ],
     [ "FitDoubleGaussian_TH1Fit.C", "FitDoubleGaussian__TH1Fit_8C.html", "FitDoubleGaussian__TH1Fit_8C" ],
     [ "FitInvMassSignal.C", "FitInvMassSignal_8C.html", "FitInvMassSignal_8C" ],
     [ "FitInvMassSignal_DzeroPhi.C", "FitInvMassSignal__DzeroPhi_8C.html", "FitInvMassSignal__DzeroPhi_8C" ],
@@ -45,12 +42,12 @@ var files =
     [ "ReconstructedParticle.h", "ReconstructedParticle_8h.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ]
     ] ],
-    [ "Rhopi.cxx", "Rhopi_8cxx.html", "Rhopi_8cxx" ],
-    [ "Rhopi.h", "Rhopi_8h.html", [
+    [ "RhopiAlg.cxx", "RhopiAlg_8cxx.html", "RhopiAlg_8cxx" ],
+    [ "RhopiAlg.h", "RhopiAlg_8h.html", [
       [ "RhopiAlg", "classRhopiAlg.html", "classRhopiAlg" ]
     ] ],
-    [ "Rhopi_entries.cxx", "Rhopi__entries_8cxx.html", "Rhopi__entries_8cxx" ],
-    [ "Rhopi_load.cxx", "Rhopi__load_8cxx.html", null ],
+    [ "RhopiAlg_entries.cxx", "RhopiAlg__entries_8cxx.html", "RhopiAlg__entries_8cxx" ],
+    [ "RhopiAlg_load.cxx", "RhopiAlg__load_8cxx.html", null ],
     [ "RhopiRootChain.h", "RhopiRootChain_8h.html", [
       [ "RhopiRootChain", "classRhopiRootChain.html", "classRhopiRootChain" ]
     ] ],

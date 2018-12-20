@@ -81,6 +81,7 @@ $(document).ready(function(){initNavTree('DzeroPhi_8cxx.html','');});
 <div class="header">
   <div class="summary">
 <a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">DzeroPhi.cxx File Reference</div>  </div>
@@ -88,7 +89,6 @@ $(document).ready(function(){initNavTree('DzeroPhi_8cxx.html','');});
 <div class="contents">
 <div class="textblock"><code>#include &quot;DstEvent/TofHitStatus.h&quot;</code><br />
 <code>#include &quot;EventModel/Event.h&quot;</code><br />
-<code>#include &quot;EventModel/EventHeader.h&quot;</code><br />
 <code>#include &quot;EventModel/EventModel.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/AlgFactory.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/Bootstrap.h&quot;</code><br />
@@ -98,7 +98,6 @@ $(document).ready(function(){initNavTree('DzeroPhi_8cxx.html','');});
 <code>#include &quot;GaudiKernel/ISvcLocator.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/NTuple.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/PropertyMgr.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/SmartDataPtr.h&quot;</code><br />
 <code>#include &quot;ParticleID/ParticleID.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="DzeroPhi_8h_source.html">DzeroPhi/DzeroPhi.h</a>&quot;</code><br />
 <code>#include &quot;TMath.h&quot;</code><br />
@@ -122,6 +121,11 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ae2aff2e5ed6ce2ac4391bedb93e0a615"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DzeroPhi_8cxx.html#ae2aff2e5ed6ce2ac4391bedb93e0a615">Vint</a></td></tr>
 <tr class="separator:ae2aff2e5ed6ce2ac4391bedb93e0a615"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a4280a7c0dacc8860173bdd2ffbdb0a3b"><td class="memItemLeft" align="right" valign="top">const HepLorentzVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DzeroPhi_8cxx.html#a4280a7c0dacc8860173bdd2ffbdb0a3b">ecms</a> (0.034, 0, 0, <a class="el" href="RhopiAlg_8cxx.html#a123ac7871ce3ce2f3ef73eddc6aae85a">Ecms</a>)</td></tr>
+<tr class="separator:a4280a7c0dacc8860173bdd2ffbdb0a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:ad0e80f236a9efd835fca631a45e7f052"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DzeroPhi_8cxx.html#ad0e80f236a9efd835fca631a45e7f052">mpi</a> = 0.13957061</td></tr>
@@ -138,7 +142,7 @@ Variables</h2></td></tr>
 <tr class="separator:a8279cbb8ef8cef17669cf53b18046745"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3358b8e4958fe4199fb26121b36b4760"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DzeroPhi_8cxx.html#a3358b8e4958fe4199fb26121b36b4760">xmass</a> []</td></tr>
 <tr class="separator:a3358b8e4958fe4199fb26121b36b4760"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fc6ab9fef0579979e29f32ac6ce3182"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DzeroPhi_8cxx.html#a1fc6ab9fef0579979e29f32ac6ce3182">nmass</a> = sizeof(<a class="el" href="Rhopi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a>)/sizeof(*<a class="el" href="Rhopi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a>)</td></tr>
+<tr class="memitem:a1fc6ab9fef0579979e29f32ac6ce3182"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DzeroPhi_8cxx.html#a1fc6ab9fef0579979e29f32ac6ce3182">nmass</a> = sizeof(<a class="el" href="RhopiAlg_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a>)/sizeof(*<a class="el" href="RhopiAlg_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a>)</td></tr>
 <tr class="separator:a1fc6ab9fef0579979e29f32ac6ce3182"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2ba08e98354f1ae771562ba95993cee"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DzeroPhi_8cxx.html#ac2ba08e98354f1ae771562ba95993cee">velc_cm</a> = 29.9792458</td></tr>
 <tr class="separator:ac2ba08e98354f1ae771562ba95993cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -176,7 +180,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00062">62</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00064">64</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -192,7 +196,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00060">60</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00062">62</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -208,7 +212,48 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00061">61</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00063">63</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a4280a7c0dacc8860173bdd2ffbdb0a3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4280a7c0dacc8860173bdd2ffbdb0a3b">&#9670;&nbsp;</a></span>ecms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const HepLorentzVector ecms </td>
+          <td>(</td>
+          <td class="paramtype">0.&#160;</td>
+          <td class="paramname"><em>034</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="RhopiAlg_8cxx.html#a123ac7871ce3ce2f3ef73eddc6aae85a">Ecms</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -225,7 +270,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00056">56</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00057">57</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -241,7 +286,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00043">43</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00044">44</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -257,7 +302,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00042">42</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00043">43</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -273,7 +318,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00044">44</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00045">45</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -289,7 +334,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00040">40</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00041">41</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -305,7 +350,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00041">41</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00042">42</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -321,7 +366,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00045">45</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00046">46</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -332,12 +377,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int nmass = sizeof(<a class="el" href="Rhopi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a>)/sizeof(*<a class="el" href="Rhopi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a>)</td>
+          <td class="memname">const int nmass = sizeof(<a class="el" href="RhopiAlg_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a>)/sizeof(*<a class="el" href="RhopiAlg_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00053">53</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00054">54</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -353,7 +398,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00054">54</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00055">55</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -369,7 +414,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00055">55</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00056">56</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -385,7 +430,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">{</div><div class="line">            0.000511, </div><div class="line">            0.105658, </div><div class="line">            0.139570, </div><div class="line">            0.493677, </div><div class="line">            0.938272  </div><div class="line">        }</div></div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00046">46</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00047">47</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>

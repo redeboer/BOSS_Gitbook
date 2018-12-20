@@ -4,6 +4,7 @@ var DzeroPhi_8cxx =
     [ "Vint", "DzeroPhi_8cxx.html#ae2aff2e5ed6ce2ac4391bedb93e0a615", null ],
     [ "Vit", "DzeroPhi_8cxx.html#ad57fc3e78509b45d1d40b97e752383f8", null ],
     [ "Vp4", "DzeroPhi_8cxx.html#a66098539bec38058a3d9032d53cbd7ec", null ],
+    [ "ecms", "DzeroPhi_8cxx.html#a4280a7c0dacc8860173bdd2ffbdb0a3b", null ],
     [ "Ecms", "DzeroPhi_8cxx.html#a123ac7871ce3ce2f3ef73eddc6aae85a", null ],
     [ "mD0", "DzeroPhi_8cxx.html#ab38a7482250290f8aced77d341017a2d", null ],
     [ "mK", "DzeroPhi_8cxx.html#a069e431671a4ea6a9806efff28e5bcec", null ],

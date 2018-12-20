@@ -81,7 +81,8 @@ $(document).ready(function(){initNavTree('classDzeroPhi.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classDzeroPhi-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -117,24 +118,36 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a26c588837d69fc549ee2eed6d21d8299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently does nothing.  <a href="#a26c588837d69fc549ee2eed6d21d8299">More...</a><br /></td></tr>
 <tr class="separator:a26c588837d69fc549ee2eed6d21d8299"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
 <tr class="memitem:a8a8782bc0fbf9e72137b6603a5b4ec3e"><td class="memItemLeft" align="right" valign="top">NTuplePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a8a8782bc0fbf9e72137b6603a5b4ec3e">BookNTuple</a> (const char *tupleName)</td></tr>
 <tr class="memdesc:a8a8782bc0fbf9e72137b6603a5b4ec3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that allows you to create pair of a string with a <code>NTuplePtr</code>.  <a href="#a8a8782bc0fbf9e72137b6603a5b4ec3e">More...</a><br /></td></tr>
 <tr class="separator:a8a8782bc0fbf9e72137b6603a5b4ec3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a495d0d57e4db5a6bbf56db08832ee55e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a495d0d57e4db5a6bbf56db08832ee55e">GetTofInformation</a> (SmartRefVector&lt; RecTofTrack &gt;::iterator iter_tof, double ptrk, const char *tupleName)</td></tr>
-<tr class="separator:a495d0d57e4db5a6bbf56db08832ee55e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1fa263f74352c4189b3e81f91806218"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aa1fa263f74352c4189b3e81f91806218">BookNtupleTofItems</a> (NTuplePtr &amp;nt)</td></tr>
+<tr class="memdesc:aa1fa263f74352c4189b3e81f91806218"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="#aa1fa263f74352c4189b3e81f91806218">More...</a><br /></td></tr>
+<tr class="separator:aa1fa263f74352c4189b3e81f91806218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6895170b0964db32d57a18960d0f89af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a6895170b0964db32d57a18960d0f89af">BookNtupleDedxItems</a> (NTuplePtr &amp;nt)</td></tr>
+<tr class="memdesc:a6895170b0964db32d57a18960d0f89af"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> energy loss branch (<code>"dedx"</code>).  <a href="#a6895170b0964db32d57a18960d0f89af">More...</a><br /></td></tr>
+<tr class="separator:a6895170b0964db32d57a18960d0f89af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5d66a97079119c1b57d628629858f39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#af5d66a97079119c1b57d628629858f39">WriteTofInformation</a> (SmartRefVector&lt; RecTofTrack &gt;::iterator iter_tof, double ptrk, const char *tupleName)</td></tr>
+<tr class="separator:af5d66a97079119c1b57d628629858f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a550ec03325b3e287fa2cba6b25bcf196"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a550ec03325b3e287fa2cba6b25bcf196">WriteDedxInfo</a> (EvtRecTrack *evtRecTrack, const char *tupleName)</td></tr>
+<tr class="memdesc:a550ec03325b3e287fa2cba6b25bcf196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> energy loss information <em>for one track</em>.  <a href="#a550ec03325b3e287fa2cba6b25bcf196">More...</a><br /></td></tr>
+<tr class="separator:a550ec03325b3e287fa2cba6b25bcf196"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a479648953f8a912e4f71a112f98f40b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a479648953f8a912e4f71a112f98f40b8">WriteDedxInfoForVector</a> (std::vector&lt; EvtRecTrack *&gt; &amp;vector, const char *tupleName)</td></tr>
+<tr class="memdesc:a479648953f8a912e4f71a112f98f40b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> energy loss information.  <a href="#a479648953f8a912e4f71a112f98f40b8">More...</a><br /></td></tr>
+<tr class="separator:a479648953f8a912e4f71a112f98f40b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:aa9d6964df4a9358d9ecb2f06b1fa06f1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aa9d6964df4a9358d9ecb2f06b1fa06f1">fSmallestChiSq</a></td></tr>
+<tr class="separator:aa9d6964df4a9358d9ecb2f06b1fa06f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad314618cabf1a45ec0b5356adbdb33e4"><td class="memItemLeft" align="right" valign="top">MsgStream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ad314618cabf1a45ec0b5356adbdb33e4">fLog</a></td></tr>
+<tr class="memdesc:ad314618cabf1a45ec0b5356adbdb33e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.  <a href="#ad314618cabf1a45ec0b5356adbdb33e4">More...</a><br /></td></tr>
 <tr class="separator:ad314618cabf1a45ec0b5356adbdb33e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d5fb8976578b99d014b7b35cd483c1e"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Tuple * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a5d5fb8976578b99d014b7b35cd483c1e">fNTupleMap</a></td></tr>
 <tr class="memdesc:a5d5fb8976578b99d014b7b35cd483c1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map for <code>NTuple::Tuple*</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>.  <a href="#a5d5fb8976578b99d014b7b35cd483c1e">More...</a><br /></td></tr>
 <tr class="separator:a5d5fb8976578b99d014b7b35cd483c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6d7798eb086bf6a5e0edba805aa68b3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ac6d7798eb086bf6a5e0edba805aa68b3">fTrackIterator</a></td></tr>
-<tr class="memdesc:ac6d7798eb086bf6a5e0edba805aa68b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of charged and neutral tracks (<code>EvtRecTrackCol</code>).  <a href="#ac6d7798eb086bf6a5e0edba805aa68b3">More...</a><br /></td></tr>
-<tr class="separator:ac6d7798eb086bf6a5e0edba805aa68b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2c2170dafb02e0ed4caadaf7001a2e8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ad2c2170dafb02e0ed4caadaf7001a2e8">fGoodChargedTracks</a></td></tr>
 <tr class="memdesc:ad2c2170dafb02e0ed4caadaf7001a2e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will contain a selection of pointers to 'good' charged tracks.  <a href="#ad2c2170dafb02e0ed4caadaf7001a2e8">More...</a><br /></td></tr>
 <tr class="separator:ad2c2170dafb02e0ed4caadaf7001a2e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,6 +160,33 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ac9ddbd63b8a86b6a564bc0820773c778"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ac9ddbd63b8a86b6a564bc0820773c778">fPionPos</a></td></tr>
 <tr class="memdesc:ac9ddbd63b8a86b6a564bc0820773c778"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>.  <a href="#ac9ddbd63b8a86b6a564bc0820773c778">More...</a><br /></td></tr>
 <tr class="separator:ac9ddbd63b8a86b6a564bc0820773c778"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6d7798eb086bf6a5e0edba805aa68b3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ac6d7798eb086bf6a5e0edba805aa68b3">fTrackIterator</a></td></tr>
+<tr class="memdesc:ac6d7798eb086bf6a5e0edba805aa68b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of charged and neutral tracks (<code>EvtRecTrackCol</code>).  <a href="#ac6d7798eb086bf6a5e0edba805aa68b3">More...</a><br /></td></tr>
+<tr class="separator:ac6d7798eb086bf6a5e0edba805aa68b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3aee1062e71504331e43c89cf3ee322"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ad3aee1062e71504331e43c89cf3ee322">fKaonNeg1Iter</a></td></tr>
+<tr class="memdesc:ad3aee1062e71504331e43c89cf3ee322"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of negative kaons (1st occurence).  <a href="#ad3aee1062e71504331e43c89cf3ee322">More...</a><br /></td></tr>
+<tr class="separator:ad3aee1062e71504331e43c89cf3ee322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2de74b993871b2f9aaeda4624fddc2b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ab2de74b993871b2f9aaeda4624fddc2b">fKaonNeg2Iter</a></td></tr>
+<tr class="memdesc:ab2de74b993871b2f9aaeda4624fddc2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of negative kaons (2st occurence).  <a href="#ab2de74b993871b2f9aaeda4624fddc2b">More...</a><br /></td></tr>
+<tr class="separator:ab2de74b993871b2f9aaeda4624fddc2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbec918d693c4d691957fef592ce32a9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#abbec918d693c4d691957fef592ce32a9">fKaonPosIter</a></td></tr>
+<tr class="memdesc:abbec918d693c4d691957fef592ce32a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of positive kaons.  <a href="#abbec918d693c4d691957fef592ce32a9">More...</a><br /></td></tr>
+<tr class="separator:abbec918d693c4d691957fef592ce32a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae2ccd9484e7620bf6074e174a2d5ca4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aae2ccd9484e7620bf6074e174a2d5ca4">fPionPosIter</a></td></tr>
+<tr class="memdesc:aae2ccd9484e7620bf6074e174a2d5ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of positive pions.  <a href="#aae2ccd9484e7620bf6074e174a2d5ca4">More...</a><br /></td></tr>
+<tr class="separator:aae2ccd9484e7620bf6074e174a2d5ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a283450df09d006c7c7286bef0ef9db88"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; Event::EventHeader &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a283450df09d006c7c7286bef0ef9db88">fEventHeader</a></td></tr>
+<tr class="memdesc:a283450df09d006c7c7286bef0ef9db88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>Event::EventHeader</code> which is set in <code><a class="el" href="classDzeroPhi.html#a87e688a9fb9a8522d78320c854efb27e" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event.  <a href="#a283450df09d006c7c7286bef0ef9db88">More...</a><br /></td></tr>
+<tr class="separator:a283450df09d006c7c7286bef0ef9db88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ef69157f5c02733cdab7fcd47a228d2"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; EvtRecEvent &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a5ef69157f5c02733cdab7fcd47a228d2">fEvtRecEvent</a></td></tr>
+<tr class="memdesc:a5ef69157f5c02733cdab7fcd47a228d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>EventModel::EvtRec::EvtRecEvent</code> which is set in <code><a class="el" href="classDzeroPhi.html#a87e688a9fb9a8522d78320c854efb27e" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event.  <a href="#a5ef69157f5c02733cdab7fcd47a228d2">More...</a><br /></td></tr>
+<tr class="separator:a5ef69157f5c02733cdab7fcd47a228d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab82bd31b0176f00907cf5f63d7763571"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; EvtRecTrackCol &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ab82bd31b0176f00907cf5f63d7763571">fEvtRecTrkCol</a></td></tr>
+<tr class="memdesc:ab82bd31b0176f00907cf5f63d7763571"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>EventModel::EvtRec::EvtRecTrackCol</code> which is set in <code><a class="el" href="classDzeroPhi.html#a87e688a9fb9a8522d78320c854efb27e" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event.  <a href="#ab82bd31b0176f00907cf5f63d7763571">More...</a><br /></td></tr>
+<tr class="separator:ab82bd31b0176f00907cf5f63d7763571"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
 <tr class="memitem:a94d021dd3a1af3459e44a7890345d037"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a94d021dd3a1af3459e44a7890345d037">fVr0cut</a></td></tr>
 <tr class="separator:a94d021dd3a1af3459e44a7890345d037"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea344682d0c4ec301372171aa1e65f19"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aea344682d0c4ec301372171aa1e65f19">fVz0cut</a></td></tr>
@@ -234,53 +274,59 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:ae93c6177b2628e5955a32dfe26bcfe14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum <img class="formulaInl" alt="$p$" src="form_9.png"/> of the track.  <a href="#ae93c6177b2628e5955a32dfe26bcfe14">More...</a><br /></td></tr>
 <tr class="separator:ae93c6177b2628e5955a32dfe26bcfe14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41a17c757d89fd4e1fadf209b1298b68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a41a17c757d89fd4e1fadf209b1298b68">fDoFit4c</a></td></tr>
-<tr class="memdesc:a41a17c757d89fd4e1fadf209b1298b68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to perform a 5-constraint Kalman kinematic fit.  <a href="#a41a17c757d89fd4e1fadf209b1298b68">More...</a><br /></td></tr>
+<tr class="memdesc:a41a17c757d89fd4e1fadf209b1298b68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to perform a 4-constraint Kalman kinematic fit.  <a href="#a41a17c757d89fd4e1fadf209b1298b68">More...</a><br /></td></tr>
 <tr class="separator:a41a17c757d89fd4e1fadf209b1298b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80f652be94976cd00fc85d608d235288"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a80f652be94976cd00fc85d608d235288">fDoFit6c</a></td></tr>
 <tr class="memdesc:a80f652be94976cd00fc85d608d235288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to perform a 6-constraint Kalman kinematic fit.  <a href="#a80f652be94976cd00fc85d608d235288">More...</a><br /></td></tr>
 <tr class="separator:a80f652be94976cd00fc85d608d235288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f2385bcf8d302cdf84e7b491e23bd96"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a2f2385bcf8d302cdf84e7b491e23bd96">fM_D0</a></td></tr>
-<tr class="memdesc:a2f2385bcf8d302cdf84e7b491e23bd96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invvariant mass <img class="formulaInl" alt="$ K^- pi^+ $" src="form_10.png"/> ( <img class="formulaInl" alt="$ D^0 $" src="form_11.png"/>).  <a href="#a2f2385bcf8d302cdf84e7b491e23bd96">More...</a><br /></td></tr>
-<tr class="separator:a2f2385bcf8d302cdf84e7b491e23bd96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad50b9c4770e5fc1bac16a21dc13d9d1f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ad50b9c4770e5fc1bac16a21dc13d9d1f">fM_phi</a></td></tr>
-<tr class="memdesc:ad50b9c4770e5fc1bac16a21dc13d9d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invvariant mass <img class="formulaInl" alt="$ K^+ K^+ $" src="form_12.png"/> ( <img class="formulaInl" alt="$ \phi $" src="form_13.png"/>).  <a href="#ad50b9c4770e5fc1bac16a21dc13d9d1f">More...</a><br /></td></tr>
-<tr class="separator:ad50b9c4770e5fc1bac16a21dc13d9d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1042f3f00666ead5f31850193bf56a58"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a1042f3f00666ead5f31850193bf56a58">fM_Jpsi</a></td></tr>
-<tr class="memdesc:a1042f3f00666ead5f31850193bf56a58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invvariant mass <img class="formulaInl" alt="$ D^0 \phi $" src="form_14.png"/> ( <img class="formulaInl" alt="$ J/\psi $" src="form_15.png"/>).  <a href="#a1042f3f00666ead5f31850193bf56a58">More...</a><br /></td></tr>
-<tr class="separator:a1042f3f00666ead5f31850193bf56a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf0e09ac4c81da8cea44b411ef53711b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#adf0e09ac4c81da8cea44b411ef53711b">fChi2sq</a></td></tr>
-<tr class="memdesc:adf0e09ac4c81da8cea44b411ef53711b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared of the Kalman kinematic fit.  <a href="#adf0e09ac4c81da8cea44b411ef53711b">More...</a><br /></td></tr>
-<tr class="separator:adf0e09ac4c81da8cea44b411ef53711b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd358b383030e79d84391c2726ce4066"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#afd358b383030e79d84391c2726ce4066">fInvMass_D0</a></td></tr>
+<tr class="memdesc:afd358b383030e79d84391c2726ce4066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invariant mass for <img class="formulaInl" alt="$ K^- pi^+ $" src="form_10.png"/> ( <img class="formulaInl" alt="$ D^0 $" src="form_11.png"/>).  <a href="#afd358b383030e79d84391c2726ce4066">More...</a><br /></td></tr>
+<tr class="separator:afd358b383030e79d84391c2726ce4066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae51dd7d155213f16f53d785ac1546ec4"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ae51dd7d155213f16f53d785ac1546ec4">fInvMass_phi</a></td></tr>
+<tr class="memdesc:ae51dd7d155213f16f53d785ac1546ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invariant mass for <img class="formulaInl" alt="$ K^+ K^+ $" src="form_12.png"/> ( <img class="formulaInl" alt="$ \phi $" src="form_13.png"/>).  <a href="#ae51dd7d155213f16f53d785ac1546ec4">More...</a><br /></td></tr>
+<tr class="separator:ae51dd7d155213f16f53d785ac1546ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a101f526cae13b8c6e16788621dd71fcb"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a101f526cae13b8c6e16788621dd71fcb">fInvMass_Jpsi</a></td></tr>
+<tr class="memdesc:a101f526cae13b8c6e16788621dd71fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invariant mass for <img class="formulaInl" alt="$ D^0 \phi $" src="form_14.png"/> ( <img class="formulaInl" alt="$ J/\psi $" src="form_15.png"/>).  <a href="#a101f526cae13b8c6e16788621dd71fcb">More...</a><br /></td></tr>
+<tr class="separator:a101f526cae13b8c6e16788621dd71fcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ff9ca3886ad5aebcd3400353790911"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ab2ff9ca3886ad5aebcd3400353790911">fInvMass_ChiSq</a></td></tr>
+<tr class="memdesc:ab2ff9ca3886ad5aebcd3400353790911"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared of the Kalman kinematic fit.  <a href="#ab2ff9ca3886ad5aebcd3400353790911">More...</a><br /></td></tr>
+<tr class="separator:ab2ff9ca3886ad5aebcd3400353790911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29a875150d96630e9d5f9144cfcae619"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a29a875150d96630e9d5f9144cfcae619">fDoDedx</a></td></tr>
 <tr class="memdesc:a29a875150d96630e9d5f9144cfcae619"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to write <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/>.  <a href="#a29a875150d96630e9d5f9144cfcae619">More...</a><br /></td></tr>
 <tr class="separator:a29a875150d96630e9d5f9144cfcae619"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9d60c76a952f08c693f56d9b91d924f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aa9d60c76a952f08c693f56d9b91d924f">fChi2e</a></td></tr>
-<tr class="memdesc:aa9d60c76a952f08c693f56d9b91d924f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared in case of electron.  <a href="#aa9d60c76a952f08c693f56d9b91d924f">More...</a><br /></td></tr>
-<tr class="separator:aa9d60c76a952f08c693f56d9b91d924f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0813ef1dc03e4e117261f3b4bf021ef7"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a0813ef1dc03e4e117261f3b4bf021ef7">fChi2mu</a></td></tr>
-<tr class="memdesc:a0813ef1dc03e4e117261f3b4bf021ef7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared in case of muon.  <a href="#a0813ef1dc03e4e117261f3b4bf021ef7">More...</a><br /></td></tr>
-<tr class="separator:a0813ef1dc03e4e117261f3b4bf021ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa21bec50f2a26a87f01751c65a125a3a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aa21bec50f2a26a87f01751c65a125a3a">fChi2pi</a></td></tr>
-<tr class="memdesc:aa21bec50f2a26a87f01751c65a125a3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared in case of pion.  <a href="#aa21bec50f2a26a87f01751c65a125a3a">More...</a><br /></td></tr>
-<tr class="separator:aa21bec50f2a26a87f01751c65a125a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a314a50f7146e894c9cfaa85538f968cb"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a314a50f7146e894c9cfaa85538f968cb">fChi2k</a></td></tr>
-<tr class="memdesc:a314a50f7146e894c9cfaa85538f968cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared in case of kaon.  <a href="#a314a50f7146e894c9cfaa85538f968cb">More...</a><br /></td></tr>
-<tr class="separator:a314a50f7146e894c9cfaa85538f968cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa74e82e4893e5615673129ccb798aa54"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aa74e82e4893e5615673129ccb798aa54">fChi2p</a></td></tr>
-<tr class="memdesc:aa74e82e4893e5615673129ccb798aa54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared in case of proton.  <a href="#aa74e82e4893e5615673129ccb798aa54">More...</a><br /></td></tr>
-<tr class="separator:aa74e82e4893e5615673129ccb798aa54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a9f1c391add486369add93f2d084485"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a7a9f1c391add486369add93f2d084485">fProbPH</a></td></tr>
-<tr class="memdesc:a7a9f1c391add486369add93f2d084485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Most probable pulse height from truncated mean.  <a href="#a7a9f1c391add486369add93f2d084485">More...</a><br /></td></tr>
-<tr class="separator:a7a9f1c391add486369add93f2d084485"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabe2fb0d3583d281638c6a800673a439"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aabe2fb0d3583d281638c6a800673a439">fNormPH</a></td></tr>
-<tr class="memdesc:aabe2fb0d3583d281638c6a800673a439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalized pulse height.  <a href="#aabe2fb0d3583d281638c6a800673a439">More...</a><br /></td></tr>
-<tr class="separator:aabe2fb0d3583d281638c6a800673a439"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c827324562e260437a5d413af9319d6"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a6c827324562e260437a5d413af9319d6">fGhit</a></td></tr>
-<tr class="memdesc:a6c827324562e260437a5d413af9319d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of good hits.  <a href="#a6c827324562e260437a5d413af9319d6">More...</a><br /></td></tr>
-<tr class="separator:a6c827324562e260437a5d413af9319d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43b966796a5508ba735ebdb53485f679"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a43b966796a5508ba735ebdb53485f679">fThit</a></td></tr>
-<tr class="memdesc:a43b966796a5508ba735ebdb53485f679"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of hits.  <a href="#a43b966796a5508ba735ebdb53485f679">More...</a><br /></td></tr>
-<tr class="separator:a43b966796a5508ba735ebdb53485f679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a828331ad42231e63b55cad6039fe69cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a828331ad42231e63b55cad6039fe69cc">fDoDedx_Kaon</a></td></tr>
+<tr class="memdesc:a828331ad42231e63b55cad6039fe69cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to write <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> of the kaons ( <img class="formulaInl" alt="$K^\pm$" src="form_17.png"/>).  <a href="#a828331ad42231e63b55cad6039fe69cc">More...</a><br /></td></tr>
+<tr class="separator:a828331ad42231e63b55cad6039fe69cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35fd2a3dd5eaa34d34cb7b48a0971b50"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a35fd2a3dd5eaa34d34cb7b48a0971b50">fDoDedx_Pion</a></td></tr>
+<tr class="memdesc:a35fd2a3dd5eaa34d34cb7b48a0971b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to write <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> of the pions ( <img class="formulaInl" alt="$\pi^\pm$" src="form_18.png"/>).  <a href="#a35fd2a3dd5eaa34d34cb7b48a0971b50">More...</a><br /></td></tr>
+<tr class="separator:a35fd2a3dd5eaa34d34cb7b48a0971b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad56a6d10ce8fdd914253a87289e6f1fd"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ad56a6d10ce8fdd914253a87289e6f1fd">fDedx_Chi2e</a></td></tr>
+<tr class="memdesc:ad56a6d10ce8fdd914253a87289e6f1fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared in case of electron.  <a href="#ad56a6d10ce8fdd914253a87289e6f1fd">More...</a><br /></td></tr>
+<tr class="separator:ad56a6d10ce8fdd914253a87289e6f1fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0230aae7ad0c4afa452d3a909b6502d2"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a0230aae7ad0c4afa452d3a909b6502d2">fDedx_Chi2mu</a></td></tr>
+<tr class="memdesc:a0230aae7ad0c4afa452d3a909b6502d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared in case of muon.  <a href="#a0230aae7ad0c4afa452d3a909b6502d2">More...</a><br /></td></tr>
+<tr class="separator:a0230aae7ad0c4afa452d3a909b6502d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ca3bc3753a695c5917b97cfe9f9125c"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a7ca3bc3753a695c5917b97cfe9f9125c">fDedx_Chi2pi</a></td></tr>
+<tr class="memdesc:a7ca3bc3753a695c5917b97cfe9f9125c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared in case of pion.  <a href="#a7ca3bc3753a695c5917b97cfe9f9125c">More...</a><br /></td></tr>
+<tr class="separator:a7ca3bc3753a695c5917b97cfe9f9125c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac99df4eaf6414ff1705ef0ca92807508"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ac99df4eaf6414ff1705ef0ca92807508">fDedx_Chi2k</a></td></tr>
+<tr class="memdesc:ac99df4eaf6414ff1705ef0ca92807508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared in case of kaon.  <a href="#ac99df4eaf6414ff1705ef0ca92807508">More...</a><br /></td></tr>
+<tr class="separator:ac99df4eaf6414ff1705ef0ca92807508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17dcd0443fc1aae34213c1b7d5b9bc5d"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a17dcd0443fc1aae34213c1b7d5b9bc5d">fDedx_Chi2p</a></td></tr>
+<tr class="memdesc:a17dcd0443fc1aae34213c1b7d5b9bc5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared in case of proton.  <a href="#a17dcd0443fc1aae34213c1b7d5b9bc5d">More...</a><br /></td></tr>
+<tr class="separator:a17dcd0443fc1aae34213c1b7d5b9bc5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac84f9300eb508b8b8a5b81288814fb9a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ac84f9300eb508b8b8a5b81288814fb9a">fDedx_ProbPH</a></td></tr>
+<tr class="memdesc:ac84f9300eb508b8b8a5b81288814fb9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Most probable pulse height from truncated mean.  <a href="#ac84f9300eb508b8b8a5b81288814fb9a">More...</a><br /></td></tr>
+<tr class="separator:ac84f9300eb508b8b8a5b81288814fb9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd6b2d97ce72b7a9bbfac9cd6302de49"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#afd6b2d97ce72b7a9bbfac9cd6302de49">fDedx_NormPH</a></td></tr>
+<tr class="memdesc:afd6b2d97ce72b7a9bbfac9cd6302de49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalized pulse height.  <a href="#afd6b2d97ce72b7a9bbfac9cd6302de49">More...</a><br /></td></tr>
+<tr class="separator:afd6b2d97ce72b7a9bbfac9cd6302de49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43c1593551a7632a782413698ac18f55"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a43c1593551a7632a782413698ac18f55">fDedx_Ghit</a></td></tr>
+<tr class="memdesc:a43c1593551a7632a782413698ac18f55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of good hits.  <a href="#a43c1593551a7632a782413698ac18f55">More...</a><br /></td></tr>
+<tr class="separator:a43c1593551a7632a782413698ac18f55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d9a5c1300ca6717d6cc93dfecc37d30"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a3d9a5c1300ca6717d6cc93dfecc37d30">fDedx_Thit</a></td></tr>
+<tr class="memdesc:a3d9a5c1300ca6717d6cc93dfecc37d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of hits.  <a href="#a3d9a5c1300ca6717d6cc93dfecc37d30">More...</a><br /></td></tr>
+<tr class="separator:a3d9a5c1300ca6717d6cc93dfecc37d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a544c73a1ccf95d8e7023b941cef137b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a544c73a1ccf95d8e7023b941cef137b4">fDoTofEC</a></td></tr>
 <tr class="memdesc:a544c73a1ccf95d8e7023b941cef137b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to write ToF data from the end cap.  <a href="#a544c73a1ccf95d8e7023b941cef137b4">More...</a><br /></td></tr>
 <tr class="separator:a544c73a1ccf95d8e7023b941cef137b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -290,67 +336,67 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ae2000ac16915d203fa44c4fe547ccbc2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ae2000ac16915d203fa44c4fe547ccbc2">fDoTofOB</a></td></tr>
 <tr class="memdesc:ae2000ac16915d203fa44c4fe547ccbc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to write ToF data from the outer barrel.  <a href="#ae2000ac16915d203fa44c4fe547ccbc2">More...</a><br /></td></tr>
 <tr class="separator:ae2000ac16915d203fa44c4fe547ccbc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab04b43e822e106c9a158bd2a166289b7"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ab04b43e822e106c9a158bd2a166289b7">fPtotTof</a></td></tr>
-<tr class="memdesc:ab04b43e822e106c9a158bd2a166289b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#ab04b43e822e106c9a158bd2a166289b7">More...</a><br /></td></tr>
-<tr class="separator:ab04b43e822e106c9a158bd2a166289b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c88cf90586c7405fe54d865c0d67782"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a2c88cf90586c7405fe54d865c0d67782">fPathTof</a></td></tr>
-<tr class="memdesc:a2c88cf90586c7405fe54d865c0d67782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#a2c88cf90586c7405fe54d865c0d67782">More...</a><br /></td></tr>
-<tr class="separator:a2c88cf90586c7405fe54d865c0d67782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4165eb7b7b6eef39e3d6cfeda6e1dc3e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a4165eb7b7b6eef39e3d6cfeda6e1dc3e">fTof</a></td></tr>
 <tr class="memdesc:a4165eb7b7b6eef39e3d6cfeda6e1dc3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time of flight.  <a href="#a4165eb7b7b6eef39e3d6cfeda6e1dc3e">More...</a><br /></td></tr>
 <tr class="separator:a4165eb7b7b6eef39e3d6cfeda6e1dc3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31718cb7d5a6cb9ca75a4d4a2a80afac"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a31718cb7d5a6cb9ca75a4d4a2a80afac">fCntrTof</a></td></tr>
-<tr class="memdesc:a31718cb7d5a6cb9ca75a4d4a2a80afac"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#a31718cb7d5a6cb9ca75a4d4a2a80afac">More...</a><br /></td></tr>
-<tr class="separator:a31718cb7d5a6cb9ca75a4d4a2a80afac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d890fd303008228d359daf07cfd511c"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a8d890fd303008228d359daf07cfd511c">fPhTof</a></td></tr>
-<tr class="memdesc:a8d890fd303008228d359daf07cfd511c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#a8d890fd303008228d359daf07cfd511c">More...</a><br /></td></tr>
-<tr class="separator:a8d890fd303008228d359daf07cfd511c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e9925bddb5dba2d293fcb0bac60cea9"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a9e9925bddb5dba2d293fcb0bac60cea9">fRhitTof</a></td></tr>
-<tr class="memdesc:a9e9925bddb5dba2d293fcb0bac60cea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate <img class="formulaInl" alt="$Z$" src="form_17.png"/> or <img class="formulaInl" alt="$R$" src="form_18.png"/> Hit position.  <a href="#a9e9925bddb5dba2d293fcb0bac60cea9">More...</a><br /></td></tr>
-<tr class="separator:a9e9925bddb5dba2d293fcb0bac60cea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a721fbaa24e634a4d039a7eed044b9651"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a721fbaa24e634a4d039a7eed044b9651">fQualTof</a></td></tr>
-<tr class="memdesc:a721fbaa24e634a4d039a7eed044b9651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#a721fbaa24e634a4d039a7eed044b9651">More...</a><br /></td></tr>
-<tr class="separator:a721fbaa24e634a4d039a7eed044b9651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01baccdff6e52b33666ad9d2ad85c269"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a01baccdff6e52b33666ad9d2ad85c269">fElectronTof</a></td></tr>
-<tr class="memdesc:a01baccdff6e52b33666ad9d2ad85c269"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#a01baccdff6e52b33666ad9d2ad85c269">More...</a><br /></td></tr>
-<tr class="separator:a01baccdff6e52b33666ad9d2ad85c269"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ba545b812f0741b88f968d3314a47c4"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a1ba545b812f0741b88f968d3314a47c4">fMuonTof</a></td></tr>
-<tr class="memdesc:a1ba545b812f0741b88f968d3314a47c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#a1ba545b812f0741b88f968d3314a47c4">More...</a><br /></td></tr>
-<tr class="separator:a1ba545b812f0741b88f968d3314a47c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2a8b81e48a4877300bc307845643b5a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ad2a8b81e48a4877300bc307845643b5a">fProtoniTof</a></td></tr>
-<tr class="memdesc:ad2a8b81e48a4877300bc307845643b5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#ad2a8b81e48a4877300bc307845643b5a">More...</a><br /></td></tr>
-<tr class="separator:ad2a8b81e48a4877300bc307845643b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9075d591130b1543a209de01b1227028"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a9075d591130b1543a209de01b1227028">fKaonTof</a></td></tr>
-<tr class="memdesc:a9075d591130b1543a209de01b1227028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#a9075d591130b1543a209de01b1227028">More...</a><br /></td></tr>
-<tr class="separator:a9075d591130b1543a209de01b1227028"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7393827a08674ecdd3d3a2c1be5c728"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ae7393827a08674ecdd3d3a2c1be5c728">fProtonTof</a></td></tr>
-<tr class="memdesc:ae7393827a08674ecdd3d3a2c1be5c728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#ae7393827a08674ecdd3d3a2c1be5c728">More...</a><br /></td></tr>
-<tr class="separator:ae7393827a08674ecdd3d3a2c1be5c728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab948674351c9b487e2a3cf23af697dac"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ab948674351c9b487e2a3cf23af697dac">fTof_Ptot</a></td></tr>
+<tr class="memdesc:ab948674351c9b487e2a3cf23af697dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#ab948674351c9b487e2a3cf23af697dac">More...</a><br /></td></tr>
+<tr class="separator:ab948674351c9b487e2a3cf23af697dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f802bab9edc05a69ef9de8a2d635273"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a0f802bab9edc05a69ef9de8a2d635273">fTof_Path</a></td></tr>
+<tr class="memdesc:a0f802bab9edc05a69ef9de8a2d635273"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#a0f802bab9edc05a69ef9de8a2d635273">More...</a><br /></td></tr>
+<tr class="separator:a0f802bab9edc05a69ef9de8a2d635273"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39c92a88533cb420c24c1def0574a338"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a39c92a88533cb420c24c1def0574a338">fTof_Cntr</a></td></tr>
+<tr class="memdesc:a39c92a88533cb420c24c1def0574a338"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#a39c92a88533cb420c24c1def0574a338">More...</a><br /></td></tr>
+<tr class="separator:a39c92a88533cb420c24c1def0574a338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3824a18c3998bc23d767e04f737d677d"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a3824a18c3998bc23d767e04f737d677d">fTof_Ph</a></td></tr>
+<tr class="memdesc:a3824a18c3998bc23d767e04f737d677d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#a3824a18c3998bc23d767e04f737d677d">More...</a><br /></td></tr>
+<tr class="separator:a3824a18c3998bc23d767e04f737d677d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8faec4b0f300976627cf6b6376bf55c1"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a8faec4b0f300976627cf6b6376bf55c1">fTof_Rhit</a></td></tr>
+<tr class="memdesc:a8faec4b0f300976627cf6b6376bf55c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate <img class="formulaInl" alt="$Z$" src="form_19.png"/> or <img class="formulaInl" alt="$R$" src="form_20.png"/> Hit position.  <a href="#a8faec4b0f300976627cf6b6376bf55c1">More...</a><br /></td></tr>
+<tr class="separator:a8faec4b0f300976627cf6b6376bf55c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9917056901f6131f4a664a3acba96475"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a9917056901f6131f4a664a3acba96475">fTof_Qual</a></td></tr>
+<tr class="memdesc:a9917056901f6131f4a664a3acba96475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#a9917056901f6131f4a664a3acba96475">More...</a><br /></td></tr>
+<tr class="separator:a9917056901f6131f4a664a3acba96475"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaa777477565dd10bbdc66590aa09434"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#acaa777477565dd10bbdc66590aa09434">fTof_Electron</a></td></tr>
+<tr class="memdesc:acaa777477565dd10bbdc66590aa09434"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#acaa777477565dd10bbdc66590aa09434">More...</a><br /></td></tr>
+<tr class="separator:acaa777477565dd10bbdc66590aa09434"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67bcd4cade3874f0330d0bf50a7cd87d"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a67bcd4cade3874f0330d0bf50a7cd87d">fTof_Muon</a></td></tr>
+<tr class="memdesc:a67bcd4cade3874f0330d0bf50a7cd87d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#a67bcd4cade3874f0330d0bf50a7cd87d">More...</a><br /></td></tr>
+<tr class="separator:a67bcd4cade3874f0330d0bf50a7cd87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae732174b99e187f41d1d718ec4a1b636"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ae732174b99e187f41d1d718ec4a1b636">fTof_Protoni</a></td></tr>
+<tr class="memdesc:ae732174b99e187f41d1d718ec4a1b636"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#ae732174b99e187f41d1d718ec4a1b636">More...</a><br /></td></tr>
+<tr class="separator:ae732174b99e187f41d1d718ec4a1b636"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a028c1ab537432fd99e7ee3dbfcf1fd65"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a028c1ab537432fd99e7ee3dbfcf1fd65">fTof_Kaon</a></td></tr>
+<tr class="memdesc:a028c1ab537432fd99e7ee3dbfcf1fd65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#a028c1ab537432fd99e7ee3dbfcf1fd65">More...</a><br /></td></tr>
+<tr class="separator:a028c1ab537432fd99e7ee3dbfcf1fd65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac305e38204aa594d506f94d6cabdaf72"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ac305e38204aa594d506f94d6cabdaf72">fTof_Proton</a></td></tr>
+<tr class="memdesc:ac305e38204aa594d506f94d6cabdaf72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#ac305e38204aa594d506f94d6cabdaf72">More...</a><br /></td></tr>
+<tr class="separator:ac305e38204aa594d506f94d6cabdaf72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cde514d049d96bf5b610b6048a1a64c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a0cde514d049d96bf5b610b6048a1a64c">fDoPID</a></td></tr>
 <tr class="memdesc:a0cde514d049d96bf5b610b6048a1a64c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to write PID information.  <a href="#a0cde514d049d96bf5b610b6048a1a64c">More...</a><br /></td></tr>
 <tr class="separator:a0cde514d049d96bf5b610b6048a1a64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15eafe8a4aedb229775d8409bd9ea2ed"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a15eafe8a4aedb229775d8409bd9ea2ed">fCostPID</a></td></tr>
-<tr class="memdesc:a15eafe8a4aedb229775d8409bd9ea2ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Theta angle of the track.  <a href="#a15eafe8a4aedb229775d8409bd9ea2ed">More...</a><br /></td></tr>
-<tr class="separator:a15eafe8a4aedb229775d8409bd9ea2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf1f6cc5a1d26a1979eb0ca6750f6883"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#abf1f6cc5a1d26a1979eb0ca6750f6883">fDedxPID</a></td></tr>
-<tr class="memdesc:abf1f6cc5a1d26a1979eb0ca6750f6883"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared of the dedx of the track.  <a href="#abf1f6cc5a1d26a1979eb0ca6750f6883">More...</a><br /></td></tr>
-<tr class="separator:abf1f6cc5a1d26a1979eb0ca6750f6883"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28d4b705b26b6eee305cf647b2f2b874"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a28d4b705b26b6eee305cf647b2f2b874">fTof1PID</a></td></tr>
-<tr class="memdesc:a28d4b705b26b6eee305cf647b2f2b874"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared of the inner barrel ToF of the track.  <a href="#a28d4b705b26b6eee305cf647b2f2b874">More...</a><br /></td></tr>
-<tr class="separator:a28d4b705b26b6eee305cf647b2f2b874"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc72bdd2b58b3a65e83523a3891b4084"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#acc72bdd2b58b3a65e83523a3891b4084">fTof2PID</a></td></tr>
-<tr class="memdesc:acc72bdd2b58b3a65e83523a3891b4084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared of the outer barrel ToF of the track.  <a href="#acc72bdd2b58b3a65e83523a3891b4084">More...</a><br /></td></tr>
-<tr class="separator:acc72bdd2b58b3a65e83523a3891b4084"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a491b96d487cbf3bcac4b736126f89f4a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a491b96d487cbf3bcac4b736126f89f4a">fProbPID</a></td></tr>
-<tr class="memdesc:a491b96d487cbf3bcac4b736126f89f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probability that it is a pion.  <a href="#a491b96d487cbf3bcac4b736126f89f4a">More...</a><br /></td></tr>
-<tr class="separator:a491b96d487cbf3bcac4b736126f89f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1fec8300d3c77b93fd21bffe8bb5dc2"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#af1fec8300d3c77b93fd21bffe8bb5dc2">fPID_Cost</a></td></tr>
+<tr class="memdesc:af1fec8300d3c77b93fd21bffe8bb5dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Theta angle of the track.  <a href="#af1fec8300d3c77b93fd21bffe8bb5dc2">More...</a><br /></td></tr>
+<tr class="separator:af1fec8300d3c77b93fd21bffe8bb5dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a803bc13fa8c8e197916d745b6962d2c2"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a803bc13fa8c8e197916d745b6962d2c2">fPID_Dedx</a></td></tr>
+<tr class="memdesc:a803bc13fa8c8e197916d745b6962d2c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared of the dedx of the track.  <a href="#a803bc13fa8c8e197916d745b6962d2c2">More...</a><br /></td></tr>
+<tr class="separator:a803bc13fa8c8e197916d745b6962d2c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97bba4e3790c9bd401dad0fff6d6678f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a97bba4e3790c9bd401dad0fff6d6678f">fPID_Tof1</a></td></tr>
+<tr class="memdesc:a97bba4e3790c9bd401dad0fff6d6678f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared of the inner barrel ToF of the track.  <a href="#a97bba4e3790c9bd401dad0fff6d6678f">More...</a><br /></td></tr>
+<tr class="separator:a97bba4e3790c9bd401dad0fff6d6678f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae137c6cf921db238a4b7a2d876fe6628"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ae137c6cf921db238a4b7a2d876fe6628">fPID_Tof2</a></td></tr>
+<tr class="memdesc:ae137c6cf921db238a4b7a2d876fe6628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chi squared of the outer barrel ToF of the track.  <a href="#ae137c6cf921db238a4b7a2d876fe6628">More...</a><br /></td></tr>
+<tr class="separator:ae137c6cf921db238a4b7a2d876fe6628"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0da70876c86d75c78f59e4dd7b89d891"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a0da70876c86d75c78f59e4dd7b89d891">fPID_Prob</a></td></tr>
+<tr class="memdesc:a0da70876c86d75c78f59e4dd7b89d891"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probability that it is a pion.  <a href="#a0da70876c86d75c78f59e4dd7b89d891">More...</a><br /></td></tr>
+<tr class="separator:a0da70876c86d75c78f59e4dd7b89d891"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Analyse <img class="formulaInl" alt="$ J/\psi \rightarrow D^0 \phi $" src="form_0.png"/> events. </p>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>December 14th, 2018 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00036">36</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00038">38</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a005e37b9970b69e711715af40d6eeadf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a005e37b9970b69e711715af40d6eeadf">&#9670;&nbsp;</a></span>DzeroPhi()</h2>
@@ -381,7 +427,7 @@ Private Attributes</h2></td></tr>
 <p>Constructor for the <code><a class="el" href="classDzeroPhi.html" title="Analyse  events. ">DzeroPhi</a></code> algorithm. </p>
 <p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classDzeroPhi.html" title="Analyse  events. ">DzeroPhi</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="DzeroPhi_8h.html">DzeroPhi/DzeroPhi.h</a>) and that you should assign the values in <code>share/jopOptions_DzeroPhi.txt</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00074">74</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00076">76</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -405,7 +451,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -419,7 +465,69 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00676">676</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00617">617</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a6895170b0964db32d57a18960d0f89af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6895170b0964db32d57a18960d0f89af">&#9670;&nbsp;</a></span>BookNtupleDedxItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DzeroPhi::BookNtupleDedxItems </td>
+          <td>(</td>
+          <td class="paramtype">NTuplePtr &amp;&#160;</td>
+          <td class="paramname"><em>nt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> energy loss branch (<code>"dedx"</code>). </p>
+<p>This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00656">656</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+
+</div>
+</div>
+<a id="aa1fa263f74352c4189b3e81f91806218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1fa263f74352c4189b3e81f91806218">&#9670;&nbsp;</a></span>BookNtupleTofItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DzeroPhi::BookNtupleTofItems </td>
+          <td>(</td>
+          <td class="paramtype">NTuplePtr &amp;&#160;</td>
+          <td class="paramname"><em>nt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function encapsulates the <code>addItem</code> procedure for the ToF branch. </p>
+<p>This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00634">634</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -440,11 +548,8 @@ Private Attributes</h2></td></tr>
 
 <p>Inherited <code>execute</code> method of the <code>Algorithm</code>. </p>
 <p>This function is called <em>for each event</em>. </p>
-<p>&lt; Only select events that contains two <img class="formulaInl" alt="$K^-$" src="form_1.png"/>'s.</p>
-<p>&lt; Only select events that contains one <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>.</p>
-<p>&lt; Only select events that contains one <img class="formulaInl" alt="$K^+$" src="form_2.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00251">251</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00222">222</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
@@ -466,12 +571,35 @@ Private Attributes</h2></td></tr>
 <p>Currently does nothing. </p>
 <p>Cut flow could be printed in this step. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Add log output to <code>finalize</code> step. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00661">661</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00600">600</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a495d0d57e4db5a6bbf56db08832ee55e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a495d0d57e4db5a6bbf56db08832ee55e">&#9670;&nbsp;</a></span>GetTofInformation()</h2>
+<a id="adb12c300e5d30f5737d9da6a56fab2c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb12c300e5d30f5737d9da6a56fab2c1">&#9670;&nbsp;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">StatusCode DzeroPhi::initialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
+<p>This function is called only once in the beginning.</p>
+<p>Define and load NTuples here. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00127">127</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a550ec03325b3e287fa2cba6b25bcf196"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a550ec03325b3e287fa2cba6b25bcf196">&#9670;&nbsp;</a></span>WriteDedxInfo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -480,7 +608,102 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DzeroPhi::GetTofInformation </td>
+          <td class="memname">void DzeroPhi::WriteDedxInfo </td>
+          <td>(</td>
+          <td class="paramtype">EvtRecTrack *&#160;</td>
+          <td class="paramname"><em>evtRecTrack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> energy loss information <em>for one track</em>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">evtRecTrack</td><td>Pointer to the reconstructed track of which you want to write the <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> data. </td></tr>
+    <tr><td class="paramname">tupleName</td><td>The name of the tuple to which you want to write the information. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00727">727</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a479648953f8a912e4f71a112f98f40b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a479648953f8a912e4f71a112f98f40b8">&#9670;&nbsp;</a></span>WriteDedxInfoForVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DzeroPhi::WriteDedxInfoForVector </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; EvtRecTrack *&gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> energy loss information. </p>
+<p>This method allows you to write <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> information for any selection of charged tracks. Just feed it a vector that contains such a collection of <code>EvtRecTrack</code> pointers.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector</td><td>The selection of charged tracks that of which you want to write the <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> data. </td></tr>
+    <tr><td class="paramname">tupleName</td><td>The name of the tuple to which you want to write the information. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00713">713</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+
+</div>
+</div>
+<a id="af5d66a97079119c1b57d628629858f39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5d66a97079119c1b57d628629858f39">&#9670;&nbsp;</a></span>WriteTofInformation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DzeroPhi::WriteTofInformation </td>
           <td>(</td>
           <td class="paramtype">SmartRefVector&lt; RecTofTrack &gt;::iterator&#160;</td>
           <td class="paramname"><em>iter_tof</em>, </td>
@@ -505,41 +728,18 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00692">692</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
-
-</div>
-</div>
-<a id="adb12c300e5d30f5737d9da6a56fab2c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb12c300e5d30f5737d9da6a56fab2c1">&#9670;&nbsp;</a></span>initialize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">StatusCode DzeroPhi::initialize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
-<p>This function is called only once in the beginning.</p>
-<p>Define and load NTuples here. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00117">117</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00675">675</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="aa9d60c76a952f08c693f56d9b91d924f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9d60c76a952f08c693f56d9b91d924f">&#9670;&nbsp;</a></span>fChi2e</h2>
+<a id="ad56a6d10ce8fdd914253a87289e6f1fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad56a6d10ce8fdd914253a87289e6f1fd">&#9670;&nbsp;</a></span>fDedx_Chi2e</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -548,7 +748,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fChi2e</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fDedx_Chi2e</td>
         </tr>
       </table>
   </td>
@@ -560,12 +760,12 @@ Private Attributes</h2></td></tr>
 
 <p>Chi squared in case of electron. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00125">125</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00145">145</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="a314a50f7146e894c9cfaa85538f968cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a314a50f7146e894c9cfaa85538f968cb">&#9670;&nbsp;</a></span>fChi2k</h2>
+<a id="ac99df4eaf6414ff1705ef0ca92807508"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac99df4eaf6414ff1705ef0ca92807508">&#9670;&nbsp;</a></span>fDedx_Chi2k</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -574,7 +774,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fChi2k</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fDedx_Chi2k</td>
         </tr>
       </table>
   </td>
@@ -586,12 +786,12 @@ Private Attributes</h2></td></tr>
 
 <p>Chi squared in case of kaon. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00128">128</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00148">148</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="a0813ef1dc03e4e117261f3b4bf021ef7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0813ef1dc03e4e117261f3b4bf021ef7">&#9670;&nbsp;</a></span>fChi2mu</h2>
+<a id="a0230aae7ad0c4afa452d3a909b6502d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0230aae7ad0c4afa452d3a909b6502d2">&#9670;&nbsp;</a></span>fDedx_Chi2mu</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -600,7 +800,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fChi2mu</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fDedx_Chi2mu</td>
         </tr>
       </table>
   </td>
@@ -612,12 +812,12 @@ Private Attributes</h2></td></tr>
 
 <p>Chi squared in case of muon. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00126">126</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00146">146</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="aa74e82e4893e5615673129ccb798aa54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa74e82e4893e5615673129ccb798aa54">&#9670;&nbsp;</a></span>fChi2p</h2>
+<a id="a17dcd0443fc1aae34213c1b7d5b9bc5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17dcd0443fc1aae34213c1b7d5b9bc5d">&#9670;&nbsp;</a></span>fDedx_Chi2p</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -626,7 +826,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fChi2p</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fDedx_Chi2p</td>
         </tr>
       </table>
   </td>
@@ -638,12 +838,12 @@ Private Attributes</h2></td></tr>
 
 <p>Chi squared in case of proton. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00129">129</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00149">149</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="aa21bec50f2a26a87f01751c65a125a3a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa21bec50f2a26a87f01751c65a125a3a">&#9670;&nbsp;</a></span>fChi2pi</h2>
+<a id="a7ca3bc3753a695c5917b97cfe9f9125c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ca3bc3753a695c5917b97cfe9f9125c">&#9670;&nbsp;</a></span>fDedx_Chi2pi</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -652,7 +852,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fChi2pi</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fDedx_Chi2pi</td>
         </tr>
       </table>
   </td>
@@ -664,12 +864,12 @@ Private Attributes</h2></td></tr>
 
 <p>Chi squared in case of pion. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00127">127</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00147">147</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="adf0e09ac4c81da8cea44b411ef53711b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf0e09ac4c81da8cea44b411ef53711b">&#9670;&nbsp;</a></span>fChi2sq</h2>
+<a id="a43c1593551a7632a782413698ac18f55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43c1593551a7632a782413698ac18f55">&#9670;&nbsp;</a></span>fDedx_Ghit</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -678,7 +878,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fChi2sq</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fDedx_Ghit</td>
         </tr>
       </table>
   </td>
@@ -688,14 +888,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Chi squared of the Kalman kinematic fit. </p>
+<p>Number of good hits. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00121">121</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00152">152</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="a31718cb7d5a6cb9ca75a4d4a2a80afac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31718cb7d5a6cb9ca75a4d4a2a80afac">&#9670;&nbsp;</a></span>fCntrTof</h2>
+<a id="afd6b2d97ce72b7a9bbfac9cd6302de49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd6b2d97ce72b7a9bbfac9cd6302de49">&#9670;&nbsp;</a></span>fDedx_NormPH</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -704,7 +904,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fCntrTof</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fDedx_NormPH</td>
         </tr>
       </table>
   </td>
@@ -714,14 +914,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>ToF counter ID. </p>
+<p>Normalized pulse height. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00142">142</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00151">151</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="a15eafe8a4aedb229775d8409bd9ea2ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15eafe8a4aedb229775d8409bd9ea2ed">&#9670;&nbsp;</a></span>fCostPID</h2>
+<a id="ac84f9300eb508b8b8a5b81288814fb9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac84f9300eb508b8b8a5b81288814fb9a">&#9670;&nbsp;</a></span>fDedx_ProbPH</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -730,7 +930,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fCostPID</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fDedx_ProbPH</td>
         </tr>
       </table>
   </td>
@@ -740,14 +940,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Theta angle of the track. </p>
+<p>Most probable pulse height from truncated mean. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00154">154</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00150">150</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="abf1f6cc5a1d26a1979eb0ca6750f6883"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf1f6cc5a1d26a1979eb0ca6750f6883">&#9670;&nbsp;</a></span>fDedxPID</h2>
+<a id="a3d9a5c1300ca6717d6cc93dfecc37d30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d9a5c1300ca6717d6cc93dfecc37d30">&#9670;&nbsp;</a></span>fDedx_Thit</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -756,7 +956,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fDedxPID</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fDedx_Thit</td>
         </tr>
       </table>
   </td>
@@ -766,9 +966,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Chi squared of the dedx of the track. </p>
+<p>Total number of hits. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00155">155</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00153">153</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -792,7 +992,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00079">79</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00097">97</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -818,7 +1018,59 @@ Private Attributes</h2></td></tr>
 
 <p>Package property that determines whether or not to write <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00124">124</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00142">142</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a828331ad42231e63b55cad6039fe69cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a828331ad42231e63b55cad6039fe69cc">&#9670;&nbsp;</a></span>fDoDedx_Kaon</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DzeroPhi::fDoDedx_Kaon</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to write <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> of the kaons ( <img class="formulaInl" alt="$K^\pm$" src="form_17.png"/>). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00143">143</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a35fd2a3dd5eaa34d34cb7b48a0971b50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35fd2a3dd5eaa34d34cb7b48a0971b50">&#9670;&nbsp;</a></span>fDoDedx_Pion</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DzeroPhi::fDoDedx_Pion</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to write <img class="formulaInl" alt="$dE/dx$" src="form_16.png"/> of the pions ( <img class="formulaInl" alt="$\pi^\pm$" src="form_18.png"/>). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00144">144</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -842,9 +1094,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Package property that determines whether or not to perform a 5-constraint Kalman kinematic fit. </p>
+<p>Package property that determines whether or not to perform a 4-constraint Kalman kinematic fit. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00116">116</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00134">134</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -870,7 +1122,7 @@ Private Attributes</h2></td></tr>
 
 <p>Package property that determines whether or not to perform a 6-constraint Kalman kinematic fit. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00117">117</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00135">135</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -896,7 +1148,7 @@ Private Attributes</h2></td></tr>
 
 <p>Package property that determines whether or not to write multiplicities and primary vertex info. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00090">90</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00108">108</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -922,7 +1174,7 @@ Private Attributes</h2></td></tr>
 
 <p>Package property that determines whether or not to write PID information. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00153">153</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00173">173</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -948,7 +1200,7 @@ Private Attributes</h2></td></tr>
 
 <p>Package property that determines whether or not to write ToF data from the end cap. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00136">136</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00156">156</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -974,7 +1226,7 @@ Private Attributes</h2></td></tr>
 
 <p>Package property that determines whether or not to write ToF data from the inner barrel. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00137">137</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00157">157</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1000,7 +1252,7 @@ Private Attributes</h2></td></tr>
 
 <p>Package property that determines whether or not to write ToF data from the outer barrel. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00138">138</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00158">158</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1026,33 +1278,7 @@ Private Attributes</h2></td></tr>
 
 <p>Package property that determines whether or not to write track vertex info. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00104">104</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="a01baccdff6e52b33666ad9d2ad85c269"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01baccdff6e52b33666ad9d2ad85c269">&#9670;&nbsp;</a></span>fElectronTof</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fElectronTof</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Difference with ToF in electron hypothesis. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00146">146</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00122">122</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1076,7 +1302,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00073">73</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00091">91</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1102,7 +1328,7 @@ Private Attributes</h2></td></tr>
 
 <p>Number of charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00092">92</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00110">110</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1128,7 +1354,7 @@ Private Attributes</h2></td></tr>
 
 <p>Number of 'good' charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00097">97</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00115">115</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1154,7 +1380,7 @@ Private Attributes</h2></td></tr>
 
 <p>Number of <img class="formulaInl" alt="$K^-$" src="form_1.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00100">100</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00118">118</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1180,7 +1406,7 @@ Private Attributes</h2></td></tr>
 
 <p>Number of <img class="formulaInl" alt="$K^+$" src="form_2.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00099">99</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00117">117</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1207,7 +1433,7 @@ Private Attributes</h2></td></tr>
 <p>Number of charged tracks in MDC. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Test whether this parameter really makes sense. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00098">98</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00116">116</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1233,7 +1459,7 @@ Private Attributes</h2></td></tr>
 
 <p>Number of charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00093">93</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00111">111</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1259,7 +1485,7 @@ Private Attributes</h2></td></tr>
 
 <p>Number of <img class="formulaInl" alt="$\pi^-$" src="form_7.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00101">101</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00119">119</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1285,7 +1511,7 @@ Private Attributes</h2></td></tr>
 
 <p>Total number of events per track. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00091">91</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00109">109</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1311,7 +1537,7 @@ Private Attributes</h2></td></tr>
 
 <p>Primary <img class="formulaInl" alt="$x$" src="form_4.png"/> coordinate of the collision point. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00094">94</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00112">112</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1337,7 +1563,7 @@ Private Attributes</h2></td></tr>
 
 <p>Primary <img class="formulaInl" alt="$y$" src="form_5.png"/> coordinate of the collision point. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00095">95</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00113">113</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1363,7 +1589,85 @@ Private Attributes</h2></td></tr>
 
 <p>Primary <img class="formulaInl" alt="$z$" src="form_6.png"/> coordinate of the collision point. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00096">96</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00114">114</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a283450df09d006c7c7286bef0ef9db88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a283450df09d006c7c7286bef0ef9db88">&#9670;&nbsp;</a></span>fEventHeader</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SmartDataPtr&lt;Event::EventHeader&gt; DzeroPhi::fEventHeader</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Data pointer for <code>Event::EventHeader</code> which is set in <code><a class="el" href="classDzeroPhi.html#a87e688a9fb9a8522d78320c854efb27e" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00075">75</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a5ef69157f5c02733cdab7fcd47a228d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ef69157f5c02733cdab7fcd47a228d2">&#9670;&nbsp;</a></span>fEvtRecEvent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SmartDataPtr&lt;EvtRecEvent&gt; DzeroPhi::fEvtRecEvent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Data pointer for <code>EventModel::EvtRec::EvtRecEvent</code> which is set in <code><a class="el" href="classDzeroPhi.html#a87e688a9fb9a8522d78320c854efb27e" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00076">76</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="ab82bd31b0176f00907cf5f63d7763571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab82bd31b0176f00907cf5f63d7763571">&#9670;&nbsp;</a></span>fEvtRecTrkCol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SmartDataPtr&lt;EvtRecTrackCol&gt; DzeroPhi::fEvtRecTrkCol</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Data pointer for <code>EventModel::EvtRec::EvtRecTrackCol</code> which is set in <code><a class="el" href="classDzeroPhi.html#a87e688a9fb9a8522d78320c854efb27e" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00077">77</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1387,7 +1691,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00076">76</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00094">94</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1411,7 +1715,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00074">74</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00092">92</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1435,33 +1739,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00075">75</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="a6c827324562e260437a5d413af9319d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c827324562e260437a5d413af9319d6">&#9670;&nbsp;</a></span>fGhit</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fGhit</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Number of good hits. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00132">132</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00093">93</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1480,14 +1758,118 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Vector that, in each event, will contain a selection of pointers to 'good' charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00057">57</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00064">64</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="ab2ff9ca3886ad5aebcd3400353790911"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ff9ca3886ad5aebcd3400353790911">&#9670;&nbsp;</a></span>fInvMass_ChiSq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fInvMass_ChiSq</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Chi squared of the Kalman kinematic fit. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00139">139</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="afd358b383030e79d84391c2726ce4066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd358b383030e79d84391c2726ce4066">&#9670;&nbsp;</a></span>fInvMass_D0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fInvMass_D0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Invariant mass for <img class="formulaInl" alt="$ K^- pi^+ $" src="form_10.png"/> ( <img class="formulaInl" alt="$ D^0 $" src="form_11.png"/>). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00136">136</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a101f526cae13b8c6e16788621dd71fcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a101f526cae13b8c6e16788621dd71fcb">&#9670;&nbsp;</a></span>fInvMass_Jpsi</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fInvMass_Jpsi</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Invariant mass for <img class="formulaInl" alt="$ D^0 \phi $" src="form_14.png"/> ( <img class="formulaInl" alt="$ J/\psi $" src="form_15.png"/>). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00138">138</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="ae51dd7d155213f16f53d785ac1546ec4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae51dd7d155213f16f53d785ac1546ec4">&#9670;&nbsp;</a></span>fInvMass_phi</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fInvMass_phi</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Invariant mass for <img class="formulaInl" alt="$ K^+ K^+ $" src="form_12.png"/> ( <img class="formulaInl" alt="$ \phi $" src="form_13.png"/>). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00137">137</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1506,14 +1888,66 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^-$" src="form_1.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00058">58</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00065">65</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="ad3aee1062e71504331e43c89cf3ee322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3aee1062e71504331e43c89cf3ee322">&#9670;&nbsp;</a></span>fKaonNeg1Iter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;EvtRecTrack*&gt;::iterator DzeroPhi::fKaonNeg1Iter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Iterator for looping over the collection of negative kaons (1st occurence). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00070">70</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="ab2de74b993871b2f9aaeda4624fddc2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2de74b993871b2f9aaeda4624fddc2b">&#9670;&nbsp;</a></span>fKaonNeg2Iter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;EvtRecTrack*&gt;::iterator DzeroPhi::fKaonNeg2Iter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Iterator for looping over the collection of negative kaons (2st occurence). </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00071">71</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1532,19 +1966,19 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^+$" src="form_2.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00059">59</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00066">66</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="a9075d591130b1543a209de01b1227028"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9075d591130b1543a209de01b1227028">&#9670;&nbsp;</a></span>fKaonTof</h2>
+<a id="abbec918d693c4d691957fef592ce32a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbec918d693c4d691957fef592ce32a9">&#9670;&nbsp;</a></span>fKaonPosIter</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1553,19 +1987,19 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fKaonTof</td>
+          <td class="memname">std::vector&lt;EvtRecTrack*&gt;::iterator DzeroPhi::fKaonPosIter</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Difference with ToF in charged kaon hypothesis. </p>
+<p>Iterator for looping over the collection of positive kaons. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00149">149</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00072">72</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1584,90 +2018,14 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00054">54</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p>Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class. </p>
 
-</div>
-</div>
-<a id="a2f2385bcf8d302cdf84e7b491e23bd96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f2385bcf8d302cdf84e7b491e23bd96">&#9670;&nbsp;</a></span>fM_D0</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fM_D0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Invvariant mass <img class="formulaInl" alt="$ K^- pi^+ $" src="form_10.png"/> ( <img class="formulaInl" alt="$ D^0 $" src="form_11.png"/>). </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00118">118</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="a1042f3f00666ead5f31850193bf56a58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1042f3f00666ead5f31850193bf56a58">&#9670;&nbsp;</a></span>fM_Jpsi</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fM_Jpsi</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Invvariant mass <img class="formulaInl" alt="$ D^0 \phi $" src="form_14.png"/> ( <img class="formulaInl" alt="$ J/\psi $" src="form_15.png"/>). </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00120">120</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="ad50b9c4770e5fc1bac16a21dc13d9d1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad50b9c4770e5fc1bac16a21dc13d9d1f">&#9670;&nbsp;</a></span>fM_phi</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fM_phi</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Invvariant mass <img class="formulaInl" alt="$ K^+ K^+ $" src="form_12.png"/> ( <img class="formulaInl" alt="$ \phi $" src="form_13.png"/>). </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00119">119</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00061">61</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1691,59 +2049,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00082">82</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="a1ba545b812f0741b88f968d3314a47c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ba545b812f0741b88f968d3314a47c4">&#9670;&nbsp;</a></span>fMuonTof</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fMuonTof</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Difference with ToF in muon hypothesis. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00147">147</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="aabe2fb0d3583d281638c6a800673a439"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabe2fb0d3583d281638c6a800673a439">&#9670;&nbsp;</a></span>fNormPH</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fNormPH</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Normalized pulse height. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00131">131</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00100">100</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1762,19 +2068,19 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Map for <code>NTuple::Tuple*</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00055">55</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00062">62</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="a2c88cf90586c7405fe54d865c0d67782"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c88cf90586c7405fe54d865c0d67782">&#9670;&nbsp;</a></span>fPathTof</h2>
+<a id="af1fec8300d3c77b93fd21bffe8bb5dc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1fec8300d3c77b93fd21bffe8bb5dc2">&#9670;&nbsp;</a></span>fPID_Cost</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1783,7 +2089,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fPathTof</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fPID_Cost</td>
         </tr>
       </table>
   </td>
@@ -1793,14 +2099,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Path length. </p>
+<p>Theta angle of the track. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00140">140</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00174">174</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="a8d890fd303008228d359daf07cfd511c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d890fd303008228d359daf07cfd511c">&#9670;&nbsp;</a></span>fPhTof</h2>
+<a id="a803bc13fa8c8e197916d745b6962d2c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a803bc13fa8c8e197916d745b6962d2c2">&#9670;&nbsp;</a></span>fPID_Dedx</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1809,7 +2115,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fPhTof</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fPID_Dedx</td>
         </tr>
       </table>
   </td>
@@ -1819,9 +2125,87 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>ToF pulse height. </p>
+<p>Chi squared of the dedx of the track. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00143">143</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00175">175</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a0da70876c86d75c78f59e4dd7b89d891"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0da70876c86d75c78f59e4dd7b89d891">&#9670;&nbsp;</a></span>fPID_Prob</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fPID_Prob</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Probability that it is a pion. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00178">178</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a97bba4e3790c9bd401dad0fff6d6678f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97bba4e3790c9bd401dad0fff6d6678f">&#9670;&nbsp;</a></span>fPID_Tof1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fPID_Tof1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Chi squared of the inner barrel ToF of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00176">176</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="ae137c6cf921db238a4b7a2d876fe6628"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae137c6cf921db238a4b7a2d876fe6628">&#9670;&nbsp;</a></span>fPID_Tof2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fPID_Tof2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Chi squared of the outer barrel ToF of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00177">177</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -1840,19 +2224,19 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00060">60</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00067">67</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="a7a9f1c391add486369add93f2d084485"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a9f1c391add486369add93f2d084485">&#9670;&nbsp;</a></span>fProbPH</h2>
+<a id="aae2ccd9484e7620bf6074e174a2d5ca4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae2ccd9484e7620bf6074e174a2d5ca4">&#9670;&nbsp;</a></span>fPionPosIter</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1861,175 +2245,19 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fProbPH</td>
+          <td class="memname">std::vector&lt;EvtRecTrack*&gt;::iterator DzeroPhi::fPionPosIter</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Most probable pulse height from truncated mean. </p>
+<p>Iterator for looping over the collection of positive pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00130">130</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="a491b96d487cbf3bcac4b736126f89f4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a491b96d487cbf3bcac4b736126f89f4a">&#9670;&nbsp;</a></span>fProbPID</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fProbPID</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Probability that it is a pion. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00158">158</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="ad2a8b81e48a4877300bc307845643b5a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2a8b81e48a4877300bc307845643b5a">&#9670;&nbsp;</a></span>fProtoniTof</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fProtoniTof</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Difference with ToF in charged pion hypothesis. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00148">148</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="ae7393827a08674ecdd3d3a2c1be5c728"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7393827a08674ecdd3d3a2c1be5c728">&#9670;&nbsp;</a></span>fProtonTof</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fProtonTof</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Difference with ToF in proton hypothesis. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00150">150</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="ab04b43e822e106c9a158bd2a166289b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab04b43e822e106c9a158bd2a166289b7">&#9670;&nbsp;</a></span>fPtotTof</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fPtotTof</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Momentum of the track as reconstructed by MDC. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00139">139</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="a721fbaa24e634a4d039a7eed044b9651"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a721fbaa24e634a4d039a7eed044b9651">&#9670;&nbsp;</a></span>fQualTof</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fQualTof</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Data quality of reconstruction. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00145">145</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
-
-</div>
-</div>
-<a id="a9e9925bddb5dba2d293fcb0bac60cea9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e9925bddb5dba2d293fcb0bac60cea9">&#9670;&nbsp;</a></span>fRhitTof</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fRhitTof</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Track extrapolate <img class="formulaInl" alt="$Z$" src="form_17.png"/> or <img class="formulaInl" alt="$R$" src="form_18.png"/> Hit position. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00144">144</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00073">73</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2053,7 +2281,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00070">70</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00088">88</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2077,12 +2305,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00069">69</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00087">87</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="a43b966796a5508ba735ebdb53485f679"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43b966796a5508ba735ebdb53485f679">&#9670;&nbsp;</a></span>fThit</h2>
+<a id="aa9d6964df4a9358d9ecb2f06b1fa06f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9d6964df4a9358d9ecb2f06b1fa06f1">&#9670;&nbsp;</a></span>fSmallestChiSq</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2091,19 +2319,17 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fThit</td>
+          <td class="memname">double DzeroPhi::fSmallestChiSq</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Total number of hits. </p>
-
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00133">133</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00060">60</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2129,12 +2355,12 @@ Private Attributes</h2></td></tr>
 
 <p>Time of flight. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00141">141</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00159">159</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="a28d4b705b26b6eee305cf647b2f2b874"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28d4b705b26b6eee305cf647b2f2b874">&#9670;&nbsp;</a></span>fTof1PID</h2>
+<a id="a39c92a88533cb420c24c1def0574a338"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39c92a88533cb420c24c1def0574a338">&#9670;&nbsp;</a></span>fTof_Cntr</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2143,7 +2369,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof1PID</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Cntr</td>
         </tr>
       </table>
   </td>
@@ -2153,14 +2379,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Chi squared of the inner barrel ToF of the track. </p>
+<p>ToF counter ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00156">156</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00162">162</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
-<a id="acc72bdd2b58b3a65e83523a3891b4084"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc72bdd2b58b3a65e83523a3891b4084">&#9670;&nbsp;</a></span>fTof2PID</h2>
+<a id="acaa777477565dd10bbdc66590aa09434"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaa777477565dd10bbdc66590aa09434">&#9670;&nbsp;</a></span>fTof_Electron</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2169,7 +2395,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof2PID</td>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Electron</td>
         </tr>
       </table>
   </td>
@@ -2179,9 +2405,243 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Chi squared of the outer barrel ToF of the track. </p>
+<p>Difference with ToF in electron hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00157">157</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00166">166</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a028c1ab537432fd99e7ee3dbfcf1fd65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a028c1ab537432fd99e7ee3dbfcf1fd65">&#9670;&nbsp;</a></span>fTof_Kaon</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Kaon</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Difference with ToF in charged kaon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00169">169</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a67bcd4cade3874f0330d0bf50a7cd87d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67bcd4cade3874f0330d0bf50a7cd87d">&#9670;&nbsp;</a></span>fTof_Muon</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Muon</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Difference with ToF in muon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00167">167</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a0f802bab9edc05a69ef9de8a2d635273"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f802bab9edc05a69ef9de8a2d635273">&#9670;&nbsp;</a></span>fTof_Path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Path</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Path length. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00161">161</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a3824a18c3998bc23d767e04f737d677d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3824a18c3998bc23d767e04f737d677d">&#9670;&nbsp;</a></span>fTof_Ph</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Ph</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ToF pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00163">163</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="ac305e38204aa594d506f94d6cabdaf72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac305e38204aa594d506f94d6cabdaf72">&#9670;&nbsp;</a></span>fTof_Proton</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Proton</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Difference with ToF in proton hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00170">170</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="ae732174b99e187f41d1d718ec4a1b636"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae732174b99e187f41d1d718ec4a1b636">&#9670;&nbsp;</a></span>fTof_Protoni</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Protoni</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Difference with ToF in charged pion hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00168">168</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="ab948674351c9b487e2a3cf23af697dac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab948674351c9b487e2a3cf23af697dac">&#9670;&nbsp;</a></span>fTof_Ptot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Ptot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Momentum of the track as reconstructed by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00160">160</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a9917056901f6131f4a664a3acba96475"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9917056901f6131f4a664a3acba96475">&#9670;&nbsp;</a></span>fTof_Qual</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Qual</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Data quality of reconstruction. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00165">165</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+
+</div>
+</div>
+<a id="a8faec4b0f300976627cf6b6376bf55c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8faec4b0f300976627cf6b6376bf55c1">&#9670;&nbsp;</a></span>fTof_Rhit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt; DzeroPhi::fTof_Rhit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Track extrapolate <img class="formulaInl" alt="$Z$" src="form_19.png"/> or <img class="formulaInl" alt="$R$" src="form_20.png"/> Hit position. </p>
+
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00164">164</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2207,7 +2667,7 @@ Private Attributes</h2></td></tr>
 
 <p>Momentum <img class="formulaInl" alt="$p$" src="form_9.png"/> of the track. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00113">113</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00131">131</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2234,7 +2694,7 @@ Private Attributes</h2></td></tr>
 <p>Helix angle of the particle (?). </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00112">112</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00130">130</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2261,7 +2721,7 @@ Private Attributes</h2></td></tr>
 <p>Angle in the <img class="formulaInl" alt="$xy$" src="form_8.png"/>plane (?). </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00111">111</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00129">129</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2287,7 +2747,7 @@ Private Attributes</h2></td></tr>
 
 <p>Nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_8.png"/> plane. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00109">109</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00127">127</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2313,7 +2773,7 @@ Private Attributes</h2></td></tr>
 
 <p>Nearest distance to IP in <img class="formulaInl" alt="$z$" src="form_6.png"/> direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00110">110</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00128">128</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2339,7 +2799,7 @@ Private Attributes</h2></td></tr>
 
 <p>Distance from origin in <img class="formulaInl" alt="$xy$" src="form_8.png"/> plane. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00108">108</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00126">126</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2365,7 +2825,7 @@ Private Attributes</h2></td></tr>
 
 <p>Primary <img class="formulaInl" alt="$x$" src="form_4.png"/> coordinate of the vertex as determined by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00105">105</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00123">123</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2391,7 +2851,7 @@ Private Attributes</h2></td></tr>
 
 <p>Primary <img class="formulaInl" alt="$y$" src="form_5.png"/> coordinate of the vertex as determined by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00106">106</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00124">124</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2417,7 +2877,7 @@ Private Attributes</h2></td></tr>
 
 <p>Primary <img class="formulaInl" alt="$z$" src="form_6.png"/> coordinate of the vertex as determined by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00107">107</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00125">125</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2436,14 +2896,14 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Iterator for looping over the collection of charged and neutral tracks (<code>EvtRecTrackCol</code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00056">56</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00069">69</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2467,7 +2927,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00067">67</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00085">85</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>
@@ -2491,7 +2951,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00068">68</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="DzeroPhi_8h_source.html#l00086">86</a> of file <a class="el" href="DzeroPhi_8h_source.html">DzeroPhi.h</a>.</p>
 
 </div>
 </div>

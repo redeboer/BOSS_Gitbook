@@ -639,7 +639,7 @@
 		nt->addItem("path", fTof_Path);
 		nt->addItem("cntr", fTof_Cntr);
 		nt->addItem("ph",   fTof_Ph);
-		nt->addItem("zhit", fTof_Rhit);
+		nt->addItem("rhit", fTof_Rhit);
 		nt->addItem("qual", fTof_Qual);
 		nt->addItem("te",   fTof_Electron);
 		nt->addItem("tmu",  fTof_Muon);

@@ -15,25 +15,28 @@
 \form#14:$ D^0 \phi $
 \form#15:$ J/\psi $
 \form#16:$dE/dx$
-\form#17:$Z$
-\form#18:$R$
-\form#19:$ dE/dx $
-\form#20:$ \pi^0 $
-\form#21:$ \rho^0, \rho^-, \rho^+ $
+\form#17:$K^\pm$
+\form#18:$\pi^\pm$
+\form#19:$Z$
+\form#20:$R$
+\form#21:$\chi_\mathrm{red}^2$
 \form#22:$ M_{K^-pi^+} $
 \form#23:$ M_{K^+K^+ } $
 \form#24:$ M_{D^0phi } $
-\form#25:$ M_{\mathrm{inv}} = 0 $
-\form#26:$ e^- $
-\form#27:$ \mu^- $
-\form#28:$ \pi^+ $
-\form#29:$ \rho^\pm $
-\form#30:$ \rho^0 $
-\form#31:$ K^\pm $
-\form#32:$ p $
-\form#33:$ \gamma $
-\form#34:$ M_{\pi^+ \pi^-} $
-\form#35:$ M_{\pi^0 \pi^+} $
-\form#36:$ \rho^+ $
-\form#37:$ M_{\pi^0 \pi^-} $
-\form#38:$ \rho^- $
+\form#25:$ dE/dx $
+\form#26:$ \pi^0 $
+\form#27:$ \rho^0, \rho^-, \rho^+ $
+\form#28:$ M_{\mathrm{inv}} = 0 $
+\form#29:$ e^- $
+\form#30:$ \mu^- $
+\form#31:$ \pi^+ $
+\form#32:$ \rho^\pm $
+\form#33:$ \rho^0 $
+\form#34:$ K^\pm $
+\form#35:$ p $
+\form#36:$ \gamma $
+\form#37:$ M_{\pi^+ \pi^-} $
+\form#38:$ M_{\pi^0 \pi^+} $
+\form#39:$ \rho^+ $
+\form#40:$ M_{\pi^0 \pi^-} $
+\form#41:$ \rho^- $

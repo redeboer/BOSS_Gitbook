@@ -9,16 +9,16 @@
 // * ======================================== * //
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
-	#include "../inc/FrameworkSettings.h"
-	#include "../inc/ReconstructedParticle.h"
 	#include "../inc/CommonFunctions.h"
 	#include "../inc/DzeroPhiRootFile.h"
+	#include "../inc/FrameworkSettings.h"
+	#include "../inc/ReconstructedParticle.h"
 	#include "TH1D.h"
 	#include <iostream>
-	using namespace RooFit;
-	using namespace AnaBranches;
-	using namespace Settings;
 	using namespace CommonFunctions;
+	using namespace DzeroPhiBranches;
+	using namespace RooFit;
+	using namespace Settings;
 
 
 // * ============================= * //
@@ -30,7 +30,7 @@
 void FitInvMassSignal()
 {
 	// * Open DzeroPhi input file * //
-		DzeroPhiRootFile file("../data/root/ana_DzeroPhi_data.root");
+		DzeroPhiRootFile file("../data/root/ana_DzeroPhi_mc_result2.root");
 		if(file.IsZombie()) return;
 
 	// * Particles to reconstruct * //

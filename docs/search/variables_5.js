@@ -8,7 +8,7 @@ var searchData=
   ['gdefaultntimes',['gDefaultNTimes',['../CompareChainVsHadd_8C.html#a60a723826c10d3877fdffbd3d429c15a',1,'CompareChainVsHadd.C']]],
   ['gdefaultoutputfilename',['gDefaultOutputFileName',['../CompareChainVsHadd_8C.html#ab17e022eddaae4f4d52a6a42a84026e0',1,'CompareChainVsHadd.C']]],
   ['gfiletoload',['gFileToLoad',['../CompareChainVsHadd_8C.html#aa3dda915a68202f6344b5bb828e71e0e',1,'CompareChainVsHadd.C']]],
-  ['ghit',['ghit',['../namespaceAnaBranches_1_1dedx.html#ad24edfa8bdfd4fbbc826eaa148bfc0a3',1,'AnaBranches::dedx']]],
+  ['ghit',['ghit',['../namespaceDzeroPhiBranches_1_1dedx.html#ad8ea9e7fafdc87fbb84fb47efb64a006',1,'DzeroPhiBranches::dedx::ghit()'],['../namespaceAnaBranches_1_1dedx.html#ad24edfa8bdfd4fbbc826eaa148bfc0a3',1,'AnaBranches::dedx::ghit()']]],
   ['goutputdir',['gOutputDir',['../FitDoubleGaussian__TH1Fit_8C.html#ad51db93fa73afb236e133e9ff987c7ab',1,'FitDoubleGaussian_TH1Fit.C']]],
   ['goutputextension',['gOutputExtension',['../FitDoubleGaussian__TH1Fit_8C.html#a3a3498961ffa77348466b66bed674f15',1,'FitDoubleGaussian_TH1Fit.C']]],
   ['gparticlepdg',['gParticlePDG',['../FitDoubleGaussian__TH1Fit_8C.html#a438663ec87faaae22ab474226a5d2102',1,'FitDoubleGaussian_TH1Fit.C']]],

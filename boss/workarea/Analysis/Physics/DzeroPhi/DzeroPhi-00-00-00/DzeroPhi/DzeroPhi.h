@@ -131,11 +131,11 @@ private:
 			NTuple::Item<double> fTrack_p;     //!< Momentum \f$p\f$ of the track.
 
 		// * 4- and 6-constraint (4C/6C) fit information *
-			bool fDoFit4c; //!< Package property that determines whether or not to perform a 5-constraint Kalman kinematic fit.
+			bool fDoFit4c; //!< Package property that determines whether or not to perform a 4-constraint Kalman kinematic fit.
 			bool fDoFit6c; //!< Package property that determines whether or not to perform a 6-constraint Kalman kinematic fit.
-			NTuple::Item<double> fInvMass_D0;    //!< Invariant mass \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
-			NTuple::Item<double> fInvMass_phi;   //!< Invariant mass \f$ K^+ K^+  \f$ (\f$ \phi \f$).
-			NTuple::Item<double> fInvMass_Jpsi;  //!< Invariant mass \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
+			NTuple::Item<double> fInvMass_D0;    //!< Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
+			NTuple::Item<double> fInvMass_phi;   //!< Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
+			NTuple::Item<double> fInvMass_Jpsi;  //!< Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
 			NTuple::Item<double> fInvMass_ChiSq; //!< Chi squared of the Kalman kinematic fit.
 
 		// * Energy loss dE/dx *

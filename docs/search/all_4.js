@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ecms',['Ecms',['../DzeroOmega_8cxx.html#a123ac7871ce3ce2f3ef73eddc6aae85a',1,'Ecms():&#160;DzeroOmega.cxx'],['../DzeroPhi_8cxx.html#a123ac7871ce3ce2f3ef73eddc6aae85a',1,'Ecms():&#160;DzeroPhi.cxx'],['../Rhopi_8cxx.html#a123ac7871ce3ce2f3ef73eddc6aae85a',1,'Ecms():&#160;Rhopi.cxx']]],
+  ['ecms',['Ecms',['../DzeroOmega_8cxx.html#a123ac7871ce3ce2f3ef73eddc6aae85a',1,'Ecms():&#160;DzeroOmega.cxx'],['../DzeroPhi_8cxx.html#a123ac7871ce3ce2f3ef73eddc6aae85a',1,'Ecms():&#160;DzeroPhi.cxx'],['../RhopiAlg_8cxx.html#a123ac7871ce3ce2f3ef73eddc6aae85a',1,'Ecms():&#160;RhopiAlg.cxx'],['../DzeroPhi_8cxx.html#a4280a7c0dacc8860173bdd2ffbdb0a3b',1,'ecms(0.034, 0, 0, Ecms):&#160;DzeroPhi.cxx']]],
   ['elow',['elow',['../namespaceAnaBranches_1_1geff.html#affe06a6d539c6a90e6fdbfd5c2b11d90',1,'AnaBranches::geff']]],
   ['em',['Em',['../namespaceSettings_1_1Particles.html#aaef63366dac55fce758cceba31ed4fa7',1,'Settings::Particles']]],
   ['eraw',['eraw',['../namespaceAnaBranches_1_1photon.html#ac7245a91852725d796bb45be1091078a',1,'AnaBranches::photon']]],

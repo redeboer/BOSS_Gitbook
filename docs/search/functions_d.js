@@ -16,7 +16,7 @@ var searchData=
   ['plotuntil',['PlotUntil',['../classReconstructedParticle.html#acc96b978020b1c1f1ff8c2c67a23849d',1,'ReconstructedParticle']]],
   ['polbackground',['polBackground',['../FitObjectDoubleGauss_8h.html#abb9f4f1761c0076504ca012ce0790f33',1,'FitObjectDoubleGauss.h']]],
   ['print',['Print',['../classBOSSRootChain.html#adca72fa5fd571738863603451c29e580',1,'BOSSRootChain::Print(const char *nameOfChain, Option_t *option=&quot;toponly&quot;)'],['../classBOSSRootChain.html#aea16da8d3d22fcbd51a001edcb4d51df',1,'BOSSRootChain::Print()'],['../classBOSSRootFile.html#a080b54eb245e3635e97d75742ce9ec4b',1,'BOSSRootFile::Print(const char *nameOfTree, Option_t *option=&quot;toponly&quot;)'],['../classBOSSRootFile.html#a5eb701bf9d34142c3567327efa8493fa',1,'BOSSRootFile::Print()'],['../RooFitMacro_8C.html#a0148ae80c75b67b8770fac1165f70653',1,'Print():&#160;RooFitMacro.C']]],
-  ['printdistribution1d',['PrintDistribution1D',['../classDzeroPhiRootFile.html#a5374c5f15de9f2ab24006a639be854d3',1,'DzeroPhiRootFile::PrintDistribution1D()'],['../classRhopiRootFile.html#a21270a2244c8410bdde7eedb3c917e82',1,'RhopiRootFile::PrintDistribution1D()']]],
+  ['printdistribution1d',['PrintDistribution1D',['../classRhopiRootFile.html#a21270a2244c8410bdde7eedb3c917e82',1,'RhopiRootFile']]],
   ['printfiles',['PrintFiles',['../classBOSSRootChain.html#adec16f859915ca863fa805f7040ddcd5',1,'BOSSRootChain']]],
   ['printtrees',['PrintTrees',['../classBOSSRootChain.html#aa66bb2d2df46e757bb8679cd922f0f44',1,'BOSSRootChain::PrintTrees()'],['../classBOSSRootFile.html#a86e04bbc6328de69218d0f21a5482a4f',1,'BOSSRootFile::PrintTrees()']]],
   ['printwithoption',['PrintWithOption',['../classBOSSRootChain.html#a2d529143aa8aa7f7024bf1df314e7eb2',1,'BOSSRootChain']]],

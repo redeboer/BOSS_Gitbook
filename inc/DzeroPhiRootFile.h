@@ -15,8 +15,119 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 	#include "BOSSRootFile.h"
-	#include "DzeroPhiRootNamespace.h"
 	#include "TTree.h"
+
+
+
+// * ========================== * //
+// * ------- NAMESPACES ------- * //
+// * ========================== * //
+// ! Modify these according to your ROOT file
+/**
+ * @brief
+ * @details
+ */
+namespace DzeroPhiBranches
+{
+	namespace mult { //!< Primary vertex info and multiplicities.
+		int    Ntotal;   //!< Total number of events per track.
+		int    Ncharge;  //!< Number of charged tracks.
+		int    Nneutral; //!< Number of charged tracks.
+		double vx0;      //!< Primary \f$x\f$ coordinate of the collision point.
+		double vy0;      //!< Primary \f$y\f$ coordinate of the collision point.
+		double vz0;      //!< Primary \f$z\f$ coordinate of the collision point.
+		int    Ngood;    //!< Number of 'good' charged tracks.
+		int    Nmdc;     //!< Number of charged tracks in MDC. @todo Test whether this parameter really makes sense.
+		int    NKaonPos; //!< Number of \f$K^+\f$.
+		int    NKaonNeg; //!< Number of \f$K^-\f$.
+		int    NPionPos; //!< Number of \f$\pi^-\f$.
+	};
+	namespace vxyz { //!< Vertex information of each track.
+		double vx;    //!< Primary \f$x\f$ coordinate of the vertex as determined by MDC.
+		double vy;    //!< Primary \f$y\f$ coordinate of the vertex as determined by MDC.
+		double vz;    //!< Primary \f$z\f$ coordinate of the vertex as determined by MDC.
+		double vr;    //!< Distance from origin in \f$xy\f$ plane.
+		double rvxy;  //!< Nearest distance to IP in \f$xy\f$ plane.
+		double rvz;   //!< Nearest distance to IP in \f$z\f$ direction.
+		double rvphi; //!< Angle in the \f$xy\f$plane (?). @todo
+		double phi;   //!< Helix angle of the particle (?). @todo
+		double p;     //!< Momentum \f$p\f$ of the track.
+	};
+	namespace fit4c { //!< Invariant masses and \f$\chi_\mathrm{red}^2\f$ as determined by 4-constraint Kalman kinematic fit.
+		double mD0;   //!< Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
+		double mphi;  //!< Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
+		double mJpsi; //!< Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
+		double chi2;  //!< Chi squared of the Kalman kinematic fit.
+	}
+	namespace fit6c { //!< Invariant masses and \f$\chi_\mathrm{red}^2\f$ as determined by 6-constraint Kalman kinematic fit.
+		double mD0;   //!< Invariant mass for \f$ M_{K^-pi^+} \f$ (\f$ D^0    \f$)
+		double mphi;  //!< Invariant mass for \f$ M_{K^+K^+ } \f$ (\f$ \phi   \f$)
+		double mJpsi; //!< Invariant mass for \f$ M_{D^0phi } \f$ (\f$ J/\psi \f$)
+		double chi2;  //!< Chi squared of the Kalman kinematic fit.
+	}
+	namespace dedx { //!< Energy loss (\f$ dE/dx \f$) PID branch.
+		double ptrk;   //!< Momentum of the track.
+		double chie;   //!< Chi squared in case of electron.
+		double chimu;  //!< Chi squared in case of muon.
+		double chipi;  //!< Chi squared in case of pion.
+		double chik;   //!< Chi squared in case of kaon.
+		double chip;   //!< Chi squared in case of proton.
+		double probPH; //!< Most probable pulse height from truncated mean.
+		double normPH; //!< Normalized pulse height.
+		double ghit;   //!< Number of good hits.
+		double thit;   //!< Total number of hits.
+	}
+	namespace tofe { //!< Time of Flight end cap branch.
+		double tof;  //!< Time of flight.
+		double ptrk; //!< Momentum of the track as reconstructed by MDC.
+		double path; //!< Path length.
+		double cntr; //!< ToF counter ID.
+		double ph;   //!< ToF pulse height.
+		double rhit; //!< Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
+		double qual; //!< Data quality of reconstruction.
+		double te;   //!< Difference with ToF in electron hypothesis.
+		double tmu;  //!< Difference with ToF in muon hypothesis.
+		double tpi;  //!< Difference with ToF in charged pion hypothesis.
+		double tk;   //!< Difference with ToF in charged kaon hypothesis.
+		double tp;   //!< Difference with ToF in proton hypothesis.
+	}
+	namespace tof1 { //!< ToF <b>inner</b> barrel branch.
+		double tof;  //!< Time of flight.
+		double ptrk; //!< Momentum of the track as reconstructed by MDC.
+		double path; //!< Path length.
+		double cntr; //!< ToF counter ID.
+		double ph;   //!< ToF pulse height.
+		double zhit; //!< Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
+		double qual; //!< Data quality of reconstruction.
+		double te;   //!< Difference with ToF in electron hypothesis.
+		double tmu;  //!< Difference with ToF in muon hypothesis.
+		double tpi;  //!< Difference with ToF in charged pion hypothesis.
+		double tk;   //!< Difference with ToF in charged kaon hypothesis.
+		double tp;   //!< Difference with ToF in proton hypothesis.
+	}
+	namespace tof2 { //!< ToF <b>outer</b> barrel branch.
+		double tof;  //!< Time of flight.
+		double ptrk; //!< Momentum of the track as reconstructed by MDC.
+		double path; //!< Path length.
+		double cntr; //!< ToF counter ID.
+		double ph;   //!< ToF pulse height.
+		double zhit; //!< Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
+		double qual; //!< Data quality of reconstruction.
+		double te;   //!< Difference with ToF in electron hypothesis.
+		double tmu;  //!< Difference with ToF in muon hypothesis.
+		double tpi;  //!< Difference with ToF in charged pion hypothesis.
+		double tk;   //!< Difference with ToF in charged kaon hypothesis.
+		double tp;   //!< Difference with ToF in proton hypothesis.
+	}
+	namespace pid { //!< Track PID information.
+		double ptrk; //!< Momentum of the track.
+		double cost; //!< Theta angle of the track.
+		double dedx; //!< Chi squared of the dedx of the track.
+		double tof1; //!< Chi squared of the inner barrel ToF of the track.
+		double tof2; //!< Chi squared of the outer barrel ToF of the track.
+		double prob; //!< Probability that it is a pion.
+	}
+}
 
 
 
@@ -28,46 +139,37 @@ class DzeroPhiRootFile : public BOSSRootFile
 
 public:
 	// * Constructor and destructors *
-	DzeroPhiRootFile() : BOSSRootFile() { Initialize(); }
-	DzeroPhiRootFile(const char* filename);
-	~DzeroPhiRootFile();
+		DzeroPhiRootFile() : BOSSRootFile() { Initialize(); }
+		DzeroPhiRootFile(const char* filename);
+		~DzeroPhiRootFile();
 
 	// * Getters *
-	TTree* vxyz()   { return fVxyz; }
-	TTree* dedx()   { return fDedx; }
-	TTree* tof1()   { return fTof1; }
-	TTree* tof2()   { return fTof2; }
-	TTree* pid()    { return fPid; }
-	TTree* fit4c()  { return fFit4c; }
-	TTree* fit6c()  { return fFit6c; }
-	TTree* tofe()   { return fTofe; }
+		TTree* mult()   { return fMult; }
+		TTree* vxyz()   { return fVxyz; }
+		TTree* fit4c()  { return fFit4c; }
+		TTree* fit6c()  { return fFit6c; }
+		TTree* dedx()   { return fDedx; }
+		TTree* tof1()   { return fTof1; }
+		TTree* tof2()   { return fTof2; }
+		TTree* tofe()   { return fTofe; }
+		TTree* pid()    { return fPid; }
 
 
 private:
 	// * Data members *
-	TTree* fVxyz;
-	//!< Branch for primary vertex information.
-	TTree* fDedx;
-	//!< Branch for PID using energy loss (\f$ dE/dx \f$).
-	TTree* fTof1;
-	//!< Branch for Time of Flight registered by the <b>inner</b> barrel.
-	TTree* fTof2;
-	//!< Branch for Time of Flight registered by the <b>outer</b> barrel.
-	TTree* fPid;
-	//!< Branch for particle identification information.
-	TTree* fFit4c;
-	//!< Branch for neutral pion (\f$ \pi^0 \f$) invariant mass.
-	TTree* fFit6c;
-	//!< Branch for charged and neutral rho (\f$ \rho^0, \rho^-, \rho^+ \f$) invariant mass.
-	TTree* fTofe;
-	//!< Branch for Time of Flight registered by the <b>end cap</b>.
-
-	// * Private methods *
-	void PrintDistribution1D();
+		TTree* fMult;  //!< Branch for primary vertex information and multiplicities.
+		TTree* fVxyz;  //!< Branch for track vertex information.
+		TTree* fFit4c; //!< Branch for neutral pion (\f$ \pi^0 \f$) invariant mass.
+		TTree* fFit6c; //!< Branch for charged and neutral rho (\f$ \rho^0, \rho^-, \rho^+ \f$) invariant mass.
+		TTree* fDedx;  //!< Branch for PID using energy loss (\f$ dE/dx \f$).
+		TTree* fTof1;  //!< Branch for Time of Flight registered by the <b>inner</b> barrel.
+		TTree* fTof2;  //!< Branch for Time of Flight registered by the <b>outer</b> barrel.
+		TTree* fTofe;  //!< Branch for Time of Flight registered by the <b>end cap</b>.
+		TTree* fPid;   //!< Branch for particle identification information.
 
 	// * Constructor/destructor helpers *
-	void Initialize();
-	void Destruct();
+		void Initialize();
+		void Destruct();
 
 };
 
@@ -76,131 +178,156 @@ private:
 // * =========================================== * //
 // * ------- CONSRUCTORS AND DESTRUCTORS ------- * //
 // * =========================================== * //
-/**
- * @brief Constructor. Loads all trees and sets branch addresses of the default DzeroPhi ROOT file.
- * @param filename File name of the ROOT file that you want to load.
- */
-DzeroPhiRootFile::DzeroPhiRootFile(const char* filename) : BOSSRootFile(filename)
-{
-	// * Load trees *
-	// ! Modify these according to your ROOT file
-		if(!(fVxyz   = FindTree("vxyz")))   Destruct(); // Vertex position
-		if(!(fDedx   = FindTree("dedx")))   Destruct(); // dE/dx PID information
-		if(!(fTof1   = FindTree("tof1")))   Destruct(); // ToF inner barrel information
-		if(!(fTof2   = FindTree("tof2")))   Destruct(); // ToF outer barrel information
-		if(!(fPid    = FindTree("pid")))    Destruct(); // Particle Identification
-		if(!(fFit4c  = FindTree("fit4c")))  Destruct(); // Fit pi^0 information from EMCal
-		if(!(fFit6c  = FindTree("fit6c")))  Destruct(); // Fit rho^0, rho^+, rho^- inv. mass from EMCal
-		if(!(fTofe   = FindTree("tofe")))   Destruct(); // ToF end cap information
-	// * Set branching addresses *
-	// ! Modify these according to your ROOT file
-		// * Vertex position (vxyz / m_tuple1)
-			SetBranchAddress(fVxyz,   "vx0",    AnaBranches::vxyz::vx0);    // primary x-vertex as determined by MDC
-			SetBranchAddress(fVxyz,   "vy0",    AnaBranches::vxyz::vy0);    // primary y-vertex as determined by MDC
-			SetBranchAddress(fVxyz,   "vz0",    AnaBranches::vxyz::vz0);    // primary z-vertex as determined by MDC
-			SetBranchAddress(fVxyz,   "vr0",    AnaBranches::vxyz::vr0);    // distance from origin in xy-plane
-			SetBranchAddress(fVxyz,   "rvxy0",  AnaBranches::vxyz::rvxy0);  // nearest distance to IP in xy plane
-			SetBranchAddress(fVxyz,   "rvz0",   AnaBranches::vxyz::rvz0);   // nearest distance to IP in z direction
-			SetBranchAddress(fVxyz,   "rvphi0", AnaBranches::vxyz::rvphi0); // angle in the xy-plane (?)
-		// * dE/dx PID information (dedx / m_tuple7)
-			SetBranchAddress(fDedx,   "ptrk",   AnaBranches::dedx::ptrk);   // momentum of the track
-			SetBranchAddress(fDedx,   "chie",   AnaBranches::dedx::chie);   // chi2 in case of electron
-			SetBranchAddress(fDedx,   "chimu",  AnaBranches::dedx::chimu);  // chi2 in case of muon
-			SetBranchAddress(fDedx,   "chipi",  AnaBranches::dedx::chipi);  // chi2 in case of pion
-			SetBranchAddress(fDedx,   "chik",   AnaBranches::dedx::chik);   // chi2 in case of kaon
-			SetBranchAddress(fDedx,   "chip",   AnaBranches::dedx::chip);   // chi2 in case of proton
-			SetBranchAddress(fDedx,   "probPH", AnaBranches::dedx::probPH); // most probable pulse height from truncated mean
-			SetBranchAddress(fDedx,   "normPH", AnaBranches::dedx::normPH); // normalized pulse height
-			SetBranchAddress(fDedx,   "ghit",   AnaBranches::dedx::ghit);   // number of good hits
-			SetBranchAddress(fDedx,   "thit",   AnaBranches::dedx::thit);   // total number of hits
-		// * ToF inner barrel information (tof1 / m_tuple9)
-			SetBranchAddress(fTof1,   "ptrk",   AnaBranches::tof1::ptrk);   // momentum of the track as reconstructed by MDC
-			SetBranchAddress(fTof1,   "path",   AnaBranches::tof1::path);   // Path length
-			SetBranchAddress(fTof1,   "tof",    AnaBranches::tof1::tof);    // Time of flight
-			SetBranchAddress(fTof1,   "cntr",   AnaBranches::tof1::cntr);   // ToF counter ID
-			SetBranchAddress(fTof1,   "ph",     AnaBranches::tof1::ph);     // ToF pulse height
-			SetBranchAddress(fTof1,   "zhit",   AnaBranches::tof1::zhit);   // track extrapolate Z or R Hit position
-			SetBranchAddress(fTof1,   "qual",   AnaBranches::tof1::qual);   // data quality of reconstruction
-			SetBranchAddress(fTof1,   "te",     AnaBranches::tof1::te);     // difference with ToF in electron hypothesis
-			SetBranchAddress(fTof1,   "tmu",    AnaBranches::tof1::tmu);    // difference with ToF in muon hypothesis
-			SetBranchAddress(fTof1,   "tpi",    AnaBranches::tof1::tpi);    // difference with ToF in charged pion hypothesis
-			SetBranchAddress(fTof1,   "tk",     AnaBranches::tof1::tk);     // difference with ToF in charged kaon hypothesis
-			SetBranchAddress(fTof1,   "tp",     AnaBranches::tof1::tp);     // difference with ToF in proton hypothesis
-		// * ToF outer barrel information (tof2 / m_tuple10)
-			SetBranchAddress(fTof2,   "ptrk",   AnaBranches::tof2::ptrk);   // momentum of the track as reconstructed by MDC
-			SetBranchAddress(fTof2,   "path",   AnaBranches::tof2::path);   // Path length
-			SetBranchAddress(fTof2,   "tof",    AnaBranches::tof2::tof);    // Time of flight
-			SetBranchAddress(fTof2,   "cntr",   AnaBranches::tof2::cntr);   // ToF counter ID
-			SetBranchAddress(fTof2,   "ph",     AnaBranches::tof2::ph);     // ToF pulse height
-			SetBranchAddress(fTof2,   "zhit",   AnaBranches::tof2::zhit);   // track extrapolate Z or R Hit position
-			SetBranchAddress(fTof2,   "qual",   AnaBranches::tof2::qual);   // data quality of reconstruction
-			SetBranchAddress(fTof2,   "te",     AnaBranches::tof2::te);     // difference with ToF in electron hypothesis
-			SetBranchAddress(fTof2,   "tmu",    AnaBranches::tof2::tmu);    // difference with ToF in muon hypothesis
-			SetBranchAddress(fTof2,   "tpi",    AnaBranches::tof2::tpi);    // difference with ToF in charged pion hypothesis
-			SetBranchAddress(fTof2,   "tk",     AnaBranches::tof2::tk);     // difference with ToF in charged kaon hypothesis
-			SetBranchAddress(fTof2,   "tp",     AnaBranches::tof2::tp);     // difference with ToF in proton hypothesis
-		// * Particle Identification (pid / m_tuple11)
-			SetBranchAddress(fPid,    "ptrk",   AnaBranches::pid::ptrk);    // momentum of the track
-			SetBranchAddress(fPid,    "cost",   AnaBranches::pid::cost);    // theta angle of the track
-			SetBranchAddress(fPid,    "dedx",   AnaBranches::pid::dedx);    // Chi squared of the dedx of the track
-			SetBranchAddress(fPid,    "tof1",   AnaBranches::pid::tof1);    // Chi squared of the inner barrel ToF of the track
-			SetBranchAddress(fPid,    "tof2",   AnaBranches::pid::tof2);    // Chi squared of the outer barrel ToF of the track
-			SetBranchAddress(fPid,    "prob",   AnaBranches::pid::prob);    // probability that it is a pion
-		// * Fit pi^0 information from EMCal (fit4c / m_tuple4)
-			SetBranchAddress(fFit4c,  "mD0",   AnaBranches::fit4c::mD0);   // Invariant mass \f$ M_{K^-pi^+} \f$ (\f$ D^0    \f$)
-			SetBranchAddress(fFit4c,  "mphi",  AnaBranches::fit4c::mphi);  // Invariant mass \f$ M_{K^+K^+ } \f$ (\f$ \phi   \f$)
-			SetBranchAddress(fFit4c,  "mJpsi", AnaBranches::fit4c::mJpsi); // Invariant mass \f$ M_{D^0phi } \f$ (\f$ J/\psi \f$)
-			SetBranchAddress(fFit4c,  "chi2",  AnaBranches::fit4c::chi2);  // Chi squared of the Kalman kinematic fit.
-		// * Fit rho^0, rho^+, rho^- inv. mass from EMCal (fit6c / m_tuple5)
-			SetBranchAddress(fFit6c,  "mD0",   AnaBranches::fit6c::mD0);   // Invariant mass \f$ M_{K^-pi^+} \f$ (\f$ D^0    \f$)
-			SetBranchAddress(fFit6c,  "mphi",  AnaBranches::fit6c::mphi);  // Invariant mass \f$ M_{K^+K^+ } \f$ (\f$ \phi   \f$)
-			SetBranchAddress(fFit6c,  "mJpsi", AnaBranches::fit6c::mJpsi); // Invariant mass \f$ M_{D^0phi } \f$ (\f$ J/\psi \f$)
-			SetBranchAddress(fFit6c,  "chi2",  AnaBranches::fit6c::chi2);  // Chi squared of the Kalman kinematic fit.
-		// * ToF end cap information (tofe / m_tuple8)
-			SetBranchAddress(fTofe,   "ptrk",   AnaBranches::tofe::ptrk);   // momentum of the track as reconstructed by MDC
-			SetBranchAddress(fTofe,   "path",   AnaBranches::tofe::path);   // Path length
-			SetBranchAddress(fTofe,   "tof",    AnaBranches::tofe::tof);    // Time of flight
-			SetBranchAddress(fTofe,   "cntr",   AnaBranches::tofe::cntr);   // ToF counter ID
-			SetBranchAddress(fTofe,   "ph",     AnaBranches::tofe::ph);     // ToF pulse height
-			SetBranchAddress(fTofe,   "rhit",   AnaBranches::tofe::rhit);   // track extrapolate Z or R Hit position
-			SetBranchAddress(fTofe,   "qual",   AnaBranches::tofe::qual);   // data quality of reconstruction
-			SetBranchAddress(fTofe,   "te",     AnaBranches::tofe::te);     // difference with ToF in electron hypothesis
-			SetBranchAddress(fTofe,   "tmu",    AnaBranches::tofe::tmu);    // difference with ToF in muon hypothesis
-			SetBranchAddress(fTofe,   "tpi",    AnaBranches::tofe::tpi);    // difference with ToF in charged pion hypothesis
-			SetBranchAddress(fTofe,   "tk",     AnaBranches::tofe::tk);     // difference with ToF in charged kaon hypothesis
-			SetBranchAddress(fTofe,   "tp",     AnaBranches::tofe::tp);     // difference with ToF in proton hypothesis
-}
+	/**
+	 * @brief Constructor. Loads all trees and sets branch addresses of the default DzeroPhi ROOT file.
+	 * @param filename File name of the ROOT file that you want to load.
+	 */
+	DzeroPhiRootFile::DzeroPhiRootFile(const char* filename) : BOSSRootFile(filename)
+	{
+		// * Load trees *
+			// ! Modify these according to your ROOT file
+			if(!(fMult   = FindTree("mult")))   Destruct();
+			if(!(fVxyz   = FindTree("vxyz")))   Destruct();
+			if(!(fFit4c  = FindTree("fit4c")))  Destruct();
+			if(!(fFit6c  = FindTree("fit6c")))  Destruct();
+			if(!(fDedx   = FindTree("dedx")))   Destruct();
+			if(!(fTofe   = FindTree("tofe")))   Destruct();
+			if(!(fTof1   = FindTree("tof1")))   Destruct();
+			if(!(fTof2   = FindTree("tof2")))   Destruct();
+			if(!(fPid    = FindTree("pid")))    Destruct();
 
-/**
- * @brief Default destructor. Merely calls the destructor helper.
- */
-DzeroPhiRootFile::~DzeroPhiRootFile()
-{
-	Destruct();
-}
+		// * Set branching addresses *
+			// ! Modify these according to your ROOT file
+			// * Primary vertex info and multiplicities (mult)
+				SetBranchAddress(fMult, "Ntotal",   DzeroPhiBranches::mult::Ntotal);
+				SetBranchAddress(fMult, "Ncharge",  DzeroPhiBranches::mult::Ncharge);
+				SetBranchAddress(fMult, "Nneutral", DzeroPhiBranches::mult::Nneutral);
+				SetBranchAddress(fMult, "vx0",      DzeroPhiBranches::mult::vx0);
+				SetBranchAddress(fMult, "vy0",      DzeroPhiBranches::mult::vy0);
+				SetBranchAddress(fMult, "vz0",      DzeroPhiBranches::mult::vz0);
+				SetBranchAddress(fMult, "Ngood",    DzeroPhiBranches::mult::Ngood);
+				SetBranchAddress(fMult, "Nmdc",     DzeroPhiBranches::mult::Nmdc);
+				SetBranchAddress(fMult, "fEvent_NKaonPos", DzeroPhiBranches::mult::NKaonPos);
+				SetBranchAddress(fMult, "fEvent_NKaonNeg", DzeroPhiBranches::mult::NKaonNeg);
+				SetBranchAddress(fMult, "fEvent_NPionPos", DzeroPhiBranches::mult::NPionPos);
 
-/**
- * @brief Auxiliary function for the destructor (so that the destructor functionality can also be called by other methods). Merely sets pointers to null.
- */
-void DzeroPhiRootFile::Destruct()
-{
-	BOSSRootFile::Destruct(); // needed?
-	Initialize();
-}
+			// * Vertex information of each track (vxyz)
+				SetBranchAddress(fVxyz, "vx",    DzeroPhiBranches::vxyz::vx);
+				SetBranchAddress(fVxyz, "vy",    DzeroPhiBranches::vxyz::vy);
+				SetBranchAddress(fVxyz, "vz",    DzeroPhiBranches::vxyz::vz);
+				SetBranchAddress(fVxyz, "vr",    DzeroPhiBranches::vxyz::vr);
+				SetBranchAddress(fVxyz, "rvxy",  DzeroPhiBranches::vxyz::rvxy);
+				SetBranchAddress(fVxyz, "rvz",   DzeroPhiBranches::vxyz::rvz);
+				SetBranchAddress(fVxyz, "rvphi", DzeroPhiBranches::vxyz::rvphi);
+				SetBranchAddress(fVxyz, "phi",   DzeroPhiBranches::vxyz::phi);
+				SetBranchAddress(fVxyz, "p",     DzeroPhiBranches::vxyz::p);
 
-/**
- * @brief Auxiliar function for constructor (so that it can be called by all constructor types and other methods). Only sets sets all pointer type data members to nullpointers.
- */
-void DzeroPhiRootFile::Initialize()
-{
-	fVxyz   = nullptr;
-	fDedx   = nullptr;
-	fTof1   = nullptr;
-	fTof2   = nullptr;
-	fPid    = nullptr;
-	fFit4c  = nullptr;
-	fFit6c  = nullptr;
-	fTofe   = nullptr;
-}
+			// * Fit pi^0 information from EMCal (fit4c)
+				SetBranchAddress(fFit4c,  "mD0",   DzeroPhiBranches::fit4c::mD0);
+				SetBranchAddress(fFit4c,  "mphi",  DzeroPhiBranches::fit4c::mphi);
+				SetBranchAddress(fFit4c,  "mJpsi", DzeroPhiBranches::fit4c::mJpsi);
+				SetBranchAddress(fFit4c,  "chi2",  DzeroPhiBranches::fit4c::chi2);
+
+			// * Fit rho^0, rho^+, rho^- inv. mass from EMCal (fit6c)
+				SetBranchAddress(fFit6c,  "mD0",   DzeroPhiBranches::fit6c::mD0);
+				SetBranchAddress(fFit6c,  "mphi",  DzeroPhiBranches::fit6c::mphi);
+				SetBranchAddress(fFit6c,  "mJpsi", DzeroPhiBranches::fit6c::mJpsi);
+				SetBranchAddress(fFit6c,  "chi2",  DzeroPhiBranches::fit6c::chi2);
+
+			// * dE/dx PID information (dedx)
+				SetBranchAddress(fDedx,   "ptrk",   DzeroPhiBranches::dedx::ptrk);
+				SetBranchAddress(fDedx,   "chie",   DzeroPhiBranches::dedx::chie);
+				SetBranchAddress(fDedx,   "chimu",  DzeroPhiBranches::dedx::chimu);
+				SetBranchAddress(fDedx,   "chipi",  DzeroPhiBranches::dedx::chipi);
+				SetBranchAddress(fDedx,   "chik",   DzeroPhiBranches::dedx::chik);
+				SetBranchAddress(fDedx,   "chip",   DzeroPhiBranches::dedx::chip);
+				SetBranchAddress(fDedx,   "probPH", DzeroPhiBranches::dedx::probPH);
+				SetBranchAddress(fDedx,   "normPH", DzeroPhiBranches::dedx::normPH);
+				SetBranchAddress(fDedx,   "ghit",   DzeroPhiBranches::dedx::ghit);
+				SetBranchAddress(fDedx,   "thit",   DzeroPhiBranches::dedx::thit);
+
+			// * ToF end cap information (tofe)
+				SetBranchAddress(fTofe, "tof",  DzeroPhiBranches::tofe::tof);
+				SetBranchAddress(fTofe, "ptrk", DzeroPhiBranches::tofe::ptrk);
+				SetBranchAddress(fTofe, "path", DzeroPhiBranches::tofe::path);
+				SetBranchAddress(fTofe, "cntr", DzeroPhiBranches::tofe::cntr);
+				SetBranchAddress(fTofe, "ph",   DzeroPhiBranches::tofe::ph);
+				SetBranchAddress(fTofe, "rhit", DzeroPhiBranches::tofe::rhit);
+				SetBranchAddress(fTofe, "qual", DzeroPhiBranches::tofe::qual);
+				SetBranchAddress(fTofe, "te",   DzeroPhiBranches::tofe::te);
+				SetBranchAddress(fTofe, "tmu",  DzeroPhiBranches::tofe::tmu);
+				SetBranchAddress(fTofe, "tpi",  DzeroPhiBranches::tofe::tpi);
+				SetBranchAddress(fTofe, "tk",   DzeroPhiBranches::tofe::tk);
+				SetBranchAddress(fTofe, "tp",   DzeroPhiBranches::tofe::tp);
+
+			// * ToF inner barrel information (tof1)
+				SetBranchAddress(fTof1, "tof",  DzeroPhiBranches::tof1::tof);
+				SetBranchAddress(fTof1, "ptrk", DzeroPhiBranches::tof1::ptrk);
+				SetBranchAddress(fTof1, "path", DzeroPhiBranches::tof1::path);
+				SetBranchAddress(fTof1, "cntr", DzeroPhiBranches::tof1::cntr);
+				SetBranchAddress(fTof1, "ph",   DzeroPhiBranches::tof1::ph);
+				SetBranchAddress(fTof1, "zhit", DzeroPhiBranches::tof1::zhit);
+				SetBranchAddress(fTof1, "qual", DzeroPhiBranches::tof1::qual);
+				SetBranchAddress(fTof1, "te",   DzeroPhiBranches::tof1::te);
+				SetBranchAddress(fTof1, "tmu",  DzeroPhiBranches::tof1::tmu);
+				SetBranchAddress(fTof1, "tpi",  DzeroPhiBranches::tof1::tpi);
+				SetBranchAddress(fTof1, "tk",   DzeroPhiBranches::tof1::tk);
+				SetBranchAddress(fTof1, "tp",   DzeroPhiBranches::tof1::tp);
+
+			// * ToF outer barrel information (tof2)
+				SetBranchAddress(fTof2, "tof",  DzeroPhiBranches::tof2::tof);
+				SetBranchAddress(fTof2, "ptrk", DzeroPhiBranches::tof2::ptrk);
+				SetBranchAddress(fTof2, "path", DzeroPhiBranches::tof2::path);
+				SetBranchAddress(fTof2, "cntr", DzeroPhiBranches::tof2::cntr);
+				SetBranchAddress(fTof2, "ph",   DzeroPhiBranches::tof2::ph);
+				SetBranchAddress(fTof2, "zhit", DzeroPhiBranches::tof2::zhit);
+				SetBranchAddress(fTof2, "qual", DzeroPhiBranches::tof2::qual);
+				SetBranchAddress(fTof2, "te",   DzeroPhiBranches::tof2::te);
+				SetBranchAddress(fTof2, "tmu",  DzeroPhiBranches::tof2::tmu);
+				SetBranchAddress(fTof2, "tpi",  DzeroPhiBranches::tof2::tpi);
+				SetBranchAddress(fTof2, "tk",   DzeroPhiBranches::tof2::tk);
+				SetBranchAddress(fTof2, "tp",   DzeroPhiBranches::tof2::tp);
+
+			// * Particle Identification (pid)
+				SetBranchAddress(fPid,    "ptrk",   DzeroPhiBranches::pid::ptrk);
+				SetBranchAddress(fPid,    "cost",   DzeroPhiBranches::pid::cost);
+				SetBranchAddress(fPid,    "dedx",   DzeroPhiBranches::pid::dedx);
+				SetBranchAddress(fPid,    "tof1",   DzeroPhiBranches::pid::tof1);
+				SetBranchAddress(fPid,    "tof2",   DzeroPhiBranches::pid::tof2);
+				SetBranchAddress(fPid,    "prob",   DzeroPhiBranches::pid::prob);
+	}
+
+	/**
+	 * @brief Default destructor. Merely calls the destructor helper.
+	 */
+	DzeroPhiRootFile::~DzeroPhiRootFile()
+	{
+		Destruct();
+	}
+
+	/**
+	 * @brief Auxiliary function for the destructor (so that the destructor functionality can also be called by other methods). Merely sets pointers to null.
+	 */
+	void DzeroPhiRootFile::Destruct()
+	{
+		BOSSRootFile::Destruct(); // ? needed?
+		Initialize();
+	}
+
+	/**
+	 * @brief Auxiliar function for constructor (so that it can be called by all constructor types and other methods). Only sets sets all pointer type data members to nullpointers.
+	 */
+	void DzeroPhiRootFile::Initialize()
+	{
+		fMult   = nullptr;
+		fVxyz   = nullptr;
+		fDedx   = nullptr;
+		fTof1   = nullptr;
+		fTof2   = nullptr;
+		fPid    = nullptr;
+		fFit4c  = nullptr;
+		fFit6c  = nullptr;
+		fTofe   = nullptr;
+	}
 
 #endif
