@@ -128,88 +128,105 @@
 	{
 		NTuplePtr nt(ntupleSvc(), ""); // temporary NTuplePtr
 		// * Book NTuple: Multiplicities * //
-			nt = BookNTuple("mult");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("Ntotal",   fEvent_Ntotal);
-			nt->addItem("Ncharge",  fEvent_Ncharge);
-			nt->addItem("Nneutral", fEvent_Nneutral);
-			nt->addItem("vx0",      fEvent_Vx0);
-			nt->addItem("vy0",      fEvent_Vy0);
-			nt->addItem("vz0",      fEvent_Vz0);
-			nt->addItem("Ngood",    fEvent_Ngood);
-			nt->addItem("Nmdc",     fEvent_Nmdc); // @todo Check if this makes sense at all
-			nt->addItem("NKaonPos", fEvent_NKaonPos);
-			nt->addItem("NKaonNeg", fEvent_NKaonNeg);
-			nt->addItem("NPionPos", fEvent_NPionPos);
+			if(fDoMult) {
+				nt = BookNTuple("mult"); /// Branch for multiplicies and primary vertex info.
+				fMult_i["Ntotal"];   /// Total number of events per track.
+				fMult_i["Ncharge"];  /// Number of charged tracks.
+				fMult_i["Nneutral"]; /// Number of charged tracks.
+				fMult_i["Ngood"];    /// Number of 'good' charged tracks.
+				fMult_i["Nmdc"];     /// Number of charged tracks in MDC.
+				fMult_i["NKaonPos"]; /// Number of \f$K^+\f$.
+				fMult_i["NKaonNeg"]; /// Number of \f$K^-\f$.
+				fMult_i["NPionPos"]; /// Number of \f$\pi^-\f$.
+				fMult_d["vx0"];      /// Primary \f$x\f$ coordinate of the collision point.
+				fMult_d["vy0"];      /// Primary \f$y\f$ coordinate of the collision point.
+				fMult_d["vz0"];      /// Primary \f$z\f$ coordinate of the collision point.
+				AddItemsToNTuples(nt, fMult_i);
+				AddItemsToNTuples(nt, fMult_d);
+			}
 
 		// * Book NTuple: Vertex position * //
-			nt = BookNTuple("vxyz");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("vx",    fTrack_Vx);
-			nt->addItem("vy",    fTrack_Vy);
-			nt->addItem("vz",    fTrack_Vz);
-			nt->addItem("vr",    fTrack_Vr);
-			nt->addItem("rvxy",  fTrack_Rvxy);
-			nt->addItem("rvz",   fTrack_Rvz);
-			nt->addItem("rvphi", fTrack_Rvphi);
-			nt->addItem("phi",   fTrack_phi);
-			nt->addItem("p",     fTrack_p);
+			if(fDoVxyz) {
+				nt = BookNTuple("vxyz");
+				fVxyz["vx"];    /// Primary \f$x\f$ coordinate of the vertex as determined by MDC.
+				fVxyz["vy"];    /// Primary \f$y\f$ coordinate of the vertex as determined by MDC.
+				fVxyz["vz"];    /// Primary \f$z\f$ coordinate of the vertex as determined by MDC.
+				fVxyz["vr"];    /// Distance from origin in \f$xy\f$ plane.
+				fVxyz["rvxy"];  /// Nearest distance to IP in \f$xy\f$ plane.
+				fVxyz["rvz"];   /// Nearest distance to IP in \f$z\f$ direction.
+				fVxyz["rvphi"]; /// Angle in the \f$xy\f$plane (?). @todo
+				fVxyz["phi"];   /// Helix angle of the particle (?). @todo
+				fVxyz["p"];     /// Momentum \f$p\f$ of the track.
+				AddItemsToNTuples(nt, fVxyz);
+			}
 
 		// * Book NTuple: 4-contraints for Kalman kinematic fit * //
-			nt = BookNTuple("fit4c");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("mD0",   fInvMass_D0);
-			nt->addItem("mphi",  fInvMass_phi);
-			nt->addItem("mJpsi", fInvMass_Jpsi);
-			nt->addItem("chi2",  fInvMass_ChiSq);
+			if(fDoFit4c) {
+				nt = BookNTuple("fit4c");
+				fFit4c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
+				fFit4c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
+				fFit4c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
+				fFit4c["chi2"];  /// Chi squared of the Kalman kinematic fit.
+				AddItemsToNTuples(nt, fFit4c);
+			}
 
 		// * Book NTuple: 6-contraints for Kalman kinematic fit * //
-			nt = BookNTuple("fit6c");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("mD0",   fInvMass_D0);
-			nt->addItem("mphi",  fInvMass_phi);
-			nt->addItem("mJpsi", fInvMass_Jpsi);
-			nt->addItem("chi2",  fInvMass_ChiSq);
+			if(fDoFit6c) {
+				nt = BookNTuple("fit6c");
+				fFit6c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
+				fFit6c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
+				fFit6c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
+				fFit6c["chi2"];  /// Chi squared of the Kalman kinematic fit.
+				AddItemsToNTuples(nt, fFit6c);
+			}
 
 		// * Book NTuple: dE/dx PID branch * //
-			nt = BookNTuple("dedx");
-			if(!nt) return StatusCode::FAILURE;
-			BookNtupleDedxItems(nt);
+			if(fDoDedx) {
+				nt = BookNTuple("dedx");
+				BookNtupleDedxItems(nt, fDedx);
+			}
 
 		// * Book NTuple: dE/dx PID branch for kaons * //
-			nt = BookNTuple("dedx_K");
-			if(!nt) return StatusCode::FAILURE;
-			BookNtupleDedxItems(nt);
+			if(fDoDedx_K) {
+				nt = BookNTuple("dedx_K");
+				BookNtupleDedxItems(nt, fDedx_K);
+			}
 
-		// * Book NTuple: dE/dx PID branch for pions * //
-			nt = BookNTuple("dedx_pi");
-			if(!nt) return StatusCode::FAILURE;
-			BookNtupleDedxItems(nt);
+		// * BooK NTuple: dE/dx PID branch for pions * //
+			if(fDoDedx_pi) {
+				nt = BookNTuple("dedx_pi");
+				BookNtupleDedxItems(nt, fDedx_pi);
+			}
 
 		// * Book NTuple: ToF endcap branch * //
-			nt = BookNTuple("tofe");
-			if(!nt) return StatusCode::FAILURE;
-			BookNtupleTofItems(nt);
+			if(fDoVxyz) {
+				nt = BookNTuple("tofe");
+				BookNtupleTofItems(nt);
+			}
 
 		// * Book NTuple: ToF inner barrel branch * //
-			nt = BookNTuple("tof1");
-			if(!nt) return StatusCode::FAILURE;
-			BookNtupleTofItems(nt);
+			if(fDoVxyz) {
+				nt = BookNTuple("tof1");
+				BookNtupleTofItems(nt);
+			}
 
 		// * Book NTuple: ToF outer barrel branch * //
-			nt = BookNTuple("tof2");
-			if(!nt) return StatusCode::FAILURE;
-			BookNtupleTofItems(nt);
+			if(fDoVxyz) {
+				nt = BookNTuple("tof2");
+				BookNtupleTofItems(nt);
+			}
 
 		// * Book NTuple: Track PID information * //
-			nt = BookNTuple("pid");
-			if(!nt) return StatusCode::FAILURE;
-			nt->addItem("ptrk", fTrack_p);
-			nt->addItem("cost", fPID_Cost);
-			nt->addItem("dedx", fPID_Dedx);
-			nt->addItem("tof1", fPID_Tof1);
-			nt->addItem("tof2", fPID_Tof2);
-			nt->addItem("prob", fPID_Prob);
+			if(fDoPID) {
+				nt = BookNTuple("pid");
+				fPID["ptrk"]; /// Momentum of the track as reconstructed by MDC.
+				fPID["cost"]; /// Theta angle of the track.
+				fPID["dedx"]; /// Chi squared of the dedx of the track.
+				fPID["tof1"]; /// Chi squared of the inner barrel ToF of the track.
+				fPID["tof2"]; /// Chi squared of the outer barrel ToF of the track.
+				fPID["prob"]; /// Probability that it is a pion.
+				AddItemsToNTuples(nt, fPID);
+			}
 
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
 		return StatusCode::SUCCESS;
@@ -631,21 +648,22 @@
 	/**
 	 * @brief This function encapsulates the `addItem` procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.
 	 */
-	void DzeroPhi::BookNtupleTofItems(NTuplePtr& nt)
+	template<typename TYPE>
+	void DzeroPhi::BookNtupleTofItems(NTuplePtr& nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map)
 	{
-		if(!nt) return;
-		nt->addItem("tof",  fTof);
-		nt->addItem("ptrk", fTof_Ptot);
-		nt->addItem("path", fTof_Path);
-		nt->addItem("cntr", fTof_Cntr);
-		nt->addItem("ph",   fTof_Ph);
-		nt->addItem("rhit", fTof_Rhit);
-		nt->addItem("qual", fTof_Qual);
-		nt->addItem("te",   fTof_Electron);
-		nt->addItem("tmu",  fTof_Muon);
-		nt->addItem("tpi",  fTof_Proton);
-		nt->addItem("tk",   fTof_Kaon);
-		nt->addItem("tp",   fTof_Proton);
+		map["tof"];  /// Time of flight.
+		map["ptrk"]; /// Momentum of the track as reconstructed by MDC.
+		map["path"]; /// Path length.
+		map["cntr"]; /// ToF counter ID.
+		map["ph"];   /// ToF pulse height.
+		map["rhit"]; /// Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
+		map["qual"]; /// Data quality of reconstruction.
+		map["te"];   /// Difference with ToF in electron hypothesis.
+		map["tmu"];  /// Difference with ToF in muon hypothesis.
+		map["tpi"];  /// Difference with ToF in charged pion hypothesis.
+		map["tk"];   /// Difference with ToF in charged kaon hypothesis.
+		map["tp"];   /// Difference with ToF in proton hypothesis.
+		AddItemsToNTuples(nt, map);
 	}
 
 
@@ -653,19 +671,20 @@
 	 * @brief This function encapsulates the `addItem` procedure for the \f$dE/dx\f$ energy loss branch (`"dedx"`).
 	 * @details This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
 	 */
-	void DzeroPhi::BookNtupleDedxItems(NTuplePtr& nt)
+	template<typename TYPE>
+	void DzeroPhi::BookNtupleDedxItems(NTuplePtr& nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map)
 	{
-		if(!nt) return;
-		nt->addItem("ptrk",   fTrack_p);
-		nt->addItem("chie",   fDedx_Chi2e);
-		nt->addItem("chimu",  fDedx_Chi2mu);
-		nt->addItem("chipi",  fDedx_Chi2pi);
-		nt->addItem("chik",   fDedx_Chi2k);
-		nt->addItem("chip",   fDedx_Chi2p);
-		nt->addItem("probPH", fDedx_ProbPH);
-		nt->addItem("normPH", fDedx_NormPH);
-		nt->addItem("ghit",   fDedx_Ghit);
-		nt->addItem("thit",   fDedx_Thit);
+		map["ptrk"];   /// Momentum of the track as reconstructed by MDC.
+		map["chie"];   /// Chi squared in case of electron.
+		map["chimu"];  /// Chi squared in case of muon.
+		map["chipi"];  /// Chi squared in case of pion.
+		map["chik"];   /// Chi squared in case of kaon.
+		map["chip"];   /// Chi squared in case of proton.
+		map["probPH"]; /// Most probable pulse height from truncated mean.
+		map["normPH"]; /// Normalized pulse height.
+		map["ghit"];   /// Number of good hits.
+		map["thit"];   /// Total number of hits.
+		AddItemsToNTuples(nt, map);
 	}
 
 
@@ -746,4 +765,15 @@
 		fDedx_Thit    = dedxTrk->numTotalHits();
 		fNTupleMap[tupleName]->write();
 
+	}
+
+	/**
+	 * @brief
+	 */
+	template<typename TYPE>
+	void AddItemsToNTuples(NTuplePtr& nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map)
+	{
+		if(!nt) return;
+		std::unordered_map<const char*, NTuple::Item<TYPE> >::iter it = map.begin();
+		for(; it != map.end(); ++it) nt->addItem(it->first, it->second);
 	}

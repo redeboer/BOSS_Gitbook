@@ -27,6 +27,7 @@
 	#include "GaudiKernel/SmartRefVector.h"
 	#include "TofRecEvent/RecTofTrack.h"
 	#include <map>
+	#include <utility>
 	#include <string>
 	#include <vector>
 
@@ -50,11 +51,12 @@ public:
 protected:
 	// * Protected methods * //
 		NTuplePtr BookNTuple(const char* tupleName);
-		void BookNtupleTofItems(NTuplePtr& nt);
-		void BookNtupleDedxItems(NTuplePtr& nt);
 		void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName);
 		void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName);
 		void WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector, const char* tupleName);
+		template<typename TYPE> void BookNtupleTofItems (NTuplePtr &nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void BookNtupleDedxItems(NTuplePtr &nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void AddItemsToNTuples  (NTuplePtr &nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map);
 
 	// * Protected data members * //
 		double fSmallestChiSq;
@@ -104,78 +106,30 @@ private:
 		// NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem.
 		// Note that the NTuple::Items have to be added to the NTuple during the DzeroPhi::initialize() step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
-		// * Multiplicities *
-			bool fDoMult; //!< Package property that determines whether or not to write multiplicities and primary vertex info.
-			NTuple::Item<int>    fEvent_Ntotal;   //!< Total number of events per track.
-			NTuple::Item<int>    fEvent_Ncharge;  //!< Number of charged tracks.
-			NTuple::Item<int>    fEvent_Nneutral; //!< Number of charged tracks.
-			NTuple::Item<double> fEvent_Vx0;      //!< Primary \f$x\f$ coordinate of the collision point.
-			NTuple::Item<double> fEvent_Vy0;      //!< Primary \f$y\f$ coordinate of the collision point.
-			NTuple::Item<double> fEvent_Vz0;      //!< Primary \f$z\f$ coordinate of the collision point.
-			NTuple::Item<int>    fEvent_Ngood;    //!< Number of 'good' charged tracks.
-			NTuple::Item<int>    fEvent_Nmdc;     //!< Number of charged tracks in MDC. @todo Test whether this parameter really makes sense.
-			NTuple::Item<int>    fEvent_NKaonPos; //!< Number of \f$K^+\f$.
-			NTuple::Item<int>    fEvent_NKaonNeg; //!< Number of \f$K^-\f$.
-			NTuple::Item<int>    fEvent_NPionPos; //!< Number of \f$\pi^-\f$.
-
-		// * Vertex information of the charged tracks *
-			bool fDoVxyz; //!< Package property that determines whether or not to write track vertex info.
-			NTuple::Item<double> fTrack_Vx;    //!< Primary \f$x\f$ coordinate of the vertex as determined by MDC.
-			NTuple::Item<double> fTrack_Vy;    //!< Primary \f$y\f$ coordinate of the vertex as determined by MDC.
-			NTuple::Item<double> fTrack_Vz;    //!< Primary \f$z\f$ coordinate of the vertex as determined by MDC.
-			NTuple::Item<double> fTrack_Vr;    //!< Distance from origin in \f$xy\f$ plane.
-			NTuple::Item<double> fTrack_Rvxy;  //!< Nearest distance to IP in \f$xy\f$ plane.
-			NTuple::Item<double> fTrack_Rvz;   //!< Nearest distance to IP in \f$z\f$ direction.
-			NTuple::Item<double> fTrack_Rvphi; //!< Angle in the \f$xy\f$plane (?). @todo
-			NTuple::Item<double> fTrack_phi;   //!< Helix angle of the particle (?). @todo
-			NTuple::Item<double> fTrack_p;     //!< Momentum \f$p\f$ of the track.
-
-		// * 4- and 6-constraint (4C/6C) fit information *
-			bool fDoFit4c; //!< Package property that determines whether or not to perform a 4-constraint Kalman kinematic fit.
-			bool fDoFit6c; //!< Package property that determines whether or not to perform a 6-constraint Kalman kinematic fit.
-			NTuple::Item<double> fInvMass_D0;    //!< Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
-			NTuple::Item<double> fInvMass_phi;   //!< Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
-			NTuple::Item<double> fInvMass_Jpsi;  //!< Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
-			NTuple::Item<double> fInvMass_ChiSq; //!< Chi squared of the Kalman kinematic fit.
-
-		// * Energy loss dE/dx *
-			bool fDoDedx;      //!< Package property that determines whether or not to write \f$dE/dx\f$.
-			bool fDoDedx_Kaon; //!< Package property that determines whether or not to write \f$dE/dx\f$ of the kaons (\f$K^\pm\f$).
-			bool fDoDedx_Pion; //!< Package property that determines whether or not to write \f$dE/dx\f$ of the pions (\f$\pi^\pm\f$).
-			NTuple::Item<double> fDedx_Chi2e;  //!< Chi squared in case of electron.
-			NTuple::Item<double> fDedx_Chi2mu; //!< Chi squared in case of muon.
-			NTuple::Item<double> fDedx_Chi2pi; //!< Chi squared in case of pion.
-			NTuple::Item<double> fDedx_Chi2k;  //!< Chi squared in case of kaon.
-			NTuple::Item<double> fDedx_Chi2p;  //!< Chi squared in case of proton.
-			NTuple::Item<double> fDedx_ProbPH; //!< Most probable pulse height from truncated mean.
-			NTuple::Item<double> fDedx_NormPH; //!< Normalized pulse height.
-			NTuple::Item<double> fDedx_Ghit;   //!< Number of good hits.
-			NTuple::Item<double> fDedx_Thit;   //!< Total number of hits.
-
-		// * ToF detector parameters (end cap, inner barrel, and outer barrel) *
-			bool fDoTofEC; //!< Package property that determines whether or not to write ToF data from the end cap.
-			bool fDoTofIB; //!< Package property that determines whether or not to write ToF data from the inner barrel.
-			bool fDoTofOB; //!< Package property that determines whether or not to write ToF data from the outer barrel.
-			NTuple::Item<double> fTof;          //!< Time of flight.
-			NTuple::Item<double> fTof_Ptot;     //!< Momentum of the track as reconstructed by MDC.
-			NTuple::Item<double> fTof_Path;     //!< Path length.
-			NTuple::Item<double> fTof_Cntr;     //!< ToF counter ID.
-			NTuple::Item<double> fTof_Ph;       //!< ToF pulse height.
-			NTuple::Item<double> fTof_Rhit;     //!< Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
-			NTuple::Item<double> fTof_Qual;     //!< Data quality of reconstruction.
-			NTuple::Item<double> fTof_Electron; //!< Difference with ToF in electron hypothesis.
-			NTuple::Item<double> fTof_Muon;     //!< Difference with ToF in muon hypothesis.
-			NTuple::Item<double> fTof_Protoni;  //!< Difference with ToF in charged pion hypothesis.
-			NTuple::Item<double> fTof_Kaon;     //!< Difference with ToF in charged kaon hypothesis.
-			NTuple::Item<double> fTof_Proton;   //!< Difference with ToF in proton hypothesis.
-
-		// * Particle ID info *
-			bool fDoPID; //!< Package property that determines whether or not to write PID information.
-			NTuple::Item<double> fPID_Cost;   //!< Theta angle of the track.
-			NTuple::Item<double> fPID_Dedx;   //!< Chi squared of the dedx of the track.
-			NTuple::Item<double> fPID_Tof1;   //!< Chi squared of the inner barrel ToF of the track.
-			NTuple::Item<double> fPID_Tof2;   //!< Chi squared of the outer barrel ToF of the track.
-			NTuple::Item<double> fPID_Prob;   //!< Probability that it is a pion.
+		// * Maps of Ntuples *
+			bool fDoMult;    //!< Package property that determines whether or not to write multiplicities and primary vertex info.
+			bool fDoVxyz;    //!< Package property that determines whether or not to write track vertex info.
+			bool fDoFit4c;   //!< Package property that determines whether or not to perform a 4-constraint Kalman kinematic fit.
+			bool fDoFit6c;   //!< Package property that determines whether or not to perform a 6-constraint Kalman kinematic fit.
+			bool fDoDedx;    //!< Package property that determines whether or not to write \f$dE/dx\f$.
+			bool fDoDedx_K;  //!< Package property that determines whether or not to write \f$dE/dx\f$ of the kaons (\f$K^\pm\f$).
+			bool fDoDedx_pi; //!< Package property that determines whether or not to write \f$dE/dx\f$ of the pions (\f$\pi^\pm\f$).
+			bool fDoTofEC;   //!< Package property that determines whether or not to write ToF data from the end cap.
+			bool fDoTofIB;   //!< Package property that determines whether or not to write ToF data from the inner barrel.
+			bool fDoTofOB;   //!< Package property that determines whether or not to write ToF data from the outer barrel.
+			bool fDoPID;     //!< Package property that determines whether or not to write PID information.
+			std::unordered_map<const char*, NTuple::Item<int> >    fMult_i; //!< `integer` container for the multiplicy branch.
+			std::unordered_map<const char*, NTuple::Item<double> > fMult_d; //!< `double` container for the multiplicy branch.
+			std::unordered_map<const char*, NTuple::Item<double> > fVxyz;   //!< Container for the track verex branch.
+			std::unordered_map<const char*, NTuple::Item<double> > fFit4c;  //!< Container for the fit4c branch.
+			std::unordered_map<const char*, NTuple::Item<double> > fFit6c;  //!< Container for the fit6c branch.
+			std::unordered_map<const char*, NTuple::Item<double> > fDedx;    //!< Container for the `"dedx"` branch.         
+			std::unordered_map<const char*, NTuple::Item<double> > fDedx_K;  //!< Container for the `"dedx_k"` branch.           
+			std::unordered_map<const char*, NTuple::Item<double> > fDedx_pi; //!< Container for the `"dedx_pi"` branch.            
+			std::unordered_map<const char*, NTuple::Item<double> > fTofEC;   //!< Container for the `"tofe"` branch.          
+			std::unordered_map<const char*, NTuple::Item<double> > fTofIB;   //!< Container for the `"tof1"` branch.          
+			std::unordered_map<const char*, NTuple::Item<double> > fTofOB;   //!< Container for the `"tof2"` branch.          
+			std::unordered_map<const char*, NTuple::Item<double> > fPID;     //!< Container for the `"pid"` branch.        
 
 };
 
