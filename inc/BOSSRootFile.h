@@ -33,58 +33,56 @@
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
-class BOSSRootFile
-{
+	class BOSSRootFile
+	{
 
-public:
-	// * Constructor and destructors *
-	BOSSRootFile();
-	BOSSRootFile(const char*);
-	~BOSSRootFile();
-	void CloseFile();
+	public:
+		// * Constructor and destructors *
+		BOSSRootFile();
+		BOSSRootFile(const char*);
+		~BOSSRootFile();
+		void CloseFile();
 
-	// * Information *
-	void Print(const char* nameOfTree, Option_t *option = "toponly");
-	void Print();
-	void PrintTrees(Option_t *option = "");
-	bool IsZombie();
-	void PlotDistribution1D(
-		TTree* tree, const char* branchName,
-		int nBins, double x1, double x2,
-		const char* title = "", Option_t* opt = "ep", TString fileName = "");
-	void PlotDistribution1D(
-		const char* treeName, const char* branchName,
-		int nBins, double x1, double x2,
-		const char* title = "", Option_t* opt = "ep", TString fileName = "");
-	void PlotDistribution2D(
-		TTree* tree, const char* branchX, const char* branchY,
-		int nBinsX, double x1, double x2,
-		int nBinsY, double y1, double y2,
-		const char* title = "", Option_t* opt = "colz", bool setLogZ = kFALSE, TString fileName = "");
-	void PlotDistribution2D(
-		const char* treeName, const char* branchX, const char* branchY,
-		int nBinsX, double x1, double x2,
-		int nBinsY, double y1, double y2,
-		const char* title = "", Option_t* opt = "colz", bool setLogZ = kFALSE, TString fileName = "");
+		// * Information *
+		void Print(const char* nameOfTree, Option_t *option = "toponly");
+		void Print();
+		void PrintTrees(Option_t *option = "");
+		bool IsZombie();
+		void PlotDistribution(
+			TTree* tree, const TString& branchNames, Option_t* option = "");
+		void PlotDistribution(
+			const char* treeName, const TString& branchNames, Option_t* option = "");
+		void PlotDistributions(TTree* tree, Option_t* option = "");
+		void PlotDistributions(const char* treeName, Option_t* option = "");
+		void PlotAllBranches(Option_t* option = "");
+		void PlotDistribution1D(
+			const char* treeName, const char* branchName,
+			int nBins, double x1, double x2,
+			const char* title = "", Option_t* opt = "ep", TString fileName = "");
+		void PlotDistribution2D(
+			const char* treeName, const char* branchX, const char* branchY,
+			int nBinsX, double x1, double x2,
+			int nBinsY, double y1, double y2,
+			const char* title = "", Option_t* opt = "colz", bool setLogZ = kFALSE, TString fileName = "");
 
-	// * Getters *
-	int GetNumberOfEvents(const char* treeName);
-	TTree* FindTree(const char* treeName, bool terminate = false);
+		// * Getters *
+		int GetNumberOfEvents(const char* treeName);
+		TTree* FindTree(const char* treeName, bool terminate = false);
 
-protected:
-	// * Data members *
-	TFile fFile;  //!< The `TFile` that has been loaded.
-	std::map<std::string, TTree*> fTrees; //!< Map of pointers to all `TTree`s in the ROOT file.
+	protected:
+		// * Data members *
+		TFile fFile;  //!< The `TFile` that has been loaded.
+		std::map<std::string, TTree*> fTrees; //!< Map of pointers to all `TTree`s in the ROOT file.
 
-	// * Private methods *
-	bool OpenFile(const char*);
-	void Initialize();
-	void Destruct();
-	void LoadTTrees();
-	template<class T>
-	int SetBranchAddress(TTree* tree, const char* branchName, T& address);
+		// * Private methods *
+		bool OpenFile(const char*);
+		void Initialize();
+		void Destruct();
+		void LoadTTrees();
+		template<class T>
+		int SetBranchAddress(TTree* tree, const char* branchName, T& address);
 
-};
+	};
 
 
 
@@ -92,90 +90,90 @@ protected:
 // * ------- CONSTRUCTORS AND DESTRUCTORS ------ * //
 // * =========================================== * //
 
-/**
- * @brief Default constructor.
- * @details Currently does nothing as there are no null pointers to set.
- */
-BOSSRootFile::BOSSRootFile()
-{
-	Initialize();
-}
+	/**
+	 * @brief Default constructor.
+	 * @details Currently does nothing as there are no null pointers to set.
+	 */
+	BOSSRootFile::BOSSRootFile()
+	{
+		Initialize();
+	}
 
-/**
- * @brief Constructor that opens a `TFile` and maps its contents.
- */
-BOSSRootFile::BOSSRootFile(const char* filename) : fFile(filename)
-{
-	// * Initialize members (empty them) *
-	Initialize();
-	// * Load TTrees *
-	LoadTTrees();
-}
+	/**
+	 * @brief Constructor that opens a `TFile` and maps its contents.
+	 */
+	BOSSRootFile::BOSSRootFile(const char* filename) : fFile(filename)
+	{
+		// * Initialize members (empty them) *
+		Initialize();
+		// * Load TTrees *
+		LoadTTrees();
+	}
 
-/**
- * @brief Destructor that closes the `TFile` if needed.
- */
-BOSSRootFile::~BOSSRootFile()
-{
-	Destruct();
-}
+	/**
+	 * @brief Destructor that closes the `TFile` if needed.
+	 */
+	BOSSRootFile::~BOSSRootFile()
+	{
+		Destruct();
+	}
 
 
-/**
- * @brief Close file
- */
-void BOSSRootFile::CloseFile()
-{
-	fFile.Close();
-	fTrees.clear();
-}
+	/**
+	 * @brief Close file
+	 */
+	void BOSSRootFile::CloseFile()
+	{
+		fFile.Close();
+		fTrees.clear();
+	}
 
-/**
- * @brief Encapsulation of the default destructor.
- */
-void BOSSRootFile::Destruct()
-{
-	CloseFile();  // close file
-	Initialize(); // set pointers to null
-}
+	/**
+	 * @brief Encapsulation of the default destructor.
+	 */
+	void BOSSRootFile::Destruct()
+	{
+		CloseFile();  // close file
+		Initialize(); // set pointers to null
+	}
+
 
 
 // * ======================= * //
 // * ------- GETTERS ------- * //
 // * ======================= * //
 
-/**
- * @brief Get the number of events in one of the `TTree`s.
- * @param treeName Name of the `TTree` that you are looking for.
- * @return int Tree object that contains the trees. Returns a `nullptr` if this `TTree` does not exist.
- */
-int BOSSRootFile::GetNumberOfEvents(const char* treeName)
-{
-	TTree* tree = FindTree(treeName);
-	if(tree) return tree->GetEntries();
-	return 0;
-}
-
-/**
- * @brief Look for a tree in the files and get its `TTree`.
- * @param treeName Name of the `TTree` that you are looking for.
- * @return TTree* Tree object that contains the trees. Returns a `nullptr` if this `TTree` does not exist.
- */
-TTree* BOSSRootFile::FindTree(const char* treeName, bool terminate)
-{
-	TTree* tree = fTrees[treeName];
-	// * Pass TTree pointer if the name matches
-	if(!tree) {
-		std::cout << "ERROR: TTree \"" << treeName << "\" does not exist in file \"" << fFile.GetName() << "\"" << std::endl;
-		if(terminate) {
-			std::cout << std::endl << "Try:" << std::endl;
-			fFile.ls();
-			std::terminate();
-		}
+	/**
+	 * @brief Get the number of events in one of the `TTree`s.
+	 * @param treeName Name of the `TTree` that you are looking for.
+	 * @return int Tree object that contains the trees. Returns a `nullptr` if this `TTree` does not exist.
+	 */
+	int BOSSRootFile::GetNumberOfEvents(const char* treeName)
+	{
+		TTree* tree = FindTree(treeName);
+		if(tree) return tree->GetEntries();
+		return 0;
 	}
-	return tree;
-}
 
+	/**
+	 * @brief Look for a tree in the files and get its `TTree`.
+	 * @param treeName Name of the `TTree` that you are looking for.
+	 * @return TTree* Tree object that contains the trees. Returns a `nullptr` if this `TTree` does not exist.
+	 */
+	TTree* BOSSRootFile::FindTree(const char* treeName, bool terminate)
+	{
+		TTree* tree = fTrees[treeName];
+		// * Pass TTree pointer if the name matches
+		if(!tree) {
+			std::cout << "ERROR: TTree \"" << treeName << "\" does not exist in file \"" << fFile.GetName() << "\"" << std::endl;
+			if(terminate) {
+				std::cout << std::endl << "Try:" << std::endl;
+				fFile.ls();
+				std::terminate();
+			}
+		}
+		return tree;
+	}
 
 
 
@@ -183,323 +181,363 @@ TTree* BOSSRootFile::FindTree(const char* treeName, bool terminate)
 // * ------- INFORMATION ------- * //
 // * =========================== * //
 
-/**
- * @brief Print information about a certan tree.
- * @details This function loops over the map of file names and over the map of trees and prints its name and number of events. For each tree, information about its branches is also printed.
- * @param nameOfTree
- * @param option
- */
-void BOSSRootFile::Print(const char* nameOfTree, Option_t *option)
-{
-	TTree* tree = FindTree(nameOfTree);
-	if(tree) {
-		tree->Print(option);
-		std::cout << "------------------------------------" << std::endl;
-		std::cout << "Total number of events in tree \"" << tree->GetName() << "\": " << std::scientific << tree->GetEntries() << std::endl;
+	/**
+	 * @brief Print information about a certan tree.
+	 * @details This function loops over the map of file names and over the map of trees and prints its name and number of events. For each tree, information about its branches is also printed.
+	 * @param nameOfTree
+	 * @param option
+	 */
+	void BOSSRootFile::Print(const char* nameOfTree, Option_t *option)
+	{
+		TTree* tree = FindTree(nameOfTree);
+		if(tree) {
+			tree->Print(option);
+			std::cout << "------------------------------------" << std::endl;
+			std::cout << "Total number of events in tree \"" << tree->GetName() << "\": " << std::scientific << tree->GetEntries() << std::endl;
+		}
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
-}
 
-/**
- * @brief Print information about all trees in the `TFile`.
- */
-void BOSSRootFile::Print()
-{
-	// * Check if class has been constructed *
-	if(!fFile.IsOpen()) {
-		std::cout << std::endl << "File not loaded" << std::endl;
-		return;
+	/**
+	 * @brief Print information about all trees in the `TFile`.
+	 */
+	void BOSSRootFile::Print()
+	{
+		// * Check if class has been constructed *
+		if(!fFile.IsOpen()) {
+			std::cout << std::endl << "File not loaded" << std::endl;
+			return;
+		}
+		// * If so, print all 
+		std::cout << std::endl << "File name: \"" << fFile.GetName() << "\"" << std::endl;
+		if(fTrees.size()) {
+			std::cout << "  contains " << fTrees.size() << " TTrees:" << std::endl;
+			std::map<std::string, TTree*>::iterator it = fTrees.begin();
+			while(it != fTrees.end()) {
+				std::cout << "    \"" << it->second->GetName() <<
+					"\"\t\"" << it->second->GetTitle() <<
+					"\"\t" << it->second->GetEntries() << " entries" << std::endl;
+				++it;
+			}
+		} else {
+			std::cout << "  does not contain any TTrees" << std::endl;
+		}
+		std::cout << std::endl;
+		std::cout << "  Output of fFile.ls():" << std::endl;
+		std::cout << "  ---------------------" << std::endl;
+		fFile.ls();
+		std::cout << std::endl;
 	}
-	// * If so, print all 
-	std::cout << std::endl << "File name: \"" << fFile.GetName() << "\"" << std::endl;
-	if(fTrees.size()) {
-		std::cout << "  contains " << fTrees.size() << " TTrees:" << std::endl;
+
+	/**
+	 * @brief Check if file is loaded.
+	 */
+	bool BOSSRootFile::IsZombie()
+	{
+		return fFile.IsZombie();
+	}
+
+	/**
+	 * @brief Plot a distribution of one of the branches in the file.
+	 *
+	 * @param tree       `TTree` that you want to plot.
+	 * @param branchName Names of the branches that you are looking.
+	 * @param nBins      The number of bins that you want to have in the resulting histogram.
+	 * @param x1         Determines left side of the plot range.
+	 * @param x2         Determines right side of the plot range.
+	 * @param title      Determines title of the plot.
+	 * @param opt        Draw options.
+	 * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
+	 */
+	void BOSSRootFile::PlotDistribution(
+		TTree* tree, const TString& branchNames, Option_t* option)
+	{
+		// * Check input arguments * //
+			if(!tree) return;
+		// * Draw histogram and save * //
+			TCanvas c;
+			tree->Draw(branchNames, "", option);
+			c.SaveAs(Form("%s/%s_%s.%s",
+				Settings::Output::PlotOutputDir.Data(),
+				tree->GetName(),
+				branchNames.Data(),
+				Settings::Output::Extension
+			));
+	}
+
+	/**
+	 * @brief Plot a distribution of one of the branches in the file.
+	 *
+	 * @param treeName   Name of the tree you want to plot.
+	 * @param branchName Names of the branches that you are looking.
+	 * @param nBins      The number of bins that you want to have in the resulting histogram.
+	 * @param x1         Determines left side of the plot range.
+	 * @param x2         Determines right side of the plot range.
+	 * @param title      Determines title of the plot.
+	 * @param opt        Draw options.
+	 * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
+	 */
+	void BOSSRootFile::PlotDistribution(
+		const char* treeName, const TString& branchNames, Option_t* option)
+	{
+		TTree *tree = fTrees[treeName];
+		if(!tree) {
+			std::cout << "ERROR: TTree \"" << treeName << "\" does not exist" << std::endl;
+			return;
+		}
+		PlotDistribution(tree, branchNames, option);
+	}
+
+	/**
+	 * @brief Plot the distributions of all branches of a `TTree`.
+	 * @param tree   The `TTree` of which you want to draw the branches.
+	 * @param option Draw options.
+	 */
+	void BOSSRootFile::PlotDistributions(TTree* tree, Option_t* option)
+	{
+		if(!tree) return;
+		TIter next(tree->GetListOfBranches());
+		TObject *obj  = nullptr;
+		while((obj = next())) PlotDistribution(tree, obj->GetName(), option);
+	}
+
+	/**
+	 * @brief Plot the distributions of all branches of a `TTree`.
+	 * @param treeName Name of the `TTree` of which you want to draw the branches.
+	 * @param option   Draw options.
+	 */
+	void BOSSRootFile::PlotDistributions(const char* treeName, Option_t* option)
+	{
+		TTree* tree = fTrees[treeName];
+		if(tree) PlotDistributions(tree, option);
+	}
+
+	/**
+	 * @brief Plot the distributions of all branches available in the ROOT file.
+	 * @param option Draw options.
+	 */
+	void BOSSRootFile::PlotAllBranches(Option_t* option)
+	{
 		std::map<std::string, TTree*>::iterator it = fTrees.begin();
-		while(it != fTrees.end()) {
-			std::cout << "    \"" << it->second->GetName() <<
-				"\"\t\"" << it->second->GetTitle() <<
-				"\"\t" << it->second->GetEntries() << " entries" << std::endl;
-			++it;
-		}
-	} else {
-		std::cout << "  does not contain any TTrees" << std::endl;
+		for(; it != fTrees.end(); ++it)
+			PlotDistributions(it->second, option);
 	}
-	std::cout << std::endl;
-	std::cout << "  Output of fFile.ls():" << std::endl;
-	std::cout << "  ---------------------" << std::endl;
-	fFile.ls();
-	std::cout << std::endl;
-}
 
-/**
- * @brief Check if file is loaded.
- */
-bool BOSSRootFile::IsZombie()
-{
-	return fFile.IsZombie();
-}
+	/**
+	 * @brief Plot a 1D distribution of one of the branches in the file.
+	 *
+	 * @param treeName   Name of the tree you want to plot.
+	 * @param branchName Names of the branches that you are looking.
+	 * @param nBins      The number of bins that you want to have in the resulting histogram.
+	 * @param x1         Determines left side of the plot range.
+	 * @param x2         Determines right side of the plot range.
+	 * @param title      Determines title of the plot.
+	 * @param opt        Draw options.
+	 * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
+	 */
+	void BOSSRootFile::PlotDistribution1D(
+		const char* treeName, const char* branchName,
+		int nBins, double x1, double x2,
+		const char* title, Option_t* opt, TString outputFileName)
+	{
+		// * Check input arguments * //
+			TTree *tree = fTrees[treeName];
+			if(!tree) {
+				std::cout << "ERROR: TTree \"" << treeName << "\" does not exist" << std::endl;
+				return;
+			}
+			double address;
+			int result = SetBranchAddress(tree, branchName, address);
+			if(result < 0) {
+				std::cout << "ERROR: Attempt to load \"" << branchName << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
+				return;
+			}
+			if(nBins<1) {
+				std::cout << "ERROR: Cannot create a histogram with " << nBins << " bins" << std::endl;
+				return;
+			}
+			if(x1 >= x2) {
+				std::cout << "ERROR: Value x1=" << x1 << " cannot be more than x2=" << x2 << std::endl;
+				return;
+			}
+		// * Create histogram * //
+			TString histTitle(title);
+			if(histTitle.EqualTo("")) histTitle = Form("Distribution of \"%s\" in tree \"%s\";;counts", branchName, tree->GetName());
+			TH1D hist("hist", histTitle.Data(), nBins, x1, x2);
+		// ! Modify histogram styles here ! //
+			TCanvas c;
+			// hist.SetStats(kFALSE);
+		// * Loop over tree to fill histogram * //
+			Long64_t nEntries = tree->GetEntries();
+			for(Long64_t i = 0; i < nEntries; ++i) {
+				tree->GetEntry(i);
+				hist.Fill(address);
+			}
+		// * Draw histogram and save * //
+			hist.Draw(opt);
+			if(outputFileName.EqualTo("")) {
+				const char* outputFolder = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
+				gSystem->mkdir(outputFolder, kTRUE);
+				outputFileName = Form("%s/%s_%s.%s", outputFolder, tree->GetName(), branchName, Settings::Output::Extension);
+			}
+			c.SaveAs(outputFileName.Data());
+			c.Close();
+	}
 
-/**
- * @brief Plot a 1D distribution of one of the branches in the file.
- * @todo Move these settings to `FrameworkSettings.h`
- *
- * @param tree       Pointer to the `TTree` that you want to load a branch from.
- * @param branchName Name of the branch that you are looking.
- * @param nBins      The number of bins that you want to have in the resulting histogram.
- * @param x1         Determines left side of the plot range.
- * @param x2         Determines right side of the plot range.
- * @param title      Determines title of the plot.
- * @param opt        Draw options.
- * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
- */
-void BOSSRootFile::PlotDistribution1D(
-	TTree* tree, const char* branchName,
-	int nBins, double x1, double x2,
-	const char* title, Option_t* opt, TString outputFileName)
-{
-	// * Check input arguments * //
-		if(!tree) {
-			std::cout << "ERROR: TTree* is a null pointer" << std::endl;
-			return;
-		}
-		double address;
-		int result = SetBranchAddress(tree, branchName, address);
-		if(result < 0) {
-			std::cout << "ERROR: Attempt to load \"" << branchName << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
-			return;
-		}
-		if(nBins<1) {
-			std::cout << "ERROR: Cannot create a histogram with " << nBins << " bins" << std::endl;
-			return;
-		}
-		if(x1 >= x2) {
-			std::cout << "ERROR: Value x1=" << x1 << " cannot be more than x2=" << x2 << std::endl;
-			return;
-		}
-	// * Create histogram * //
-		TString histTitle(title);
-		if(histTitle.EqualTo("")) histTitle = Form("Distribution of \"%s\" in tree \"%s\";;counts", branchName, tree->GetName());
-		TH1D hist("hist", histTitle.Data(), nBins, x1, x2);
-	// ! Modify histogram styles here ! //
-		TCanvas c;
-		// hist.SetStats(kFALSE);
-	// * Loop over tree to fill histogram * //
-		Long64_t nEntries = tree->GetEntries();
-		for(Long64_t i = 0; i < nEntries; ++i) {
-			tree->GetEntry(i);
-			hist.Fill(address);
-		}
-	// * Draw histogram and save * //
-		hist.Draw(opt);
-		if(outputFileName.EqualTo("")) {
+
+	/**
+	 * @brief Plot a 2D distribution of one of the branches in the file.
+	 *
+	 * @param treeName Name of the `TTree` that you want to load a branch from.
+	 * @param branchX  Name of the X-branch that you are looking.
+	 * @param branchY  Name of the Y-branch that you are looking.
+	 * @param nBinsX   The number of bins that you want to have in the resulting histogram.
+	 * @param x1       Determines left side of the plot range.
+	 * @param x2       Determines right side of the plot range.
+	 * @param nBinsY   The number of bins that you want to have in the resulting histogram.
+	 * @param y1       Determines left side of the plot range.
+	 * @param y2       Determines right side of the plot range.
+	 * @param title    Determines title of the plot.
+	 * @param opt      Draw options.
+	 * @param setLogZ  Use a log scale in the Z-direction.
+	 * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
+	 */
+	void BOSSRootFile::PlotDistribution2D(
+		const char* treeName, const char* branchX, const char* branchY,
+		int nBinsX, double x1, double x2,
+		int nBinsY, double y1, double y2,
+		const char* title, Option_t* opt, bool setLogZ, TString outputFileName)
+	{
+		// * Check input arguments * //
+			TTree* tree = fTrees[treeName];
+			if(!tree) {
+				std::cout << "ERROR: TTree* is a null pointer" << std::endl;
+				return;
+			}
+			int result;
+			double addressX; result = SetBranchAddress(tree, branchX, addressX);
+			if(result < 0) {
+				std::cout << "ERROR: Attempt to load \"" << branchX << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
+				return;
+			}
+			double addressY; result = SetBranchAddress(tree, branchY, addressY);
+			if(result < 0) {
+				std::cout << "ERROR: Attempt to load \"" << branchY << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
+				return;
+			}
+			if(nBinsX<1 || nBinsY<1) {
+				std::cout << "ERROR: Cannot create a histogram with " << nBinsX << " x " << nBinsY << " bins" << std::endl;
+				return;
+			}
+			if(x1 >= x2) {
+				std::cout << "ERROR: Value x1=" << x1 << " cannot be more than x2=" << x2 << std::endl;
+				return;
+			}
+			if(y1 >= y2) {
+				std::cout << "ERROR: Value y1=" << y1 << " cannot be more than y2=" << y2 << std::endl;
+				return;
+			}
+		// * Create histogram * //
+			TString histTitle(title);
+			if(histTitle.EqualTo("")) histTitle = Form("Distribution of \"%s vs %s\" in tree \"%s\";;;counts", branchX, branchY, tree->GetName());
+			TH2D hist("hist", histTitle.Data(), nBinsX, x1, x2, nBinsY, y1, y2);
+		// ! Modify histogram styles here ! //
+			TCanvas c;
+			c.SetBatch(kFALSE);
+			if(setLogZ) c.SetLogz();
+			// hist.SetStats(kFALSE);
+		// * Loop over tree to fill histogram * //
+			Long64_t nEntries = tree->GetEntries();
+			for(Long64_t i = 0; i < nEntries; ++i) {
+				tree->GetEntry(i);
+				hist.Fill(addressX, addressY);
+			}
+		// * Draw histogram and save * //
+			hist.Draw(opt);
 			const char* outputFolder = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
-			gSystem->mkdir(outputFolder, kTRUE);
-			outputFileName = Form("%s/%s_%s.%s", outputFolder, tree->GetName(), branchName, Settings::Output::Extension);
-		}
-		c.SaveAs(outputFileName.Data());
-		c.Close();
-}
+			const char* outputFile = Form("%s_%s_%s.%s", tree->GetName(), branchX, branchY, Settings::Output::Extension);
+			gSystem->mkdir(outputFolder);
+			c.SaveAs(Form("%s/%s", outputFolder, outputFile));
+			c.Close();
+	}
 
-/**
- * @brief Plot a 1D distribution of one of the branches in the file.
- * @todo Move these settings to `FrameworkSettings.h`
- *
- * @param treeName   Name of the `TTree` that you want to load a branch from.
- * @param branchName Name of the branch that you are looking.
- * @param nBins      The number of bins that you want to have in the resulting histogram.
- * @param x1         Determines left side of the plot range.
- * @param x2         Determines right side of the plot range.
- * @param title      Determines title of the plot.
- * @param opt        Draw options.
- * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
- */
-void BOSSRootFile::PlotDistribution1D(
-	const char* treeName, const char* branchName,
-	int nBins, double x1, double x2,
-	const char* title, Option_t* opt, TString outputFileName)
-{
-	TTree* tree = FindTree(treeName);
-	if(tree) PlotDistribution1D(tree, branchName, nBins, x1, x2, title, opt, outputFileName);
-}
-
-/**
- * @brief Plot a 2D distribution of one of the branches in the file.
- * @todo Move these settings to `FrameworkSettings.h`
- *
- * @param tree    Pointer to the `TTree` that you want to load a branch from.
- * @param branchX Name of the X-branch that you are looking.
- * @param branchY Name of the Y-branch that you are looking.
- * @param nBinsX  The number of bins that you want to have in the resulting histogram.
- * @param x1      Determines left side of the plot range.
- * @param x2      Determines right side of the plot range.
- * @param nBinsY  The number of bins that you want to have in the resulting histogram.
- * @param y1      Determines left side of the plot range.
- * @param y2      Determines right side of the plot range.
- * @param title   Determines title of the plot.
- * @param opt     Draw options.
- * @param setLogZ  Use a log scale in the Z-direction.
- * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
- */
-void BOSSRootFile::PlotDistribution2D(
-	TTree* tree, const char* branchX, const char* branchY,
-	int nBinsX, double x1, double x2,
-	int nBinsY, double y1, double y2,
-	const char* title, Option_t* opt, bool setLogZ, TString outputFileName)
-{
-	// * Check input arguments * //
-		if(!tree) {
-			std::cout << "ERROR: TTree* is a null pointer" << std::endl;
-			return;
-		}
-		int result;
-		double addressX; result = SetBranchAddress(tree, branchX, addressX);
-		if(result < 0) {
-			std::cout << "ERROR: Attempt to load \"" << branchX << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
-			return;
-		}
-		double addressY; result = SetBranchAddress(tree, branchY, addressY);
-		if(result < 0) {
-			std::cout << "ERROR: Attempt to load \"" << branchY << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
-			return;
-		}
-		if(nBinsX<1 || nBinsY<1) {
-			std::cout << "ERROR: Cannot create a histogram with " << nBinsX << " x " << nBinsY << " bins" << std::endl;
-			return;
-		}
-		if(x1 >= x2) {
-			std::cout << "ERROR: Value x1=" << x1 << " cannot be more than x2=" << x2 << std::endl;
-			return;
-		}
-		if(y1 >= y2) {
-			std::cout << "ERROR: Value y1=" << y1 << " cannot be more than y2=" << y2 << std::endl;
-			return;
-		}
-	// * Create histogram * //
-		TString histTitle(title);
-		if(histTitle.EqualTo("")) histTitle = Form("Distribution of \"%s vs %s\" in tree \"%s\";;;counts", branchX, branchY, tree->GetName());
-		TH2D hist("hist", histTitle.Data(), nBinsX, x1, x2, nBinsY, y1, y2);
-	// ! Modify histogram styles here ! //
-		TCanvas c;
-		c.SetBatch(kFALSE);
-		if(setLogZ) c.SetLogz();
-		// hist.SetStats(kFALSE);
-	// * Loop over tree to fill histogram * //
-		Long64_t nEntries = tree->GetEntries();
-		for(Long64_t i = 0; i < nEntries; ++i) {
-			tree->GetEntry(i);
-			hist.Fill(addressX, addressY);
-		}
-	// * Draw histogram and save * //
-		hist.Draw(opt);
-		const char* outputFolder = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
-		const char* outputFile = Form("%s_%s_%s.%s", tree->GetName(), branchX, branchY, Settings::Output::Extension);
-		gSystem->mkdir(outputFolder);
-		c.SaveAs(Form("%s/%s", outputFolder, outputFile));
-		c.Close();
-}
-
-/**
- * @brief Plot a 2D distribution of one of the branches in the file.
- * @todo Move these settings to `FrameworkSettings.h`
- *
- * @param treeName Name of the `TTree` that you want to load a branch from.
- * @param branchX  Name of the X-branch that you are looking.
- * @param branchY  Name of the Y-branch that you are looking.
- * @param nBinsX   The number of bins that you want to have in the resulting histogram.
- * @param x1       Determines left side of the plot range.
- * @param x2       Determines right side of the plot range.
- * @param nBinsY   The number of bins that you want to have in the resulting histogram.
- * @param y1       Determines left side of the plot range.
- * @param y2       Determines right side of the plot range.
- * @param title    Determines title of the plot.
- * @param opt      Draw options.
- * @param setLogZ  Use a log scale in the Z-direction.
- * @param outputFileName Filename of the output file. Extension is set through `CommonFunctions.h`.
- */
-void BOSSRootFile::PlotDistribution2D(
-	const char* treeName, const char* branchX, const char* branchY,
-	int nBinsX, double x1, double x2,
-	int nBinsY, double y1, double y2,
-	const char* title, Option_t* opt, bool setLogZ, TString outputFileName)
-{
-	TTree* tree = FindTree(treeName);
-	if(tree) PlotDistribution2D(tree, branchX, branchY, nBinsX, x1, x2, nBinsY, y1, y2, title, opt, setLogZ, outputFileName);
-}
 
 
 // * =============================== * //
 // * ------- PRIVATE METHODS ------- * //
 // * =============================== * //
 
-/**
- * @brief Initialize (null)pointers and clear the map of `TTree`s.
- */
-void BOSSRootFile::Initialize()
-{
-	fTrees.clear();
-}
-
-/**
- * @brief Attempt to open `TFile`.
- */
-bool BOSSRootFile::OpenFile(const char* filename)
-{
-	// * Close file if open *
-	CloseFile();
-	// * Attempt to open file *
-	if(fFile.IsZombie()) {
-		std::cout << "ERROR: File \"" << filename << "\" is zombie" << std::endl;
-		return false;
+	/**
+	 * @brief Initialize (null)pointers and clear the map of `TTree`s.
+	 */
+	void BOSSRootFile::Initialize()
+	{
+		fTrees.clear();
 	}
-	return true; // if successful
-}
 
-/**
- * @brief If the ROOT `TFile` could be successfully loaded, this method will generate a map of pointers to all `TTree`s in the main folder of the ROOT file.
- */
-void BOSSRootFile::LoadTTrees()
-{
-	// * Go through keys in the file and add to map of TTrees *
-	TIter next(fFile.GetListOfKeys());
-	TObject *obj  = nullptr;
-	TKey    *key  = nullptr;
-	TTree   *tree = nullptr;
-	while((obj = next())) {
-		if((key = dynamic_cast<TKey*>(obj))) {
-			if((tree = dynamic_cast<TTree*>(key->ReadObj()))) {
-				fTrees[tree->GetName()] = tree;
+	/**
+	 * @brief Attempt to open `TFile`.
+	 */
+	bool BOSSRootFile::OpenFile(const char* filename)
+	{
+		// * Close file if open *
+		CloseFile();
+		// * Attempt to open file *
+		if(fFile.IsZombie()) {
+			std::cout << "ERROR: File \"" << filename << "\" is zombie" << std::endl;
+			return false;
+		}
+		return true; // if successful
+	}
+
+	/**
+	 * @brief If the ROOT `TFile` could be successfully loaded, this method will generate a map of pointers to all `TTree`s in the main folder of the ROOT file.
+	 */
+	void BOSSRootFile::LoadTTrees()
+	{
+		// * Go through keys in the file and add to map of TTrees *
+		TIter next(fFile.GetListOfKeys());
+		TObject *obj  = nullptr;
+		TKey    *key  = nullptr;
+		TTree   *tree = nullptr;
+		while((obj = next())) {
+			if((key = dynamic_cast<TKey*>(obj))) {
+				if((tree = dynamic_cast<TTree*>(key->ReadObj()))) {
+					fTrees[tree->GetName()] = tree;
+				}
 			}
 		}
-	}
-	// * Output *
-	std::cout
-		<< "Created a map of " << fTrees.size() << " TTrees based on file \"" << fFile.GetName() << "\"" << std::endl;
+		// * Output *
+		std::cout
+			<< "Created a map of " << fTrees.size() << " TTrees based on file \"" << fFile.GetName() << "\"" << std::endl;
 
-	// * Error output *
-	std::cout << "Loaded " << fTrees.size() << " TTrees from file \"" << fFile.GetName() << "\"" << std::endl;
-}
+		// * Error output *
+		std::cout << "Loaded " << fTrees.size() << " TTrees from file \"" << fFile.GetName() << "\"" << std::endl;
+	}
 
-/**
- * @brief Relate an address in the memory to a branch of a `TTree`.
- *
- * @tparam T         Template that can be any type (like `double`, `int`, etc.)
- * @param tree      Pointer to the `TTree` that you want to load a branch from.
- * @param branchName Name of the branch that you are looking.
- * @param address    Type (address) that you want to set.
- */
-template<class T>
-int BOSSRootFile::SetBranchAddress(TTree* tree, const char* branchName, T& address)
-{
-	if(!tree) {
-		std::cout << "ERROR: TTree* is a null pointer" << std::endl;
-		// std::terminate(); // use this if you want the class construction to be strict
+	/**
+	 * @brief Relate an address in the memory to a branch of a `TTree`.
+	 *
+	 * @tparam T         Template that can be any type (like `double`, `int`, etc.)
+	 * @param tree      Pointer to the `TTree` that you want to load a branch from.
+	 * @param branchName Name of the branch that you are looking.
+	 * @param address    Type (address) that you want to set.
+	 */
+	template<class T>
+	int BOSSRootFile::SetBranchAddress(TTree* tree, const char* branchName, T& address)
+	{
+		if(!tree) {
+			std::cout << "ERROR: TTree* is a null pointer" << std::endl;
+			// std::terminate(); // use this if you want the class construction to be strict
+		}
+		int result = tree->SetBranchAddress(branchName, &address);
+		if(result < 0) {
+			std::cout << "WARNING: Attempt to load \"" << branchName << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
+			// std::terminate(); // use this if you want the class construction to be strict
+		}
+		return result;
 	}
-	int result = tree->SetBranchAddress(branchName, &address);
-	if(result < 0) {
-		std::cout << "WARNING: Attempt to load \"" << branchName << "\" from TTree \"" << tree->GetName() << "\" resulted in error code " << result << std::endl;
-		// std::terminate(); // use this if you want the class construction to be strict
-	}
-	return result;
-}
+
+
 
 #endif

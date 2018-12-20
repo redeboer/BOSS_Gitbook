@@ -32,11 +32,20 @@ void FitInvMassSignal()
 	// * Open DzeroPhi input file * //
 		DzeroPhiRootFile file("../data/root/ana_DzeroPhi_mc_result2.root");
 		if(file.IsZombie()) return;
-TCanvas c;
-file.FindTree("fit4c")->Draw("mD0");   c.SaveAs("mD0.pdf");
-file.FindTree("fit4c")->Draw("mJpsi"); c.SaveAs("mJpsi.pdf");
-file.FindTree("fit4c")->Draw("mphi");  c.SaveAs("mphi.pdf");
-file.FindTree("fit4c")->Draw("chi2");  c.SaveAs("chi2.pdf");
+
+	// file.PlotAllBranches("p");
+	// * Draw useful multipliciy and primary vertex plots
+		// file.PlotDistribution("mult", "fEvent_NKaonNeg", "E1");
+		// file.PlotDistribution("mult", "fEvent_NKaonPos", "E1");
+		// file.PlotDistribution("mult", "fEvent_NPionPos", "E1");
+		// file.PlotDistribution("mult", "Ncharge",  "E1");
+		// file.PlotDistribution("mult", "Ngood",    "E1");
+		// file.PlotDistribution("mult", "Nmdc",     "E1");
+		// file.PlotDistribution("mult", "Nneutral", "E1");
+		// file.PlotDistribution("mult", "Ntotal",   "E1");
+		// file.PlotDistribution("mult", "vx0:vy0", "colz");
+		// file.PlotDistribution("mult", "vx0:vz0", "colz");
+		// file.PlotDistribution("mult", "vy0:vz0", "colz");
 
 	// * Particles to reconstruct * //
 		// ReconstructedParticle D0  ( 421, "K^{-}#pi^{+}"); // neutral D meson
