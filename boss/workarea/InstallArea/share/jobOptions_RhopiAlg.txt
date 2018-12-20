@@ -1,0 +1,27 @@
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+ApplicationMgr.DLLs   += {"RhopiAlg"};
+ApplicationMgr.TopAlg += {"RhopiAlg"};
+
+// * Define r0, z0 cut for charged tracks *
+RhopiAlg.Vr0cut    = 9999.; // 1.0
+RhopiAlg.Vz0cut    = 9999.; // 5.0
+RhopiAlg.Vrvz0cut  =   10.;
+RhopiAlg.Vrvxy0cut =    1.;
+
+// * Define energy, dphi, dthe cuts for fake gamma's *
+RhopiAlg.EnergyThreshold = 0.04;
+RhopiAlg.GammaPhiCut     = 20.0;
+RhopiAlg.GammaThetaCut   = 20.0;
+RhopiAlg.GammaAngleCut   = 20.0;
+
+// * Define invariant mass window cut *
+RhopiAlg.dM_rho0 = .150;
+
+// * Whether to test the success of the 4- and 5-constraint fits *
+RhopiAlg.Test4C   = true; // write fit4c
+RhopiAlg.Test5C   = true; // write fit5c and geff
+RhopiAlg.MaxChiSq = 200.; // chisq for both fits should be less
+
+// * Whether or not to check success of Particle Identification *
+RhopiAlg.CheckDedx = true;
+RhopiAlg.CheckTof  = true;

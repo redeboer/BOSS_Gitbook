@@ -80,7 +80,7 @@
 // * =========================== * //
 /**
  * @brief Constructor for the `RhopiAlg` algorithm.
- * @details Here, you should declare properties: give them a name, assign a parameter (data member of `RhopiAlg`), and if required a documentation string. Note that you should define the paramters themselves in the header (RhopiAlg/RhopiAlg.h) and that you should assign the values in `share/jopOptions_Rhopi.txt`.
+ * @details Here, you should declare properties: give them a name, assign a parameter (data member of `RhopiAlg`), and if required a documentation string. Note that you should define the paramters themselves in the header (RhopiAlg/RhopiAlg.h) and that you should assign the values in `share/jopOptions_RhopiAlg.txt`.
  */
 // Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 RhopiAlg::RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator) :

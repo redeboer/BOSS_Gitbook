@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_Rhopi_H
-#define Physics_Analysis_Rhopi_H
+#ifndef Physics_Analysis_RhopiAlg_H
+#define Physics_Analysis_RhopiAlg_H
 
 /**
  * @brief    Modified header of the stock BOSS package `RhopiAlg` (version `00-00-23`).

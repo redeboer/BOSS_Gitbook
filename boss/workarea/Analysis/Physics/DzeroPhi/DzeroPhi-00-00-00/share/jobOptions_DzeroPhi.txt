@@ -3,15 +3,17 @@ ApplicationMgr.DLLs   += {"DzeroPhi"};
 ApplicationMgr.TopAlg += {"DzeroPhi"};
 
 // * Whether or not to fill a tree/NTuple *
-DzeroPhi.doMult  = true;
-DzeroPhi.doVxyz  = false;
-DzeroPhi.doFit4c = false;
-DzeroPhi.doFit6c = true;
-DzeroPhi.doDedx  = false;
-DzeroPhi.doTofEC = false;
-DzeroPhi.doTofIB = false;
-DzeroPhi.doTofOB = false;
-DzeroPhi.doPID   = false;
+DzeroPhi.doMult    = true;
+DzeroPhi.doVxyz    = true;
+DzeroPhi.doFit4c   = true;
+DzeroPhi.doFit6c   = false;
+DzeroPhi.doDedx    = true;
+DzeroPhi.doDedx_K  = true;
+DzeroPhi.doDedx_pi = true;
+DzeroPhi.doTofEC   = true;
+DzeroPhi.doTofIB   = true;
+DzeroPhi.doTofOB   = true;
+DzeroPhi.doPID     = true;
 
 // * Define r0, z0 cut for charged tracks *
 DzeroPhi.Vr0cut    = 9999.; // 1.0

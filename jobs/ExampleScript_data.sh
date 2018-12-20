@@ -13,19 +13,21 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-packageName="RhopiAlg"
+packageName="DzeroPhi" # RhopiAlg
 nFilesPerJob=100
 nEventsPerJob=-1
-gExampleFromFile=0 #! set to 1 if you want to load your dst files from "filenames/ExampleFile_DstFiles"
+identifier="DzeroPhi_mc" # besfs3_offline_data_703-1_jpsi_round02_dst
+fileToRead="filenames/ExampleFile_DzeroPhi_mc" # filenames/ExampleFile_DstFiles
+gExampleFromFile=1 #! set to 1 if you want to load your dst files from "${fileToRead}"
 
 # * Create job from template and submit * #
 if [ ${gExampleFromFile} == 1 ]; then
 	# * This will create your job files based on a file listing dst files and directories
-	CreateFilenameInventoryFromFile "filenames/ExampleFile_DstFiles" "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection.txt" ${nFilesPerJob} "dst"
-	bash CreateJobFiles_data.sh "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_???.txt" "${packageName}_data" ${nEventsPerJob}
+	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile.txt" ${nFilesPerJob} "dst"
+	bash CreateJobFiles_data.sh "filenames/${identifier}_fromfile_???.txt" "${packageName}_data" ${nEventsPerJob}
 else
 	# * This will create your job files based on a directory containing dst files
-	CreateFilenameInventoryFromDirectory "/besfs3/offline/data/703-1/jpsi/round02/dst/" "filenames/besfs3_offline_data_703-1_jpsi_round02_dst.txt" ${nFilesPerJob} "dst"
-	bash CreateJobFiles_data.sh "filenames/besfs3_offline_data_703-1_jpsi_round02_dst_???.txt" "${packageName}_data" ${nEventsPerJob}
+	CreateFilenameInventoryFromDirectory "/besfs3/offline/data/703-1/jpsi/round02/dst/" "filenames/${identifier}.txt" ${nFilesPerJob} "dst"
+	bash CreateJobFiles_data.sh "filenames/${identifier}_???.txt" "${packageName}_data" ${nEventsPerJob}
 fi
 bash SubmitAll.sh "${packageName}_data"
