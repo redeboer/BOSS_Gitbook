@@ -18,5 +18,6 @@ var hierarchy =
     ] ],
     [ "Particle", "classParticle.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", null ]
-    ] ]
+    ] ],
+    [ "SimplifiedTree", "classSimplifiedTree.html", null ]
 ];

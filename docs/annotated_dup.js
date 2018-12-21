@@ -15,5 +15,6 @@ var annotated_dup =
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],
     [ "RhopiAlg", "classRhopiAlg.html", "classRhopiAlg" ],
     [ "RhopiRootChain", "classRhopiRootChain.html", "classRhopiRootChain" ],
-    [ "RhopiRootFile", "classRhopiRootFile.html", "classRhopiRootFile" ]
+    [ "RhopiRootFile", "classRhopiRootFile.html", "classRhopiRootFile" ],
+    [ "SimplifiedTree", "classSimplifiedTree.html", "classSimplifiedTree" ]
 ];

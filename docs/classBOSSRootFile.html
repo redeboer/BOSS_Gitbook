@@ -109,9 +109,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0d0f7ca92e6f18b1c29f94f611a4fec5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a0d0f7ca92e6f18b1c29f94f611a4fec5">BOSSRootFile</a> ()</td></tr>
 <tr class="memdesc:a0d0f7ca92e6f18b1c29f94f611a4fec5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a0d0f7ca92e6f18b1c29f94f611a4fec5">More...</a><br /></td></tr>
 <tr class="separator:a0d0f7ca92e6f18b1c29f94f611a4fec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2274abd55a6801a20c1777416700521d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a2274abd55a6801a20c1777416700521d">BOSSRootFile</a> (const char *)</td></tr>
-<tr class="memdesc:a2274abd55a6801a20c1777416700521d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that opens a <code>TFile</code> and maps its contents.  <a href="#a2274abd55a6801a20c1777416700521d">More...</a><br /></td></tr>
-<tr class="separator:a2274abd55a6801a20c1777416700521d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a438e2cf19d0b317e0cdc586da1d5a854"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a438e2cf19d0b317e0cdc586da1d5a854">BOSSRootFile</a> (const char *filename, bool print=true)</td></tr>
+<tr class="memdesc:a438e2cf19d0b317e0cdc586da1d5a854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that opens a <code>TFile</code> and unordered_maps its contents.  <a href="#a438e2cf19d0b317e0cdc586da1d5a854">More...</a><br /></td></tr>
+<tr class="separator:a438e2cf19d0b317e0cdc586da1d5a854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d1e6e27e9caa9214544d70cb53ac887"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a8d1e6e27e9caa9214544d70cb53ac887">~BOSSRootFile</a> ()</td></tr>
 <tr class="memdesc:a8d1e6e27e9caa9214544d70cb53ac887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor that closes the <code>TFile</code> if needed.  <a href="#a8d1e6e27e9caa9214544d70cb53ac887">More...</a><br /></td></tr>
 <tr class="separator:a8d1e6e27e9caa9214544d70cb53ac887"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,6 +156,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa023a7dcfc74edfc1a031945812a7cb3"><td class="memItemLeft" align="right" valign="top">TTree *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#aa023a7dcfc74edfc1a031945812a7cb3">FindTree</a> (const char *treeName, bool terminate=false)</td></tr>
 <tr class="memdesc:aa023a7dcfc74edfc1a031945812a7cb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Look for a tree in the files and get its <code>TTree</code>.  <a href="#aa023a7dcfc74edfc1a031945812a7cb3">More...</a><br /></td></tr>
 <tr class="separator:aa023a7dcfc74edfc1a031945812a7cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a156cc14cc8b599abccb633dc75aca151"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSimplifiedTree.html">SimplifiedTree</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a156cc14cc8b599abccb633dc75aca151">operator[]</a> (const char *name)</td></tr>
+<tr class="separator:a156cc14cc8b599abccb633dc75aca151"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -163,14 +165,14 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a50f2872225d67bcdaee614b7e469a78b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to open <code>TFile</code>.  <a href="#a50f2872225d67bcdaee614b7e469a78b">More...</a><br /></td></tr>
 <tr class="separator:a50f2872225d67bcdaee614b7e469a78b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cf31e409d40fc19ade885757af5979f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a3cf31e409d40fc19ade885757af5979f">Initialize</a> ()</td></tr>
-<tr class="memdesc:a3cf31e409d40fc19ade885757af5979f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize (null)pointers and clear the map of <code>TTree</code>s.  <a href="#a3cf31e409d40fc19ade885757af5979f">More...</a><br /></td></tr>
+<tr class="memdesc:a3cf31e409d40fc19ade885757af5979f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize (null)pointers and clear the <code>unordered_map</code> of <code>TTree</code>s.  <a href="#a3cf31e409d40fc19ade885757af5979f">More...</a><br /></td></tr>
 <tr class="separator:a3cf31e409d40fc19ade885757af5979f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa998ff5e02eb2c6b13aee8a1d1862b48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#aa998ff5e02eb2c6b13aee8a1d1862b48">Destruct</a> ()</td></tr>
 <tr class="memdesc:aa998ff5e02eb2c6b13aee8a1d1862b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulation of the default destructor.  <a href="#aa998ff5e02eb2c6b13aee8a1d1862b48">More...</a><br /></td></tr>
 <tr class="separator:aa998ff5e02eb2c6b13aee8a1d1862b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68aa488e33695f729dbc27e287510161"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a68aa488e33695f729dbc27e287510161">LoadTTrees</a> ()</td></tr>
-<tr class="memdesc:a68aa488e33695f729dbc27e287510161"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the ROOT <code>TFile</code> could be successfully loaded, this method will generate a map of pointers to all <code>TTree</code>s in the main folder of the ROOT file.  <a href="#a68aa488e33695f729dbc27e287510161">More...</a><br /></td></tr>
-<tr class="separator:a68aa488e33695f729dbc27e287510161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7b4f44726e14198cf7084a09bac5b19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#aa7b4f44726e14198cf7084a09bac5b19">LoadTrees</a> (bool print=true)</td></tr>
+<tr class="memdesc:aa7b4f44726e14198cf7084a09bac5b19"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the ROOT <code>TFile</code> could be successfully loaded, this method will generate a <code>unordered_map</code> of pointers to all <code>TTree</code>s in the main folder of the ROOT file.  <a href="#aa7b4f44726e14198cf7084a09bac5b19">More...</a><br /></td></tr>
+<tr class="separator:aa7b4f44726e14198cf7084a09bac5b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04105374cbf3e7a745edf371afee4111"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a04105374cbf3e7a745edf371afee4111"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a04105374cbf3e7a745edf371afee4111">SetBranchAddress</a> (TTree *tree, const char *branchName, T &amp;address)</td></tr>
 <tr class="memdesc:a04105374cbf3e7a745edf371afee4111"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relate an address in the memory to a branch of a <code>TTree</code>.  <a href="#a04105374cbf3e7a745edf371afee4111">More...</a><br /></td></tr>
@@ -181,18 +183,18 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ad6aab73be264702bcff44b160fc8f062"><td class="memItemLeft" align="right" valign="top">TFile&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#ad6aab73be264702bcff44b160fc8f062">fFile</a></td></tr>
 <tr class="memdesc:ad6aab73be264702bcff44b160fc8f062"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <code>TFile</code> that has been loaded.  <a href="#ad6aab73be264702bcff44b160fc8f062">More...</a><br /></td></tr>
 <tr class="separator:ad6aab73be264702bcff44b160fc8f062"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a933f726537f62958b567172e3ddf885d"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, TTree * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a933f726537f62958b567172e3ddf885d">fTrees</a></td></tr>
-<tr class="memdesc:a933f726537f62958b567172e3ddf885d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of pointers to all <code>TTree</code>s in the ROOT file.  <a href="#a933f726537f62958b567172e3ddf885d">More...</a><br /></td></tr>
-<tr class="separator:a933f726537f62958b567172e3ddf885d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e30737ee05f9e20e8c7f3a3fb35c2b7"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, <a class="el" href="classSimplifiedTree.html">SimplifiedTree</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a0e30737ee05f9e20e8c7f3a3fb35c2b7">fTrees</a></td></tr>
+<tr class="memdesc:a0e30737ee05f9e20e8c7f3a3fb35c2b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of pointers to all <code>TTree</code>s in the ROOT file.  <a href="#a0e30737ee05f9e20e8c7f3a3fb35c2b7">More...</a><br /></td></tr>
+<tr class="separator:a0e30737ee05f9e20e8c7f3a3fb35c2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>General container for BOSS analysis output. </p>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>October 24th, 2018 </dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd><b>DEVELOPMENTAL</b> </dd></dl>
-<p>The BOSSRootTree class can be used to create several trees from ROOT files generated by the <code>jopOptions_ana</code> (analysis) step of the BOSS framework in the most general way, that is, it only loads the ROOT files and creates a map of <code>TTree</code>s based on <em></em>(all) trees within those ROOT files. You can create a derived class which maps the map of <code>TTree</code>s to a structure with particular names that match the file with which you are working. </p>
+<p>The BOSSRootTree class can be used to create several trees from ROOT files generated by the <code>jopOptions_ana</code> (analysis) step of the BOSS framework in the most general way, that is, it only loads the ROOT files and creates an <code>unordered_map</code> of <code>TTree</code>s based on <em></em>(all) trees within those ROOT files. You can create a derived class which maps the map of <code>TTree</code>s to a structure with particular names that match the file with which you are working. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00036">36</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00039">39</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0d0f7ca92e6f18b1c29f94f611a4fec5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0d0f7ca92e6f18b1c29f94f611a4fec5">&#9670;&nbsp;</a></span>BOSSRootFile() <span class="overload">[1/2]</span></h2>
@@ -212,12 +214,12 @@ Protected Attributes</h2></td></tr>
 <p>Default constructor. </p>
 <p>Currently does nothing as there are no null pointers to set. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00097">97</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00100">100</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
-<a id="a2274abd55a6801a20c1777416700521d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2274abd55a6801a20c1777416700521d">&#9670;&nbsp;</a></span>BOSSRootFile() <span class="overload">[2/2]</span></h2>
+<a id="a438e2cf19d0b317e0cdc586da1d5a854"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a438e2cf19d0b317e0cdc586da1d5a854">&#9670;&nbsp;</a></span>BOSSRootFile() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,15 +228,25 @@ Protected Attributes</h2></td></tr>
           <td class="memname">BOSSRootFile::BOSSRootFile </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>print</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor that opens a <code>TFile</code> and maps its contents. </p>
+<p>Constructor that opens a <code>TFile</code> and unordered_maps its contents. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00105">105</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00108">108</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -255,7 +267,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Destructor that closes the <code>TFile</code> if needed. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00116">116</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00119">119</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -277,7 +289,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Close file. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00125">125</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00128">128</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -306,7 +318,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Encapsulation of the default destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00134">134</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00137">137</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +358,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TTree* Tree object that contains the trees. Returns a <code>nullptr</code> if this <code>TTree</code> does not exist. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00164">164</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00167">167</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -375,7 +387,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int Tree object that contains the trees. Returns a <code>nullptr</code> if this <code>TTree</code> does not exist. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00151">151</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00154">154</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -402,9 +414,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Initialize (null)pointers and clear the map of <code>TTree</code>s. </p>
+<p>Initialize (null)pointers and clear the <code>unordered_map</code> of <code>TTree</code>s. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00464">464</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00453">453</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -425,12 +437,12 @@ Protected Attributes</h2></td></tr>
 
 <p>Check if file is loaded. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00236">236</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00233">233</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
-<a id="a68aa488e33695f729dbc27e287510161"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68aa488e33695f729dbc27e287510161">&#9670;&nbsp;</a></span>LoadTTrees()</h2>
+<a id="aa7b4f44726e14198cf7084a09bac5b19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7b4f44726e14198cf7084a09bac5b19">&#9670;&nbsp;</a></span>LoadTrees()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -439,9 +451,10 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void BOSSRootFile::LoadTTrees </td>
+          <td class="memname">void BOSSRootFile::LoadTrees </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>print</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -452,9 +465,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>If the ROOT <code>TFile</code> could be successfully loaded, this method will generate a map of pointers to all <code>TTree</code>s in the main folder of the ROOT file. </p>
+<p>If the ROOT <code>TFile</code> could be successfully loaded, this method will generate a <code>unordered_map</code> of pointers to all <code>TTree</code>s in the main folder of the ROOT file. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00487">487</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00476">476</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -484,7 +497,35 @@ Protected Attributes</h2></td></tr>
 
 <p>Attempt to open <code>TFile</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00472">472</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00461">461</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+
+</div>
+</div>
+<a id="a156cc14cc8b599abccb633dc75aca151"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a156cc14cc8b599abccb633dc75aca151">&#9670;&nbsp;</a></span>operator[]()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSimplifiedTree.html">SimplifiedTree</a>&amp; BOSSRootFile::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00073">73</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -512,7 +553,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00310">310</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00306">306</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -558,7 +599,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00248">248</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00246">246</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -604,7 +645,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00271">271</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00270">270</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -685,7 +726,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00329">329</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00326">326</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -801,7 +842,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00396">396</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00389">389</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -840,7 +881,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00287">287</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00282">282</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -879,7 +920,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00300">300</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00296">296</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -910,7 +951,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Print information about a certan tree. </p>
-<p>This function loops over the map of file names and over the map of trees and prints its name and number of events. For each tree, information about its branches is also printed. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This function loops over the <code>unordered_map</code> of file names and over the <code>unordered_map</code> of trees and prints its name and number of events. For each tree, information about its branches is also printed. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">nameOfTree</td><td></td></tr>
     <tr><td class="paramname">option</td><td></td></tr>
@@ -918,7 +959,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00191">191</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00185">185</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -939,7 +980,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Print information about all trees in the <code>TFile</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00205">205</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00200">200</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -1019,7 +1060,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00518">518</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00507">507</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -1046,12 +1087,12 @@ template&lt;class T &gt; </div>
 
 <p>The <code>TFile</code> that has been loaded. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00074">74</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00077">77</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
-<a id="a933f726537f62958b567172e3ddf885d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a933f726537f62958b567172e3ddf885d">&#9670;&nbsp;</a></span>fTrees</h2>
+<a id="a0e30737ee05f9e20e8c7f3a3fb35c2b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e30737ee05f9e20e8c7f3a3fb35c2b7">&#9670;&nbsp;</a></span>fTrees</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1060,7 +1101,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, TTree*&gt; BOSSRootFile::fTrees</td>
+          <td class="memname">std::unordered_map&lt;std::string, <a class="el" href="classSimplifiedTree.html">SimplifiedTree</a>&gt; BOSSRootFile::fTrees</td>
         </tr>
       </table>
   </td>
@@ -1072,7 +1113,7 @@ template&lt;class T &gt; </div>
 
 <p>Map of pointers to all <code>TTree</code>s in the ROOT file. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00075">75</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00078">78</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>

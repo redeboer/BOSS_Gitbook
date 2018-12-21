@@ -12,7 +12,7 @@ var searchData=
   ['fitdoublegaussian',['FitDoubleGaussian',['../namespaceCommonFunctions.html#a8e6f77b4a672a03ace07686f595bf61c',1,'CommonFunctions']]],
   ['fitdoublegaussian_5fth1fit',['FitDoubleGaussian_TH1Fit',['../FitDoubleGaussian__TH1Fit_8C.html#ab9a792a6394ae0a46131f08a000b141f',1,'FitDoubleGaussian_TH1Fit.C']]],
   ['fitfrom',['FitFrom',['../classReconstructedParticle.html#a97f5c3b741c26bc59c56994597e47686',1,'ReconstructedParticle']]],
-  ['fitinvmasssignal',['FitInvMassSignal',['../FitInvMassSignal_8C.html#a94ca994c0d189e9d171b3113e063ec0c',1,'FitInvMassSignal():&#160;FitInvMassSignal.C'],['../FitInvMassSignal__DzeroPhi_8C.html#a94ca994c0d189e9d171b3113e063ec0c',1,'FitInvMassSignal():&#160;FitInvMassSignal_DzeroPhi.C'],['../FitInvMassSignal__new_8C.html#a94ca994c0d189e9d171b3113e063ec0c',1,'FitInvMassSignal():&#160;FitInvMassSignal_new.C']]],
+  ['fitinvmasssignal',['FitInvMassSignal',['../FitInvMassSignal_8C.html#a94ca994c0d189e9d171b3113e063ec0c',1,'FitInvMassSignal():&#160;FitInvMassSignal.C'],['../FitInvMassSignal__new_8C.html#a94ca994c0d189e9d171b3113e063ec0c',1,'FitInvMassSignal():&#160;FitInvMassSignal_new.C'],['../InvestigateBOSSRootFile_8C.html#a94ca994c0d189e9d171b3113e063ec0c',1,'FitInvMassSignal():&#160;InvestigateBOSSRootFile.C']]],
   ['fitobject',['FitObject',['../classFitObject.html#ab78504cd76406c690e86fa974489da03',1,'FitObject']]],
   ['fitobjectdoublegauss',['FitObjectDoubleGauss',['../classFitObjectDoubleGauss.html#a7d7eac3964425956a2b055ed6ec24662',1,'FitObjectDoubleGauss']]],
   ['fitto',['fitTo',['../FitObjectDoubleGauss_8h.html#a5a8194a59879b2b9ed03ba82e58be710',1,'FitObjectDoubleGauss.h']]],

@@ -1,8 +1,7 @@
 /**
- * @brief    Simple script that shows how to fit a double gaussian on an invariant mass spectrum using `RooFit`.
+ * @brief    Simple script that allows to quickly investigate the contents of a ROOT file that has been produced with BOSS.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
  * @date     November 5th, 2018
- * @details  Note that this script makes use of one `hadd`ed file, not of a `TChain`. It is currently assumed that the invariant mass plot to be fitted comes from the `mpi0` branch in the `fit6c` that is produced by the `DzeroPhiAlg` analysis job. But this can be modified in the sections that have been marked by `// ! ... ! //`.
  */
 
 
@@ -30,10 +29,10 @@
 void FitInvMassSignal()
 {
 	// * Open DzeroPhi input file * //
-		DzeroPhiRootFile file("../data/root/ana_DzeroPhi_mc_result2.root");
+		BOSSRootFile file("../data/root/ana_DzeroPhi_mc_result2.root", false); /// To investigate the contents of the ROOT file, you first need to know which `TTree`s and branches it contains. If you simply construct the `BOSSRootFile` by giving it a file name, all `TTree`s will be loaded automatically as well as addresses for each of their branches. Five the constructer `true` as its second argument, and the names of these `TTree`s, their branches, and the types of these branches (behind the slash `/` after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b>
 		if(file.IsZombie()) return;
+		// file.PlotAllBranches("p");
 
-	// file.PlotAllBranches("p");
 	// * Draw useful multipliciy and primary vertex plots
 		// file.PlotDistribution("mult", "fEvent_NKaonNeg", "E1");
 		// file.PlotDistribution("mult", "fEvent_NKaonPos", "E1");

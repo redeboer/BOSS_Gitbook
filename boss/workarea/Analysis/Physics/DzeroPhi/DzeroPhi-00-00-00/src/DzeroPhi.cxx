@@ -639,6 +639,7 @@
 	 * @details This function first attempts to see if there is already an `NTuple` in the output file. If not, it will book an `NTuple` of 
 	 *
 	 * @param tupleName This will not only be the name of your `NTuple`, but also the name of the `TTree` in the output ROOT file when you use `NTuple::write()`. The name used here is also used as identifier in `NTuplePtr` map `fNTupleMap`. In other words, you can get any of the `NTuplePtr`s in this map by using `fNTupleMap[<tuple name>]`. If there is no `NTuple` of this name, it will return a `nullptr`.
+	 * @param tupleTitle Description of the `NTuple`. Has a default value if you don't want to think about this.
 	 */
 	NTuplePtr DzeroPhi::BookNTuple(const char* tupleName, const char* tupleTitle)
 	{
@@ -736,6 +737,7 @@
 	 * 
 	 * @param vector The selection of charged tracks that of which you want to write the \f$dE/dx\f$ data.
 	 * @param tupleName The name of the tuple to which you want to write the information.
+	 * @param map The `map` from which you want to get the `NTuple::Item`s.
 	 */
 	template<typename TYPE>
 	void DzeroPhi::WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
@@ -751,6 +753,7 @@
 	 * 
 	 * @param evtRecTrack Pointer to the reconstructed track of which you want to write the \f$dE/dx\f$ data.
 	 * @param tupleName The name of the tuple to which you want to write the information.
+	 * @param map The `map` from which you want to get the `NTuple::Item`s.
 	 */
 	template<typename TYPE>
 	void DzeroPhi::WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
@@ -778,7 +781,10 @@
 	}
 
 	/**
-	 * @brief
+	 * @brief Automatically assign all <i>mapped values</i> of `map` as items to an `NTuplePtr`.
+	 * 
+	 * @param nt The `NTuplePtr` to which you want to add the <i>mapped values</i> of `map`.
+	 * @param map The `map` from which you want to load the <i>mapped values</i>.
 	 */
 	template<typename TYPE>
 	void DzeroPhi::AddItemsToNTuples(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map)
@@ -789,7 +795,10 @@
 	}
 
 	/**
-	 * @brief
+	 * @brief Automatically assign all <i>mapped values</i> of `map` as items to an `NTuplePtr`. The `NTuplePtr` is booked automatically.
+	 * 
+	 * @param tupleName Name of the `NTuplePtr` to which you want to add the <i>mapped values</i> of `map`.
+	 * @param map The `map` from which you want to load the <i>mapped values</i>.
 	 */
 	template<typename TYPE>
 	void DzeroPhi::AddItemsToNTuples(const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)

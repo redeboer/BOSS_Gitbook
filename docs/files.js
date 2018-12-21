@@ -23,13 +23,13 @@ var files =
     [ "DzeroPhiRootFile.h", "DzeroPhiRootFile_8h.html", "DzeroPhiRootFile_8h" ],
     [ "FitDoubleGaussian_TH1Fit.C", "FitDoubleGaussian__TH1Fit_8C.html", "FitDoubleGaussian__TH1Fit_8C" ],
     [ "FitInvMassSignal.C", "FitInvMassSignal_8C.html", "FitInvMassSignal_8C" ],
-    [ "FitInvMassSignal_DzeroPhi.C", "FitInvMassSignal__DzeroPhi_8C.html", "FitInvMassSignal__DzeroPhi_8C" ],
     [ "FitInvMassSignal_new.C", "FitInvMassSignal__new_8C.html", "FitInvMassSignal__new_8C" ],
     [ "FitObject.h", "FitObject_8h.html", [
       [ "FitObject", "classFitObject.html", "classFitObject" ]
     ] ],
     [ "FitObjectDoubleGauss.h", "FitObjectDoubleGauss_8h.html", "FitObjectDoubleGauss_8h" ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
+    [ "InvestigateBOSSRootFile.C", "InvestigateBOSSRootFile_8C.html", "InvestigateBOSSRootFile_8C" ],
     [ "NTupleMap.cxx", "NTupleMap_8cxx.html", null ],
     [ "NTupleMap.h", "NTupleMap_8h.html", [
       [ "NTupleMap", "classNTupleMap.html", "classNTupleMap" ]
@@ -55,5 +55,8 @@ var files =
       [ "RhopiRootFile", "classRhopiRootFile.html", "classRhopiRootFile" ]
     ] ],
     [ "RhopiRootNamespace.h", "RhopiRootNamespace_8h.html", "RhopiRootNamespace_8h" ],
-    [ "RooFitMacro.C", "RooFitMacro_8C.html", "RooFitMacro_8C" ]
+    [ "RooFitMacro.C", "RooFitMacro_8C.html", "RooFitMacro_8C" ],
+    [ "SimplifiedTree.h", "SimplifiedTree_8h.html", [
+      [ "SimplifiedTree", "classSimplifiedTree.html", "classSimplifiedTree" ]
+    ] ]
 ];

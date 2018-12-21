@@ -2,21 +2,21 @@
 \form#1:$K^-$
 \form#2:$K^+$
 \form#3:$\pi^+$
-\form#4:$x$
-\form#5:$y$
-\form#6:$z$
+\form#4:$dE/dx$
+\form#5:$K^\pm$
+\form#6:$\pi^\pm$
 \form#7:$\pi^-$
-\form#8:$xy$
-\form#9:$p$
-\form#10:$ K^- pi^+ $
-\form#11:$ D^0 $
-\form#12:$ K^+ K^+ $
-\form#13:$ \phi $
-\form#14:$ D^0 \phi $
-\form#15:$ J/\psi $
-\form#16:$dE/dx$
-\form#17:$K^\pm$
-\form#18:$\pi^\pm$
+\form#8:$x$
+\form#9:$y$
+\form#10:$z$
+\form#11:$ K^- pi^+ $
+\form#12:$ D^0 $
+\form#13:$ K^+ K^+ $
+\form#14:$ \phi $
+\form#15:$ D^0 \phi $
+\form#16:$ J/\psi $
+\form#17:$xy$
+\form#18:$p$
 \form#19:$Z$
 \form#20:$R$
 \form#21:$\chi_\mathrm{red}^2$
