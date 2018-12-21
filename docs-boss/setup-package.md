@@ -62,6 +62,12 @@ In addition to the default files above, it is advised that you also create the f
 
 The above is based on the [official BOSS page on how to create a new package](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_create_a_new_package) \(minimal explanations\).
 
+{% hint style="info" %}
+#### Origin of the BOSS in Gaudi
+
+From here on, you can develop a package from scratch. For the basics of how to follow the guidelines of the BOSS framework \(which is based on Gaudi\), see [this `Hello World` example for Gaudi](https://lhcb.github.io/developkit-lessons/first-development-steps/02a-gaudi-helloworld.html).
+{% endhint %}
+
 ### Updating a package <a id="updating-a-package"></a>
 
 Whenever you are planning to modify the code in your package \(particularly the header code in the `MyFirstPackage` and the source code in `src`\), it is best if you first make a copy of the latest version. You can then safely modify things in this copy and use CMT later to properly tag this new version later.
