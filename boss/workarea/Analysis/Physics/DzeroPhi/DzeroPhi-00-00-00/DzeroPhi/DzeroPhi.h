@@ -50,14 +50,14 @@ public:
 
 protected:
 	// * Protected methods * //
-		NTuplePtr BookNTuple(const char* tupleName);
-		template<typename TYPE> void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
+		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle = "ks N-Tuple example");
+		template<typename TYPE> void AddItemsToNTuples(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void AddItemsToNTuples  (const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void BookNtupleItemsDedx(const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void BookNtupleItemsTof (const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void BookNtupleTofItems (NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void BookNtupleDedxItems(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE>
-		void AddItemsToNTuples(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
 
 		// template<class... ARGS> void DrawAndSaveRecursion(Option_t* option, ARGS&&... args);
 		// template<class TYPE, class... ARGS> void DrawAndSaveRecursion(Option_t* option, TYPE first, ARGS... args);

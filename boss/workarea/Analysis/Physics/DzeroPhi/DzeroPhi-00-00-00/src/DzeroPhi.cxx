@@ -127,10 +127,9 @@
 	 */
 	StatusCode DzeroPhi::initialize()
 	{
-		NTuplePtr nt(ntupleSvc(), ""); // temporary NTuplePtr
+
 		// * Book NTuple: Multiplicities * //
 			if(fDoMult) {
-				nt = BookNTuple("mult"); /// Branch for multiplicies.
 				fMult["Ntotal"];   /// Total number of events per track.
 				fMult["Ncharge"];  /// Number of charged tracks.
 				fMult["Nneutral"]; /// Number of charged tracks.
@@ -139,79 +138,69 @@
 				fMult["NKaonPos"]; /// Number of \f$K^+\f$.
 				fMult["NKaonNeg"]; /// Number of \f$K^-\f$.
 				fMult["NPionPos"]; /// Number of \f$\pi^-\f$.
-				AddItemsToNTuples(nt, fMult);
+				AddItemsToNTuples("mult", fMult); /// Branch for multiplicies.
 			}
 
 		// * Book NTuple: Vertex info * //
 			if(fDoVertex) {
-				nt = BookNTuple("vertex"); /// Branch for primary vertex info.
 				fVertex["vx0"]; /// Primary \f$x\f$ coordinate of the collision point.
 				fVertex["vy0"]; /// Primary \f$y\f$ coordinate of the collision point.
 				fVertex["vz0"]; /// Primary \f$z\f$ coordinate of the collision point.
-				AddItemsToNTuples(nt, fVertex);
+				AddItemsToNTuples("vertex", fVertex); /// Branch for primary vertex info.
 			}
 
 		// * Book NTuple: 6-contraints for Kalman kinematic fit * //
 			if(fDoFit6c) {
-				nt = BookNTuple("fit6c");
 				fFit6c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
 				fFit6c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
 				fFit6c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
 				fFit6c["chi2"];  /// Chi squared of the Kalman kinematic fit.
-				AddItemsToNTuples(nt, fFit6c);
+				AddItemsToNTuples("fit6c", fFit6c);
 			}
 
 		// * Book NTuple: dE/dx PID branch * //
 			if(fDoDedx) {
-				nt = BookNTuple("dedx");
-				BookNtupleDedxItems(nt, fDedx);
+				BookNtupleItemsDedx("dedx", fDedx);
 			}
 
 		// * Book NTuple: dE/dx PID branch for kaons * //
 			if(fDoDedx_K) {
-				nt = BookNTuple("dedx_K");
-				BookNtupleDedxItems(nt, fDedx_K);
+				BookNtupleItemsDedx("dedx_K", fDedx_K);
 			}
 
 		// * BooK NTuple: dE/dx PID branch for pions * //
 			if(fDoDedx_pi) {
-				nt = BookNTuple("dedx_pi");
-				BookNtupleDedxItems(nt, fDedx_pi);
+				BookNtupleItemsDedx("dedx_pi", fDedx_pi);
 			}
 
 		// * Book NTuple: ToF endcap branch * //
 			if(fDoTrackVertex) {
-				nt = BookNTuple("tofe");
-				BookNtupleTofItems(nt, fTofEC);
+				BookNtupleItemsTof("tofe", fTofEC);
 			}
 
 		// * Book NTuple: ToF inner barrel branch * //
 			if(fDoTrackVertex) {
-				nt = BookNTuple("tof1");
-				BookNtupleTofItems(nt, fTofIB);
+				BookNtupleItemsTof("tof1", fTofIB);
 			}
 
 		// * Book NTuple: ToF outer barrel branch * //
 			if(fDoTrackVertex) {
-				nt = BookNTuple("tof2");
-				BookNtupleTofItems(nt, fTofOB);
+				BookNtupleItemsTof("tof2", fTofOB);
 			}
 
 		// * Book NTuple: Track PID information * //
 			if(fDoPID) {
-				nt = BookNTuple("pid");
 				fPID["ptrk"]; /// Momentum of the track as reconstructed by MDC.
 				fPID["cost"]; /// Theta angle of the track.
 				fPID["dedx"]; /// Chi squared of the dedx of the track.
 				fPID["tof1"]; /// Chi squared of the inner barrel ToF of the track.
 				fPID["tof2"]; /// Chi squared of the outer barrel ToF of the track.
 				fPID["prob"]; /// Probability that it is a pion.
-				AddItemsToNTuples(nt, fPID);
+				AddItemsToNTuples("pid", fPID);
 			}
 
 		// * Book NTuple: Vertex position * //
 			if(fDoTrackVertex) {
-				nt = BookNTuple("vxyz");
 				fTrackVertex["vx"];    /// Primary \f$x\f$ coordinate of the vertex as determined by MDC.
 				fTrackVertex["vy"];    /// Primary \f$y\f$ coordinate of the vertex as determined by MDC.
 				fTrackVertex["vz"];    /// Primary \f$z\f$ coordinate of the vertex as determined by MDC.
@@ -221,17 +210,16 @@
 				fTrackVertex["rvphi"]; /// Angle in the \f$xy\f$plane (?). @todo
 				fTrackVertex["phi"];   /// Helix angle of the particle (?). @todo
 				fTrackVertex["p"];     /// Momentum \f$p\f$ of the track.
-				AddItemsToNTuples(nt, fTrackVertex);
+				AddItemsToNTuples("vxyz", fTrackVertex);
 			}
 
 		// * Book NTuple: 4-contraints for Kalman kinematic fit * //
 			if(fDoFit4c) {
-				nt = BookNTuple("fit4c");
 				fFit4c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
 				fFit4c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
 				fFit4c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
 				fFit4c["chisq"];  /// Chi squared of the Kalman kinematic fit.
-				AddItemsToNTuples(nt, fFit4c);
+				AddItemsToNTuples("fit4c", fFit4c);
 			}
 
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
@@ -652,16 +640,15 @@
 	 *
 	 * @param tupleName This will not only be the name of your `NTuple`, but also the name of the `TTree` in the output ROOT file when you use `NTuple::write()`. The name used here is also used as identifier in `NTuplePtr` map `fNTupleMap`. In other words, you can get any of the `NTuplePtr`s in this map by using `fNTupleMap[<tuple name>]`. If there is no `NTuple` of this name, it will return a `nullptr`.
 	 */
-	NTuplePtr DzeroPhi::BookNTuple(const char* tupleName)
+	NTuplePtr DzeroPhi::BookNTuple(const char* tupleName, const char* tupleTitle)
 	{
 		const char* bookName = Form("FILE1/%s", tupleName);
 		NTuplePtr nt(ntupleSvc(), bookName); // attempt to get from file
 		if(!nt) { // if not available in file, book a new one
-			nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, "ks N-Tuple example");
+			nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, tupleTitle);
 			if(!nt) fLog << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << " (" << tupleName << ")" << endmsg;
 		}
 		fNTupleMap[tupleName] = nt.ptr();
-		// fNTupleMap.insert(make_pair(tupleName, nt.ptr()));
 		return nt;
 	}
 
@@ -670,7 +657,7 @@
 	 * @brief This function encapsulates the `addItem` procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.
 	 */ 
 	template<typename TYPE>
-	void DzeroPhi::BookNtupleTofItems(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::BookNtupleItemsTof(const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
 	{
 		map["ptrk"];  /// Momentum of the track as reconstructed by MDC.
 		map["tof"];   /// Time of flight.
@@ -684,7 +671,7 @@
 		map["tpi"];   /// Difference with ToF in charged pion hypothesis.
 		map["tk"];    /// Difference with ToF in charged kaon hypothesis.
 		map["tp"];    /// Difference with ToF in proton hypothesis.
-		AddItemsToNTuples(nt, map);
+		AddItemsToNTuples(tupleName, map);
 	}
 
 
@@ -693,7 +680,7 @@
 	 * @details This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
 	 */
 	template<typename TYPE>
-	void DzeroPhi::BookNtupleDedxItems(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::BookNtupleItemsDedx(const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
 	{
 		map["ptrk"];   /// Momentum of the track as reconstructed by MDC.
 		map["chie"];   /// Chi squared in case of electron.
@@ -705,7 +692,7 @@
 		map["normPH"]; /// Normalized pulse height.
 		map["ghit"];   /// Number of good hits.
 		map["thit"];   /// Total number of hits.
-		AddItemsToNTuples(nt, map);
+		AddItemsToNTuples(tupleName, map);
 	}
 
 
@@ -799,6 +786,15 @@
 		if(!nt) return;
 		typename std::map<const char*, NTuple::Item<TYPE> >::iterator it = map.begin();
 		for(; it != map.end(); ++it) nt->addItem(it->first, it->second);
+	}
+
+	/**
+	 * @brief
+	 */
+	template<typename TYPE>
+	void DzeroPhi::AddItemsToNTuples(const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
+	{
+		AddItemsToNTuples(BookNTuple(tupleName), map);
 	}
 
 	// /**
