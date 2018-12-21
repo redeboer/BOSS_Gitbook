@@ -26,9 +26,9 @@
 	#include "GaudiKernel/SmartDataPtr.h"
 	#include "GaudiKernel/SmartRefVector.h"
 	#include "TofRecEvent/RecTofTrack.h"
-	#include <map>
-	#include <utility>
+	#include <map> // would be more efficient to use "unordered_map"
 	#include <string>
+	#include <utility>
 	#include <vector>
 
 
@@ -40,7 +40,7 @@ class DzeroPhi : public Algorithm
 {
 public:
 	// * Constructor and destructors *
-	DzeroPhi(const std::string& name, ISvcLocator* pSvcLocator);
+	DzeroPhi(const std::string &name, ISvcLocator* pSvcLocator);
 
 	// * Algorithm steps *
 	StatusCode initialize();
@@ -51,17 +51,22 @@ public:
 protected:
 	// * Protected methods * //
 		NTuplePtr BookNTuple(const char* tupleName);
-		void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName);
-		void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName);
-		void WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector, const char* tupleName);
-		template<typename TYPE> void BookNtupleTofItems (NTuplePtr &nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void BookNtupleDedxItems(NTuplePtr &nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void AddItemsToNTuples  (NTuplePtr &nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void BookNtupleTofItems (NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void BookNtupleDedxItems(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE>
+		void AddItemsToNTuples(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map);
+
+		// template<class... ARGS> void DrawAndSaveRecursion(Option_t* option, ARGS&&... args);
+		// template<class TYPE, class... ARGS> void DrawAndSaveRecursion(Option_t* option, TYPE first, ARGS... args);
+		// template<> void DrawAndSaveRecursion(Option_t* option) {} // end recursion
 
 	// * Protected data members * //
 		double fSmallestChiSq;
 		MsgStream fLog; //!< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
-		std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
+		std::map<const char*, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
 
 		std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will contain a selection of pointers to 'good' charged tracks.
 		std::vector<EvtRecTrack*> fKaonNeg; //!< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$.
@@ -107,29 +112,30 @@ private:
 		// Note that the NTuple::Items have to be added to the NTuple during the DzeroPhi::initialize() step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Maps of Ntuples *
-			bool fDoMult;    //!< Package property that determines whether or not to write multiplicities and primary vertex info.
-			bool fDoVxyz;    //!< Package property that determines whether or not to write track vertex info.
-			bool fDoFit4c;   //!< Package property that determines whether or not to perform a 4-constraint Kalman kinematic fit.
-			bool fDoFit6c;   //!< Package property that determines whether or not to perform a 6-constraint Kalman kinematic fit.
-			bool fDoDedx;    //!< Package property that determines whether or not to write \f$dE/dx\f$.
-			bool fDoDedx_K;  //!< Package property that determines whether or not to write \f$dE/dx\f$ of the kaons (\f$K^\pm\f$).
-			bool fDoDedx_pi; //!< Package property that determines whether or not to write \f$dE/dx\f$ of the pions (\f$\pi^\pm\f$).
-			bool fDoTofEC;   //!< Package property that determines whether or not to write ToF data from the end cap.
-			bool fDoTofIB;   //!< Package property that determines whether or not to write ToF data from the inner barrel.
-			bool fDoTofOB;   //!< Package property that determines whether or not to write ToF data from the outer barrel.
-			bool fDoPID;     //!< Package property that determines whether or not to write PID information.
-			std::unordered_map<const char*, NTuple::Item<int> >    fMult_i; //!< `integer` container for the multiplicy branch.
-			std::unordered_map<const char*, NTuple::Item<double> > fMult_d; //!< `double` container for the multiplicy branch.
-			std::unordered_map<const char*, NTuple::Item<double> > fVxyz;   //!< Container for the track verex branch.
-			std::unordered_map<const char*, NTuple::Item<double> > fFit4c;  //!< Container for the fit4c branch.
-			std::unordered_map<const char*, NTuple::Item<double> > fFit6c;  //!< Container for the fit6c branch.
-			std::unordered_map<const char*, NTuple::Item<double> > fDedx;    //!< Container for the `"dedx"` branch.         
-			std::unordered_map<const char*, NTuple::Item<double> > fDedx_K;  //!< Container for the `"dedx_k"` branch.           
-			std::unordered_map<const char*, NTuple::Item<double> > fDedx_pi; //!< Container for the `"dedx_pi"` branch.            
-			std::unordered_map<const char*, NTuple::Item<double> > fTofEC;   //!< Container for the `"tofe"` branch.          
-			std::unordered_map<const char*, NTuple::Item<double> > fTofIB;   //!< Container for the `"tof1"` branch.          
-			std::unordered_map<const char*, NTuple::Item<double> > fTofOB;   //!< Container for the `"tof2"` branch.          
-			std::unordered_map<const char*, NTuple::Item<double> > fPID;     //!< Container for the `"pid"` branch.        
+			bool fDoMult;    //!< Package property that determines whether or not to record multiplicities.
+			bool fDoVertex;  //!< Package property that determines whether or not to record primary vertex info.
+			bool fDoTrackVertex; //!< Package property that determines whether or not to record track vertex info.
+			bool fDoDedx;    //!< Package property that determines whether or not to record \f$dE/dx\f$.
+			bool fDoDedx_K;  //!< Package property that determines whether or not to record \f$dE/dx\f$ of the kaons (\f$K^\pm\f$).
+			bool fDoDedx_pi; //!< Package property that determines whether or not to record \f$dE/dx\f$ of the pions (\f$\pi^\pm\f$).
+			bool fDoTofEC;   //!< Package property that determines whether or not to record ToF data from the end cap.
+			bool fDoTofIB;   //!< Package property that determines whether or not to record ToF data from the inner barrel.
+			bool fDoTofOB;   //!< Package property that determines whether or not to record ToF data from the outer barrel.
+			bool fDoPID;     //!< Package property that determines whether or not to record PID information.
+			bool fDoFit4c;   //!< Package property that determines whether or not to perform and record a 4-constraint Kalman kinematic fit.
+			bool fDoFit6c;   //!< Package property that determines whether or not to perform and record a 6-constraint Kalman kinematic fit.
+			std::map<const char*, NTuple::Item<int> >    fMult;    //!< Container for the multiplicy branch.
+			std::map<const char*, NTuple::Item<double> > fVertex;  //!< Container for the vertex branch.
+			std::map<const char*, NTuple::Item<double> > fTrackVertex; //!< Container for the track verex branch.
+			std::map<const char*, NTuple::Item<double> > fDedx;    //!< Container for the `"dedx"` branch.
+			std::map<const char*, NTuple::Item<double> > fDedx_K;  //!< Container for the `"dedx_k"` branch.
+			std::map<const char*, NTuple::Item<double> > fDedx_pi; //!< Container for the `"dedx_pi"` branch.
+			std::map<const char*, NTuple::Item<double> > fTofEC;   //!< Container for the `"tofe"` branch.
+			std::map<const char*, NTuple::Item<double> > fTofIB;   //!< Container for the `"tof1"` branch.
+			std::map<const char*, NTuple::Item<double> > fTofOB;   //!< Container for the `"tof2"` branch.
+			std::map<const char*, NTuple::Item<double> > fPID;     //!< Container for the `"pid"` branch.
+			std::map<const char*, NTuple::Item<double> > fFit4c;   //!< Container for the fit4c branch.
+			std::map<const char*, NTuple::Item<double> > fFit6c;   //!< Container for the fit6c branch.
 
 };
 

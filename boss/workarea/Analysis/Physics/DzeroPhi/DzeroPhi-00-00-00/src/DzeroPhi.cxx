@@ -73,7 +73,7 @@
 	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `DzeroPhi`), and if required a documentation string. Note that you should define the paramters themselves in the header (DzeroPhi/DzeroPhi.h) and that you should assign the values in `share/jopOptions_DzeroPhi.txt`.
 	 */
 	// Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
-	DzeroPhi::DzeroPhi(const std::string& name, ISvcLocator* pSvcLocator) :
+	DzeroPhi::DzeroPhi(const std::string &name, ISvcLocator* pSvcLocator) :
 		Algorithm(name, pSvcLocator),
 		fLog(msgSvc(), name),
 		fEventHeader (eventSvc(), "dummy"),
@@ -82,17 +82,18 @@
 	{
 
 		// * Whether or not to fill a tree/NTuple *
-		declareProperty("doMult",    fDoMult);
-		declareProperty("doVxyz",    fDoVxyz);
-		declareProperty("doFit4c",   fDoFit4c);
-		declareProperty("doFit6c",   fDoFit6c);
-		declareProperty("doDedx",    fDoDedx);
-		declareProperty("doDedx_K",  fDoDedx_Kaon);
-		declareProperty("doDedx_pi", fDoDedx_Pion);
-		declareProperty("doTofEC",   fDoTofEC);
-		declareProperty("doTofIB",   fDoTofIB);
-		declareProperty("doTofOB",   fDoTofOB);
-		declareProperty("doPID",     fDoPID);
+		declareProperty("doMult",        fDoMult);
+		declareProperty("doVertex",      fDoVertex);
+		declareProperty("doTrackVertex", fDoTrackVertex);
+		declareProperty("doFit4c",       fDoFit4c);
+		declareProperty("doFit6c",       fDoFit6c);
+		declareProperty("doDedx",        fDoDedx);
+		declareProperty("doDedx_K",      fDoDedx_K);
+		declareProperty("doDedx_pi",     fDoDedx_pi);
+		declareProperty("doTofEC",       fDoTofEC);
+		declareProperty("doTofIB",       fDoTofIB);
+		declareProperty("doTofOB",       fDoTofOB);
+		declareProperty("doPID",         fDoPID);
 
 		// * Define r0, z0 cut for charged tracks *
 		declareProperty("Vr0cut",    fVr0cut);
@@ -129,45 +130,25 @@
 		NTuplePtr nt(ntupleSvc(), ""); // temporary NTuplePtr
 		// * Book NTuple: Multiplicities * //
 			if(fDoMult) {
-				nt = BookNTuple("mult"); /// Branch for multiplicies and primary vertex info.
-				fMult_i["Ntotal"];   /// Total number of events per track.
-				fMult_i["Ncharge"];  /// Number of charged tracks.
-				fMult_i["Nneutral"]; /// Number of charged tracks.
-				fMult_i["Ngood"];    /// Number of 'good' charged tracks.
-				fMult_i["Nmdc"];     /// Number of charged tracks in MDC.
-				fMult_i["NKaonPos"]; /// Number of \f$K^+\f$.
-				fMult_i["NKaonNeg"]; /// Number of \f$K^-\f$.
-				fMult_i["NPionPos"]; /// Number of \f$\pi^-\f$.
-				fMult_d["vx0"];      /// Primary \f$x\f$ coordinate of the collision point.
-				fMult_d["vy0"];      /// Primary \f$y\f$ coordinate of the collision point.
-				fMult_d["vz0"];      /// Primary \f$z\f$ coordinate of the collision point.
-				AddItemsToNTuples(nt, fMult_i);
-				AddItemsToNTuples(nt, fMult_d);
+				nt = BookNTuple("mult"); /// Branch for multiplicies.
+				fMult["Ntotal"];   /// Total number of events per track.
+				fMult["Ncharge"];  /// Number of charged tracks.
+				fMult["Nneutral"]; /// Number of charged tracks.
+				fMult["Ngood"];    /// Number of 'good' charged tracks.
+				fMult["Nmdc"];     /// Number of charged tracks in MDC.
+				fMult["NKaonPos"]; /// Number of \f$K^+\f$.
+				fMult["NKaonNeg"]; /// Number of \f$K^-\f$.
+				fMult["NPionPos"]; /// Number of \f$\pi^-\f$.
+				AddItemsToNTuples(nt, fMult);
 			}
 
-		// * Book NTuple: Vertex position * //
-			if(fDoVxyz) {
-				nt = BookNTuple("vxyz");
-				fVxyz["vx"];    /// Primary \f$x\f$ coordinate of the vertex as determined by MDC.
-				fVxyz["vy"];    /// Primary \f$y\f$ coordinate of the vertex as determined by MDC.
-				fVxyz["vz"];    /// Primary \f$z\f$ coordinate of the vertex as determined by MDC.
-				fVxyz["vr"];    /// Distance from origin in \f$xy\f$ plane.
-				fVxyz["rvxy"];  /// Nearest distance to IP in \f$xy\f$ plane.
-				fVxyz["rvz"];   /// Nearest distance to IP in \f$z\f$ direction.
-				fVxyz["rvphi"]; /// Angle in the \f$xy\f$plane (?). @todo
-				fVxyz["phi"];   /// Helix angle of the particle (?). @todo
-				fVxyz["p"];     /// Momentum \f$p\f$ of the track.
-				AddItemsToNTuples(nt, fVxyz);
-			}
-
-		// * Book NTuple: 4-contraints for Kalman kinematic fit * //
-			if(fDoFit4c) {
-				nt = BookNTuple("fit4c");
-				fFit4c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
-				fFit4c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
-				fFit4c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
-				fFit4c["chi2"];  /// Chi squared of the Kalman kinematic fit.
-				AddItemsToNTuples(nt, fFit4c);
+		// * Book NTuple: Vertex info * //
+			if(fDoVertex) {
+				nt = BookNTuple("vertex"); /// Branch for primary vertex info.
+				fVertex["vx0"]; /// Primary \f$x\f$ coordinate of the collision point.
+				fVertex["vy0"]; /// Primary \f$y\f$ coordinate of the collision point.
+				fVertex["vz0"]; /// Primary \f$z\f$ coordinate of the collision point.
+				AddItemsToNTuples(nt, fVertex);
 			}
 
 		// * Book NTuple: 6-contraints for Kalman kinematic fit * //
@@ -199,21 +180,21 @@
 			}
 
 		// * Book NTuple: ToF endcap branch * //
-			if(fDoVxyz) {
+			if(fDoTrackVertex) {
 				nt = BookNTuple("tofe");
-				BookNtupleTofItems(nt);
+				BookNtupleTofItems(nt, fTofEC);
 			}
 
 		// * Book NTuple: ToF inner barrel branch * //
-			if(fDoVxyz) {
+			if(fDoTrackVertex) {
 				nt = BookNTuple("tof1");
-				BookNtupleTofItems(nt);
+				BookNtupleTofItems(nt, fTofIB);
 			}
 
 		// * Book NTuple: ToF outer barrel branch * //
-			if(fDoVxyz) {
+			if(fDoTrackVertex) {
 				nt = BookNTuple("tof2");
-				BookNtupleTofItems(nt);
+				BookNtupleTofItems(nt, fTofOB);
 			}
 
 		// * Book NTuple: Track PID information * //
@@ -226,6 +207,31 @@
 				fPID["tof2"]; /// Chi squared of the outer barrel ToF of the track.
 				fPID["prob"]; /// Probability that it is a pion.
 				AddItemsToNTuples(nt, fPID);
+			}
+
+		// * Book NTuple: Vertex position * //
+			if(fDoTrackVertex) {
+				nt = BookNTuple("vxyz");
+				fTrackVertex["vx"];    /// Primary \f$x\f$ coordinate of the vertex as determined by MDC.
+				fTrackVertex["vy"];    /// Primary \f$y\f$ coordinate of the vertex as determined by MDC.
+				fTrackVertex["vz"];    /// Primary \f$z\f$ coordinate of the vertex as determined by MDC.
+				fTrackVertex["vr"];    /// Distance from origin in \f$xy\f$ plane.
+				fTrackVertex["rvxy"];  /// Nearest distance to IP in \f$xy\f$ plane.
+				fTrackVertex["rvz"];   /// Nearest distance to IP in \f$z\f$ direction.
+				fTrackVertex["rvphi"]; /// Angle in the \f$xy\f$plane (?). @todo
+				fTrackVertex["phi"];   /// Helix angle of the particle (?). @todo
+				fTrackVertex["p"];     /// Momentum \f$p\f$ of the track.
+				AddItemsToNTuples(nt, fTrackVertex);
+			}
+
+		// * Book NTuple: 4-contraints for Kalman kinematic fit * //
+			if(fDoFit4c) {
+				nt = BookNTuple("fit4c");
+				fFit4c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
+				fFit4c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
+				fFit4c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
+				fFit4c["chisq"];  /// Chi squared of the Kalman kinematic fit.
+				AddItemsToNTuples(nt, fFit4c);
 			}
 
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
@@ -252,26 +258,24 @@
 			fEvtRecTrkCol = SmartDataPtr<EvtRecTrackCol>    (eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
 
 			// * Log run number, event number, and number of events *
-			fEvent_Ntotal   = fEvtRecEvent->totalTracks();
-			fEvent_Ncharge  = fEvtRecEvent->totalCharged();
-			fEvent_Nneutral = fEvtRecEvent->totalNeutral();
 			fLog << MSG::DEBUG
 				<< "RUN "          << fEventHeader->runNumber()   << ", "
 				<< "event number " << fEventHeader->eventNumber() << endreq;
 			fLog << MSG::DEBUG
-				<< "Ncharged = " << fEvent_Ncharge  << ", "
-				<< "Nneutral = " << fEvent_Nneutral << ", "
-				<< "Ntotal = "   << fEvent_Ntotal   << endreq;
+				<< "Ncharged = " << fEvtRecEvent->totalCharged() << ", "
+				<< "Nneutral = " << fEvtRecEvent->totalNeutral() << ", "
+				<< "Ntotal = "   << fEvtRecEvent->totalTracks()  << endreq;
 
 			// * Set vertex origin *
 				IVertexDbSvc* vtxsvc;
 				Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
+				double v0x, v0y, v0z;
 				if(vtxsvc->isVertexValid()){
 					double* dbv = vtxsvc->PrimaryVertex();
 					double* vv = vtxsvc->SigmaPrimaryVertex();
-					fEvent_Vx0 = dbv[0];
-					fEvent_Vy0 = dbv[1];
-					fEvent_Vz0 = dbv[2];
+					v0x = dbv[0];
+					v0y = dbv[1];
+					v0z = dbv[2];
 				}
 
 
@@ -279,7 +283,7 @@
 
 			// * Print log and set counters *
 				fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endreq;
-				fEvent_Nmdc = 0; // @todo Check if this makes sense at all
+				int nChargesMDC = 0;
 				ParticleID *pid = ParticleID::instance();
 
 			// * Clear vectors of selected particles *
@@ -301,41 +305,48 @@
 					RecMdcTrack *mdcTrk = (*fTrackIterator)->mdcTrack();
 
 					// * Get kinematics of track
-					fTrack_p   = mdcTrk->p();
-					fTrack_Vx  = mdcTrk->x();
-					fTrack_Vy  = mdcTrk->y();
-					fTrack_Vz  = mdcTrk->z();
-					fTrack_phi = mdcTrk->helix(1);
-					fTrack_Vr =
-						(fTrack_Vx - fEvent_Vx0) * cos(fTrack_phi) +
-						(fTrack_Vy - fEvent_Vy0) * sin(fTrack_phi);
+					double phi  = mdcTrk->helix(1);
+					double vr =
+						(mdcTrk->x() - v0x) * cos(phi) +
+						(mdcTrk->y() - v0y) * sin(phi);
 
 					// * Get radii of track vertex
 					HepVector a = mdcTrk->helix();
 					HepSymMatrix Ea = mdcTrk->err();
 					HepPoint3D point0(0., 0., 0.); // initial point for MDC reconstruction
-					HepPoint3D IP(fEvent_Vx0, fEvent_Vy0, fEvent_Vz0);
+					HepPoint3D IP(v0x, v0y, v0z);
 					VFHelix helixip(point0, a, Ea);
 					helixip.pivot(IP);
 					HepVector vecipa = helixip.a();
-					fTrack_Rvxy  = fabs(vecipa[0]); // nearest distance to IP in xy plane
-					fTrack_Rvz   = vecipa[3];       // nearest distance to IP in z direction
-					fTrack_Rvphi = vecipa[1]; // angle in the xy-plane (?)
+					double rvxy  = fabs(vecipa[0]); // nearest distance to IP in xy plane
+					double rvz    = vecipa[3];       // nearest distance to IP in z direction
+					double rvphi = vecipa[1];       // angle in the xy-plane (?)
 
 				// * STEP 2: Apply vertex cuts, store track, and write info
 
 					// * Apply vertex cuts
-					if(fabs(fTrack_Vz)   >= fVz0cut)   continue;
-					if(fabs(fTrack_Vr)   >= fVr0cut)   continue;
-					if(fabs(fTrack_Rvz)  >= fRvz0cut)  continue;
-					if(fabs(fTrack_Rvxy) >= fRvxy0cut) continue;
+					if(mdcTrk->z() >= fVz0cut)   continue;
+					if(vr          >= fVr0cut)   continue;
+					if(rvz         >= fRvz0cut)  continue;
+					if(rvxy        >= fRvxy0cut) continue;
 
 					// * Add charged track to vector
 					fGoodChargedTracks.push_back(*fTrackIterator);
-					fEvent_Nmdc += mdcTrk->charge(); // @todo Check if this makes sense at all
+					nChargesMDC += mdcTrk->charge(); // @todo Check if this makes sense at all
 
 					// * WRITE primary vertex position info ("vxyz" branch)
-					if(fDoVxyz) fNTupleMap["vxyz"]->write();
+					if(fDoTrackVertex) {
+						fTrackVertex["vx"]    = mdcTrk->x();
+						fTrackVertex["vy"]    = mdcTrk->y();
+						fTrackVertex["vz"]    = mdcTrk->z();
+						fTrackVertex["vr"]    = vr;
+						fTrackVertex["rvxy"]  = rvxy;
+						fTrackVertex["rvz"]   = rvz;
+						fTrackVertex["rvphi"] = rvphi;
+						fTrackVertex["phi"]   = phi;
+						fTrackVertex["p"]     = mdcTrk->p();
+						fNTupleMap["vxyz"]->write();
+					}
 
 				// * STEP 3: Distinguish and store types of particles
 
@@ -353,12 +364,12 @@
 
 					// * WRITE particle identification info ("pid" branch)
 					if(fDoPID) {
-						fTrack_p = mdcTrk->p();
-						fPID_Cost = cos(mdcTrk->theta());
-						fPID_Dedx = pid->chiDedx(2);
-						fPID_Tof1 = pid->chiTof1(2);
-						fPID_Tof2 = pid->chiTof2(2);
-						fPID_Prob = pid->probPion();
+						fPID["ptrk"] = mdcTrk->p();
+						fPID["cost"] = cos(mdcTrk->theta());
+						fPID["dedx"] = pid->chiDedx(2);
+						fPID["tof1"] = pid->chiTof1(2);
+						fPID["tof2"] = pid->chiTof2(2);
+						fPID["prob"] = pid->probPion();
 						fNTupleMap["pid"]->write();
 					}
 
@@ -381,22 +392,32 @@
 			}
 
 
-		// * STEP (C): WRITE event info ("mult" branch) * //
-			fLog << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << fEvent_Nmdc << endreq;
+		// * STEP (C): WRITE event info ("mult" and "vertex" branch) * //
+			fLog << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << nChargesMDC << endreq;
 			if(fDoMult) {
-				fEvent_Ngood = fGoodChargedTracks.size();
-				fEvent_NKaonNeg = fKaonNeg.size();
-				fEvent_NKaonPos = fKaonPos.size();
-				fEvent_NPionPos = fPionPos.size();
-				fNTupleMap["mult"]->write();
-			} // end of fDoVxyz
+				fMult["Ntotal"]   = fEvtRecEvent->totalTracks();
+				fMult["Ncharge"]  = fEvtRecEvent->totalCharged();
+				fMult["Nneutral"] = fEvtRecEvent->totalNeutral();
+				fMult["Ngood"]    = fGoodChargedTracks.size();
+				fMult["Nmdc"]     = nChargesMDC;
+				fMult["NKaonNeg"] = fKaonNeg.size();
+				fMult["NKaonPos"] = fKaonPos.size();
+				fMult["NPionPos"] = fPionPos.size();
+				fNTupleMap["vertex"]->write();
+			}
+			if(fDoVertex) {
+				fVertex["vx0"] = v0x;
+				fVertex["vy0"] = v0y;
+				fVertex["vz0"] = v0z;
+				fNTupleMap["vertex"]->write();
+			}
 
 
 		// * STEP (D): WRITE dE/dx PID information ("dedx" branch) * //
-			if(fDoDedx)      WriteDedxInfoForVector(fGoodChargedTracks, "dedx");
-			if(fDoDedx_Kaon) WriteDedxInfoForVector(fGoodChargedTracks, "dedx_K");
-			if(fDoDedx_Kaon) WriteDedxInfoForVector(fGoodChargedTracks, "dedx_K");
-			if(fDoDedx_Pion) WriteDedxInfoForVector(fGoodChargedTracks, "dedx_pi");
+			if(fDoDedx)    WriteDedxInfoForVector(fGoodChargedTracks, "dedx",    fDedx);
+			if(fDoDedx_K)  WriteDedxInfoForVector(fGoodChargedTracks, "dedx_K",  fDedx_K);
+			if(fDoDedx_K)  WriteDedxInfoForVector(fGoodChargedTracks, "dedx_K",  fDedx_K);
+			if(fDoDedx_pi) WriteDedxInfoForVector(fGoodChargedTracks, "dedx_pi", fDedx_pi);
 
 
 		// * STEP (E): WRITE Time-of-Flight PID information ("tof*" branch) * //
@@ -417,13 +438,13 @@
 					if(!hitStatus.is_counter()) continue;
 					if(hitStatus.is_barrel()) {
 						if(hitStatus.layer() == 1) { // inner barrel
-							if(fDoTofIB) WriteTofInformation(iter_tof, ptrk, "tof1");
+							if(fDoTofIB) WriteTofInformation(iter_tof, ptrk, "tof1", fTofIB);
 						} else if(hitStatus.layer() == 2) { // outer barrel
-							if(fDoTofOB) WriteTofInformation(iter_tof, ptrk, "tof2");
+							if(fDoTofOB) WriteTofInformation(iter_tof, ptrk, "tof2", fTofOB);
 						}
 					}
 					else if(fDoTofEC && hitStatus.layer() == 0) // end cap
-						WriteTofInformation(iter_tof, ptrk, "tofe");
+						WriteTofInformation(iter_tof, ptrk, "tofe", fTofEC);
 				}
 
 			} // loop all charged tracks
@@ -508,10 +529,10 @@
 						HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
 						HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
 						HepLorentzVector pJpsi = pD0 + pphi;
-						fInvMass_D0   = pD0.m();   // invariant D0 mass according to Kalman kinematic fit
-						fInvMass_phi  = pphi.m();  // invariant phi mass according to Kalman kinematic fit
-						fInvMass_Jpsi = pJpsi.m(); // invariant Jpsi mass according to Kalman kinematic fit
-						fInvMass_ChiSq = fSmallestChiSq; // chi square of the Kalman kinematic fit
+						fFit4c["mD0"]   = pD0.m();
+						fFit4c["mphi"]  = pphi.m();
+						fFit4c["mJpsi"] = pJpsi.m();
+						fFit4c["chisq"] = fSmallestChiSq;
 						fNTupleMap["fit4c"]->write();
 					}
 
@@ -597,10 +618,10 @@
 					HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
 					HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
 					HepLorentzVector pJpsi = pD0 + pphi;
-					fInvMass_D0   = pD0.m();
-					fInvMass_phi  = pphi.m();
-					fInvMass_Jpsi = pJpsi.m();
-					fInvMass_ChiSq = fSmallestChiSq;
+					fFit6c["mD0"]   = pD0.m();
+					fFit6c["mphi"]  = pphi.m();
+					fFit6c["mJpsi"] = pJpsi.m();
+					fFit6c["chisq"] = fSmallestChiSq;
 					fNTupleMap["fit6c"]->write();
 				}
 			} // end of fDoFit6c
@@ -639,30 +660,30 @@
 			nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, "ks N-Tuple example");
 			if(!nt) fLog << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << " (" << tupleName << ")" << endmsg;
 		}
-		// fNTupleMap[tupleName] = nt.ptr();
-		fNTupleMap.insert(make_pair(tupleName, nt.ptr()));
+		fNTupleMap[tupleName] = nt.ptr();
+		// fNTupleMap.insert(make_pair(tupleName, nt.ptr()));
 		return nt;
 	}
 
 
 	/**
 	 * @brief This function encapsulates the `addItem` procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.
-	 */
+	 */ 
 	template<typename TYPE>
-	void DzeroPhi::BookNtupleTofItems(NTuplePtr& nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::BookNtupleTofItems(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map)
 	{
-		map["tof"];  /// Time of flight.
-		map["ptrk"]; /// Momentum of the track as reconstructed by MDC.
-		map["path"]; /// Path length.
-		map["cntr"]; /// ToF counter ID.
-		map["ph"];   /// ToF pulse height.
-		map["rhit"]; /// Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
-		map["qual"]; /// Data quality of reconstruction.
-		map["te"];   /// Difference with ToF in electron hypothesis.
-		map["tmu"];  /// Difference with ToF in muon hypothesis.
-		map["tpi"];  /// Difference with ToF in charged pion hypothesis.
-		map["tk"];   /// Difference with ToF in charged kaon hypothesis.
-		map["tp"];   /// Difference with ToF in proton hypothesis.
+		map["ptrk"];  /// Momentum of the track as reconstructed by MDC.
+		map["tof"];   /// Time of flight.
+		map["path"];  /// Path length.
+		map["cntr"];  /// ToF counter ID.
+		map["ph"];    /// ToF pulse height.
+		map["zrhit"]; /// Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
+		map["qual"];  /// Data quality of reconstruction.
+		map["te"];    /// Difference with ToF in electron hypothesis.
+		map["tmu"];   /// Difference with ToF in muon hypothesis.
+		map["tpi"];   /// Difference with ToF in charged pion hypothesis.
+		map["tk"];    /// Difference with ToF in charged kaon hypothesis.
+		map["tp"];    /// Difference with ToF in proton hypothesis.
 		AddItemsToNTuples(nt, map);
 	}
 
@@ -672,7 +693,7 @@
 	 * @details This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
 	 */
 	template<typename TYPE>
-	void DzeroPhi::BookNtupleDedxItems(NTuplePtr& nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::BookNtupleDedxItems(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map)
 	{
 		map["ptrk"];   /// Momentum of the track as reconstructed by MDC.
 		map["chie"];   /// Chi squared in case of electron.
@@ -691,32 +712,32 @@
 	/**
 	 * @brief
 	 */
-	void DzeroPhi::WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName)
+	template<typename TYPE>
+	void DzeroPhi::WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
 	{
 
-		// * Get ToF info
-		fTof_Ptot = ptrk;
-		fTof      = (*iter_tof)->tof();
-		fTof_Path = (*iter_tof)->path();
-		fTof_Ph   = (*iter_tof)->ph();
-		fTof_Rhit = (*iter_tof)->zrhit();
-		fTof_Qual = 0.+(*iter_tof)->quality();
-		fTof_Cntr = 0.+(*iter_tof)->tofID();
-
 		// * Get ToF for each particle hypothesis
+		double path = (*iter_tof)->path();
 		std::vector<double> texp(nmass);
 		for(size_t j = 0; j < texp.size(); ++j) {
-			double gb = fTof_Ptot/xmass[j]; // v = p/m (non-relativistic velocity)
+			double gb = ptrk/xmass[j]; // v = p/m (non-relativistic velocity)
 			double beta = gb/sqrt(1+gb*gb);
-			texp[j] = 10 * fTof_Path /beta/velc_mm; // hypothesis ToF
+			texp[j] = 10 * path /beta/velc_mm; // hypothesis ToF
 		}
 
 		// * WRITE ToF info
-		fTof_Electron = fTof_Path - texp[0];
-		fTof_Muon     = fTof_Path - texp[1];
-		fTof_Proton  = fTof_Path - texp[2];
-		fTof_Kaon     = fTof_Path - texp[3];
-		fTof_Proton   = fTof_Path - texp[4];
+		map["ptrk"]  = ptrk;
+		map["tof"]   = (*iter_tof)->tof();
+		map["path"]  = (*iter_tof)->path();
+		map["cntr"]  = (*iter_tof)->tofID();
+		map["ph"]    = (*iter_tof)->ph();
+		map["zrhit"] = (*iter_tof)->zrhit();
+		map["qual"]  = (*iter_tof)->quality();
+		map["te"]    = path - texp[0];
+		map["tmu"]   = path - texp[1];
+		map["tpi"]   = path - texp[2];
+		map["tk"]    = path - texp[3];
+		map["tp"]    = path - texp[4];
 		fNTupleMap[tupleName]->write();
 
 	}
@@ -729,10 +750,11 @@
 	 * @param vector The selection of charged tracks that of which you want to write the \f$dE/dx\f$ data.
 	 * @param tupleName The name of the tuple to which you want to write the information.
 	 */
-	void DzeroPhi::WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector, const char* tupleName)
+	template<typename TYPE>
+	void DzeroPhi::WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
 	{
 		for(fTrackIterator = vector.begin(); fTrackIterator != vector.end(); ++fTrackIterator) {
-			WriteDedxInfo(*fTrackIterator, tupleName);
+			WriteDedxInfo(*fTrackIterator, tupleName, map);
 		}
 	}
 
@@ -743,7 +765,8 @@
 	 * @param evtRecTrack Pointer to the reconstructed track of which you want to write the \f$dE/dx\f$ data.
 	 * @param tupleName The name of the tuple to which you want to write the information.
 	 */
-	void DzeroPhi::WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName)
+	template<typename TYPE>
+	void DzeroPhi::WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
 	{
 
 		// * Check if dE/dx and MDC info exists *
@@ -753,16 +776,16 @@
 		RecMdcDedx* dedxTrk = evtRecTrack->mdcDedx();
 
 		// * WRITE energy loss PID info ("dedx" branch) *
-		fTrack_p = mdcTrk->p();
-		fDedx_Chi2e   = dedxTrk->chiE();
-		fDedx_Chi2mu  = dedxTrk->chiMu();
-		fDedx_Chi2pi  = dedxTrk->chiPi();
-		fDedx_Chi2k   = dedxTrk->chiK();
-		fDedx_Chi2p   = dedxTrk->chiP();
-		fDedx_ProbPH  = dedxTrk->probPH();
-		fDedx_NormPH  = dedxTrk->normPH();
-		fDedx_Ghit    = dedxTrk->numGoodHits();
-		fDedx_Thit    = dedxTrk->numTotalHits();
+		map["ptrk"]   = mdcTrk->p();
+		map["chie"]   = dedxTrk->chiE();
+		map["chimu"]  = dedxTrk->chiMu();
+		map["chipi"]  = dedxTrk->chiPi();
+		map["chik"]   = dedxTrk->chiK();
+		map["chip"]   = dedxTrk->chiP();
+		map["probPH"] = dedxTrk->probPH();
+		map["normPH"] = dedxTrk->normPH();
+		map["ghit"]   = dedxTrk->numGoodHits();
+		map["thit"]   = dedxTrk->numTotalHits();
 		fNTupleMap[tupleName]->write();
 
 	}
@@ -771,9 +794,40 @@
 	 * @brief
 	 */
 	template<typename TYPE>
-	void AddItemsToNTuples(NTuplePtr& nt, std::unordered_map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::AddItemsToNTuples(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map)
 	{
 		if(!nt) return;
-		std::unordered_map<const char*, NTuple::Item<TYPE> >::iter it = map.begin();
+		typename std::map<const char*, NTuple::Item<TYPE> >::iterator it = map.begin();
 		for(; it != map.end(); ++it) nt->addItem(it->first, it->second);
 	}
+
+	// /**
+	//  * @brief Function that allows you to draw and save any set of `TObject`s.
+	//  */
+	// template<typename TYPE, class ...ARGS>
+	// void AddItemsToNTuples(std::map<const char*, NTuple::Item<TYPE> > &map, Option_t* option, const char* logScale, ARGS... args)
+	// {
+	// 	// * Create canvas * //
+	// 		TCanvas c;
+	// 		SetLogScale(c, logScale);
+	// 		c.SetBatch();
+	// 	// * Draw objects * //
+	// 		DrawAndSaveRecursion(option, args...);
+	// 	// * Save canvas * //
+	// 		const TString outputDir = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
+	// 		gSystem->mkdir(outputDir.Data());
+	// 		c.SaveAs(Form("%s/%s.%s", outputDir.Data(), filename, Settings::Output::Extension));
+	// }
+
+	// /**
+	//  * @brief The `CreateNTuples` functions are necessary for `AddItemsToNTuples`, which is a variadic template function.
+	//  */
+	// template<class... ARGS> void AddItemsToNTuples(Option_t* option, ARGS&&... args); // start recursion
+	// template<class TYPE, class... ARGS>
+	// void AddItemsToNTuples(Option_t* option, TYPE first, ARGS... args)
+	// {
+	// 	auto obj = dynamic_cast<TObject*>(first);
+	// 	if(obj) obj->Draw(option);
+	// 	AddItemsToNTuples(option, args...); // continue recursion
+	// }
+	// template<> void AddItemsToNTuples(Option_t* option) {} // end recursion
