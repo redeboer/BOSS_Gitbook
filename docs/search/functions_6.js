@@ -1,13 +1,11 @@
 var searchData=
 [
-  ['gauss',['gauss',['../RooFitMacro_8C.html#a082d147d848fe3b37cb0861c4250b513',1,'RooFitMacro.C']]],
-  ['geff',['geff',['../classRhopiRootChain.html#a5e0b5275df9db37d0d3cf81cec8f0b02',1,'RhopiRootChain::geff()'],['../classRhopiRootFile.html#aa611de67c8ef76790b06524fa893b476',1,'RhopiRootFile::geff()']]],
   ['get',['Get',['../classSimplifiedTree.html#a3ad723b823aa1551b6ec0f87f0f1c9ed',1,'SimplifiedTree']]],
-  ['get_5fb',['Get_b',['../classSimplifiedTree.html#a1622b3c60ea262ed9f2df62c2172c8bc',1,'SimplifiedTree::Get_b(const char *name)'],['../classSimplifiedTree.html#a1f3f411c29a6d6e1404fa396c3b66bf1',1,'SimplifiedTree::Get_B(const char *name)']]],
+  ['get_5fb',['Get_B',['../classSimplifiedTree.html#a1f3f411c29a6d6e1404fa396c3b66bf1',1,'SimplifiedTree::Get_B(const char *name)'],['../classSimplifiedTree.html#a1622b3c60ea262ed9f2df62c2172c8bc',1,'SimplifiedTree::Get_b(const char *name)']]],
   ['get_5fd',['Get_D',['../classSimplifiedTree.html#a5c0813df605b8a9c540cd15156bc0e61',1,'SimplifiedTree']]],
   ['get_5ff',['Get_F',['../classSimplifiedTree.html#a965447c1ec74cb920d1930d43f9285b1',1,'SimplifiedTree']]],
   ['get_5fi',['Get_I',['../classSimplifiedTree.html#aabc68230def4717892b91a4a0129fb3a',1,'SimplifiedTree::Get_I(const char *name)'],['../classSimplifiedTree.html#a6acf52292d6dc56430870393056bedda',1,'SimplifiedTree::Get_i(const char *name)']]],
-  ['get_5fl',['Get_L',['../classSimplifiedTree.html#ae12ea0a83f89cdb489449bff33b0b222',1,'SimplifiedTree::Get_L(const char *name)'],['../classSimplifiedTree.html#ad82c97ff7c086778145f5e2064a8a1c9',1,'SimplifiedTree::Get_l(const char *name)']]],
+  ['get_5fl',['Get_l',['../classSimplifiedTree.html#ad82c97ff7c086778145f5e2064a8a1c9',1,'SimplifiedTree::Get_l(const char *name)'],['../classSimplifiedTree.html#ae12ea0a83f89cdb489449bff33b0b222',1,'SimplifiedTree::Get_L(const char *name)']]],
   ['get_5fo',['Get_O',['../classSimplifiedTree.html#aba7840d5f51ddf5a7d6e3cc44bfd2c95',1,'SimplifiedTree']]],
   ['get_5fs',['Get_S',['../classSimplifiedTree.html#ab575f5b5bba79fea49802925b9b294bc',1,'SimplifiedTree::Get_S(const char *name)'],['../classSimplifiedTree.html#ac1aa305657cc14ccce501f7d78d7eb10',1,'SimplifiedTree::Get_s(const char *name)']]],
   ['getbwconvolutedwidth',['GetBWConvolutedWidth',['../classReconstructedParticle.html#ac2309d9b0cbadc959f19891b01baaf77',1,'ReconstructedParticle']]],
@@ -30,6 +28,5 @@ var searchData=
   ['getparticlepdg',['GetParticlePDG',['../classParticle.html#aa9f7152d465aadc5f9414edc45a47386',1,'Particle']]],
   ['getpdgcode',['GetPDGCode',['../classParticle.html#a4b8ac08a6780525067a126f69e42def7',1,'Particle']]],
   ['getplotrange',['GetPlotRange',['../classReconstructedParticle.html#aec7bbf487e76d3fc2c5cdb1b61fbd6bf',1,'ReconstructedParticle::GetPlotRange() const'],['../classReconstructedParticle.html#a6731ad7c08ab43cfc7dde67fb7ee47c3',1,'ReconstructedParticle::GetPlotRange(double &amp;from, double &amp;to) const']]],
-  ['getuppermass',['GetUpperMass',['../classReconstructedParticle.html#add109d84e447cce041b5c0289ba4526e',1,'ReconstructedParticle']]],
-  ['getxaxis',['GetXaxis',['../RooFitMacro_8C.html#a0d0604c49c2f21bc6bc844af99825f6f',1,'RooFitMacro.C']]]
+  ['getuppermass',['GetUpperMass',['../classReconstructedParticle.html#add109d84e447cce041b5c0289ba4526e',1,'ReconstructedParticle']]]
 ];

@@ -7,6 +7,5 @@ var searchData=
   ['dzerophi_2ecxx',['DzeroPhi.cxx',['../DzeroPhi_8cxx.html',1,'']]],
   ['dzerophi_2eh',['DzeroPhi.h',['../DzeroPhi_8h.html',1,'']]],
   ['dzerophi_5fentries_2ecxx',['DzeroPhi_entries.cxx',['../DzeroPhi__entries_8cxx.html',1,'']]],
-  ['dzerophi_5fload_2ecxx',['DzeroPhi_load.cxx',['../DzeroPhi__load_8cxx.html',1,'']]],
-  ['dzerophirootfile_2eh',['DzeroPhiRootFile.h',['../DzeroPhiRootFile_8h.html',1,'']]]
+  ['dzerophi_5fload_2ecxx',['DzeroPhi_load.cxx',['../DzeroPhi__load_8cxx.html',1,'']]]
 ];

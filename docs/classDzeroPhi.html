@@ -123,33 +123,33 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a5a790169c5f69f74b2f79c6749be3419"><td class="memItemLeft" align="right" valign="top">NTuplePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a5a790169c5f69f74b2f79c6749be3419">BookNTuple</a> (const char *tupleName, const char *tupleTitle=&quot;ks N-Tuple example&quot;)</td></tr>
 <tr class="memdesc:a5a790169c5f69f74b2f79c6749be3419"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that allows you to create pair of a string with a <code>NTuplePtr</code>.  <a href="#a5a790169c5f69f74b2f79c6749be3419">More...</a><br /></td></tr>
 <tr class="separator:a5a790169c5f69f74b2f79c6749be3419"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d84e016bfbbc26e39ad60967a5de738"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
-<tr class="memitem:a7d84e016bfbbc26e39ad60967a5de738"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a7d84e016bfbbc26e39ad60967a5de738">AddItemsToNTuples</a> (NTuplePtr &amp;nt, std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
-<tr class="memdesc:a7d84e016bfbbc26e39ad60967a5de738"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically assign all <em>mapped values</em> of <code>map</code> as items to an <code>NTuplePtr</code>.  <a href="#a7d84e016bfbbc26e39ad60967a5de738">More...</a><br /></td></tr>
-<tr class="separator:a7d84e016bfbbc26e39ad60967a5de738"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ba4834b7f462bb54c6f4aea98f9fb31"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
-<tr class="memitem:a8ba4834b7f462bb54c6f4aea98f9fb31"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a8ba4834b7f462bb54c6f4aea98f9fb31">AddItemsToNTuples</a> (const char *tupleName, std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
-<tr class="memdesc:a8ba4834b7f462bb54c6f4aea98f9fb31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically assign all <em>mapped values</em> of <code>map</code> as items to an <code>NTuplePtr</code>.  <a href="#a8ba4834b7f462bb54c6f4aea98f9fb31">More...</a><br /></td></tr>
-<tr class="separator:a8ba4834b7f462bb54c6f4aea98f9fb31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafc7fc05ccc84ad9a29ef844faf382b9"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
-<tr class="memitem:aafc7fc05ccc84ad9a29ef844faf382b9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aafc7fc05ccc84ad9a29ef844faf382b9">BookNtupleItemsDedx</a> (const char *tupleName, std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
-<tr class="memdesc:aafc7fc05ccc84ad9a29ef844faf382b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss branch (<code>"dedx"</code>).  <a href="#aafc7fc05ccc84ad9a29ef844faf382b9">More...</a><br /></td></tr>
-<tr class="separator:aafc7fc05ccc84ad9a29ef844faf382b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada3d7cffe13ba2dad27aef1125ebba75"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
-<tr class="memitem:ada3d7cffe13ba2dad27aef1125ebba75"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ada3d7cffe13ba2dad27aef1125ebba75">BookNtupleItemsTof</a> (const char *tupleName, std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
-<tr class="memdesc:ada3d7cffe13ba2dad27aef1125ebba75"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="#ada3d7cffe13ba2dad27aef1125ebba75">More...</a><br /></td></tr>
-<tr class="separator:ada3d7cffe13ba2dad27aef1125ebba75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7778d238075c16c1565582d786c876b9"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
-<tr class="memitem:a7778d238075c16c1565582d786c876b9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a7778d238075c16c1565582d786c876b9">WriteDedxInfo</a> (EvtRecTrack *evtRecTrack, const char *tupleName, std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
-<tr class="memdesc:a7778d238075c16c1565582d786c876b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss information <em>for one track</em>.  <a href="#a7778d238075c16c1565582d786c876b9">More...</a><br /></td></tr>
-<tr class="separator:a7778d238075c16c1565582d786c876b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae14e127364795a1319b40d743d387f06"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
-<tr class="memitem:ae14e127364795a1319b40d743d387f06"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ae14e127364795a1319b40d743d387f06">WriteDedxInfoForVector</a> (std::vector&lt; EvtRecTrack *&gt; &amp;vector, const char *tupleName, std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
-<tr class="memdesc:ae14e127364795a1319b40d743d387f06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss information.  <a href="#ae14e127364795a1319b40d743d387f06">More...</a><br /></td></tr>
-<tr class="separator:ae14e127364795a1319b40d743d387f06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9535b5a68e8065601dad15a72116bdf"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
-<tr class="memitem:ae9535b5a68e8065601dad15a72116bdf"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ae9535b5a68e8065601dad15a72116bdf">WriteTofInformation</a> (SmartRefVector&lt; RecTofTrack &gt;::iterator iter_tof, double ptrk, const char *tupleName, std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
-<tr class="separator:ae9535b5a68e8065601dad15a72116bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b349291c3f149f31d2d4479eb407d6"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:af3b349291c3f149f31d2d4479eb407d6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#af3b349291c3f149f31d2d4479eb407d6">AddItemsToNTuples</a> (NTuplePtr nt, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="memdesc:af3b349291c3f149f31d2d4479eb407d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically assign all <em>mapped values</em> of <code>map</code> as items to an <code>NTuplePtr</code>.  <a href="#af3b349291c3f149f31d2d4479eb407d6">More...</a><br /></td></tr>
+<tr class="separator:af3b349291c3f149f31d2d4479eb407d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5011e42ba2799c97d76f39bdb027aa5"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:ad5011e42ba2799c97d76f39bdb027aa5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ad5011e42ba2799c97d76f39bdb027aa5">AddItemsToNTuples</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="memdesc:ad5011e42ba2799c97d76f39bdb027aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically assign all <em>mapped values</em> of <code>map</code> as items to an <code>NTuplePtr</code>.  <a href="#ad5011e42ba2799c97d76f39bdb027aa5">More...</a><br /></td></tr>
+<tr class="separator:ad5011e42ba2799c97d76f39bdb027aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0820fe0db2ba456ed782a1dd6fc08c17"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a0820fe0db2ba456ed782a1dd6fc08c17"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a0820fe0db2ba456ed782a1dd6fc08c17">BookNtupleItemsDedx</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="memdesc:a0820fe0db2ba456ed782a1dd6fc08c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss branch (<code>"dedx"</code>).  <a href="#a0820fe0db2ba456ed782a1dd6fc08c17">More...</a><br /></td></tr>
+<tr class="separator:a0820fe0db2ba456ed782a1dd6fc08c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1656f2f5c8e24dc914bee02826fbcdae"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a1656f2f5c8e24dc914bee02826fbcdae"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a1656f2f5c8e24dc914bee02826fbcdae">BookNtupleItemsTof</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="memdesc:a1656f2f5c8e24dc914bee02826fbcdae"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="#a1656f2f5c8e24dc914bee02826fbcdae">More...</a><br /></td></tr>
+<tr class="separator:a1656f2f5c8e24dc914bee02826fbcdae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a792df15dfd6a1e8c44922f75c67536ad"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a792df15dfd6a1e8c44922f75c67536ad"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a792df15dfd6a1e8c44922f75c67536ad">WriteDedxInfo</a> (EvtRecTrack *evtRecTrack, const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="memdesc:a792df15dfd6a1e8c44922f75c67536ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss information <em>for one track</em>.  <a href="#a792df15dfd6a1e8c44922f75c67536ad">More...</a><br /></td></tr>
+<tr class="separator:a792df15dfd6a1e8c44922f75c67536ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75c8e7dfc5d6be4c6226bb071c5aa4cd"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a75c8e7dfc5d6be4c6226bb071c5aa4cd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a75c8e7dfc5d6be4c6226bb071c5aa4cd">WriteDedxInfoForVector</a> (std::vector&lt; EvtRecTrack *&gt; &amp;vector, const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="memdesc:a75c8e7dfc5d6be4c6226bb071c5aa4cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss information.  <a href="#a75c8e7dfc5d6be4c6226bb071c5aa4cd">More...</a><br /></td></tr>
+<tr class="separator:a75c8e7dfc5d6be4c6226bb071c5aa4cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bab280381cbd3a1cf9c8febd40492b9"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a0bab280381cbd3a1cf9c8febd40492b9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a0bab280381cbd3a1cf9c8febd40492b9">WriteTofInformation</a> (SmartRefVector&lt; RecTofTrack &gt;::iterator iter_tof, double ptrk, const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="separator:a0bab280381cbd3a1cf9c8febd40492b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -158,9 +158,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ad314618cabf1a45ec0b5356adbdb33e4"><td class="memItemLeft" align="right" valign="top">MsgStream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ad314618cabf1a45ec0b5356adbdb33e4">fLog</a></td></tr>
 <tr class="memdesc:ad314618cabf1a45ec0b5356adbdb33e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.  <a href="#ad314618cabf1a45ec0b5356adbdb33e4">More...</a><br /></td></tr>
 <tr class="separator:ad314618cabf1a45ec0b5356adbdb33e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acaced39905f9612f3eb297b14db24c4c"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Tuple * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#acaced39905f9612f3eb297b14db24c4c">fNTupleMap</a></td></tr>
-<tr class="memdesc:acaced39905f9612f3eb297b14db24c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map for <code>NTuple::Tuple*</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>.  <a href="#acaced39905f9612f3eb297b14db24c4c">More...</a><br /></td></tr>
-<tr class="separator:acaced39905f9612f3eb297b14db24c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d5fb8976578b99d014b7b35cd483c1e"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Tuple * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a5d5fb8976578b99d014b7b35cd483c1e">fNTupleMap</a></td></tr>
+<tr class="memdesc:a5d5fb8976578b99d014b7b35cd483c1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map for <code>NTuple::Tuple*</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>.  <a href="#a5d5fb8976578b99d014b7b35cd483c1e">More...</a><br /></td></tr>
+<tr class="separator:a5d5fb8976578b99d014b7b35cd483c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2c2170dafb02e0ed4caadaf7001a2e8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ad2c2170dafb02e0ed4caadaf7001a2e8">fGoodChargedTracks</a></td></tr>
 <tr class="memdesc:ad2c2170dafb02e0ed4caadaf7001a2e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will contain a selection of pointers to 'good' charged tracks.  <a href="#ad2c2170dafb02e0ed4caadaf7001a2e8">More...</a><br /></td></tr>
 <tr class="separator:ad2c2170dafb02e0ed4caadaf7001a2e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -256,42 +256,42 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a80f652be94976cd00fc85d608d235288"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a80f652be94976cd00fc85d608d235288">fDoFit6c</a></td></tr>
 <tr class="memdesc:a80f652be94976cd00fc85d608d235288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to perform and record a 6-constraint Kalman kinematic fit.  <a href="#a80f652be94976cd00fc85d608d235288">More...</a><br /></td></tr>
 <tr class="separator:a80f652be94976cd00fc85d608d235288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5531ffce409a2196ec2ce90fe09dc5c2"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a5531ffce409a2196ec2ce90fe09dc5c2">fMult</a></td></tr>
-<tr class="memdesc:a5531ffce409a2196ec2ce90fe09dc5c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the multiplicy branch.  <a href="#a5531ffce409a2196ec2ce90fe09dc5c2">More...</a><br /></td></tr>
-<tr class="separator:a5531ffce409a2196ec2ce90fe09dc5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af71635824f2c96c7b44df5d04c7d4bb9"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#af71635824f2c96c7b44df5d04c7d4bb9">fVertex</a></td></tr>
-<tr class="memdesc:af71635824f2c96c7b44df5d04c7d4bb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the vertex branch.  <a href="#af71635824f2c96c7b44df5d04c7d4bb9">More...</a><br /></td></tr>
-<tr class="separator:af71635824f2c96c7b44df5d04c7d4bb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32846464e5e693c5ca2a2ce3fba9b55a"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a32846464e5e693c5ca2a2ce3fba9b55a">fTrackVertex</a></td></tr>
-<tr class="memdesc:a32846464e5e693c5ca2a2ce3fba9b55a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the track verex branch.  <a href="#a32846464e5e693c5ca2a2ce3fba9b55a">More...</a><br /></td></tr>
-<tr class="separator:a32846464e5e693c5ca2a2ce3fba9b55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99588ec208a19b8d3be9cc36e18982aa"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a99588ec208a19b8d3be9cc36e18982aa">fDedx</a></td></tr>
-<tr class="memdesc:a99588ec208a19b8d3be9cc36e18982aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"dedx"</code> branch.  <a href="#a99588ec208a19b8d3be9cc36e18982aa">More...</a><br /></td></tr>
-<tr class="separator:a99588ec208a19b8d3be9cc36e18982aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd729f5bf99452f5b37f41117813d447"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#afd729f5bf99452f5b37f41117813d447">fDedx_K</a></td></tr>
-<tr class="memdesc:afd729f5bf99452f5b37f41117813d447"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"dedx_k"</code> branch.  <a href="#afd729f5bf99452f5b37f41117813d447">More...</a><br /></td></tr>
-<tr class="separator:afd729f5bf99452f5b37f41117813d447"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6799c91fedd893257282a36a74643c7c"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a6799c91fedd893257282a36a74643c7c">fDedx_pi</a></td></tr>
-<tr class="memdesc:a6799c91fedd893257282a36a74643c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"dedx_pi"</code> branch.  <a href="#a6799c91fedd893257282a36a74643c7c">More...</a><br /></td></tr>
-<tr class="separator:a6799c91fedd893257282a36a74643c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04e4398b1dd704fdaa1871e3c4c7dbd0"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a04e4398b1dd704fdaa1871e3c4c7dbd0">fTofEC</a></td></tr>
-<tr class="memdesc:a04e4398b1dd704fdaa1871e3c4c7dbd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tofe"</code> branch.  <a href="#a04e4398b1dd704fdaa1871e3c4c7dbd0">More...</a><br /></td></tr>
-<tr class="separator:a04e4398b1dd704fdaa1871e3c4c7dbd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a515a10da1af59c60ef5375480138b349"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a515a10da1af59c60ef5375480138b349">fTofIB</a></td></tr>
-<tr class="memdesc:a515a10da1af59c60ef5375480138b349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tof1"</code> branch.  <a href="#a515a10da1af59c60ef5375480138b349">More...</a><br /></td></tr>
-<tr class="separator:a515a10da1af59c60ef5375480138b349"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a832bc82892fba2c0432e099b88991c12"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a832bc82892fba2c0432e099b88991c12">fTofOB</a></td></tr>
-<tr class="memdesc:a832bc82892fba2c0432e099b88991c12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tof2"</code> branch.  <a href="#a832bc82892fba2c0432e099b88991c12">More...</a><br /></td></tr>
-<tr class="separator:a832bc82892fba2c0432e099b88991c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ebeb499878ff291cf5a047209a8863e"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a6ebeb499878ff291cf5a047209a8863e">fPID</a></td></tr>
-<tr class="memdesc:a6ebeb499878ff291cf5a047209a8863e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"pid"</code> branch.  <a href="#a6ebeb499878ff291cf5a047209a8863e">More...</a><br /></td></tr>
-<tr class="separator:a6ebeb499878ff291cf5a047209a8863e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79cc5771e5a188ccf74a0d8b2b4fe617"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a79cc5771e5a188ccf74a0d8b2b4fe617">fFit4c</a></td></tr>
-<tr class="memdesc:a79cc5771e5a188ccf74a0d8b2b4fe617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the fit4c branch.  <a href="#a79cc5771e5a188ccf74a0d8b2b4fe617">More...</a><br /></td></tr>
-<tr class="separator:a79cc5771e5a188ccf74a0d8b2b4fe617"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedfb6e844ee019154d3690bcda5c1c65"><td class="memItemLeft" align="right" valign="top">std::map&lt; const char *, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aedfb6e844ee019154d3690bcda5c1c65">fFit6c</a></td></tr>
-<tr class="memdesc:aedfb6e844ee019154d3690bcda5c1c65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the fit6c branch.  <a href="#aedfb6e844ee019154d3690bcda5c1c65">More...</a><br /></td></tr>
-<tr class="separator:aedfb6e844ee019154d3690bcda5c1c65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a020373367f2fe5b27171b1bc377e2ddb"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a020373367f2fe5b27171b1bc377e2ddb">fMult</a></td></tr>
+<tr class="memdesc:a020373367f2fe5b27171b1bc377e2ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the multiplicy branch.  <a href="#a020373367f2fe5b27171b1bc377e2ddb">More...</a><br /></td></tr>
+<tr class="separator:a020373367f2fe5b27171b1bc377e2ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd1a635c715e40f18885c59aeda5d5fe"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#abd1a635c715e40f18885c59aeda5d5fe">fVertex</a></td></tr>
+<tr class="memdesc:abd1a635c715e40f18885c59aeda5d5fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the vertex branch.  <a href="#abd1a635c715e40f18885c59aeda5d5fe">More...</a><br /></td></tr>
+<tr class="separator:abd1a635c715e40f18885c59aeda5d5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c4f51888459d23397150890b71c660b"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a7c4f51888459d23397150890b71c660b">fTrackVertex</a></td></tr>
+<tr class="memdesc:a7c4f51888459d23397150890b71c660b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the track verex branch.  <a href="#a7c4f51888459d23397150890b71c660b">More...</a><br /></td></tr>
+<tr class="separator:a7c4f51888459d23397150890b71c660b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae90006d1379e8d45569690975c13e349"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ae90006d1379e8d45569690975c13e349">fDedx</a></td></tr>
+<tr class="memdesc:ae90006d1379e8d45569690975c13e349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"dedx"</code> branch.  <a href="#ae90006d1379e8d45569690975c13e349">More...</a><br /></td></tr>
+<tr class="separator:ae90006d1379e8d45569690975c13e349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab06e782849ae3a41c5c4fa8eaf7651c2"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ab06e782849ae3a41c5c4fa8eaf7651c2">fDedx_K</a></td></tr>
+<tr class="memdesc:ab06e782849ae3a41c5c4fa8eaf7651c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"dedx_k"</code> branch.  <a href="#ab06e782849ae3a41c5c4fa8eaf7651c2">More...</a><br /></td></tr>
+<tr class="separator:ab06e782849ae3a41c5c4fa8eaf7651c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63fc5d6e73556d9ce1a9721d31579aa5"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a63fc5d6e73556d9ce1a9721d31579aa5">fDedx_pi</a></td></tr>
+<tr class="memdesc:a63fc5d6e73556d9ce1a9721d31579aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"dedx_pi"</code> branch.  <a href="#a63fc5d6e73556d9ce1a9721d31579aa5">More...</a><br /></td></tr>
+<tr class="separator:a63fc5d6e73556d9ce1a9721d31579aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a768b243fc3677e65e034f6011360fb3e"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a768b243fc3677e65e034f6011360fb3e">fTofEC</a></td></tr>
+<tr class="memdesc:a768b243fc3677e65e034f6011360fb3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tofe"</code> branch.  <a href="#a768b243fc3677e65e034f6011360fb3e">More...</a><br /></td></tr>
+<tr class="separator:a768b243fc3677e65e034f6011360fb3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74d2c65d64325c9e14bdb557f4e582bb"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a74d2c65d64325c9e14bdb557f4e582bb">fTofIB</a></td></tr>
+<tr class="memdesc:a74d2c65d64325c9e14bdb557f4e582bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tof1"</code> branch.  <a href="#a74d2c65d64325c9e14bdb557f4e582bb">More...</a><br /></td></tr>
+<tr class="separator:a74d2c65d64325c9e14bdb557f4e582bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84d789d8a9e228264d819a30fdc5b2ff"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#a84d789d8a9e228264d819a30fdc5b2ff">fTofOB</a></td></tr>
+<tr class="memdesc:a84d789d8a9e228264d819a30fdc5b2ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tof2"</code> branch.  <a href="#a84d789d8a9e228264d819a30fdc5b2ff">More...</a><br /></td></tr>
+<tr class="separator:a84d789d8a9e228264d819a30fdc5b2ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab72990facb6de5e9e8c00d4539be2239"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ab72990facb6de5e9e8c00d4539be2239">fPID</a></td></tr>
+<tr class="memdesc:ab72990facb6de5e9e8c00d4539be2239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"pid"</code> branch.  <a href="#ab72990facb6de5e9e8c00d4539be2239">More...</a><br /></td></tr>
+<tr class="separator:ab72990facb6de5e9e8c00d4539be2239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4f07848efd4a7a9d7dabbec3bf04f7e"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#ad4f07848efd4a7a9d7dabbec3bf04f7e">fFit4c</a></td></tr>
+<tr class="memdesc:ad4f07848efd4a7a9d7dabbec3bf04f7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the fit4c branch.  <a href="#ad4f07848efd4a7a9d7dabbec3bf04f7e">More...</a><br /></td></tr>
+<tr class="separator:ad4f07848efd4a7a9d7dabbec3bf04f7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaafc1325d436dd8787f31bb028dacc04"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDzeroPhi.html#aaafc1325d436dd8787f31bb028dacc04">fFit6c</a></td></tr>
+<tr class="memdesc:aaafc1325d436dd8787f31bb028dacc04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the fit6c branch.  <a href="#aaafc1325d436dd8787f31bb028dacc04">More...</a><br /></td></tr>
+<tr class="separator:aaafc1325d436dd8787f31bb028dacc04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Analyse <img class="formulaInl" alt="$ J/\psi \rightarrow D^0 \phi $" src="form_0.png"/> events. </p>
@@ -334,8 +334,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7d84e016bfbbc26e39ad60967a5de738"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d84e016bfbbc26e39ad60967a5de738">&#9670;&nbsp;</a></span>AddItemsToNTuples() <span class="overload">[1/2]</span></h2>
+<a id="af3b349291c3f149f31d2d4479eb407d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3b349291c3f149f31d2d4479eb407d6">&#9670;&nbsp;</a></span>AddItemsToNTuples() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,13 +348,13 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="memname">void DzeroPhi::AddItemsToNTuples </td>
           <td>(</td>
-          <td class="paramtype">NTuplePtr &amp;&#160;</td>
+          <td class="paramtype">NTuplePtr&#160;</td>
           <td class="paramname"><em>nt</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em>&#160;</td>
         </tr>
         <tr>
@@ -383,8 +383,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a8ba4834b7f462bb54c6f4aea98f9fb31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ba4834b7f462bb54c6f4aea98f9fb31">&#9670;&nbsp;</a></span>AddItemsToNTuples() <span class="overload">[2/2]</span></h2>
+<a id="ad5011e42ba2799c97d76f39bdb027aa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5011e42ba2799c97d76f39bdb027aa5">&#9670;&nbsp;</a></span>AddItemsToNTuples() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -403,7 +403,7 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em>&#160;</td>
         </tr>
         <tr>
@@ -476,13 +476,14 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
+<p>Use <code>map::operator[]</code> if you want to book an <code>NTuple::Item</code> and use <code>map::at</code> if you want to access the <code>NTuple</code> by key value. This ensures that the programme throws an exception if you ask for the wrong key later. </p>
 
 <p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00644">644</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
-<a id="aafc7fc05ccc84ad9a29ef844faf382b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aafc7fc05ccc84ad9a29ef844faf382b9">&#9670;&nbsp;</a></span>BookNtupleItemsDedx()</h2>
+<a id="a0820fe0db2ba456ed782a1dd6fc08c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0820fe0db2ba456ed782a1dd6fc08c17">&#9670;&nbsp;</a></span>BookNtupleItemsDedx()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -501,7 +502,7 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em>&#160;</td>
         </tr>
         <tr>
@@ -534,8 +535,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="ada3d7cffe13ba2dad27aef1125ebba75"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada3d7cffe13ba2dad27aef1125ebba75">&#9670;&nbsp;</a></span>BookNtupleItemsTof()</h2>
+<a id="a1656f2f5c8e24dc914bee02826fbcdae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1656f2f5c8e24dc914bee02826fbcdae">&#9670;&nbsp;</a></span>BookNtupleItemsTof()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -554,7 +555,7 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em>&#160;</td>
         </tr>
         <tr>
@@ -664,10 +665,6 @@ template&lt;typename TYPE &gt; </div>
 <p>Primary <img class="formulaInl" alt="$y$" src="form_9.png"/> coordinate of the collision point.</p>
 <p>Primary <img class="formulaInl" alt="$z$" src="form_10.png"/> coordinate of the collision point.</p>
 <p>Branch for primary vertex info.</p>
-<p>Invariant mass for <img class="formulaInl" alt="$ K^- pi^+ $" src="form_11.png"/> ( <img class="formulaInl" alt="$ D^0 $" src="form_12.png"/>).</p>
-<p>Invariant mass for <img class="formulaInl" alt="$ K^+ K^+ $" src="form_13.png"/> ( <img class="formulaInl" alt="$ \phi $" src="form_14.png"/>).</p>
-<p>Invariant mass for <img class="formulaInl" alt="$ D^0 \phi $" src="form_15.png"/> ( <img class="formulaInl" alt="$ J/\psi $" src="form_16.png"/>).</p>
-<p>Chi squared of the Kalman kinematic fit.</p>
 <p>Momentum of the track as reconstructed by MDC.</p>
 <p>Theta angle of the track.</p>
 <p>Chi squared of the dedx of the track.</p>
@@ -677,23 +674,27 @@ template&lt;typename TYPE &gt; </div>
 <p>Primary <img class="formulaInl" alt="$x$" src="form_8.png"/> coordinate of the vertex as determined by MDC.</p>
 <p>Primary <img class="formulaInl" alt="$y$" src="form_9.png"/> coordinate of the vertex as determined by MDC.</p>
 <p>Primary <img class="formulaInl" alt="$z$" src="form_10.png"/> coordinate of the vertex as determined by MDC.</p>
-<p>Distance from origin in <img class="formulaInl" alt="$xy$" src="form_17.png"/> plane.</p>
-<p>Nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_17.png"/> plane.</p>
+<p>Distance from origin in <img class="formulaInl" alt="$xy$" src="form_11.png"/> plane.</p>
+<p>Nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_11.png"/> plane.</p>
 <p>Nearest distance to IP in <img class="formulaInl" alt="$z$" src="form_10.png"/> direction.</p>
-<p>Angle in the <img class="formulaInl" alt="$xy$" src="form_17.png"/>plane (?).</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd></dd></dl>
+<p>Angle in the <img class="formulaInl" alt="$xy$" src="form_11.png"/>plane (?).</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd></dd></dl>
 <p>Helix angle of the particle (?).</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd></dd></dl>
-<p>Momentum <img class="formulaInl" alt="$p$" src="form_18.png"/> of the track.</p>
-<p>Invariant mass for <img class="formulaInl" alt="$ K^- pi^+ $" src="form_11.png"/> ( <img class="formulaInl" alt="$ D^0 $" src="form_12.png"/>).</p>
-<p>Invariant mass for <img class="formulaInl" alt="$ K^+ K^+ $" src="form_13.png"/> ( <img class="formulaInl" alt="$ \phi $" src="form_14.png"/>).</p>
-<p>Invariant mass for <img class="formulaInl" alt="$ D^0 \phi $" src="form_15.png"/> ( <img class="formulaInl" alt="$ J/\psi $" src="form_16.png"/>).</p>
+<p>Momentum <img class="formulaInl" alt="$p$" src="form_12.png"/> of the track.</p>
+<p>Invariant mass for <img class="formulaInl" alt="$ K^- pi^+ $" src="form_13.png"/> ( <img class="formulaInl" alt="$ D^0 $" src="form_14.png"/>).</p>
+<p>Invariant mass for <img class="formulaInl" alt="$ K^+ K^+ $" src="form_15.png"/> ( <img class="formulaInl" alt="$ \phi $" src="form_16.png"/>).</p>
+<p>Invariant mass for <img class="formulaInl" alt="$ D^0 \phi $" src="form_17.png"/> ( <img class="formulaInl" alt="$ J/\psi $" src="form_18.png"/>).</p>
+<p>Chi squared of the Kalman kinematic fit.</p>
+<p>Invariant mass for <img class="formulaInl" alt="$ K^- pi^+ $" src="form_13.png"/> ( <img class="formulaInl" alt="$ D^0 $" src="form_14.png"/>).</p>
+<p>Invariant mass for <img class="formulaInl" alt="$ K^+ K^+ $" src="form_15.png"/> ( <img class="formulaInl" alt="$ \phi $" src="form_16.png"/>).</p>
+<p>Invariant mass for <img class="formulaInl" alt="$ D^0 \phi $" src="form_17.png"/> ( <img class="formulaInl" alt="$ J/\psi $" src="form_18.png"/>).</p>
 <p>Chi squared of the Kalman kinematic fit. </p>
 
 <p class="definition">Definition at line <a class="el" href="DzeroPhi_8cxx_source.html#l00128">128</a> of file <a class="el" href="DzeroPhi_8cxx_source.html">DzeroPhi.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a7778d238075c16c1565582d786c876b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7778d238075c16c1565582d786c876b9">&#9670;&nbsp;</a></span>WriteDedxInfo()</h2>
+<a id="a792df15dfd6a1e8c44922f75c67536ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a792df15dfd6a1e8c44922f75c67536ad">&#9670;&nbsp;</a></span>WriteDedxInfo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -718,7 +719,7 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em>&#160;</td>
         </tr>
         <tr>
@@ -735,7 +736,7 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss information <em>for one track</em>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Here, you should use <code>map::at</code> to access the <code>NTuple::Item</code>s and <code>NTuplePtr</code>, because you want your package to throw an exception if the element does not exist. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">evtRecTrack</td><td>Pointer to the reconstructed track of which you want to write the <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> data. </td></tr>
     <tr><td class="paramname">tupleName</td><td>The name of the tuple to which you want to write the information. </td></tr>
@@ -748,8 +749,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="ae14e127364795a1319b40d743d387f06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae14e127364795a1319b40d743d387f06">&#9670;&nbsp;</a></span>WriteDedxInfoForVector()</h2>
+<a id="a75c8e7dfc5d6be4c6226bb071c5aa4cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75c8e7dfc5d6be4c6226bb071c5aa4cd">&#9670;&nbsp;</a></span>WriteDedxInfoForVector()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -774,7 +775,7 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em>&#160;</td>
         </tr>
         <tr>
@@ -805,8 +806,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="ae9535b5a68e8065601dad15a72116bdf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9535b5a68e8065601dad15a72116bdf">&#9670;&nbsp;</a></span>WriteTofInformation()</h2>
+<a id="a0bab280381cbd3a1cf9c8febd40492b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bab280381cbd3a1cf9c8febd40492b9">&#9670;&nbsp;</a></span>WriteTofInformation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -837,7 +838,7 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; const char *, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em>&#160;</td>
         </tr>
         <tr>
@@ -858,8 +859,8 @@ template&lt;typename TYPE &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a99588ec208a19b8d3be9cc36e18982aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99588ec208a19b8d3be9cc36e18982aa">&#9670;&nbsp;</a></span>fDedx</h2>
+<a id="ae90006d1379e8d45569690975c13e349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae90006d1379e8d45569690975c13e349">&#9670;&nbsp;</a></span>fDedx</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -868,7 +869,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fDedx</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fDedx</td>
         </tr>
       </table>
   </td>
@@ -884,8 +885,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="afd729f5bf99452f5b37f41117813d447"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd729f5bf99452f5b37f41117813d447">&#9670;&nbsp;</a></span>fDedx_K</h2>
+<a id="ab06e782849ae3a41c5c4fa8eaf7651c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab06e782849ae3a41c5c4fa8eaf7651c2">&#9670;&nbsp;</a></span>fDedx_K</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -894,7 +895,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fDedx_K</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fDedx_K</td>
         </tr>
       </table>
   </td>
@@ -910,8 +911,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a6799c91fedd893257282a36a74643c7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6799c91fedd893257282a36a74643c7c">&#9670;&nbsp;</a></span>fDedx_pi</h2>
+<a id="a63fc5d6e73556d9ce1a9721d31579aa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63fc5d6e73556d9ce1a9721d31579aa5">&#9670;&nbsp;</a></span>fDedx_pi</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -920,7 +921,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fDedx_pi</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fDedx_pi</td>
         </tr>
       </table>
   </td>
@@ -1374,8 +1375,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a79cc5771e5a188ccf74a0d8b2b4fe617"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79cc5771e5a188ccf74a0d8b2b4fe617">&#9670;&nbsp;</a></span>fFit4c</h2>
+<a id="ad4f07848efd4a7a9d7dabbec3bf04f7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4f07848efd4a7a9d7dabbec3bf04f7e">&#9670;&nbsp;</a></span>fFit4c</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1384,7 +1385,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fFit4c</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fFit4c</td>
         </tr>
       </table>
   </td>
@@ -1400,8 +1401,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="aedfb6e844ee019154d3690bcda5c1c65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aedfb6e844ee019154d3690bcda5c1c65">&#9670;&nbsp;</a></span>fFit6c</h2>
+<a id="aaafc1325d436dd8787f31bb028dacc04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaafc1325d436dd8787f31bb028dacc04">&#9670;&nbsp;</a></span>fFit6c</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1410,7 +1411,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fFit6c</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fFit6c</td>
         </tr>
       </table>
   </td>
@@ -1704,8 +1705,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a5531ffce409a2196ec2ce90fe09dc5c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5531ffce409a2196ec2ce90fe09dc5c2">&#9670;&nbsp;</a></span>fMult</h2>
+<a id="a020373367f2fe5b27171b1bc377e2ddb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a020373367f2fe5b27171b1bc377e2ddb">&#9670;&nbsp;</a></span>fMult</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1714,7 +1715,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;int&gt; &gt; DzeroPhi::fMult</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;int&gt; &gt; DzeroPhi::fMult</td>
         </tr>
       </table>
   </td>
@@ -1730,8 +1731,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="acaced39905f9612f3eb297b14db24c4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acaced39905f9612f3eb297b14db24c4c">&#9670;&nbsp;</a></span>fNTupleMap</h2>
+<a id="a5d5fb8976578b99d014b7b35cd483c1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d5fb8976578b99d014b7b35cd483c1e">&#9670;&nbsp;</a></span>fNTupleMap</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1740,7 +1741,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Tuple*&gt; DzeroPhi::fNTupleMap</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Tuple*&gt; DzeroPhi::fNTupleMap</td>
         </tr>
       </table>
   </td>
@@ -1756,8 +1757,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a6ebeb499878ff291cf5a047209a8863e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ebeb499878ff291cf5a047209a8863e">&#9670;&nbsp;</a></span>fPID</h2>
+<a id="ab72990facb6de5e9e8c00d4539be2239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab72990facb6de5e9e8c00d4539be2239">&#9670;&nbsp;</a></span>fPID</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1766,7 +1767,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fPID</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fPID</td>
         </tr>
       </table>
   </td>
@@ -1906,8 +1907,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a04e4398b1dd704fdaa1871e3c4c7dbd0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04e4398b1dd704fdaa1871e3c4c7dbd0">&#9670;&nbsp;</a></span>fTofEC</h2>
+<a id="a768b243fc3677e65e034f6011360fb3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a768b243fc3677e65e034f6011360fb3e">&#9670;&nbsp;</a></span>fTofEC</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1916,7 +1917,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fTofEC</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fTofEC</td>
         </tr>
       </table>
   </td>
@@ -1932,8 +1933,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a515a10da1af59c60ef5375480138b349"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a515a10da1af59c60ef5375480138b349">&#9670;&nbsp;</a></span>fTofIB</h2>
+<a id="a74d2c65d64325c9e14bdb557f4e582bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d2c65d64325c9e14bdb557f4e582bb">&#9670;&nbsp;</a></span>fTofIB</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1942,7 +1943,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fTofIB</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fTofIB</td>
         </tr>
       </table>
   </td>
@@ -1958,8 +1959,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a832bc82892fba2c0432e099b88991c12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a832bc82892fba2c0432e099b88991c12">&#9670;&nbsp;</a></span>fTofOB</h2>
+<a id="a84d789d8a9e228264d819a30fdc5b2ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84d789d8a9e228264d819a30fdc5b2ff">&#9670;&nbsp;</a></span>fTofOB</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1968,7 +1969,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fTofOB</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fTofOB</td>
         </tr>
       </table>
   </td>
@@ -2010,8 +2011,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a32846464e5e693c5ca2a2ce3fba9b55a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32846464e5e693c5ca2a2ce3fba9b55a">&#9670;&nbsp;</a></span>fTrackVertex</h2>
+<a id="a7c4f51888459d23397150890b71c660b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c4f51888459d23397150890b71c660b">&#9670;&nbsp;</a></span>fTrackVertex</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2020,7 +2021,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fTrackVertex</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fTrackVertex</td>
         </tr>
       </table>
   </td>
@@ -2036,8 +2037,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="af71635824f2c96c7b44df5d04c7d4bb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af71635824f2c96c7b44df5d04c7d4bb9">&#9670;&nbsp;</a></span>fVertex</h2>
+<a id="abd1a635c715e40f18885c59aeda5d5fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd1a635c715e40f18885c59aeda5d5fe">&#9670;&nbsp;</a></span>fVertex</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2046,7 +2047,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;const char*, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fVertex</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; DzeroPhi::fVertex</td>
         </tr>
       </table>
   </td>

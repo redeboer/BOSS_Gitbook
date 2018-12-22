@@ -9,34 +9,21 @@
 \form#8:$x$
 \form#9:$y$
 \form#10:$z$
-\form#11:$ K^- pi^+ $
-\form#12:$ D^0 $
-\form#13:$ K^+ K^+ $
-\form#14:$ \phi $
-\form#15:$ D^0 \phi $
-\form#16:$ J/\psi $
-\form#17:$xy$
-\form#18:$p$
+\form#11:$xy$
+\form#12:$p$
+\form#13:$ K^- pi^+ $
+\form#14:$ D^0 $
+\form#15:$ K^+ K^+ $
+\form#16:$ \phi $
+\form#17:$ D^0 \phi $
+\form#18:$ J/\psi $
 \form#19:$Z$
 \form#20:$R$
-\form#21:$\chi_\mathrm{red}^2$
-\form#22:$ M_{K^-pi^+} $
-\form#23:$ M_{K^+K^+ } $
-\form#24:$ M_{D^0phi } $
-\form#25:$ dE/dx $
-\form#26:$ \pi^0 $
-\form#27:$ \rho^0, \rho^-, \rho^+ $
-\form#28:$ M_{\mathrm{inv}} = 0 $
-\form#29:$ e^- $
-\form#30:$ \mu^- $
-\form#31:$ \pi^+ $
-\form#32:$ \rho^\pm $
-\form#33:$ \rho^0 $
-\form#34:$ K^\pm $
-\form#35:$ p $
-\form#36:$ \gamma $
-\form#37:$ M_{\pi^+ \pi^-} $
-\form#38:$ M_{\pi^0 \pi^+} $
-\form#39:$ \rho^+ $
-\form#40:$ M_{\pi^0 \pi^-} $
-\form#41:$ \rho^- $
+\form#21:$ e^- $
+\form#22:$ \mu^- $
+\form#23:$ \pi^+ $
+\form#24:$ \pi^0 $
+\form#25:$ \rho^\pm $
+\form#26:$ \rho^0 $
+\form#27:$ K^\pm $
+\form#28:$ p $

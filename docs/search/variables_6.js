@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['hmax',['hmax',['../RooFitMacro_8C.html#ae27bdd9fdc24962d97c085ffd9031b26',1,'RooFitMacro.C']]],
-  ['hmin',['hmin',['../RooFitMacro_8C.html#ad2620e5c72695b9387037fc699b29d59',1,'RooFitMacro.C']]]
+  ['tofunitcm',['TofUnitCm',['../namespaceSettings_1_1Detector.html#a715b085f4483020a4a81cca11ee0a6e3',1,'Settings::Detector']]],
+  ['tofunitmm',['TofUnitMm',['../namespaceSettings_1_1Detector.html#abb477379321d99bd67bac345e4764fe0',1,'Settings::Detector']]],
+  ['tupletofib',['TupleTofIB',['../classRhopiAlg.html#a4ab8fcbab557d9bec8ab8852052277a7',1,'RhopiAlg']]],
+  ['tupletofob',['TupleTofOB',['../classRhopiAlg.html#a92e7f99a73482be4d206bd4dc86e83dc',1,'RhopiAlg']]]
 ];

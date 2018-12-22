@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['ratios',['ratios',['../FitObjectDoubleGauss_8h.html#ae97d0f10e8761141d98f7f1f6759d4a5',1,'FitObjectDoubleGauss.h']]],
-  ['reconstructedparticle',['ReconstructedParticle',['../classReconstructedParticle.html#a92d433507c9aaa350dd5999eff1c5cab',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode)'],['../classReconstructedParticle.html#a4d4ac611435e63765574304852ec23e6',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode)'],['../classReconstructedParticle.html#a38b19a3d3f5b338ac7e5e553cc925442',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode, const char *daughters)'],['../classReconstructedParticle.html#a95cf3aff593e7dbbb86849109cadc894',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode, const char *daughters)']]],
-  ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#a5a404d3db862276fa70b85a353496d4e',1,'Settings::Particles']]],
-  ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],
-  ['rhopialg',['RhopiAlg',['../classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb',1,'RhopiAlg']]],
-  ['rhopirootchain',['RhopiRootChain',['../classRhopiRootChain.html#ae5feb0475f7c45a3c3787cfaf775da71',1,'RhopiRootChain::RhopiRootChain()'],['../classRhopiRootChain.html#a2f4696b928a2bdf3b65508a00bfe5028',1,'RhopiRootChain::RhopiRootChain(const char *directoryPath, const char *analysisName)']]],
-  ['rhopirootfile',['RhopiRootFile',['../classRhopiRootFile.html#a108fb195008d97baf4bde456992e7e68',1,'RhopiRootFile::RhopiRootFile()'],['../classRhopiRootFile.html#a3cc840716db92059777db1574dcbfd23',1,'RhopiRootFile::RhopiRootFile(const char *filename)']]]
+  ['setaddress',['SetAddress',['../classSimplifiedTree.html#ad555eb545bd6dc66e0be1f9084f9b135',1,'SimplifiedTree']]],
+  ['setaddresssafe',['SetAddressSafe',['../classSimplifiedTree.html#af87a25b6a6ce6e05be3390f23b91252a',1,'SimplifiedTree']]],
+  ['setbranchaddress',['SetBranchAddress',['../classBOSSRootChain.html#ace5af0bff981d3283f12c359c9f18c21',1,'BOSSRootChain::SetBranchAddress()'],['../classBOSSRootFile.html#a04105374cbf3e7a745edf371afee4111',1,'BOSSRootFile::SetBranchAddress()']]],
+  ['setdaughterlabel',['SetDaughterLabel',['../classReconstructedParticle.html#a07eb465bf055a192e36f364dfb4ae7ef',1,'ReconstructedParticle']]],
+  ['setlogscale',['SetLogScale',['../namespaceCommonFunctions.html#abb1b4f83b1c4ccdf64cd1700b123bcd3',1,'CommonFunctions']]],
+  ['simplifiedtree',['SimplifiedTree',['../classSimplifiedTree.html#ad6bec648c9ae733912f3aa156d8773de',1,'SimplifiedTree::SimplifiedTree()'],['../classSimplifiedTree.html#a831a02a392d5fdeb036aa34037900010',1,'SimplifiedTree::SimplifiedTree(TTree *tree, bool print=true)']]]
 ];

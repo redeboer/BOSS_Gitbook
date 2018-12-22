@@ -20,14 +20,7 @@ var files =
     ] ],
     [ "DzeroPhi_entries.cxx", "DzeroPhi__entries_8cxx.html", "DzeroPhi__entries_8cxx" ],
     [ "DzeroPhi_load.cxx", "DzeroPhi__load_8cxx.html", null ],
-    [ "DzeroPhiRootFile.h", "DzeroPhiRootFile_8h.html", "DzeroPhiRootFile_8h" ],
-    [ "FitDoubleGaussian_TH1Fit.C", "FitDoubleGaussian__TH1Fit_8C.html", "FitDoubleGaussian__TH1Fit_8C" ],
     [ "FitInvMassSignal.C", "FitInvMassSignal_8C.html", "FitInvMassSignal_8C" ],
-    [ "FitInvMassSignal_new.C", "FitInvMassSignal__new_8C.html", "FitInvMassSignal__new_8C" ],
-    [ "FitObject.h", "FitObject_8h.html", [
-      [ "FitObject", "classFitObject.html", "classFitObject" ]
-    ] ],
-    [ "FitObjectDoubleGauss.h", "FitObjectDoubleGauss_8h.html", "FitObjectDoubleGauss_8h" ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
     [ "InvestigateBOSSRootFile.C", "InvestigateBOSSRootFile_8C.html", "InvestigateBOSSRootFile_8C" ],
     [ "NTupleMap.cxx", "NTupleMap_8cxx.html", null ],
@@ -37,8 +30,6 @@ var files =
     [ "NTupleMap_entries.cxx", "NTupleMap__entries_8cxx.html", "NTupleMap__entries_8cxx" ],
     [ "NTupleMap_load.cxx", "NTupleMap__load_8cxx.html", null ],
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],
-    [ "PlotRhopi.C", "PlotRhopi_8C.html", "PlotRhopi_8C" ],
-    [ "QuickPlotRhopi.C", "QuickPlotRhopi_8C.html", "QuickPlotRhopi_8C" ],
     [ "ReconstructedParticle.h", "ReconstructedParticle_8h.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ]
     ] ],
@@ -48,14 +39,6 @@ var files =
     ] ],
     [ "RhopiAlg_entries.cxx", "RhopiAlg__entries_8cxx.html", "RhopiAlg__entries_8cxx" ],
     [ "RhopiAlg_load.cxx", "RhopiAlg__load_8cxx.html", null ],
-    [ "RhopiRootChain.h", "RhopiRootChain_8h.html", [
-      [ "RhopiRootChain", "classRhopiRootChain.html", "classRhopiRootChain" ]
-    ] ],
-    [ "RhopiRootFile.h", "RhopiRootFile_8h.html", [
-      [ "RhopiRootFile", "classRhopiRootFile.html", "classRhopiRootFile" ]
-    ] ],
-    [ "RhopiRootNamespace.h", "RhopiRootNamespace_8h.html", "RhopiRootNamespace_8h" ],
-    [ "RooFitMacro.C", "RooFitMacro_8C.html", "RooFitMacro_8C" ],
     [ "SimplifiedTree.h", "SimplifiedTree_8h.html", [
       [ "SimplifiedTree", "classSimplifiedTree.html", "classSimplifiedTree" ]
     ] ]

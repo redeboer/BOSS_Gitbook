@@ -6,16 +6,8 @@ var hierarchy =
       [ "NTupleMap", "classNTupleMap.html", null ],
       [ "RhopiAlg", "classRhopiAlg.html", null ]
     ] ],
-    [ "BOSSRootChain", "classBOSSRootChain.html", [
-      [ "RhopiRootChain", "classRhopiRootChain.html", null ]
-    ] ],
-    [ "BOSSRootFile", "classBOSSRootFile.html", [
-      [ "DzeroPhiRootFile", "classDzeroPhiRootFile.html", null ],
-      [ "RhopiRootFile", "classRhopiRootFile.html", null ]
-    ] ],
-    [ "FitObject", "classFitObject.html", [
-      [ "FitObjectDoubleGauss", "classFitObjectDoubleGauss.html", null ]
-    ] ],
+    [ "BOSSRootChain", "classBOSSRootChain.html", null ],
+    [ "BOSSRootFile", "classBOSSRootFile.html", null ],
     [ "Particle", "classParticle.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", null ]
     ] ],

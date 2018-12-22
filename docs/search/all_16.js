@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['x',['x',['../RooFitMacro_8C.html#a533731b62d1f3b6116a0bf9839bf3b7d',1,'RooFitMacro.C']]],
-  ['xmass',['xmass',['../DzeroOmega_8cxx.html#a850891ce5a4a85d92f96c37288dc134a',1,'xmass():&#160;DzeroOmega.cxx'],['../DzeroPhi_8cxx.html#a3358b8e4958fe4199fb26121b36b4760',1,'xmass():&#160;DzeroPhi.cxx'],['../RhopiAlg_8cxx.html#a850891ce5a4a85d92f96c37288dc134a',1,'xmass():&#160;RhopiAlg.cxx']]]
+  ['_7ebossrootchain',['~BOSSRootChain',['../classBOSSRootChain.html#a3ed8b1d8cbd732d69c6e6c899f092c8d',1,'BOSSRootChain']]],
+  ['_7ebossrootfile',['~BOSSRootFile',['../classBOSSRootFile.html#a8d1e6e27e9caa9214544d70cb53ac887',1,'BOSSRootFile']]]
 ];
