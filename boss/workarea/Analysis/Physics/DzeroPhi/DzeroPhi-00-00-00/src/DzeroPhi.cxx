@@ -149,15 +149,6 @@
 				AddItemsToNTuples("vertex", fVertex); /// Branch for primary vertex info.
 			}
 
-		// * Book NTuple: 6-contraints for Kalman kinematic fit * //
-			if(fDoFit6c) {
-				fFit6c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
-				fFit6c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
-				fFit6c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
-				fFit6c["chi2"];  /// Chi squared of the Kalman kinematic fit.
-				AddItemsToNTuples("fit6c", fFit6c);
-			}
-
 		// * Book NTuple: dE/dx PID branch * //
 			if(fDoDedx) {
 				BookNtupleItemsDedx("dedx", fDedx);
@@ -220,6 +211,15 @@
 				fFit4c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
 				fFit4c["chisq"];  /// Chi squared of the Kalman kinematic fit.
 				AddItemsToNTuples("fit4c", fFit4c);
+			}
+
+		// * Book NTuple: 6-contraints for Kalman kinematic fit * //
+			if(fDoFit6c) {
+				fFit6c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
+				fFit6c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
+				fFit6c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
+				fFit6c["chi2"];  /// Chi squared of the Kalman kinematic fit.
+				AddItemsToNTuples("fit6c", fFit6c);
 			}
 
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
@@ -324,16 +324,16 @@
 
 					// * WRITE primary vertex position info ("vxyz" branch)
 					if(fDoTrackVertex) {
-						fTrackVertex["vx"]    = mdcTrk->x();
-						fTrackVertex["vy"]    = mdcTrk->y();
-						fTrackVertex["vz"]    = mdcTrk->z();
-						fTrackVertex["vr"]    = vr;
-						fTrackVertex["rvxy"]  = rvxy;
-						fTrackVertex["rvz"]   = rvz;
-						fTrackVertex["rvphi"] = rvphi;
-						fTrackVertex["phi"]   = phi;
-						fTrackVertex["p"]     = mdcTrk->p();
-						fNTupleMap["vxyz"]->write();
+						fTrackVertex.at("vx")    = mdcTrk->x();
+						fTrackVertex.at("vy")    = mdcTrk->y();
+						fTrackVertex.at("vz")    = mdcTrk->z();
+						fTrackVertex.at("vr")    = vr;
+						fTrackVertex.at("rvxy")  = rvxy;
+						fTrackVertex.at("rvz")   = rvz;
+						fTrackVertex.at("rvphi") = rvphi;
+						fTrackVertex.at("phi")   = phi;
+						fTrackVertex.at("p")     = mdcTrk->p();
+						fNTupleMap.at("vxyz")->write();
 					}
 
 				// * STEP 3: Distinguish and store types of particles
@@ -352,13 +352,13 @@
 
 					// * WRITE particle identification info ("pid" branch)
 					if(fDoPID) {
-						fPID["ptrk"] = mdcTrk->p();
-						fPID["cost"] = cos(mdcTrk->theta());
-						fPID["dedx"] = pid->chiDedx(2);
-						fPID["tof1"] = pid->chiTof1(2);
-						fPID["tof2"] = pid->chiTof2(2);
-						fPID["prob"] = pid->probPion();
-						fNTupleMap["pid"]->write();
+						fPID.at("ptrk") = mdcTrk->p();
+						fPID.at("cost") = cos(mdcTrk->theta());
+						fPID.at("dedx") = pid->chiDedx(2);
+						fPID.at("tof1") = pid->chiTof1(2);
+						fPID.at("tof2") = pid->chiTof2(2);
+						fPID.at("prob") = pid->probPion();
+						fNTupleMap.at("pid")->write();
 					}
 
 					// * Identify type of charged particle and add to related vector (this package: kaon and pion) *
@@ -383,29 +383,29 @@
 		// * STEP (C): WRITE event info ("mult" and "vertex" branch) * //
 			fLog << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << nChargesMDC << endreq;
 			if(fDoMult) {
-				fMult["Ntotal"]   = fEvtRecEvent->totalTracks();
-				fMult["Ncharge"]  = fEvtRecEvent->totalCharged();
-				fMult["Nneutral"] = fEvtRecEvent->totalNeutral();
-				fMult["Ngood"]    = fGoodChargedTracks.size();
-				fMult["Nmdc"]     = nChargesMDC;
-				fMult["NKaonNeg"] = fKaonNeg.size();
-				fMult["NKaonPos"] = fKaonPos.size();
-				fMult["NPionPos"] = fPionPos.size();
-				fNTupleMap["vertex"]->write();
+				fMult.at("Ntotal")   = fEvtRecEvent->totalTracks();
+				fMult.at("Ncharge")  = fEvtRecEvent->totalCharged();
+				fMult.at("Nneutral") = fEvtRecEvent->totalNeutral();
+				fMult.at("Ngood")    = fGoodChargedTracks.size();
+				fMult.at("Nmdc")     = nChargesMDC;
+				fMult.at("NKaonNeg") = fKaonNeg.size();
+				fMult.at("NKaonPos") = fKaonPos.size();
+				fMult.at("NPionPos") = fPionPos.size();
+				fNTupleMap.at("vertex")->write();
 			}
 			if(fDoVertex) {
-				fVertex["vx0"] = v0x;
-				fVertex["vy0"] = v0y;
-				fVertex["vz0"] = v0z;
-				fNTupleMap["vertex"]->write();
+				fVertex.at("vx0") = v0x;
+				fVertex.at("vy0") = v0y;
+				fVertex.at("vz0") = v0z;
+				fNTupleMap.at("vertex")->write();
 			}
 
 
 		// * STEP (D): WRITE dE/dx PID information ("dedx" branch) * //
 			if(fDoDedx)    WriteDedxInfoForVector(fGoodChargedTracks, "dedx",    fDedx);
-			if(fDoDedx_K)  WriteDedxInfoForVector(fGoodChargedTracks, "dedx_K",  fDedx_K);
-			if(fDoDedx_K)  WriteDedxInfoForVector(fGoodChargedTracks, "dedx_K",  fDedx_K);
-			if(fDoDedx_pi) WriteDedxInfoForVector(fGoodChargedTracks, "dedx_pi", fDedx_pi);
+			if(fDoDedx_K)  WriteDedxInfoForVector(fKaonNeg,           "dedx_K",  fDedx_K);
+			if(fDoDedx_K)  WriteDedxInfoForVector(fKaonPos,           "dedx_K",  fDedx_K);
+			if(fDoDedx_pi) WriteDedxInfoForVector(fPionPos,           "dedx_pi", fDedx_pi);
 
 
 		// * STEP (E): WRITE Time-of-Flight PID information ("tof*" branch) * //
@@ -517,11 +517,11 @@
 						HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
 						HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
 						HepLorentzVector pJpsi = pD0 + pphi;
-						fFit4c["mD0"]   = pD0.m();
-						fFit4c["mphi"]  = pphi.m();
-						fFit4c["mJpsi"] = pJpsi.m();
-						fFit4c["chisq"] = fSmallestChiSq;
-						fNTupleMap["fit4c"]->write();
+						fFit4c.at("mD0")   = pD0.m();
+						fFit4c.at("mphi")  = pphi.m();
+						fFit4c.at("mJpsi") = pJpsi.m();
+						fFit4c.at("chisq") = fSmallestChiSq;
+						fNTupleMap.at("fit4c")->write();
 					}
 
 			} // end of fDoFit4c
@@ -606,11 +606,11 @@
 					HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
 					HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
 					HepLorentzVector pJpsi = pD0 + pphi;
-					fFit6c["mD0"]   = pD0.m();
-					fFit6c["mphi"]  = pphi.m();
-					fFit6c["mJpsi"] = pJpsi.m();
-					fFit6c["chisq"] = fSmallestChiSq;
-					fNTupleMap["fit6c"]->write();
+					fFit6c.at("mD0")   = pD0.m();
+					fFit6c.at("mphi")  = pphi.m();
+					fFit6c.at("mJpsi") = pJpsi.m();
+					fFit6c.at("chisq") = fSmallestChiSq;
+					fNTupleMap.at("fit6c")->write();
 				}
 			} // end of fDoFit6c
 
@@ -649,7 +649,7 @@
 			nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, tupleTitle);
 			if(!nt) fLog << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << " (" << tupleName << ")" << endmsg;
 		}
-		fNTupleMap[tupleName] = nt.ptr();
+		fNTupleMap[tupleName] = nt.ptr(); /// Use `map::operator[]` if you want to book an `NTuple::Item` and use `map::at` if you want to access the `NTuple` by key value. This ensures that the programme throws an exception if you ask for the wrong key later.
 		return nt;
 	}
 
@@ -714,19 +714,19 @@
 		}
 
 		// * WRITE ToF info
-		map["ptrk"]  = ptrk;
-		map["tof"]   = (*iter_tof)->tof();
-		map["path"]  = (*iter_tof)->path();
-		map["cntr"]  = (*iter_tof)->tofID();
-		map["ph"]    = (*iter_tof)->ph();
-		map["zrhit"] = (*iter_tof)->zrhit();
-		map["qual"]  = (*iter_tof)->quality();
-		map["te"]    = path - texp[0];
-		map["tmu"]   = path - texp[1];
-		map["tpi"]   = path - texp[2];
-		map["tk"]    = path - texp[3];
-		map["tp"]    = path - texp[4];
-		fNTupleMap[tupleName]->write();
+		map.at("ptrk")  = ptrk;
+		map.at("tof")   = (*iter_tof)->tof();
+		map.at("path")  = (*iter_tof)->path();
+		map.at("cntr")  = (*iter_tof)->tofID();
+		map.at("ph")    = (*iter_tof)->ph();
+		map.at("zrhit") = (*iter_tof)->zrhit();
+		map.at("qual")  = (*iter_tof)->quality();
+		map.at("te")    = path - texp[0];
+		map.at("tmu")   = path - texp[1];
+		map.at("tpi")   = path - texp[2];
+		map.at("tk")    = path - texp[3];
+		map.at("tp")    = path - texp[4];
+		fNTupleMap.at(tupleName)->write();
 
 	}
 
@@ -750,7 +750,7 @@
 
 	/**
 	 * @brief Encapsulates of the writing procedure for \f$dE/dx\f$ energy loss information <i>for one track</i>.
-	 * 
+	 * @details Here, you should use `map::at` to access the `NTuple::Item`s and `NTuplePtr`, because you want your package to throw an exception if the element does not exist.
 	 * @param evtRecTrack Pointer to the reconstructed track of which you want to write the \f$dE/dx\f$ data.
 	 * @param tupleName The name of the tuple to which you want to write the information.
 	 * @param map The `map` from which you want to get the `NTuple::Item`s.
@@ -766,17 +766,17 @@
 		RecMdcDedx* dedxTrk = evtRecTrack->mdcDedx();
 
 		// * WRITE energy loss PID info ("dedx" branch) *
-		map["ptrk"]   = mdcTrk->p();
-		map["chie"]   = dedxTrk->chiE();
-		map["chimu"]  = dedxTrk->chiMu();
-		map["chipi"]  = dedxTrk->chiPi();
-		map["chik"]   = dedxTrk->chiK();
-		map["chip"]   = dedxTrk->chiP();
-		map["probPH"] = dedxTrk->probPH();
-		map["normPH"] = dedxTrk->normPH();
-		map["ghit"]   = dedxTrk->numGoodHits();
-		map["thit"]   = dedxTrk->numTotalHits();
-		fNTupleMap[tupleName]->write();
+		map.at("ptrk")   = mdcTrk->p();
+		map.at("chie")   = dedxTrk->chiE();
+		map.at("chimu")  = dedxTrk->chiMu();
+		map.at("chipi")  = dedxTrk->chiPi();
+		map.at("chik")   = dedxTrk->chiK();
+		map.at("chip")   = dedxTrk->chiP();
+		map.at("probPH") = dedxTrk->probPH();
+		map.at("normPH") = dedxTrk->normPH();
+		map.at("ghit")   = dedxTrk->numGoodHits();
+		map.at("thit")   = dedxTrk->numTotalHits();
+		fNTupleMap.at(tupleName)->write();
 
 	}
 
