@@ -658,7 +658,7 @@
 	 * @brief This function encapsulates the `addItem` procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.
 	 */ 
 	template<typename TYPE>
-	void DzeroPhi::BookNtupleItemsTof(const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::BookNtupleItemsTof(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
 	{
 		map["ptrk"];  /// Momentum of the track as reconstructed by MDC.
 		map["tof"];   /// Time of flight.
@@ -681,7 +681,7 @@
 	 * @details This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
 	 */
 	template<typename TYPE>
-	void DzeroPhi::BookNtupleItemsDedx(const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
 	{
 		map["ptrk"];   /// Momentum of the track as reconstructed by MDC.
 		map["chie"];   /// Chi squared in case of electron.
@@ -701,7 +701,7 @@
 	 * @brief
 	 */
 	template<typename TYPE>
-	void DzeroPhi::WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
 	{
 
 		// * Get ToF for each particle hypothesis
@@ -740,7 +740,7 @@
 	 * @param map The `map` from which you want to get the `NTuple::Item`s.
 	 */
 	template<typename TYPE>
-	void DzeroPhi::WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
 	{
 		for(fTrackIterator = vector.begin(); fTrackIterator != vector.end(); ++fTrackIterator) {
 			WriteDedxInfo(*fTrackIterator, tupleName, map);
@@ -756,7 +756,7 @@
 	 * @param map The `map` from which you want to get the `NTuple::Item`s.
 	 */
 	template<typename TYPE>
-	void DzeroPhi::WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
 	{
 
 		// * Check if dE/dx and MDC info exists *
@@ -787,10 +787,10 @@
 	 * @param map The `map` from which you want to load the <i>mapped values</i>.
 	 */
 	template<typename TYPE>
-	void DzeroPhi::AddItemsToNTuples(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::AddItemsToNTuples(NTuplePtr &nt, std::map<std::string, NTuple::Item<TYPE> > &map)
 	{
 		if(!nt) return;
-		typename std::map<const char*, NTuple::Item<TYPE> >::iterator it = map.begin();
+		typename std::map<std::string, NTuple::Item<TYPE> >::iterator it = map.begin();
 		for(; it != map.end(); ++it) nt->addItem(it->first, it->second);
 	}
 
@@ -801,7 +801,7 @@
 	 * @param map The `map` from which you want to load the <i>mapped values</i>.
 	 */
 	template<typename TYPE>
-	void DzeroPhi::AddItemsToNTuples(const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
 	{
 		AddItemsToNTuples(BookNTuple(tupleName), map);
 	}
@@ -810,7 +810,7 @@
 	//  * @brief Function that allows you to draw and save any set of `TObject`s.
 	//  */
 	// template<typename TYPE, class ...ARGS>
-	// void AddItemsToNTuples(std::map<const char*, NTuple::Item<TYPE> > &map, Option_t* option, const char* logScale, ARGS... args)
+	// void AddItemsToNTuples(std::map<std::string, NTuple::Item<TYPE> > &map, Option_t* option, const char* logScale, ARGS... args)
 	// {
 	// 	// * Create canvas * //
 	// 		TCanvas c;

@@ -51,13 +51,13 @@ public:
 protected:
 	// * Protected methods * //
 		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle = "ks N-Tuple example");
-		template<typename TYPE> void AddItemsToNTuples(NTuplePtr &nt, std::map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void AddItemsToNTuples  (const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void BookNtupleItemsDedx(const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void BookNtupleItemsTof (const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<const char*, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void AddItemsToNTuples(NTuplePtr &nt, std::map<std::string, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void AddItemsToNTuples  (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
 
 		// template<class... ARGS> void DrawAndSaveRecursion(Option_t* option, ARGS&&... args);
 		// template<class TYPE, class... ARGS> void DrawAndSaveRecursion(Option_t* option, TYPE first, ARGS... args);
@@ -66,7 +66,7 @@ protected:
 	// * Protected data members * //
 		double fSmallestChiSq;
 		MsgStream fLog; //!< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
-		std::map<const char*, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
+		std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
 
 		std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will contain a selection of pointers to 'good' charged tracks.
 		std::vector<EvtRecTrack*> fKaonNeg; //!< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$.
@@ -124,18 +124,18 @@ private:
 			bool fDoPID;     //!< Package property that determines whether or not to record PID information.
 			bool fDoFit4c;   //!< Package property that determines whether or not to perform and record a 4-constraint Kalman kinematic fit.
 			bool fDoFit6c;   //!< Package property that determines whether or not to perform and record a 6-constraint Kalman kinematic fit.
-			std::map<const char*, NTuple::Item<int> >    fMult;    //!< Container for the multiplicy branch.
-			std::map<const char*, NTuple::Item<double> > fVertex;  //!< Container for the vertex branch.
-			std::map<const char*, NTuple::Item<double> > fTrackVertex; //!< Container for the track verex branch.
-			std::map<const char*, NTuple::Item<double> > fDedx;    //!< Container for the `"dedx"` branch.
-			std::map<const char*, NTuple::Item<double> > fDedx_K;  //!< Container for the `"dedx_k"` branch.
-			std::map<const char*, NTuple::Item<double> > fDedx_pi; //!< Container for the `"dedx_pi"` branch.
-			std::map<const char*, NTuple::Item<double> > fTofEC;   //!< Container for the `"tofe"` branch.
-			std::map<const char*, NTuple::Item<double> > fTofIB;   //!< Container for the `"tof1"` branch.
-			std::map<const char*, NTuple::Item<double> > fTofOB;   //!< Container for the `"tof2"` branch.
-			std::map<const char*, NTuple::Item<double> > fPID;     //!< Container for the `"pid"` branch.
-			std::map<const char*, NTuple::Item<double> > fFit4c;   //!< Container for the fit4c branch.
-			std::map<const char*, NTuple::Item<double> > fFit6c;   //!< Container for the fit6c branch.
+			std::map<std::string, NTuple::Item<int> >    fMult;    //!< Container for the multiplicy branch.
+			std::map<std::string, NTuple::Item<double> > fVertex;  //!< Container for the vertex branch.
+			std::map<std::string, NTuple::Item<double> > fTrackVertex; //!< Container for the track verex branch.
+			std::map<std::string, NTuple::Item<double> > fDedx;    //!< Container for the `"dedx"` branch.
+			std::map<std::string, NTuple::Item<double> > fDedx_K;  //!< Container for the `"dedx_k"` branch.
+			std::map<std::string, NTuple::Item<double> > fDedx_pi; //!< Container for the `"dedx_pi"` branch.
+			std::map<std::string, NTuple::Item<double> > fTofEC;   //!< Container for the `"tofe"` branch.
+			std::map<std::string, NTuple::Item<double> > fTofIB;   //!< Container for the `"tof1"` branch.
+			std::map<std::string, NTuple::Item<double> > fTofOB;   //!< Container for the `"tof2"` branch.
+			std::map<std::string, NTuple::Item<double> > fPID;     //!< Container for the `"pid"` branch.
+			std::map<std::string, NTuple::Item<double> > fFit4c;   //!< Container for the fit4c branch.
+			std::map<std::string, NTuple::Item<double> > fFit6c;   //!< Container for the fit6c branch.
 
 };
 
