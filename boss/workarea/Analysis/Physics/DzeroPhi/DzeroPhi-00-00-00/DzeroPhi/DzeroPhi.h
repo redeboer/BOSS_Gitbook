@@ -51,7 +51,7 @@ public:
 protected:
 	// * Protected methods * //
 		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle = "ks N-Tuple example");
-		template<typename TYPE> void AddItemsToNTuples(NTuplePtr &nt, std::map<std::string, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void AddItemsToNTuples  (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);

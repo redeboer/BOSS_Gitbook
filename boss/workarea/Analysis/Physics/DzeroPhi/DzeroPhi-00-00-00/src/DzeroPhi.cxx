@@ -787,7 +787,7 @@
 	 * @param map The `map` from which you want to load the <i>mapped values</i>.
 	 */
 	template<typename TYPE>
-	void DzeroPhi::AddItemsToNTuples(NTuplePtr &nt, std::map<std::string, NTuple::Item<TYPE> > &map)
+	void DzeroPhi::AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<TYPE> > &map)
 	{
 		if(!nt) return;
 		typename std::map<std::string, NTuple::Item<TYPE> >::iterator it = map.begin();
