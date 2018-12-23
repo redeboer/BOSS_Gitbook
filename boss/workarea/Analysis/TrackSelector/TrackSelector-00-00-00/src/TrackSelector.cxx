@@ -2,26 +2,18 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
+	#include "CLHEP/Geometry/Point3D.h"
+	#include "CLHEP/Vector/LorentzVector.h"
+	#include "CLHEP/Vector/ThreeVector.h"
+	#include "CLHEP/Vector/TwoVector.h"
 	#include "DstEvent/TofHitStatus.h"
 	#include "EventModel/Event.h"
 	#include "EventModel/EventModel.h"
-	#include "GaudiKernel/AlgFactory.h"
 	#include "GaudiKernel/Bootstrap.h"
-	#include "GaudiKernel/IDataProviderSvc.h"
-	#include "GaudiKernel/IHistogramSvc.h"
-	#include "GaudiKernel/INTupleSvc.h"
-	#include "GaudiKernel/ISvcLocator.h"
-	#include "GaudiKernel/NTuple.h"
-	#include "GaudiKernel/PropertyMgr.h"
-	#include "ParticleID/ParticleID.h"
-	#include "TrackSelector/TrackSelector.h"
 	#include "TMath.h"
+	#include "TrackSelector/TrackSelector.h"
 	#include "VertexFit/Helix.h"
 	#include "VertexFit/IVertexDbSvc.h"
-	#include "VertexFit/KalmanKinematicFit.h"
-	#include "VertexFit/VertexFit.h"
-	#include <string>
-	#include <utility>
 
 	#ifndef ENABLE_BACKWARDS_COMPATIBILITY
 		typedef HepGeom::Point3D<double> HepPoint3D;
@@ -37,16 +29,15 @@
 // * ------- GLOBALS AND TYPEDEFS ------- * //
 // * ==================================== * //
 
-	// * Constants * //
-		const double gMasses[] {
-			0.000511, // electron
-			0.105658, // muon
-			0.139570, // charged pion
-			0.493677, // charged kaon
-			0.938272  // proton
-		};
-		const int gNMasses = sizeof(gMasses)/sizeof(*gMasses);
-		const double gSpeedOfLight = 299.792458; // tof path unit in mm
+	const double gMasses[] {
+		0.000511, // electron
+		0.105658, // muon
+		0.139570, // charged pion
+		0.493677, // charged kaon
+		0.938272  // proton
+	};
+	const int gNMasses = sizeof(gMasses)/sizeof(*gMasses);
+	const double gSpeedOfLight = 299.792458; // tof path unit in mm
 
 
 
@@ -136,12 +127,16 @@
 
 		// * Book NTuple: Track PID information * //
 			if(fDoPID) {
-				fPID["ptrk"]; /// Momentum of the track as reconstructed by MDC.
-				fPID["cost"]; /// Theta angle of the track.
-				fPID["dedx"]; /// Chi squared of the dedx of the track.
-				fPID["tof1"]; /// Chi squared of the inner barrel ToF of the track.
-				fPID["tof2"]; /// Chi squared of the outer barrel ToF of the track.
-				fPID["prob"]; /// Probability that it is a pion.
+				fPID["ptrk"];    /// Momentum of the track as reconstructed by MDC.
+				fPID["cost"];    /// Theta angle of the track.
+				fPID["dedx"];    /// Chi squared of the dedx of the track.
+				fPID["tof1"];    /// Chi squared of the inner barrel ToF of the track.
+				fPID["tof2"];    /// Chi squared of the outer barrel ToF of the track.
+				fPID["prob_K"];  /// Probability that it is a kaon.
+				fPID["prob_e"];  /// Probability that it is a electron.
+				fPID["prob_mu"]; /// Probability that it is a muon.
+				fPID["prob_p"];  /// Probability that it is a proton.
+				fPID["prob_pi"]; /// Probability that it is a pion.
 				AddItemsToNTuples("pid", fPID);
 			}
 
@@ -224,17 +219,17 @@
 					fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endreq;
 					fTrackIterator = fEvtRecTrkCol->begin() + i; 
 					if(!(*fTrackIterator)->isMdcTrackValid()) continue;
-					RecMdcTrack *mdcTrk = (*fTrackIterator)->mdcTrack();
+					fTrackMDC = (*fTrackIterator)->mdcTrack();
 
 					// * Get kinematics of track
-					double phi  = mdcTrk->helix(1);
+					double phi  = fTrackMDC->helix(1);
 					double vr =
-						(mdcTrk->x() - v0x) * cos(phi) +
-						(mdcTrk->y() - v0y) * sin(phi);
+						(fTrackMDC->x() - v0x) * cos(phi) +
+						(fTrackMDC->y() - v0y) * sin(phi);
 
 					// * Get radii of track vertex
-					HepVector a = mdcTrk->helix();
-					HepSymMatrix Ea = mdcTrk->err();
+					HepVector a = fTrackMDC->helix();
+					HepSymMatrix Ea = fTrackMDC->err();
 					HepPoint3D point0(0., 0., 0.); // initial point for MDC reconstruction
 					HepPoint3D IP(v0x, v0y, v0z);
 					VFHelix helixip(point0, a, Ea);
@@ -247,26 +242,26 @@
 				/// STEP 2: Apply vertex cuts, store 
 
 					// * Apply vertex cuts
-					if(mdcTrk->z() >= fVz0cut)   continue;
+					if(fTrackMDC->z() >= fVz0cut)   continue;
 					if(vr          >= fVr0cut)   continue;
 					if(rvz         >= fRvz0cut)  continue;
 					if(rvxy        >= fRvxy0cut) continue;
 
 					// * Add charged track to vector
 					fGoodChargedTracks.push_back(*fTrackIterator);
-					nChargesMDC += mdcTrk->charge(); // @todo Check if this makes sense at all
+					nChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
 
 				/// STEP 3: WRITE primary vertex position info ("vxyz" br
 					if(fDoTrackVertex) {
-						fTrackVertex.at("vx")    = mdcTrk->x();
-						fTrackVertex.at("vy")    = mdcTrk->y();
-						fTrackVertex.at("vz")    = mdcTrk->z();
+						fTrackVertex.at("vx")    = fTrackMDC->x();
+						fTrackVertex.at("vy")    = fTrackMDC->y();
+						fTrackVertex.at("vz")    = fTrackMDC->z();
 						fTrackVertex.at("vr")    = vr;
 						fTrackVertex.at("rvxy")  = rvxy;
 						fTrackVertex.at("rvz")   = rvz;
 						fTrackVertex.at("rvphi") = rvphi;
 						fTrackVertex.at("phi")   = phi;
-						fTrackVertex.at("p")     = mdcTrk->p();
+						fTrackVertex.at("p")     = fTrackMDC->p();
 						fNTupleMap.at("vxyz")->write();
 					}
 
@@ -281,8 +276,9 @@
 						if(!(*fTrackIterator)->isTofTrackValid()) continue;
 
 						// * Get momentum as determined by MDC *
-						RecMdcTrack * mdcTrk = (*fTrackIterator)->mdcTrack();
-						double ptrk = mdcTrk->p();
+						fTrackMDC = (*fTrackIterator)->mdcTrack();
+						double ptrk;
+						if(fTrackMDC) fTrackMDC->p();
 						SmartRefVector<RecTofTrack> tofTrkCol = (*fTrackIterator)->tofTrack();
 						SmartRefVector<RecTofTrack>::iterator iter_tof = tofTrkCol.begin();
 						for(; iter_tof != tofTrkCol.end(); ++iter_tof) {
@@ -449,8 +445,7 @@
 	 * @param tupleName The name of the tuple to which you want to write the information.
 	 * @param map The `map` from which you want to get the `NTuple::Item`s.
 	 */
-	template<typename TYPE>
-	void TrackSelector::WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
+	void TrackSelector::WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map)
 	{
 		for(fTrackIterator = vector.begin(); fTrackIterator != vector.end(); ++fTrackIterator) {
 			WriteDedxInfo(*fTrackIterator, tupleName, map);
@@ -472,20 +467,20 @@
 		// * Check if dE/dx and MDC info exists *
 		if(!evtRecTrack->isMdcTrackValid()) return;
 		if(!evtRecTrack->isMdcDedxValid())  return;
-		RecMdcTrack* mdcTrk = evtRecTrack->mdcTrack();
-		RecMdcDedx* dedxTrk = evtRecTrack->mdcDedx();
+		fTrackMDC  = evtRecTrack->mdcTrack();
+		fTrackDedx = evtRecTrack->mdcDedx();
 
 		// * WRITE energy loss PID info ("dedx" branch) *
-		map.at("ptrk")   = mdcTrk->p();
-		map.at("chie")   = dedxTrk->chiE();
-		map.at("chimu")  = dedxTrk->chiMu();
-		map.at("chipi")  = dedxTrk->chiPi();
-		map.at("chik")   = dedxTrk->chiK();
-		map.at("chip")   = dedxTrk->chiP();
-		map.at("probPH") = dedxTrk->probPH();
-		map.at("normPH") = dedxTrk->normPH();
-		map.at("ghit")   = dedxTrk->numGoodHits();
-		map.at("thit")   = dedxTrk->numTotalHits();
+		map.at("ptrk")   = fTrackMDC->p();
+		map.at("chie")   = fTrackDedx->chiE();
+		map.at("chimu")  = fTrackDedx->chiMu();
+		map.at("chipi")  = fTrackDedx->chiPi();
+		map.at("chik")   = fTrackDedx->chiK();
+		map.at("chip")   = fTrackDedx->chiP();
+		map.at("probPH") = fTrackDedx->probPH();
+		map.at("normPH") = fTrackDedx->normPH();
+		map.at("ghit")   = fTrackDedx->numGoodHits();
+		map.at("thit")   = fTrackDedx->numTotalHits();
 		fNTupleMap.at(tupleName)->write();
 
 	}
@@ -516,33 +511,24 @@
 		AddItemsToNTuples(BookNTuple(tupleName), map);
 	}
 
-	// /**
-	//  * @brief Function that allows you to draw and save any set of `TObject`s.
-	//  */
-	// template<typename TYPE, class ...ARGS>
-	// void AddItemsToNTuples(std::map<std::string, NTuple::Item<TYPE> > &map, Option_t* option, const char* logScale, ARGS... args)
-	// {
-	// 	// * Create canvas * //
-	// 		TCanvas c;
-	// 		SetLogScale(c, logScale);
-	// 		c.SetBatch();
-	// 	// * Draw objects * //
-	// 		DrawAndSaveRecursion(option, args...);
-	// 	// * Save canvas * //
-	// 		const TString outputDir = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
-	// 		gSystem->mkdir(outputDir.Data());
-	// 		c.SaveAs(Form("%s/%s.%s", outputDir.Data(), filename, Settings::Output::Extension));
-	// }
-
-	// /**
-	//  * @brief The `CreateNTuples` functions are necessary for `AddItemsToNTuples`, which is a variadic template function.
-	//  */
-	// template<class... ARGS> void AddItemsToNTuples(Option_t* option, ARGS&&... args); // start recursion
-	// template<class TYPE, class... ARGS>
-	// void AddItemsToNTuples(Option_t* option, TYPE first, ARGS... args)
-	// {
-	// 	auto obj = dynamic_cast<TObject*>(first);
-	// 	if(obj) obj->Draw(option);
-	// 	AddItemsToNTuples(option, args...); // continue recursion
-	// }
-	// template<> void AddItemsToNTuples(Option_t* option) {} // end recursion
+	/**
+	 * @brief Encapsulates the proces of writing PID info. This allows you to write the PID information after the particle selection as well.
+	 * @param pid Instance of particle ID (`ParticleID::instance()`).
+	 */
+	void TrackSelector::WritePIDInformation(ParticleID *pid)
+	{
+		fTrackMDC = (*fTrackIterator)->mdcTrack();
+		if(fTrackMDC) {
+			fPID.at("ptrk") = fTrackMDC->p();
+			fPID.at("cost") = cos(fTrackMDC->theta());
+		}
+		fPID.at("dedx") = pid->chiDedx(2);
+		fPID.at("tof1") = pid->chiTof1(2);
+		fPID.at("tof2") = pid->chiTof2(2);
+		fPID.at("prob_K")  = pid->probKaon();
+		fPID.at("prob_e")  = pid->probElectron();
+		fPID.at("prob_mu") = pid->probMuon();
+		fPID.at("prob_p")  = pid->probProton();
+		fPID.at("prob_pi") = pid->probPion();
+		fNTupleMap.at("pid")->write();
+	}

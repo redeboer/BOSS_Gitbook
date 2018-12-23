@@ -12,24 +12,20 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-	#include "CLHEP/Geometry/Point3D.h"
-	#include "CLHEP/Vector/LorentzVector.h"
-	#include "CLHEP/Vector/ThreeVector.h"
-	#include "CLHEP/Vector/TwoVector.h"
 	#include "EventModel/EventHeader.h"
 	#include "EvtRecEvent/EvtRecEvent.h"
 	#include "EvtRecEvent/EvtRecTrack.h"
-	#include "GaudiKernel/AlgFactory.h"
 	#include "GaudiKernel/Algorithm.h"
 	#include "GaudiKernel/MsgStream.h"
 	#include "GaudiKernel/NTuple.h"
 	#include "GaudiKernel/SmartDataPtr.h"
 	#include "GaudiKernel/SmartRefVector.h"
+	#include "ParticleID/ParticleID.h"
 	#include "TofRecEvent/RecTofTrack.h"
-	#include <map> // would be more efficient to use "unordered_map"
+	#include <map> /// Note: It would be more efficient to use `unordered_map`.
 	#include <string>
-	#include <utility>
 	#include <vector>
+	// #include "GaudiKernel/AlgFactory.h"
 
 
 
@@ -51,9 +47,9 @@ public:
 protected:
 
 	// * Algorithm steps that have to be defined in derived algorithm classes *
-		virtual StatusCode initialize_rest();
-		virtual StatusCode execute_rest();
-		virtual StatusCode finalize_rest();
+		virtual StatusCode initialize_rest() {}
+		virtual StatusCode execute_rest() {}
+		virtual StatusCode finalize_rest() {}
 
 	// * Protected methods * //
 		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle = "ks N-Tuple example");
@@ -62,11 +58,14 @@ protected:
 		template<typename TYPE> void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
+		void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 		template<typename TYPE> void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
+		void WritePIDInformation(ParticleID *pid);
 
 	// * Protected data members * //
 		MsgStream fLog; //!< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
+		RecMdcDedx* fTrackDedx;
+		RecMdcTrack *fTrackMDC;
 		SmartDataPtr<Event::EventHeader> fEventHeader;  //!< Data pointer for  `Event::EventHeader` which is set in `execute()` in each event.
 		SmartDataPtr<EvtRecEvent>        fEvtRecEvent;  //!< Data pointer for `EventModel::EvtRec::EvtRecEvent` which is set in `execute()` in each event.
 		SmartDataPtr<EvtRecTrackCol>     fEvtRecTrkCol; //!< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in `execute()` in each event.
@@ -74,23 +73,6 @@ protected:
 		std::map<std::string, std::vector<EvtRecTrack*> > fEvtRecTrackMap; //!< Map of vectors. @todo Decide if this structure is useful.
 		std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will contain a selection of pointers to 'good' charged tracks.
 		std::vector<EvtRecTrack*>::iterator fTrackIterator; //!< Iterator for looping over the collection of charged and neutral tracks (`EvtRecTrackCol`).
-
-
-private:
-	// ! Cut parameters ! //
-		/// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see `.cxx` file).
-		
-		// * Declare r0, z0 cut for charged tracks *
-		double fVr0cut;
-		double fVz0cut;
-		double fRvz0cut;
-		double fRvxy0cut;
-
-		// * Declare energy, dphi, dthe cuts for fake gamma's *
-		double fEnergyThreshold;
-		double fGammaPhiCut;
-		double fGammaThetaCut;
-		double fGammaAngleCut;
 
 
 	// ! NTuple data members ! //
@@ -113,7 +95,24 @@ private:
 			std::map<std::string, NTuple::Item<double> > fTofEC;   //!< Container for the `"tofe"` branch.
 			std::map<std::string, NTuple::Item<double> > fTofIB;   //!< Container for the `"tof1"` branch.
 			std::map<std::string, NTuple::Item<double> > fTofOB;   //!< Container for the `"tof2"` branch.
-			std::map<std::string, NTuple::Item<double> > fPID;     //!< Container for the `"pid"` branch.
+			std::map<std::string, NTuple::Item<double> > fPID;     //!< Container for the `"pid"` branch. <b>Needs to be filled in the derived class!</b>
+
+
+private:
+	// ! Cut parameters ! //
+		/// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see `.cxx` file).
+		
+		// * Declare r0, z0 cut for charged tracks *
+		double fVr0cut;
+		double fVz0cut;
+		double fRvz0cut;
+		double fRvxy0cut;
+
+		// * Declare energy, dphi, dthe cuts for fake gamma's *
+		double fEnergyThreshold;
+		double fGammaPhiCut;
+		double fGammaThetaCut;
+		double fGammaAngleCut;
 
 };
 

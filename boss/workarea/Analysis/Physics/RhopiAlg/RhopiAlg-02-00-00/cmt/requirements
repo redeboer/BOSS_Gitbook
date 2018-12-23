@@ -1,5 +1,5 @@
-package DzeroPhiDer
-author He Kanglin <hekl@ihep.ac.cn>
+package RhopiAlg
+author Remco de Boer <remco.de.boer@ihep.ac.cn>
 
 use BesPolicy BesPolicy-*
 use GaudiInterface GaudiInterface-* External
@@ -11,11 +11,12 @@ use EvtRecEvent EvtRecEvent-* Event
 use VertexFit    VertexFit-*   Analysis 
 use ParticleID   ParticleID-*  Analysis
 
-use TrackSelector  TrackSelector-* Analysis
-
 use BesROOT      BesROOT-00-*     External
 
+use TrackSelector TrackSelector-* Analysis
+
 apply_pattern component_library 
-library DzeroPhiDer  *.cxx  components/*.cxx
+library RhopiAlg TrackSelector *.cxx  components/*.cxx
+macro TrackSelector_linkopts " -lTrackSelector "
 
 apply_pattern declare_runtime files=*.txt

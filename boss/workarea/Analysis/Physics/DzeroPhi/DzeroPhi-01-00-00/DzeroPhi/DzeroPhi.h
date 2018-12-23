@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_DzeroPhiDer_H
-#define Physics_Analysis_DzeroPhiDer_H
+#ifndef Physics_Analysis_DzeroPhi_H
+#define Physics_Analysis_DzeroPhi_H
 
 /**
  * @brief    Analyse \f$ J/\psi \rightarrow D^0 \phi \f$ events.
@@ -12,36 +12,18 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-	#include "CLHEP/Geometry/Point3D.h"
-	#include "CLHEP/Vector/LorentzVector.h"
-	#include "CLHEP/Vector/ThreeVector.h"
-	#include "CLHEP/Vector/TwoVector.h"
-	#include "EventModel/EventHeader.h"
-	#include "EvtRecEvent/EvtRecEvent.h"
-	#include "EvtRecEvent/EvtRecTrack.h"
-	#include "GaudiKernel/AlgFactory.h"
-	#include "GaudiKernel/Algorithm.h"
-	#include "GaudiKernel/MsgStream.h"
-	#include "GaudiKernel/NTuple.h"
-	#include "GaudiKernel/SmartDataPtr.h"
-	#include "GaudiKernel/SmartRefVector.h"
-	#include "TofRecEvent/RecTofTrack.h"
 	#include "TrackSelector/TrackSelector.h"
-	#include <map> // would be more efficient to use "unordered_map"
-	#include <string>
-	#include <utility>
-	#include <vector>
 
 
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
-class DzeroPhiDer : public TrackSelector
+class DzeroPhi : public TrackSelector
 {
 public:
 	// * Constructor and destructors *
-	DzeroPhiDer(const std::string &name, ISvcLocator* pSvcLocator);
+	DzeroPhi(const std::string &name, ISvcLocator* pSvcLocator);
 
 	// * Algorithm steps *
 	StatusCode initialize_rest();
@@ -49,7 +31,7 @@ public:
 	StatusCode finalize_rest();
 
 
-protected:
+private:
 	// * Protected data members * //
 		double fSmallestChiSq;
 		std::vector<EvtRecTrack*> fKaonNeg; //!< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$. @todo Decide if this can be formulated in terms of `fEvtRecTrackMap`.
@@ -61,7 +43,6 @@ protected:
 		std::vector<EvtRecTrack*>::iterator fPionPosIter; //!< Iterator for looping over the collection of positive pions.
 
 
-private:
 	// ! Cut parameters ! //
 		/// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see `.cxx` file).
 

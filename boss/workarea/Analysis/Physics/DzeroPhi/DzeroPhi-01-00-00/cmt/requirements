@@ -1,4 +1,4 @@
-package TrackSelector
+package DzeroPhi
 author Remco de Boer <remco.de.boer@ihep.ac.cn>
 
 use BesPolicy BesPolicy-*
@@ -13,7 +13,10 @@ use ParticleID   ParticleID-*  Analysis
 
 use BesROOT      BesROOT-00-*     External
 
+use TrackSelector TrackSelector-* Analysis
+
 apply_pattern component_library 
-library TrackSelector  *.cxx  components/*.cxx
+library DzeroPhi TrackSelector *.cxx  components/*.cxx
+macro TrackSelector_linkopts " -lTrackSelector "
 
 apply_pattern declare_runtime files=*.txt
