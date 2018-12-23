@@ -310,6 +310,8 @@ EXCLUDE                =
 
 EXCLUDE_PATTERNS  = */boss/workarea/Generator/*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-*
+EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-02-*
+EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/DzeroPhi/DzeroPhi-00-*
 # EXCLUDE_PATTERNS += */.*
 
 # The EXAMPLE_PATH tag can be used to specify one or more files or

@@ -23,12 +23,6 @@ var files =
     [ "FitInvMassSignal.C", "FitInvMassSignal_8C.html", "FitInvMassSignal_8C" ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
     [ "InvestigateBOSSRootFile.C", "InvestigateBOSSRootFile_8C.html", "InvestigateBOSSRootFile_8C" ],
-    [ "NTupleMap.cxx", "NTupleMap_8cxx.html", null ],
-    [ "NTupleMap.h", "NTupleMap_8h.html", [
-      [ "NTupleMap", "classNTupleMap.html", "classNTupleMap" ]
-    ] ],
-    [ "NTupleMap_entries.cxx", "NTupleMap__entries_8cxx.html", "NTupleMap__entries_8cxx" ],
-    [ "NTupleMap_load.cxx", "NTupleMap__load_8cxx.html", null ],
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],
     [ "ReconstructedParticle.h", "ReconstructedParticle_8h.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ]
@@ -41,5 +35,11 @@ var files =
     [ "RhopiAlg_load.cxx", "RhopiAlg__load_8cxx.html", null ],
     [ "SimplifiedTree.h", "SimplifiedTree_8h.html", [
       [ "SimplifiedTree", "classSimplifiedTree.html", "classSimplifiedTree" ]
-    ] ]
+    ] ],
+    [ "TrackSelector.cxx", "TrackSelector_8cxx.html", "TrackSelector_8cxx" ],
+    [ "TrackSelector.h", "TrackSelector_8h.html", [
+      [ "TrackSelector", "classTrackSelector.html", "classTrackSelector" ]
+    ] ],
+    [ "TrackSelector_entries.cxx", "TrackSelector__entries_8cxx.html", "TrackSelector__entries_8cxx" ],
+    [ "TrackSelector_load.cxx", "TrackSelector__load_8cxx.html", null ]
 ];

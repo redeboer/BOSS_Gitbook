@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['writededxinfo',['WriteDedxInfo',['../classDzeroPhi.html#a792df15dfd6a1e8c44922f75c67536ad',1,'DzeroPhi']]],
-  ['writededxinfoforvector',['WriteDedxInfoForVector',['../classDzeroPhi.html#a75c8e7dfc5d6be4c6226bb071c5aa4cd',1,'DzeroPhi']]],
-  ['writetofinformation',['WriteTofInformation',['../classDzeroPhi.html#a0bab280381cbd3a1cf9c8febd40492b9',1,'DzeroPhi']]]
+  ['writededxinfo',['WriteDedxInfo',['../classTrackSelector.html#aebdb86764877e8e9ab2a74dbd15f35ef',1,'TrackSelector']]],
+  ['writededxinfoforvector',['WriteDedxInfoForVector',['../classTrackSelector.html#ac1eaa42584a11fa2f96466de1e032bfa',1,'TrackSelector']]],
+  ['writepidinformation',['WritePIDInformation',['../classTrackSelector.html#a4aa121259e7330386e1262f7db3dfdda',1,'TrackSelector']]],
+  ['writetofinformation',['WriteTofInformation',['../classTrackSelector.html#a999c5f565c958efcdb3cce4afb1560ca',1,'TrackSelector']]]
 ];

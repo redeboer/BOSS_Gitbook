@@ -2,9 +2,10 @@ var hierarchy =
 [
     [ "Algorithm", null, [
       [ "DzeroOmega", "classDzeroOmega.html", null ],
-      [ "DzeroPhi", "classDzeroPhi.html", null ],
-      [ "NTupleMap", "classNTupleMap.html", null ],
-      [ "RhopiAlg", "classRhopiAlg.html", null ]
+      [ "RhopiAlg", "classRhopiAlg.html", null ],
+      [ "TrackSelector", "classTrackSelector.html", [
+        [ "DzeroPhi", "classDzeroPhi.html", null ]
+      ] ]
     ] ],
     [ "BOSSRootChain", "classBOSSRootChain.html", null ],
     [ "BOSSRootFile", "classBOSSRootFile.html", null ],

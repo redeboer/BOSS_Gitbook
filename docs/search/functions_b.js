@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ntuplemap',['NTupleMap',['../classNTupleMap.html#a7674fbff3ea355a80a8ac0a066dd4c80',1,'NTupleMap']]]
+  ['openfile',['OpenFile',['../classBOSSRootFile.html#a50f2872225d67bcdaee614b7e469a78b',1,'BOSSRootFile']]],
+  ['operator_5b_5d',['operator[]',['../classBOSSRootFile.html#a156cc14cc8b599abccb633dc75aca151',1,'BOSSRootFile']]]
 ];

@@ -2,28 +2,35 @@
 \form#1:$K^-$
 \form#2:$K^+$
 \form#3:$\pi^+$
-\form#4:$dE/dx$
-\form#5:$K^\pm$
-\form#6:$\pi^\pm$
-\form#7:$\pi^-$
-\form#8:$x$
-\form#9:$y$
-\form#10:$z$
-\form#11:$xy$
-\form#12:$p$
+\form#4:$\chi_\mathrm{red}^2$
+\form#5:$\pi^\pm$
+\form#6:$K^\pm$
+\form#7:$D^0$
+\form#8:$\phi$
+\form#9:$K^- \pi^+$
+\form#10:$K^+ K^+ $
+\form#11:$D^0 \phi $
+\form#12:$J/\psi$
 \form#13:$ K^- pi^+ $
 \form#14:$ D^0 $
 \form#15:$ K^+ K^+ $
 \form#16:$ \phi $
 \form#17:$ D^0 \phi $
 \form#18:$ J/\psi $
-\form#19:$Z$
-\form#20:$R$
-\form#21:$ e^- $
-\form#22:$ \mu^- $
-\form#23:$ \pi^+ $
-\form#24:$ \pi^0 $
-\form#25:$ \rho^\pm $
-\form#26:$ \rho^0 $
-\form#27:$ K^\pm $
-\form#28:$ p $
+\form#19:$\pi^-$
+\form#20:$x$
+\form#21:$y$
+\form#22:$z$
+\form#23:$xy$
+\form#24:$p$
+\form#25:$Z$
+\form#26:$R$
+\form#27:$dE/dx$
+\form#28:$ e^- $
+\form#29:$ \mu^- $
+\form#30:$ \pi^+ $
+\form#31:$ \pi^0 $
+\form#32:$ \rho^\pm $
+\form#33:$ \rho^0 $
+\form#34:$ K^\pm $
+\form#35:$ p $

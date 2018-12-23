@@ -36,8 +36,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BOSSRootChain_8h.html",
-"classDzeroOmega.html#a82c298baf9394af0373ba4c1d844f975",
-"classRhopiAlg.html#ad6449cfc87feeea89302fb1e8667c7ac"
+"classDzeroOmega.html#a911a2837e7de6e10628809495704da97",
+"classTrackSelector.html#a4aa121259e7330386e1262f7db3dfdda"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
