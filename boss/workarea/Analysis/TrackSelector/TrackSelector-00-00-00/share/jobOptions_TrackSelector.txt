@@ -1,0 +1,27 @@
+// ? jobOptions necessary for base class package ? //
+
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+ApplicationMgr.DLLs   += {"TrackSelector"};
+ApplicationMgr.TopAlg += {"TrackSelector"};
+
+// * Whether or not to fill a tree/NTuple *
+TrackSelector.doMult        = true;
+TrackSelector.doVertex      = true;
+TrackSelector.doTrackVertex = true;
+TrackSelector.doDedx        = true;
+TrackSelector.doTofEC       = true;
+TrackSelector.doTofIB       = true;
+TrackSelector.doTofOB       = true;
+TrackSelector.doPID         = true;
+
+// * Define r0, z0 cut for charged tracks *
+TrackSelector.Vr0cut    = 9999.; // 1.0
+TrackSelector.Vz0cut    = 9999.; // 5.0
+TrackSelector.Vrvz0cut  =   10.;
+TrackSelector.Vrvxy0cut =    1.;
+
+// * Define energy, dphi, dthe cuts for fake gamma's *
+TrackSelector.EnergyThreshold = 0.04;
+TrackSelector.GammaPhiCut     = 20.0;
+TrackSelector.GammaThetaCut   = 20.0;
+TrackSelector.GammaAngleCut   = 20.0;

@@ -13,6 +13,7 @@ use ExHelloWorld    *                 BesExamples
 # use BKlamsVTX       BKlamsVTX-00-*    Analysis
 # use GammaEtaAlg     GammaEtaAlg-00-*  Analysis/Physics
 # use KlamsTestAlg    KlamsTestAlg-00-* Analysis/Physics
+use TrackSelector   TrackSelector-*   Analysis
 use RhopiAlg        RhopiAlg-*        Analysis/Physics
 use DzeroPhi        DzeroPhi-*        Analysis/Physics
 use DzeroOmega      DzeroOmega-*      Analysis/Physics

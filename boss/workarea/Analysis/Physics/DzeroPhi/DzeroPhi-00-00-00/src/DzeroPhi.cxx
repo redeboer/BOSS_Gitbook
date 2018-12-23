@@ -164,20 +164,10 @@
 				BookNtupleItemsDedx("dedx_pi", fDedx_pi);
 			}
 
-		// * Book NTuple: ToF endcap branch * //
-			if(fDoTrackVertex) {
-				BookNtupleItemsTof("tofe", fTofEC);
-			}
-
-		// * Book NTuple: ToF inner barrel branch * //
-			if(fDoTrackVertex) {
-				BookNtupleItemsTof("tof1", fTofIB);
-			}
-
-		// * Book NTuple: ToF outer barrel branch * //
-			if(fDoTrackVertex) {
-				BookNtupleItemsTof("tof2", fTofOB);
-			}
+		// * Book NTuple: ToF branch * //
+			if(fDoTofEC) BookNtupleItemsTof("tofe", fTofEC);
+			if(fDoTofIB) BookNtupleItemsTof("tof1", fTofIB);
+			if(fDoTofOB) BookNtupleItemsTof("tof2", fTofOB);
 
 		// * Book NTuple: Track PID information * //
 			if(fDoPID) {

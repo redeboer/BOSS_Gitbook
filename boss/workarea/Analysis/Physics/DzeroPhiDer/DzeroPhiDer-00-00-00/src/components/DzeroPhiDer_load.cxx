@@ -1,4 +1,4 @@
 #include "GaudiKernel/LoadFactoryEntries.h"
 
-LOAD_FACTORY_ENTRIES( NTupleMap )
+LOAD_FACTORY_ENTRIES( DzeroPhiDer )
 
