@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['declare_5ffactory_5fentries',['DECLARE_FACTORY_ENTRIES',['../DzeroOmega__entries_8cxx.html#a946a13a16336399e92a68ca0a4d10205',1,'DECLARE_FACTORY_ENTRIES(DzeroOmega):&#160;DzeroOmega_entries.cxx'],['../DzeroPhi__entries_8cxx.html#af3a54c9584ff4e0f5f4d752826d9b411',1,'DECLARE_FACTORY_ENTRIES(DzeroPhi):&#160;DzeroPhi_entries.cxx'],['../RhopiAlg__entries_8cxx.html#a992614462a78b9c426d43e7a27a3be56',1,'DECLARE_FACTORY_ENTRIES(RhopiAlg):&#160;RhopiAlg_entries.cxx'],['../TrackSelector__entries_8cxx.html#a32c5ad54778bba0cdfaaadaeaca3f2c1',1,'DECLARE_FACTORY_ENTRIES(TrackSelector):&#160;TrackSelector_entries.cxx']]],
   ['destruct',['Destruct',['../classBOSSRootChain.html#a639e7dccc2e76225a4172295df017a2a',1,'BOSSRootChain::Destruct()'],['../classBOSSRootFile.html#aa998ff5e02eb2c6b13aee8a1d1862b48',1,'BOSSRootFile::Destruct()']]],
   ['determinenamelatex',['DetermineNameLaTeX',['../classParticle.html#ae97e941db471dbe130c5aa7277d8c224',1,'Particle']]],
   ['determinereconstructionparameters',['DetermineReconstructionParameters',['../classReconstructedParticle.html#a606b46b3150f197eaa289912f1c5e7a3',1,'ReconstructedParticle']]],
@@ -9,11 +8,7 @@ var searchData=
   ['dzeroomega',['DzeroOmega',['../classDzeroOmega.html',1,'DzeroOmega'],['../classDzeroOmega.html#ac0a4a425efa50abc4a30e6c6d5231bd4',1,'DzeroOmega::DzeroOmega()']]],
   ['dzeroomega_2ecxx',['DzeroOmega.cxx',['../DzeroOmega_8cxx.html',1,'']]],
   ['dzeroomega_2eh',['DzeroOmega.h',['../DzeroOmega_8h.html',1,'']]],
-  ['dzeroomega_5fentries_2ecxx',['DzeroOmega_entries.cxx',['../DzeroOmega__entries_8cxx.html',1,'']]],
-  ['dzeroomega_5fload_2ecxx',['DzeroOmega_load.cxx',['../DzeroOmega__load_8cxx.html',1,'']]],
   ['dzerophi',['DzeroPhi',['../classDzeroPhi.html',1,'DzeroPhi'],['../classDzeroPhi.html#a005e37b9970b69e711715af40d6eeadf',1,'DzeroPhi::DzeroPhi()']]],
   ['dzerophi_2ecxx',['DzeroPhi.cxx',['../DzeroPhi_8cxx.html',1,'']]],
-  ['dzerophi_2eh',['DzeroPhi.h',['../DzeroPhi_8h.html',1,'']]],
-  ['dzerophi_5fentries_2ecxx',['DzeroPhi_entries.cxx',['../DzeroPhi__entries_8cxx.html',1,'']]],
-  ['dzerophi_5fload_2ecxx',['DzeroPhi_load.cxx',['../DzeroPhi__load_8cxx.html',1,'']]]
+  ['dzerophi_2eh',['DzeroPhi.h',['../DzeroPhi_8h.html',1,'']]]
 ];

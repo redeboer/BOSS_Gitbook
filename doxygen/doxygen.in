@@ -308,7 +308,9 @@ EXCLUDE                =
 # EXCLUDE_PATTERNS tag to specify one or more wildcard patterns to exclude
 # certain files from those directories.
 
-EXCLUDE_PATTERNS  = */boss/workarea/Generator/*
+EXCLUDE_PATTERNS += *_entries.cxx
+EXCLUDE_PATTERNS += *_load.cxx
+EXCLUDE_PATTERNS += */boss/workarea/Generator/*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-02-*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/DzeroPhi/DzeroPhi-00-*

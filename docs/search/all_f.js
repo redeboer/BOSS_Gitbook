@@ -6,7 +6,5 @@ var searchData=
   ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],
   ['rhopialg',['RhopiAlg',['../classRhopiAlg.html',1,'RhopiAlg'],['../classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb',1,'RhopiAlg::RhopiAlg()']]],
   ['rhopialg_2ecxx',['RhopiAlg.cxx',['../RhopiAlg_8cxx.html',1,'']]],
-  ['rhopialg_2eh',['RhopiAlg.h',['../RhopiAlg_8h.html',1,'']]],
-  ['rhopialg_5fentries_2ecxx',['RhopiAlg_entries.cxx',['../RhopiAlg__entries_8cxx.html',1,'']]],
-  ['rhopialg_5fload_2ecxx',['RhopiAlg_load.cxx',['../RhopiAlg__load_8cxx.html',1,'']]]
+  ['rhopialg_2eh',['RhopiAlg.h',['../RhopiAlg_8h.html',1,'']]]
 ];

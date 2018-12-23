@@ -9,13 +9,12 @@
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
 	#include "../inc/CommonFunctions.h"
-	#include "../inc/DzeroPhiRootFile.h"
+	#include "../inc/BOSSRootFile.h"
 	#include "../inc/FrameworkSettings.h"
 	#include "../inc/ReconstructedParticle.h"
 	#include "TH1D.h"
 	#include <iostream>
 	using namespace CommonFunctions;
-	using namespace DzeroPhiBranches;
 	using namespace RooFit;
 	using namespace Settings;
 
@@ -29,22 +28,38 @@
 void FitInvMassSignal()
 {
 	// * Open DzeroPhi input file * //
-		BOSSRootFile file("../data/root/ana_DzeroPhi_mc_result2.root", false); /// To investigate the contents of the ROOT file, you first need to know which `TTree`s and branches it contains. If you simply construct the `BOSSRootFile` by giving it a file name, all `TTree`s will be loaded automatically as well as addresses for each of their branches. Five the constructer `true` as its second argument, and the names of these `TTree`s, their branches, and the types of these branches (behind the slash `/` after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b>
+		BOSSRootFile file("../data/root/ana_DzeroPhi_mc_result3.root", true); /// To investigate the contents of the ROOT file, you first need to know which `TTree`s and branches it contains. If you simply construct the `BOSSRootFile` by giving it a file name, all `TTree`s will be loaded automatically as well as addresses for each of their branches. Five the constructer `true` as its second argument, and the names of these `TTree`s, their branches, and the types of these branches (behind the slash `/` after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b>
 		if(file.IsZombie()) return;
-		// file.PlotAllBranches("p");
+		// file.PlotAllBranches();
 
-	// * Draw useful multipliciy and primary vertex plots
-		// file.PlotDistribution("mult", "fEvent_NKaonNeg", "E1");
-		// file.PlotDistribution("mult", "fEvent_NKaonPos", "E1");
-		// file.PlotDistribution("mult", "fEvent_NPionPos", "E1");
-		// file.PlotDistribution("mult", "Ncharge",  "E1");
-		// file.PlotDistribution("mult", "Ngood",    "E1");
-		// file.PlotDistribution("mult", "Nmdc",     "E1");
-		// file.PlotDistribution("mult", "Nneutral", "E1");
-		// file.PlotDistribution("mult", "Ntotal",   "E1");
-		// file.PlotDistribution("mult", "vx0:vy0", "colz");
-		// file.PlotDistribution("mult", "vx0:vz0", "colz");
-		// file.PlotDistribution("mult", "vy0:vz0", "colz");
+	// * Draw useful primary vertex plots
+		file.PlotDistribution("mult", "NKaonNeg", "E1");
+		file.PlotDistribution("mult", "NKaonPos", "E1");
+		file.PlotDistribution("mult", "NPionPos", "E1");
+		file.PlotDistribution("mult", "Ncharge",  "E1");
+		file.PlotDistribution("mult", "Ngood",    "E1");
+		file.PlotDistribution("mult", "Nmdc",     "E1");
+		file.PlotDistribution("mult", "Nneutral", "E1");
+		file.PlotDistribution("mult", "Ntotal",   "E1");
+
+	// * Draw useful primary vertex plots
+		file.PlotDistribution("vertex", "vx0:vy0", "colz");
+		file.PlotDistribution("vertex", "vx0:vz0", "colz");
+		file.PlotDistribution("vertex", "vy0:vz0", "colz");
+
+	// * Draw useful ToF plots
+		file.PlotDistribution("tof1", "tof:ptrk", "colz");
+		file.PlotDistribution("tof2", "tof:ptrk", "colz");
+
+	// * Draw useful dEdx plots
+		file.PlotDistribution("pid", "dedx:ptrk", "colz");
+		file.PlotDistribution("pid", "tof1:ptrk", "colz");
+		file.PlotDistribution("pid", "tof2:ptrk", "colz");
+
+	// * Draw useful fit4c plots
+		file.PlotDistribution("fit4c", "mD0");
+		file.PlotDistribution("fit4c", "mphi");
+		file.PlotDistribution("fit4c", "mJpsi");
 
 	// * Particles to reconstruct * //
 		// ReconstructedParticle D0  ( 421, "K^{-}#pi^{+}"); // neutral D meson
