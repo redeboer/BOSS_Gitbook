@@ -39,8 +39,8 @@
 
 	// * FIT SETTINGS * //
 	const bool performfits = true; //!< Whether or not to produce invariant mass fits.
-	const bool do_gauss    = true; //!< Whether or not to produce perform a double Gaussian fit.
-	const bool do_conv     = false; //!< Whether or not to produce perform a Breit-Wigner convoluted with a double Gaussian.
+	const bool do_gauss    = false; //!< Whether or not to produce perform a double Gaussian fit.
+	const bool do_conv     = true; //!< Whether or not to produce perform a Breit-Wigner convoluted with a double Gaussian.
 
 
 
@@ -148,10 +148,17 @@ void FitInvMassSignal()
 				// FitDoubleGaussian(hist_Jpsi, Jpsi, 0, "y"); //! useless plot
 			}
 
+		// * Fit Breit-Wigner convoluted with singe Gaussian
+			if(do_conv) {
+				FitBWGaussianConvolution(hist_D0,   D0,   0, "y");
+				FitBWGaussianConvolution(hist_phi,  phi,  2, "y");
+				// FitBWGaussianConvolution(hist_Jpsi, Jpsi, 2, "y"); //! useless plot
+			}
+
 		// * Fit Breit-Wigner convoluted with double Gaussian
 			if(do_conv) {
 				FitBWDoubleGaussianConvolution(hist_D0,   D0,   0, "y");
-				FitBWDoubleGaussianConvolution(hist_phi,  phi,  4, "y");
+				FitBWDoubleGaussianConvolution(hist_phi,  phi,  2, "y");
 				// FitBWDoubleGaussianConvolution(hist_Jpsi, Jpsi, 2, "y"); //! useless plot
 			}
 

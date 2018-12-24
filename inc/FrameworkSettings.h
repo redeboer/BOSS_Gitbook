@@ -44,8 +44,8 @@ namespace Settings
 	}
 	namespace Fit
 	{
-		const double fSigmaScaleFactorLow = 0.; //!< This `double` parametr will be used when constructing a `RooRealVar` object for the sigma's of the double Gaussian. The lower boundary of this `RooRealVar` sigma object will be set to this factor times the estimated sigma).
-		const double fSigmaScaleFactorUp = 10.; //!< This `double` parameter will be used when constructing a `RooRealVar` object for the sigma's of the double Gaussian. The upper boundary of this `RooRealVar` sigma object will be set to this factor times the estimated sigma).
+		const double gSigmaScaleFactorLow = 0.; //!< This `double` parametr will be used when constructing a `RooRealVar` object for the sigma's of the double Gaussian. The lower boundary of this `RooRealVar` sigma object will be set to this factor times the estimated sigma).
+		const double gSigmaScaleFactorUp = 10.; //!< This `double` parameter will be used when constructing a `RooRealVar` object for the sigma's of the double Gaussian. The upper boundary of this `RooRealVar` sigma object will be set to this factor times the estimated sigma).
 	}
 	namespace Output
 	{

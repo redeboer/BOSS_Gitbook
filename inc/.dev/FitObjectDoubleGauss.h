@@ -95,8 +95,8 @@ protected:
 			Form("#sigma_{%u}", num),
 			Form("%s width %u", fParticle.GetNameLaTeX(), num),
 			fParticle.GetGaussianSmallWidth(),
-			width * Settings::Fit::fSigmaScaleFactorLow,
-			width * Settings::Fit::fSigmaScaleFactorUp);
+			width * Settings::Fit::gSigmaScaleFactorLow,
+			width * Settings::Fit::gSigmaScaleFactorUp);
 	}
 
 	void FitObjectDoubleGauss::SetMassParameter()

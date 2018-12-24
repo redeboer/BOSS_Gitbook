@@ -194,13 +194,13 @@ protected:
 		fSigma1 = std_fix::make_unique<RooRealVar>("#sigma_{1}",
 			Form("%s width 1", fParticle.GetNameLaTeX()),
 			fParticle.GetGaussianSmallWidth(),
-			Settings::Fit::fSigmaScaleFactorLow * fParticle.GetGaussianSmallWidth(),
-			Settings::Fit::fSigmaScaleFactorUp  * fParticle.GetGaussianSmallWidth());
+			Settings::Fit::gSigmaScaleFactorLow * fParticle.GetGaussianSmallWidth(),
+			Settings::Fit::gSigmaScaleFactorUp  * fParticle.GetGaussianSmallWidth());
 		fSigma2 = std_fix::make_unique<RooRealVar>("#sigma_{2}",
 			Form("%s width 2", fParticle.GetNameLaTeX()),
 			fParticle.GetGaussianWideWidth(),
-			Settings::Fit::fSigmaScaleFactorLow * fParticle.GetGaussianWideWidth(),
-			Settings::Fit::fSigmaScaleFactorUp  * fParticle.GetGaussianWideWidth());
+			Settings::Fit::gSigmaScaleFactorLow * fParticle.GetGaussianWideWidth(),
+			Settings::Fit::gSigmaScaleFactorUp  * fParticle.GetGaussianWideWidth());
 		fGaussian1 = std_fix::make_unique<RooGaussian>("gauss1",
 			Form("Gaussian PDF 1 for #it{M}_{%s} distribution", fParticle.GetDaughterLabel()),
 			*fRooRealVar, *fMean, *fSigma1);
