@@ -325,27 +325,29 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 				break;
 			case 421: // D0 meson
 				fMassOffset           = .05;
-				fBWPureWidth          = .8;
-				fBWConvolutedWidth    = .0004;
+				fBWPureWidth          = .8;    //! not yet optimised
+				fBWConvolutedWidth    = .0004; //! not yet optimised
 				fDoubleGaussianWidths = {.0542, .209};
-				fFitRange             = {1.5, 2.1};
-				fPlotRange            = {1.5, 2.1};
+				fFitRange             = {1.84, 1.91};
+				fPlotRange            = {1.83, 1.94};
 				break;
 			case 333: // phi meson
 				fMassOffset           = .05;
-				fBWPureWidth          = .8;
-				fBWConvolutedWidth    = .0004;
-				fDoubleGaussianWidths = {.0542, .209};
-				fFitRange             = {.8, 1.2};
-				fPlotRange            = {.8, 1.2};
+				fBWPureWidth          = .8;    //! not yet optimised
+				fBWConvolutedWidth    = .0004; //! not yet optimised
+				fDoubleGaussianWidths = {.002, .006};
+				// fFitRange             = {.97, 1.11};
+				// fPlotRange            = {.97, 1.18};
+				fFitRange             = {.99, 1.053};
+				fPlotRange            = {.99, 1.18};
 				break;
 			case 443: // J/psi meson
 				fMassOffset           = .05;
 				fBWPureWidth          = .8;
 				fBWConvolutedWidth    = .0004;
-				fDoubleGaussianWidths = {.0542, .209};
-				fFitRange             = {2.5, 3.5};
-				fPlotRange            = {2.5, 3.5};
+				fDoubleGaussianWidths = {1e-8, 1e-8};
+				fFitRange             = {3.096813, 3.096815};
+				fPlotRange            = {3.096813, 3.096815};
 				break;
 			default:
 				std::cout << "ERROR: No particle reconstruction defined for PDG code " << fParticlePDG->PdgCode() << " (" << fParticlePDG->GetName() << ")" << std::endl;
