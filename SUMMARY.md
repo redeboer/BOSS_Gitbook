@@ -9,10 +9,14 @@
 * [The BOSS Analysis Framework](docs-boss/intro.md)
 * [Setup of your BOSS environment](docs-boss/setup.md)
 * [Set up a BOSS package](docs-boss/setup-package.md)
-* [The RhopiAlg package and others](docs-boss/rhopi.md)
 * [Running jobs](docs-boss/running-jobs.md)
 * [Monte Carlo simulations](docs-boss/simulations.md)
 * [Data analysis](docs-boss/data-analysis.md)
+
+## BOSS Afterburner packages
+
+* [BOSS Afterburner packages](docs-packages/main.md)
+* [The RhopiAlg package and others](docs-packages/rhopi.md)
 
 ## Working with the BOSS Afterburner
 
