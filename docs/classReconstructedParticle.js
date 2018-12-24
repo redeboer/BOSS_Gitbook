@@ -21,6 +21,7 @@ var classReconstructedParticle =
     [ "GetMassOffsetPercentage", "classReconstructedParticle.html#a130e103764c1162501de2c1f023c30b5", null ],
     [ "GetPlotRange", "classReconstructedParticle.html#aec7bbf487e76d3fc2c5cdb1b61fbd6bf", null ],
     [ "GetPlotRange", "classReconstructedParticle.html#a6731ad7c08ab43cfc7dde67fb7ee47c3", null ],
+    [ "GetSingleGaussianWidth", "classReconstructedParticle.html#a8944e483c1d550ce861712db203db913", null ],
     [ "GetUpperMass", "classReconstructedParticle.html#add109d84e447cce041b5c0289ba4526e", null ],
     [ "Initialize", "classReconstructedParticle.html#a03c956b9a28c14587c8bf9bc5a90d32d", null ],
     [ "PlotFrom", "classReconstructedParticle.html#a5dfb6fe049949fe4ce0c843656855ce8", null ],
@@ -32,5 +33,6 @@ var classReconstructedParticle =
     [ "fDoubleGaussianWidths", "classReconstructedParticle.html#ac1fd549fa1e8f4555b33e195ed065d03", null ],
     [ "fFitRange", "classReconstructedParticle.html#a452ffcc41f17bb549d014bf3e8d13d81", null ],
     [ "fMassOffset", "classReconstructedParticle.html#aa9c33bbc6b0b5569c1f8db063600ba66", null ],
-    [ "fPlotRange", "classReconstructedParticle.html#adbe16e585bef542b6d17cf8becc7b538", null ]
+    [ "fPlotRange", "classReconstructedParticle.html#adbe16e585bef542b6d17cf8becc7b538", null ],
+    [ "fSingleGaussianWidth", "classReconstructedParticle.html#a9a288580cca08a1e798ae1b59859a281", null ]
 ];

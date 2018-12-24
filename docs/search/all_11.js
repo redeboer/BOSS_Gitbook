@@ -1,11 +1,21 @@
 var searchData=
 [
-  ['todo_20list',['Todo List',['../todo.html',1,'']]],
-  ['tofunitcm',['TofUnitCm',['../namespaceSettings_1_1Detector.html#a715b085f4483020a4a81cca11ee0a6e3',1,'Settings::Detector']]],
-  ['tofunitmm',['TofUnitMm',['../namespaceSettings_1_1Detector.html#abb477379321d99bd67bac345e4764fe0',1,'Settings::Detector']]],
-  ['trackselector',['TrackSelector',['../classTrackSelector.html',1,'TrackSelector'],['../classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1',1,'TrackSelector::TrackSelector()']]],
-  ['trackselector_2ecxx',['TrackSelector.cxx',['../TrackSelector_8cxx.html',1,'']]],
-  ['trackselector_2eh',['TrackSelector.h',['../TrackSelector_8h.html',1,'']]],
-  ['tupletofib',['TupleTofIB',['../classRhopiAlg.html#a4ab8fcbab557d9bec8ab8852052277a7',1,'RhopiAlg']]],
-  ['tupletofob',['TupleTofOB',['../classRhopiAlg.html#a92e7f99a73482be4d206bd4dc86e83dc',1,'RhopiAlg']]]
+  ['detector',['Detector',['../namespaceSettings_1_1Detector.html',1,'Settings']]],
+  ['fit',['Fit',['../namespaceSettings_1_1Fit.html',1,'Settings']]],
+  ['output',['Output',['../namespaceSettings_1_1Output.html',1,'Settings']]],
+  ['particles',['Particles',['../namespaceSettings_1_1Particles.html',1,'Settings']]],
+  ['savecanvas',['SaveCanvas',['../namespaceCommonFunctions_1_1Draw.html#a36f64ebbbd69516c8d22dec07fc3037e',1,'CommonFunctions::Draw']]],
+  ['setaddress',['SetAddress',['../classSimplifiedTree.html#ad555eb545bd6dc66e0be1f9084f9b135',1,'SimplifiedTree']]],
+  ['setaddresssafe',['SetAddressSafe',['../classSimplifiedTree.html#af87a25b6a6ce6e05be3390f23b91252a',1,'SimplifiedTree']]],
+  ['setaxistitles',['SetAxisTitles',['../namespaceCommonFunctions_1_1Hist.html#a1fc2ea57d25a75da6bcdd3b83c063b6f',1,'CommonFunctions::Hist']]],
+  ['setbranchaddress',['SetBranchAddress',['../classBOSSRootChain.html#ace5af0bff981d3283f12c359c9f18c21',1,'BOSSRootChain::SetBranchAddress()'],['../classBOSSRootFile.html#a04105374cbf3e7a745edf371afee4111',1,'BOSSRootFile::SetBranchAddress()']]],
+  ['setdaughterlabel',['SetDaughterLabel',['../classReconstructedParticle.html#a07eb465bf055a192e36f364dfb4ae7ef',1,'ReconstructedParticle']]],
+  ['setlogscale',['SetLogScale',['../namespaceCommonFunctions_1_1Draw.html#a909c1fc4f2ff18ee7626a4188795d4d2',1,'CommonFunctions::Draw']]],
+  ['setoutputfilename',['SetOutputFilename',['../namespaceCommonFunctions_1_1File.html#a59d365fb3792eaa3bab6d275a1a2d9ba',1,'CommonFunctions::File']]],
+  ['setranges',['setranges',['../AnalyseDzeroPhi__MC_8C.html#a0b2d25f24081e5e209992b9769d11360',1,'setranges():&#160;AnalyseDzeroPhi_MC.C'],['../InvestigateBOSSRootFile_8C.html#a0b2d25f24081e5e209992b9769d11360',1,'setranges():&#160;InvestigateBOSSRootFile.C']]],
+  ['settings',['Settings',['../namespaceSettings.html',1,'']]],
+  ['shared_5fptr',['SHARED_PTR',['../FrameworkSettings_8h.html#aad1cfcc8d905aaf9a625304b8d6f476e',1,'FrameworkSettings.h']]],
+  ['simplifiedtree',['SimplifiedTree',['../classSimplifiedTree.html',1,'SimplifiedTree'],['../classSimplifiedTree.html#ad6bec648c9ae733912f3aa156d8773de',1,'SimplifiedTree::SimplifiedTree()'],['../classSimplifiedTree.html#aae73269beceeb816787a6f95e650c771',1,'SimplifiedTree::SimplifiedTree(TTree *fTree, bool print=true)']]],
+  ['simplifiedtree_2eh',['SimplifiedTree.h',['../SimplifiedTree_8h.html',1,'']]],
+  ['std_5ffix',['std_fix',['../namespacestd__fix.html',1,'']]]
 ];

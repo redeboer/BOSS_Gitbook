@@ -314,7 +314,8 @@ EXCLUDE_PATTERNS += */boss/workarea/Generator/*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-02-*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/DzeroPhi/DzeroPhi-00-*
-# EXCLUDE_PATTERNS += */.*
+EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/DzeroOmega/*
+EXCLUDE_PATTERNS += */scripts/Analyse_*.C
 
 # The EXAMPLE_PATH tag can be used to specify one or more files or
 # directories that contain example code fragments that are included (see

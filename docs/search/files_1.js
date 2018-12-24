@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['commonfunctions_2eh',['CommonFunctions.h',['../CommonFunctions_8h.html',1,'']]],
-  ['comparechainvshadd_2ec',['CompareChainVsHadd.C',['../CompareChainVsHadd_8C.html',1,'']]]
+  ['bossrootchain_2eh',['BOSSRootChain.h',['../BOSSRootChain_8h.html',1,'']]],
+  ['bossrootfile_2eh',['BOSSRootFile.h',['../BOSSRootFile_8h.html',1,'']]]
 ];

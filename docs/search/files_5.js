@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['particle_2eh',['Particle.h',['../Particle_8h.html',1,'']]]
+  ['investigatebossrootfile_2ec',['InvestigateBOSSRootFile.C',['../InvestigateBOSSRootFile_8C.html',1,'']]]
 ];

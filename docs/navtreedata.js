@@ -17,7 +17,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", "functions_vars" ]
+        [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
     [ "Files", null, [
@@ -35,9 +35,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"BOSSRootChain_8h.html",
-"classDzeroOmega.html#ac3119f77256540615910fbe5cf1b6e3c",
-"classTrackSelector.html#a97affe1fd3e582b78e19070a69c4bcc5"
+"AnalyseDzeroPhi__MC_8C.html",
+"classReconstructedParticle.html#ac2309d9b0cbadc959f19891b01baaf77"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

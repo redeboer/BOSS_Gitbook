@@ -1,7 +1,11 @@
 var classSimplifiedTree =
 [
     [ "SimplifiedTree", "classSimplifiedTree.html#ad6bec648c9ae733912f3aa156d8773de", null ],
-    [ "SimplifiedTree", "classSimplifiedTree.html#a831a02a392d5fdeb036aa34037900010", null ],
+    [ "SimplifiedTree", "classSimplifiedTree.html#aae73269beceeb816787a6f95e650c771", null ],
+    [ "DrawAndSaveAllBranches", "classSimplifiedTree.html#ae9083544380ca3ddd79bc6f9b2dc1ef2", null ],
+    [ "DrawBranches", "classSimplifiedTree.html#a36fbce2cf215bf170e27103e8c55ba32", null ],
+    [ "DrawBranches", "classSimplifiedTree.html#a07b234dc4b18e28b7f8213cdde1336e5", null ],
+    [ "DrawBranches", "classSimplifiedTree.html#a0556127ad5f40ba1b449fc228a5982f4", null ],
     [ "Get", "classSimplifiedTree.html#a3ad723b823aa1551b6ec0f87f0f1c9ed", null ],
     [ "Get_B", "classSimplifiedTree.html#a1f3f411c29a6d6e1404fa396c3b66bf1", null ],
     [ "Get_b", "classSimplifiedTree.html#a1622b3c60ea262ed9f2df62c2172c8bc", null ],
@@ -14,6 +18,7 @@ var classSimplifiedTree =
     [ "Get_O", "classSimplifiedTree.html#aba7840d5f51ddf5a7d6e3cc44bfd2c95", null ],
     [ "Get_S", "classSimplifiedTree.html#ab575f5b5bba79fea49802925b9b294bc", null ],
     [ "Get_s", "classSimplifiedTree.html#ac1aa305657cc14ccce501f7d78d7eb10", null ],
+    [ "GetInvariantMassHistogram", "classSimplifiedTree.html#ace7e81c24b09bb1a24407702f091b78d", null ],
     [ "Print", "classSimplifiedTree.html#acc42bd4d3274a5426344d919f5a6cbf7", null ],
     [ "SetAddress", "classSimplifiedTree.html#ad555eb545bd6dc66e0be1f9084f9b135", null ],
     [ "SetAddressSafe", "classSimplifiedTree.html#af87a25b6a6ce6e05be3390f23b91252a", null ],

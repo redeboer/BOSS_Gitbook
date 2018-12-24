@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['fitinvmasssignal_2ec',['FitInvMassSignal.C',['../FitInvMassSignal_8C.html',1,'']]],
-  ['frameworksettings_2eh',['FrameworkSettings.h',['../FrameworkSettings_8h.html',1,'']]]
+  ['dzerophi_2ecxx',['DzeroPhi.cxx',['../DzeroPhi_8cxx.html',1,'']]],
+  ['dzerophi_2eh',['DzeroPhi.h',['../DzeroPhi_8h.html',1,'']]]
 ];

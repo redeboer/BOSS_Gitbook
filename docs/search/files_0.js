@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['bossrootchain_2eh',['BOSSRootChain.h',['../BOSSRootChain_8h.html',1,'']]],
-  ['bossrootfile_2eh',['BOSSRootFile.h',['../BOSSRootFile_8h.html',1,'']]]
+  ['analysedzerophi_5fmc_2ec',['AnalyseDzeroPhi_MC.C',['../AnalyseDzeroPhi__MC_8C.html',1,'']]]
 ];

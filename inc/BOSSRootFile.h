@@ -46,15 +46,15 @@
 		void CloseFile();
 
 		// * INFORMATION * //
-		TH1F* DrawBranches(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t* option="", const TString &setLogx="");
-		TH2F* DrawBranches(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t* option="", const TString &setLogx="");
+		TH1F* DrawBranches(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t* opt="", const TString &setLogx="");
+		TH2F* DrawBranches(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t* opt="", const TString &setLogx="");
 		bool IsZombie();
-		void DrawAndSaveAllBranches(const char* treeName, Option_t* option="", const TString &logScale="");
-		void DrawBranches(const char* treeName, const char* branchNames, Option_t* option="", const TString &logScale="");
+		void DrawAndSaveAllBranches(const char* treeName, Option_t* opt="", const TString &logScale="");
+		void DrawBranches(const char* treeName, const char* branchNames, Option_t* opt="", const TString &logScale="");
 		void Print();
-		void Print(const char* nameOfTree, Option_t *option = "toponly");
-		void PrintTrees(Option_t *option="");
-		void QuickDrawAndSaveAll(Option_t* option="");
+		void Print(const char* nameOfTree, Option_t *opt = "toponly");
+		void PrintTrees(Option_t *opt="");
+		void QuickDrawAndSaveAll(Option_t* opt="");
 
 		// * GETTERS * //
 		int GetNumberOfEvents(const char* treeName);
@@ -157,21 +157,39 @@
 
 	/**
 	 * @brief Draw the distributions of all branches available in the ROOT file.
-	 * @param option Draw options.
+	 * 
+	 * @param treeName Name of the `TTree` that you are looking for.
+	 * @param branchX Branch that you want to plot. You may use a formula.
+	 * @param nBinx Number of bins to use on the \f$x\f$-axis.
+	 * @param x1 Lower limit on the \f$x\f$-axis.
+	 * @param x2 Upper limit on the \f$x\f$-axis..
+	 * @param opt Draw options.
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	TH1F* BOSSRootFile::DrawBranches(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t* option, const TString &logScale)
+	TH1F* BOSSRootFile::DrawBranches(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t* opt, const TString &logScale)
 	{
-		return fTrees.at(treeName).DrawBranches(branchX, nBinx, x1, x2, true, option, logScale);
+		return fTrees.at(treeName).DrawBranches(branchX, nBinx, x1, x2, true, opt, logScale);
 	}
 
 
 	/**
 	 * @brief Draw the distributions of all branches available in the ROOT file.
-	 * @param option Draw options.
+	 * 
+	 * @param treeName Name of the `TTree` that you are looking for.
+	 * @param branchX Branch that you want to plot on the \f$x\f$-axis. You may use a formula.
+	 * @param branchY Branch that you want to plot on the \f$y\f$-axis. You may use a formula.
+	 * @param nBinx Number of bins to use on the \f$x\f$-axis.
+	 * @param x1 Lower limit on the \f$x\f$-axis.
+	 * @param x2 Upper limit on the \f$x\f$-axis.
+	 * @param nBiny Number of bins to use on the \f$y\f$-axis.
+	 * @param y1 Lower limit on the \f$y\f$-axis.
+	 * @param y2 Upper limit on the \f$y\f$-axis.
+	 * @param opt Draw options.
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	TH2F* BOSSRootFile::DrawBranches(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t* option, const TString &logScale)
+	TH2F* BOSSRootFile::DrawBranches(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t* opt, const TString &logScale)
 	{
-		return fTrees.at(treeName).DrawBranches(branchX, branchY, nBinx, x1, x2, nBiny, y1, y2, true, option, logScale);
+		return fTrees.at(treeName).DrawBranches(branchX, branchY, nBinx, x1, x2, nBiny, y1, y2, true, opt, logScale);
 	}
 
 
@@ -186,21 +204,28 @@
 
 	/**
 	 * @brief Draw the distributions of all branches available in the ROOT file.
-	 * @param option Draw options.
+	 * 
+	 * @param treeName Name of the `TTree` that you are looking for.
+	 * @param opt Draw options.
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	void BOSSRootFile::DrawAndSaveAllBranches(const char* treeName, Option_t* option, const TString &logScale)
+	void BOSSRootFile::DrawAndSaveAllBranches(const char* treeName, Option_t* opt, const TString &logScale)
 	{
-		fTrees.at(treeName).DrawAndSaveAllBranches(option, logScale);
+		fTrees.at(treeName).DrawAndSaveAllBranches(opt, logScale);
 	}
 
 
 	/**
 	 * @brief Draw the distributions of all branches available in the ROOT file.
-	 * @param option Draw options.
+	 * 
+	 * @param treeName Name of the `TTree` that you are looking for.
+	 * @param branchNames Name of the branch names that you want to plot. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
+	 * @param opt Draw options.
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	void BOSSRootFile::DrawBranches(const char* treeName, const char* branchNames, Option_t* option, const TString &logScale)
+	void BOSSRootFile::DrawBranches(const char* treeName, const char* branchNames, Option_t* opt, const TString &logScale)
 	{
-		fTrees.at(treeName).DrawBranches(branchNames, true, option, logScale);
+		fTrees.at(treeName).DrawBranches(branchNames, true, opt, logScale);
 	}
 
 	/**
@@ -240,13 +265,13 @@
 	 * @brief Print information about a certan tree.
 	 * @details This function loops over the `unordered_map` of file names and over the `unordered_map` of trees and prints its name and number of events. For each tree, information about its branches is also printed.
 	 * @param nameOfTree
-	 * @param option
+	 * @param opt
 	 */
-	void BOSSRootFile::Print(const char* nameOfTree, Option_t *option)
+	void BOSSRootFile::Print(const char* nameOfTree, Option_t *opt)
 	{
 		TTree* tree = FindTree(nameOfTree);
 		if(tree) {
-			tree->Print(option);
+			tree->Print(opt);
 			std::cout << "------------------------------------" << std::endl;
 			std::cout << "Total number of events in tree \"" << tree->GetName() << "\": " << std::scientific << tree->GetEntries() << std::endl;
 		}
@@ -256,12 +281,12 @@
 
 	/**
 	 * @brief Draw the distributions of all branches available in the ROOT file.
-	 * @param option Draw options.
+	 * @param opt Draw options.
 	 */
-	void BOSSRootFile::QuickDrawAndSaveAll(Option_t* option)
+	void BOSSRootFile::QuickDrawAndSaveAll(Option_t* opt)
 	{
 		std::unordered_map<std::string, SimplifiedTree>::iterator it = fTrees.begin();
-		for(; it != fTrees.end(); ++it) it->second.DrawAndSaveAllBranches(option);
+		for(; it != fTrees.end(); ++it) it->second.DrawAndSaveAllBranches(opt);
 	}
 
 

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['velc_5fcm',['velc_cm',['../DzeroOmega_8cxx.html#ac2ba08e98354f1ae771562ba95993cee',1,'velc_cm():&#160;DzeroOmega.cxx'],['../RhopiAlg_8cxx.html#ac2ba08e98354f1ae771562ba95993cee',1,'velc_cm():&#160;RhopiAlg.cxx']]],
-  ['velc_5fmm',['velc_mm',['../DzeroOmega_8cxx.html#aa99b02ee88055b799a547ebf230ed310',1,'velc_mm():&#160;DzeroOmega.cxx'],['../RhopiAlg_8cxx.html#aa99b02ee88055b799a547ebf230ed310',1,'velc_mm():&#160;RhopiAlg.cxx']]]
+  ['setranges',['setranges',['../AnalyseDzeroPhi__MC_8C.html#a0b2d25f24081e5e209992b9769d11360',1,'setranges():&#160;AnalyseDzeroPhi_MC.C'],['../InvestigateBOSSRootFile_8C.html#a0b2d25f24081e5e209992b9769d11360',1,'setranges():&#160;InvestigateBOSSRootFile.C']]]
 ];

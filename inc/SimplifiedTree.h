@@ -127,8 +127,9 @@
 	 * @brief Draw a distribution of one of the branches in the file.
 	 *
 	 * @param branchNames Names of the branches that you want to plot. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for how this works.
-	 * @param opt      Draw options.
-	 * @param logScale    If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
+	 * @param opt Draw options.
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
 	void SimplifiedTree::DrawBranches(const char* branchNames, const bool save, Option_t* opt, const TString& logScale)
 	{
@@ -148,6 +149,7 @@
 	 * @param nBinx Number of bins to use on the \f$x\f$-axis.
 	 * @param x1 Lower limit on the \f$x\f$-axis.
 	 * @param x2 Upper limit on the \f$x\f$-axis.
+	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
 	 * @param opt Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
@@ -173,6 +175,10 @@
 	 * @param nBinx Number of bins to use on the \f$x\f$-axis.
 	 * @param x1 Lower limit on the \f$x\f$-axis.
 	 * @param x2 Upper limit on the \f$x\f$-axis.
+	 * @param nBiny Number of bins to use on the \f$y\f$-axis.
+	 * @param y1 Lower limit on the \f$y\f$-axis.
+	 * @param y2 Upper limit on the \f$y\f$-axis.
+	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
 	 * @param opt Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
@@ -198,8 +204,9 @@
 
 	/**
 	 * @brief Draw the distributions of all branches of the underlying `TTree`.
+	 * 
 	 * @param opt Draw options.
-	 * @param logScale    If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
 	void SimplifiedTree::DrawAndSaveAllBranches(Option_t* opt, const TString& logScale)
 	{
@@ -211,6 +218,12 @@
 
 	/**
 	 * @brief Create a histogram object especially for invariant mass analysis.
+	 * 
+	 * @param branchName Names of the branche that you want to plot.
+	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	 * @param nBins Number of bins to use on the \f$x\f$-axis.
+	 * @param opt Draw options.
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
 	TH1F* SimplifiedTree::GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins, Option_t *opt, const TString &logScale)
 	{
@@ -235,7 +248,11 @@
 // * =============================== * //
 
 	/**
-	 * @brief
+	 * @brief Set a memory address for one of the branches of `fTree`.
+	 * 
+	 * @tparam TYPE The `typename` of the address. It is determined by the `map` you feed it.
+	 * @param obj The object from which you want to load the address. This is usually a `TBranch` object.
+	 * @param map The type of address you a want to assign (`double`, `int`, etc) is determined by the `map` you feed it. This map should be one of the `fMap_*` data members of this class.
 	 */
 	template<typename TYPE>
 	void SimplifiedTree::SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map)
@@ -244,7 +261,11 @@
 	}
 
 	/**
-	 * @brief
+	 * @brief Set a memory address for one of the branches of `fTree`. Only do this if `fTree` exists.
+	 * 
+	 * @tparam TYPE The `typename` of the address. It is determined by the `map` you feed it.
+	 * @param obj The object from which you want to load the address. This is usually a `TBranch` object.
+	 * @param map The type of address you a want to assign (`double`, `int`, etc) is determined by the `map` you feed it. This map should be one of the `fMap_*` data members of this class.
 	 */
 	template<typename TYPE>
 	void SimplifiedTree::SetAddressSafe(TObject* obj, std::unordered_map<std::string, TYPE> &map)

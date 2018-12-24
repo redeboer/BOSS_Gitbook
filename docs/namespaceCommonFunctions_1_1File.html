@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BOSS Afterburner: src Directory Reference</title>
+<title>BOSS Afterburner: CommonFunctions::File Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('dir_6b2592e651d7cc236fd4807d01a049f6.html','');});
+$(document).ready(function(){initNavTree('namespaceCommonFunctions_1_1File.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -79,22 +79,56 @@ $(document).ready(function(){initNavTree('dir_6b2592e651d7cc236fd4807d01a049f6.h
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">src Directory Reference</div>  </div>
+<div class="title">CommonFunctions::File Namespace Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:DzeroOmega_8cxx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DzeroOmega_8cxx.html">DzeroOmega.cxx</a> <a href="DzeroOmega_8cxx_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a59d365fb3792eaa3bab6d275a1a2d9ba"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1File.html#a59d365fb3792eaa3bab6d275a1a2d9ba">SetOutputFilename</a> (const char *filenameWithoutExt)</td></tr>
+<tr class="memdesc:a59d365fb3792eaa3bab6d275a1a2d9ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a file name from the settings in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> and from the file name (without extension) that you feed it.  <a href="#a59d365fb3792eaa3bab6d275a1a2d9ba">More...</a><br /></td></tr>
+<tr class="separator:a59d365fb3792eaa3bab6d275a1a2d9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a59d365fb3792eaa3bab6d275a1a2d9ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59d365fb3792eaa3bab6d275a1a2d9ba">&#9670;&nbsp;</a></span>SetOutputFilename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * CommonFunctions::File::SetOutputFilename </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filenameWithoutExt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates a file name from the settings in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> and from the file name (without extension) that you feed it. </p>
+<p>You don't have to worry about creating the output directory, as it is created automatically from the slashes <code>/</code> in the resulting file name</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filenameWithoutExt</td><td><code>PlotOutputDir</code> in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> will be prepended to this file name and <code>Extension</code> will be appended. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Full path of the resulting output file name. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00250">250</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d512eca388d0304a639bcc3038caaed2.html">boss</a></li><li class="navelem"><a class="el" href="dir_f89e2a3a4e3f7e3cd35f1001020acb3a.html">workarea</a></li><li class="navelem"><a class="el" href="dir_deefc57b6511e7f47a898946c4bd43a9.html">Analysis</a></li><li class="navelem"><a class="el" href="dir_7c38c780e5c5f17ee51e062c3a587284.html">Physics</a></li><li class="navelem"><a class="el" href="dir_8d77c082f8312f01f372e8bc94849fc0.html">DzeroOmega</a></li><li class="navelem"><a class="el" href="dir_6762146f36d49c4fe7ba85c8f3ef15cb.html">DzeroOmega-00-00-00</a></li><li class="navelem"><a class="el" href="dir_6b2592e651d7cc236fd4807d01a049f6.html">src</a></li>
+    <li class="navelem"><a class="el" href="namespaceCommonFunctions.html">CommonFunctions</a></li><li class="navelem"><a class="el" href="namespaceCommonFunctions_1_1File.html">File</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>

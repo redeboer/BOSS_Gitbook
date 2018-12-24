@@ -14,8 +14,8 @@ var FrameworkSettings_8h =
     [ "Rho0", "FrameworkSettings_8h.html#a5a404d3db862276fa70b85a353496d4e", null ],
     [ "Rhop", "FrameworkSettings_8h.html#ac5ee28e78d69a5286adf393275007703", null ],
     [ "Extension", "FrameworkSettings_8h.html#a56c2848c86dd66f8be712d5280dc2cbf", null ],
-    [ "fSigmaScaleFactorLow", "FrameworkSettings_8h.html#a2c62fc362b530dcfe8919046c84a111b", null ],
-    [ "fSigmaScaleFactorUp", "FrameworkSettings_8h.html#acc10bfdd99581ba7e6f8428ef3f777f1", null ],
+    [ "gSigmaScaleFactorLow", "FrameworkSettings_8h.html#a77774996889347bcfb0241479ff4a796", null ],
+    [ "gSigmaScaleFactorUp", "FrameworkSettings_8h.html#a869e829da176886304d7e7fd0351154e", null ],
     [ "PlotOutputDir", "FrameworkSettings_8h.html#a6b2502545822c854885380b81f2717a2", null ],
     [ "TofUnitCm", "FrameworkSettings_8h.html#a715b085f4483020a4a81cca11ee0a6e3", null ],
     [ "TofUnitMm", "FrameworkSettings_8h.html#abb477379321d99bd67bac345e4764fe0", null ]

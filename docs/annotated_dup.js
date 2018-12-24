@@ -1,9 +1,9 @@
 var annotated_dup =
 [
+    [ "CommonFunctions", "namespaceCommonFunctions.html", null ],
     [ "Settings", "namespaceSettings.html", null ],
     [ "BOSSRootChain", "classBOSSRootChain.html", "classBOSSRootChain" ],
     [ "BOSSRootFile", "classBOSSRootFile.html", "classBOSSRootFile" ],
-    [ "DzeroOmega", "classDzeroOmega.html", "classDzeroOmega" ],
     [ "DzeroPhi", "classDzeroPhi.html", "classDzeroPhi" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],

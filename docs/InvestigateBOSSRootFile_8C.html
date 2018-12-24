@@ -80,16 +80,14 @@ $(document).ready(function(){initNavTree('InvestigateBOSSRootFile_8C.html','');}
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">InvestigateBOSSRootFile.C File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="CommonFunctions_8h_source.html">../inc/CommonFunctions.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="BOSSRootFile_8h_source.html">../inc/BOSSRootFile.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="FrameworkSettings_8h_source.html">../inc/FrameworkSettings.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ReconstructedParticle_8h_source.html">../inc/ReconstructedParticle.h</a>&quot;</code><br />
-<code>#include &quot;TH1D.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="BOSSRootFile_8h_source.html">../inc/BOSSRootFile.h</a>&quot;</code><br />
+<code>#include &quot;TStyle.h&quot;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 </div>
 <p><a href="InvestigateBOSSRootFile_8C_source.html">Go to the source code of this file.</a></p>
@@ -102,6 +100,45 @@ Functions</h2></td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function that is called when executing the executable compiled using e.g.  <a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">More...</a><br /></td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a98704691bff479196601fa28ca402e2a"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#a98704691bff479196601fa28ca402e2a">print</a> = false</td></tr>
+<tr class="memdesc:a98704691bff479196601fa28ca402e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to use the precisely set histogram ranges.  <a href="#a98704691bff479196601fa28ca402e2a">More...</a><br /></td></tr>
+<tr class="separator:a98704691bff479196601fa28ca402e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2d25f24081e5e209992b9769d11360"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#a0b2d25f24081e5e209992b9769d11360">setranges</a> = true</td></tr>
+<tr class="memdesc:a0b2d25f24081e5e209992b9769d11360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to precisely set histogram ranges.  <a href="#a0b2d25f24081e5e209992b9769d11360">More...</a><br /></td></tr>
+<tr class="separator:a0b2d25f24081e5e209992b9769d11360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab52728055a03022adc39e2431ec655cd"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#ab52728055a03022adc39e2431ec655cd">plotstats</a> = true</td></tr>
+<tr class="memdesc:ab52728055a03022adc39e2431ec655cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the legend in the upper right corner with histogram statistics.  <a href="#ab52728055a03022adc39e2431ec655cd">More...</a><br /></td></tr>
+<tr class="separator:ab52728055a03022adc39e2431ec655cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a256076e616aa416b2ef78d2cd1210c42"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#a256076e616aa416b2ef78d2cd1210c42">pureplot</a> = false</td></tr>
+<tr class="memdesc:a256076e616aa416b2ef78d2cd1210c42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to plot histograms of branches <em>without fit</em>.  <a href="#a256076e616aa416b2ef78d2cd1210c42">More...</a><br /></td></tr>
+<tr class="separator:a256076e616aa416b2ef78d2cd1210c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c08aca6102b4f9d72aedce131eaf26e"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#a5c08aca6102b4f9d72aedce131eaf26e">draw_mult</a> = true</td></tr>
+<tr class="memdesc:a5c08aca6102b4f9d72aedce131eaf26e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"mult"</code> branch.  <a href="#a5c08aca6102b4f9d72aedce131eaf26e">More...</a><br /></td></tr>
+<tr class="separator:a5c08aca6102b4f9d72aedce131eaf26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e5ad465d8390ffee3d881543d533e3"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#ac5e5ad465d8390ffee3d881543d533e3">draw_vertex</a> = true</td></tr>
+<tr class="memdesc:ac5e5ad465d8390ffee3d881543d533e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"vertex"</code> branch.  <a href="#ac5e5ad465d8390ffee3d881543d533e3">More...</a><br /></td></tr>
+<tr class="separator:ac5e5ad465d8390ffee3d881543d533e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b338e36f5c83d1718a711d50b5b297d"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#a0b338e36f5c83d1718a711d50b5b297d">draw_tof</a> = true</td></tr>
+<tr class="memdesc:a0b338e36f5c83d1718a711d50b5b297d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"tof*"</code> branches.  <a href="#a0b338e36f5c83d1718a711d50b5b297d">More...</a><br /></td></tr>
+<tr class="separator:a0b338e36f5c83d1718a711d50b5b297d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ea6f861bbe42b60c05529127f4b5743"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#a7ea6f861bbe42b60c05529127f4b5743">draw_pid</a> = true</td></tr>
+<tr class="memdesc:a7ea6f861bbe42b60c05529127f4b5743"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"pid"</code> branches.  <a href="#a7ea6f861bbe42b60c05529127f4b5743">More...</a><br /></td></tr>
+<tr class="separator:a7ea6f861bbe42b60c05529127f4b5743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3db467e3b0c410e35f9fe1cf63274b47"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#a3db467e3b0c410e35f9fe1cf63274b47">draw_fit</a> = true</td></tr>
+<tr class="memdesc:a3db467e3b0c410e35f9fe1cf63274b47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"fit"</code> branches.  <a href="#a3db467e3b0c410e35f9fe1cf63274b47">More...</a><br /></td></tr>
+<tr class="separator:a3db467e3b0c410e35f9fe1cf63274b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af812bd559c02c2cd596579fbd2b32d51"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#af812bd559c02c2cd596579fbd2b32d51">performfits</a> = true</td></tr>
+<tr class="memdesc:af812bd559c02c2cd596579fbd2b32d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce invariant mass fits.  <a href="#af812bd559c02c2cd596579fbd2b32d51">More...</a><br /></td></tr>
+<tr class="separator:af812bd559c02c2cd596579fbd2b32d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4478dd8c5051928285f160369c37b80b"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#a4478dd8c5051928285f160369c37b80b">do_gauss</a> = false</td></tr>
+<tr class="memdesc:a4478dd8c5051928285f160369c37b80b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a double Gaussian fit.  <a href="#a4478dd8c5051928285f160369c37b80b">More...</a><br /></td></tr>
+<tr class="separator:a4478dd8c5051928285f160369c37b80b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f5064227e8c5776c3e7aedbd29e72b7"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="InvestigateBOSSRootFile_8C.html#a6f5064227e8c5776c3e7aedbd29e72b7">do_conv</a> = true</td></tr>
+<tr class="memdesc:a6f5064227e8c5776c3e7aedbd29e72b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a Breit-Wigner convoluted with a double Gaussian.  <a href="#a6f5064227e8c5776c3e7aedbd29e72b7">More...</a><br /></td></tr>
+<tr class="separator:a6f5064227e8c5776c3e7aedbd29e72b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a94ca994c0d189e9d171b3113e063ec0c"></a>
@@ -122,7 +159,7 @@ Functions</h2></td></tr>
 <p>Main function used when compiling and executing in <code>ROOT</code>. </p>
 <p>To investigate the contents of the ROOT file, you first need to know which <code>TTree</code>s and branches it contains. If you simply construct the <code><a class="el" href="classBOSSRootFile.html" title="General container for BOSS analysis output. ">BOSSRootFile</a></code> by giving it a file name, all <code>TTree</code>s will be loaded automatically as well as addresses for each of their branches. Five the constructer <code>true</code> as its second argument, and the names of these <code>TTree</code>s, their branches, and the types of these branches (behind the slash <code>/</code> after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00028">28</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00053">53</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
 
 </div>
 </div>
@@ -144,7 +181,224 @@ Functions</h2></td></tr>
 <p>Main function that is called when executing the executable compiled using e.g. </p>
 <p><code>g++</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00103">103</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00172">172</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a6f5064227e8c5776c3e7aedbd29e72b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f5064227e8c5776c3e7aedbd29e72b7">&#9670;&nbsp;</a></span>do_conv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool do_conv = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to produce perform a Breit-Wigner convoluted with a double Gaussian. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00043">43</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="a4478dd8c5051928285f160369c37b80b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4478dd8c5051928285f160369c37b80b">&#9670;&nbsp;</a></span>do_gauss</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool do_gauss = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to produce perform a double Gaussian fit. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00042">42</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="a3db467e3b0c410e35f9fe1cf63274b47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3db467e3b0c410e35f9fe1cf63274b47">&#9670;&nbsp;</a></span>draw_fit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool draw_fit = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to draw the <code>"fit"</code> branches. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00038">38</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="a5c08aca6102b4f9d72aedce131eaf26e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c08aca6102b4f9d72aedce131eaf26e">&#9670;&nbsp;</a></span>draw_mult</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool draw_mult = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to draw the <code>"mult"</code> branch. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00034">34</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="a7ea6f861bbe42b60c05529127f4b5743"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ea6f861bbe42b60c05529127f4b5743">&#9670;&nbsp;</a></span>draw_pid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool draw_pid = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to draw the <code>"pid"</code> branches. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00037">37</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="a0b338e36f5c83d1718a711d50b5b297d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b338e36f5c83d1718a711d50b5b297d">&#9670;&nbsp;</a></span>draw_tof</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool draw_tof = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to draw the <code>"tof*"</code> branches. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00036">36</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="ac5e5ad465d8390ffee3d881543d533e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5e5ad465d8390ffee3d881543d533e3">&#9670;&nbsp;</a></span>draw_vertex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool draw_vertex = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to draw the <code>"vertex"</code> branch. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00035">35</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="af812bd559c02c2cd596579fbd2b32d51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af812bd559c02c2cd596579fbd2b32d51">&#9670;&nbsp;</a></span>performfits</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool performfits = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to produce invariant mass fits. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00041">41</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="ab52728055a03022adc39e2431ec655cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab52728055a03022adc39e2431ec655cd">&#9670;&nbsp;</a></span>plotstats</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool plotstats = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to draw the legend in the upper right corner with histogram statistics. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00030">30</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="a98704691bff479196601fa28ca402e2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98704691bff479196601fa28ca402e2a">&#9670;&nbsp;</a></span>print</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool print = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to use the precisely set histogram ranges. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00026">26</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="a256076e616aa416b2ef78d2cd1210c42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a256076e616aa416b2ef78d2cd1210c42">&#9670;&nbsp;</a></span>pureplot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool pureplot = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to plot histograms of branches <em>without fit</em>. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00033">33</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
+
+</div>
+</div>
+<a id="a0b2d25f24081e5e209992b9769d11360"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b2d25f24081e5e209992b9769d11360">&#9670;&nbsp;</a></span>setranges</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool setranges = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not to precisely set histogram ranges. </p>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateBOSSRootFile_8C_source.html#l00029">29</a> of file <a class="el" href="InvestigateBOSSRootFile_8C_source.html">InvestigateBOSSRootFile.C</a>.</p>
 
 </div>
 </div>

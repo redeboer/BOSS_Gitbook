@@ -1,5 +1,6 @@
 var files =
 [
+    [ "AnalyseDzeroPhi_MC.C", "AnalyseDzeroPhi__MC_8C.html", "AnalyseDzeroPhi__MC_8C" ],
     [ "BOSSRootChain.h", "BOSSRootChain_8h.html", [
       [ "BOSSRootChain", "classBOSSRootChain.html", "classBOSSRootChain" ]
     ] ],
@@ -8,10 +9,6 @@ var files =
     ] ],
     [ "CommonFunctions.h", "CommonFunctions_8h.html", "CommonFunctions_8h" ],
     [ "CompareChainVsHadd.C", "CompareChainVsHadd_8C.html", "CompareChainVsHadd_8C" ],
-    [ "DzeroOmega.cxx", "DzeroOmega_8cxx.html", "DzeroOmega_8cxx" ],
-    [ "DzeroOmega.h", "DzeroOmega_8h.html", [
-      [ "DzeroOmega", "classDzeroOmega.html", "classDzeroOmega" ]
-    ] ],
     [ "DzeroPhi.cxx", "DzeroPhi_8cxx.html", "DzeroPhi_8cxx" ],
     [ "DzeroPhi.h", "DzeroPhi_8h.html", [
       [ "DzeroPhi", "classDzeroPhi.html", "classDzeroPhi" ]
