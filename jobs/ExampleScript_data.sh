@@ -16,9 +16,9 @@ source CommonFunctions.sh
 packageName="DzeroPhi" # RhopiAlg
 nFilesPerJob=100
 nEventsPerJob=-1
-identifier="DzeroPhi_mc" # besfs3_offline_data_703-1_jpsi_round02_dst
+identifier="besfs3_offline_data_703-1_jpsi_round02_dst" # DzeroPhi_mc
 fileToRead="filenames/ExampleFile_DzeroPhi_mc" # filenames/ExampleFile_DstFiles
-gExampleFromFile=1 #! set to 1 if you want to load your dst files from "${fileToRead}"
+gExampleFromFile=0 #! set to 1 if you want to load your dst files from "${fileToRead}"
 
 # * Create job from template and submit * #
 if [ ${gExampleFromFile} == 1 ]; then
