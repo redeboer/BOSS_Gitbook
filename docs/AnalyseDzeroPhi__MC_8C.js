@@ -10,7 +10,7 @@ var AnalyseDzeroPhi__MC_8C =
     [ "draw_pid", "AnalyseDzeroPhi__MC_8C.html#a7ea6f861bbe42b60c05529127f4b5743", null ],
     [ "draw_tof", "AnalyseDzeroPhi__MC_8C.html#a0b338e36f5c83d1718a711d50b5b297d", null ],
     [ "draw_vertex", "AnalyseDzeroPhi__MC_8C.html#ac5e5ad465d8390ffee3d881543d533e3", null ],
-    [ "performfits", "AnalyseDzeroPhi__MC_8C.html#af812bd559c02c2cd596579fbd2b32d51", null ],
+    [ "fitplots", "AnalyseDzeroPhi__MC_8C.html#a800f740198dd1e411432f65114f45e95", null ],
     [ "plotstats", "AnalyseDzeroPhi__MC_8C.html#ab52728055a03022adc39e2431ec655cd", null ],
     [ "print", "AnalyseDzeroPhi__MC_8C.html#a98704691bff479196601fa28ca402e2a", null ],
     [ "pureplot", "AnalyseDzeroPhi__MC_8C.html#a256076e616aa416b2ef78d2cd1210c42", null ],

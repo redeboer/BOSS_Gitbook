@@ -19,7 +19,6 @@ var classSimplifiedTree =
     [ "Get_S", "classSimplifiedTree.html#ab575f5b5bba79fea49802925b9b294bc", null ],
     [ "Get_s", "classSimplifiedTree.html#ac1aa305657cc14ccce501f7d78d7eb10", null ],
     [ "GetInvariantMassHistogram", "classSimplifiedTree.html#ace7e81c24b09bb1a24407702f091b78d", null ],
-    [ "Print", "classSimplifiedTree.html#acc42bd4d3274a5426344d919f5a6cbf7", null ],
     [ "SetAddress", "classSimplifiedTree.html#ad555eb545bd6dc66e0be1f9084f9b135", null ],
     [ "SetAddressSafe", "classSimplifiedTree.html#af87a25b6a6ce6e05be3390f23b91252a", null ],
     [ "fMap_B", "classSimplifiedTree.html#a9e0e98ef6bfb1c7ef11791f84a8960f6", null ],

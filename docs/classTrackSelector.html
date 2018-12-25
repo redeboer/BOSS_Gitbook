@@ -93,14 +93,15 @@ $(document).ready(function(){initNavTree('classTrackSelector.html','');});
 <p>Analyse <img class="formulaInl" alt="$ J/\psi \rightarrow D^0 \phi $" src="form_0.png"/> events.  
  <a href="classTrackSelector.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for TrackSelector:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classTrackSelector.png" usemap="#TrackSelector_map" alt=""/>
   <map id="TrackSelector_map" name="TrackSelector_map">
-<area href="classDzeroPhi.html" title="Analyse  events. " alt="DzeroPhi" shape="rect" coords="0,112,91,136"/>
+<area href="classD0phi__KpiKK.html" title="Analyse  events. " alt="D0phi_KpiKK" shape="rect" coords="0,112,91,136"/>
+<area href="classDzeroPhi.html" title="Analyse  events. " alt="DzeroPhi" shape="rect" coords="101,112,192,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -117,6 +118,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6866699cb5218a5c8dc313f5ff5910cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac12f71603152e155a688861d11c51c46"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46">finalize</a> ()</td></tr>
 <tr class="memdesc:ac12f71603152e155a688861d11c51c46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently does nothing.  <a href="#ac12f71603152e155a688861d11c51c46">More...</a><br /></td></tr>
+<tr class="separator:ac12f71603152e155a688861d11c51c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49dc31c983813eee609c9a0da0bca9b1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">TrackSelector</a> (const std::string &amp;name, ISvcLocator *pSvcLocator)</td></tr>
+<tr class="separator:a49dc31c983813eee609c9a0da0bca9b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66444e69d52ba9b5d861916fa072c4a4"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">initialize</a> ()</td></tr>
+<tr class="separator:a66444e69d52ba9b5d861916fa072c4a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6866699cb5218a5c8dc313f5ff5910cb"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb">execute</a> ()</td></tr>
+<tr class="separator:a6866699cb5218a5c8dc313f5ff5910cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac12f71603152e155a688861d11c51c46"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46">finalize</a> ()</td></tr>
 <tr class="separator:ac12f71603152e155a688861d11c51c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -159,37 +168,78 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4aa121259e7330386e1262f7db3dfdda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a4aa121259e7330386e1262f7db3dfdda">WritePIDInformation</a> (ParticleID *pid)</td></tr>
 <tr class="memdesc:a4aa121259e7330386e1262f7db3dfdda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the proces of writing PID info.  <a href="#a4aa121259e7330386e1262f7db3dfdda">More...</a><br /></td></tr>
 <tr class="separator:a4aa121259e7330386e1262f7db3dfdda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5e02b9a51339c95698f6dae2c90f14c"><td class="memItemLeft" align="right" valign="top">virtual StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab5e02b9a51339c95698f6dae2c90f14c">initialize_rest</a> ()</td></tr>
+<tr class="separator:ab5e02b9a51339c95698f6dae2c90f14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69ddbfaeff48cba62945974347164e7e"><td class="memItemLeft" align="right" valign="top">virtual StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a69ddbfaeff48cba62945974347164e7e">execute_rest</a> ()</td></tr>
+<tr class="separator:a69ddbfaeff48cba62945974347164e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f37a38b6aad9834eb136fa7627eb293"><td class="memItemLeft" align="right" valign="top">virtual StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7f37a38b6aad9834eb136fa7627eb293">finalize_rest</a> ()</td></tr>
+<tr class="separator:a7f37a38b6aad9834eb136fa7627eb293"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9c392d03c1b2c0d6d86b8ef611cb759"><td class="memItemLeft" align="right" valign="top">NTuplePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad9c392d03c1b2c0d6d86b8ef611cb759">BookNTuple</a> (const char *tupleName, const char *tupleTitle=&quot;ks N-Tuple example&quot;)</td></tr>
+<tr class="separator:ad9c392d03c1b2c0d6d86b8ef611cb759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10becc29ead92c8dc00fc8019f05e87e"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a10becc29ead92c8dc00fc8019f05e87e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a10becc29ead92c8dc00fc8019f05e87e">AddItemsToNTuples</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="separator:a10becc29ead92c8dc00fc8019f05e87e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e2ec4e0038ccc02964c5aea59ff20e1"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a6e2ec4e0038ccc02964c5aea59ff20e1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6e2ec4e0038ccc02964c5aea59ff20e1">AddItemsToNTuples</a> (NTuplePtr nt, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="separator:a6e2ec4e0038ccc02964c5aea59ff20e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1423181b80d3eab1f618cb4318be223f"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a1423181b80d3eab1f618cb4318be223f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1423181b80d3eab1f618cb4318be223f">BookNtupleItemsDedx</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="separator:a1423181b80d3eab1f618cb4318be223f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00430763d0fc661cefd8bbe3978db82a"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a00430763d0fc661cefd8bbe3978db82a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a00430763d0fc661cefd8bbe3978db82a">BookNtupleItemsTof</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="separator:a00430763d0fc661cefd8bbe3978db82a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebdb86764877e8e9ab2a74dbd15f35ef"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:aebdb86764877e8e9ab2a74dbd15f35ef"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aebdb86764877e8e9ab2a74dbd15f35ef">WriteDedxInfo</a> (EvtRecTrack *evtRecTrack, const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="separator:aebdb86764877e8e9ab2a74dbd15f35ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a999c5f565c958efcdb3cce4afb1560ca"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a999c5f565c958efcdb3cce4afb1560ca"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a999c5f565c958efcdb3cce4afb1560ca">WriteTofInformation</a> (SmartRefVector&lt; RecTofTrack &gt;::iterator iter_tof, double ptrk, const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;map)</td></tr>
+<tr class="separator:a999c5f565c958efcdb3cce4afb1560ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4470f7a896fa2b98a32ecaaf77a310a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a4470f7a896fa2b98a32ecaaf77a310a7">ResetSmallestChiSq</a> ()</td></tr>
+<tr class="memdesc:a4470f7a896fa2b98a32ecaaf77a310a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <code>fSmallestChiSq</code> back to a large value.  <a href="#a4470f7a896fa2b98a32ecaaf77a310a7">More...</a><br /></td></tr>
+<tr class="separator:a4470f7a896fa2b98a32ecaaf77a310a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54cb7f99524d0fec5e854711e9e3be66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a54cb7f99524d0fec5e854711e9e3be66">ResetSmallestChiSq</a> (double &amp;chisq)</td></tr>
+<tr class="memdesc:a54cb7f99524d0fec5e854711e9e3be66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <code>fSmallestChiSq</code> back to a large value.  <a href="#a54cb7f99524d0fec5e854711e9e3be66">More...</a><br /></td></tr>
+<tr class="separator:a54cb7f99524d0fec5e854711e9e3be66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1eaa42584a11fa2f96466de1e032bfa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac1eaa42584a11fa2f96466de1e032bfa">WriteDedxInfoForVector</a> (std::vector&lt; EvtRecTrack *&gt; &amp;vector, const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map)</td></tr>
+<tr class="separator:ac1eaa42584a11fa2f96466de1e032bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aa121259e7330386e1262f7db3dfdda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a4aa121259e7330386e1262f7db3dfdda">WritePIDInformation</a> (ParticleID *pid)</td></tr>
+<tr class="separator:a4aa121259e7330386e1262f7db3dfdda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e0e5162c35890e141524a2cb73c6ea0"><td class="memItemLeft" align="right" valign="top">HepLorentzVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0">ComputeMomentum</a> (EvtRecTrack *track)</td></tr>
+<tr class="memdesc:a2e0e5162c35890e141524a2cb73c6ea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute a 'momentum' for a neutral track.  <a href="#a2e0e5162c35890e141524a2cb73c6ea0">More...</a><br /></td></tr>
+<tr class="separator:a2e0e5162c35890e141524a2cb73c6ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a94dfa3d4153e1798e155e5a0e5d733af"><td class="memItemLeft" align="right" valign="top">MsgStream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a94dfa3d4153e1798e155e5a0e5d733af">fLog</a></td></tr>
 <tr class="memdesc:a94dfa3d4153e1798e155e5a0e5d733af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.  <a href="#a94dfa3d4153e1798e155e5a0e5d733af">More...</a><br /></td></tr>
 <tr class="separator:a94dfa3d4153e1798e155e5a0e5d733af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5d79e3f40c41fc90bdb1752befc3829"><td class="memItemLeft" align="right" valign="top">RecMdcDedx *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad5d79e3f40c41fc90bdb1752befc3829">fTrackDedx</a></td></tr>
-<tr class="separator:ad5d79e3f40c41fc90bdb1752befc3829"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed5df19dcb2673d959a160401682189c"><td class="memItemLeft" align="right" valign="top">RecMdcTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aed5df19dcb2673d959a160401682189c">fTrackMDC</a></td></tr>
-<tr class="separator:aed5df19dcb2673d959a160401682189c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a660f30908144b2029444c891c79c4196"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; Event::EventHeader &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a660f30908144b2029444c891c79c4196">fEventHeader</a></td></tr>
-<tr class="memdesc:a660f30908144b2029444c891c79c4196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>Event::EventHeader</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event.  <a href="#a660f30908144b2029444c891c79c4196">More...</a><br /></td></tr>
-<tr class="separator:a660f30908144b2029444c891c79c4196"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bc4f864aeff7186812300fc1435629a"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; EvtRecEvent &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a3bc4f864aeff7186812300fc1435629a">fEvtRecEvent</a></td></tr>
-<tr class="memdesc:a3bc4f864aeff7186812300fc1435629a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>EventModel::EvtRec::EvtRecEvent</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event.  <a href="#a3bc4f864aeff7186812300fc1435629a">More...</a><br /></td></tr>
-<tr class="separator:a3bc4f864aeff7186812300fc1435629a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a918337343c0640834a5e552fae23fac1"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; EvtRecTrackCol &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a918337343c0640834a5e552fae23fac1">fEvtRecTrkCol</a></td></tr>
-<tr class="memdesc:a918337343c0640834a5e552fae23fac1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>EventModel::EvtRec::EvtRecTrackCol</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event.  <a href="#a918337343c0640834a5e552fae23fac1">More...</a><br /></td></tr>
-<tr class="separator:a918337343c0640834a5e552fae23fac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3bb6fea7280ae9043373d08a5a53d63"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Tuple * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad3bb6fea7280ae9043373d08a5a53d63">fNTupleMap</a></td></tr>
-<tr class="memdesc:ad3bb6fea7280ae9043373d08a5a53d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map for <code>NTuple::Tuple*</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>.  <a href="#ad3bb6fea7280ae9043373d08a5a53d63">More...</a><br /></td></tr>
-<tr class="separator:ad3bb6fea7280ae9043373d08a5a53d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75e77ff675380b667a4039d74fce414a"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::vector&lt; EvtRecTrack * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a75e77ff675380b667a4039d74fce414a">fEvtRecTrackMap</a></td></tr>
-<tr class="memdesc:a75e77ff675380b667a4039d74fce414a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of vectors.  <a href="#a75e77ff675380b667a4039d74fce414a">More...</a><br /></td></tr>
-<tr class="separator:a75e77ff675380b667a4039d74fce414a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d146b4022233ef370931942f342ef41"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7d146b4022233ef370931942f342ef41">fGoodChargedTracks</a></td></tr>
-<tr class="memdesc:a7d146b4022233ef370931942f342ef41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will contain a selection of pointers to 'good' charged tracks.  <a href="#a7d146b4022233ef370931942f342ef41">More...</a><br /></td></tr>
-<tr class="separator:a7d146b4022233ef370931942f342ef41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add6afbc2cbef50351e3b9271994e11e0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#add6afbc2cbef50351e3b9271994e11e0">fTrackIterator</a></td></tr>
-<tr class="memdesc:add6afbc2cbef50351e3b9271994e11e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of charged and neutral tracks (<code>EvtRecTrackCol</code>).  <a href="#add6afbc2cbef50351e3b9271994e11e0">More...</a><br /></td></tr>
-<tr class="separator:add6afbc2cbef50351e3b9271994e11e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5230a69b669948e268955c1af3d692e1"><td class="memItemLeft" align="right" valign="top">RecMdcDedx *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5230a69b669948e268955c1af3d692e1">fTrackDedx</a></td></tr>
+<tr class="memdesc:a5230a69b669948e268955c1af3d692e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the <img class="formulaInl" alt="$dE/dx$" src="form_27.png"/> info from the MDC. It is a data member to make it accessible to other methods as well.  <a href="#a5230a69b669948e268955c1af3d692e1">More...</a><br /></td></tr>
+<tr class="separator:a5230a69b669948e268955c1af3d692e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e699507d7ec4f2b23581204b11130d"><td class="memItemLeft" align="right" valign="top">RecMdcTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a48e699507d7ec4f2b23581204b11130d">fTrackMDC</a></td></tr>
+<tr class="memdesc:a48e699507d7ec4f2b23581204b11130d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the track info from the MDC. It is a data member to make it accessible to other methods as well.  <a href="#a48e699507d7ec4f2b23581204b11130d">More...</a><br /></td></tr>
+<tr class="separator:a48e699507d7ec4f2b23581204b11130d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aa727ea591601f5447981594796f93a"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; Event::EventHeader &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a0aa727ea591601f5447981594796f93a">fEventHeader</a></td></tr>
+<tr class="memdesc:a0aa727ea591601f5447981594796f93a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>Event::EventHeader</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event.  <a href="#a0aa727ea591601f5447981594796f93a">More...</a><br /></td></tr>
+<tr class="separator:a0aa727ea591601f5447981594796f93a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdde97bfff210e3a029f48c7a8f802d1"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; EvtRecEvent &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#afdde97bfff210e3a029f48c7a8f802d1">fEvtRecEvent</a></td></tr>
+<tr class="memdesc:afdde97bfff210e3a029f48c7a8f802d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>EventModel::EvtRec::EvtRecEvent</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event.  <a href="#afdde97bfff210e3a029f48c7a8f802d1">More...</a><br /></td></tr>
+<tr class="separator:afdde97bfff210e3a029f48c7a8f802d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd38de620938f3cc36648bb42187a31b"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; EvtRecTrackCol &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#afd38de620938f3cc36648bb42187a31b">fEvtRecTrkCol</a></td></tr>
+<tr class="memdesc:afd38de620938f3cc36648bb42187a31b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>EventModel::EvtRec::EvtRecTrackCol</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event.  <a href="#afd38de620938f3cc36648bb42187a31b">More...</a><br /></td></tr>
+<tr class="separator:afd38de620938f3cc36648bb42187a31b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad65c705411c0dc43c982e0cdfb2aac16"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Tuple * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad65c705411c0dc43c982e0cdfb2aac16">fNTupleMap</a></td></tr>
+<tr class="memdesc:ad65c705411c0dc43c982e0cdfb2aac16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map for <code>NTuple::Tuple*</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>.  <a href="#ad65c705411c0dc43c982e0cdfb2aac16">More...</a><br /></td></tr>
+<tr class="separator:ad65c705411c0dc43c982e0cdfb2aac16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d3155a4f2f5c99348bb6d7e76574a7b"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::vector&lt; EvtRecTrack * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a2d3155a4f2f5c99348bb6d7e76574a7b">fEvtRecTrackMap</a></td></tr>
+<tr class="memdesc:a2d3155a4f2f5c99348bb6d7e76574a7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of vectors.  <a href="#a2d3155a4f2f5c99348bb6d7e76574a7b">More...</a><br /></td></tr>
+<tr class="separator:a2d3155a4f2f5c99348bb6d7e76574a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c22257884c0c5a8971944d87aaddb1e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a3c22257884c0c5a8971944d87aaddb1e">fGoodChargedTracks</a></td></tr>
+<tr class="memdesc:a3c22257884c0c5a8971944d87aaddb1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will contain a selection of pointers to 'good' charged tracks.  <a href="#a3c22257884c0c5a8971944d87aaddb1e">More...</a><br /></td></tr>
+<tr class="separator:a3c22257884c0c5a8971944d87aaddb1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfe96f33b0124c6e5d5301d97ff9848b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#acfe96f33b0124c6e5d5301d97ff9848b">fTrackIterator</a></td></tr>
+<tr class="memdesc:acfe96f33b0124c6e5d5301d97ff9848b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of charged and neutral tracks (<code>EvtRecTrackCol</code>).  <a href="#acfe96f33b0124c6e5d5301d97ff9848b">More...</a><br /></td></tr>
+<tr class="separator:acfe96f33b0124c6e5d5301d97ff9848b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace46ce46059a67a807858a1cbb39b9ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ace46ce46059a67a807858a1cbb39b9ae">fDoMult</a></td></tr>
 <tr class="memdesc:ace46ce46059a67a807858a1cbb39b9ae"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple</code>s are like vectors, but its members do not necessarily have to be of the same type.  <a href="#ace46ce46059a67a807858a1cbb39b9ae">More...</a><br /></td></tr>
 <tr class="separator:ace46ce46059a67a807858a1cbb39b9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,30 +264,72 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:afde38a3f39aad4b57de638871ebfa6ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#afde38a3f39aad4b57de638871ebfa6ca">fDoPID</a></td></tr>
 <tr class="memdesc:afde38a3f39aad4b57de638871ebfa6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record PID information.  <a href="#afde38a3f39aad4b57de638871ebfa6ca">More...</a><br /></td></tr>
 <tr class="separator:afde38a3f39aad4b57de638871ebfa6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c60c75f53e68ac3d059c0a63603c57a"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6c60c75f53e68ac3d059c0a63603c57a">fMult</a></td></tr>
-<tr class="memdesc:a6c60c75f53e68ac3d059c0a63603c57a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the multiplicy branch.  <a href="#a6c60c75f53e68ac3d059c0a63603c57a">More...</a><br /></td></tr>
-<tr class="separator:a6c60c75f53e68ac3d059c0a63603c57a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e9980a95371faee9c1be02d9d095062"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9e9980a95371faee9c1be02d9d095062">fVertex</a></td></tr>
-<tr class="memdesc:a9e9980a95371faee9c1be02d9d095062"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the vertex branch.  <a href="#a9e9980a95371faee9c1be02d9d095062">More...</a><br /></td></tr>
-<tr class="separator:a9e9980a95371faee9c1be02d9d095062"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88f5c92a5fb8a8e8f5b9d5e9fe237dd5"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a88f5c92a5fb8a8e8f5b9d5e9fe237dd5">fMult</a></td></tr>
+<tr class="memdesc:a88f5c92a5fb8a8e8f5b9d5e9fe237dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the multiplicy branch.  <a href="#a88f5c92a5fb8a8e8f5b9d5e9fe237dd5">More...</a><br /></td></tr>
+<tr class="separator:a88f5c92a5fb8a8e8f5b9d5e9fe237dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad97d2dd7e3233fff1549194c8cb69dc1"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad97d2dd7e3233fff1549194c8cb69dc1">fVertex</a></td></tr>
+<tr class="memdesc:ad97d2dd7e3233fff1549194c8cb69dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the vertex branch.  <a href="#ad97d2dd7e3233fff1549194c8cb69dc1">More...</a><br /></td></tr>
+<tr class="separator:ad97d2dd7e3233fff1549194c8cb69dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b3a2593f3164d64e5b9a42b72cfd88a"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a4b3a2593f3164d64e5b9a42b72cfd88a">fTrackVertex</a></td></tr>
 <tr class="memdesc:a4b3a2593f3164d64e5b9a42b72cfd88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the track verex branch.  <a href="#a4b3a2593f3164d64e5b9a42b72cfd88a">More...</a><br /></td></tr>
 <tr class="separator:a4b3a2593f3164d64e5b9a42b72cfd88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50e8129c4c8b96b11b0e142dd6297484"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a50e8129c4c8b96b11b0e142dd6297484">fDedx</a></td></tr>
-<tr class="memdesc:a50e8129c4c8b96b11b0e142dd6297484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"dedx"</code> branch.  <a href="#a50e8129c4c8b96b11b0e142dd6297484">More...</a><br /></td></tr>
-<tr class="separator:a50e8129c4c8b96b11b0e142dd6297484"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34bd4a28340d00fe05febe0db678a6b3"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a34bd4a28340d00fe05febe0db678a6b3">fTofEC</a></td></tr>
-<tr class="memdesc:a34bd4a28340d00fe05febe0db678a6b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tofe"</code> branch.  <a href="#a34bd4a28340d00fe05febe0db678a6b3">More...</a><br /></td></tr>
-<tr class="separator:a34bd4a28340d00fe05febe0db678a6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9340931d1e326992446273ddb1132f8e"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9340931d1e326992446273ddb1132f8e">fTofIB</a></td></tr>
-<tr class="memdesc:a9340931d1e326992446273ddb1132f8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tof1"</code> branch.  <a href="#a9340931d1e326992446273ddb1132f8e">More...</a><br /></td></tr>
-<tr class="separator:a9340931d1e326992446273ddb1132f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab49d194b6fdaf63881dfca9544b732e8"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab49d194b6fdaf63881dfca9544b732e8">fTofOB</a></td></tr>
-<tr class="memdesc:ab49d194b6fdaf63881dfca9544b732e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tof2"</code> branch.  <a href="#ab49d194b6fdaf63881dfca9544b732e8">More...</a><br /></td></tr>
-<tr class="separator:ab49d194b6fdaf63881dfca9544b732e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3c7e6b7351eaf52e2c0ddde6df3a473"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af3c7e6b7351eaf52e2c0ddde6df3a473">fPID</a></td></tr>
-<tr class="memdesc:af3c7e6b7351eaf52e2c0ddde6df3a473"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"pid"</code> branch. <b>Needs to be filled in the derived class!</b>  <a href="#af3c7e6b7351eaf52e2c0ddde6df3a473">More...</a><br /></td></tr>
-<tr class="separator:af3c7e6b7351eaf52e2c0ddde6df3a473"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f851a465f4d6d0be058fa3c51ea1739"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a3f851a465f4d6d0be058fa3c51ea1739">fDedx</a></td></tr>
+<tr class="memdesc:a3f851a465f4d6d0be058fa3c51ea1739"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"dedx"</code> branch.  <a href="#a3f851a465f4d6d0be058fa3c51ea1739">More...</a><br /></td></tr>
+<tr class="separator:a3f851a465f4d6d0be058fa3c51ea1739"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8afca71bf30bda71388928051805c313"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8afca71bf30bda71388928051805c313">fTofEC</a></td></tr>
+<tr class="memdesc:a8afca71bf30bda71388928051805c313"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tofe"</code> branch.  <a href="#a8afca71bf30bda71388928051805c313">More...</a><br /></td></tr>
+<tr class="separator:a8afca71bf30bda71388928051805c313"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6645c5603938c1de5c4e841e2a2ad8c9"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6645c5603938c1de5c4e841e2a2ad8c9">fTofIB</a></td></tr>
+<tr class="memdesc:a6645c5603938c1de5c4e841e2a2ad8c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tof1"</code> branch.  <a href="#a6645c5603938c1de5c4e841e2a2ad8c9">More...</a><br /></td></tr>
+<tr class="separator:a6645c5603938c1de5c4e841e2a2ad8c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a187105eedaf7590ce70e6b49f0b4e97d"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a187105eedaf7590ce70e6b49f0b4e97d">fTofOB</a></td></tr>
+<tr class="memdesc:a187105eedaf7590ce70e6b49f0b4e97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"tof2"</code> branch.  <a href="#a187105eedaf7590ce70e6b49f0b4e97d">More...</a><br /></td></tr>
+<tr class="separator:a187105eedaf7590ce70e6b49f0b4e97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46113558b9b59ab90d150d1c1dd30b59"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a46113558b9b59ab90d150d1c1dd30b59">fPID</a></td></tr>
+<tr class="memdesc:a46113558b9b59ab90d150d1c1dd30b59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the <code>"pid"</code> branch. <b>Needs to be filled in the derived class!</b>  <a href="#a46113558b9b59ab90d150d1c1dd30b59">More...</a><br /></td></tr>
+<tr class="separator:a46113558b9b59ab90d150d1c1dd30b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeba5c3a6ede9d6dfa5fc50beac17402c"><td class="memItemLeft" align="right" valign="top">RecEmcShower *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aeba5c3a6ede9d6dfa5fc50beac17402c">fTrackEMC</a></td></tr>
+<tr class="memdesc:aeba5c3a6ede9d6dfa5fc50beac17402c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the track info from the EM calorimeter. It is a data member to make it accessible to other methods as well.  <a href="#aeba5c3a6ede9d6dfa5fc50beac17402c">More...</a><br /></td></tr>
+<tr class="separator:aeba5c3a6ede9d6dfa5fc50beac17402c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a3b4277e36ac4b4d4d67580b83e3713"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a4a3b4277e36ac4b4d4d67580b83e3713">fSmallestChiSq</a></td></tr>
+<tr class="memdesc:a4a3b4277e36ac4b4d4d67580b83e3713"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_4.png"/> for the Kalman kinematic fit.  <a href="#a4a3b4277e36ac4b4d4d67580b83e3713">More...</a><br /></td></tr>
+<tr class="separator:a4a3b4277e36ac4b4d4d67580b83e3713"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00c77cb86db501f4a6f4eeda652d705a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a00c77cb86db501f4a6f4eeda652d705a">fGoodNeutralTracks</a></td></tr>
+<tr class="memdesc:a00c77cb86db501f4a6f4eeda652d705a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons).  <a href="#a00c77cb86db501f4a6f4eeda652d705a">More...</a><br /></td></tr>
+<tr class="separator:a00c77cb86db501f4a6f4eeda652d705a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64542d81ae44e4bc78816e23808ff98a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a64542d81ae44e4bc78816e23808ff98a">fDo_mult</a></td></tr>
+<tr class="memdesc:a64542d81ae44e4bc78816e23808ff98a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple</code>s are like vectors, but its members do not necessarily have to be of the same type.  <a href="#a64542d81ae44e4bc78816e23808ff98a">More...</a><br /></td></tr>
+<tr class="separator:a64542d81ae44e4bc78816e23808ff98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a610bc681e40cd7d0f9eee0a28d5e6953"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a610bc681e40cd7d0f9eee0a28d5e6953">fDo_vertex</a></td></tr>
+<tr class="memdesc:a610bc681e40cd7d0f9eee0a28d5e6953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record primary vertex info.  <a href="#a610bc681e40cd7d0f9eee0a28d5e6953">More...</a><br /></td></tr>
+<tr class="separator:a610bc681e40cd7d0f9eee0a28d5e6953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a0c719e20d8416ee5c5ee3f10b93f71"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9a0c719e20d8416ee5c5ee3f10b93f71">fDo_charged</a></td></tr>
+<tr class="memdesc:a9a0c719e20d8416ee5c5ee3f10b93f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record charged track vertex info.  <a href="#a9a0c719e20d8416ee5c5ee3f10b93f71">More...</a><br /></td></tr>
+<tr class="separator:a9a0c719e20d8416ee5c5ee3f10b93f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbe564e1a35a15c9168fba517fed70a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#acbe564e1a35a15c9168fba517fed70a1">fDo_neutral</a></td></tr>
+<tr class="memdesc:acbe564e1a35a15c9168fba517fed70a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record neutral track info.  <a href="#acbe564e1a35a15c9168fba517fed70a1">More...</a><br /></td></tr>
+<tr class="separator:acbe564e1a35a15c9168fba517fed70a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a090565d17eee32d4114016555b0d37d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a090565d17eee32d4114016555b0d37d5">fDo_dedx</a></td></tr>
+<tr class="memdesc:a090565d17eee32d4114016555b0d37d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_27.png"/>).  <a href="#a090565d17eee32d4114016555b0d37d5">More...</a><br /></td></tr>
+<tr class="separator:a090565d17eee32d4114016555b0d37d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0310003550298e0c478073d4adb74d7b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a0310003550298e0c478073d4adb74d7b">fDo_ToFEC</a></td></tr>
+<tr class="memdesc:a0310003550298e0c478073d4adb74d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record data from the Time-of-Flight end cap detector.  <a href="#a0310003550298e0c478073d4adb74d7b">More...</a><br /></td></tr>
+<tr class="separator:a0310003550298e0c478073d4adb74d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ce229cc47b1a871a9525d4f6e61820c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1ce229cc47b1a871a9525d4f6e61820c">fDo_ToFIB</a></td></tr>
+<tr class="memdesc:a1ce229cc47b1a871a9525d4f6e61820c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector.  <a href="#a1ce229cc47b1a871a9525d4f6e61820c">More...</a><br /></td></tr>
+<tr class="separator:a1ce229cc47b1a871a9525d4f6e61820c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9da1bb78187ad8b90b021059f3b1eed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac9da1bb78187ad8b90b021059f3b1eed">fDo_ToFOB</a></td></tr>
+<tr class="memdesc:ac9da1bb78187ad8b90b021059f3b1eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record data from the Time-of-Flight outer barrel detector.  <a href="#ac9da1bb78187ad8b90b021059f3b1eed">More...</a><br /></td></tr>
+<tr class="separator:ac9da1bb78187ad8b90b021059f3b1eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb45b0e83a487ea365d4b91c58a6f5c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aeb45b0e83a487ea365d4b91c58a6f5c7">fDo_pid</a></td></tr>
+<tr class="memdesc:aeb45b0e83a487ea365d4b91c58a6f5c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_27.png"/>, etc).  <a href="#aeb45b0e83a487ea365d4b91c58a6f5c7">More...</a><br /></td></tr>
+<tr class="separator:aeb45b0e83a487ea365d4b91c58a6f5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19883335565a05f5788463343c5e702b"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a19883335565a05f5788463343c5e702b">fCharged</a></td></tr>
+<tr class="memdesc:a19883335565a05f5788463343c5e702b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the charged track vertex info charged track vertex branch.  <a href="#a19883335565a05f5788463343c5e702b">More...</a><br /></td></tr>
+<tr class="separator:a19883335565a05f5788463343c5e702b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96c90305d72a5aa6bf15ac55b384b802"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a96c90305d72a5aa6bf15ac55b384b802">fNeutral</a></td></tr>
+<tr class="memdesc:a96c90305d72a5aa6bf15ac55b384b802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the neutral track info neutral track info branch.  <a href="#a96c90305d72a5aa6bf15ac55b384b802">More...</a><br /></td></tr>
+<tr class="separator:a96c90305d72a5aa6bf15ac55b384b802"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -258,16 +350,30 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aeedc4bab512f9a262ec9158311bf18db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d26301b39ad07e65808b551a5921b17"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a2d26301b39ad07e65808b551a5921b17">fGammaAngleCut</a></td></tr>
 <tr class="separator:a2d26301b39ad07e65808b551a5921b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0db38fed2c74617bca7b64958d50336"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae0db38fed2c74617bca7b64958d50336">fCut_vr0</a></td></tr>
+<tr class="memdesc:ae0db38fed2c74617bca7b64958d50336"><td class="mdescLeft">&#160;</td><td class="mdescRight">The private data members are used to define cuts. The values for these cuts should be set in the <code><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1" title="Constructor for the TrackSelector algorithm. ">TrackSelector::TrackSelector</a></code> constructor (see corresponding <code>.cxx</code> file).  <a href="#ae0db38fed2c74617bca7b64958d50336">More...</a><br /></td></tr>
+<tr class="separator:ae0db38fed2c74617bca7b64958d50336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f231a5d8e7ba7bee99ebbd25db54f1e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9f231a5d8e7ba7bee99ebbd25db54f1e">fCut_vz0</a></td></tr>
+<tr class="separator:a9f231a5d8e7ba7bee99ebbd25db54f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a7cd788ee91432669cd0e6aab4ef76b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a4a7cd788ee91432669cd0e6aab4ef76b">fCut_rvz0</a></td></tr>
+<tr class="separator:a4a7cd788ee91432669cd0e6aab4ef76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9990b9f3f114e2cb7903980b0b69a0b9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9990b9f3f114e2cb7903980b0b69a0b9">fCut_rvxy0</a></td></tr>
+<tr class="separator:a9990b9f3f114e2cb7903980b0b69a0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae764b12130808d9a3ef1bf42e154cad6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae764b12130808d9a3ef1bf42e154cad6">fMaxPhotonEnergy</a></td></tr>
+<tr class="separator:ae764b12130808d9a3ef1bf42e154cad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Analyse <img class="formulaInl" alt="$ J/\psi \rightarrow D^0 \phi $" src="form_0.png"/> events. </p>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>December 14th, 2018Note: It would be more efficient to use <code>unordered_map</code>. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>December 14th, 2018Note: It would be more efficient to use <code>unordered_map</code>.</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>December 14th, 2018</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>It would be more efficient to use <code>unordered_map</code>, but this requires a newer version of <code>gcc</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00035">35</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00035">35</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a49dc31c983813eee609c9a0da0bca9b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49dc31c983813eee609c9a0da0bca9b1">&#9670;&nbsp;</a></span>TrackSelector()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a49dc31c983813eee609c9a0da0bca9b1">&#9670;&nbsp;</a></span>TrackSelector() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -293,15 +399,48 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor for the <code><a class="el" href="classTrackSelector.html" title="Analyse  events. ">TrackSelector</a></code> algorithm. </p>
-<p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classTrackSelector.html" title="Analyse  events. ">TrackSelector</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="TrackSelector_8h.html">TrackSelector/TrackSelector.h</a>) and that you should assign the values in <code>share/jopOptions_TrackSelector.txt</code>. </p>
+<p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classTrackSelector.html" title="Analyse  events. ">TrackSelector</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in <code>share/jopOptions_TrackSelector.txt</code>.</p>
+<p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classTrackSelector.html" title="Analyse  events. ">TrackSelector</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in <code>share/jopOptions_TrackSelector.txt</code>. Algorithms should inherit from Gaudi's <code>Algorithm</code> class. See <a href="https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html">https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html</a> for more details. </p>
+<ul>
+<li>The <code>"do_&lt;treename&gt;"</code> properties determine whether or not the corresponding <code>TTree</code>/<code>NTuple</code> will be filled. Default values are set here as well.</li>
+<li>The <code>"cut_&lt;parameter&gt;"</code> properties determine cuts on certain parameters. </li>
+</ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00052">52</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00052">52</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a49dc31c983813eee609c9a0da0bca9b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49dc31c983813eee609c9a0da0bca9b1">&#9670;&nbsp;</a></span>TrackSelector() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TrackSelector::TrackSelector </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ISvcLocator *&#160;</td>
+          <td class="paramname"><em>pSvcLocator</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6e2ec4e0038ccc02964c5aea59ff20e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e2ec4e0038ccc02964c5aea59ff20e1">&#9670;&nbsp;</a></span>AddItemsToNTuples() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e2ec4e0038ccc02964c5aea59ff20e1">&#9670;&nbsp;</a></span>AddItemsToNTuples() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -345,12 +484,50 @@ template&lt;typename TYPE &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00495">495</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00495">495</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
 <a id="a10becc29ead92c8dc00fc8019f05e87e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10becc29ead92c8dc00fc8019f05e87e">&#9670;&nbsp;</a></span>AddItemsToNTuples() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a10becc29ead92c8dc00fc8019f05e87e">&#9670;&nbsp;</a></span>AddItemsToNTuples() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::AddItemsToNTuples </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a10becc29ead92c8dc00fc8019f05e87e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10becc29ead92c8dc00fc8019f05e87e">&#9670;&nbsp;</a></span>AddItemsToNTuples() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -395,12 +572,50 @@ template&lt;typename TYPE &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00509">509</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00509">509</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a6e2ec4e0038ccc02964c5aea59ff20e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e2ec4e0038ccc02964c5aea59ff20e1">&#9670;&nbsp;</a></span>AddItemsToNTuples() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::AddItemsToNTuples </td>
+          <td>(</td>
+          <td class="paramtype">NTuplePtr&#160;</td>
+          <td class="paramname"><em>nt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <a id="ad9c392d03c1b2c0d6d86b8ef611cb759"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9c392d03c1b2c0d6d86b8ef611cb759">&#9670;&nbsp;</a></span>BookNTuple()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9c392d03c1b2c0d6d86b8ef611cb759">&#9670;&nbsp;</a></span>BookNTuple() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -444,12 +659,48 @@ template&lt;typename TYPE &gt; </div>
 </dl>
 <p>Use <code>map::operator[]</code> if you want to book an <code>NTuple::Item</code> and use <code>map::at</code> if you want to access the <code>NTuple</code> by key value. This ensures that the programme throws an exception if you ask for the wrong key later. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00350">350</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00350">350</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="ad9c392d03c1b2c0d6d86b8ef611cb759"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9c392d03c1b2c0d6d86b8ef611cb759">&#9670;&nbsp;</a></span>BookNTuple() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuplePtr TrackSelector::BookNTuple </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleTitle</em> = <code>&quot;ks&#160;N-Tuple&#160;example&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <a id="a1423181b80d3eab1f618cb4318be223f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1423181b80d3eab1f618cb4318be223f">&#9670;&nbsp;</a></span>BookNtupleItemsDedx()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1423181b80d3eab1f618cb4318be223f">&#9670;&nbsp;</a></span>BookNtupleItemsDedx() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -497,12 +748,50 @@ template&lt;typename TYPE &gt; </div>
 <p>Number of good hits.</p>
 <p>Total number of hits. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00390">390</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00390">390</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a1423181b80d3eab1f618cb4318be223f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1423181b80d3eab1f618cb4318be223f">&#9670;&nbsp;</a></span>BookNtupleItemsDedx() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::BookNtupleItemsDedx </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <a id="a00430763d0fc661cefd8bbe3978db82a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00430763d0fc661cefd8bbe3978db82a">&#9670;&nbsp;</a></span>BookNtupleItemsTof()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a00430763d0fc661cefd8bbe3978db82a">&#9670;&nbsp;</a></span>BookNtupleItemsTof() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -552,12 +841,98 @@ template&lt;typename TYPE &gt; </div>
 <p>Difference with ToF in charged kaon hypothesis.</p>
 <p>Difference with ToF in proton hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00367">367</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00367">367</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a00430763d0fc661cefd8bbe3978db82a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00430763d0fc661cefd8bbe3978db82a">&#9670;&nbsp;</a></span>BookNtupleItemsTof() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::BookNtupleItemsTof </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2e0e5162c35890e141524a2cb73c6ea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e0e5162c35890e141524a2cb73c6ea0">&#9670;&nbsp;</a></span>ComputeMomentum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HepLorentzVector TrackSelector::ComputeMomentum </td>
+          <td>(</td>
+          <td class="paramtype">EvtRecTrack *&#160;</td>
+          <td class="paramname"><em>track</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute a 'momentum' for a neutral track. </p>
+<p>The momentum is computed from the neutral track (photon) energy and from the location (angles) where it was detected in the EMC. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2src_2TrackSelector_8cxx_source.html#l00390">390</a> of file <a class="el" href="TrackSelector-01-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-01-00-00/src/TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
 <a id="a6866699cb5218a5c8dc313f5ff5910cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6866699cb5218a5c8dc313f5ff5910cb">&#9670;&nbsp;</a></span>execute()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6866699cb5218a5c8dc313f5ff5910cb">&#9670;&nbsp;</a></span>execute() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">StatusCode TrackSelector::execute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6866699cb5218a5c8dc313f5ff5910cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6866699cb5218a5c8dc313f5ff5910cb">&#9670;&nbsp;</a></span>execute() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -583,12 +958,12 @@ template&lt;typename TYPE &gt; </div>
 <p>STEP (C): WRITE event info ("mult" and "vertex" branch)</p>
 <p>STEP (D): Perform derived algoritm </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00166">166</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00166">166</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
 <a id="a69ddbfaeff48cba62945974347164e7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69ddbfaeff48cba62945974347164e7e">&#9670;&nbsp;</a></span>execute_rest()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ddbfaeff48cba62945974347164e7e">&#9670;&nbsp;</a></span>execute_rest() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -610,14 +985,60 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classDzeroPhi.html#a6b363c0c37ebb7bbfd324a5c2266cb19">DzeroPhi</a>.</p>
+<p>Reimplemented in <a class="el" href="classDzeroPhi.html#a6b363c0c37ebb7bbfd324a5c2266cb19">DzeroPhi</a>, and <a class="el" href="classD0phi__KpiKK.html#a0be43dabc8154883ec2f0bf20cab38b4">D0phi_KpiKK</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00051">51</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00051">51</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a69ddbfaeff48cba62945974347164e7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ddbfaeff48cba62945974347164e7e">&#9670;&nbsp;</a></span>execute_rest() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual StatusCode TrackSelector::execute_rest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classDzeroPhi.html#a6b363c0c37ebb7bbfd324a5c2266cb19">DzeroPhi</a>, and <a class="el" href="classD0phi__KpiKK.html#a0be43dabc8154883ec2f0bf20cab38b4">D0phi_KpiKK</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00051">51</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
 <a id="ac12f71603152e155a688861d11c51c46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac12f71603152e155a688861d11c51c46">&#9670;&nbsp;</a></span>finalize()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac12f71603152e155a688861d11c51c46">&#9670;&nbsp;</a></span>finalize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">StatusCode TrackSelector::finalize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac12f71603152e155a688861d11c51c46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac12f71603152e155a688861d11c51c46">&#9670;&nbsp;</a></span>finalize() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -633,13 +1054,14 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Currently does nothing. </p>
 <p>Cut flow could be printed in this step. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Add log output to <code>finalize</code> step. </dd></dl>
+<p>Cut flow could be printed in this step. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>Add log output to <code>finalize</code> step. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00331">331</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00331">331</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
 <a id="a7f37a38b6aad9834eb136fa7627eb293"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f37a38b6aad9834eb136fa7627eb293">&#9670;&nbsp;</a></span>finalize_rest()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f37a38b6aad9834eb136fa7627eb293">&#9670;&nbsp;</a></span>finalize_rest() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -661,14 +1083,60 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classDzeroPhi.html#a2c84862b44ef22ee42672414fcd3d571">DzeroPhi</a>.</p>
+<p>Reimplemented in <a class="el" href="classDzeroPhi.html#a2c84862b44ef22ee42672414fcd3d571">DzeroPhi</a>, and <a class="el" href="classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752">D0phi_KpiKK</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00052">52</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00052">52</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a7f37a38b6aad9834eb136fa7627eb293"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f37a38b6aad9834eb136fa7627eb293">&#9670;&nbsp;</a></span>finalize_rest() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual StatusCode TrackSelector::finalize_rest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classDzeroPhi.html#a2c84862b44ef22ee42672414fcd3d571">DzeroPhi</a>, and <a class="el" href="classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752">D0phi_KpiKK</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00052">52</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
 <a id="a66444e69d52ba9b5d861916fa072c4a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66444e69d52ba9b5d861916fa072c4a4">&#9670;&nbsp;</a></span>initialize()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a66444e69d52ba9b5d861916fa072c4a4">&#9670;&nbsp;</a></span>initialize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">StatusCode TrackSelector::initialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a66444e69d52ba9b5d861916fa072c4a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66444e69d52ba9b5d861916fa072c4a4">&#9670;&nbsp;</a></span>initialize() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -718,12 +1186,12 @@ template&lt;typename TYPE &gt; </div>
 <p>Helix angle of the particle (?).</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd></dd></dl>
 <p>Momentum <img class="formulaInl" alt="$p$" src="form_24.png"/> of the track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00094">94</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00094">94</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
 <a id="ab5e02b9a51339c95698f6dae2c90f14c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5e02b9a51339c95698f6dae2c90f14c">&#9670;&nbsp;</a></span>initialize_rest()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5e02b9a51339c95698f6dae2c90f14c">&#9670;&nbsp;</a></span>initialize_rest() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -745,14 +1213,148 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classDzeroPhi.html#ae4f37ce25ef4d5451da87a5e983945f7">DzeroPhi</a>.</p>
+<p>Reimplemented in <a class="el" href="classDzeroPhi.html#ae4f37ce25ef4d5451da87a5e983945f7">DzeroPhi</a>, and <a class="el" href="classD0phi__KpiKK.html#a72e81af7a2e5613c50f149200c8e0518">D0phi_KpiKK</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00050">50</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00050">50</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="ab5e02b9a51339c95698f6dae2c90f14c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5e02b9a51339c95698f6dae2c90f14c">&#9670;&nbsp;</a></span>initialize_rest() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual StatusCode TrackSelector::initialize_rest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classDzeroPhi.html#ae4f37ce25ef4d5451da87a5e983945f7">DzeroPhi</a>, and <a class="el" href="classD0phi__KpiKK.html#a72e81af7a2e5613c50f149200c8e0518">D0phi_KpiKK</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00050">50</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a4470f7a896fa2b98a32ecaaf77a310a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4470f7a896fa2b98a32ecaaf77a310a7">&#9670;&nbsp;</a></span>ResetSmallestChiSq() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::ResetSmallestChiSq </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the <code>fSmallestChiSq</code> back to a large value. </p>
+<p>This method is only useful for the derived subalgorithms (where Kalman kinematic fits are performed), but has been added to the <code><a class="el" href="classTrackSelector.html" title="Analyse  events. ">TrackSelector</a></code> to standardize this procedure and to avoid code duplication. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2src_2TrackSelector_8cxx_source.html#l00506">506</a> of file <a class="el" href="TrackSelector-01-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-01-00-00/src/TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a54cb7f99524d0fec5e854711e9e3be66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54cb7f99524d0fec5e854711e9e3be66">&#9670;&nbsp;</a></span>ResetSmallestChiSq() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::ResetSmallestChiSq </td>
+          <td>(</td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>chisq</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the <code>fSmallestChiSq</code> back to a large value. </p>
+<p>This method is only useful for the derived subalgorithms (where Kalman kinematic fits are performed), but has been added to the <code><a class="el" href="classTrackSelector.html" title="Analyse  events. ">TrackSelector</a></code> to standardize this procedure and to avoid code duplication. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2src_2TrackSelector_8cxx_source.html#l00516">516</a> of file <a class="el" href="TrackSelector-01-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-01-00-00/src/TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
 <a id="aebdb86764877e8e9ab2a74dbd15f35ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebdb86764877e8e9ab2a74dbd15f35ef">&#9670;&nbsp;</a></span>WriteDedxInfo()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aebdb86764877e8e9ab2a74dbd15f35ef">&#9670;&nbsp;</a></span>WriteDedxInfo() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::WriteDedxInfo </td>
+          <td>(</td>
+          <td class="paramtype">EvtRecTrack *&#160;</td>
+          <td class="paramname"><em>evtRecTrack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aebdb86764877e8e9ab2a74dbd15f35ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebdb86764877e8e9ab2a74dbd15f35ef">&#9670;&nbsp;</a></span>WriteDedxInfo() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -803,12 +1405,12 @@ template&lt;typename TYPE &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00464">464</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00464">464</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
 <a id="ac1eaa42584a11fa2f96466de1e032bfa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1eaa42584a11fa2f96466de1e032bfa">&#9670;&nbsp;</a></span>WriteDedxInfoForVector()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1eaa42584a11fa2f96466de1e032bfa">&#9670;&nbsp;</a></span>WriteDedxInfoForVector() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -858,12 +1460,54 @@ template&lt;typename TYPE &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00448">448</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00448">448</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="ac1eaa42584a11fa2f96466de1e032bfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1eaa42584a11fa2f96466de1e032bfa">&#9670;&nbsp;</a></span>WriteDedxInfoForVector() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::WriteDedxInfoForVector </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; EvtRecTrack *&gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <a id="a4aa121259e7330386e1262f7db3dfdda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4aa121259e7330386e1262f7db3dfdda">&#9670;&nbsp;</a></span>WritePIDInformation()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aa121259e7330386e1262f7db3dfdda">&#9670;&nbsp;</a></span>WritePIDInformation() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -894,12 +1538,38 @@ template&lt;typename TYPE &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00518">518</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00518">518</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a4aa121259e7330386e1262f7db3dfdda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aa121259e7330386e1262f7db3dfdda">&#9670;&nbsp;</a></span>WritePIDInformation() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::WritePIDInformation </td>
+          <td>(</td>
+          <td class="paramtype">ParticleID *&#160;</td>
+          <td class="paramname"><em>pid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <a id="a999c5f565c958efcdb3cce4afb1560ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a999c5f565c958efcdb3cce4afb1560ca">&#9670;&nbsp;</a></span>WriteTofInformation()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a999c5f565c958efcdb3cce4afb1560ca">&#9670;&nbsp;</a></span>WriteTofInformation() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -946,13 +1616,63 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00410">410</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+</div>
+</div>
+<a id="a999c5f565c958efcdb3cce4afb1560ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a999c5f565c958efcdb3cce4afb1560ca">&#9670;&nbsp;</a></span>WriteTofInformation() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::WriteTofInformation </td>
+          <td>(</td>
+          <td class="paramtype">SmartRefVector&lt; RecTofTrack &gt;::iterator&#160;</td>
+          <td class="paramname"><em>iter_tof</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>ptrk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html#l00410">410</a> of file <a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a50e8129c4c8b96b11b0e142dd6297484"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50e8129c4c8b96b11b0e142dd6297484">&#9670;&nbsp;</a></span>fDedx</h2>
+<a id="a19883335565a05f5788463343c5e702b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19883335565a05f5788463343c5e702b">&#9670;&nbsp;</a></span>fCharged</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -961,7 +1681,131 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; TrackSelector::fDedx</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; TrackSelector::fCharged</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Container for the charged track vertex info charged track vertex branch. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00100">100</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a9990b9f3f114e2cb7903980b0b69a0b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9990b9f3f114e2cb7903980b0b69a0b9">&#9670;&nbsp;</a></span>fCut_rvxy0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double TrackSelector::fCut_rvxy0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00114">114</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a4a7cd788ee91432669cd0e6aab4ef76b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a7cd788ee91432669cd0e6aab4ef76b">&#9670;&nbsp;</a></span>fCut_rvz0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double TrackSelector::fCut_rvz0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00113">113</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="ae0db38fed2c74617bca7b64958d50336"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0db38fed2c74617bca7b64958d50336">&#9670;&nbsp;</a></span>fCut_vr0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double TrackSelector::fCut_vr0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The private data members are used to define cuts. The values for these cuts should be set in the <code><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1" title="Constructor for the TrackSelector algorithm. ">TrackSelector::TrackSelector</a></code> constructor (see corresponding <code>.cxx</code> file). </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00111">111</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a9f231a5d8e7ba7bee99ebbd25db54f1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f231a5d8e7ba7bee99ebbd25db54f1e">&#9670;&nbsp;</a></span>fCut_vz0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double TrackSelector::fCut_vz0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00112">112</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a3f851a465f4d6d0be058fa3c51ea1739"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f851a465f4d6d0be058fa3c51ea1739">&#9670;&nbsp;</a></span>fDedx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; TrackSelector::fDedx</td>
         </tr>
       </table>
   </td>
@@ -972,8 +1816,244 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Container for the <code>"dedx"</code> branch. </p>
+<p>Container for the energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_27.png"/>) branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00094">94</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00094">94</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a9a0c719e20d8416ee5c5ee3f10b93f71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a0c719e20d8416ee5c5ee3f10b93f71">&#9670;&nbsp;</a></span>fDo_charged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackSelector::fDo_charged</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to record charged track vertex info. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00091">91</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a090565d17eee32d4114016555b0d37d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a090565d17eee32d4114016555b0d37d5">&#9670;&nbsp;</a></span>fDo_dedx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackSelector::fDo_dedx</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to record energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_27.png"/>). </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00093">93</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a64542d81ae44e4bc78816e23808ff98a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64542d81ae44e4bc78816e23808ff98a">&#9670;&nbsp;</a></span>fDo_mult</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackSelector::fDo_mult</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><code>NTuple</code>s are like vectors, but its members do not necessarily have to be of the same type. </p>
+<p>In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each <code>NTuple::Item</code> represents its leaves. The name of the leaves is determined when calling <code>NTuple::addItem</code>. Note that the <code>NTuple::Items</code> have to be added to the NTuple during the <code><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4" title="(Inherited) initialize step of Algorithm. ">TrackSelector::initialize()</a></code> step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there! Package property that determines whether or not to record multiplicities. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00089">89</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="acbe564e1a35a15c9168fba517fed70a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbe564e1a35a15c9168fba517fed70a1">&#9670;&nbsp;</a></span>fDo_neutral</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackSelector::fDo_neutral</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to record neutral track info. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00092">92</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="aeb45b0e83a487ea365d4b91c58a6f5c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb45b0e83a487ea365d4b91c58a6f5c7">&#9670;&nbsp;</a></span>fDo_pid</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackSelector::fDo_pid</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to record general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_27.png"/>, etc). </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00097">97</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a0310003550298e0c478073d4adb74d7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0310003550298e0c478073d4adb74d7b">&#9670;&nbsp;</a></span>fDo_ToFEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackSelector::fDo_ToFEC</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to record data from the Time-of-Flight end cap detector. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00094">94</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a1ce229cc47b1a871a9525d4f6e61820c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ce229cc47b1a871a9525d4f6e61820c">&#9670;&nbsp;</a></span>fDo_ToFIB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackSelector::fDo_ToFIB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00095">95</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="ac9da1bb78187ad8b90b021059f3b1eed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9da1bb78187ad8b90b021059f3b1eed">&#9670;&nbsp;</a></span>fDo_ToFOB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackSelector::fDo_ToFOB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to record data from the Time-of-Flight outer barrel detector. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00096">96</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a610bc681e40cd7d0f9eee0a28d5e6953"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a610bc681e40cd7d0f9eee0a28d5e6953">&#9670;&nbsp;</a></span>fDo_vertex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackSelector::fDo_vertex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to record primary vertex info. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00090">90</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -999,7 +2079,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Package property that determines whether or not to record <img class="formulaInl" alt="$dE/dx$" src="form_27.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00086">86</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00086">86</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1026,7 +2106,7 @@ template&lt;typename TYPE &gt; </div>
 <p><code>NTuple</code>s are like vectors, but its members do not necessarily have to be of the same type. </p>
 <p>In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each <code>NTuple::Item</code> represents its leaves. The name of the leaves is determined when calling <code>NTuple::addItem</code>. Note that the <code>NTuple::Items</code> have to be added to the NTuple during the <code><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4" title="(Inherited) initialize step of Algorithm. ">TrackSelector::initialize()</a></code> step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there! Package property that determines whether or not to record multiplicities. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00083">83</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00083">83</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1052,7 +2132,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Package property that determines whether or not to record PID information. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00090">90</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00090">90</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1078,7 +2158,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Package property that determines whether or not to record ToF data from the end cap. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00087">87</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00087">87</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1104,7 +2184,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Package property that determines whether or not to record ToF data from the inner barrel. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00088">88</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00088">88</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1130,7 +2210,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Package property that determines whether or not to record ToF data from the outer barrel. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00089">89</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00089">89</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1156,7 +2236,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Package property that determines whether or not to record track vertex info. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00085">85</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00085">85</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1182,7 +2262,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Package property that determines whether or not to record primary vertex info. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00084">84</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00084">84</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1206,12 +2286,12 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00112">112</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00112">112</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a660f30908144b2029444c891c79c4196"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a660f30908144b2029444c891c79c4196">&#9670;&nbsp;</a></span>fEventHeader</h2>
+<a id="a0aa727ea591601f5447981594796f93a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aa727ea591601f5447981594796f93a">&#9670;&nbsp;</a></span>fEventHeader</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1220,7 +2300,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">SmartDataPtr&lt;Event::EventHeader&gt; TrackSelector::fEventHeader</td>
+          <td class="memname">SmartDataPtr&lt; Event::EventHeader &gt; TrackSelector::fEventHeader</td>
         </tr>
       </table>
   </td>
@@ -1232,12 +2312,12 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Data pointer for <code>Event::EventHeader</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00069">69</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00069">69</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a3bc4f864aeff7186812300fc1435629a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3bc4f864aeff7186812300fc1435629a">&#9670;&nbsp;</a></span>fEvtRecEvent</h2>
+<a id="afdde97bfff210e3a029f48c7a8f802d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdde97bfff210e3a029f48c7a8f802d1">&#9670;&nbsp;</a></span>fEvtRecEvent</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1246,7 +2326,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">SmartDataPtr&lt;EvtRecEvent&gt; TrackSelector::fEvtRecEvent</td>
+          <td class="memname">SmartDataPtr&lt; EvtRecEvent &gt; TrackSelector::fEvtRecEvent</td>
         </tr>
       </table>
   </td>
@@ -1258,12 +2338,12 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Data pointer for <code>EventModel::EvtRec::EvtRecEvent</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00070">70</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00070">70</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a75e77ff675380b667a4039d74fce414a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75e77ff675380b667a4039d74fce414a">&#9670;&nbsp;</a></span>fEvtRecTrackMap</h2>
+<a id="a2d3155a4f2f5c99348bb6d7e76574a7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d3155a4f2f5c99348bb6d7e76574a7b">&#9670;&nbsp;</a></span>fEvtRecTrackMap</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1272,7 +2352,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, std::vector&lt;EvtRecTrack*&gt; &gt; TrackSelector::fEvtRecTrackMap</td>
+          <td class="memname">std::map&lt; std::string, std::vector&lt; EvtRecTrack * &gt; &gt; TrackSelector::fEvtRecTrackMap</td>
         </tr>
       </table>
   </td>
@@ -1284,13 +2364,14 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Map of vectors. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Decide if this structure is useful. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>Decide if this structure is useful. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00073">73</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00073">73</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a918337343c0640834a5e552fae23fac1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a918337343c0640834a5e552fae23fac1">&#9670;&nbsp;</a></span>fEvtRecTrkCol</h2>
+<a id="afd38de620938f3cc36648bb42187a31b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd38de620938f3cc36648bb42187a31b">&#9670;&nbsp;</a></span>fEvtRecTrkCol</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1299,7 +2380,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">SmartDataPtr&lt;EvtRecTrackCol&gt; TrackSelector::fEvtRecTrkCol</td>
+          <td class="memname">SmartDataPtr&lt; EvtRecTrackCol &gt; TrackSelector::fEvtRecTrkCol</td>
         </tr>
       </table>
   </td>
@@ -1311,7 +2392,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Data pointer for <code>EventModel::EvtRec::EvtRecTrackCol</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00071">71</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00071">71</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1335,7 +2416,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00115">115</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00115">115</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1359,7 +2440,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00113">113</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00113">113</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1383,12 +2464,12 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00114">114</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00114">114</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a7d146b4022233ef370931942f342ef41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d146b4022233ef370931942f342ef41">&#9670;&nbsp;</a></span>fGoodChargedTracks</h2>
+<a id="a3c22257884c0c5a8971944d87aaddb1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c22257884c0c5a8971944d87aaddb1e">&#9670;&nbsp;</a></span>fGoodChargedTracks</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1397,7 +2478,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;EvtRecTrack*&gt; TrackSelector::fGoodChargedTracks</td>
+          <td class="memname">std::vector&lt; EvtRecTrack * &gt; TrackSelector::fGoodChargedTracks</td>
         </tr>
       </table>
   </td>
@@ -1408,8 +2489,35 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Vector that, in each event, will contain a selection of pointers to 'good' charged tracks. </p>
+<p>Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00074">74</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00074">74</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a00c77cb86db501f4a6f4eeda652d705a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00c77cb86db501f4a6f4eeda652d705a">&#9670;&nbsp;</a></span>fGoodNeutralTracks</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;EvtRecTrack*&gt; TrackSelector::fGoodNeutralTracks</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons). </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00080">80</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1435,12 +2543,12 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00066">66</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00066">66</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a6c60c75f53e68ac3d059c0a63603c57a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c60c75f53e68ac3d059c0a63603c57a">&#9670;&nbsp;</a></span>fMult</h2>
+<a id="ae764b12130808d9a3ef1bf42e154cad6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae764b12130808d9a3ef1bf42e154cad6">&#9670;&nbsp;</a></span>fMaxPhotonEnergy</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1449,7 +2557,31 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;int&gt; &gt; TrackSelector::fMult</td>
+          <td class="memname">double TrackSelector::fMaxPhotonEnergy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00115">115</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a88f5c92a5fb8a8e8f5b9d5e9fe237dd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88f5c92a5fb8a8e8f5b9d5e9fe237dd5">&#9670;&nbsp;</a></span>fMult</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; std::string, NTuple::Item&lt; int &gt; &gt; TrackSelector::fMult</td>
         </tr>
       </table>
   </td>
@@ -1460,13 +2592,14 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Container for the multiplicy branch. </p>
+<p>Container for the multiplicities branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00091">91</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00091">91</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="ad3bb6fea7280ae9043373d08a5a53d63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3bb6fea7280ae9043373d08a5a53d63">&#9670;&nbsp;</a></span>fNTupleMap</h2>
+<a id="a96c90305d72a5aa6bf15ac55b384b802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96c90305d72a5aa6bf15ac55b384b802">&#9670;&nbsp;</a></span>fNeutral</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1475,7 +2608,33 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, NTuple::Tuple*&gt; TrackSelector::fNTupleMap</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; TrackSelector::fNeutral</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Container for the neutral track info neutral track info branch. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00101">101</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="ad65c705411c0dc43c982e0cdfb2aac16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad65c705411c0dc43c982e0cdfb2aac16">&#9670;&nbsp;</a></span>fNTupleMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; std::string, NTuple::Tuple * &gt; TrackSelector::fNTupleMap</td>
         </tr>
       </table>
   </td>
@@ -1487,12 +2646,12 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Map for <code>NTuple::Tuple*</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00072">72</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00072">72</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="af3c7e6b7351eaf52e2c0ddde6df3a473"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3c7e6b7351eaf52e2c0ddde6df3a473">&#9670;&nbsp;</a></span>fPID</h2>
+<a id="a46113558b9b59ab90d150d1c1dd30b59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46113558b9b59ab90d150d1c1dd30b59">&#9670;&nbsp;</a></span>fPID</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1501,7 +2660,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; TrackSelector::fPID</td>
+          <td class="memname">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; TrackSelector::fPID</td>
         </tr>
       </table>
   </td>
@@ -1512,8 +2671,9 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Container for the <code>"pid"</code> branch. <b>Needs to be filled in the derived class!</b> </p>
+<p>Container for the general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_27.png"/>, etc) branch. <b>Needs to be filled in the derived class!</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00098">98</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00098">98</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1537,7 +2697,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00109">109</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00109">109</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1561,12 +2721,12 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00108">108</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00108">108</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a34bd4a28340d00fe05febe0db678a6b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34bd4a28340d00fe05febe0db678a6b3">&#9670;&nbsp;</a></span>fTofEC</h2>
+<a id="a4a3b4277e36ac4b4d4d67580b83e3713"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a3b4277e36ac4b4d4d67580b83e3713">&#9670;&nbsp;</a></span>fSmallestChiSq</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1575,7 +2735,33 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; TrackSelector::fTofEC</td>
+          <td class="memname">double TrackSelector::fSmallestChiSq</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_4.png"/> for the Kalman kinematic fit. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00076">76</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a8afca71bf30bda71388928051805c313"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8afca71bf30bda71388928051805c313">&#9670;&nbsp;</a></span>fTofEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; TrackSelector::fTofEC</td>
         </tr>
       </table>
   </td>
@@ -1586,13 +2772,14 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Container for the <code>"tofe"</code> branch. </p>
+<p>Container for the data from the Time-of-Flight end cap detector branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00095">95</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00095">95</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a9340931d1e326992446273ddb1132f8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9340931d1e326992446273ddb1132f8e">&#9670;&nbsp;</a></span>fTofIB</h2>
+<a id="a6645c5603938c1de5c4e841e2a2ad8c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6645c5603938c1de5c4e841e2a2ad8c9">&#9670;&nbsp;</a></span>fTofIB</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1601,7 +2788,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; TrackSelector::fTofIB</td>
+          <td class="memname">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; TrackSelector::fTofIB</td>
         </tr>
       </table>
   </td>
@@ -1612,13 +2799,14 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Container for the <code>"tof1"</code> branch. </p>
+<p>Container for the data from the Time-of-Flight inner barrel detector branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00096">96</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00096">96</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="ab49d194b6fdaf63881dfca9544b732e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab49d194b6fdaf63881dfca9544b732e8">&#9670;&nbsp;</a></span>fTofOB</h2>
+<a id="a187105eedaf7590ce70e6b49f0b4e97d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a187105eedaf7590ce70e6b49f0b4e97d">&#9670;&nbsp;</a></span>fTofOB</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1627,7 +2815,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; TrackSelector::fTofOB</td>
+          <td class="memname">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; TrackSelector::fTofOB</td>
         </tr>
       </table>
   </td>
@@ -1638,13 +2826,14 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Container for the <code>"tof2"</code> branch. </p>
+<p>Container for the data from the Time-of-Flight outer barrel detector branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00097">97</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00097">97</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="ad5d79e3f40c41fc90bdb1752befc3829"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5d79e3f40c41fc90bdb1752befc3829">&#9670;&nbsp;</a></span>fTrackDedx</h2>
+<a id="a5230a69b669948e268955c1af3d692e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5230a69b669948e268955c1af3d692e1">&#9670;&nbsp;</a></span>fTrackDedx</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1653,7 +2842,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">RecMdcDedx* TrackSelector::fTrackDedx</td>
+          <td class="memname">RecMdcDedx * TrackSelector::fTrackDedx</td>
         </tr>
       </table>
   </td>
@@ -1663,12 +2852,14 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00067">67</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p>Pointer to the <img class="formulaInl" alt="$dE/dx$" src="form_27.png"/> info from the MDC. It is a data member to make it accessible to other methods as well. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00067">67</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="add6afbc2cbef50351e3b9271994e11e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add6afbc2cbef50351e3b9271994e11e0">&#9670;&nbsp;</a></span>fTrackIterator</h2>
+<a id="aeba5c3a6ede9d6dfa5fc50beac17402c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeba5c3a6ede9d6dfa5fc50beac17402c">&#9670;&nbsp;</a></span>fTrackEMC</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1677,7 +2868,33 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;EvtRecTrack*&gt;::iterator TrackSelector::fTrackIterator</td>
+          <td class="memname">RecEmcShower* TrackSelector::fTrackEMC</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointer to the track info from the EM calorimeter. It is a data member to make it accessible to other methods as well. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00070">70</a> of file <a class="el" href="TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-01-00-00/TrackSelector/TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="acfe96f33b0124c6e5d5301d97ff9848b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfe96f33b0124c6e5d5301d97ff9848b">&#9670;&nbsp;</a></span>fTrackIterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; EvtRecTrack * &gt;::iterator TrackSelector::fTrackIterator</td>
         </tr>
       </table>
   </td>
@@ -1689,12 +2906,12 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Iterator for looping over the collection of charged and neutral tracks (<code>EvtRecTrackCol</code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00075">75</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00075">75</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="aed5df19dcb2673d959a160401682189c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed5df19dcb2673d959a160401682189c">&#9670;&nbsp;</a></span>fTrackMDC</h2>
+<a id="a48e699507d7ec4f2b23581204b11130d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48e699507d7ec4f2b23581204b11130d">&#9670;&nbsp;</a></span>fTrackMDC</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1703,7 +2920,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">RecMdcTrack* TrackSelector::fTrackMDC</td>
+          <td class="memname">RecMdcTrack * TrackSelector::fTrackMDC</td>
         </tr>
       </table>
   </td>
@@ -1713,7 +2930,9 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00068">68</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p>Pointer to the track info from the MDC. It is a data member to make it accessible to other methods as well. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00068">68</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1739,12 +2958,12 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Container for the track verex branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00093">93</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00093">93</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a9e9980a95371faee9c1be02d9d095062"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e9980a95371faee9c1be02d9d095062">&#9670;&nbsp;</a></span>fVertex</h2>
+<a id="ad97d2dd7e3233fff1549194c8cb69dc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad97d2dd7e3233fff1549194c8cb69dc1">&#9670;&nbsp;</a></span>fVertex</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1753,7 +2972,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; TrackSelector::fVertex</td>
+          <td class="memname">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; TrackSelector::fVertex</td>
         </tr>
       </table>
   </td>
@@ -1764,8 +2983,9 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Container for the vertex branch. </p>
+<p>Container for the primary vertex info vertex branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00092">92</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00092">92</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1791,7 +3011,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Here, you can define data members that you use to define cuts. The values for these cuts should be set in the <code><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1" title="Constructor for the TrackSelector algorithm. ">TrackSelector::TrackSelector</a></code> constructor (see <code>.cxx</code> file). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00106">106</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00106">106</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1815,13 +3035,13 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00107">107</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html#l00107">107</a> of file <a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a></li>
-<li><a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a></li>
+<li><a class="el" href="TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h_source.html">TrackSelector-00-00-00/TrackSelector/TrackSelector.h</a></li>
+<li><a class="el" href="TrackSelector-00-00-00_2src_2TrackSelector_8cxx_source.html">TrackSelector-00-00-00/src/TrackSelector.cxx</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

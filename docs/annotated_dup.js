@@ -4,6 +4,7 @@ var annotated_dup =
     [ "Settings", "namespaceSettings.html", null ],
     [ "BOSSRootChain", "classBOSSRootChain.html", "classBOSSRootChain" ],
     [ "BOSSRootFile", "classBOSSRootFile.html", "classBOSSRootFile" ],
+    [ "D0phi_KpiKK", "classD0phi__KpiKK.html", "classD0phi__KpiKK" ],
     [ "DzeroPhi", "classDzeroPhi.html", "classDzeroPhi" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],

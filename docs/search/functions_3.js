@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['d0phi_5fkpikk',['D0phi_KpiKK',['../classD0phi__KpiKK.html#a8bd58f92dd541a395caadb7a879fe55a',1,'D0phi_KpiKK']]],
   ['destruct',['Destruct',['../classBOSSRootChain.html#a639e7dccc2e76225a4172295df017a2a',1,'BOSSRootChain::Destruct()'],['../classBOSSRootFile.html#aa998ff5e02eb2c6b13aee8a1d1862b48',1,'BOSSRootFile::Destruct()']]],
   ['determinenamelatex',['DetermineNameLaTeX',['../classParticle.html#ae97e941db471dbe130c5aa7277d8c224',1,'Particle']]],
   ['determinereconstructionparameters',['DetermineReconstructionParameters',['../classReconstructedParticle.html#a606b46b3150f197eaa289912f1c5e7a3',1,'ReconstructedParticle']]],
