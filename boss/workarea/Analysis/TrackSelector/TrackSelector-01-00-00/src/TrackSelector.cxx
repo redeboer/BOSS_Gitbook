@@ -58,15 +58,15 @@
 	{
 
 		/// * The `"do_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set here as well.
-		declareProperty("do_mult",    fDo_mult    = true);
-		declareProperty("do_vertex",  fDo_vertex  = true);
-		declareProperty("do_charged", fDo_charged = true);
-		declareProperty("do_neutral", fDo_charged = true);
-		declareProperty("do_dedx",    fDo_dedx    = true);
-		declareProperty("do_ToFEC",   fDo_ToFEC   = true);
-		declareProperty("do_ToFIB",   fDo_ToFIB   = true);
-		declareProperty("do_ToFOB",   fDo_ToFOB   = true);
-		declareProperty("do_pid",     fDo_pid     = true);
+		declareProperty("do_mult",    fDo_mult    = false);
+		declareProperty("do_vertex",  fDo_vertex  = false);
+		declareProperty("do_charged", fDo_charged = false);
+		declareProperty("do_neutral", fDo_charged = false);
+		declareProperty("do_dedx",    fDo_dedx    = false);
+		declareProperty("do_ToFEC",   fDo_ToFEC   = false);
+		declareProperty("do_ToFIB",   fDo_ToFIB   = false);
+		declareProperty("do_ToFOB",   fDo_ToFOB   = false);
+		declareProperty("do_pid",     fDo_pid     = false);
 
 		/// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
 		declareProperty("cut_vr0",    fCut_vr0   =  1.);
@@ -419,30 +419,6 @@
 		}
 		fNTupleMap[tupleName] = nt.ptr(); /// Use `map::operator[]` if you want to book an `NTuple::Item` and use `map::at` if you want to access the `NTuple` by key value. This ensures that the programme throws an exception if you ask for the wrong key later.
 		return nt;
-	}
-
-
-	/**
-	 * @brief Helper method that allows you to safely add a new particle to the `fParticles` vector.
-	 * @param pdgName PDG code of the particle you want to add. See http://home.fnal.gov/~mrenna/lutp0613man2/node44.html for an overview of PDG codes. Not used in the `TrackSelector` class, but can be used in the derived subalgorithms to get for instance masses.
-	 */
-	TParticlePDG* TrackSelector::AddParticle(Int_t pdgCode)
-	{
-		TParticlePDG* particle = gPDG.GetParticle(pdgCode);
-		if(particle) fParticles[particle->GetName()] = particle;
-		return particle;
-	}
-
-
-	/**
-	 * @brief Helper method that allows you to safely add a new particle to the `fParticles` vector.
-	 * @param pdgName PDG name of the particle you want to add. See http://home.fnal.gov/~mrenna/lutp0613man2/node44.html for an overview of PDG codes. Not used in the `TrackSelector` class, but can be used in the derived subalgorithms to get for instance masses.
-	 */
-	TParticlePDG* TrackSelector::AddParticle(const char* pdgName)
-	{
-		TParticlePDG* particle = gPDG.GetParticle(pdgName);
-		if(particle) fParticles[pdgName] = particle;
-		return particle;
 	}
 
 

@@ -48,8 +48,8 @@
 	{
 
 		// * Whether or not to fill a tree/NTuple *
-		declareProperty("doFit4c", fDoFit4c);
-		declareProperty("doFit6c", fDoFit6c);
+		declareProperty("do_fit4c", fDo_fit4c);
+		declareProperty("do_fit6c", fDo_fit6c);
 
 		// * Whether to test the success of the 4- and 5-constraint fits *
 		declareProperty("MaxChiSq", fMaxChiSq);
@@ -70,13 +70,13 @@
 	{
 
 		// * Book NTuple: dE/dx PID branch * //
-			if(fDoDedx) {
+			if(fDo_dedx) {
 				BookNtupleItemsDedx("dedx_K", fDedx_K);
 				BookNtupleItemsDedx("dedx_pi", fDedx_pi);
 			}
 
 		// * Book NTuple: 4-contraints for Kalman kinematic fit * //
-			if(fDoFit4c) {
+			if(fDo_fit4c) {
 				fFit4c["mD0"];   /// Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
 				fFit4c["mphi"];  /// Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
 				fFit4c["mJpsi"];   /// Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
@@ -85,7 +85,7 @@
 			}
 
 		// * Book NTuple: 6-contraints for Kalman kinematic fit * //
-			if(fDoFit6c) {
+			if(fDo_fit6c) {
 				fFit6c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
 				fFit6c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
 				fFit6c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
@@ -153,12 +153,12 @@
 					}
 
 				// * STEP A.3: WRITE PID information
-					if(fDoPID) WritePIDInformation(pid);
+					if(fDo_pid) WritePIDInformation(pid);
 
 			}
 
 		// * STEP (B): WRITE dE/dx PID information ("dedx" branch) * //
-			if(fDoDedx) {
+			if(fDo_dedx) {
 				WriteDedxInfoForVector(fKaonNeg, "dedx_K",  fDedx_K);
 				WriteDedxInfoForVector(fKaonPos, "dedx_K",  fDedx_K);
 				WriteDedxInfoForVector(fPionPos, "dedx_pi", fDedx_pi);
@@ -166,7 +166,7 @@
 
 
 		// * STEP (C): WRITE Kalman 4-constraint kinematic fit with smallest chi squared ("fit4c" branch) * //
-			if(fDoFit4c) {
+			if(fDo_fit4c) {
 
 				// * Loop over all combinations and get the one with the smallest chi square
 				fSmallestChiSq = 9999999.;
@@ -240,7 +240,7 @@
 				} // end of loop over first K^-
 
 				// * WRITE D0 and phi information from 4-constraint fit ("fit4c" branch)
-					if(fDoFit4c && bestKalmanFit && fSmallestChiSq < fMaxChiSq) {
+					if(fDo_fit4c && bestKalmanFit && fSmallestChiSq < fMaxChiSq) {
 						HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
 						HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
 						HepLorentzVector pJpsi = pD0 + pphi;
@@ -251,11 +251,11 @@
 						fNTupleMap.at("fit4c")->write();
 					}
 
-			} // end of fDoFit4c
+			} // end of fDo_fit4c
 
 
 		// * STEP (D): WRITE Kalman 6-constraint kinematic fit with smallest chi squared ("fit6c" branch) * //
-			if(fDoFit6c) {
+			if(fDo_fit6c) {
 
 				// * Loop over all combinations and get the one with the smallest chi square
 				fSmallestChiSq = 9999999.;
@@ -339,7 +339,7 @@
 					fFit6c.at("chisq") = fSmallestChiSq;
 					fNTupleMap.at("fit6c")->write();
 				}
-			} // end of fDoFit6c
+			} // end of fDo_fit6c
 
 
 		return StatusCode::SUCCESS;

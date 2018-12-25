@@ -12,7 +12,7 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-	#include "Emc/RecEmcShower.h"
+	#include "EmcRecEventModel/RecEmcShower.h"
 	#include "EventModel/EventHeader.h"
 	#include "EvtRecEvent/EvtRecEvent.h"
 	#include "EvtRecEvent/EvtRecTrack.h"
@@ -22,14 +22,11 @@
 	#include "GaudiKernel/SmartDataPtr.h"
 	#include "GaudiKernel/SmartRefVector.h"
 	#include "ParticleID/ParticleID.h"
-	#include "TDatabasePDG.h"
-	#include "TParticlePDG.h"
 	#include "TofRecEvent/RecTofTrack.h"
 	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this requires a newer version of `gcc`.
 	#include <string>
 	#include <vector>
 
-	const TDatabasePDG gPDG; //!< A `ROOT` `TDatabasePDG` object that contains all info of particles. Has to be constructed once, which is why it is a global. @todo Maybe safer to put into a namespace.
 
 
 // * ================================ * //
@@ -56,8 +53,6 @@ protected:
 
 	// * Protected methods * //
 		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle = "ks N-Tuple example");
-		TParticlePDG* AddParticle(Int_t pdgCode);
-		TParticlePDG* AddParticle(const char* pdgName);
 		template<typename TYPE> void AddItemsToNTuples  (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
@@ -80,7 +75,6 @@ protected:
 		SmartDataPtr<EvtRecTrackCol> fEvtRecTrkCol; //!< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in `execute()` in each event.
 		double fSmallestChiSq; //!< Current \f$\chi_\mathrm{red}^2\f$ for the Kalman kinematic fit.
 		std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
-		std::map<std::string, TParticlePDG*> fParticles; //!< Map of particles. <b>You should load this vector in the constructor of the derived algorithm class.</b>
 		std::map<std::string, std::vector<EvtRecTrack*> > fEvtRecTrackMap; //!< Map of vectors. @todo Decide if this structure is useful.
 		std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.
 		std::vector<EvtRecTrack*> fGoodNeutralTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons).

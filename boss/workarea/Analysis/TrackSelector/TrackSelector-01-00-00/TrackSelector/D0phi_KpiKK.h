@@ -55,8 +55,8 @@ private:
 		/// Note that the `NTuple::Items` have to be added to the NTuple during the `TrackSelector::initialize()` step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Maps of Ntuples *
-			bool fDoFit4c;   //!< Package property that determines whether or not to perform and record a 4-constraint Kalman kinematic fit.
-			bool fDoFit6c;   //!< Package property that determines whether or not to perform and record a 6-constraint Kalman kinematic fit.
+			bool fDo_fit4c;   //!< Package property that determines whether or not to perform and record a 4-constraint Kalman kinematic fit.
+			bool fDo_fit6c;   //!< Package property that determines whether or not to perform and record a 6-constraint Kalman kinematic fit.
 			std::map<std::string, NTuple::Item<double> > fDedx_K;  //!< Container for the `"dedx_k"` branch.
 			std::map<std::string, NTuple::Item<double> > fDedx_pi; //!< Container for the `"dedx_pi"` branch.
 			std::map<std::string, NTuple::Item<double> > fFit4c;   //!< Container for the `"fit4c"` branch.
