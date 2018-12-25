@@ -19,19 +19,7 @@
 	using CLHEP::Hep2Vector;
 	using CLHEP::Hep3Vector;
 	using CLHEP::HepLorentzVector;
-
-
-
-// * ==================================== * //
-// * ------- GLOBALS AND TYPEDEFS ------- * //
-// * ==================================== * //
-
-	const double gM_pi  = 0.13957061; /// Mass of \f$\pi^\pm\f$.
-	const double gM_K   = 0.493677;   /// Mass of \f$K^\pm\f$.
-	const double gM_D0  = 1.86483;    /// Mass of \f$D^0\f$.
-	const double gM_phi = 1.019461;   /// Mass of \f$\phi\f$.
-	const double gEcms  = 3.097;      /// Center-of-mass energy.
-	const HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
+	using namespace TSGlobals;
 
 
 

@@ -19,6 +19,7 @@
 	using CLHEP::Hep2Vector;
 	using CLHEP::Hep3Vector;
 	using CLHEP::HepLorentzVector;
+	using namespace TSGlobals;
 
 
 

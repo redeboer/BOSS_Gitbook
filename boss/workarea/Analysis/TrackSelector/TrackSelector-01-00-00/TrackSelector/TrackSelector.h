@@ -2,7 +2,7 @@
 #define Analysis_TrackSelector_H
 
 /**
- * @brief    Analyse \f$ J/\psi \rightarrow D^0 \phi \f$ events.
+ * @brief    Base algorithm that creates a selection of charged and/or neutral tracks.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
  * @date     December 14th, 2018
  */
@@ -26,6 +26,28 @@
 	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this requires a newer version of `gcc`.
 	#include <string>
 	#include <vector>
+
+
+
+// * ==================================== * //
+// * ------- GLOBALS AND TYPEDEFS ------- * //
+// * ==================================== * //
+
+	/**
+	 * @brief Namespace that contains some parameters that are useful for derived classes of the `TrackSelector` base algorithm.
+	 */
+	namespace TSGlobals
+	{
+		const double gM_rho  = 0.77526;    /// Mass of \f$\rho^{0\pm}\f$. See http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf.
+		const double gM_pi0  = 0.1349770;  /// Mass of \f$\pi^0\f$. See http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf.
+		const double gM_pi   = 0.13957061; /// Mass of \f$\pi^\pm\f$. See http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-plus-minus.pdf.
+		const double gM_K    = 0.493677;   /// Mass of \f$K^\pm\f$.
+		const double gM_D0   = 1.86483;    /// Mass of \f$D^0\f$. See http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf.
+		const double gM_phi  = 1.019461;   /// Mass of \f$\phi\f$.
+		const double gM_Jpsi = 3.0969;     /// Mass of \f$J/\psi\f$. See http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf.
+		const double gEcms   = 3.097;      /// Center-of-mass energy.
+		const HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
+	}
 
 
 
