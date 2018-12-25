@@ -77,8 +77,8 @@
 
 		// * Book NTuple: 4-contraints for Kalman kinematic fit * //
 			if(fDoFit4c) {
-				fFit4c["gM_D0"];   /// Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
-				fFit4c["gM_phi"];  /// Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
+				fFit4c["mD0"];   /// Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
+				fFit4c["mphi"];  /// Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
 				fFit4c["mJpsi"];   /// Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
 				fFit4c["chisq"];   /// Chi squared of the Kalman kinematic fit.
 				AddItemsToNTuples("fit4c", fFit4c);
@@ -86,8 +86,8 @@
 
 		// * Book NTuple: 6-contraints for Kalman kinematic fit * //
 			if(fDoFit6c) {
-				fFit6c["gM_D0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
-				fFit6c["gM_phi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
+				fFit6c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
+				fFit6c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
 				fFit6c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
 				fFit6c["chi2"];  /// Chi squared of the Kalman kinematic fit.
 				AddItemsToNTuples("fit6c", fFit6c);
@@ -107,7 +107,7 @@
 		// * STEP (A): Create selection charged tracks * //
 
 			// * Print log and set counters *
-				fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endreq;
+				fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
 				ParticleID *pid = ParticleID::instance();
 
 			// * Clear vectors of selected particles *
@@ -157,7 +157,7 @@
 
 			}
 
-		// * STEP (D): WRITE dE/dx PID information ("dedx" branch) * //
+		// * STEP (B): WRITE dE/dx PID information ("dedx" branch) * //
 			if(fDoDedx) {
 				WriteDedxInfoForVector(fKaonNeg, "dedx_K",  fDedx_K);
 				WriteDedxInfoForVector(fKaonPos, "dedx_K",  fDedx_K);
@@ -165,7 +165,7 @@
 			}
 
 
-		// * STEP (F): WRITE Kalman 4-constraint kinematic fit with smallest chi squared ("fit4c" branch) * //
+		// * STEP (C): WRITE Kalman 4-constraint kinematic fit with smallest chi squared ("fit4c" branch) * //
 			if(fDoFit4c) {
 
 				// * Loop over all combinations and get the one with the smallest chi square
@@ -244,8 +244,8 @@
 						HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
 						HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
 						HepLorentzVector pJpsi = pD0 + pphi;
-						fFit4c.at("gM_D0")   = pD0.m();
-						fFit4c.at("gM_phi")  = pphi.m();
+						fFit4c.at("mD0")   = pD0.m();
+						fFit4c.at("mphi")  = pphi.m();
 						fFit4c.at("mJpsi") = pJpsi.m();
 						fFit4c.at("chisq") = fSmallestChiSq;
 						fNTupleMap.at("fit4c")->write();
@@ -254,7 +254,7 @@
 			} // end of fDoFit4c
 
 
-		// * STEP (G): WRITE Kalman 6-constraint kinematic fit with smallest chi squared ("fit6c" branch) * //
+		// * STEP (D): WRITE Kalman 6-constraint kinematic fit with smallest chi squared ("fit6c" branch) * //
 			if(fDoFit6c) {
 
 				// * Loop over all combinations and get the one with the smallest chi square
@@ -333,8 +333,8 @@
 					HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
 					HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
 					HepLorentzVector pJpsi = pD0 + pphi;
-					fFit6c.at("gM_D0")   = pD0.m();
-					fFit6c.at("gM_phi")  = pphi.m();
+					fFit6c.at("mD0")   = pD0.m();
+					fFit6c.at("mphi")  = pphi.m();
 					fFit6c.at("mJpsi") = pJpsi.m();
 					fFit6c.at("chisq") = fSmallestChiSq;
 					fNTupleMap.at("fit6c")->write();

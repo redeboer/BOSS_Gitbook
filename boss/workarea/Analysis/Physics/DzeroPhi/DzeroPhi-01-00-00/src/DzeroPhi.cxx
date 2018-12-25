@@ -80,8 +80,8 @@
 
 		// * Book NTuple: 4-contraints for Kalman kinematic fit * //
 			if(fDoFit4c) {
-				fFit4c["gM_D0"];   /// Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
-				fFit4c["gM_phi"];  /// Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
+				fFit4c["mD0"];   /// Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
+				fFit4c["mphi"];  /// Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
 				fFit4c["mJpsi"];   /// Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
 				fFit4c["chisq"];   /// Chi squared of the Kalman kinematic fit.
 				AddItemsToNTuples("fit4c", fFit4c);
@@ -89,8 +89,8 @@
 
 		// * Book NTuple: 6-contraints for Kalman kinematic fit * //
 			if(fDoFit6c) {
-				fFit6c["gM_D0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
-				fFit6c["gM_phi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
+				fFit6c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
+				fFit6c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
 				fFit6c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
 				fFit6c["chi2"];  /// Chi squared of the Kalman kinematic fit.
 				AddItemsToNTuples("fit6c", fFit6c);
@@ -247,8 +247,8 @@
 						HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
 						HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
 						HepLorentzVector pJpsi = pD0 + pphi;
-						fFit4c.at("gM_D0")   = pD0.m();
-						fFit4c.at("gM_phi")  = pphi.m();
+						fFit4c.at("mD0")   = pD0.m();
+						fFit4c.at("mphi")  = pphi.m();
 						fFit4c.at("mJpsi") = pJpsi.m();
 						fFit4c.at("chisq") = fSmallestChiSq;
 						fNTupleMap.at("fit4c")->write();
@@ -336,8 +336,8 @@
 					HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
 					HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
 					HepLorentzVector pJpsi = pD0 + pphi;
-					fFit6c.at("gM_D0")   = pD0.m();
-					fFit6c.at("gM_phi")  = pphi.m();
+					fFit6c.at("mD0")   = pD0.m();
+					fFit6c.at("mphi")  = pphi.m();
 					fFit6c.at("mJpsi") = pJpsi.m();
 					fFit6c.at("chisq") = fSmallestChiSq;
 					fNTupleMap.at("fit6c")->write();
