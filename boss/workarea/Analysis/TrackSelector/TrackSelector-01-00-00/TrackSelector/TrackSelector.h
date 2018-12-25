@@ -21,6 +21,7 @@
 	#include "GaudiKernel/SmartDataPtr.h"
 	#include "GaudiKernel/SmartRefVector.h"
 	#include "ParticleID/ParticleID.h"
+	#include "Emc/RecEmcShower.h"
 	#include "TofRecEvent/RecTofTrack.h"
 	#include <map> /// Note: It would be more efficient to use `unordered_map`.
 	#include <string>
@@ -64,14 +65,16 @@ protected:
 
 	// * Protected data members * //
 		MsgStream fLog; //!< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
-		RecMdcDedx* fTrackDedx;
-		RecMdcTrack *fTrackMDC;
+		RecMdcDedx* fTrackDedx; //!< Pointer to the \f$dE/dx\f$ info from the MDC. It is a data member to make it accessible to other methods as well.
+		RecMdcTrack *fTrackMDC; //!< Pointer to the track info from the MDC. It is a data member to make it accessible to other methods as well.
+		RecEmcShower *fTrackEMC; //!< Pointer to the track info from the EM calorimeter. It is a data member to make it accessible to other methods as well.
 		SmartDataPtr<Event::EventHeader> fEventHeader;  //!< Data pointer for  `Event::EventHeader` which is set in `execute()` in each event.
 		SmartDataPtr<EvtRecEvent>        fEvtRecEvent;  //!< Data pointer for `EventModel::EvtRec::EvtRecEvent` which is set in `execute()` in each event.
 		SmartDataPtr<EvtRecTrackCol>     fEvtRecTrkCol; //!< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in `execute()` in each event.
 		std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
 		std::map<std::string, std::vector<EvtRecTrack*> > fEvtRecTrackMap; //!< Map of vectors. @todo Decide if this structure is useful.
-		std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will contain a selection of pointers to 'good' charged tracks.
+		std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.
+		std::vector<EvtRecTrack*> fGoodNeutralTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons).
 		std::vector<EvtRecTrack*>::iterator fTrackIterator; //!< Iterator for looping over the collection of charged and neutral tracks (`EvtRecTrackCol`).
 
 
@@ -82,7 +85,8 @@ protected:
 		// * Maps of Ntuples *
 			bool fDoMult;    //!< Package property that determines whether or not to record multiplicities.
 			bool fDoVertex;  //!< Package property that determines whether or not to record primary vertex info.
-			bool fDoTrackVertex; //!< Package property that determines whether or not to record track vertex info.
+			bool fDoCharged; //!< Package property that determines whether or not to record charged track vertex info.
+			bool fDoNeutral; //!< Package property that determines whether or not to record neutral track info.
 			bool fDoDedx;    //!< Package property that determines whether or not to record \f$dE/dx\f$.
 			bool fDoTofEC;   //!< Package property that determines whether or not to record ToF data from the end cap.
 			bool fDoTofIB;   //!< Package property that determines whether or not to record ToF data from the inner barrel.
@@ -90,7 +94,8 @@ protected:
 			bool fDoPID;     //!< Package property that determines whether or not to record PID information.
 			std::map<std::string, NTuple::Item<int> >    fMult;    //!< Container for the multiplicy branch.
 			std::map<std::string, NTuple::Item<double> > fVertex;  //!< Container for the vertex branch.
-			std::map<std::string, NTuple::Item<double> > fTrackVertex; //!< Container for the track verex branch.
+			std::map<std::string, NTuple::Item<double> > fCharged; //!< Container for the charged track vertex branch.
+			std::map<std::string, NTuple::Item<double> > fNeutral; //!< Container for the neutral track info branch.
 			std::map<std::string, NTuple::Item<double> > fDedx;    //!< Container for the `"dedx"` branch.
 			std::map<std::string, NTuple::Item<double> > fTofEC;   //!< Container for the `"tofe"` branch.
 			std::map<std::string, NTuple::Item<double> > fTofIB;   //!< Container for the `"tof1"` branch.
@@ -108,11 +113,8 @@ private:
 		double fRvz0cut;
 		double fRvxy0cut;
 
-		// * Declare energy, dphi, dthe cuts for fake gamma's *
-		double fEnergyThreshold;
-		double fGammaPhiCut;
-		double fGammaThetaCut;
-		double fGammaAngleCut;
+		// * Declare energy cuts *
+		double fMaxPhotonEnergy;
 
 };
 

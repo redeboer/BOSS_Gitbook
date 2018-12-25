@@ -60,24 +60,19 @@
 		// * Whether or not to fill a tree/NTuple *
 		declareProperty("doMult",        fDoMult);
 		declareProperty("doVertex",      fDoVertex);
-		declareProperty("doTrackVertex", fDoTrackVertex);
+		declareProperty("doTrackVertex", fDoCharged);
 		declareProperty("doDedx",        fDoDedx);
 		declareProperty("doTofEC",       fDoTofEC);
 		declareProperty("doTofIB",       fDoTofIB);
 		declareProperty("doTofOB",       fDoTofOB);
 		declareProperty("doPID",         fDoPID);
 
-		// * Define r0, z0 cut for charged tracks *
-		declareProperty("Vr0cut",    fVr0cut);
-		declareProperty("Vz0cut",    fVz0cut);
-		declareProperty("Vrvz0cut",  fRvz0cut);
-		declareProperty("Vrvxy0cut", fRvxy0cut);
-
-		// * Define energy, dphi, dthe cuts for fake gamma's *
-		declareProperty("EnergyThreshold", fEnergyThreshold);
-		declareProperty("GammaPhiCut",     fGammaPhiCut);
-		declareProperty("GammaThetaCut",   fGammaThetaCut);
-		declareProperty("GammaAngleCut",   fGammaAngleCut);
+		// * Define cuts *
+		declareProperty("Vr0cut",    fVr0cut   =  1.);
+		declareProperty("Vz0cut",    fVz0cut   =  5.);
+		declareProperty("Vrvz0cut",  fRvz0cut  = 10.);
+		declareProperty("Vrvxy0cut", fRvxy0cut =  1.);
+		declareProperty("MaxPhotonEnergy", fMaxPhotonEnergy = 0.04);
 
 	}
 
@@ -96,14 +91,15 @@
 
 		// * Book NTuple: Multiplicities * //
 			if(fDoMult) {
-				fMult["Ntotal"];   /// Total number of events per track.
-				fMult["Ncharge"];  /// Number of charged tracks.
-				fMult["Nneutral"]; /// Number of charged tracks.
-				fMult["Ngood"];    /// Number of 'good' charged tracks.
-				fMult["Nmdc"];     /// Number of charged tracks in MDC.
-				fMult["NKaonPos"]; /// Number of \f$K^+\f$.
-				fMult["NKaonNeg"]; /// Number of \f$K^-\f$.
-				fMult["NPionPos"]; /// Number of \f$\pi^-\f$.
+				fMult["Ntotal"];       /// Total number of events per track.
+				fMult["Ncharge"];      /// Number of charged tracks.
+				fMult["Nneutral"];     /// Number of charged tracks.
+				fMult["NgoodCharged"]; /// Number of 'good' charged tracks.
+				fMult["NgoodNeutral"]; /// Number of 'good' neutral tracks.
+				fMult["Nmdc"];         /// Number of charged tracks in MDC.
+				fMult["NKaonPos"];     /// Number of \f$K^+\f$.
+				fMult["NKaonNeg"];     /// Number of \f$K^-\f$.
+				fMult["NPionPos"];     /// Number of \f$\pi^-\f$.
 				AddItemsToNTuples("mult", fMult); /// Branch for multiplicies.
 			}
 
@@ -140,18 +136,30 @@
 				AddItemsToNTuples("pid", fPID);
 			}
 
-		// * Book NTuple: Vertex position * //
-			if(fDoTrackVertex) {
-				fTrackVertex["vx"];    /// Primary \f$x\f$ coordinate of the vertex as determined by MDC.
-				fTrackVertex["vy"];    /// Primary \f$y\f$ coordinate of the vertex as determined by MDC.
-				fTrackVertex["vz"];    /// Primary \f$z\f$ coordinate of the vertex as determined by MDC.
-				fTrackVertex["vr"];    /// Distance from origin in \f$xy\f$ plane.
-				fTrackVertex["rvxy"];  /// Nearest distance to IP in \f$xy\f$ plane.
-				fTrackVertex["rvz"];   /// Nearest distance to IP in \f$z\f$ direction.
-				fTrackVertex["rvphi"]; /// Angle in the \f$xy\f$plane (?). @todo
-				fTrackVertex["phi"];   /// Helix angle of the particle (?). @todo
-				fTrackVertex["p"];     /// Momentum \f$p\f$ of the track.
-				AddItemsToNTuples("vxyz", fTrackVertex);
+		// * Book NTuple: Charged track info * //
+			if(fDoCharged) {
+				fCharged["vx"];    /// Primary \f$x\f$ coordinate of the vertex as determined by MDC.
+				fCharged["vy"];    /// Primary \f$y\f$ coordinate of the vertex as determined by MDC.
+				fCharged["vz"];    /// Primary \f$z\f$ coordinate of the vertex as determined by MDC.
+				fCharged["vr"];    /// Distance from origin in \f$xy\f$ plane.
+				fCharged["rvxy"];  /// Nearest distance to IP in \f$xy\f$ plane.
+				fCharged["rvz"];   /// Nearest distance to IP in \f$z\f$ direction.
+				fCharged["rvphi"]; /// Angle in the \f$xy\f$plane (?). @todo
+				fCharged["phi"];   /// Helix angle of the particle (?). @todo
+				fCharged["p"];     /// Momentum \f$p\f$ of the track.
+				AddItemsToNTuples("charged", fCharged);
+			}
+
+		// * Book NTuple: Neutral track info * //
+			if(fDoNeutral) {
+				fNeutral["E"];     /// Energy of the neutral track as determined by the EM calorimeter.
+				fNeutral["x"];     /// \f$x\f$-coordinate of the neutral track according to the EMC.
+				fNeutral["y"];     /// \f$y\f$-coordinate of the neutral track according to the EMC.
+				fNeutral["z"];     /// \f$z\f$-coordinate of the neutral track according to the EMC.
+				fNeutral["phi"];   /// \f$\phi\f$-angle of the neutral track according to the EMC.
+				fNeutral["theta"]; /// \f$\theta\f$-angle of the neutral track according to the EMC.
+				fNeutral["time"];  /// Time of the neutral track according to the EMC. @todo Investigate what this parameter precisely means.
+				AddItemsToNTuples("neutral", fNeutral);
 			}
 
 		return initialize_rest();
@@ -207,13 +215,11 @@
 			int nChargesMDC = 0;
 			ParticleID *pid = ParticleID::instance();
 
-			// * Clear vectors of selected particles *
-			fGoodChargedTracks.clear();
-
 			// * Loop over charged tracks *
+			fGoodChargedTracks.clear();
 			for(int i = 0; i < fEvtRecEvent->totalCharged(); ++i) {
 			// Note: the first part of the set of reconstructed tracks are the charged tracks
-				/// STEP 1: Get MDC inform
+				/// STEP 1: Get MDC information
 
 					// * Get track info from Main Drift Chamber
 					fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endreq;
@@ -251,18 +257,18 @@
 					fGoodChargedTracks.push_back(*fTrackIterator);
 					nChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
 
-				/// STEP 3: WRITE primary vertex position info ("vxyz" br
-					if(fDoTrackVertex) {
-						fTrackVertex.at("vx")    = fTrackMDC->x();
-						fTrackVertex.at("vy")    = fTrackMDC->y();
-						fTrackVertex.at("vz")    = fTrackMDC->z();
-						fTrackVertex.at("vr")    = vr;
-						fTrackVertex.at("rvxy")  = rvxy;
-						fTrackVertex.at("rvz")   = rvz;
-						fTrackVertex.at("rvphi") = rvphi;
-						fTrackVertex.at("phi")   = phi;
-						fTrackVertex.at("p")     = fTrackMDC->p();
-						fNTupleMap.at("vxyz")->write();
+				/// STEP 3: WRITE charged track vertex position info ("charged" branch)
+					if(fDoCharged) {
+						fCharged.at("vx")    = fTrackMDC->x();
+						fCharged.at("vy")    = fTrackMDC->y();
+						fCharged.at("vz")    = fTrackMDC->z();
+						fCharged.at("vr")    = vr;
+						fCharged.at("rvxy")  = rvxy;
+						fCharged.at("rvz")   = rvz;
+						fCharged.at("rvphi") = rvphi;
+						fCharged.at("phi")   = phi;
+						fCharged.at("p")     = fTrackMDC->p();
+						fNTupleMap.at("charged")->write();
 					}
 
 				/// STEP 4: WRITE dE/dx PID information ("dedx" branch)
@@ -301,14 +307,50 @@
 			}
 
 
-		/// STEP (C): WRITE event info ("mult" and "vertex" branch)
+		/// STEP (C): Create selection of neutral tracks and write track info
+			// Note: The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired with each charged track and if their angle is smaller than a certain value (here, 200), the photon track is stored as 'good photon' (added to `iGam`).
+			fGoodNeutralTracks.clear();
+			for(int i = fEvtRecEvent->totalCharged(); i < fEvtRecEvent->totalTracks(); ++i) {
+				/// STEP 1: Get MDC information
+
+					// * Get track and test if available
+					fLog << MSG::DEBUG << "   neutral track " << i-fEvtRecEvent->totalCharged() << "/" << fEvtRecEvent->totalNeutral() << endreq;
+					fTrackIterator = fEvtRecTrkCol->begin() + i; 
+					if(!(*fTrackIterator)->isEmcShowerValid()) continue;
+					fTrackEMC = (*fTrackIterator)->emcShower();
+					if(!fTrackEMC) continue;
+
+					// * Apply photon cuts
+					if(fTrackEMC->energy() < fMaxPhotonEnergy) continue;
+
+					// * WRITE photon info ("photon" branch)
+					fNeutral.at("E")     = fTrackEMC->energy();
+					fNeutral.at("x")     = fTrackEMC->x();
+					fNeutral.at("y")     = fTrackEMC->y();
+					fNeutral.at("z")     = fTrackEMC->z();
+					fNeutral.at("phi")   = fTrackEMC->phi();
+					fNeutral.at("theta") = fTrackEMC->theta();
+					fNeutral.at("time")  = fTrackEMC->time();
+					fNTupleMap.at("neutral")->write();
+
+					// * Add photon track to vector
+					fGoodNeutralTracks.push_back(*fTrackIterator);
+
+			}
+
+			// * Finish Good Photon Selection *
+			fLog << MSG::DEBUG << "Number of good photons: " << fGoodNeutralTracks.size() << endreq;
+
+
+		/// STEP (D): WRITE event info ("mult" and "vertex" branch)
 			fLog << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << nChargesMDC << endreq;
 			if(fDoMult) {
-				fMult.at("Ntotal")   = fEvtRecEvent->totalTracks();
-				fMult.at("Ncharge")  = fEvtRecEvent->totalCharged();
-				fMult.at("Nneutral") = fEvtRecEvent->totalNeutral();
-				fMult.at("Ngood")    = fGoodChargedTracks.size();
-				fMult.at("Nmdc")     = nChargesMDC;
+				fMult.at("Ntotal")       = fEvtRecEvent->totalTracks();
+				fMult.at("Ncharge")      = fEvtRecEvent->totalCharged();
+				fMult.at("Nneutral")     = fEvtRecEvent->totalNeutral();
+				fMult.at("NgoodCharged") = fGoodChargedTracks.size();
+				fMult.at("NgoodNeutral") = fGoodNeutralTracks.size();
+				fMult.at("Nmdc")         = nChargesMDC;
 				fNTupleMap.at("vertex")->write();
 			}
 			if(fDoVertex) {
@@ -318,7 +360,7 @@
 				fNTupleMap.at("vertex")->write();
 			}
 
-		/// STEP (D): Perform derived algoritm
+		/// STEP (E): Perform derived algoritm
 		return execute_rest();
 		return StatusCode::SUCCESS;
 	}
