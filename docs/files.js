@@ -14,10 +14,6 @@ var files =
     [ "D0phi_KpiKK.h", "D0phi__KpiKK_8h.html", [
       [ "D0phi_KpiKK", "classD0phi__KpiKK.html", "classD0phi__KpiKK" ]
     ] ],
-    [ "DzeroPhi.cxx", "DzeroPhi_8cxx.html", "DzeroPhi_8cxx" ],
-    [ "DzeroPhi.h", "DzeroPhi_8h.html", [
-      [ "DzeroPhi", "classDzeroPhi.html", "classDzeroPhi" ]
-    ] ],
     [ "FitInvMassSignal.C", "FitInvMassSignal_8C.html", "FitInvMassSignal_8C" ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
     [ "InvestigateBOSSRootFile.C", "InvestigateBOSSRootFile_8C.html", "InvestigateBOSSRootFile_8C" ],
@@ -32,12 +28,6 @@ var files =
     [ "SimplifiedTree.h", "SimplifiedTree_8h.html", [
       [ "SimplifiedTree", "classSimplifiedTree.html", "classSimplifiedTree" ]
     ] ],
-    [ "TrackSelector-00-00-00/src/TrackSelector.cxx", "TrackSelector-00-00-00_2src_2TrackSelector_8cxx.html", "TrackSelector-00-00-00_2src_2TrackSelector_8cxx" ],
-    [ "TrackSelector-01-00-00/src/TrackSelector.cxx", "TrackSelector-01-00-00_2src_2TrackSelector_8cxx.html", "TrackSelector-01-00-00_2src_2TrackSelector_8cxx" ],
-    [ "TrackSelector-00-00-00/TrackSelector/TrackSelector.h", "TrackSelector-00-00-00_2TrackSelector_2TrackSelector_8h.html", [
-      [ "TrackSelector", "classTrackSelector.html", "classTrackSelector" ]
-    ] ],
-    [ "TrackSelector-01-00-00/TrackSelector/TrackSelector.h", "TrackSelector-01-00-00_2TrackSelector_2TrackSelector_8h.html", [
-      [ "TrackSelector", "classTrackSelector.html", "classTrackSelector" ]
-    ] ]
+    [ "TrackSelector.cxx", "TrackSelector_8cxx.html", "TrackSelector_8cxx" ],
+    [ "TrackSelector.h", "TrackSelector_8h.html", "TrackSelector_8h" ]
 ];

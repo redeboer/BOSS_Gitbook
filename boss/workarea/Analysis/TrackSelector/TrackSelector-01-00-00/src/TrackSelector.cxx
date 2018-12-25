@@ -85,84 +85,96 @@
 
 	/**
 	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
-	 * @details Define and load NTuples here.
+	 * @details Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
 	 */
 	StatusCode TrackSelector::initialize()
 	{
 
-		// * Book NTuple: Multiplicities * //
+		/// <ol type="A">
+		/// <li> `"mult"`: Multiplicities
+			/// <ol>
 			if(fDo_mult) {
-				fMult["Ntotal"];       /// Total number of events per track.
-				fMult["Ncharge"];      /// Number of charged tracks.
-				fMult["Nneutral"];     /// Number of charged tracks.
-				fMult["NgoodCharged"]; /// Number of 'good' charged tracks.
-				fMult["NgoodNeutral"]; /// Number of 'good' neutral tracks.
-				fMult["Nmdc"];         /// Number of charged tracks in MDC.
-				fMult["NKaonPos"];     /// Number of \f$K^+\f$.
-				fMult["NKaonNeg"];     /// Number of \f$K^-\f$.
-				fMult["NPionPos"];     /// Number of \f$\pi^-\f$.
-				AddItemsToNTuples("mult", fMult); /// Branch for multiplicies.
+				fMult["Ntotal"];       /// <li> `"Ntotal"`: Total number of events per track.
+				fMult["Ncharge"];      /// <li> `"Ncharge"`: Number of charged tracks.
+				fMult["Nneutral"];     /// <li> `"Nneutral"`: Number of charged tracks.
+				fMult["NgoodCharged"]; /// <li> `"NgoodCharged"`: Number of 'good' charged tracks.
+				fMult["NgoodNeutral"]; /// <li> `"NgoodNeutral"`: Number of 'good' neutral tracks.
+				fMult["Nmdc"];         /// <li> `"Nmdc"`: Number of charged tracks in MDC.
+				fMult["NKaonPos"];     /// <li> `"NKaonPos"`: Number of \f$K^+\f$.
+				fMult["NKaonNeg"];     /// <li> `"NKaonNeg"`: Number of \f$K^-\f$.
+				fMult["NPionPos"];     /// <li> `"NPionPos"`: Number of \f$\pi^-\f$.
+				AddItemsToNTuples("mult", fMult);
 			}
+			/// </ol>
 
-		// * Book NTuple: Vertex info * //
+		/// <li> `"vertex"`: Vertex info
+			/// <ol>
 			if(fDo_vertex) {
-				fVertex["vx0"]; /// Primary \f$x\f$ coordinate of the collision point.
-				fVertex["vy0"]; /// Primary \f$y\f$ coordinate of the collision point.
-				fVertex["vz0"]; /// Primary \f$z\f$ coordinate of the collision point.
-				AddItemsToNTuples("vertex", fVertex); /// Branch for primary vertex info.
+				fVertex["vx0"]; /// <li> `"vx0"`: Primary \f$x\f$ coordinate of the collision point.
+				fVertex["vy0"]; /// <li> `"vy0"`: Primary \f$y\f$ coordinate of the collision point.
+				fVertex["vz0"]; /// <li> `"vz0"`: Primary \f$z\f$ coordinate of the collision point.
+				AddItemsToNTuples("vertex", fVertex);
 			}
+			/// </ol>
 
-		// * Book NTuple: dE/dx PID branch * //
+		/// <li> `"dedx"`: dE/dx PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
 			if(fDo_dedx) {
 				BookNtupleItemsDedx("dedx", fDedx);
 			}
 
-		// * Book NTuple: ToF branch * //
+		/// <li> `"ToFEC"`, `"ToFIB"`, and `"ToFOB"`: information from the three Time-of-Flight detectors. See `TrackSelector::BookNtupleItemsTof` for more info.
 			if(fDo_ToFEC) BookNtupleItemsTof("ToFEC", fTofEC);
 			if(fDo_ToFIB) BookNtupleItemsTof("ToFIB", fTofIB);
 			if(fDo_ToFOB) BookNtupleItemsTof("ToFOB", fTofOB);
 
-		// * Book NTuple: Track PID information * //
+		/// <li> `"pid"`: Track PID information.
+			/// <ol>
 			if(fDo_pid) {
-				fPID["ptrk"];    /// Momentum of the track as reconstructed by MDC.
-				fPID["cost"];    /// Theta angle of the track.
-				fPID["dedx"];    /// Chi squared of the dedx of the track.
-				fPID["ToFIB"];    /// Chi squared of the inner barrel ToF of the track.
-				fPID["ToFOB"];    /// Chi squared of the outer barrel ToF of the track.
-				fPID["prob_K"];  /// Probability that it is a kaon.
-				fPID["prob_e"];  /// Probability that it is a electron.
-				fPID["prob_mu"]; /// Probability that it is a muon.
-				fPID["prob_p"];  /// Probability that it is a proton.
-				fPID["prob_pi"]; /// Probability that it is a pion.
+				fPID["ptrk"];    /// <li> `"ptrk"`: Momentum of the track as reconstructed by MDC.
+				fPID["cost"];    /// <li> `"cost"`: Theta angle of the track.
+				fPID["dedx"];    /// <li> `"dedx"`: Chi squared of the dedx of the track.
+				fPID["ToFIB"];   /// <li> `"ToFIB"`: Chi squared of the inner barrel ToF of the track.
+				fPID["ToFOB"];   /// <li> `"ToFOB"`: Chi squared of the outer barrel ToF of the track.
+				fPID["prob_K"];  /// <li> `"prob_K"`: Probability that it is a kaon.
+				fPID["prob_e"];  /// <li> `"prob_e"`: Probability that it is a electron.
+				fPID["prob_mu"]; /// <li> `"prob_mu"`: Probability that it is a muon.
+				fPID["prob_p"];  /// <li> `"prob_p"`: Probability that it is a proton.
+				fPID["prob_pi"]; /// <li> `"prob_pi"`: Probability that it is a pion.
 				AddItemsToNTuples("pid", fPID);
 			}
+			/// </ol>
 
-		// * Book NTuple: Charged track info * //
+		/// <li> `"charged"`: Charged track info.
+			/// <ol>
 			if(fDo_charged) {
-				fCharged["vx"];    /// Primary \f$x\f$ coordinate of the vertex as determined by MDC.
-				fCharged["vy"];    /// Primary \f$y\f$ coordinate of the vertex as determined by MDC.
-				fCharged["vz"];    /// Primary \f$z\f$ coordinate of the vertex as determined by MDC.
-				fCharged["vr"];    /// Distance from origin in \f$xy\f$ plane.
-				fCharged["rvxy"];  /// Nearest distance to IP in \f$xy\f$ plane.
-				fCharged["rvz"];   /// Nearest distance to IP in \f$z\f$ direction.
-				fCharged["rvphi"]; /// Angle in the \f$xy\f$plane (?). @todo
-				fCharged["phi"];   /// Helix angle of the particle (?). @todo
-				fCharged["p"];     /// Momentum \f$p\f$ of the track.
+				fCharged["vx"];    /// <li> `"vx"`: Primary \f$x\f$ coordinate of the vertex as determined by MDC.
+				fCharged["vy"];    /// <li> `"vy"`: Primary \f$y\f$ coordinate of the vertex as determined by MDC.
+				fCharged["vz"];    /// <li> `"vz"`: Primary \f$z\f$ coordinate of the vertex as determined by MDC.
+				fCharged["vr"];    /// <li> `"vr"`: Distance from origin in \f$xy\f$ plane.
+				fCharged["rvxy"];  /// <li> `"rvxy"`: Nearest distance to IP in \f$xy\f$ plane.
+				fCharged["rvz"];   /// <li> `"rvz"`: Nearest distance to IP in \f$z\f$ direction.
+				fCharged["rvphi"]; /// <li> `"rvphi"`: Angle in the \f$xy\f$plane (?). @todo
+				fCharged["phi"];   /// <li> `"phi"`: Helix angle of the particle (?). @todo
+				fCharged["p"];     /// <li> `"p"`: Momentum \f$p\f$ of the track.
 				AddItemsToNTuples("charged", fCharged);
 			}
+			/// </ol>
 
-		// * Book NTuple: Neutral track info * //
+		/// <li> `"neutral"`: Neutral track info.
+			/// <ol>
 			if(fDo_neutral) {
-				fNeutral["E"];     /// Energy of the neutral track as determined by the EM calorimeter.
-				fNeutral["x"];     /// \f$x\f$-coordinate of the neutral track according to the EMC.
-				fNeutral["y"];     /// \f$y\f$-coordinate of the neutral track according to the EMC.
-				fNeutral["z"];     /// \f$z\f$-coordinate of the neutral track according to the EMC.
-				fNeutral["phi"];   /// \f$\phi\f$-angle of the neutral track according to the EMC.
-				fNeutral["theta"]; /// \f$\theta\f$-angle of the neutral track according to the EMC.
-				fNeutral["time"];  /// Time of the neutral track according to the EMC. @todo Investigate what this parameter precisely means.
+				fNeutral["E"];     /// <li> `"E"`: Energy of the neutral track as determined by the EM calorimeter.
+				fNeutral["x"];     /// <li> `"x"`: \f$x\f$-coordinate of the neutral track according to the EMC.
+				fNeutral["y"];     /// <li> `"y"`: \f$y\f$-coordinate of the neutral track according to the EMC.
+				fNeutral["z"];     /// <li> `"z"`: \f$z\f$-coordinate of the neutral track according to the EMC.
+				fNeutral["phi"];   /// <li> `"phi"`: \f$\phi\f$-angle of the neutral track according to the EMC.
+				fNeutral["theta"]; /// <li> `"theta"`: \f$\theta\f$-angle of the neutral track according to the EMC.
+				fNeutral["time"];  /// <li> `"time"`: Time of the neutral track according to the EMC. @todo Investigate what this parameter precisely means.
 				AddItemsToNTuples("neutral", fNeutral);
 			}
+			/// </ol>
 
+		/// </ol>
 		return initialize_rest();
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
 		return StatusCode::SUCCESS;
@@ -174,7 +186,8 @@
 	 */
 	StatusCode TrackSelector::execute()
 	{
-		/// STEP (A): Load next event from DST file
+		/// <ol type="A">
+		/// <li> Load next event from DST file
 
 			// * Load event info *
 				/*
@@ -209,7 +222,7 @@
 				}
 
 
-		/// STEP (B): Create selection charged tracks and write track info
+		/// <li> Create selection charged tracks and write track info:
 
 			// * Print log and set counters *
 			fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
@@ -220,7 +233,8 @@
 			fGoodChargedTracks.clear();
 			for(int i = 0; i < fEvtRecEvent->totalCharged(); ++i) {
 			// Note: the first part of the set of reconstructed tracks are the charged tracks
-				/// STEP 1: Get MDC information
+				/// <ol>
+				/// <li> Get MDC information
 
 					// * Get track info from Main Drift Chamber
 					fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endmsg;
@@ -246,7 +260,7 @@
 					double rvz    = vecipa[3];       // nearest distance to IP in z direction
 					double rvphi = vecipa[1];       // angle in the xy-plane (?)
 
-				/// STEP 2: Apply vertex cuts, store 
+				/// <li> Apply vertex cuts, store 
 
 					// * Apply vertex cuts
 					if(fTrackMDC->z() >= fCut_vz0)   continue;
@@ -258,7 +272,7 @@
 					fGoodChargedTracks.push_back(*fTrackIterator);
 					nChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
 
-				/// STEP 3: WRITE charged track vertex position info ("charged" branch)
+				/// <li> <b>Write</b> charged track vertex position info ("charged" branch)
 					if(fDo_charged) {
 						fCharged.at("vx")    = fTrackMDC->x();
 						fCharged.at("vy")    = fTrackMDC->y();
@@ -272,10 +286,10 @@
 						fNTupleMap.at("charged")->write();
 					}
 
-				/// STEP 4: WRITE dE/dx PID information ("dedx" branch)
+				/// <li> <b>Write</b> dE/dx PID information ("dedx" branch)
 					if(fDo_dedx) WriteDedxInfo(*fTrackIterator, "dedx", fDedx);
 
-				/// STEP 5: WRITE Time-of-Flight PID information ("tof*" branch)
+				/// <li> <b>Write</b> Time-of-Flight PID information ("tof*" branch)
 					if(fDo_ToFEC || fDo_ToFIB || fDo_ToFOB) {
 
 						// * Check if MDC and TOF info for track are valid *
@@ -305,45 +319,48 @@
 
 					} // if(fDo_tofec || fDo_tofib || fDo_tofob)
 
+				/// </ol>
 			}
 
 
-		/// STEP (C): Create selection of neutral tracks and write track info
-			// Note: The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired with each charged track and if their angle is smaller than a certain value (here, 200), the photon track is stored as 'good photon' (added to `iGam`).
+		/// <li> Create selection of neutral tracks and write track info.
+			/// Note: The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired with each charged track and if their angle is smaller than a certain value (here, 200), the photon track is stored as 'good photon' (added to `iGam`).
 			fGoodNeutralTracks.clear();
 			for(int i = fEvtRecEvent->totalCharged(); i < fEvtRecEvent->totalTracks(); ++i) {
-				/// STEP 1: Get MDC information
-
-					// * Get track and test if available
+				/// <ol>
+				/// <li> Get EMC information
 					fLog << MSG::DEBUG << "   neutral track " << i-fEvtRecEvent->totalCharged() << "/" << fEvtRecEvent->totalNeutral() << endmsg;
 					fTrackIterator = fEvtRecTrkCol->begin() + i; 
 					if(!(*fTrackIterator)->isEmcShowerValid()) continue;
 					fTrackEMC = (*fTrackIterator)->emcShower();
 					if(!fTrackEMC) continue;
 
-					// * Apply photon cuts
+				/// <li> Apply photon energy cut (set by `TrackSelector.cut_PhotonEnergy`).
 					if(fTrackEMC->energy() < fMaxPhotonEnergy) continue;
 
-					// * WRITE photon info ("photon" branch)
-					fNeutral.at("E")     = fTrackEMC->energy();
-					fNeutral.at("x")     = fTrackEMC->x();
-					fNeutral.at("y")     = fTrackEMC->y();
-					fNeutral.at("z")     = fTrackEMC->z();
-					fNeutral.at("phi")   = fTrackEMC->phi();
-					fNeutral.at("theta") = fTrackEMC->theta();
-					fNeutral.at("time")  = fTrackEMC->time();
-					fNTupleMap.at("neutral")->write();
+				/// <li> <b>Write</b> neutral track information (if `do_neutral` is set to `true`).
+					if(fDo_neutral) {
+						fNeutral.at("E")     = fTrackEMC->energy();
+						fNeutral.at("x")     = fTrackEMC->x();
+						fNeutral.at("y")     = fTrackEMC->y();
+						fNeutral.at("z")     = fTrackEMC->z();
+						fNeutral.at("phi")   = fTrackEMC->phi();
+						fNeutral.at("theta") = fTrackEMC->theta();
+						fNeutral.at("time")  = fTrackEMC->time();
+						fNTupleMap.at("neutral")->write();
+					}
 
-					// * Add photon track to vector
+				/// <li> Add photon track to vector of neutral tracks (`fGoodNeutralTracks`).
 					fGoodNeutralTracks.push_back(*fTrackIterator);
 
+				/// </ol>
 			}
 
 			// * Finish Good Photon Selection *
 			fLog << MSG::DEBUG << "Number of good photons: " << fGoodNeutralTracks.size() << endmsg;
 
 
-		/// STEP (D): WRITE event info ("mult" and "vertex" branch)
+		/// <li> <b>write</b> event info ("mult" and "vertex" branch)
 			fLog << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << nChargesMDC << endmsg;
 			if(fDo_mult) {
 				fMult.at("Ntotal")       = fEvtRecEvent->totalTracks();
@@ -361,8 +378,10 @@
 				fNTupleMap.at("vertex")->write();
 			}
 
-		/// STEP (E): Perform derived algoritm
-		return execute_rest();
+		/// <li> Perform derived algoritm as defined in `TrackSelector::execute_rest`.
+			return execute_rest();
+
+		/// </ol>
 		return StatusCode::SUCCESS;
 	}
 
@@ -428,19 +447,21 @@
 	template<typename TYPE>
 	void TrackSelector::BookNtupleItemsTof(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
 	{
-		map["ptrk"];  /// Momentum of the track as reconstructed by MDC.
-		map["tof"];   /// Time of flight.
-		map["path"];  /// Path length.
-		map["cntr"];  /// ToF counter ID.
-		map["ph"];    /// ToF pulse height.
-		map["zrhit"]; /// Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
-		map["qual"];  /// Data quality of reconstruction.
-		map["te"];    /// Difference with ToF in electron hypothesis.
-		map["tmu"];   /// Difference with ToF in muon hypothesis.
-		map["tpi"];   /// Difference with ToF in charged pion hypothesis.
-		map["tk"];    /// Difference with ToF in charged kaon hypothesis.
-		map["tp"];    /// Difference with ToF in proton hypothesis.
+		/// <ol>
+		map["ptrk"];  /// <li> `"ptrk"`: Momentum of the track as reconstructed by MDC.
+		map["tof"];   /// <li> `"tof"`: Time of flight.
+		map["path"];  /// <li> `"path"`: Path length.
+		map["cntr"];  /// <li> `"cntr"`: ToF counter ID.
+		map["ph"];    /// <li> `"ph"`: ToF pulse height.
+		map["zrhit"]; /// <li> `"zrhit"`: Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
+		map["qual"];  /// <li> `"qual"`: Data quality of reconstruction.
+		map["te"];    /// <li> `"te"`: Difference with ToF in electron hypothesis.
+		map["tmu"];   /// <li> `"tmu"`: Difference with ToF in muon hypothesis.
+		map["tpi"];   /// <li> `"tpi"`: Difference with ToF in charged pion hypothesis.
+		map["tk"];    /// <li> `"tk"`: Difference with ToF in charged kaon hypothesis.
+		map["tp"];    /// <li> `"tp"`: Difference with ToF in proton hypothesis.
 		AddItemsToNTuples(tupleName, map);
+		/// </ol>
 	}
 
 
@@ -451,17 +472,19 @@
 	template<typename TYPE>
 	void TrackSelector::BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
 	{
-		map["ptrk"];   /// Momentum of the track as reconstructed by MDC.
-		map["chie"];   /// Chi squared in case of electron.
-		map["chimu"];  /// Chi squared in case of muon.
-		map["chipi"];  /// Chi squared in case of pion.
-		map["chik"];   /// Chi squared in case of kaon.
-		map["chip"];   /// Chi squared in case of proton.
-		map["probPH"]; /// Most probable pulse height from truncated mean.
-		map["normPH"]; /// Normalized pulse height.
-		map["ghit"];   /// Number of good hits.
-		map["thit"];   /// Total number of hits.
+		/// <ol>
+		map["ptrk"];   /// <li> `"ptrk"`: Momentum of the track as reconstructed by MDC.
+		map["chie"];   /// <li> `"chie"`: Chi squared in case of electron.
+		map["chimu"];  /// <li> `"chimu"`: Chi squared in case of muon.
+		map["chipi"];  /// <li> `"chipi"`: Chi squared in case of pion.
+		map["chik"];   /// <li> `"chik"`: Chi squared in case of kaon.
+		map["chip"];   /// <li> `"chip"`: Chi squared in case of proton.
+		map["probPH"]; /// <li> `"probPH"`: Most probable pulse height from truncated mean.
+		map["normPH"]; /// <li> `"normPH"`: Normalized pulse height.
+		map["ghit"];   /// <li> `"ghit"`: Number of good hits.
+		map["thit"];   /// <li> `"thit"`: Total number of hits.
 		AddItemsToNTuples(tupleName, map);
+		/// </ol>
 	}
 
 
@@ -481,7 +504,7 @@
 			texp[j] = 10 * path /beta/gSpeedOfLight; // hypothesis ToF
 		}
 
-		// * WRITE ToF info
+		// * <b>write</b> ToF info
 		map.at("ptrk")  = ptrk;
 		map.at("tof")   = (*iter_tof)->tof();
 		map.at("path")  = (*iter_tof)->path();
@@ -552,7 +575,7 @@
 		fTrackMDC  = evtRecTrack->mdcTrack();
 		fTrackDedx = evtRecTrack->mdcDedx();
 
-		// * WRITE energy loss PID info ("dedx" branch) *
+		// * <b>write</b> energy loss PID info ("dedx" branch) *
 		map.at("ptrk")   = fTrackMDC->p();
 		map.at("chie")   = fTrackDedx->chiE();
 		map.at("chimu")  = fTrackDedx->chiMu();

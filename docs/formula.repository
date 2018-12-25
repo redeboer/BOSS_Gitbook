@@ -1,37 +1,39 @@
-\form#0:$ J/\psi \rightarrow D^0 \phi $
-\form#1:$K^-$
-\form#2:$K^+$
-\form#3:$\pi^+$
-\form#4:$\chi_\mathrm{red}^2$
-\form#5:$\pi^\pm$
-\form#6:$K^\pm$
-\form#7:$D^0$
-\form#8:$\phi$
-\form#9:$K^- \pi^+$
-\form#10:$K^+ K^+ $
-\form#11:$D^0 \phi $
-\form#12:$J/\psi$
-\form#13:$ K^- pi^+ $
-\form#14:$ D^0 $
-\form#15:$ K^+ K^+ $
-\form#16:$ \phi $
-\form#17:$ D^0 \phi $
-\form#18:$ J/\psi $
-\form#19:$\pi^-$
-\form#20:$x$
-\form#21:$y$
-\form#22:$z$
-\form#23:$xy$
-\form#24:$p$
-\form#25:$Z$
-\form#26:$R$
-\form#27:$dE/dx$
-\form#28:$\theta$
-\form#29:$ e^- $
-\form#30:$ \mu^- $
-\form#31:$ \pi^+ $
-\form#32:$ \pi^0 $
-\form#33:$ \rho^\pm $
-\form#34:$ \rho^0 $
-\form#35:$ K^\pm $
-\form#36:$ p $
+\form#0:$K^- \pi^+$
+\form#1:$D^0$
+\form#2:$K^+ K^+ $
+\form#3:$\phi$
+\form#4:$D^0 \phi $
+\form#5:$J/\psi$
+\form#6:$ K^- pi^+ $
+\form#7:$ D^0 $
+\form#8:$ K^+ K^+ $
+\form#9:$ \phi $
+\form#10:$ D^0 \phi $
+\form#11:$ J/\psi $
+\form#12:$K^+$
+\form#13:$K^-$
+\form#14:$\pi^-$
+\form#15:$x$
+\form#16:$y$
+\form#17:$z$
+\form#18:$xy$
+\form#19:$p$
+\form#20:$\theta$
+\form#21:$Z$
+\form#22:$R$
+\form#23:$dE/dx$
+\form#24:$ J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ \pi^-\pi^+ $
+\form#25:$\pi^+$
+\form#26:$\chi_\mathrm{red}^2$
+\form#27:$\rho^{0\pm}$
+\form#28:$\pi^0$
+\form#29:$\pi^\pm$
+\form#30:$K^\pm$
+\form#31:$ e^- $
+\form#32:$ \mu^- $
+\form#33:$ \pi^+ $
+\form#34:$ \pi^0 $
+\form#35:$ \rho^\pm $
+\form#36:$ \rho^0 $
+\form#37:$ K^\pm $
+\form#38:$ p $

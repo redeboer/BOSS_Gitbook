@@ -69,9 +69,9 @@ public:
 protected:
 
 	// * Algorithm steps that have to be defined in derived algorithm classes *
-		virtual StatusCode initialize_rest() {}
-		virtual StatusCode execute_rest() {}
-		virtual StatusCode finalize_rest() {}
+		virtual StatusCode initialize_rest() {} //!< This function is executed at the end of `initialize`. It should be further defined in derived subalgorithms.
+		virtual StatusCode execute_rest() {} //!< This function is executed at the end of `execute`. It should be further defined in derived subalgorithms.
+		virtual StatusCode finalize_rest() {} //!< This function is executed at the end of `finalize`. It should be further defined in derived subalgorithms.
 
 	// * Protected methods * //
 		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle = "ks N-Tuple example");

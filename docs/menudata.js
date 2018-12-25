@@ -23,6 +23,7 @@ var menudata={children:[
 {text:"d",url:"namespacemembers_func.html#index_d"},
 {text:"e",url:"namespacemembers_func.html#index_e"},
 {text:"f",url:"namespacemembers_func.html#index_f"},
+{text:"g",url:"namespacemembers_func.html#index_g"},
 {text:"i",url:"namespacemembers_func.html#index_i"},
 {text:"k",url:"namespacemembers_func.html#index_k"},
 {text:"l",url:"namespacemembers_func.html#index_l"},
@@ -74,7 +75,7 @@ var menudata={children:[
 {text:"~",url:"functions_func.html#index_0x7e"}]},
 {text:"Variables",url:"functions_vars.html",children:[
 {text:"f",url:"functions_vars.html#index_f"},
-{text:"t",url:"functions_vars_t.html#index_t"}]}]}]},
+{text:"t",url:"functions_vars.html#index_t"}]}]}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"},
 {text:"File Members",url:"globals.html",children:[
