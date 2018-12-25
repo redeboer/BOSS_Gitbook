@@ -11,6 +11,7 @@
 	#include "EventModel/EventModel.h"
 	#include "GaudiKernel/Bootstrap.h"
 	#include "TMath.h"
+	#include "TString.h"
 	#include "TrackSelector/TrackSelector.h"
 	#include "VertexFit/Helix.h"
 	#include "VertexFit/IVertexDbSvc.h"
@@ -46,9 +47,8 @@
 // * =========================== * //
 	/**
 	 * @brief Constructor for the `TrackSelector` algorithm.
-	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `TrackSelector`), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in `share/jopOptions_TrackSelector.txt`.
+	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `TrackSelector`), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in `share/jopOptions_TrackSelector.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html for more details.
 	 */
-	// Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 	TrackSelector::TrackSelector(const std::string &name, ISvcLocator* pSvcLocator) :
 		Algorithm(name, pSvcLocator),
 		fLog(msgSvc(), name),
@@ -57,22 +57,23 @@
 		fEvtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol)
 	{
 
-		// * Whether or not to fill a tree/NTuple *
-		declareProperty("doMult",        fDoMult);
-		declareProperty("doVertex",      fDoVertex);
-		declareProperty("doTrackVertex", fDoCharged);
-		declareProperty("doDedx",        fDoDedx);
-		declareProperty("doTofEC",       fDoTofEC);
-		declareProperty("doTofIB",       fDoTofIB);
-		declareProperty("doTofOB",       fDoTofOB);
-		declareProperty("doPID",         fDoPID);
+		/// * The `"do_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set here as well.
+		declareProperty("do_mult",    fDo_mult    = true);
+		declareProperty("do_vertex",  fDo_vertex  = true);
+		declareProperty("do_charged", fDo_charged = true);
+		declareProperty("do_neutral", fDo_charged = true);
+		declareProperty("do_dedx",    fDo_dedx    = true);
+		declareProperty("do_ToFEC",   fDo_ToFEC   = true);
+		declareProperty("do_ToFIB",   fDo_ToFIB   = true);
+		declareProperty("do_ToFOB",   fDo_ToFOB   = true);
+		declareProperty("do_pid",     fDo_pid     = true);
 
-		// * Define cuts *
-		declareProperty("Vr0cut",    fVr0cut   =  1.);
-		declareProperty("Vz0cut",    fVz0cut   =  5.);
-		declareProperty("Vrvz0cut",  fRvz0cut  = 10.);
-		declareProperty("Vrvxy0cut", fRvxy0cut =  1.);
-		declareProperty("MaxPhotonEnergy", fMaxPhotonEnergy = 0.04);
+		/// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
+		declareProperty("cut_vr0",    fCut_vr0   =  1.);
+		declareProperty("cut_vz0",    fCut_vz0   =  5.);
+		declareProperty("cut_vrvz0",  fCut_rvz0  = 10.);
+		declareProperty("cut_vrvxy0", fCut_rvxy0 =  1.);
+		declareProperty("cut_PhotonEnergy", fMaxPhotonEnergy = 0.04);
 
 	}
 
@@ -90,7 +91,7 @@
 	{
 
 		// * Book NTuple: Multiplicities * //
-			if(fDoMult) {
+			if(fDo_mult) {
 				fMult["Ntotal"];       /// Total number of events per track.
 				fMult["Ncharge"];      /// Number of charged tracks.
 				fMult["Nneutral"];     /// Number of charged tracks.
@@ -104,7 +105,7 @@
 			}
 
 		// * Book NTuple: Vertex info * //
-			if(fDoVertex) {
+			if(fDo_vertex) {
 				fVertex["vx0"]; /// Primary \f$x\f$ coordinate of the collision point.
 				fVertex["vy0"]; /// Primary \f$y\f$ coordinate of the collision point.
 				fVertex["vz0"]; /// Primary \f$z\f$ coordinate of the collision point.
@@ -112,22 +113,22 @@
 			}
 
 		// * Book NTuple: dE/dx PID branch * //
-			if(fDoDedx) {
+			if(fDo_dedx) {
 				BookNtupleItemsDedx("dedx", fDedx);
 			}
 
 		// * Book NTuple: ToF branch * //
-			if(fDoTofEC) BookNtupleItemsTof("tofe", fTofEC);
-			if(fDoTofIB) BookNtupleItemsTof("tof1", fTofIB);
-			if(fDoTofOB) BookNtupleItemsTof("tof2", fTofOB);
+			if(fDo_ToFEC) BookNtupleItemsTof("ToFEC", fTofEC);
+			if(fDo_ToFIB) BookNtupleItemsTof("ToFIB", fTofIB);
+			if(fDo_ToFOB) BookNtupleItemsTof("ToFOB", fTofOB);
 
 		// * Book NTuple: Track PID information * //
-			if(fDoPID) {
+			if(fDo_pid) {
 				fPID["ptrk"];    /// Momentum of the track as reconstructed by MDC.
 				fPID["cost"];    /// Theta angle of the track.
 				fPID["dedx"];    /// Chi squared of the dedx of the track.
-				fPID["tof1"];    /// Chi squared of the inner barrel ToF of the track.
-				fPID["tof2"];    /// Chi squared of the outer barrel ToF of the track.
+				fPID["ToFIB"];    /// Chi squared of the inner barrel ToF of the track.
+				fPID["ToFOB"];    /// Chi squared of the outer barrel ToF of the track.
 				fPID["prob_K"];  /// Probability that it is a kaon.
 				fPID["prob_e"];  /// Probability that it is a electron.
 				fPID["prob_mu"]; /// Probability that it is a muon.
@@ -137,7 +138,7 @@
 			}
 
 		// * Book NTuple: Charged track info * //
-			if(fDoCharged) {
+			if(fDo_charged) {
 				fCharged["vx"];    /// Primary \f$x\f$ coordinate of the vertex as determined by MDC.
 				fCharged["vy"];    /// Primary \f$y\f$ coordinate of the vertex as determined by MDC.
 				fCharged["vz"];    /// Primary \f$z\f$ coordinate of the vertex as determined by MDC.
@@ -151,7 +152,7 @@
 			}
 
 		// * Book NTuple: Neutral track info * //
-			if(fDoNeutral) {
+			if(fDo_neutral) {
 				fNeutral["E"];     /// Energy of the neutral track as determined by the EM calorimeter.
 				fNeutral["x"];     /// \f$x\f$-coordinate of the neutral track according to the EMC.
 				fNeutral["y"];     /// \f$y\f$-coordinate of the neutral track according to the EMC.
@@ -181,7 +182,7 @@
 				http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html (class)
 				http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html (typedef EvtRecTrackCol)
 				*/
-			fLog << MSG::DEBUG << "Loading EventHeader, EvtRecEvent, and EvtRecTrackCol" << endreq;
+			fLog << MSG::DEBUG << "Loading EventHeader, EvtRecEvent, and EvtRecTrackCol" << endmsg;
 			fEventHeader  = SmartDataPtr<Event::EventHeader>(eventSvc(), "/Event/EventHeader");
 			fEvtRecEvent  = SmartDataPtr<EvtRecEvent>       (eventSvc(), EventModel::EvtRec::EvtRecEvent);
 			fEvtRecTrkCol = SmartDataPtr<EvtRecTrackCol>    (eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
@@ -189,11 +190,11 @@
 			// * Log run number, event number, and number of events *
 			fLog << MSG::DEBUG
 				<< "RUN "          << fEventHeader->runNumber()   << ", "
-				<< "event number " << fEventHeader->eventNumber() << endreq;
+				<< "event number " << fEventHeader->eventNumber() << endmsg;
 			fLog << MSG::DEBUG
 				<< "Ncharged = " << fEvtRecEvent->totalCharged() << ", "
 				<< "Nneutral = " << fEvtRecEvent->totalNeutral() << ", "
-				<< "Ntotal = "   << fEvtRecEvent->totalTracks()  << endreq;
+				<< "Ntotal = "   << fEvtRecEvent->totalTracks()  << endmsg;
 
 			// * Set vertex origin *
 				IVertexDbSvc* vtxsvc;
@@ -211,7 +212,7 @@
 		/// STEP (B): Create selection charged tracks and write track info
 
 			// * Print log and set counters *
-			fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endreq;
+			fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
 			int nChargesMDC = 0;
 			ParticleID *pid = ParticleID::instance();
 
@@ -222,7 +223,7 @@
 				/// STEP 1: Get MDC information
 
 					// * Get track info from Main Drift Chamber
-					fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endreq;
+					fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endmsg;
 					fTrackIterator = fEvtRecTrkCol->begin() + i; 
 					if(!(*fTrackIterator)->isMdcTrackValid()) continue;
 					fTrackMDC = (*fTrackIterator)->mdcTrack();
@@ -248,17 +249,17 @@
 				/// STEP 2: Apply vertex cuts, store 
 
 					// * Apply vertex cuts
-					if(fTrackMDC->z() >= fVz0cut)   continue;
-					if(vr          >= fVr0cut)   continue;
-					if(rvz         >= fRvz0cut)  continue;
-					if(rvxy        >= fRvxy0cut) continue;
+					if(fTrackMDC->z() >= fCut_vz0)   continue;
+					if(vr             >= fCut_vr0)   continue;
+					if(rvz            >= fCut_rvz0)  continue;
+					if(rvxy           >= fCut_rvxy0) continue;
 
 					// * Add charged track to vector
 					fGoodChargedTracks.push_back(*fTrackIterator);
 					nChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
 
 				/// STEP 3: WRITE charged track vertex position info ("charged" branch)
-					if(fDoCharged) {
+					if(fDo_charged) {
 						fCharged.at("vx")    = fTrackMDC->x();
 						fCharged.at("vy")    = fTrackMDC->y();
 						fCharged.at("vz")    = fTrackMDC->z();
@@ -272,10 +273,10 @@
 					}
 
 				/// STEP 4: WRITE dE/dx PID information ("dedx" branch)
-					if(fDoDedx) WriteDedxInfo(*fTrackIterator, "dedx", fDedx);
+					if(fDo_dedx) WriteDedxInfo(*fTrackIterator, "dedx", fDedx);
 
 				/// STEP 5: WRITE Time-of-Flight PID information ("tof*" branch)
-					if(fDoTofEC || fDoTofIB || fDoTofOB) {
+					if(fDo_ToFEC || fDo_ToFIB || fDo_ToFOB) {
 
 						// * Check if MDC and TOF info for track are valid *
 						if(!(*fTrackIterator)->isMdcTrackValid()) continue;
@@ -293,16 +294,16 @@
 							if(!hitStatus.is_counter()) continue;
 							if(hitStatus.is_barrel()) {
 								if(hitStatus.layer() == 1) { // inner barrel
-									if(fDoTofIB) WriteTofInformation(iter_tof, ptrk, "tof1", fTofIB);
+									if(fDo_ToFIB) WriteTofInformation(iter_tof, ptrk, "ToFIB", fTofIB);
 								} else if(hitStatus.layer() == 2) { // outer barrel
-									if(fDoTofOB) WriteTofInformation(iter_tof, ptrk, "tof2", fTofOB);
+									if(fDo_ToFOB) WriteTofInformation(iter_tof, ptrk, "ToFOB", fTofOB);
 								}
 							}
-							else if(fDoTofEC && hitStatus.layer() == 0) // end cap
-								WriteTofInformation(iter_tof, ptrk, "tofe", fTofEC);
+							else if(fDo_ToFEC && hitStatus.layer() == 0) // end cap
+								WriteTofInformation(iter_tof, ptrk, "ToFEC", fTofEC);
 						}
 
-					} // if(fDoTofEC || fDoTofIB || fDoTofOB)
+					} // if(fDo_tofec || fDo_tofib || fDo_tofob)
 
 			}
 
@@ -314,7 +315,7 @@
 				/// STEP 1: Get MDC information
 
 					// * Get track and test if available
-					fLog << MSG::DEBUG << "   neutral track " << i-fEvtRecEvent->totalCharged() << "/" << fEvtRecEvent->totalNeutral() << endreq;
+					fLog << MSG::DEBUG << "   neutral track " << i-fEvtRecEvent->totalCharged() << "/" << fEvtRecEvent->totalNeutral() << endmsg;
 					fTrackIterator = fEvtRecTrkCol->begin() + i; 
 					if(!(*fTrackIterator)->isEmcShowerValid()) continue;
 					fTrackEMC = (*fTrackIterator)->emcShower();
@@ -339,12 +340,12 @@
 			}
 
 			// * Finish Good Photon Selection *
-			fLog << MSG::DEBUG << "Number of good photons: " << fGoodNeutralTracks.size() << endreq;
+			fLog << MSG::DEBUG << "Number of good photons: " << fGoodNeutralTracks.size() << endmsg;
 
 
 		/// STEP (D): WRITE event info ("mult" and "vertex" branch)
-			fLog << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << nChargesMDC << endreq;
-			if(fDoMult) {
+			fLog << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << nChargesMDC << endmsg;
+			if(fDo_mult) {
 				fMult.at("Ntotal")       = fEvtRecEvent->totalTracks();
 				fMult.at("Ncharge")      = fEvtRecEvent->totalCharged();
 				fMult.at("Nneutral")     = fEvtRecEvent->totalNeutral();
@@ -353,7 +354,7 @@
 				fMult.at("Nmdc")         = nChargesMDC;
 				fNTupleMap.at("vertex")->write();
 			}
-			if(fDoVertex) {
+			if(fDo_vertex) {
 				fVertex.at("vx0") = v0x;
 				fVertex.at("vy0") = v0y;
 				fVertex.at("vz0") = v0z;
@@ -383,6 +384,25 @@
 // * ================================= * //
 
 	/**
+	 * @brief Compute a 'momentum' for a neutral track.
+	 * @details The momentum is computed from the neutral track (photon) energy and from the location (angles) where it was detected in the EMC.
+	 */
+	HepLorentzVector TrackSelector::ComputeMomentum(EvtRecTrack *track)
+	{
+		RecEmcShower *emcTrk = track->emcShower();
+		double eraw = emcTrk->energy();
+		double phi  = emcTrk->phi();
+		double the  = emcTrk->theta();
+		HepLorentzVector ptrk(
+			eraw * sin(the) * cos(phi), // px
+			eraw * sin(the) * sin(phi), // py
+			eraw * cos(the),            // pz
+			eraw);
+		// ptrk = ptrk.boost(-0.011, 0, 0); // boost to center-of-mass frame
+		return ptrk;
+	}
+
+	/**
 	 * @brief   Helper function that allows you to create pair of a string with a `NTuplePtr`.
 	 * @details This function first attempts to see if there is already an `NTuple` in the output file. If not, it will book an `NTuple` of 
 	 *
@@ -399,6 +419,30 @@
 		}
 		fNTupleMap[tupleName] = nt.ptr(); /// Use `map::operator[]` if you want to book an `NTuple::Item` and use `map::at` if you want to access the `NTuple` by key value. This ensures that the programme throws an exception if you ask for the wrong key later.
 		return nt;
+	}
+
+
+	/**
+	 * @brief Helper method that allows you to safely add a new particle to the `fParticles` vector.
+	 * @param pdgName PDG code of the particle you want to add. See http://home.fnal.gov/~mrenna/lutp0613man2/node44.html for an overview of PDG codes. Not used in the `TrackSelector` class, but can be used in the derived subalgorithms to get for instance masses.
+	 */
+	TParticlePDG* TrackSelector::AddParticle(Int_t pdgCode)
+	{
+		TParticlePDG* particle = gPDG.GetParticle(pdgCode);
+		if(particle) fParticles[particle->GetName()] = particle;
+		return particle;
+	}
+
+
+	/**
+	 * @brief Helper method that allows you to safely add a new particle to the `fParticles` vector.
+	 * @param pdgName PDG name of the particle you want to add. See http://home.fnal.gov/~mrenna/lutp0613man2/node44.html for an overview of PDG codes. Not used in the `TrackSelector` class, but can be used in the derived subalgorithms to get for instance masses.
+	 */
+	TParticlePDG* TrackSelector::AddParticle(const char* pdgName)
+	{
+		TParticlePDG* particle = gPDG.GetParticle(pdgName);
+		if(particle) fParticles[pdgName] = particle;
+		return particle;
 	}
 
 
@@ -476,6 +520,26 @@
 		map.at("tp")    = path - texp[4];
 		fNTupleMap.at(tupleName)->write();
 
+	}
+
+
+	/**
+	 * @brief Set the `fSmallestChiSq` back to a large value.
+	 * @details This method is only useful for the derived subalgorithms (where Kalman kinematic fits are performed), but has been added to the `TrackSelector` to standardize this procedure and to avoid code duplication.
+	 */
+	void TrackSelector::ResetSmallestChiSq()
+	{
+		ResetSmallestChiSq(fSmallestChiSq);
+	}
+
+
+	/**
+	 * @brief Set the `fSmallestChiSq` back to a large value.
+	 * @details This method is only useful for the derived subalgorithms (where Kalman kinematic fits are performed), but has been added to the `TrackSelector` to standardize this procedure and to avoid code duplication.
+	 */
+	void TrackSelector::ResetSmallestChiSq(double &chisq)
+	{
+		chisq = 1e6;
 	}
 
 
@@ -565,8 +629,8 @@
 			fPID.at("cost") = cos(fTrackMDC->theta());
 		}
 		fPID.at("dedx") = pid->chiDedx(2);
-		fPID.at("tof1") = pid->chiTof1(2);
-		fPID.at("tof2") = pid->chiTof2(2);
+		fPID.at("ToFIB") = pid->chiTof1(2);
+		fPID.at("ToFOB") = pid->chiTof2(2);
 		fPID.at("prob_K")  = pid->probKaon();
 		fPID.at("prob_e")  = pid->probElectron();
 		fPID.at("prob_mu") = pid->probMuon();

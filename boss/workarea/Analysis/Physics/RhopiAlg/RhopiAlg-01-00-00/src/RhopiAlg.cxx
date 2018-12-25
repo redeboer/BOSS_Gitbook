@@ -102,8 +102,8 @@ RhopiAlg::RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator) :
 	declareProperty("dM_rho0", fDeltaMrho0 = .150);
 
 	// * Whether to test the success of the 4- and 5-constraint fits *
-	declareProperty("Test4C",   fElectronst4C); // write fit4c
-	declareProperty("Test5C",   fElectronst5C); // write fit5c and geff
+	declareProperty("Test4C",   fDo_fit4C); // write fit4c
+	declareProperty("Test5C",   fDo_fit5c); // write fit5c and geff
 	declareProperty("MaxChiSq", fMaxChiSq); // chisq for both fits should be less
 
 	// * Whether or not to check success of Particle Identification *
@@ -179,7 +179,7 @@ StatusCode RhopiAlg::initialize(){
 		}
 
 	// * NTuple: Neutral pion (pi0) fit branch (fit4c) * //
-		if(fElectronst4C) {
+		if(fDo_fit4C) {
 			NTuplePtr nt4(ntupleSvc(), "FILE1/fit4c");
 			if ( nt4 ) fTupleFit4C = nt4;
 			else {
@@ -196,7 +196,7 @@ StatusCode RhopiAlg::initialize(){
 		}
 
 	// * NTuple: Rho fit branch (fit5c) * //
-		if(fElectronst5C) {
+		if(fDo_fit5c) {
 			NTuplePtr nt5(ntupleSvc(), "FILE1/fit5c");
 			if ( nt5 ) fTupleFit5C = nt5;
 			else {
@@ -874,7 +874,7 @@ StatusCode RhopiAlg::execute() {
 
 
 	// * Apply Kalman 4-constrain kinematic fit * //
-		if(fElectronst4C) {
+		if(fDo_fit4C) {
 			HepLorentzVector ecms(0.034, 0, 0, Ecms);
 			double chisq = 9999.;
 			int ig1 = -1;
@@ -928,7 +928,7 @@ StatusCode RhopiAlg::execute() {
 	// * Apply Kalman kinematic fit * //
 	// NOTE: Ncut5 -- Kalman kinematic fit 5c is successful
 	// NOTE: Ncut6 -- J/psi -> rho0 pi0 (cut on invariant mass window)
-		if(fElectronst5C) {
+		if(fDo_fit5c) {
 			HepLorentzVector ecms(0.034, 0, 0, Ecms);
 			double chisq = 9999.;
 			int ig1 = -1;

@@ -59,8 +59,8 @@ private:
 		double fDeltaMrho0; // width of inv. mass window around mrho0
 
 		// * Declare whether to test the success of the 4- and 5-constraint fits *
-		bool fElectronst4C;
-		bool fElectronst5C;
+		bool fDo_fit4c;
+		bool fDo_fit5c;
 		double fMaxChiSq;
 
 		// * Declare whether or not to check success of Particle Identification *

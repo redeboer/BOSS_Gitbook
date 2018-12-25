@@ -35,10 +35,11 @@ private:
 	void SetSmallestAngles(std::vector<EvtRecTrack*>::iterator &iter, std::vector<EvtRecTrack*> &vec, Hep3Vector &emcpos);
 
 	// * Private data members * //
-		double fSmallestChiSq;
-		double fSmallestAngle;
-		double fSmallestTheta;
-		double fSmallestPhi;
+		double fMpi;  //!< Mass of \f$\pi^\pm\f$.
+		double fMrho; //!< Mass of \f$\rho\f$.
+		double fSmallestAngle; //!< Current angle (in a loop) between the nearest neutral track and a charged track.
+		double fSmallestTheta; //!< Current \f$\theta\f$ angle (in a loop) between the nearest neutral track and a charged track.
+		double fSmallestPhi;   //!< Current \f$\phi\f$ angle (in a loop) between the nearest neutral track and a charged track.
 		std::vector<EvtRecTrack*> fGamma; //!< Vector that contains a selection of pointers to neutral tracks identified as \f$\gamma\f$.
 		std::vector<EvtRecTrack*> fPionNeg; //!< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^-\f$.
 		std::vector<EvtRecTrack*> fPionPos; //!< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
@@ -63,9 +64,9 @@ private:
 		/// Note that the `NTuple::Items` have to be added to the NTuple during the `TrackSelector::initialize()` step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Maps of Ntuples *
-			bool fDoGammaInfo; //!< Package property that determines whether or not to write angle info from the photons.
-			bool fDoFit4c;     //!< Package property that determines whether or not to perform and record a 4-constraint Kalman kinematic fit.
-			bool fDoFit5c;     //!< Package property that determines whether or not to perform and record a 5-constraint Kalman kinematic fit.
+			bool fDo_photon; //!< Package property that determines whether or not to write angle info from the photons.
+			bool fDo_fit4c;  //!< Package property that determines whether or not to perform and record a 4-constraint Kalman kinematic fit.
+			bool fDo_fit5c;  //!< Package property that determines whether or not to perform and record a 5-constraint Kalman kinematic fit.
 			std::map<std::string, NTuple::Item<double> > fGammaInfo; //!< Container for the `"gamma"` branch.
 			std::map<std::string, NTuple::Item<double> > fDedx_pi;   //!< Container for the `"dedx_pi"` branch.
 			std::map<std::string, NTuple::Item<double> > fFit4c;     //!< Container for the `"fit4c"` branch.

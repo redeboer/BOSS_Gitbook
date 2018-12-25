@@ -23,9 +23,6 @@ TrackSelector.Vrvxy0cut =    1.;
 
 // * Define energy, dphi, dthe cuts for fake gamma's *
 TrackSelector.EnergyThreshold = 0.04;
-TrackSelector.GammaPhiCut     = 20.0;
-TrackSelector.GammaThetaCut   = 20.0;
-TrackSelector.GammaAngleCut   = 20.0;
 
 // * Whether to test the success of the 4- and 5-constraint fits *
 D0phi_KpiKK.MaxChiSq = 200.;

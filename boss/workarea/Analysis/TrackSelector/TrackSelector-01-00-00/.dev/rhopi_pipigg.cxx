@@ -26,9 +26,6 @@
 // * ------- GLOBALS AND TYPEDEFS ------- * //
 // * ==================================== * //
 
-	const double gM_pi  = 0.13957061; /// Mass of \f$\pi^\pm\f$.
-	const double gM_pi0 = 0.13957061; /// Mass of \f$\pi^0\f$.
-	const double gM_rho = 0.770;      /// Mass of \f$\rho\f$.
 	const double gEcms  = 3.097;      /// Center-of-mass energy.
 	const HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
 
@@ -47,8 +44,8 @@
 	{
 
 		// * Whether or not to fill a tree/NTuple *
-		declareProperty("doFit4c", fDoFit4c);
-		declareProperty("doFit6c", fDoFit5c);
+		declareProperty("doFit4c", fDo_fit4c);
+		declareProperty("doFit6c", fDo_fit5c);
 
 		// * Define cuts
 		declareProperty("MaxChiSq", fMaxChiSq);
@@ -56,6 +53,12 @@
 		declareProperty("MaxGammaPhi",   fMaxGammaPhi   =  20.0);
 		declareProperty("MaxGammaTheta", fMaxGammaTheta =  20.0);
 		declareProperty("MaxGammaAngle", fMaxGammaAngle = 200.0);
+
+		// * Add particle information
+		AddParticle("pi+");
+		AddParticle("rho+");
+		fMpi  = fParticles.at("pi+") ->Mass();
+		fMrho = fParticles.at("rho+")->Mass();
 
 	}
 
@@ -72,12 +75,12 @@
 	StatusCode rhopi_pipigg::initialize_rest()
 	{
 		// * Book NTuple: dE/dx PID branch * //
-			if(fDoDedx) {
+			if(fDo_dedx) {
 				BookNtupleItemsDedx("dedx_pi", fDedx_pi);
 			}
 
 		// * Book NTuple: gamma information branch * //
-			if(fDoGammaInfo) {
+			if(fDo_photon) {
 				fGammaInfo["E"];     /// Energy of the photon.
 				fGammaInfo["phi"];   /// Smallest angle between the photon and the nearest charged pion.
 				fGammaInfo["theta"]; /// Smallest angle between the photon and the nearest charged pion.
@@ -86,7 +89,7 @@
 			}
 
 		// * Book NTuple: 4-contraints for Kalman kinematic fit * //
-			if(fDoFit4c) {
+			if(fDo_fit4c) {
 				fFit4c["mpi0"];  /// Invariant mass for \f$\gamma\gamma\f$ (\f$\pi^0\f$).
 				fFit4c["mrho"];  /// Invariant mass for \f$\pi\pi\f$ (\f$\rho\f$).
 				fFit4c["chisq"]; /// Chi squared of the Kalman kinematic fit.
@@ -94,7 +97,7 @@
 			}
 
 		// * Book NTuple: 6-contraints for Kalman kinematic fit * //
-			if(fDoFit5c) {
+			if(fDo_fit5c) {
 				fFit5c["mpi0"];  /// Invariant mass for \f$\gamma\gamma\f$ (\f$\pi^0\f$).
 				fFit5c["mrho"];  /// Invariant mass for \f$\pi\pi\f$ (\f$\rho\f$).
 				fFit5c["chisq"]; /// Chi squared of the Kalman kinematic fit.
@@ -150,12 +153,12 @@
 					else                        fPionPos.push_back(*fTrackIterator); // if positive pion
 
 				/// STEP A.3: WRITE PID information
-					if(fDoPID) WritePIDInformation(pid);
+					if(fDo_pid) WritePIDInformation(pid);
 
 			}
 
 		/// STEP (B): WRITE dE/dx PID information ("dedx" branch) * //
-			if(fDoDedx) {
+			if(fDo_dedx) {
 				WriteDedxInfoForVector(fPionNeg, "dedx_pi",  fDedx_pi);
 				WriteDedxInfoForVector(fPionPos, "dedx_pi",  fDedx_pi);
 			}
@@ -187,11 +190,13 @@
 				fSmallestAngle = fSmallestAngle * 180 / (CLHEP::pi);
 
 				// * WRITE photon info ("photon" branch)
-				fGammaInfo.at("E")     = fTrackEMC->energy();
-				fGammaInfo.at("phi")   = fSmallestTheta;
-				fGammaInfo.at("theta") = fSmallestPhi;
-				fGammaInfo.at("angle") = fSmallestAngle;
-				fNTupleMap.at("photon")->write(); // "photon" branch
+				if(fDo_photon) {
+					fGammaInfo.at("E")     = fTrackEMC->energy();
+					fGammaInfo.at("phi")   = fSmallestTheta;
+					fGammaInfo.at("theta") = fSmallestPhi;
+					fGammaInfo.at("angle") = fSmallestAngle;
+					fNTupleMap.at("photon")->write();
+				}
 
 				// * Apply photon cuts (energy cut has already been applied in TrackSelector)
 				if(
@@ -210,10 +215,10 @@
 
 
 		/// STEP (C): WRITE Kalman 4-constraint kinematic fit with smallest chi squared ("fit4c" branch) * //
-			if(fDoFit4c) {
+			if(fDo_fit4c) {
 
 				// * Loop over all combinations and get the one with the smallest chi square
-				fSmallestChiSq = 9999999.;
+				ResetSmallestChiSq();
 				KalmanKinematicFit *bestKalmanFit = KalmanKinematicFit::instance();
 				for(fGamma1Iter = fGamma.begin(); fGamma1Iter != fGamma.end(); ++fGamma1Iter) {
 					for(fGamma2Iter = fGamma1Iter+1; fGamma2Iter != fGamma.end(); ++fGamma2Iter) {
@@ -227,10 +232,10 @@
 									RecMdcKalTrack *pipTrk = (*fPionPosIter )->mdcKalTrack();
 
 								// * Get W-tracks
-									WTrackParameter wvKmTrk1(gM_K,  KmTrk1->getZHelix(), KmTrk1->getZError());
-									WTrackParameter wvKmTrk2(gM_K,  KmTrk2->getZHelix(), KmTrk2->getZError());
-									WTrackParameter wvKpTrk (gM_K,  KpTrk->getZHelix(),  KpTrk->getZError());
-									WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
+									WTrackParameter wvKmTrk1(fMK,  KmTrk1->getZHelix(), KmTrk1->getZError());
+									WTrackParameter wvKmTrk2(fMK,  KmTrk2->getZHelix(), KmTrk2->getZError());
+									WTrackParameter wvKpTrk (fMK,  KpTrk->getZHelix(),  KpTrk->getZError());
+									WTrackParameter wvpipTrk(fMpi, pipTrk->getZHelix(), pipTrk->getZError());
 
 								// * Test vertex fit * //
 									HepPoint3D vx(0., 0., 0.);
@@ -262,7 +267,8 @@
 									WTrackParameter wKm2 = vtxfit->wtrk(3);
 
 								// * Get Kalman kinematic fit for this combination and store if better than previous one
-									double chisq = 999999.;
+									double chisq;
+									ResetSmallestChiSq(chisq);
 									KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
 									kkmfit->init();
 									kkmfit->AddTrack(0, wKm1);  // K- (1st occurrence)
@@ -284,7 +290,7 @@
 				} // end of loop over first K^-
 
 				// * WRITE D0 and phi information from 4-constraint fit ("fit4c" branch)
-					if(fDoFit4c && bestKalmanFit && fSmallestChiSq < fMaxChiSq) {
+					if(fDo_fit4c && bestKalmanFit && fSmallestChiSq < fMaxChiSq) {
 						HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
 						HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
 						HepLorentzVector pJpsi = pD0 + pphi;
@@ -295,7 +301,7 @@
 						fNTupleMap.at("fit4c")->write();
 					}
 
-			} // end of fDoFit4c
+			} // end of fDo_fit4c
 
 
 		// * Get 4-momentum for each photon * //
