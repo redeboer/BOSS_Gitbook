@@ -49,7 +49,7 @@ set -e # exit if a command or function exits with a non-zero status
 # * ================================= * #
 	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
 	scriptFolder="${afterburnerPath}/jobs" # contains templates and will write scripts to its subfolders
-	outputFolder="${afterburnerPath}/data" # rtraw, dst, root, and log files will be written to this folder
+	outputFolder="/scratchfs/bes/${USER}/data" # rtraw, dst, root, and log files will be written to this folder
 
 
 # * =============================================== * #

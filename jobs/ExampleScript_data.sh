@@ -15,7 +15,7 @@ source CommonFunctions.sh
 # * Scripts parameters * #
 packageName="DzeroPhi" # RhopiAlg
 nFilesPerJob=100
-nEventsPerJob=-1
+nEventsPerJob=10000
 identifier="besfs3_offline_data_703-1_jpsi_round02_dst" # DzeroPhi_mc
 fileToRead="filenames/ExampleFile_DzeroPhi_mc" # filenames/ExampleFile_DstFiles
 gExampleFromFile=0 #! set to 1 if you want to load your dst files from "${fileToRead}"
