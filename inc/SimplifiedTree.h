@@ -54,7 +54,6 @@
 			TH2F* DrawBranches(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, const bool save=true, Option_t* opt="", const TString &logScale="");
 			void DrawAndSaveAllBranches(Option_t* opt="", const TString &logScale="");
 			void DrawBranches(const char* branchNames, const bool save=true, Option_t* opt="", const TString &logScale="");
-			void Print();
 
 	private:
 
@@ -95,7 +94,7 @@
 		if(!fTree) return;
 		TIter next(fTree->GetListOfBranches());
 		TObject *obj  = nullptr;
-		if(print) std::cout << "  Tree \"" << fTree->GetName() << "\" has branches:" << std::endl;
+		if(print) std::cout << "  Tree \"" << fTree->GetName() << "\" (" << fTree->GetEntries() << " entries) has branches:" << std::endl;
 		while((obj = next())) {
 			std::string type(obj->GetTitle()); /// The data type of a branch can be determined from the last character of its title. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the labels of each type.
 			if(print) std::cout << "    " << type << std::endl;
