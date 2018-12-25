@@ -15,10 +15,10 @@ source CommonFunctions.sh
 # * Scripts parameters * #
 packageName="D0phi_KpiKK" # RhopiAlg
 nFilesPerJob=100
-nEventsPerJob=10000
+nEventsPerJob=50000
 identifier="besfs3_offline_data_703-1_jpsi_round02_dst" # DzeroPhi_mc
-fileToRead="filenames/ExampleFile_DstFiles" # filenames/ExampleFile_DstFiles filenames/ExampleFile_DzeroPhi_mc
-gExampleFromFile=1 #! set to 1 if you want to load your dst files from "${fileToRead}"
+fileToRead="filenames/ExampleFile_DstFiles" # filenames/ExampleFile_DzeroPhi_mc
+gExampleFromFile=0 #! set to 1 if you want to load your dst files from "${fileToRead}"
 
 # * Create job from template and submit * #
 if [ ${gExampleFromFile} == 1 ]; then
