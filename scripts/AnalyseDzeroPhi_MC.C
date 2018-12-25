@@ -38,7 +38,7 @@
 	const bool draw_fit    = true; //!< Whether or not to draw the `"fit"` branches.
 
 	// * FIT SETTINGS * //
-	const bool performfits = true; //!< Whether or not to produce invariant mass fits.
+	const bool fitplots = true; //!< Whether or not to produce invariant mass fits.
 	const bool do_gauss    = true; //!< Whether or not to produce perform a double Gaussian fit.
 	const bool do_conv_s   = true; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
 	const bool do_conv_d   = false; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
@@ -131,7 +131,7 @@ void FitInvMassSignal()
 
 
 	// * PERFORM FITS * //
-		if(performfits) {
+		if(fitplots) {
 		// * Particles to reconstruct
 			ReconstructedParticle D0  (421, "K^{-}#pi^{+}");
 			ReconstructedParticle phi (333, "K^{+}K^{-}");
