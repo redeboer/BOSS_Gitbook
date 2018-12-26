@@ -23,6 +23,7 @@
 	using CLHEP::Hep2Vector;
 	using CLHEP::Hep3Vector;
 	using CLHEP::HepLorentzVector;
+	using namespace TSGlobals;
 
 
 
@@ -57,7 +58,7 @@
 		fEvtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol)
 	{
 
-		/// * The `"do_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set here as well.
+		/// * The `"do_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
 		declareProperty("do_mult",    fDo_mult    = false);
 		declareProperty("do_vertex",  fDo_vertex  = false);
 		declareProperty("do_charged", fDo_charged = false);
@@ -69,11 +70,13 @@
 		declareProperty("do_pid",     fDo_pid     = false);
 
 		/// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
-		declareProperty("cut_vr0",    fCut_vr0   =  1.);
-		declareProperty("cut_vz0",    fCut_vz0   =  5.);
-		declareProperty("cut_vrvz0",  fCut_rvz0  = 10.);
-		declareProperty("cut_vrvxy0", fCut_rvxy0 =  1.);
-		declareProperty("cut_PhotonEnergy", fMaxPhotonEnergy = 0.04);
+		declareProperty("cut_MaxVr0",          fCut_MaxVr0          = 1.);
+		declareProperty("cut_MaxVz0",          fCut_MaxVz0          = 5.);
+		declareProperty("cut_MaxVrvz0",        fCut_MaxRvz0         = 10.);
+		declareProperty("cut_MaxVrvxy0",       fCut_MaxRvxy0        = 1.);
+		declareProperty("cut_MinPhotonEnergy", fCut_MinPhotonEnergy = 0.04);
+		declareProperty("cut_MaxPIDChiSq",     fCut_MaxPIDChiSq     = 200.);
+		declareProperty("cut_MinPIDProb",      fCut_MinPIDProb      = 0.001);
 
 	}
 
@@ -91,19 +94,16 @@
 	{
 
 		/// <ol type="A">
-		/// <li> `"mult"`: Multiplicities
+		/// <li> `"mult"`: Multiplicities of the total event
 			/// <ol>
 			if(fDo_mult) {
-				fMult["Ntotal"];       /// <li> `"Ntotal"`: Total number of events per track.
-				fMult["Ncharge"];      /// <li> `"Ncharge"`: Number of charged tracks.
-				fMult["Nneutral"];     /// <li> `"Nneutral"`: Number of charged tracks.
+				fMult["Ntotal"];       /// <li> `"Ntotal"`:       Total number of events per track.
+				fMult["Ncharge"];      /// <li> `"Ncharge"`:      Number of charged tracks.
+				fMult["Nneutral"];     /// <li> `"Nneutral"`:     Number of charged tracks.
 				fMult["NgoodCharged"]; /// <li> `"NgoodCharged"`: Number of 'good' charged tracks.
 				fMult["NgoodNeutral"]; /// <li> `"NgoodNeutral"`: Number of 'good' neutral tracks.
-				fMult["Nmdc"];         /// <li> `"Nmdc"`: Number of charged tracks in MDC.
-				fMult["NKaonPos"];     /// <li> `"NKaonPos"`: Number of \f$K^+\f$.
-				fMult["NKaonNeg"];     /// <li> `"NKaonNeg"`: Number of \f$K^-\f$.
-				fMult["NPionPos"];     /// <li> `"NPionPos"`: Number of \f$\pi^-\f$.
-				AddItemsToNTuples("mult", fMult);
+				fMult["Nmdc"];         /// <li> `"Nmdc"`:         Number of charged tracks in MDC.
+				AddItemsToNTuples("mult", fMult, "Event multiplicities");
 			}
 			/// </ol>
 
@@ -113,50 +113,23 @@
 				fVertex["vx0"]; /// <li> `"vx0"`: Primary \f$x\f$ coordinate of the collision point.
 				fVertex["vy0"]; /// <li> `"vy0"`: Primary \f$y\f$ coordinate of the collision point.
 				fVertex["vz0"]; /// <li> `"vz0"`: Primary \f$z\f$ coordinate of the collision point.
-				AddItemsToNTuples("vertex", fVertex);
-			}
-			/// </ol>
-
-		/// <li> `"dedx"`: dE/dx PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
-			if(fDo_dedx) {
-				BookNtupleItemsDedx("dedx", fDedx);
-			}
-
-		/// <li> `"ToFEC"`, `"ToFIB"`, and `"ToFOB"`: information from the three Time-of-Flight detectors. See `TrackSelector::BookNtupleItemsTof` for more info.
-			if(fDo_ToFEC) BookNtupleItemsTof("ToFEC", fTofEC);
-			if(fDo_ToFIB) BookNtupleItemsTof("ToFIB", fTofIB);
-			if(fDo_ToFOB) BookNtupleItemsTof("ToFOB", fTofOB);
-
-		/// <li> `"pid"`: Track PID information.
-			/// <ol>
-			if(fDo_pid) {
-				fPID["ptrk"];    /// <li> `"ptrk"`: Momentum of the track as reconstructed by MDC.
-				fPID["cost"];    /// <li> `"cost"`: Theta angle of the track.
-				fPID["dedx"];    /// <li> `"dedx"`: Chi squared of the dedx of the track.
-				fPID["ToFIB"];   /// <li> `"ToFIB"`: Chi squared of the inner barrel ToF of the track.
-				fPID["ToFOB"];   /// <li> `"ToFOB"`: Chi squared of the outer barrel ToF of the track.
-				fPID["prob_K"];  /// <li> `"prob_K"`: Probability that it is a kaon.
-				fPID["prob_e"];  /// <li> `"prob_e"`: Probability that it is a electron.
-				fPID["prob_mu"]; /// <li> `"prob_mu"`: Probability that it is a muon.
-				fPID["prob_p"];  /// <li> `"prob_p"`: Probability that it is a proton.
-				fPID["prob_pi"]; /// <li> `"prob_pi"`: Probability that it is a pion.
-				AddItemsToNTuples("pid", fPID);
+				AddItemsToNTuples("vertex", fVertex, "Primary vertex");
 			}
 			/// </ol>
 
 		/// <li> `"charged"`: Charged track info.
 			/// <ol>
 			if(fDo_charged) {
-				fCharged["vx"];    /// <li> `"vx"`: Primary \f$x\f$ coordinate of the vertex as determined by MDC.
-				fCharged["vy"];    /// <li> `"vy"`: Primary \f$y\f$ coordinate of the vertex as determined by MDC.
-				fCharged["vz"];    /// <li> `"vz"`: Primary \f$z\f$ coordinate of the vertex as determined by MDC.
-				fCharged["vr"];    /// <li> `"vr"`: Distance from origin in \f$xy\f$ plane.
-				fCharged["rvxy"];  /// <li> `"rvxy"`: Nearest distance to IP in \f$xy\f$ plane.
-				fCharged["rvz"];   /// <li> `"rvz"`: Nearest distance to IP in \f$z\f$ direction.
-				fCharged["rvphi"]; /// <li> `"rvphi"`: Angle in the \f$xy\f$plane (?). @todo
-				fCharged["phi"];   /// <li> `"phi"`: Helix angle of the particle (?). @todo
-				fCharged["p"];     /// <li> `"p"`: Momentum \f$p\f$ of the track.
-				AddItemsToNTuples("charged", fCharged);
+				fCharged["vx"];    /// <li> `"vx"`:    Primary \f$x\f$ coordinate of the vertex as determined by MDC.
+				fCharged["vy"];    /// <li> `"vy"`:    Primary \f$y\f$ coordinate of the vertex as determined by MDC.
+				fCharged["vz"];    /// <li> `"vz"`:    Primary \f$z\f$ coordinate of the vertex as determined by MDC.
+				fCharged["vr"];    /// <li> `"vr"`:    Distance from origin in \f$xy\f$ plane.
+				fCharged["rvxy"];  /// <li> `"rvxy"`:  Nearest distance to IP in \f$xy\f$ plane.
+				fCharged["rvz"];   /// <li> `"rvz"`:   Nearest distance to IP in \f$z\f$ direction.
+				fCharged["rvphi"]; /// <li> `"rvphi"`: Angle in the \f$xy\f$plane. @todo Get explanation of geometry (angle) definitions in an event.
+				fCharged["phi"];   /// <li> `"phi"`:   Helix angle of the particle.
+				fCharged["p"];     /// <li> `"p"`:     Momentum \f$p\f$ of the track.
+				AddItemsToNTuples("charged", fCharged, "Charged track info");
 			}
 			/// </ol>
 
@@ -170,7 +143,35 @@
 				fNeutral["phi"];   /// <li> `"phi"`: \f$\phi\f$-angle of the neutral track according to the EMC.
 				fNeutral["theta"]; /// <li> `"theta"`: \f$\theta\f$-angle of the neutral track according to the EMC.
 				fNeutral["time"];  /// <li> `"time"`: Time of the neutral track according to the EMC. @todo Investigate what this parameter precisely means.
-				AddItemsToNTuples("neutral", fNeutral);
+				AddItemsToNTuples("neutral", fNeutral, "Neutral track info");
+			}
+			/// </ol>
+
+		/// <li> `"dedx"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
+			if(fDo_dedx) {
+				BookNtupleItemsDedx("dedx", fDedx, "dE/dx of all charged tracks");
+			}
+
+		/// <li> `"ToFEC"`, `"ToFIB"`, and `"ToFOB"`: information from the three Time-of-Flight detectors. See `TrackSelector::BookNtupleItemsTof` for more info.
+			if(fDo_ToFEC) BookNtupleItemsTof("ToFEC", fTofEC, "End cap ToF of all tracks");
+			if(fDo_ToFIB) BookNtupleItemsTof("ToFIB", fTofIB, "Inner barrel ToF of all tracks");
+			if(fDo_ToFOB) BookNtupleItemsTof("ToFOB", fTofOB, "Outer barrel ToF of all tracks");
+
+		/// <li> `"fPID"`: Track PID information.
+			/// <ol>
+			if(fDo_pid) {
+				fPID["p"];        /// <li> `"p"`:       Momentum of the track as reconstructed by MDC.
+				fPID["cost"];     /// <li> `"cost"`:    Theta angle of the track.
+				fPID["chiToFIB"]; /// <li> `"ToFIB"`:   \f$\chi^2\f$ of the inner barrel ToF of the track.
+				fPID["chiToFOB"]; /// <li> `"ToFOB"`:   \f$\chi^2\f$ of the end cap ToF of the track.
+				fPID["chiToFOB"]; /// <li> `"ToFOB"`:   \f$\chi^2\f$ of the outer barrel ToF of the track.
+				fPID["chidEdx"];  /// <li> `"chidEdx"`: \f$\chi^2\f$ of the energy loss \f$dE/dx\f$ of the identified track.
+				fPID["prob_K"];   /// <li> `"prob_K"`:  Probability that the track is from a kaon according to the probability method.
+				fPID["prob_e"];   /// <li> `"prob_e"`:  Probability that the track is from a electron according to the probability method.
+				fPID["prob_mu"];  /// <li> `"prob_mu"`: Probability that the track is from a muon according to the probability method.
+				fPID["prob_p"];   /// <li> `"prob_p"`:  Probability that the track is from a proton according to the probability method.
+				fPID["prob_pi"];  /// <li> `"prob_pi"`: Probability that the track is from a pion according to the probability method.
+				AddItemsToNTuples("fPID", fPID, "Particle Identification parameters");
 			}
 			/// </ol>
 
@@ -187,14 +188,14 @@
 	StatusCode TrackSelector::execute()
 	{
 		/// <ol type="A">
-		/// <li> Load next event from DST file
+		/// <li> Load next event from DST file. For more info see:
+			/// <ul>
+				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html">Namespace `EventModel`</a>
+				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html">Class `EvtRecEvent`</a>
+				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html">Type definition `EvtRecTrackCol`</a>
+			/// </ul>
 
-			// * Load event info *
-				/*
-				http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html (namespace)
-				http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html (class)
-				http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html (typedef EvtRecTrackCol)
-				*/
+			// * Load headers
 			fLog << MSG::DEBUG << "Loading EventHeader, EvtRecEvent, and EvtRecTrackCol" << endmsg;
 			fEventHeader  = SmartDataPtr<Event::EventHeader>(eventSvc(), "/Event/EventHeader");
 			fEvtRecEvent  = SmartDataPtr<EvtRecEvent>       (eventSvc(), EventModel::EvtRec::EvtRecEvent);
@@ -227,7 +228,7 @@
 			// * Print log and set counters *
 			fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
 			int nChargesMDC = 0;
-			ParticleID *pid = ParticleID::instance();
+			ParticleID *fPID = ParticleID::instance();
 
 			// * Loop over charged tracks *
 			fGoodChargedTracks.clear();
@@ -445,22 +446,22 @@
 	 * @brief This function encapsulates the `addItem` procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.
 	 */ 
 	template<typename TYPE>
-	void TrackSelector::BookNtupleItemsTof(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
+	void TrackSelector::BookNtupleItemsTof(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map, const char* tupleTitle)
 	{
 		/// <ol>
-		map["ptrk"];  /// <li> `"ptrk"`: Momentum of the track as reconstructed by MDC.
-		map["tof"];   /// <li> `"tof"`: Time of flight.
-		map["path"];  /// <li> `"path"`: Path length.
-		map["cntr"];  /// <li> `"cntr"`: ToF counter ID.
-		map["ph"];    /// <li> `"ph"`: ToF pulse height.
+		map["p"];     /// <li> `"p"`:     Momentum of the track as reconstructed by MDC.
+		map["tof"];   /// <li> `"tof"`:   Time of flight.
+		map["path"];  /// <li> `"path"`:  Path length.
+		map["cntr"];  /// <li> `"cntr"`:  ToF counter ID.
+		map["ph"];    /// <li> `"ph"`:    ToF pulse height.
 		map["zrhit"]; /// <li> `"zrhit"`: Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
-		map["qual"];  /// <li> `"qual"`: Data quality of reconstruction.
-		map["te"];    /// <li> `"te"`: Difference with ToF in electron hypothesis.
-		map["tmu"];   /// <li> `"tmu"`: Difference with ToF in muon hypothesis.
-		map["tpi"];   /// <li> `"tpi"`: Difference with ToF in charged pion hypothesis.
-		map["tk"];    /// <li> `"tk"`: Difference with ToF in charged kaon hypothesis.
-		map["tp"];    /// <li> `"tp"`: Difference with ToF in proton hypothesis.
-		AddItemsToNTuples(tupleName, map);
+		map["qual"];  /// <li> `"qual"`:  Data quality of reconstruction.
+		map["te"];    /// <li> `"te"`:    Difference with ToF in electron hypothesis.
+		map["tmu"];   /// <li> `"tmu"`:   Difference with ToF in muon hypothesis.
+		map["tpi"];   /// <li> `"tpi"`:   Difference with ToF in charged pion hypothesis.
+		map["tk"];    /// <li> `"tk"`:    Difference with ToF in charged kaon hypothesis.
+		map["tp"];    /// <li> `"tp"`:    Difference with ToF in proton hypothesis.
+		AddItemsToNTuples(tupleName, map, tupleTitle);
 		/// </ol>
 	}
 
@@ -470,20 +471,20 @@
 	 * @details This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
 	 */
 	template<typename TYPE>
-	void TrackSelector::BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
+	void TrackSelector::BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map, const char* tupleTitle)
 	{
 		/// <ol>
-		map["ptrk"];   /// <li> `"ptrk"`: Momentum of the track as reconstructed by MDC.
-		map["chie"];   /// <li> `"chie"`: Chi squared in case of electron.
-		map["chimu"];  /// <li> `"chimu"`: Chi squared in case of muon.
-		map["chipi"];  /// <li> `"chipi"`: Chi squared in case of pion.
-		map["chik"];   /// <li> `"chik"`: Chi squared in case of kaon.
-		map["chip"];   /// <li> `"chip"`: Chi squared in case of proton.
+		map["p"];      /// <li> `"p"`:      Momentum of the track as reconstructed by MDC.
+		map["chie"];   /// <li> `"chie"`:   Chi squared in case of electron.
+		map["chimu"];  /// <li> `"chimu"`:  Chi squared in case of muon.
+		map["chipi"];  /// <li> `"chipi"`:  Chi squared in case of pion.
+		map["chik"];   /// <li> `"chik"`:   Chi squared in case of kaon.
+		map["chip"];   /// <li> `"chip"`:   Chi squared in case of proton.
 		map["probPH"]; /// <li> `"probPH"`: Most probable pulse height from truncated mean.
 		map["normPH"]; /// <li> `"normPH"`: Normalized pulse height.
-		map["ghit"];   /// <li> `"ghit"`: Number of good hits.
-		map["thit"];   /// <li> `"thit"`: Total number of hits.
-		AddItemsToNTuples(tupleName, map);
+		map["ghit"];   /// <li> `"ghit"`:   Number of good hits.
+		map["thit"];   /// <li> `"thit"`:   Total number of hits.
+		AddItemsToNTuples(tupleName, map, tupleTitle);
 		/// </ol>
 	}
 
@@ -505,7 +506,7 @@
 		}
 
 		// * <b>write</b> ToF info
-		map.at("ptrk")  = ptrk;
+		map.at("p")  = ptrk;
 		map.at("tof")   = (*iter_tof)->tof();
 		map.at("path")  = (*iter_tof)->path();
 		map.at("cntr")  = (*iter_tof)->tofID();
@@ -576,7 +577,7 @@
 		fTrackDedx = evtRecTrack->mdcDedx();
 
 		// * <b>write</b> energy loss PID info ("dedx" branch) *
-		map.at("ptrk")   = fTrackMDC->p();
+		map.at("p")   = fTrackMDC->p();
 		map.at("chie")   = fTrackDedx->chiE();
 		map.at("chimu")  = fTrackDedx->chiMu();
 		map.at("chipi")  = fTrackDedx->chiPi();
@@ -611,29 +612,62 @@
 	 * @param map The `map` from which you want to load the <i>mapped values</i>.
 	 */
 	template<typename TYPE>
-	void TrackSelector::AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map)
+	void TrackSelector::AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map, const char* title)
 	{
-		AddItemsToNTuples(BookNTuple(tupleName), map);
+		AddItemsToNTuples(BookNTuple(tupleName, title), map);
 	}
 
 	/**
 	 * @brief Encapsulates the proces of writing PID info. This allows you to write the PID information after the particle selection as well.
-	 * @param pid Instance of particle ID (`ParticleID::instance()`).
 	 */
-	void TrackSelector::WritePIDInformation(ParticleID *pid)
+	void TrackSelector::WritePIDInformation()
 	{
+		if(!fPID) return;
 		fTrackMDC = (*fTrackIterator)->mdcTrack();
 		if(fTrackMDC) {
-			fPID.at("ptrk") = fTrackMDC->p();
+			fPID.at("p")    = fTrackMDC->p();
 			fPID.at("cost") = cos(fTrackMDC->theta());
 		}
-		fPID.at("dedx") = pid->chiDedx(2);
-		fPID.at("ToFIB") = pid->chiTof1(2);
-		fPID.at("ToFOB") = pid->chiTof2(2);
-		fPID.at("prob_K")  = pid->probKaon();
-		fPID.at("prob_e")  = pid->probElectron();
-		fPID.at("prob_mu") = pid->probMuon();
-		fPID.at("prob_p")  = pid->probProton();
-		fPID.at("prob_pi") = pid->probPion();
-		fNTupleMap.at("pid")->write();
+		fPID.at("chiToFEC") = fPID->chiTofE(2);
+		fPID.at("chiToFIB") = fPID->chiTof1(2);
+		fPID.at("chiToFOB") = fPID->chiTof2(2);
+		fPID.at("chidEdx")  = fPID->chiDedx(2);
+		fPID.at("prob_K")   = fPID->probKaon();
+		fPID.at("prob_e")   = fPID->probElectron();
+		fPID.at("prob_mu")  = fPID->probMuon();
+		fPID.at("prob_p")   = fPID->probProton();
+		fPID.at("prob_pi")  = fPID->probPion();
+		fNTupleMap.at("fPID")->write();
+	}
+
+	/**
+	 * @brief Method that standardizes the initialisation of the particle identification system. Define here <i>as general as possible</i>, but use in the derived subalgorithms.
+	 * @details See http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
+	 * 
+	 * @param method PID systems you want to call. Can combined using bit or (`|`) seperators, e.g. `fPID->useDedx() | fPID->useTof1() | fPID->useTof2() | fPID->useTofE()` for \f$dE/dx\f$ plus all ToF detectors.
+	 * @param pidsys Which particles to identify. For instance, `fPID->onlyPion() | fPID->onlyKaon()` in the case of pions and kaons.
+	 * @param chimin Minimal \f$\chi^2\f$ of the resulting particle identification.
+	 */
+	ParticleID* TrackSelector::SetPID(PIDMethod method, const int pidsys, const double chimin)
+	{
+		// * Check if there is a track iterator
+		if(!(*fTrackIterator)) return nullptr;
+		// * Initialise PID sub-system and set method: probability, likelihood, or neuron network
+		fPID->init();
+		switch(method) {
+			case Probability:   fPID->setMethod(fPID->methodProbability());   break;
+			case Likelihood:    fPID->setMethod(fPID->methodLikelihood());    break;
+			case NeuronNetwork: fPID->setMethod(fPID->methodNeuronNetwork()); break;
+			default: return nullptr;
+		}
+		fPID->setChiMinCut(chimin);
+		fPID->setRecTrack(*fTrackIterator);
+
+		// * Choose ID system and which particles to use
+		fPID->usePidSys(pidsys);
+		fPID->identify(pidcase);
+
+		// * Perform PID
+		fPID->calculate();
+		if(!(fPID->IsPidInfoValid())) return nullptr;
 	}

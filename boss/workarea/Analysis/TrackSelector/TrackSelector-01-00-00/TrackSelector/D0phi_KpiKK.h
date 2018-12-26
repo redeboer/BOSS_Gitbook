@@ -31,36 +31,37 @@ public:
 	StatusCode finalize_rest();
 
 
-private:
-	// * Protected data members * //
-		double fSmallestChiSq;
-		std::vector<EvtRecTrack*> fKaonNeg; //!< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$. @todo Decide if this can be formulated in terms of `fEvtRecTrackMap`.
-		std::vector<EvtRecTrack*> fKaonPos; //!< Vector that contains a selection of pointers to charged tracks identified as \f$K^+\f$.
-		std::vector<EvtRecTrack*> fPionPos; //!< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
-		std::vector<EvtRecTrack*>::iterator fKaonNeg1Iter; //!< Iterator for looping over the collection of negative kaons (1st occurence).
-		std::vector<EvtRecTrack*>::iterator fKaonNeg2Iter; //!< Iterator for looping over the collection of negative kaons (2st occurence).
-		std::vector<EvtRecTrack*>::iterator fKaonPosIter; //!< Iterator for looping over the collection of positive kaons.
-		std::vector<EvtRecTrack*>::iterator fPionPosIter; //!< Iterator for looping over the collection of positive pions.
+protected:
+	// * Maps, vectors, and iterators * //
+		std::vector<RecMdcKalTrack*> fKaonNeg; //!< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$. @todo Decide if this can be formulated in terms of `fEvtRecTrackMap`.
+		std::vector<RecMdcKalTrack*> fKaonPos; //!< Vector that contains a selection of pointers to charged tracks identified as \f$K^+\f$.
+		std::vector<RecMdcKalTrack*> fPionPos; //!< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
+		std::vector<RecMdcKalTrack*>::iterator fKaonNeg1Iter; //!< Iterator for looping over the collection of negative kaons (1st occurence).
+		std::vector<RecMdcKalTrack*>::iterator fKaonNeg2Iter; //!< Iterator for looping over the collection of negative kaons (2st occurence).
+		std::vector<RecMdcKalTrack*>::iterator fKaonPosIter; //!< Iterator for looping over the collection of positive kaons.
+		std::vector<RecMdcKalTrack*>::iterator fPionPosIter; //!< Iterator for looping over the collection of positive pions.
 
-
-	// ! Cut parameters ! //
-		/// Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see `.cxx` file).
-
-		double fDeltaMrho0; //!< Width of inv. mass window around mrho0
-		double fMaxChiSq; //!< Maximum \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits
-
-
-	// ! NTuple data members ! //
+	// * Maps of Ntuples *
 		/// `NTuple`s are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each `NTuple::Item` represents its leaves. The name of the leaves is determined when calling `NTuple::addItem`.
 		/// Note that the `NTuple::Items` have to be added to the NTuple during the `TrackSelector::initialize()` step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
+		bool fDo_fit4c;      //!< Package property that determines whether or not to perform a 4-constraint Kalman kinematic fit.
+		bool fDo_fit4c_all;  //!< Package property that determines whether or not to write results of the `4C` fit <i>for all combinations</i>.
+		bool fDo_fit4c_best; //!< Package property that determines whether or not to write results of the `4C` fit for the combination closest to the expected masses.
+		std::map<std::string, NTuple::Item<double> > fDedx_K;     //!< Container for the `"dedx_k"` branch.
+		std::map<std::string, NTuple::Item<double> > fDedx_pi;    //!< Container for the `"dedx_pi"` branch.
+		std::map<std::string, NTuple::Item<double> > fFit4c_all;  //!< Container for the `"fit4c_all"` branch.
+		std::map<std::string, NTuple::Item<double> > fFit4c_best; //!< Container for the `"fit4c_best"` branch.
 
-		// * Maps of Ntuples *
-			bool fDo_fit4c;   //!< Package property that determines whether or not to perform and record a 4-constraint Kalman kinematic fit.
-			bool fDo_fit6c;   //!< Package property that determines whether or not to perform and record a 6-constraint Kalman kinematic fit.
-			std::map<std::string, NTuple::Item<double> > fDedx_K;  //!< Container for the `"dedx_k"` branch.
-			std::map<std::string, NTuple::Item<double> > fDedx_pi; //!< Container for the `"dedx_pi"` branch.
-			std::map<std::string, NTuple::Item<double> > fFit4c;   //!< Container for the `"fit4c"` branch.
-			std::map<std::string, NTuple::Item<double> > fFit6c;   //!< Container for the `"fit6c"` branch.
+private:
+	// * Private data members (values)
+	double fM_D0;   //!< Current computed mass of \f$D^0\f$.
+	double fM_Jpsi; //!< Current computed mass of \f$J/\psi\f$.
+	double fM_phi;  //!< Current computed mass of \f$\phi\f$.
+
+	// * Private methods
+	double BestKinematicKalmanFitMeasure();
+	void ComputeInvariantMasses(KalmanKinematicFit *kkmfit);
+	void WriteFitResults(KalmanKinematicFit *kkmfit, const char *tupleName);
 
 };
 

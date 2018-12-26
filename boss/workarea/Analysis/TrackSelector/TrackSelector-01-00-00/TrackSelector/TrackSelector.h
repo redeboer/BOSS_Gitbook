@@ -34,19 +34,24 @@
 // * ==================================== * //
 
 	/**
-	 * @brief Namespace that contains some parameters that are useful for derived classes of the `TrackSelector` base algorithm.
+	 * @brief Namespace that contains some parameters (such as particle masses) that are useful for derived classes of the `TrackSelector` base algorithm.
 	 */
 	namespace TSGlobals
 	{
-		const double gM_rho  = 0.77526;    /// Mass of \f$\rho^{0\pm}\f$. See http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf.
-		const double gM_pi0  = 0.1349770;  /// Mass of \f$\pi^0\f$. See http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf.
-		const double gM_pi   = 0.13957061; /// Mass of \f$\pi^\pm\f$. See http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-plus-minus.pdf.
+		const double gM_rho  = 0.77526;    /// Mass of \f$\rho^{0\pm}\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf">PDG</a>.
+		const double gM_pi0  = 0.1349770;  /// Mass of \f$\pi^0\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf">PDG</a>.
+		const double gM_pi   = 0.13957061; /// Mass of \f$\pi^\pm\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-plus-minus.pdf">PDG</a>.
 		const double gM_K    = 0.493677;   /// Mass of \f$K^\pm\f$.
-		const double gM_D0   = 1.86483;    /// Mass of \f$D^0\f$. See http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf.
+		const double gM_D0   = 1.86483;    /// Mass of \f$D^0\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf">PDG</a>.
 		const double gM_phi  = 1.019461;   /// Mass of \f$\phi\f$.
-		const double gM_Jpsi = 3.0969;     /// Mass of \f$J/\psi\f$. See http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf.
+		const double gM_Jpsi = 3.0969;     /// Mass of \f$J/\psi\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf">PDG</a>.
 		const double gEcms   = 3.097;      /// Center-of-mass energy.
 		const HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
+		enum PIDMethod {
+			Probability,
+			Likelihood,
+			NeuronNetwork
+		}
 	}
 
 
@@ -75,27 +80,28 @@ protected:
 
 	// * Protected methods * //
 		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle = "ks N-Tuple example");
+		ParticleID* InitializePID(TSGlobals::PIDMethod method, const int pidsys, const int pidcase, const double chimin=4.);
 		template<typename TYPE> void AddItemsToNTuples  (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
+		template<typename TYPE> void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<TYPE> > &map, const char* tupleTitle = "ks N-Tuple example");
+		template<typename TYPE> void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map, const char* tupleTitle = "dE/dx info");
+		template<typename TYPE> void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map, const char* tupleTitle = "Time-of-Flight info");
 		template<typename TYPE> void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
 		void ResetSmallestChiSq();
 		void ResetSmallestChiSq(double &chisq);
 		void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
-		void WritePIDInformation(ParticleID *pid);
+		void WritePIDInformation();
 
 	// * Protected data members * //
 		HepLorentzVector ComputeMomentum(EvtRecTrack *track);
 		MsgStream fLog; //!< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
+		ParticleID *fPID; //!< Pointer to instance of particle identification (PID). Only used in <i>derived subalgorithms</i>.
 		RecEmcShower *fTrackEMC; //!< Pointer to the track info from the EM calorimeter. It is a data member to make it accessible to other methods as well.
 		RecMdcDedx *fTrackDedx; //!< Pointer to the \f$dE/dx\f$ info from the MDC. It is a data member to make it accessible to other methods as well.
 		RecMdcTrack *fTrackMDC; //!< Pointer to the track info from the MDC. It is a data member to make it accessible to other methods as well.
 		SmartDataPtr<Event::EventHeader> fEventHeader;  //!< Data pointer for  `Event::EventHeader` which is set in `execute()` in each event.
 		SmartDataPtr<EvtRecEvent> fEvtRecEvent;  //!< Data pointer for `EventModel::EvtRec::EvtRecEvent` which is set in `execute()` in each event.
 		SmartDataPtr<EvtRecTrackCol> fEvtRecTrkCol; //!< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in `execute()` in each event.
-		double fSmallestChiSq; //!< Current \f$\chi_\mathrm{red}^2\f$ for the Kalman kinematic fit.
 		std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
 		std::map<std::string, std::vector<EvtRecTrack*> > fEvtRecTrackMap; //!< Map of vectors. @todo Decide if this structure is useful.
 		std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.
@@ -129,12 +135,15 @@ protected:
 
 
 private:
-	/// The private data members are used to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see corresponding `.cxx` file).
-	double fCut_vr0;
-	double fCut_vz0;
-	double fCut_rvz0;
-	double fCut_rvxy0;
-	double fMaxPhotonEnergy;
+	// * Maps, vectors, and iterators * //
+		/// The private data members are used to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see corresponding `.cxx` file).
+		double fCut_vr0; //!< Maximal cut on the radius \f$r\f$ of the primary vertex.
+		double fCut_vz0; //!< Maximal cut on the \f$z\f$ coordinate of the primary vertex.
+		double fCut_rvz0;
+		double fCut_rvxy0;
+		double fCut_MinPhotonEnergy; //!< Minimimal cut on the photon energy.
+		double fCut_MaxChiSq; //!< Maximum \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits
+		double fCut_MinPIDProbability; //!< Minimimal probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6">`ParticleID::probPion`</a>.
 
 };
 

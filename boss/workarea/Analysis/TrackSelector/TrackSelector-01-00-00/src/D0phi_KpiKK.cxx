@@ -36,11 +36,8 @@
 	{
 
 		// * Whether or not to fill a tree/NTuple *
-		declareProperty("do_fit4c", fDo_fit4c);
-		declareProperty("do_fit6c", fDo_fit6c);
-
-		// * Whether to test the success of the 4- and 5-constraint fits *
-		declareProperty("MaxChiSq", fMaxChiSq);
+		declareProperty("do_fit4c_all",  fDo_fit4c_all);
+		declareProperty("do_fit4c_best", fDo_fit4c_best);
 
 	}
 
@@ -56,31 +53,48 @@
 	 */
 	StatusCode D0phi_KpiKK::initialize_rest()
 	{
+		/// <ol type="A">
+		/// <li> `"mult_select"`: Multiplicities of selected particles
+			/// <ol>
+			if(fDo_mult) {
+				fMult["NKaonPos"]; /// <li> `"NKaonPos"`: Number of \f$K^+\f$.
+				fMult["NKaonNeg"]; /// <li> `"NKaonNeg"`: Number of \f$K^-\f$.
+				fMult["NPionPos"]; /// <li> `"NPionPos"`: Number of \f$\pi^-\f$.
+				AddItemsToNTuples("mult_select", fMult, "Multipliciies of selected particles");
+			}
+			/// </ol>
 
-		// * Book NTuple: dE/dx PID branch * //
+		/// <li> `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
 			if(fDo_dedx) {
-				BookNtupleItemsDedx("dedx_K", fDedx_K);
+				BookNtupleItemsDedx("dedx_K",  fDedx_K);
 				BookNtupleItemsDedx("dedx_pi", fDedx_pi);
 			}
 
-		// * Book NTuple: 4-contraints for Kalman kinematic fit * //
-			if(fDo_fit4c) {
-				fFit4c["mD0"];   /// Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
-				fFit4c["mphi"];  /// Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
-				fFit4c["mJpsi"];   /// Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
-				fFit4c["chisq"];   /// Chi squared of the Kalman kinematic fit.
-				AddItemsToNTuples("fit4c", fFit4c);
+		/// <li> `"fit4c_all"`: results of the 4-contraints Kalman kinematic fit <i>for all combinations</i>
+			/// <ol>
+			if(fDo_fit4c_all) {
+				fFit4c_all["mD0"];   /// <li> `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
+				fFit4c_all["mphi"];  /// <li> `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
+				fFit4c_all["mJpsi"]; /// <li> `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
+				fFit4c_all["chisq"]; /// <li> `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
+				fFit4c_all["relMassDiff"]; /// <li> `"relMassDiff"`: Measure for the best kinematic Kalman fit (see `D0phi_KpiKK::BestKinematicKalmanFitMeasure`).
+				AddItemsToNTuples("fit4c_all", fFit4c_all, "4-constraint fit information (CMS 4-momentum)");
 			}
+			/// </ol>
 
-		// * Book NTuple: 6-contraints for Kalman kinematic fit * //
-			if(fDo_fit6c) {
-				fFit6c["mD0"];   /// Invariant mass for \f$ K^- pi^+ \f$ (\f$ D^0 \f$).
-				fFit6c["mphi"];  /// Invariant mass for \f$ K^+ K^+  \f$ (\f$ \phi \f$).
-				fFit6c["mJpsi"]; /// Invariant mass for \f$ D^0 \phi \f$ (\f$ J/\psi \f$).
-				fFit6c["chi2"];  /// Chi squared of the Kalman kinematic fit.
-				AddItemsToNTuples("fit6c", fFit6c);
+		/// <li> `"fit4c_best"`: results of the 4-contraints Kalman kinematic fit for the combination <i>with the invariant mass closest to the reconstructed particles</i>
+			/// <ol>
+			if(fDo_fit4c_best) {
+				fFit4c_best["mD0"];   /// <li> `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
+				fFit4c_best["mphi"];  /// <li> `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
+				fFit4c_best["mJpsi"]; /// <li> `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
+				fFit4c_best["chi2"];  /// <li> `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
+				fFit4c_best["relMassDiff"]; /// <li> `"relMassDiff"`: Measure for the best kinematic Kalman fit (see `D0phi_KpiKK::BestKinematicKalmanFitMeasure`).
+				AddItemsToNTuples("fit4c_best", fFit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
 			}
+			/// </ol>
 
+		/// </ol>
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
 		return StatusCode::SUCCESS;
 	}
@@ -92,11 +106,12 @@
 	StatusCode D0phi_KpiKK::execute_rest()
 	{
 
-		// * STEP (A): Create selection charged tracks * //
+		/// <ol type="A">
+		/// <li> Create selection charged tracks
 
 			// * Print log and set counters *
 				fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
-				ParticleID *pid = ParticleID::instance();
+				*fPID = ParticleID::instance();
 
 			// * Clear vectors of selected particles *
 				fKaonNeg.clear();
@@ -106,46 +121,49 @@
 			// * Loop over charged tracks *
 			for(fTrackIterator = fGoodChargedTracks.begin(); fTrackIterator != fGoodChargedTracks.end(); ++fTrackIterator) {
 
-				// * STEP A.1: Initialise PID
+				/// <ol>
+				/// <li> Initialise PID:
+					/// <ul>
+					InitializePID(
+						Probability,
+							/// <li> use <b>probability method</b>
+						fPID->onlyPion() | fPID->onlyKaon(),
+							/// <li> identify only pions and kaons
+						fPID->useDedx() | fPID->useTof1() | fPID->useTof2() | fPID->useTofE(),
+							/// <li> use \f$dE/dx\f$ and the three ToF detectors
+						4. /// <li> use \f$\chi^2 > 4.0\f$
+					);
+					/// </ul>
 
-					// * Initialise PID sub-system and set method: probability, likelihood, or neuron network
-					pid->init();
-					pid->setMethod(pid->methodProbability());
-					// pid->setMethod(pid->methodLikelihood());
-					// pid->setMethod(pid->methodNeuronNetwork());
-					pid->setChiMinCut(4);
-					pid->setRecTrack(*fTrackIterator);
-
-					// * Choose ID system and which particles to use
-					pid->usePidSys(pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE()); // use PID sub-system
-					pid->identify(pid->onlyPion() | pid->onlyKaon()); // seperater Pion/Kaon
-
-					// * Perform PID
-					pid->calculate();
-					if(!(pid->IsPidInfoValid())) continue;
-
-				// * STEP A.2: Identify type of charged particle and add to related vector (this package: kaon and pion)
-					RecMdcKalTrack* mdcKalTrk = (*fTrackIterator)->mdcKalTrack(); // after ParticleID, use RecMdcKalTrack substitute RecMdcTrack
-					if(pid->probPion() > pid->probKaon()) { // NOTE: if more likely to be pion
-						if(pid->probPion() < 0.001) continue; // check if indeed a pion
-						if(pid->pdf(2) < pid->pdf(3)) continue; // for likelihood method (0=electron 1=muon 2=pion 3=kaon 4=proton)
-						RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); // PID can be set to electron, muon, pion (default), kaon and proton
-						if(mdcKalTrk->charge() > 0) fPionPos.push_back(*fTrackIterator); // if positive pion
+				/// <li> Identify type of charged particle and add to related vector: (this package: kaon and pion).
+					RecMdcKalTrack* mdcKalTrk = (*fTrackIterator)->mdcKalTrack(); /// `RecMdcKalTrack` (Kalman) is used, but this can be substituted by `RecMdcTrack`.
+					if(fPID->probPion() > fPID->probKaon()) { /// The particle identification first decides whether the track is more likely to have come from a pion or from a kaon.
+						if(fPID->probPion() < fMinPIDProbability) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fMinPIDProbability` (see eventual settings in `D0phi_KpiKK.txt`).
+						if(fPID->pdf(RecMdcKalTrack::pion) < fPID->pdf(RecMdcKalTrack::kaon)) continue; /// If, according to the likelihood method, the particle is still more likely to be a kaon than a pion, the track is rejected.
+						RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
+						if(mdcKalTrk->charge() > 0) fPionPos.push_back(mdcKalTrk); /// and the (positive) pion is added to the vector of pions.
 					}
-					else { // NOTE: if more likely to be kaon (K+-)
-						if(pid->probKaon() < 0.001) continue; // check if indeed a kaon
-						if(pid->pdf(3) < pid->pdf(2)) continue; // for likelihood method (0=electron 1=muon 2=pion 3=kaon 4=proton)
-						RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon); // PID can be set to electron, muon, pion (default), kaon and proton
-						if(mdcKalTrk->charge() < 0) fKaonNeg.push_back(*fTrackIterator); // if negative kaon
-						else                        fKaonPos.push_back(*fTrackIterator); // if positive kaon
+					else {
+						if(fPID->probKaon() < fMinPIDProbability) continue;
+						if(fPID->pdf(RecMdcKalTrack::kaon) < fPID->pdf(RecMdcKalTrack::pion)) continue;
+						RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
+						if(mdcKalTrk->charge() < 0) fKaonNeg.push_back(mdcKalTrk);
+						else                        fKaonPos.push_back(mdcKalTrk);
 					}
 
-				// * STEP A.3: WRITE PID information
-					if(fDo_pid) WritePIDInformation(pid);
+				/// <li> <b>Write</b> Particle Identification information
+					if(fDo_pid) WritePIDInformation(fPID);
 
 			}
 
-		// * STEP (B): WRITE dE/dx PID information ("dedx" branch) * //
+
+		/// <li> Apply a strict cut on the number of particles: <b>only 2 \f$K^-\f$, 1 \f$K^+\f$, and 1 \f$\pi^+\f$</b>
+			if(fKaonNeg != 2) return StatusCode::SUCCESS;
+			if(fKaonPos != 1) return StatusCode::SUCCESS;
+			if(fPionPos != 1) return StatusCode::SUCCESS;
+
+
+		/// <li> <b>Write</b> \f$dE/dx\f$ PID information (`"dedx"` branch)
 			if(fDo_dedx) {
 				WriteDedxInfoForVector(fKaonNeg, "dedx_K",  fDedx_K);
 				WriteDedxInfoForVector(fKaonPos, "dedx_K",  fDedx_K);
@@ -153,30 +171,27 @@
 			}
 
 
-		// * STEP (C): WRITE Kalman 4-constraint kinematic fit with smallest chi squared ("fit4c" branch) * //
-			if(fDo_fit4c) {
-
-				// * Loop over all combinations and get the one with the smallest chi square
-				fSmallestChiSq = 9999999.;
-				KalmanKinematicFit *bestKalmanFit = KalmanKinematicFit::instance();
+		/// <li> Perform Kalman 4-constraint Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of:
+		/// \f[
+		/// 	\left(\frac{m_{K^-\pi^+}-m_{D^0} }{m_{D^0} }\right) \cdot
+		/// 	\left(\frac{m_{K^-K^+}  -m_{\phi}}{m_{\phi}}\right).
+		/// \f]
+		/// See `D0phi_KpiKK::BestKinematicKalmanFitMeasure` for the definition of this measure.
+			if(fDo_fit4c_all || fDo_fit4c_best) {
+				double bestRelMassDif = 1e5;
+				KalmanKinematicFit *bestKalmanFit = nullptr;
 				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter) {
 					for(fKaonNeg2Iter = fKaonNeg1Iter+1; fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter) {
 						for(fKaonPosIter = fKaonPos.begin(); fKaonPosIter != fKaonPos.end(); ++fKaonPosIter) {
 							for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter) {
 
-								// * Get Kalman tracks
-									RecMdcKalTrack *KmTrk1 = (*fKaonNeg1Iter)->mdcKalTrack();
-									RecMdcKalTrack *KmTrk2 = (*fKaonNeg2Iter)->mdcKalTrack();
-									RecMdcKalTrack *KpTrk  = (*fKaonPosIter )->mdcKalTrack();
-									RecMdcKalTrack *pipTrk = (*fPionPosIter )->mdcKalTrack();
-
 								// * Get W-tracks
-									WTrackParameter wvKmTrk1(gM_K,  KmTrk1->getZHelix(), KmTrk1->getZError());
-									WTrackParameter wvKmTrk2(gM_K,  KmTrk2->getZHelix(), KmTrk2->getZError());
-									WTrackParameter wvKpTrk (gM_K,  KpTrk->getZHelix(),  KpTrk->getZError());
-									WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
+									WTrackParameter wvKmTrk1(gM_K,  (*fKaonNeg1Iter)->getZHelix(), (*fKaonNeg1Iter)->getZError());
+									WTrackParameter wvKmTrk2(gM_K,  (*fKaonNeg2Iter)->getZHelix(), (*fKaonNeg2Iter)->getZError());
+									WTrackParameter wvKpTrk (gM_K,  (*fKaonPosIter) ->getZHelix(), (*fKaonPosIter) ->getZError());
+									WTrackParameter wvpipTrk(gM_pi, (*fPionPosIter) ->getZHelix(), (*fPionPosIter) ->getZError());
 
-								// * Test vertex fit * //
+								// * Test vertex fit
 									HepPoint3D vx(0., 0., 0.);
 									HepSymMatrix Evx(3, 0);
 									double bx = 1E+6;
@@ -206,20 +221,22 @@
 									WTrackParameter wKm2 = vtxfit->wtrk(3);
 
 								// * Get Kalman kinematic fit for this combination and store if better than previous one
-									double chisq = 999999.;
 									KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
 									kkmfit->init();
-									kkmfit->AddTrack(0, wKm1);  // K- (1st occurrence)
-									kkmfit->AddTrack(1, wpip);  // pi+
-									kkmfit->AddTrack(2, wKm2);  // K- (2nd occurrence)
-									kkmfit->AddTrack(3, wKp);   // K+
-									kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and momentum
+									kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K- (1st occurrence)
+									kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi+
+									kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K- (2nd occurrence)
+									kkmfit->AddTrack(3, vtxfit->wtrk(3)); // K+
+									kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
 									if(kkmfit->Fit()) {
-										chisq = kkmfit->chisq();
-										if(chisq < fSmallestChiSq) {
-											bestKalmanFit = kkmfit;
-											fSmallestChiSq = chisq;
-										}
+										/// Apply max. \f$\chi^2\f$ cut (determined by `fCut_MaxChiSq`).
+										if(kkmfit->chisq() > fCut_MaxChiSq) continue;
+										/// Compute the measure for the best Kalman kinematic fit and keep a pointer to this result if better than previous.
+										ComputeInvariantMasses(kkmfit);
+										double relMassDif = BestKinematicKalmanFitMeasure();
+										if(relMassDif < bestRelMassDif) bestKalmanFit = kkmfit;
+										/// Store results of the Kalman kinematic fit (all combinations).
+										if(fDo_fit4c_all) WriteFitResults(bestKalmanFit, "fit4c_all");
 									}
 
 							} // end of loop over pi^+
@@ -227,109 +244,19 @@
 					} // end of loop over second K^-
 				} // end of loop over first K^-
 
-				// * WRITE D0 and phi information from 4-constraint fit ("fit4c" branch)
-					if(fDo_fit4c && bestKalmanFit && fSmallestChiSq < fMaxChiSq) {
-						HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
-						HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
-						HepLorentzVector pJpsi = pD0 + pphi;
-						fFit4c.at("mD0")   = pD0.m();
-						fFit4c.at("mphi")  = pphi.m();
-						fFit4c.at("mJpsi") = pJpsi.m();
-						fFit4c.at("chisq") = fSmallestChiSq;
-						fNTupleMap.at("fit4c")->write();
+				
+		/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branch)
+				if(fDo_fit4c_best) {
+					if(bestKalmanFit) {
+						ComputeInvariantMasses(bestKalmanFit);
+						WriteFitResults(bestKalmanFit, "fit4c_best");
 					}
-
-			} // end of fDo_fit4c
-
-
-		// * STEP (D): WRITE Kalman 6-constraint kinematic fit with smallest chi squared ("fit6c" branch) * //
-			if(fDo_fit6c) {
-
-				// * Loop over all combinations and get the one with the smallest chi square
-				fSmallestChiSq = 9999999.;
-				KalmanKinematicFit *bestKalmanFit = KalmanKinematicFit::instance();
-				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter) {
-					for(fKaonNeg2Iter = fKaonNeg1Iter+1; fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter) {
-						for(fKaonPosIter = fKaonPos.begin(); fKaonPosIter != fKaonPos.end(); ++fKaonPosIter) {
-							for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter) {
-
-								// * Get Kalman tracks
-									RecMdcKalTrack *KmTrk1 = (*fKaonNeg1Iter)->mdcKalTrack();
-									RecMdcKalTrack *KmTrk2 = (*fKaonNeg2Iter)->mdcKalTrack();
-									RecMdcKalTrack *KpTrk  = (*fKaonPosIter )->mdcKalTrack();
-									RecMdcKalTrack *pipTrk = (*fPionPosIter )->mdcKalTrack();
-
-								// * Get W-tracks
-									WTrackParameter wvKmTrk1(gM_K,  KmTrk1->getZHelix(), KmTrk1->getZError());
-									WTrackParameter wvKmTrk2(gM_K,  KmTrk2->getZHelix(), KmTrk2->getZError());
-									WTrackParameter wvKpTrk (gM_K,  KpTrk->getZHelix(),  KpTrk->getZError());
-									WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
-
-								// * Test vertex fit * //
-									HepPoint3D vx(0., 0., 0.);
-									HepSymMatrix Evx(3, 0);
-									double bx = 1E+6;
-									double by = 1E+6;
-									double bz = 1E+6;
-									Evx[0][0] = bx*bx;
-									Evx[1][1] = by*by;
-									Evx[2][2] = bz*bz;
-
-									VertexParameter vxpar;
-									vxpar.setVx(vx);
-									vxpar.setEvx(Evx);
-
-									VertexFit* vtxfit = VertexFit::instance();
-									vtxfit->init();
-									vtxfit->AddTrack(0, wvpipTrk);
-									vtxfit->AddTrack(1, wvKpTrk);
-									vtxfit->AddTrack(2, wvKmTrk1);
-									vtxfit->AddTrack(3, wvKmTrk2);
-									vtxfit->AddVertex(0, vxpar, 0, 1);
-									if(!vtxfit->Fit(0)) continue;
-									vtxfit->Swim(0);
-
-									WTrackParameter wpip = vtxfit->wtrk(0);
-									WTrackParameter wKp  = vtxfit->wtrk(1);
-									WTrackParameter wKm1 = vtxfit->wtrk(2);
-									WTrackParameter wKm2 = vtxfit->wtrk(3);
-
-								// * Get Kalman kinematic fit for this combination and store if better than previous one
-									double chisq = 999999.;
-									KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
-									kkmfit->init();
-									kkmfit->AddTrack(0, wKm1);           // K- (1st occurrence)
-									kkmfit->AddTrack(1, wpip);           // pi+
-									kkmfit->AddTrack(2, wKm2);           // K- (2nd occurrence)
-									kkmfit->AddTrack(3, wKp);            // K+
-									kkmfit->AddFourMomentum(2, gEcmsVec); // 4 constraints: CMS energy and momentum
-									if(kkmfit->Fit(0) && kkmfit->Fit(1) && kkmfit->Fit(2) && kkmfit->Fit()) {
-										chisq = kkmfit->chisq();
-										if(chisq < fSmallestChiSq) {
-											bestKalmanFit = kkmfit;
-											fSmallestChiSq = chisq;
-										}
-									}
-
-							} // end of loop over pi^+
-						} // end of loop over K^+
-					} // end of loop over second K^-
-				} // end of loop over first K^-
-
-				// * WRITE D0 and phi information from 5-constraint fit ("fit6c" branch)
-				if(bestKalmanFit && fSmallestChiSq < fMaxChiSq) {
-					HepLorentzVector pD0   = bestKalmanFit->pfit(0) + bestKalmanFit->pfit(1);
-					HepLorentzVector pphi  = bestKalmanFit->pfit(2) + bestKalmanFit->pfit(3);
-					HepLorentzVector pJpsi = pD0 + pphi;
-					fFit6c.at("mD0")   = pD0.m();
-					fFit6c.at("mphi")  = pphi.m();
-					fFit6c.at("mJpsi") = pJpsi.m();
-					fFit6c.at("chisq") = fSmallestChiSq;
-					fNTupleMap.at("fit6c")->write();
 				}
-			} // end of fDo_fit6c
+
+			} // end of fDo_fit4c_all || fDo_fit4c_best
 
 
+		/// </ol>
 		return StatusCode::SUCCESS;
 	}
 
@@ -341,4 +268,42 @@
 	StatusCode D0phi_KpiKK::finalize_rest()
 	{
 		return StatusCode::SUCCESS;
+	}
+
+
+	/**
+	 * @brief Encapsulation of the procedure to compute invariant masses of the reconstructed particles.
+	 */
+	void D0phi_KpiKK::ComputeInvariantMasses(KalmanKinematicFit *kkmfit)
+	{
+		HepLorentzVector pD0   = kkmfit->pfit(0) + kkmfit->pfit(1); // K^- pi^+
+		HepLorentzVector pphi  = kkmfit->pfit(2) + kkmfit->pfit(3); // K^- K^+
+		HepLorentzVector pJpsi = pD0 + pphi;                        // D^0 phi
+		fM_D0   = pD0.m();
+		fM_phi  = pphi.m();
+		fM_Jpsi = pJpsi.m();
+	}
+
+
+	/**
+	 * @brief Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
+	 */
+	void D0phi_KpiKK::WriteFitResults(KalmanKinematicFit *kkmfit, const char *tupleName)
+	{
+		map.at("mD0")   = fM_D0;
+		map.at("mphi")  = fM_phi;
+		map.at("mJpsi") = fM_Jpsi;
+		map.at("chisq") = bestKalmanFit->chisq();
+		map.at("relMassDiff") = BestKinematicKalmanFitMeasure();
+		fNTupleMap.at(tupleName)->write();
+	}
+
+
+	/**
+	 * @brief Method that provides a measure for the best Kalman kinematic fit.
+	 * @description The closer this value to zero, the better the result.
+	 */
+	double D0phi_KpiKK::BestKinematicKalmanFitMeasure()
+	{
+		return ((fM_D0-gM_D0)/gM_D0) * ((fM_phi-gM_phi)/gM_phi);
 	}
