@@ -18,6 +18,7 @@
 	#include "TH1F.h"
 	#include "TH2F.h"
 	#include <iostream>
+	#include <iomanip>
 	#include <unordered_map>
 	#include <string>
 
@@ -52,6 +53,7 @@
 			TH1F* DrawBranches(const char* branchX, const Int_t nBinx, const double x1, const double x2, const bool save=true, Option_t* opt="", const TString &logScale="");
 			TH1F* GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins=100, Option_t *opt="", const TString &logScale="");
 			TH2F* DrawBranches(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, const bool save=true, Option_t* opt="", const TString &logScale="");
+			double ComputeMean(TTree* tree, const char* branchName);
 			void DrawAndSaveAllBranches(Option_t* opt="", const TString &logScale="");
 			void DrawBranches(const char* branchNames, const bool save=true, Option_t* opt="", const TString &logScale="");
 
@@ -94,10 +96,15 @@
 		if(!fTree) return;
 		TIter next(fTree->GetListOfBranches());
 		TObject *obj  = nullptr;
-		if(print) std::cout << "  Tree \"" << fTree->GetName() << "\" (" << fTree->GetEntries() << " entries) has branches:" << std::endl;
+		if(print) std::cout << "  Tree \"" << fTree->GetName() << "\" (" << fTree->GetEntries() << " entries)" << std::endl;
+		if(print) std::cout << "    "
+			<< std::setw(18) << std::left  << "BRANCH NAME"
+			<< std::setw(12) << std::right << "MEAN" << std::endl;
 		while((obj = next())) {
 			std::string type(obj->GetTitle()); /// The data type of a branch can be determined from the last character of its title. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the labels of each type.
-			if(print) std::cout << "    " << type << std::endl;
+			if(print) std::cout << "    "
+				<< std::setw(18) << std::left  << type
+				<< std::setw(12) << std::right << ComputeMean(fTree, obj->GetName()) << std::endl;
 			switch(type.back()) {
 				case 'B' : SetAddress(obj, fMap_B); break;
 				case 'b' : SetAddress(obj, fMap_b); break;
@@ -114,6 +121,7 @@
 					std::cout << "ERROR: Unable to book address for branch \"" << type << "\"" << std::endl;
 			}
 		}
+		if(print) std::cout << std::endl;
 	}
 
 
@@ -164,6 +172,21 @@
 		// * Save and return histogram * //
 		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fTree->GetName(), branchX), gPad, logScale);
 		return hist;
+	}
+
+
+	/**
+	 * @brief
+	 */
+	double SimplifiedTree::ComputeMean(TTree* tree, const char* branchName)
+	{
+		if(!tree) return -1e6;
+		tree->Draw(branchName);
+		TH1F *htemp = (TH1F*)gPad->GetPrimitive("htemp");
+		if(!htemp) return -1e6;
+		double mean = htemp->GetMean();
+		delete htemp;
+		return mean;
 	}
 
 	/**
