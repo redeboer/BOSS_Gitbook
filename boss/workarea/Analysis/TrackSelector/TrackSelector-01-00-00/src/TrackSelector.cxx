@@ -450,18 +450,18 @@
 	void TrackSelector::BookNtupleItemsTof(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		/// <ol>
-		map["p"];     /// <li> `"p"`:     Momentum of the track as reconstructed by MDC.
-		map["tof"];   /// <li> `"tof"`:   Time of flight.
-		map["path"];  /// <li> `"path"`:  Path length.
-		map["cntr"];  /// <li> `"cntr"`:  ToF counter ID.
-		map["ph"];    /// <li> `"ph"`:    ToF pulse height.
-		map["zrhit"]; /// <li> `"zrhit"`: Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
-		map["qual"];  /// <li> `"qual"`:  Data quality of reconstruction.
-		map["te"];    /// <li> `"te"`:    Difference with ToF in electron hypothesis.
-		map["tmu"];   /// <li> `"tmu"`:   Difference with ToF in muon hypothesis.
-		map["tpi"];   /// <li> `"tpi"`:   Difference with ToF in charged pion hypothesis.
-		map["tk"];    /// <li> `"tk"`:    Difference with ToF in charged kaon hypothesis.
-		map["tp"];    /// <li> `"tp"`:    Difference with ToF in proton hypothesis.
+		map["p"];      /// <li> `"p"`:      Momentum of the track as reconstructed by MDC.
+		map["tof"];    /// <li> `"tof"`:    Time of flight.
+		map["path"];   /// <li> `"path"`:   Path length.
+		map["cntr"];   /// <li> `"cntr"`:   ToF counter ID.
+		map["ph"];     /// <li> `"ph"`:     ToF pulse height.
+		map["zrhit"];  /// <li> `"zrhit"`:  Track extrapolate \f$Z\f$ or \f$R\f$ Hit position.
+		map["qual"];   /// <li> `"qual"`:   Data quality of reconstruction.
+		map["tof_e"];  /// <li> `"tof_e"`:  Difference with ToF in electron hypothesis.
+		map["tof_mu"]; /// <li> `"tof_mu"`: Difference with ToF in muon hypothesis.
+		map["tof_pi"]; /// <li> `"tof_pi"`: Difference with ToF in charged pion hypothesis.
+		map["tof_K"];  /// <li> `"tof_K"`:  Difference with ToF in charged kaon hypothesis.
+		map["tof_p"];  /// <li> `"tof_p"`:  Difference with ToF in proton hypothesis.
 		AddItemsToNTuples(tupleName, map, tupleTitle);
 		/// </ol>
 	}
@@ -512,11 +512,11 @@
 		map.at("ph")    = (*iter_tof)->ph();
 		map.at("zrhit") = (*iter_tof)->zrhit();
 		map.at("qual")  = (*iter_tof)->quality();
-		map.at("te")    = path - texp[0];
-		map.at("tmu")   = path - texp[1];
-		map.at("tpi")   = path - texp[2];
-		map.at("tk")    = path - texp[3];
-		map.at("tp")    = path - texp[4];
+		map.at("tof_e")    = path - texp[0];
+		map.at("tof_mu")   = path - texp[1];
+		map.at("tof_pi")   = path - texp[2];
+		map.at("tof_K")    = path - texp[3];
+		map.at("tof_p")    = path - texp[4];
 		fNTupleMap.at(tupleName)->write();
 
 	}
