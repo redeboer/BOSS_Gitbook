@@ -300,7 +300,7 @@
 						// * Get momentum as determined by MDC *
 						fTrackMDC = (*fTrackIterator)->mdcTrack();
 						double ptrk;
-						if(fTrackMDC) fTrackMDC->p();
+						if(fTrackMDC) ptrk = fTrackMDC->p();
 						SmartRefVector<RecTofTrack> tofTrkCol = (*fTrackIterator)->tofTrack();
 						SmartRefVector<RecTofTrack>::iterator iter_tof = tofTrkCol.begin();
 						for(; iter_tof != tofTrkCol.end(); ++iter_tof) {
@@ -505,9 +505,9 @@
 		}
 
 		// * <b>write</b> ToF info
-		map.at("p")  = ptrk;
+		map.at("p")     = ptrk;
 		map.at("tof")   = (*iter_tof)->tof();
-		map.at("path")  = (*iter_tof)->path();
+		map.at("path")  = path;
 		map.at("cntr")  = (*iter_tof)->tofID();
 		map.at("ph")    = (*iter_tof)->ph();
 		map.at("zrhit") = (*iter_tof)->zrhit();

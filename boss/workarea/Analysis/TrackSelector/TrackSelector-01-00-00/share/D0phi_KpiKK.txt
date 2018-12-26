@@ -3,6 +3,7 @@
 // * Define which packages to load *
 ApplicationMgr.DLLs   += {"TrackSelector"};
 ApplicationMgr.TopAlg += {"TrackSelector"};
+ApplicationMgr.TopAlg += {"D0phi_KpiKK"};
 
 // * Whether or not to fill a tree/NTuple *
 TrackSelector.do_mult      = true;
