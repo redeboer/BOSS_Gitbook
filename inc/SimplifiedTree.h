@@ -96,13 +96,16 @@
 		if(!fTree) return;
 		TIter next(fTree->GetListOfBranches());
 		TObject *obj  = nullptr;
-		if(print) std::cout << "  Tree \"" << fTree->GetName() << "\" (" << fTree->GetEntries() << " entries)" << std::endl;
-		if(print) std::cout << "    "
-			<< std::setw(18) << std::left  << "BRANCH NAME"
-			<< std::setw(12) << std::right << "MEAN" << std::endl;
+		if(print) {
+			std::cout << "Tree \"" << fTree->GetName() << "\" (" << fTree->GetEntries() << " entries)" << std::endl;
+			std::cout << fTree->GetTitle() << std::endl;
+			std::cout << "   "
+				<< std::setw(18) << std::left  << "BRANCH NAME"
+				<< std::setw(12) << std::right << "MEAN" << std::endl;
+		}
 		while((obj = next())) {
 			std::string type(obj->GetTitle()); /// The data type of a branch can be determined from the last character of its title. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the labels of each type.
-			if(print) std::cout << "    "
+			if(print) std::cout << "   "
 				<< std::setw(18) << std::left  << type
 				<< std::setw(12) << std::right << ComputeMean(fTree, obj->GetName()) << std::endl;
 			switch(type.back()) {
