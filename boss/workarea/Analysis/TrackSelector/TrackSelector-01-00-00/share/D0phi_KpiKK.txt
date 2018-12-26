@@ -5,16 +5,18 @@ ApplicationMgr.DLLs   += {"TrackSelector"};
 ApplicationMgr.TopAlg += {"TrackSelector"};
 
 // * Whether or not to fill a tree/NTuple *
-TrackSelector.do_mult     = true;
-TrackSelector.do_vertex   = true;
-TrackSelector.do_charged  = true;
-TrackSelector.do_dedx     = true;
-TrackSelector.do_TofEC    = true;
-TrackSelector.do_TofIB    = true;
-TrackSelector.do_TofOB    = true;
-TrackSelector.do_PID      = true;
-D0phi_KpiKK.do_fit4c_all  = true;
-D0phi_KpiKK.do_fit4c_best = true;
+TrackSelector.do_mult      = true;
+TrackSelector.do_vertex    = true;
+TrackSelector.do_charged   = true;
+TrackSelector.do_neutral   = false;
+TrackSelector.do_dedx      = true;
+TrackSelector.do_TofEC     = true;
+TrackSelector.do_TofIB     = true;
+TrackSelector.do_TofOB     = true;
+TrackSelector.do_PID       = true;
+D0phi_KpiKK.do_mult_select = true;
+D0phi_KpiKK.do_fit4c_all   = true;
+D0phi_KpiKK.do_fit4c_best  = true;
 
 // * Primary vertex cuts *
 TrackSelector.cut_MaxVr0    = 1e6;
@@ -23,6 +25,6 @@ TrackSelector.cut_MaxVrvz0  = 10.;
 TrackSelector.cut_MaxVrvxy0 = 1.;
 
 // * Particle PID cuts *
-TrackSelector.cut_MaxPhotonEnergy = 0.04;
+TrackSelector.cut_MinPhotonEnergy = 0.04;
 TrackSelector.cut_MaxPIDChiSq     = 200.;
 TrackSelector.cut_MinPIDProb      = 0.001;

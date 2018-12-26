@@ -23,6 +23,7 @@
 	#include "GaudiKernel/SmartRefVector.h"
 	#include "ParticleID/ParticleID.h"
 	#include "TofRecEvent/RecTofTrack.h"
+	#include "VertexFit/KalmanKinematicFit.h"
 	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this requires a newer version of `gcc`.
 	#include <string>
 	#include <vector>
@@ -51,8 +52,8 @@
 			Probability,
 			Likelihood,
 			NeuronNetwork
-		}
-	}
+		};
+	};
 
 
 
@@ -81,21 +82,19 @@ protected:
 	// * Protected methods * //
 		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle = "ks N-Tuple example");
 		ParticleID* InitializePID(TSGlobals::PIDMethod method, const int pidsys, const int pidcase, const double chimin=4.);
-		template<typename TYPE> void AddItemsToNTuples  (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<TYPE> > &map, const char* tupleTitle = "ks N-Tuple example");
-		template<typename TYPE> void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map, const char* tupleTitle = "dE/dx info");
-		template<typename TYPE> void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map, const char* tupleTitle = "Time-of-Flight info");
-		template<typename TYPE> void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
-		template<typename TYPE> void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
-		void ResetSmallestChiSq();
-		void ResetSmallestChiSq(double &chisq);
+		void AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="ks N-Tuple example");
+		void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<double> > &map);
+		void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle = "dE/dx info");
+		void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle = "Time-of-Flight info");
+		void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
+		void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 		void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 		void WritePIDInformation();
 
 	// * Protected data members * //
 		HepLorentzVector ComputeMomentum(EvtRecTrack *track);
 		MsgStream fLog; //!< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
-		ParticleID *fPID; //!< Pointer to instance of particle identification (PID). Only used in <i>derived subalgorithms</i>.
+		ParticleID *fPIDInstance; //!< Pointer to instance of particle identification (PID). Only used in <i>derived subalgorithms</i>.
 		RecEmcShower *fTrackEMC; //!< Pointer to the track info from the EM calorimeter. It is a data member to make it accessible to other methods as well.
 		RecMdcDedx *fTrackDedx; //!< Pointer to the \f$dE/dx\f$ info from the MDC. It is a data member to make it accessible to other methods as well.
 		RecMdcTrack *fTrackMDC; //!< Pointer to the track info from the MDC. It is a data member to make it accessible to other methods as well.
@@ -122,8 +121,8 @@ protected:
 			bool fDo_ToFEC;   //!< Package property that determines whether or not to record data from the Time-of-Flight end cap detector.
 			bool fDo_ToFIB;   //!< Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector.
 			bool fDo_ToFOB;   //!< Package property that determines whether or not to record data from the Time-of-Flight outer barrel detector.
-			bool fDo_pid;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
-			std::map<std::string, NTuple::Item<int> >    fMult;    //!< Container for the multiplicities branch.
+			bool fDo_PID;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
+			std::map<std::string, NTuple::Item<double> > fMult;    //!< Container for the multiplicities branch.
 			std::map<std::string, NTuple::Item<double> > fVertex;  //!< Container for the primary vertex info vertex branch.
 			std::map<std::string, NTuple::Item<double> > fCharged; //!< Container for the charged track vertex info charged track vertex branch.
 			std::map<std::string, NTuple::Item<double> > fNeutral; //!< Container for the neutral track info neutral track info branch.
@@ -134,16 +133,15 @@ protected:
 			std::map<std::string, NTuple::Item<double> > fPID;     //!< Container for the general PID information (TOF, \f$dE/dx\f$, etc) branch. <b>Needs to be filled in the derived class!</b>
 
 
-private:
 	// * Maps, vectors, and iterators * //
 		/// The private data members are used to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see corresponding `.cxx` file).
-		double fCut_vr0; //!< Maximal cut on the radius \f$r\f$ of the primary vertex.
-		double fCut_vz0; //!< Maximal cut on the \f$z\f$ coordinate of the primary vertex.
-		double fCut_rvz0;
-		double fCut_rvxy0;
+		double fCut_MaxVr0; //!< Maximal cut on the radius \f$r\f$ of the primary vertex.
+		double fCut_MaxVz0; //!< Maximal cut on the \f$z\f$ coordinate of the primary vertex.
+		double fCut_MaxRvz0;
+		double fCut_MaxRvxy0;
 		double fCut_MinPhotonEnergy; //!< Minimimal cut on the photon energy.
-		double fCut_MaxChiSq; //!< Maximum \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits
-		double fCut_MinPIDProbability; //!< Minimimal probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6">`ParticleID::probPion`</a>.
+		double fCut_MaxPIDChiSq; //!< Maximum \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits
+		double fCut_MinPIDProb; //!< Minimimal probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6">`ParticleID::probPion`</a>.
 
 };
 
