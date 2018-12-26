@@ -36,7 +36,7 @@ See [header `.h` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/
 
 ### Kalman kinematic $$n$$-constraints fit procedure
 
-* `fit4c` refers to the 4-constraint reconstruction of $$\pi^0 \rightarrow \gamma\gamma$$.
+* `fit4c` refers to the 4-constraints of the center-of-mass system, namely the 4-momentum of the system \(collision energy and total 3-momentum\). You can use this fit for the reconstruction of $$\pi^0 \rightarrow \gamma\gamma$$. **Note that the** $$\chi_\mathrm{red}^2$$ **of the fit is the same for any combination, as the four constraints are the same in each event.**
 * `fit5c` refers to the 5-constraint reconstruction of $$\rho^\pm \rightarrow \pi^\pm\pi^0 \rightarrow \pi^\pm\gamma\gamma$$.
 
 ### Cut flow
