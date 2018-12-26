@@ -157,8 +157,8 @@
 			if(fDo_ToFIB) BookNtupleItemsTof("ToFIB", fTofIB, "Inner barrel ToF of all tracks");
 			if(fDo_ToFOB) BookNtupleItemsTof("ToFOB", fTofOB, "Outer barrel ToF of all tracks");
 
-		/// <li> `"fPID"`: Track PID information.
-			/// <ol>
+		/// <li> `"pid"`: Track PID information.
+			/// <ul>
 			if(fDo_pid) {
 				fPID["p"];        /// <li> `"p"`:       Momentum of the track as reconstructed by MDC.
 				fPID["cost"];     /// <li> `"cost"`:    Theta angle of the track.
@@ -171,9 +171,9 @@
 				fPID["prob_mu"];  /// <li> `"prob_mu"`: Probability that the track is from a muon according to the probability method.
 				fPID["prob_p"];   /// <li> `"prob_p"`:  Probability that the track is from a proton according to the probability method.
 				fPID["prob_pi"];  /// <li> `"prob_pi"`: Probability that the track is from a pion according to the probability method.
-				AddItemsToNTuples("fPID", fPID, "Particle Identification parameters");
+				AddItemsToNTuples("pid", fPID, "Particle Identification parameters");
 			}
-			/// </ol>
+			/// </ul>
 
 		/// </ol>
 		return initialize_rest();
@@ -610,11 +610,12 @@
 	 * 
 	 * @param tupleName Name of the `NTuplePtr` to which you want to add the <i>mapped values</i> of `map`.
 	 * @param map The `map` from which you want to load the <i>mapped values</i>.
+	 * @param tupleTitle Title of the `NTuplePtr`. You can later use this title as a more detailed description in your analysis of the resulting histograms.
 	 */
 	template<typename TYPE>
-	void TrackSelector::AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map, const char* title)
+	void TrackSelector::AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map, const char* tupleTitle)
 	{
-		AddItemsToNTuples(BookNTuple(tupleName, title), map);
+		AddItemsToNTuples(BookNTuple(tupleName, tupleTitle), map);
 	}
 
 	/**
@@ -637,18 +638,19 @@
 		fPID.at("prob_mu")  = fPID->probMuon();
 		fPID.at("prob_p")   = fPID->probProton();
 		fPID.at("prob_pi")  = fPID->probPion();
-		fNTupleMap.at("fPID")->write();
+		fNTupleMap.at("pid")->write();
 	}
 
 	/**
 	 * @brief Method that standardizes the initialisation of the particle identification system. Define here <i>as general as possible</i>, but use in the derived subalgorithms.
 	 * @details See http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
 	 * 
-	 * @param method PID systems you want to call. Can combined using bit or (`|`) seperators, e.g. `fPID->useDedx() | fPID->useTof1() | fPID->useTof2() | fPID->useTofE()` for \f$dE/dx\f$ plus all ToF detectors.
-	 * @param pidsys Which particles to identify. For instance, `fPID->onlyPion() | fPID->onlyKaon()` in the case of pions and kaons.
+	 * @param method Which method to use: probability, likelihood, or neuron network (see `TSGlobals::PIDMethod`).
+	 * @param pidsys PID systems you want to call. Can combined using bit or (`|`) seperators, e.g. `fPID->useDedx() | fPID->useTof1() | fPID->useTof2() | fPID->useTofE()` for \f$dE/dx\f$ plus all ToF detectors.
+	 * @param pidcase Which particles to identify. For instance, `fPID->onlyPion() | fPID->onlyKaon()` in the case of pions and kaons.
 	 * @param chimin Minimal \f$\chi^2\f$ of the resulting particle identification.
 	 */
-	ParticleID* TrackSelector::SetPID(PIDMethod method, const int pidsys, const double chimin)
+	ParticleID* TrackSelector::InitializePID(PIDMethod method, const int pidsys, const int pidcase, const double chimin)
 	{
 		// * Check if there is a track iterator
 		if(!(*fTrackIterator)) return nullptr;

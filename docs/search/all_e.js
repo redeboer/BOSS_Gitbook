@@ -5,6 +5,7 @@ var searchData=
   ['particle_2eh',['Particle.h',['../Particle_8h.html',1,'']]],
   ['performfits',['performfits',['../InvestigateBOSSRootFile_8C.html#af812bd559c02c2cd596579fbd2b32d51',1,'InvestigateBOSSRootFile.C']]],
   ['pi0',['Pi0',['../namespaceSettings_1_1Particles.html#aa534e80659835947f45397eb4ce034d8',1,'Settings::Particles']]],
+  ['pidmethod',['PIDMethod',['../namespaceTSGlobals.html#a27fa7fc91d15c0db15c223868688f1a4',1,'TSGlobals']]],
   ['pip',['Pip',['../namespaceSettings_1_1Particles.html#ac9ed6f077e1c0ffdd1c127ba86724796',1,'Settings::Particles']]],
   ['plotfrom',['PlotFrom',['../classReconstructedParticle.html#a5dfb6fe049949fe4ce0c843656855ce8',1,'ReconstructedParticle']]],
   ['plotoutputdir',['PlotOutputDir',['../namespaceSettings_1_1Output.html#a6b2502545822c854885380b81f2717a2',1,'Settings::Output']]],
@@ -14,5 +15,6 @@ var searchData=
   ['printfiles',['PrintFiles',['../classBOSSRootChain.html#adec16f859915ca863fa805f7040ddcd5',1,'BOSSRootChain']]],
   ['printtrees',['PrintTrees',['../classBOSSRootChain.html#aa66bb2d2df46e757bb8679cd922f0f44',1,'BOSSRootChain::PrintTrees()'],['../classBOSSRootFile.html#a3e48c5e5c709a4a0db51f2c20bb6b7f4',1,'BOSSRootFile::PrintTrees()']]],
   ['printwithoption',['PrintWithOption',['../classBOSSRootChain.html#a2d529143aa8aa7f7024bf1df314e7eb2',1,'BOSSRootChain']]],
+  ['probability',['Probability',['../namespaceTSGlobals.html#a27fa7fc91d15c0db15c223868688f1a4a0ce6e62d3f134b459bf5a9a5123e8e4e',1,'TSGlobals']]],
   ['pureplot',['pureplot',['../AnalyseDzeroPhi__data_8C.html#a256076e616aa416b2ef78d2cd1210c42',1,'pureplot():&#160;AnalyseDzeroPhi_data.C'],['../AnalyseDzeroPhi__MC_8C.html#a256076e616aa416b2ef78d2cd1210c42',1,'pureplot():&#160;AnalyseDzeroPhi_MC.C']]]
 ];

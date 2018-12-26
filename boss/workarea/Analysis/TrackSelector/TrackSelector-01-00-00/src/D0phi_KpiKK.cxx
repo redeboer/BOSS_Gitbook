@@ -157,7 +157,7 @@
 			}
 
 
-		/// <li> Apply a strict cut on the number of particles: <b>only 2 \f$K^-\f$, 1 \f$K^+\f$, and 1 \f$\pi^+\f$</b>
+		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
 			if(fKaonNeg != 2) return StatusCode::SUCCESS;
 			if(fKaonPos != 1) return StatusCode::SUCCESS;
 			if(fPionPos != 1) return StatusCode::SUCCESS;
@@ -301,7 +301,7 @@
 
 	/**
 	 * @brief Method that provides a measure for the best Kalman kinematic fit.
-	 * @description The closer this value to zero, the better the result.
+	 * @details The closer this value to zero, the better the result.
 	 */
 	double D0phi_KpiKK::BestKinematicKalmanFitMeasure()
 	{
