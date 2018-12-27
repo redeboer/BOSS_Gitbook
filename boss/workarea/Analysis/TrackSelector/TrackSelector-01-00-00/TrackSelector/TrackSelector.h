@@ -113,24 +113,26 @@ protected:
 		/// Note that the `NTuple::Items` have to be added to the NTuple during the `TrackSelector::initialize()` step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
 
 		// * Maps of Ntuples *
-			bool fDo_mult;    //!< Package property that determines whether or not to record multiplicities.
-			bool fDo_vertex;  //!< Package property that determines whether or not to record primary vertex info.
-			bool fDo_charged; //!< Package property that determines whether or not to record charged track vertex info.
-			bool fDo_neutral; //!< Package property that determines whether or not to record neutral track info.
-			bool fDo_dedx;    //!< Package property that determines whether or not to record energy loss (\f$dE/dx\f$).
+			bool fDo_PID;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
 			bool fDo_ToFEC;   //!< Package property that determines whether or not to record data from the Time-of-Flight end cap detector.
 			bool fDo_ToFIB;   //!< Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector.
 			bool fDo_ToFOB;   //!< Package property that determines whether or not to record data from the Time-of-Flight outer barrel detector.
-			bool fDo_PID;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
-			std::map<std::string, NTuple::Item<double> > fMult;    //!< Container for the multiplicities branch.
-			std::map<std::string, NTuple::Item<double> > fVertex;  //!< Container for the primary vertex info vertex branch.
-			std::map<std::string, NTuple::Item<double> > fCharged; //!< Container for the charged track vertex info charged track vertex branch.
-			std::map<std::string, NTuple::Item<double> > fNeutral; //!< Container for the neutral track info neutral track info branch.
-			std::map<std::string, NTuple::Item<double> > fDedx;    //!< Container for the energy loss (\f$dE/dx\f$) branch.
-			std::map<std::string, NTuple::Item<double> > fTofEC;   //!< Container for the data from the Time-of-Flight end cap detector branch.
-			std::map<std::string, NTuple::Item<double> > fTofIB;   //!< Container for the data from the Time-of-Flight inner barrel detector branch.
-			std::map<std::string, NTuple::Item<double> > fTofOB;   //!< Container for the data from the Time-of-Flight outer barrel detector branch.
-			std::map<std::string, NTuple::Item<double> > fPID;     //!< Container for the general PID information (TOF, \f$dE/dx\f$, etc) branch. <b>Needs to be filled in the derived class!</b>
+			bool fDo_charged; //!< Package property that determines whether or not to record charged track vertex info.
+			bool fDo_dedx;    //!< Package property that determines whether or not to record energy loss (\f$dE/dx\f$).
+			bool fDo_mult;    //!< Package property that determines whether or not to record multiplicities.
+			bool fDo_mult_select; //!< Package property that determines whether or not to write the multiplicities <i>of the selected particles</i>.
+			bool fDo_neutral; //!< Package property that determines whether or not to record neutral track info.
+			bool fDo_vertex;  //!< Package property that determines whether or not to record primary vertex info.
+			std::map<std::string, NTuple::Item<double> > fMap_PID;     //!< Container for the general PID information (TOF, \f$dE/dx\f$, etc) branch. <b>Needs to be filled in the derived class!</b>
+			std::map<std::string, NTuple::Item<double> > fMap_TofEC;   //!< Container for the data from the Time-of-Flight end cap detector branch.
+			std::map<std::string, NTuple::Item<double> > fMap_TofIB;   //!< Container for the data from the Time-of-Flight inner barrel detector branch.
+			std::map<std::string, NTuple::Item<double> > fMap_TofOB;   //!< Container for the data from the Time-of-Flight outer barrel detector branch.
+			std::map<std::string, NTuple::Item<double> > fMap_charged; //!< Container for the charged track vertex info charged track vertex branch.
+			std::map<std::string, NTuple::Item<double> > fMap_dedx;    //!< Container for the energy loss (\f$dE/dx\f$) branch.
+			std::map<std::string, NTuple::Item<double> > fMap_mult;    //!< Container for the multiplicities branch.
+			std::map<std::string, NTuple::Item<double> > fMap_mult_select; //!< Container for the `"mult_select"` branch.
+			std::map<std::string, NTuple::Item<double> > fMap_neutral; //!< Container for the neutral track info neutral track info branch.
+			std::map<std::string, NTuple::Item<double> > fMap_vertex;  //!< Container for the primary vertex info vertex branch.
 
 
 	// * Maps, vectors, and iterators * //

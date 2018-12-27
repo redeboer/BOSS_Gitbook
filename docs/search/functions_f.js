@@ -8,5 +8,6 @@ var searchData=
   ['setdaughterlabel',['SetDaughterLabel',['../classReconstructedParticle.html#a07eb465bf055a192e36f364dfb4ae7ef',1,'ReconstructedParticle']]],
   ['setlogscale',['SetLogScale',['../namespaceCommonFunctions_1_1Draw.html#a909c1fc4f2ff18ee7626a4188795d4d2',1,'CommonFunctions::Draw']]],
   ['setoutputfilename',['SetOutputFilename',['../namespaceCommonFunctions_1_1File.html#a59d365fb3792eaa3bab6d275a1a2d9ba',1,'CommonFunctions::File']]],
+  ['setsmallestangles',['SetSmallestAngles',['../classrhopi__pipigg.html#a7b6e6252d16466e637ecc28a82c5df8d',1,'rhopi_pipigg']]],
   ['simplifiedtree',['SimplifiedTree',['../classSimplifiedTree.html#ad6bec648c9ae733912f3aa156d8773de',1,'SimplifiedTree::SimplifiedTree()'],['../classSimplifiedTree.html#aae73269beceeb816787a6f95e650c771',1,'SimplifiedTree::SimplifiedTree(TTree *fTree, bool print=true)']]]
 ];

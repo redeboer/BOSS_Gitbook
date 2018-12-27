@@ -60,15 +60,16 @@
 		fLog << MSG::DEBUG << "===>> TrackSelector::TrackSelector() <<===" << endmsg;
 
 		/// * The `"do_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
-		declareProperty("do_mult",    fDo_mult    = false);
-		declareProperty("do_vertex",  fDo_vertex  = false);
-		declareProperty("do_charged", fDo_charged = false);
-		declareProperty("do_neutral", fDo_neutral = false);
-		declareProperty("do_dedx",    fDo_dedx    = false);
-		declareProperty("do_ToFEC",   fDo_ToFEC   = false);
-		declareProperty("do_ToFIB",   fDo_ToFIB   = false);
-		declareProperty("do_ToFOB",   fDo_ToFOB   = false);
-		declareProperty("do_PID",     fDo_PID     = false);
+		declareProperty("do_mult",        fDo_mult        = false);
+		declareProperty("do_vertex",      fDo_vertex      = false);
+		declareProperty("do_charged",     fDo_charged     = false);
+		declareProperty("do_neutral",     fDo_neutral     = false);
+		declareProperty("do_dedx",        fDo_dedx        = false);
+		declareProperty("do_ToFEC",       fDo_ToFEC       = false);
+		declareProperty("do_ToFIB",       fDo_ToFIB       = false);
+		declareProperty("do_ToFOB",       fDo_ToFOB       = false);
+		declareProperty("do_PID",         fDo_PID         = false);
+		declareProperty("do_mult_select", fDo_mult_select = false);
 
 		/// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
 		declareProperty("cut_MaxVr0",          fCut_MaxVr0          = 1.);
@@ -99,81 +100,81 @@
 		/// <li> `"mult"`: Multiplicities of the total event
 			/// <ol>
 			if(fDo_mult) {
-				fMult["Ntotal"];       /// <li> `"Ntotal"`:       Total number of events per track.
-				fMult["Ncharge"];      /// <li> `"Ncharge"`:      Number of charged tracks.
-				fMult["Nneutral"];     /// <li> `"Nneutral"`:     Number of charged tracks.
-				fMult["NgoodCharged"]; /// <li> `"NgoodCharged"`: Number of 'good' charged tracks.
-				fMult["NgoodNeutral"]; /// <li> `"NgoodNeutral"`: Number of 'good' neutral tracks.
-				fMult["Nmdc"];         /// <li> `"Nmdc"`:         Number of charged tracks in MDC.
-				AddItemsToNTuples("mult", fMult, "Event multiplicities");
+				fMap_mult["Ntotal"];       /// <li> `"Ntotal"`:       Total number of events per track.
+				fMap_mult["Ncharge"];      /// <li> `"Ncharge"`:      Number of charged tracks.
+				fMap_mult["Nneutral"];     /// <li> `"Nneutral"`:     Number of charged tracks.
+				fMap_mult["NgoodCharged"]; /// <li> `"NgoodCharged"`: Number of 'good' charged tracks.
+				fMap_mult["NgoodNeutral"]; /// <li> `"NgoodNeutral"`: Number of 'good' neutral tracks.
+				fMap_mult["Nmdc"];         /// <li> `"Nmdc"`:         Number of charged tracks in MDC.
+				AddItemsToNTuples("mult", fMap_mult, "Event multiplicities");
 			}
 			/// </ol>
 
 		/// <li> `"vertex"`: Vertex info
 			/// <ol>
 			if(fDo_vertex) {
-				fVertex["vx0"]; /// <li> `"vx0"`: Primary \f$x\f$ coordinate of the collision point.
-				fVertex["vy0"]; /// <li> `"vy0"`: Primary \f$y\f$ coordinate of the collision point.
-				fVertex["vz0"]; /// <li> `"vz0"`: Primary \f$z\f$ coordinate of the collision point.
-				AddItemsToNTuples("vertex", fVertex, "Primary vertex");
+				fMap_vertex["vx0"]; /// <li> `"vx0"`: Primary \f$x\f$ coordinate of the collision point.
+				fMap_vertex["vy0"]; /// <li> `"vy0"`: Primary \f$y\f$ coordinate of the collision point.
+				fMap_vertex["vz0"]; /// <li> `"vz0"`: Primary \f$z\f$ coordinate of the collision point.
+				AddItemsToNTuples("vertex", fMap_vertex, "Primary vertex");
 			}
 			/// </ol>
 
 		/// <li> `"charged"`: Charged track info.
 			/// <ol>
 			if(fDo_charged) {
-				fCharged["vx"];    /// <li> `"vx"`:    Primary \f$x\f$ coordinate of the vertex as determined by MDC.
-				fCharged["vy"];    /// <li> `"vy"`:    Primary \f$y\f$ coordinate of the vertex as determined by MDC.
-				fCharged["vz"];    /// <li> `"vz"`:    Primary \f$z\f$ coordinate of the vertex as determined by MDC.
-				fCharged["vr"];    /// <li> `"vr"`:    Distance from origin in \f$xy\f$ plane.
-				fCharged["rvxy"];  /// <li> `"rvxy"`:  Nearest distance to IP in \f$xy\f$ plane.
-				fCharged["rvz"];   /// <li> `"rvz"`:   Nearest distance to IP in \f$z\f$ direction.
-				fCharged["rvphi"]; /// <li> `"rvphi"`: Angle in the \f$xy\f$plane. @todo Get explanation of geometry (angle) definitions in an event.
-				fCharged["phi"];   /// <li> `"phi"`:   Helix angle of the particle.
-				fCharged["p"];     /// <li> `"p"`:     Momentum \f$p\f$ of the track.
-				AddItemsToNTuples("charged", fCharged, "Charged track info");
+				fMap_charged["vx"];    /// <li> `"vx"`:    Primary \f$x\f$ coordinate of the vertex as determined by MDC.
+				fMap_charged["vy"];    /// <li> `"vy"`:    Primary \f$y\f$ coordinate of the vertex as determined by MDC.
+				fMap_charged["vz"];    /// <li> `"vz"`:    Primary \f$z\f$ coordinate of the vertex as determined by MDC.
+				fMap_charged["vr"];    /// <li> `"vr"`:    Distance from origin in \f$xy\f$ plane.
+				fMap_charged["rvxy"];  /// <li> `"rvxy"`:  Nearest distance to IP in \f$xy\f$ plane.
+				fMap_charged["rvz"];   /// <li> `"rvz"`:   Nearest distance to IP in \f$z\f$ direction.
+				fMap_charged["rvphi"]; /// <li> `"rvphi"`: Angle in the \f$xy\f$plane. @todo Get explanation of geometry (angle) definitions in an event.
+				fMap_charged["phi"];   /// <li> `"phi"`:   Helix angle of the particle.
+				fMap_charged["p"];     /// <li> `"p"`:     Momentum \f$p\f$ of the track.
+				AddItemsToNTuples("charged", fMap_charged, "Charged track info");
 			}
 			/// </ol>
 
 		/// <li> `"neutral"`: Neutral track info.
 			/// <ol>
 			if(fDo_neutral) {
-				fNeutral["E"];     /// <li> `"E"`: Energy of the neutral track as determined by the EM calorimeter.
-				fNeutral["x"];     /// <li> `"x"`: \f$x\f$-coordinate of the neutral track according to the EMC.
-				fNeutral["y"];     /// <li> `"y"`: \f$y\f$-coordinate of the neutral track according to the EMC.
-				fNeutral["z"];     /// <li> `"z"`: \f$z\f$-coordinate of the neutral track according to the EMC.
-				fNeutral["phi"];   /// <li> `"phi"`: \f$\phi\f$-angle of the neutral track according to the EMC.
-				fNeutral["theta"]; /// <li> `"theta"`: \f$\theta\f$-angle of the neutral track according to the EMC.
-				fNeutral["time"];  /// <li> `"time"`: Time of the neutral track according to the EMC. @todo Investigate what this parameter precisely means.
-				AddItemsToNTuples("neutral", fNeutral, "Neutral track info");
+				fMap_neutral["E"];     /// <li> `"E"`: Energy of the neutral track as determined by the EM calorimeter.
+				fMap_neutral["x"];     /// <li> `"x"`: \f$x\f$-coordinate of the neutral track according to the EMC.
+				fMap_neutral["y"];     /// <li> `"y"`: \f$y\f$-coordinate of the neutral track according to the EMC.
+				fMap_neutral["z"];     /// <li> `"z"`: \f$z\f$-coordinate of the neutral track according to the EMC.
+				fMap_neutral["phi"];   /// <li> `"phi"`: \f$\phi\f$-angle of the neutral track according to the EMC.
+				fMap_neutral["theta"]; /// <li> `"theta"`: \f$\theta\f$-angle of the neutral track according to the EMC.
+				fMap_neutral["time"];  /// <li> `"time"`: Time of the neutral track according to the EMC. @todo Investigate what this parameter precisely means.
+				AddItemsToNTuples("neutral", fMap_neutral, "Neutral track info");
 			}
 			/// </ol>
 
 		/// <li> `"dedx"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
 			if(fDo_dedx) {
-				BookNtupleItemsDedx("dedx", fDedx, "dE/dx of all charged tracks");
+				BookNtupleItemsDedx("dedx", fMap_dedx, "dE/dx of all charged tracks");
 			}
 
 		/// <li> `"ToFEC"`, `"ToFIB"`, and `"ToFOB"`: information from the three Time-of-Flight detectors. See `TrackSelector::BookNtupleItemsTof` for more info.
-			if(fDo_ToFEC) BookNtupleItemsTof("ToFEC", fTofEC, "End cap ToF of all tracks");
-			if(fDo_ToFIB) BookNtupleItemsTof("ToFIB", fTofIB, "Inner barrel ToF of all tracks");
-			if(fDo_ToFOB) BookNtupleItemsTof("ToFOB", fTofOB, "Outer barrel ToF of all tracks");
+			if(fDo_ToFEC) BookNtupleItemsTof("ToFEC", fMap_TofEC, "End cap ToF of all tracks");
+			if(fDo_ToFIB) BookNtupleItemsTof("ToFIB", fMap_TofIB, "Inner barrel ToF of all tracks");
+			if(fDo_ToFOB) BookNtupleItemsTof("ToFOB", fMap_TofOB, "Outer barrel ToF of all tracks");
 
 		/// <li> `"PID"`: Track PID information.
 			/// <ul>
 			if(fDo_PID) {
-				fPID["p"];        /// <li> `"p"]; `:       Momentum of the track as reconstructed by MDC.
-				fPID["cost"];     /// <li> `"cost"`:    Theta angle of the track.
-				fPID["chiToFIB"]; /// <li> `"chiToFIB"`:   \f$\chi^2\f$ of the inner barrel ToF of the track.
-				fPID["chiToFEC"]; /// <li> `"chiToFEC"`:   \f$\chi^2\f$ of the end cap ToF of the track.
-				fPID["chiToFOB"]; /// <li> `"chiToFOB"`:   \f$\chi^2\f$ of the outer barrel ToF of the track.
-				fPID["chidEdx"];  /// <li> `"chidEdx"`: \f$\chi^2\f$ of the energy loss \f$dE/dx\f$ of the identified track.
-				fPID["prob_K"];   /// <li> `"prob_K"`:  Probability that the track is from a kaon according to the probability method.
-				fPID["prob_e"];   /// <li> `"prob_e"`:  Probability that the track is from a electron according to the probability method.
-				fPID["prob_mu"];  /// <li> `"prob_mu"`: Probability that the track is from a muon according to the probability method.
-				fPID["prob_p"];   /// <li> `"prob_p"`:  Probability that the track is from a proton according to the probability method.
-				fPID["prob_pi"];  /// <li> `"prob_pi"`: Probability that the track is from a pion according to the probability method.
-				AddItemsToNTuples("PID", fPID, "Particle Identification parameters");
+				fMap_PID["p"];        /// <li> `"p"]; `:       Momentum of the track as reconstructed by MDC.
+				fMap_PID["cost"];     /// <li> `"cost"`:    Theta angle of the track.
+				fMap_PID["chiToFIB"]; /// <li> `"chiToFIB"`:   \f$\chi^2\f$ of the inner barrel ToF of the track.
+				fMap_PID["chiToFEC"]; /// <li> `"chiToFEC"`:   \f$\chi^2\f$ of the end cap ToF of the track.
+				fMap_PID["chiToFOB"]; /// <li> `"chiToFOB"`:   \f$\chi^2\f$ of the outer barrel ToF of the track.
+				fMap_PID["chidEdx"];  /// <li> `"chidEdx"`: \f$\chi^2\f$ of the energy loss \f$dE/dx\f$ of the identified track.
+				fMap_PID["prob_K"];   /// <li> `"prob_K"`:  Probability that the track is from a kaon according to the probability method.
+				fMap_PID["prob_e"];   /// <li> `"prob_e"`:  Probability that the track is from a electron according to the probability method.
+				fMap_PID["prob_mu"];  /// <li> `"prob_mu"`: Probability that the track is from a muon according to the probability method.
+				fMap_PID["prob_p"];   /// <li> `"prob_p"`:  Probability that the track is from a proton according to the probability method.
+				fMap_PID["prob_pi"];  /// <li> `"prob_pi"`: Probability that the track is from a pion according to the probability method.
+				AddItemsToNTuples("PID", fMap_PID, "Particle Identification parameters");
 			}
 			/// </ul>
 
@@ -282,20 +283,20 @@
 
 					/// <li> <b>Write</b> charged track vertex position info ("charged" branch)
 						if(fDo_charged) {
-							fCharged.at("vx")    = fTrackMDC->x();
-							fCharged.at("vy")    = fTrackMDC->y();
-							fCharged.at("vz")    = fTrackMDC->z();
-							fCharged.at("vr")    = vr;
-							fCharged.at("rvxy")  = rvxy;
-							fCharged.at("rvz")   = rvz;
-							fCharged.at("rvphi") = rvphi;
-							fCharged.at("phi")   = phi;
-							fCharged.at("p")     = fTrackMDC->p();
+							fMap_charged.at("vx")    = fTrackMDC->x();
+							fMap_charged.at("vy")    = fTrackMDC->y();
+							fMap_charged.at("vz")    = fTrackMDC->z();
+							fMap_charged.at("vr")    = vr;
+							fMap_charged.at("rvxy")  = rvxy;
+							fMap_charged.at("rvz")   = rvz;
+							fMap_charged.at("rvphi") = rvphi;
+							fMap_charged.at("phi")   = phi;
+							fMap_charged.at("p")     = fTrackMDC->p();
 							fNTupleMap.at("charged")->write();
 						}
 
 					/// <li> <b>Write</b> dE/dx PID information ("dedx" branch)
-						if(fDo_dedx) WriteDedxInfo(*fTrackIterator, "dedx", fDedx);
+						if(fDo_dedx) WriteDedxInfo(*fTrackIterator, "dedx", fMap_dedx);
 
 					/// <li> <b>Write</b> Time-of-Flight PID information ("tof*" branch)
 						if(fDo_ToFEC || fDo_ToFIB || fDo_ToFOB) {
@@ -316,13 +317,13 @@
 								if(!hitStatus.is_counter()) continue;
 								if(hitStatus.is_barrel()) {
 									if(hitStatus.layer() == 1) { // inner barrel
-										if(fDo_ToFIB) WriteTofInformation(iter_tof, ptrk, "ToFIB", fTofIB);
+										if(fDo_ToFIB) WriteTofInformation(iter_tof, ptrk, "ToFIB", fMap_TofIB);
 									} else if(hitStatus.layer() == 2) { // outer barrel
-										if(fDo_ToFOB) WriteTofInformation(iter_tof, ptrk, "ToFOB", fTofOB);
+										if(fDo_ToFOB) WriteTofInformation(iter_tof, ptrk, "ToFOB", fMap_TofOB);
 									}
 								}
 								else if(fDo_ToFEC && hitStatus.layer() == 0) // end cap
-									WriteTofInformation(iter_tof, ptrk, "ToFEC", fTofEC);
+									WriteTofInformation(iter_tof, ptrk, "ToFEC", fMap_TofEC);
 							}
 
 						} // if(fDo_tofec || fDo_tofib || fDo_tofob)
@@ -360,13 +361,13 @@
 
 					/// <li> <b>Write</b> neutral track information (if `do_neutral` is set to `true`).
 						if(fDo_neutral) {
-							fNeutral.at("E")     = fTrackEMC->energy();
-							fNeutral.at("x")     = fTrackEMC->x();
-							fNeutral.at("y")     = fTrackEMC->y();
-							fNeutral.at("z")     = fTrackEMC->z();
-							fNeutral.at("phi")   = fTrackEMC->phi();
-							fNeutral.at("theta") = fTrackEMC->theta();
-							fNeutral.at("time")  = fTrackEMC->time();
+							fMap_neutral.at("E")     = fTrackEMC->energy();
+							fMap_neutral.at("x")     = fTrackEMC->x();
+							fMap_neutral.at("y")     = fTrackEMC->y();
+							fMap_neutral.at("z")     = fTrackEMC->z();
+							fMap_neutral.at("phi")   = fTrackEMC->phi();
+							fMap_neutral.at("theta") = fTrackEMC->theta();
+							fMap_neutral.at("time")  = fTrackEMC->time();
 							fNTupleMap.at("neutral")->write();
 						}
 
@@ -383,20 +384,20 @@
 
 		/// <li> <b>write</b> event info (`"mult"` branch)
 			if(fDo_mult) {
-				fMult.at("Ntotal")       = fEvtRecEvent->totalTracks();
-				fMult.at("Ncharge")      = fEvtRecEvent->totalCharged();
-				fMult.at("Nneutral")     = fEvtRecEvent->totalNeutral();
-				fMult.at("NgoodCharged") = fGoodChargedTracks.size();
-				fMult.at("NgoodNeutral") = fGoodNeutralTracks.size();
-				fMult.at("Nmdc")         = nChargesMDC;
+				fMap_mult.at("Ntotal")       = fEvtRecEvent->totalTracks();
+				fMap_mult.at("Ncharge")      = fEvtRecEvent->totalCharged();
+				fMap_mult.at("Nneutral")     = fEvtRecEvent->totalNeutral();
+				fMap_mult.at("NgoodCharged") = fGoodChargedTracks.size();
+				fMap_mult.at("NgoodNeutral") = fGoodNeutralTracks.size();
+				fMap_mult.at("Nmdc")         = nChargesMDC;
 				fNTupleMap.at("mult")->write();
 			}
 
 		/// <li> <b>write</b> event info (`"vertex"` branch)
 			if(fDo_vertex) {
-				fVertex.at("vx0") = v0x;
-				fVertex.at("vy0") = v0y;
-				fVertex.at("vz0") = v0z;
+				fMap_vertex.at("vx0") = v0x;
+				fMap_vertex.at("vy0") = v0y;
+				fMap_vertex.at("vz0") = v0z;
 				fNTupleMap.at("vertex")->write();
 			}
 
@@ -631,18 +632,18 @@
 		fLog << MSG::DEBUG << "Writing PID information" << endmsg;
 		fTrackMDC = (*fTrackIterator)->mdcTrack();
 		if(fTrackMDC) {
-			fPID.at("p")    = fTrackMDC->p();
-			fPID.at("cost") = cos(fTrackMDC->theta());
+			fMap_PID.at("p")    = fTrackMDC->p();
+			fMap_PID.at("cost") = cos(fTrackMDC->theta());
 		}
-		fPID.at("chiToFEC") = fPIDInstance->chiTofE(2);
-		fPID.at("chiToFIB") = fPIDInstance->chiTof1(2);
-		fPID.at("chiToFOB") = fPIDInstance->chiTof2(2);
-		fPID.at("chidEdx")  = fPIDInstance->chiDedx(2);
-		fPID.at("prob_K")   = fPIDInstance->probKaon();
-		fPID.at("prob_e")   = fPIDInstance->probElectron();
-		fPID.at("prob_mu")  = fPIDInstance->probMuon();
-		fPID.at("prob_p")   = fPIDInstance->probProton();
-		fPID.at("prob_pi")  = fPIDInstance->probPion();
+		fMap_PID.at("chiToFEC") = fPIDInstance->chiTofE(2);
+		fMap_PID.at("chiToFIB") = fPIDInstance->chiTof1(2);
+		fMap_PID.at("chiToFOB") = fPIDInstance->chiTof2(2);
+		fMap_PID.at("chidEdx")  = fPIDInstance->chiDedx(2);
+		fMap_PID.at("prob_K")   = fPIDInstance->probKaon();
+		fMap_PID.at("prob_e")   = fPIDInstance->probElectron();
+		fMap_PID.at("prob_mu")  = fPIDInstance->probMuon();
+		fMap_PID.at("prob_p")   = fPIDInstance->probProton();
+		fMap_PID.at("prob_pi")  = fPIDInstance->probPion();
 		fNTupleMap.at("PID")->write();
 	}
 

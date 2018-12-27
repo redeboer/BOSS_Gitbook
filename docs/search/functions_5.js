@@ -1,7 +1,7 @@
 var searchData=
 [
   ['finalize',['finalize',['../classRhopiAlg.html#ab76937e733cff9572d08436bf9236b16',1,'RhopiAlg::finalize()'],['../classTrackSelector.html#ac12f71603152e155a688861d11c51c46',1,'TrackSelector::finalize()']]],
-  ['finalize_5frest',['finalize_rest',['../classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752',1,'D0phi_KpiKK::finalize_rest()'],['../classTrackSelector.html#a7f37a38b6aad9834eb136fa7627eb293',1,'TrackSelector::finalize_rest()']]],
+  ['finalize_5frest',['finalize_rest',['../classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752',1,'D0phi_KpiKK::finalize_rest()'],['../classrhopi__pipigg.html#a67dc70e428dac62c286d8d41dce4e9b1',1,'rhopi_pipigg::finalize_rest()'],['../classTrackSelector.html#a96c7c12f231c8cd622d7e5a6742d80a0',1,'TrackSelector::finalize_rest()']]],
   ['findchain',['FindChain',['../classBOSSRootChain.html#a0ecfcc49ff6ddcbf77dec527bd4663be',1,'BOSSRootChain']]],
   ['findtree',['FindTree',['../classBOSSRootFile.html#aa023a7dcfc74edfc1a031945812a7cb3',1,'BOSSRootFile']]],
   ['fitbreitwigner',['FitBreitWigner',['../namespaceCommonFunctions_1_1Fit.html#ac39deda451366c4f7b353ab3fcff1353',1,'CommonFunctions::Fit']]],

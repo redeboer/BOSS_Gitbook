@@ -1,0 +1,35 @@
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+
+// * Define which packages to load *
+ApplicationMgr.DLLs   += {"TrackSelector"};
+ApplicationMgr.TopAlg += {"rhopi_pipigg"};
+
+// * Whether or not to fill a tree/NTuple *
+rhopi_pipigg.do_mult      = true;
+rhopi_pipigg.do_vertex    = true;
+rhopi_pipigg.do_charged   = true;
+rhopi_pipigg.do_neutral   = false;
+rhopi_pipigg.do_dedx      = true;
+rhopi_pipigg.do_TofEC     = true;
+rhopi_pipigg.do_TofIB     = true;
+rhopi_pipigg.do_TofOB     = true;
+rhopi_pipigg.do_PID       = true;
+rhopi_pipigg.do_mult_select = true;
+rhopi_pipigg.do_fit4c_all   = true;
+rhopi_pipigg.do_fit4c_best  = true;
+rhopi_pipigg.do_fit5c_all   = true;
+rhopi_pipigg.do_fit5c_best  = true;
+
+// * Primary vertex cuts *
+rhopi_pipigg.cut_MaxVr0    = 1e6; // 1.0
+rhopi_pipigg.cut_MaxVz0    = 1e6; // 5.0
+rhopi_pipigg.cut_MaxVrvz0  = 10.;
+rhopi_pipigg.cut_MaxVrvxy0 = 1.;
+
+// * Particle PID cuts *
+rhopi_pipigg.cut_MinPhotonEnergy = 0.04;
+rhopi_pipigg.cut_MaxPIDChiSq     = 200.;
+rhopi_pipigg.cut_MinPIDProb      = 0.001;
+rhopi_pipigg.cut_MaxGammaAngle   = 20.0;
+rhopi_pipigg.cut_MaxGammaPhi     = 20.0;
+rhopi_pipigg.cut_MaxGammaTheta   = 20.0;

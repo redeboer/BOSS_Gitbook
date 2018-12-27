@@ -21,6 +21,10 @@ var files =
     [ "ReconstructedParticle.h", "ReconstructedParticle_8h.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ]
     ] ],
+    [ "rhopi_pipigg.cxx", "rhopi__pipigg_8cxx.html", "rhopi__pipigg_8cxx" ],
+    [ "rhopi_pipigg.h", "rhopi__pipigg_8h.html", [
+      [ "rhopi_pipigg", "classrhopi__pipigg.html", "classrhopi__pipigg" ]
+    ] ],
     [ "RhopiAlg.cxx", "RhopiAlg_8cxx.html", "RhopiAlg_8cxx" ],
     [ "RhopiAlg.h", "RhopiAlg_8h.html", [
       [ "RhopiAlg", "classRhopiAlg.html", "classRhopiAlg" ]

@@ -5,6 +5,8 @@ var searchData=
   ['gdefaultoutputfilename',['gDefaultOutputFileName',['../CompareChainVsHadd_8C.html#ab17e022eddaae4f4d52a6a42a84026e0',1,'CompareChainVsHadd.C']]],
   ['gecms',['gEcms',['../namespaceTSGlobals.html#a7627214df596524af6630d00620e99c7',1,'TSGlobals']]],
   ['gfiletoload',['gFileToLoad',['../CompareChainVsHadd_8C.html#aa3dda915a68202f6344b5bb828e71e0e',1,'CompareChainVsHadd.C']]],
+  ['ggamma1iter',['gGamma1Iter',['../classrhopi__pipigg.html#a0af516093054089be4bc412542898379',1,'rhopi_pipigg']]],
+  ['ggamma2iter',['gGamma2Iter',['../classrhopi__pipigg.html#a6629ea1bbc89350881ebb059080ef7c5',1,'rhopi_pipigg']]],
   ['gm_5fd0',['gM_D0',['../namespaceTSGlobals.html#a2a9b392d7ba7887fbea1cfe5b0b936c3',1,'TSGlobals']]],
   ['gm_5fjpsi',['gM_Jpsi',['../namespaceTSGlobals.html#aa28898a97d6edd6e532f0e7ffc612cee',1,'TSGlobals']]],
   ['gm_5fk',['gM_K',['../namespaceTSGlobals.html#a6331f215e01f26c9e2606f3cfdad160e',1,'TSGlobals']]],
