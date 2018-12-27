@@ -2,30 +2,29 @@
 
 // * Define which packages to load *
 ApplicationMgr.DLLs   += {"TrackSelector"};
-ApplicationMgr.TopAlg += {"TrackSelector"};
 ApplicationMgr.TopAlg += {"D0phi_KpiKK"};
 
 // * Whether or not to fill a tree/NTuple *
-TrackSelector.do_mult      = true;
-TrackSelector.do_vertex    = true;
-TrackSelector.do_charged   = true;
-TrackSelector.do_neutral   = false;
-TrackSelector.do_dedx      = true;
-TrackSelector.do_TofEC     = true;
-TrackSelector.do_TofIB     = true;
-TrackSelector.do_TofOB     = true;
-TrackSelector.do_PID       = true;
+D0phi_KpiKK.do_mult      = true;
+D0phi_KpiKK.do_vertex    = true;
+D0phi_KpiKK.do_charged   = true;
+D0phi_KpiKK.do_neutral   = false;
+D0phi_KpiKK.do_dedx      = true;
+D0phi_KpiKK.do_TofEC     = true;
+D0phi_KpiKK.do_TofIB     = true;
+D0phi_KpiKK.do_TofOB     = true;
+D0phi_KpiKK.do_PID       = true;
 D0phi_KpiKK.do_mult_select = true;
 D0phi_KpiKK.do_fit4c_all   = true;
 D0phi_KpiKK.do_fit4c_best  = true;
 
 // * Primary vertex cuts *
-TrackSelector.cut_MaxVr0    = 1e6;
-TrackSelector.cut_MaxVz0    = 1e6;
-TrackSelector.cut_MaxVrvz0  = 10.;
-TrackSelector.cut_MaxVrvxy0 = 1.;
+D0phi_KpiKK.cut_MaxVr0    = 1e6;
+D0phi_KpiKK.cut_MaxVz0    = 1e6;
+D0phi_KpiKK.cut_MaxVrvz0  = 10.;
+D0phi_KpiKK.cut_MaxVrvxy0 = 1.;
 
 // * Particle PID cuts *
-TrackSelector.cut_MinPhotonEnergy = 0.04;
-TrackSelector.cut_MaxPIDChiSq     = 200.;
-TrackSelector.cut_MinPIDProb      = 0.001;
+D0phi_KpiKK.cut_MinPhotonEnergy = 0.04;
+D0phi_KpiKK.cut_MaxPIDChiSq     = 200.;
+D0phi_KpiKK.cut_MinPIDProb      = 0.001;

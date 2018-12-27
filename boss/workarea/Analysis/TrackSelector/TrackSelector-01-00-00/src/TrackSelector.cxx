@@ -57,6 +57,7 @@
 		fEvtRecEvent (eventSvc(), EventModel::EvtRec::EvtRecEvent),
 		fEvtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol)
 	{
+		fLog << MSG::DEBUG << "===>> TrackSelector::TrackSelector() <<===" << endmsg;
 
 		/// * The `"do_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
 		declareProperty("do_mult",    fDo_mult    = false);
@@ -92,6 +93,7 @@
 	 */
 	StatusCode TrackSelector::initialize()
 	{
+		fLog << MSG::INFO << "===>> TrackSelector::initialize() <<===" << endmsg;
 
 		/// <ol type="A">
 		/// <li> `"mult"`: Multiplicities of the total event
@@ -160,11 +162,11 @@
 		/// <li> `"PID"`: Track PID information.
 			/// <ul>
 			if(fDo_PID) {
-				fPID["p"];        /// <li> `"p"`:       Momentum of the track as reconstructed by MDC.
+				fPID["p"];        /// <li> `"p"]; `:       Momentum of the track as reconstructed by MDC.
 				fPID["cost"];     /// <li> `"cost"`:    Theta angle of the track.
-				fPID["chiToFIB"]; /// <li> `"ToFIB"`:   \f$\chi^2\f$ of the inner barrel ToF of the track.
-				fPID["chiToFOB"]; /// <li> `"ToFOB"`:   \f$\chi^2\f$ of the end cap ToF of the track.
-				fPID["chiToFOB"]; /// <li> `"ToFOB"`:   \f$\chi^2\f$ of the outer barrel ToF of the track.
+				fPID["chiToFIB"]; /// <li> `"chiToFIB"`:   \f$\chi^2\f$ of the inner barrel ToF of the track.
+				fPID["chiToFEC"]; /// <li> `"chiToFEC"`:   \f$\chi^2\f$ of the end cap ToF of the track.
+				fPID["chiToFOB"]; /// <li> `"chiToFOB"`:   \f$\chi^2\f$ of the outer barrel ToF of the track.
 				fPID["chidEdx"];  /// <li> `"chidEdx"`: \f$\chi^2\f$ of the energy loss \f$dE/dx\f$ of the identified track.
 				fPID["prob_K"];   /// <li> `"prob_K"`:  Probability that the track is from a kaon according to the probability method.
 				fPID["prob_e"];   /// <li> `"prob_e"`:  Probability that the track is from a electron according to the probability method.
@@ -176,8 +178,8 @@
 			/// </ul>
 
 		/// </ol>
-		return initialize_rest();
-		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
+		if(initialize_rest() == StatusCode::SUCCESS) return StatusCode::SUCCESS;
+		fLog << MSG::INFO << "Successfully returned from TrackSelector::initialize()" << endmsg;
 		return StatusCode::SUCCESS;
 	}
 
@@ -187,6 +189,8 @@
 	 */
 	StatusCode TrackSelector::execute()
 	{
+		fLog << MSG::DEBUG << "===>> TrackSelector::execute() <<===" << endmsg;
+
 		/// <ol type="A">
 		/// <li> Load next event from DST file. For more info see:
 			/// <ul>
@@ -224,145 +228,160 @@
 
 
 		/// <li> Create selection charged tracks and write track info:
+			/// Note: the first part of the set of reconstructed tracks are the charged tracks.
 
-			// * Print log and set counters *
-			fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
+			// * Set counters and data members *
 			int nChargesMDC = 0;
+			fGoodChargedTracks.clear();
 			fPIDInstance = ParticleID::instance();
 
-			// * Loop over charged tracks *
-			fGoodChargedTracks.clear();
-			for(int i = 0; i < fEvtRecEvent->totalCharged(); ++i) {
-			// Note: the first part of the set of reconstructed tracks are the charged tracks
-				/// <ol>
-				/// <li> Get MDC information
+			// * Only perform if there are charged tracks *
+			if(fEvtRecEvent->totalCharged()) {
 
-					// * Get track info from Main Drift Chamber
-					fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endmsg;
-					fTrackIterator = fEvtRecTrkCol->begin() + i; 
-					if(!(*fTrackIterator)->isMdcTrackValid()) continue;
-					fTrackMDC = (*fTrackIterator)->mdcTrack();
+				// * Loop over charged tracks *
+				fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
+				for(int i = 0; i < fEvtRecEvent->totalCharged(); ++i) {
+					/// <ol>
+					/// <li> Get MDC information
 
-					// * Get kinematics of track
-					double phi  = fTrackMDC->helix(1);
-					double vr =
-						(fTrackMDC->x() - v0x) * cos(phi) +
-						(fTrackMDC->y() - v0y) * sin(phi);
-
-					// * Get radii of track vertex
-					HepVector a = fTrackMDC->helix();
-					HepSymMatrix Ea = fTrackMDC->err();
-					HepPoint3D point0(0., 0., 0.); // initial point for MDC reconstruction
-					HepPoint3D IP(v0x, v0y, v0z);
-					VFHelix helixip(point0, a, Ea);
-					helixip.pivot(IP);
-					HepVector vecipa = helixip.a();
-					double rvxy  = fabs(vecipa[0]); // nearest distance to IP in xy plane
-					double rvz    = vecipa[3];       // nearest distance to IP in z direction
-					double rvphi = vecipa[1];       // angle in the xy-plane (?)
-
-				/// <li> Apply vertex cuts, store 
-
-					// * Apply vertex cuts
-					if(fTrackMDC->z() >= fCut_MaxVz0)   continue;
-					if(vr             >= fCut_MaxVr0)   continue;
-					if(rvz            >= fCut_MaxRvz0)  continue;
-					if(rvxy           >= fCut_MaxRvxy0) continue;
-
-					// * Add charged track to vector
-					fGoodChargedTracks.push_back(*fTrackIterator);
-					nChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
-
-				/// <li> <b>Write</b> charged track vertex position info ("charged" branch)
-					if(fDo_charged) {
-						fCharged.at("vx")    = fTrackMDC->x();
-						fCharged.at("vy")    = fTrackMDC->y();
-						fCharged.at("vz")    = fTrackMDC->z();
-						fCharged.at("vr")    = vr;
-						fCharged.at("rvxy")  = rvxy;
-						fCharged.at("rvz")   = rvz;
-						fCharged.at("rvphi") = rvphi;
-						fCharged.at("phi")   = phi;
-						fCharged.at("p")     = fTrackMDC->p();
-						fNTupleMap.at("charged")->write();
-					}
-
-				/// <li> <b>Write</b> dE/dx PID information ("dedx" branch)
-					if(fDo_dedx) WriteDedxInfo(*fTrackIterator, "dedx", fDedx);
-
-				/// <li> <b>Write</b> Time-of-Flight PID information ("tof*" branch)
-					if(fDo_ToFEC || fDo_ToFIB || fDo_ToFOB) {
-
-						// * Check if MDC and TOF info for track are valid *
+						// * Get track info from Main Drift Chamber
+						fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endmsg;
+						fTrackIterator = fEvtRecTrkCol->begin() + i; 
 						if(!(*fTrackIterator)->isMdcTrackValid()) continue;
-						if(!(*fTrackIterator)->isTofTrackValid()) continue;
-
-						// * Get momentum as determined by MDC *
 						fTrackMDC = (*fTrackIterator)->mdcTrack();
-						double ptrk;
-						if(fTrackMDC) ptrk = fTrackMDC->p();
-						SmartRefVector<RecTofTrack> tofTrkCol = (*fTrackIterator)->tofTrack();
-						SmartRefVector<RecTofTrack>::iterator iter_tof = tofTrkCol.begin();
-						for(; iter_tof != tofTrkCol.end(); ++iter_tof) {
-							TofHitStatus hitStatus;
-							hitStatus.setStatus((*iter_tof)->status());
-							if(!hitStatus.is_counter()) continue;
-							if(hitStatus.is_barrel()) {
-								if(hitStatus.layer() == 1) { // inner barrel
-									if(fDo_ToFIB) WriteTofInformation(iter_tof, ptrk, "ToFIB", fTofIB);
-								} else if(hitStatus.layer() == 2) { // outer barrel
-									if(fDo_ToFOB) WriteTofInformation(iter_tof, ptrk, "ToFOB", fTofOB);
-								}
-							}
-							else if(fDo_ToFEC && hitStatus.layer() == 0) // end cap
-								WriteTofInformation(iter_tof, ptrk, "ToFEC", fTofEC);
+
+						// * Get kinematics of track
+						double phi  = fTrackMDC->helix(1);
+						double vr =
+							(fTrackMDC->x() - v0x) * cos(phi) +
+							(fTrackMDC->y() - v0y) * sin(phi);
+
+						// * Get radii of track vertex
+						HepVector a = fTrackMDC->helix();
+						HepSymMatrix Ea = fTrackMDC->err();
+						HepPoint3D point0(0., 0., 0.); // initial point for MDC reconstruction
+						HepPoint3D IP(v0x, v0y, v0z);
+						VFHelix helixip(point0, a, Ea);
+						helixip.pivot(IP);
+						HepVector vecipa = helixip.a();
+						double rvxy  = fabs(vecipa[0]); // nearest distance to IP in xy plane
+						double rvz    = vecipa[3];       // nearest distance to IP in z direction
+						double rvphi = vecipa[1];       // angle in the xy-plane (?)
+
+					/// <li> Apply vertex cuts, store 
+
+						// * Apply vertex cuts
+						if(fTrackMDC->z() >= fCut_MaxVz0)   continue;
+						if(vr             >= fCut_MaxVr0)   continue;
+						if(rvz            >= fCut_MaxRvz0)  continue;
+						if(rvxy           >= fCut_MaxRvxy0) continue;
+
+						// * Add charged track to vector
+						fGoodChargedTracks.push_back(*fTrackIterator);
+						nChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
+
+					/// <li> <b>Write</b> charged track vertex position info ("charged" branch)
+						if(fDo_charged) {
+							fCharged.at("vx")    = fTrackMDC->x();
+							fCharged.at("vy")    = fTrackMDC->y();
+							fCharged.at("vz")    = fTrackMDC->z();
+							fCharged.at("vr")    = vr;
+							fCharged.at("rvxy")  = rvxy;
+							fCharged.at("rvz")   = rvz;
+							fCharged.at("rvphi") = rvphi;
+							fCharged.at("phi")   = phi;
+							fCharged.at("p")     = fTrackMDC->p();
+							fNTupleMap.at("charged")->write();
 						}
 
-					} // if(fDo_tofec || fDo_tofib || fDo_tofob)
+					/// <li> <b>Write</b> dE/dx PID information ("dedx" branch)
+						if(fDo_dedx) WriteDedxInfo(*fTrackIterator, "dedx", fDedx);
 
-				/// </ol>
+					/// <li> <b>Write</b> Time-of-Flight PID information ("tof*" branch)
+						if(fDo_ToFEC || fDo_ToFIB || fDo_ToFOB) {
+
+							// * Check if MDC and TOF info for track are valid *
+							if(!(*fTrackIterator)->isMdcTrackValid()) continue;
+							if(!(*fTrackIterator)->isTofTrackValid()) continue;
+
+							// * Get momentum as determined by MDC *
+							fTrackMDC = (*fTrackIterator)->mdcTrack();
+							double ptrk;
+							if(fTrackMDC) ptrk = fTrackMDC->p();
+							SmartRefVector<RecTofTrack> tofTrkCol = (*fTrackIterator)->tofTrack();
+							SmartRefVector<RecTofTrack>::iterator iter_tof = tofTrkCol.begin();
+							for(; iter_tof != tofTrkCol.end(); ++iter_tof) {
+								TofHitStatus hitStatus;
+								hitStatus.setStatus((*iter_tof)->status());
+								if(!hitStatus.is_counter()) continue;
+								if(hitStatus.is_barrel()) {
+									if(hitStatus.layer() == 1) { // inner barrel
+										if(fDo_ToFIB) WriteTofInformation(iter_tof, ptrk, "ToFIB", fTofIB);
+									} else if(hitStatus.layer() == 2) { // outer barrel
+										if(fDo_ToFOB) WriteTofInformation(iter_tof, ptrk, "ToFOB", fTofOB);
+									}
+								}
+								else if(fDo_ToFEC && hitStatus.layer() == 0) // end cap
+									WriteTofInformation(iter_tof, ptrk, "ToFEC", fTofEC);
+							}
+
+						} // if(fDo_tofec || fDo_tofib || fDo_tofob)
+
+					/// </ol>
+				}
+
+				// * Finish good charged track selection *
+				fLog << MSG::DEBUG << "Number of 'good' charged tracks: " << fGoodChargedTracks.size() << endmsg;
 			}
 
 
 		/// <li> Create selection of neutral tracks and write track info.
 			/// Note: The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired with each charged track and if their angle is smaller than a certain value (here, 200), the photon track is stored as 'good photon' (added to `iGam`).
+
+			// * Set counters and data members *
 			fGoodNeutralTracks.clear();
-			for(int i = fEvtRecEvent->totalCharged(); i < fEvtRecEvent->totalTracks(); ++i) {
-				/// <ol>
-				/// <li> Get EMC information
-					fLog << MSG::DEBUG << "   neutral track " << i-fEvtRecEvent->totalCharged() << "/" << fEvtRecEvent->totalNeutral() << endmsg;
-					fTrackIterator = fEvtRecTrkCol->begin() + i; 
-					if(!(*fTrackIterator)->isEmcShowerValid()) continue;
-					fTrackEMC = (*fTrackIterator)->emcShower();
-					if(!fTrackEMC) continue;
 
-				/// <li> Apply photon energy cut (set by `TrackSelector.cut_PhotonEnergy`).
-					if(fTrackEMC->energy() < fCut_MinPhotonEnergy) continue;
+			// * Only perform if there are neutral tracks *
+			if(fEvtRecEvent->totalNeutral()) {
 
-				/// <li> <b>Write</b> neutral track information (if `do_neutral` is set to `true`).
-					if(fDo_neutral) {
-						fNeutral.at("E")     = fTrackEMC->energy();
-						fNeutral.at("x")     = fTrackEMC->x();
-						fNeutral.at("y")     = fTrackEMC->y();
-						fNeutral.at("z")     = fTrackEMC->z();
-						fNeutral.at("phi")   = fTrackEMC->phi();
-						fNeutral.at("theta") = fTrackEMC->theta();
-						fNeutral.at("time")  = fTrackEMC->time();
-						fNTupleMap.at("neutral")->write();
-					}
+				// * Loop over neutral tracks *
+				fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
+				for(int i = fEvtRecEvent->totalCharged(); i < fEvtRecEvent->totalTracks(); ++i) {
+					/// <ol>
+					/// <li> Get EMC information
+						fLog << MSG::DEBUG << "   neutral track " << i-fEvtRecEvent->totalCharged() << "/" << fEvtRecEvent->totalNeutral() << endmsg;
+						fTrackIterator = fEvtRecTrkCol->begin() + i; 
+						if(!(*fTrackIterator)->isEmcShowerValid()) continue;
+						fTrackEMC = (*fTrackIterator)->emcShower();
+						if(!fTrackEMC) continue;
 
-				/// <li> Add photon track to vector of neutral tracks (`fGoodNeutralTracks`).
-					fGoodNeutralTracks.push_back(*fTrackIterator);
+					/// <li> Apply photon energy cut (set by `TrackSelector.cut_PhotonEnergy`).
+						if(fTrackEMC->energy() < fCut_MinPhotonEnergy) continue;
 
-				/// </ol>
+					/// <li> <b>Write</b> neutral track information (if `do_neutral` is set to `true`).
+						if(fDo_neutral) {
+							fNeutral.at("E")     = fTrackEMC->energy();
+							fNeutral.at("x")     = fTrackEMC->x();
+							fNeutral.at("y")     = fTrackEMC->y();
+							fNeutral.at("z")     = fTrackEMC->z();
+							fNeutral.at("phi")   = fTrackEMC->phi();
+							fNeutral.at("theta") = fTrackEMC->theta();
+							fNeutral.at("time")  = fTrackEMC->time();
+							fNTupleMap.at("neutral")->write();
+						}
+
+					/// <li> Add photon track to vector of neutral tracks (`fGoodNeutralTracks`).
+						fGoodNeutralTracks.push_back(*fTrackIterator);
+
+					/// </ol>
+				}
+
+				// * Finish good photon selection *
+				fLog << MSG::DEBUG << "Number of 'good' photons: " << fGoodNeutralTracks.size() << endmsg;
 			}
-
-			// * Finish Good Photon Selection *
-			fLog << MSG::DEBUG << "Number of good photons: " << fGoodNeutralTracks.size() << endmsg;
 
 
 		/// <li> <b>write</b> event info (`"mult"` branch)
-			fLog << MSG::DEBUG << "ngood, totcharge = " << fGoodChargedTracks.size() << " , " << nChargesMDC << endmsg;
 			if(fDo_mult) {
 				fMult.at("Ntotal")       = fEvtRecEvent->totalTracks();
 				fMult.at("Ncharge")      = fEvtRecEvent->totalCharged();
@@ -382,7 +401,7 @@
 			}
 
 		/// <li> Perform derived algoritm as defined in `TrackSelector::execute_rest`.
-			return execute_rest();
+			if(execute_rest() == StatusCode::SUCCESS) return StatusCode::SUCCESS;
 
 		/// </ol>
 		return StatusCode::SUCCESS;
@@ -395,7 +414,10 @@
 	 */
 	StatusCode TrackSelector::finalize()
 	{
-		return finalize_rest();
+		fLog << MSG::INFO << "===>> TrackSelector::finalize() <<===" << endmsg;
+
+		if(finalize_rest() == StatusCode::SUCCESS) return StatusCode::SUCCESS;
+		fLog << MSG::INFO << "Successfully returned from TrackSelector::finalize()" << endmsg;
 		return StatusCode::SUCCESS;
 	}
 
@@ -436,6 +458,7 @@
 		const char* bookName = Form("FILE1/%s", tupleName);
 		NTuplePtr nt(ntupleSvc(), bookName); // attempt to get from file
 		if(!nt) { // if not available in file, book a new one
+			fLog << MSG::INFO << "Booked NTuple \"" << tupleName << "\"" << endmsg;
 			nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, tupleTitle);
 			if(!nt) fLog << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << " (" << tupleName << ")" << endmsg;
 		}
@@ -579,7 +602,11 @@
 	{
 		if(!nt) return;
 		std::map<std::string, NTuple::Item<double> >::iterator it = map.begin();
-		for(; it != map.end(); ++it) nt->addItem(it->first, it->second);
+		for(; it != map.end(); ++it) {
+			nt->addItem(it->first, it->second);
+			fLog << MSG::DEBUG << "  added \"" << it->first << "\"" << endmsg;
+		}
+		fLog << MSG::INFO << "  total: " << map.size() << " items" << endmsg;
 	}
 
 	/**
@@ -599,7 +626,9 @@
 	 */
 	void TrackSelector::WritePIDInformation()
 	{
+		if(!fDo_PID) return;
 		if(!fPIDInstance) return;
+		fLog << MSG::DEBUG << "Writing PID information" << endmsg;
 		fTrackMDC = (*fTrackIterator)->mdcTrack();
 		if(fTrackMDC) {
 			fPID.at("p")    = fTrackMDC->p();

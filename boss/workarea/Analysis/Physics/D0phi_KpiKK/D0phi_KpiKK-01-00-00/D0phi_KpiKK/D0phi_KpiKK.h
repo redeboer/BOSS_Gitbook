@@ -26,9 +26,9 @@ public:
 	D0phi_KpiKK(const std::string &name, ISvcLocator* pSvcLocator);
 
 	// * Algorithm steps *
-	StatusCode initialize_rest();
-	StatusCode execute_rest();
-	StatusCode finalize_rest();
+	StatusCode initialize();
+	StatusCode execute();
+	StatusCode finalize();
 
 
 protected:

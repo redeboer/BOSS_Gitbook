@@ -1,8 +1,7 @@
 #include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
 
 // * Define which packages to load *
-ApplicationMgr.DLLs   += {"TrackSelector"};
-ApplicationMgr.TopAlg += {"TrackSelector"};
+ApplicationMgr.DLLs   += {"D0phi_KpiKK"};
 ApplicationMgr.TopAlg += {"D0phi_KpiKK"};
 
 // * Whether or not to fill a tree/NTuple *

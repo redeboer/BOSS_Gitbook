@@ -6,7 +6,7 @@
 	#include "CLHEP/Vector/LorentzVector.h"
 	#include "CLHEP/Vector/ThreeVector.h"
 	#include "CLHEP/Vector/TwoVector.h"
-	#include "TrackSelector/D0phi_KpiKK.h"
+	#include "D0phi_KpiKK/D0phi_KpiKK.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include "VertexFit/VertexFit.h"
 	#include <string>
@@ -52,8 +52,9 @@
 	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
 	 * @details Define and load NTuples here.
 	 */
-	StatusCode D0phi_KpiKK::initialize_rest()
+	StatusCode D0phi_KpiKK::initialize()
 	{
+		if(initialize_start()) return StatusCode::SUCCESS;
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
@@ -104,9 +105,9 @@
 	/**
 	 * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 	 */
-	StatusCode D0phi_KpiKK::execute_rest()
+	StatusCode D0phi_KpiKK::execute()
 	{
-
+		if(execute_start()) return StatusCode::SUCCESS;
 		/// <ol type="A">
 		/// <li> Create selection charged tracks
 
@@ -191,75 +192,72 @@
 			if(fDo_fit4c_all || fDo_fit4c_best) {
 				double bestRelMassDif = 1e5;
 				KalmanKinematicFit *bestKalmanFit = nullptr;
-				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter) {
-					for(fKaonNeg2Iter = fKaonNeg1Iter+1; fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter) {
-						for(fKaonPosIter = fKaonPos.begin(); fKaonPosIter != fKaonPos.end(); ++fKaonPosIter) {
-							for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter) {
+				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
+				for(fKaonNeg2Iter = fKaonNeg1Iter+1;  fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
+				for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter  != fKaonPos.end(); ++fKaonPosIter )
+				for(fPionPosIter  = fPionPos.begin(); fPionPosIter  != fPionPos.end(); ++fPionPosIter )
+				{
+					// * Get Kalman tracks reconstructed by the MDC
+						RecMdcKalTrack* kalTrkKm1 = (*fKaonNeg1Iter)->mdcKalTrack();
+						RecMdcKalTrack* kalTrkKm2 = (*fKaonNeg2Iter)->mdcKalTrack();
+						RecMdcKalTrack* kalTrkKp  = (*fKaonPosIter) ->mdcKalTrack();
+						RecMdcKalTrack* kalTrkpip = (*fPionPosIter) ->mdcKalTrack();
 
-								// * Get Kalman tracks reconstructed by the MDC
-									RecMdcKalTrack* kalTrkKm1 = (*fKaonNeg1Iter)->mdcKalTrack();
-									RecMdcKalTrack* kalTrkKm2 = (*fKaonNeg2Iter)->mdcKalTrack();
-									RecMdcKalTrack* kalTrkKp  = (*fKaonPosIter) ->mdcKalTrack();
-									RecMdcKalTrack* kalTrkpip = (*fPionPosIter) ->mdcKalTrack();
+					// * Get W-tracks
+						WTrackParameter wvKmTrk1(gM_K,  kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
+						WTrackParameter wvKmTrk2(gM_K,  kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
+						WTrackParameter wvKpTrk (gM_K,  kalTrkKp ->getZHelix(), kalTrkKp ->getZError());
+						WTrackParameter wvpipTrk(gM_pi, kalTrkpip->getZHelix(), kalTrkpip->getZError());
 
-								// * Get W-tracks
-									WTrackParameter wvKmTrk1(gM_K,  kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
-									WTrackParameter wvKmTrk2(gM_K,  kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
-									WTrackParameter wvKpTrk (gM_K,  kalTrkKp ->getZHelix(), kalTrkKp ->getZError());
-									WTrackParameter wvpipTrk(gM_pi, kalTrkpip->getZHelix(), kalTrkpip->getZError());
+					// * Test vertex fit
+						HepPoint3D vx(0., 0., 0.);
+						HepSymMatrix Evx(3, 0);
+						double bx = 1E+6;
+						double by = 1E+6;
+						double bz = 1E+6;
+						Evx[0][0] = bx*bx;
+						Evx[1][1] = by*by;
+						Evx[2][2] = bz*bz;
 
-								// * Test vertex fit
-									HepPoint3D vx(0., 0., 0.);
-									HepSymMatrix Evx(3, 0);
-									double bx = 1E+6;
-									double by = 1E+6;
-									double bz = 1E+6;
-									Evx[0][0] = bx*bx;
-									Evx[1][1] = by*by;
-									Evx[2][2] = bz*bz;
+						VertexParameter vxpar;
+						vxpar.setVx(vx);
+						vxpar.setEvx(Evx);
 
-									VertexParameter vxpar;
-									vxpar.setVx(vx);
-									vxpar.setEvx(Evx);
+						VertexFit* vtxfit = VertexFit::instance();
+						vtxfit->init();
+						vtxfit->AddTrack(0, wvpipTrk);
+						vtxfit->AddTrack(1, wvKpTrk);
+						vtxfit->AddTrack(2, wvKmTrk1);
+						vtxfit->AddTrack(3, wvKmTrk2);
+						vtxfit->AddVertex(0, vxpar, 0, 1);
+						if(!vtxfit->Fit(0)) continue;
+						vtxfit->Swim(0);
 
-									VertexFit* vtxfit = VertexFit::instance();
-									vtxfit->init();
-									vtxfit->AddTrack(0, wvpipTrk);
-									vtxfit->AddTrack(1, wvKpTrk);
-									vtxfit->AddTrack(2, wvKmTrk1);
-									vtxfit->AddTrack(3, wvKmTrk2);
-									vtxfit->AddVertex(0, vxpar, 0, 1);
-									if(!vtxfit->Fit(0)) continue;
-									vtxfit->Swim(0);
+						WTrackParameter wpip = vtxfit->wtrk(0);
+						WTrackParameter wKp  = vtxfit->wtrk(1);
+						WTrackParameter wKm1 = vtxfit->wtrk(2);
+						WTrackParameter wKm2 = vtxfit->wtrk(3);
 
-									WTrackParameter wpip = vtxfit->wtrk(0);
-									WTrackParameter wKp  = vtxfit->wtrk(1);
-									WTrackParameter wKm1 = vtxfit->wtrk(2);
-									WTrackParameter wKm2 = vtxfit->wtrk(3);
+					// * Get Kalman kinematic fit for this combination and store if better than previous one
+						KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
+						kkmfit->init();
+						kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K- (1st occurrence)
+						kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi+
+						kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K- (2nd occurrence)
+						kkmfit->AddTrack(3, vtxfit->wtrk(3)); // K+
+						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
+						if(kkmfit->Fit()) {
+							/// Apply max. \f$\chi^2\f$ cut (determined by `fCut_MaxPIDChiSq`).
+							if(kkmfit->chisq() > fCut_MaxPIDChiSq) continue;
+							/// Compute the measure for the best Kalman kinematic fit and keep a pointer to this result if better than previous.
+							ComputeInvariantMasses(kkmfit);
+							double relMassDif = MeasureForBestFit();
+							if(relMassDif < bestRelMassDif) bestKalmanFit = kkmfit;
+							/// <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
+							if(fDo_fit4c_all) WriteFitResults(kkmfit, fFit4c_all, "fit4c_all");
+						}
 
-								// * Get Kalman kinematic fit for this combination and store if better than previous one
-									KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
-									kkmfit->init();
-									kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K- (1st occurrence)
-									kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi+
-									kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K- (2nd occurrence)
-									kkmfit->AddTrack(3, vtxfit->wtrk(3)); // K+
-									kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
-									if(kkmfit->Fit()) {
-										/// Apply max. \f$\chi^2\f$ cut (determined by `fCut_MaxPIDChiSq`).
-										if(kkmfit->chisq() > fCut_MaxPIDChiSq) continue;
-										/// Compute the measure for the best Kalman kinematic fit and keep a pointer to this result if better than previous.
-										ComputeInvariantMasses(kkmfit);
-										double relMassDif = MeasureForBestFit();
-										if(relMassDif < bestRelMassDif) bestKalmanFit = kkmfit;
-										/// <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
-										if(fDo_fit4c_all) WriteFitResults(kkmfit, fFit4c_all, "fit4c_all");
-									}
-
-							} // end of loop over pi^+
-						} // end of loop over K^+
-					} // end of loop over second K^-
-				} // end of loop over first K^-
+				}
 
 				
 		/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branch)
@@ -282,8 +280,9 @@
 	 * @brief Currently does nothing. Cut flow could be printed in this step.
 	 * @todo Add log output to `finalize` step.
 	 */
-	StatusCode D0phi_KpiKK::finalize_rest()
+	StatusCode D0phi_KpiKK::finalize()
 	{
+		if(finalize_start()) return StatusCode::SUCCESS;
 		return StatusCode::SUCCESS;
 	}
 

@@ -1,4 +1,4 @@
-# echo "cleanup TrackSelector TrackSelector-01-00-00 in /besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis"
+# echo "cleanup TrackSelector TrackSelector-02-00-00 in /besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis"
 
 if test "${CMTROOT}" = ""; then
   CMTROOT=/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/contrib/CMT/v1r25; export CMTROOT
@@ -6,9 +6,9 @@ fi
 . ${CMTROOT}/mgr/setup.sh
 cmtTrackSelectortempfile=`${CMTROOT}/mgr/cmt -quiet build temporary_name`
 if test ! $? = 0 ; then cmtTrackSelectortempfile=/tmp/cmt.$$; fi
-${CMTROOT}/mgr/cmt cleanup -sh -pack=TrackSelector -version=TrackSelector-01-00-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis  $* >${cmtTrackSelectortempfile}
+${CMTROOT}/mgr/cmt cleanup -sh -pack=TrackSelector -version=TrackSelector-02-00-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis  $* >${cmtTrackSelectortempfile}
 if test $? != 0 ; then
-  echo >&2 "${CMTROOT}/mgr/cmt cleanup -sh -pack=TrackSelector -version=TrackSelector-01-00-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis  $* >${cmtTrackSelectortempfile}"
+  echo >&2 "${CMTROOT}/mgr/cmt cleanup -sh -pack=TrackSelector -version=TrackSelector-02-00-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis  $* >${cmtTrackSelectortempfile}"
   cmtcleanupstatus=2
   /bin/rm -f ${cmtTrackSelectortempfile}
   unset cmtTrackSelectortempfile

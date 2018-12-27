@@ -13,7 +13,7 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-packageName="DzeroPhi" # RhopiAlg
+packageName="D0phi_KpiKK" # RhopiAlg
 nJobs=25
 nEventsPerJob=10000
 

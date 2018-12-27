@@ -90,7 +90,7 @@
 	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
 	 * @details Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
 	 */
-	StatusCode TrackSelector::initialize()
+	bool TrackSelector::initialize_start()
 	{
 
 		/// <ol type="A">
@@ -176,16 +176,16 @@
 			/// </ul>
 
 		/// </ol>
-		return initialize_rest();
+		// return initialize_rest();
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
-		return StatusCode::SUCCESS;
+		return false;
 	}
 
 
 	/**
 	 * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 	 */
-	StatusCode TrackSelector::execute()
+	bool TrackSelector::execute_start()
 	{
 		/// <ol type="A">
 		/// <li> Load next event from DST file. For more info see:
@@ -382,10 +382,10 @@
 			}
 
 		/// <li> Perform derived algoritm as defined in `TrackSelector::execute_rest`.
-			return execute_rest();
+			// return execute_rest();
 
 		/// </ol>
-		return StatusCode::SUCCESS;
+		return false;
 	}
 
 
@@ -393,10 +393,10 @@
 	 * @brief Currently does nothing. Cut flow could be printed in this step.
 	 * @todo Add log output to `finalize` step.
 	 */
-	StatusCode TrackSelector::finalize()
+	bool TrackSelector::finalize_start()
 	{
-		return finalize_rest();
-		return StatusCode::SUCCESS;
+		// return finalize_rest();
+		return false;
 	}
 
 

@@ -34,11 +34,12 @@
 	D0phi_KpiKK::D0phi_KpiKK(const std::string &name, ISvcLocator* pSvcLocator) :
 		TrackSelector(name, pSvcLocator)
 	{
+		fLog << MSG::DEBUG << "===>> D0phi_KpiKK::D0phi_KpiKK() <<===" << endmsg;
 
 		// * Whether or not to fill a tree/NTuple *
-		declareProperty("do_mult_select", fDo_mult_select);
-		declareProperty("do_fit4c_all",   fDo_fit4c_all);
-		declareProperty("do_fit4c_best",  fDo_fit4c_best);
+		declareProperty("do_mult_select", fDo_mult_select = false);
+		declareProperty("do_fit4c_all",   fDo_fit4c_all   = false);
+		declareProperty("do_fit4c_best",  fDo_fit4c_best  = false);
 
 	}
 
@@ -54,6 +55,8 @@
 	 */
 	StatusCode D0phi_KpiKK::initialize_rest()
 	{
+		fLog << MSG::INFO << "===>> D0phi_KpiKK::initialize_rest() <<===" << endmsg;
+
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
@@ -106,12 +109,13 @@
 	 */
 	StatusCode D0phi_KpiKK::execute_rest()
 	{
+		fLog << MSG::DEBUG << "===>> D0phi_KpiKK::execute_rest() <<===" << endmsg;
 
 		/// <ol type="A">
 		/// <li> Create selection charged tracks
 
 			// * Print log and set counters *
-				fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
+				fLog << MSG::DEBUG << "Starting particle selection:" << endmsg;
 				fPIDInstance = ParticleID::instance();
 
 			// * Clear vectors of selected particles *
@@ -157,6 +161,11 @@
 					}
 
 			}
+
+			// * Finish good photon selection *
+			fLog << MSG::DEBUG << "Number of K+:  " << fKaonNeg.size() << endmsg;
+			fLog << MSG::DEBUG << "Number of K+:  " << fKaonPos.size() << endmsg;
+			fLog << MSG::DEBUG << "Number of K+:  " << fPionPos.size() << endmsg;
 
 
 		/// <li> <b>Write</b> the multiplicities of the selected particles.
@@ -284,6 +293,8 @@
 	 */
 	StatusCode D0phi_KpiKK::finalize_rest()
 	{
+		fLog << MSG::INFO << "===>> D0phi_KpiKK::finalize_rest() <<===" << endmsg;
+
 		return StatusCode::SUCCESS;
 	}
 
@@ -321,6 +332,7 @@
 	 */
 	void D0phi_KpiKK::WriteFitResults(KalmanKinematicFit *kkmfit, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName)
 	{
+		fLog << MSG::DEBUG << "Writing fit results \"" << tupleName << "\"" << endmsg;
 		map.at("mD0")   = fM_D0;
 		map.at("mphi")  = fM_phi;
 		map.at("mJpsi") = fM_Jpsi;
