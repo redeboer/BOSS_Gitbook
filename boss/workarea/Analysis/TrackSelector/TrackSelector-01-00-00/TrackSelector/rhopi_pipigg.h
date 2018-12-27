@@ -36,8 +36,8 @@ protected:
 		std::vector<EvtRecTrack*> fGamma;   //!< Vector that contains a selection of pointers to neutral tracks identified as \f$\gamma\f$.
 		std::vector<EvtRecTrack*> fPionNeg; //!< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^-\f$.
 		std::vector<EvtRecTrack*> fPionPos; //!< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
-		std::vector<EvtRecTrack*>::iterator gGamma1Iter;  //!< Iterator for looping over the collection of gamma's (1st occurence).
-		std::vector<EvtRecTrack*>::iterator gGamma2Iter;  //!< Iterator for looping over the collection of gamma's (2st occurence).
+		std::vector<EvtRecTrack*>::iterator fGamma1Iter;  //!< Iterator for looping over the collection of gamma's (1st occurence).
+		std::vector<EvtRecTrack*>::iterator fGamma2Iter;  //!< Iterator for looping over the collection of gamma's (2st occurence).
 		std::vector<EvtRecTrack*>::iterator fPionNegIter; //!< Iterator for looping over the collection of negative pions.
 		std::vector<EvtRecTrack*>::iterator fPionPosIter; //!< Iterator for looping over the collection of positive pions.
 
@@ -65,16 +65,16 @@ protected:
 
 private:
 	// * Private data members (values)
-	double fE_gamma1;  //!< Energy of the first photon.
-	double fE_gamma2;  //!< Energy of the second photon.
-	double fCosGamma;  //!< Cosine of the angle between the two photons.
-	double fM_pi0      //!< Invariant mass of \f$\pi^0 \rightarrow \gamma\gamma\f$.
-	double fM_rho0     //!< Invariant mass of \f$\rho^0 \rightarrow \pi^-\pi^+\f$.
-	double fM_rhom     //!< Invariant mass of \f$\rho^- \rightarrow \pi^0\pi^-\f$.
-	double fM_rhop     //!< Invariant mass of \f$\rho^+ \rightarrow \pi^0\pi^+\f$.
-	double fM_JpsiRho0 //!< Invariant mass of \f$J/\psi \rightarrow \rho^0\pi^0\f$.
-	double fM_JpsiRhom //!< Invariant mass of \f$J/\psi \rightarrow \rho^+\pi^-\f$.
-	double fM_JpsiRhop //!< Invariant mass of \f$J/\psi \rightarrow \rho^-\pi^+\f$.
+	double fE_gamma1;   //!< Energy of the first photon.
+	double fE_gamma2;   //!< Energy of the second photon.
+	double fCosGamma;   //!< Cosine of the angle between the two photons.
+	double fM_pi0;      //!< Invariant mass of \f$\pi^0 \rightarrow \gamma\gamma\f$.
+	double fM_rho0;     //!< Invariant mass of \f$\rho^0 \rightarrow \pi^-\pi^+\f$.
+	double fM_rhom;     //!< Invariant mass of \f$\rho^- \rightarrow \pi^0\pi^-\f$.
+	double fM_rhop;     //!< Invariant mass of \f$\rho^+ \rightarrow \pi^0\pi^+\f$.
+	double fM_JpsiRho0; //!< Invariant mass of \f$J/\psi \rightarrow \rho^0\pi^0\f$.
+	double fM_JpsiRhom; //!< Invariant mass of \f$J/\psi \rightarrow \rho^+\pi^-\f$.
+	double fM_JpsiRhop; //!< Invariant mass of \f$J/\psi \rightarrow \rho^-\pi^+\f$.
 
 	double fSmallestAngle; //!< Current smallest angle between the photons and the charged tracks.
 	double fSmallestPhi;   //!< Current smallest \f$\phi\f$ angle between the photons and the charged tracks.

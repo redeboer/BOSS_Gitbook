@@ -73,29 +73,9 @@
 				BookNtupleItemsDedx("dedx_pi", fMap_dedx_pi);
 			}
 
-		/// <li> `"fit4c_all"`: results of the 4-contraints Kalman kinematic fit <i>for all combinations</i>
-			/// <ol>
-			if(fDo_fit4c_all) {
-				fMap_fit4c_all["mD0"];   /// <li> `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
-				fMap_fit4c_all["mphi"];  /// <li> `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
-				fMap_fit4c_all["mJpsi"]; /// <li> `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
-				fMap_fit4c_all["chisq"]; /// <li> `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
-				fMap_fit4c_all["relMassDiff"]; /// <li> `"relMassDiff"`: Measure for the best kinematic Kalman fit (see `D0phi_KpiKK::MeasureForBestFit`).
-				AddItemsToNTuples("fit4c_all", fMap_fit4c_all, "4-constraint fit information (CMS 4-momentum)");
-			}
-			/// </ol>
-
-		/// <li> `"fit4c_best"`: results of the 4-contraints Kalman kinematic fit for the combination <i>with the invariant mass closest to the reconstructed particles</i>
-			/// <ol>
-			if(fDo_fit4c_best) {
-				fMap_fit4c_best["mD0"];   /// <li> `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
-				fMap_fit4c_best["mphi"];  /// <li> `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
-				fMap_fit4c_best["mJpsi"]; /// <li> `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
-				fMap_fit4c_best["chi2"];  /// <li> `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
-				fMap_fit4c_best["relMassDiff"]; /// <li> `"relMassDiff"`: Measure for the best kinematic Kalman fit (see `D0phi_KpiKK::MeasureForBestFit`).
-				AddItemsToNTuples("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
-			}
-			/// </ol>
+		/// <li> `"fit4c_all"` and `"fit5c_best"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItemsDedx` for more info.
+			if(fDo_fit4c_all)  BookNtupleItemsFit("fit4c_all", fMap_fit4c_all, "4-constraint fit information (CMS 4-momentum)");
+			if(fDo_fit4c_best) BookNtupleItemsFit("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
 
 		/// </ol>
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
@@ -334,7 +314,7 @@
 		map.at("mphi")  = fM_phi;
 		map.at("mJpsi") = fM_Jpsi;
 		map.at("chisq") = kkmfit->chisq();
-		map.at("relMassDiff") = MeasureForBestFit();
+		map.at("fitMeasure") = MeasureForBestFit();
 		fNTupleMap.at(tupleName)->write();
 	}
 
@@ -349,6 +329,7 @@
 		map["mphi"];  /// <li> `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
 		map["mJpsi"]; /// <li> `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
 		map["chisq"]; /// <li> `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
+		map["fitMeasure"]; /// <li> `"fitMeasure"`: Measure that is used to decide which combination results in the best fit.
 		AddItemsToNTuples(tupleName, map, tupleTitle);
 		/// </ol>
 	}

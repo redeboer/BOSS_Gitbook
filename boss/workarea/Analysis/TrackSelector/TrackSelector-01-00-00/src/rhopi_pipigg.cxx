@@ -80,7 +80,7 @@
 			}
 
 		/// <li> `"fit4c_all"`, `"fit4c_best"`, `"fit5c_all"`, and `"fit5c_best"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItemsDedx` for more info.
-			if(fDo_fit4c_all) B ookNtupleItemsFit("fit4c_all", fMap_fit4c_all, "4-constraint fit information (CMS 4-momentum)");
+			if(fDo_fit4c_all)  BookNtupleItemsFit("fit4c_all", fMap_fit4c_all, "4-constraint fit information (CMS 4-momentum)");
 			if(fDo_fit4c_best) BookNtupleItemsFit("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
 			if(fDo_fit5c_all)  BookNtupleItemsFit("fit5c_all", fMap_fit5c_all, "5-constraint fit information (CMS 4-momentum)");
 			if(fDo_fit5c_best) BookNtupleItemsFit("fit5c_best", fMap_fit5c_best, "5-constraint fit information of the invariant masses closest to the reconstructed particles");
@@ -175,7 +175,7 @@
 					SetSmallestAngles(fPionPosIter, fPionPos, emcpos); // check all differences with the pions
 
 				/// <li> Apply angle cut
-					if(fSmallestAngle >= fMaxGammaAngle) continue;
+					if(fSmallestAngle >= fCut_MaxGammaAngle) continue;
 					fSmallestTheta = fSmallestTheta * 180 / (CLHEP::pi);
 					fSmallestPhi   = fSmallestPhi   * 180 / (CLHEP::pi);
 					fSmallestAngle = fSmallestAngle * 180 / (CLHEP::pi);
@@ -191,9 +191,9 @@
 
 				/// <li> Apply photon cuts (energy cut has already been applied in TrackSelector)
 					if(
-						(fabs(fSmallestTheta) < fMaxGammaTheta) &&
-						(fabs(fSmallestPhi)   < fMaxGammaPhi)) continue;
-					if(fabs(fSmallestAngle) < fMaxGammaAngle) continue;
+						(fabs(fSmallestTheta) < fCut_MaxGammaTheta) &&
+						(fabs(fSmallestPhi)   < fCut_MaxGammaPhi)) continue;
+					if(fabs(fSmallestAngle) < fCut_MaxGammaAngle) continue;
 
 				/// <li> Add photon track to vector for gammas
 					fGamma.push_back(*fTrackIterator);
@@ -207,7 +207,7 @@
 			fLog << MSG::DEBUG << "Number of pi+:     " << fPionPos.size() << endmsg;
 
 		/// <li> Apply a cut on the number of particles: <i>only events with more than 2 photons</i>
-			fLog << MSG::DEBUG << "Number of good photons: " << fGamma.size() << endmsq;
+			fLog << MSG::DEBUG << "Number of good photons: " << fGamma.size() << endmsg;
 			if(fGamma.size() < 2) return StatusCode::SUCCESS;
 
 
@@ -266,8 +266,7 @@
 						RecEmcShower *g2Trk = (*fGamma2Iter)->emcShower();
 
 					// * Get Kalman kinematic fit for this combination and store if better than previous one
-						double chisq;
-						ResetSmallestChiSq(chisq);
+						double chisq = 1e6;
 						KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
 						kkmfit->init();
 						kkmfit->AddTrack(0, wpim);       // pi-
@@ -351,8 +350,7 @@
 						RecEmcShower *g2Trk = (*fGamma2Iter)->emcShower();
 
 					// * Get Kalman kinematic fit for this combination and store if better than previous one
-						double chisq;
-						ResetSmallestChiSq(chisq);
+						double chisq = 1e6;
 						KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
 						kkmfit->init();
 						kkmfit->AddTrack(0, wpim);       // pi-
@@ -414,9 +412,9 @@
 		double phi   = emcTrk->phi();
 		double theta = emcTrk->theta();
 		HepLorentzVector ptrk(
-			eraw * sin(the) * cos(phi),
-			eraw * sin(the) * sin(phi),
-			eraw * cos(the),
+			eraw * sin(theta) * cos(phi),
+			eraw * sin(theta) * sin(phi),
+			eraw * cos(theta),
 			eraw);
 		// ptrk = ptrk.boost(-0.011, 0, 0); /// Perform a boost to the CMS
 		return ptrk;
