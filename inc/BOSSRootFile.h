@@ -57,9 +57,10 @@
 		void QuickDrawAndSaveAll(Option_t* opt="");
 
 		// * GETTERS * //
-		int GetNumberOfEvents(const char* treeName);
-		TTree* FindTree(const char* treeName, bool terminate = false);
 		SimplifiedTree& operator[](const char* name) { return fTrees.at(name); }
+		TTree* FindTree(const char* treeName, bool terminate = false);
+		int GetNumberOfEvents(const char* treeName);
+		std::unordered_map<std::string, SimplifiedTree>& GetSimplifiedTrees() { return fTrees; }
 
 	protected:
 		// * DATA MEMBERS * //

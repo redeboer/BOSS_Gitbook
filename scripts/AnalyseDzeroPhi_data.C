@@ -62,22 +62,12 @@ void FitInvMassSignal()
 
 	// * PLOT BRANCHES WITHOUT FITS * //
 		if(pureplot) {
-		// * Draw useful multiplicity plots
 			if(draw_mult) {
-				if(setranges) {
-				} else {
-					file.DrawBranches("mult", "NKaonNeg", "E1");
-					file.DrawBranches("mult", "NKaonPos", "E1");
-					file.DrawBranches("mult", "NPionPos", "E1");
-					file.DrawBranches("mult", "Ncharge",  "E1");
-					file.DrawBranches("mult", "Ngood",    "E1");
-					file.DrawBranches("mult", "Nmdc",     "E1");
-					file.DrawBranches("mult", "Nneutral", "E1");
-					file.DrawBranches("mult", "Ntotal",   "E1");
+				for(auto tree : file.GetSimplifiedTrees()) {
+					TString name(tree.second.Get()->GetName());
+					if(name.BeginsWith("mult")) tree.second.DrawAndSaveAllBranches("E1");
 				}
 			}
-
-		// * Draw useful primary vertex plots
 			if(draw_vertex) {
 				if(setranges) {
 					file.DrawBranches("vertex", "vx0", "vy0", 60,  .18, .23, 40, -.2, -.15, "colz");
@@ -89,8 +79,6 @@ void FitInvMassSignal()
 					file.DrawBranches("vertex", "vz0:vy0", "colz");
 				}
 			}
-
-		// * Draw useful ToF plots
 			if(draw_tof) {
 				if(setranges) {
 					file.DrawBranches("ToFIB", "ptrk", "tof", 120, 2., 15., 80, 0., 1.5, "colz", "z");
@@ -100,8 +88,6 @@ void FitInvMassSignal()
 					file.DrawBranches("ToFOB", "tof:ptrk", "colz");
 				}
 			}
-
-		// * Draw useful dEdx plots
 			if(draw_pid) {
 				if(setranges) {
 					file.DrawBranches("pid", "ptrk", "dedx", 120, 0., 30., 80, .2, 1.25, "colz");
@@ -113,8 +99,6 @@ void FitInvMassSignal()
 					file.DrawBranches("pid", "tof2:ptrk", "colz");
 				}
 			}
-
-		// * Draw useful fit4c plots
 			if(draw_fit) {
 				if(setranges) {
 					file.DrawBranches("fit4c", "mD0",    500,  .7,    2.,      "E1", "y");

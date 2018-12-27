@@ -31,14 +31,14 @@
 
 	// * WHICH BRANCHES TO PLOT * //
 	const bool pureplot    = true; //!< Whether or not to plot histograms of branches <i>without fit</i>.
-	const bool draw_mult   = true; //!< Whether or not to draw the `"mult"` branch.
-	const bool draw_vertex = true; //!< Whether or not to draw the `"vertex"` branch.
-	const bool draw_tof    = true; //!< Whether or not to draw the `"tof*"` branches.
-	const bool draw_pid    = true; //!< Whether or not to draw the `"pid"` branches.
-	const bool draw_fit    = true; //!< Whether or not to draw the `"fit"` branches.
+	const bool draw_mult   = true; //!< Whether or not to draw the multiplicity branches.
+	const bool draw_vertex = false; //!< Whether or not to draw the `"vertex"` branch.
+	const bool draw_tof    = false; //!< Whether or not to draw the `"tof*"` branches.
+	const bool draw_pid    = false; //!< Whether or not to draw the `"pid"` branches.
+	const bool draw_fit    = false; //!< Whether or not to draw the `"fit"` branches.
 
 	// * FIT SETTINGS * //
-	const bool fitplots = true; //!< Whether or not to produce invariant mass fits.
+	const bool fitplots = false; //!< Whether or not to produce invariant mass fits.
 	const bool do_gauss    = true; //!< Whether or not to produce perform a double Gaussian fit.
 	const bool do_conv_s   = true; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
 	const bool do_conv_d   = false; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
@@ -63,22 +63,12 @@ void FitInvMassSignal()
 
 	// * PLOT BRANCHES WITHOUT FITS * //
 		if(pureplot) {
-		// * Draw useful multiplicity plots
 			if(draw_mult) {
-				if(setranges) {
-				} else {
-					file.DrawBranches("mult", "NKaonNeg", "E1");
-					file.DrawBranches("mult", "NKaonPos", "E1");
-					file.DrawBranches("mult", "NPionPos", "E1");
-					file.DrawBranches("mult", "Ncharge",  "E1");
-					file.DrawBranches("mult", "Ngood",    "E1");
-					file.DrawBranches("mult", "Nmdc",     "E1");
-					file.DrawBranches("mult", "Nneutral", "E1");
-					file.DrawBranches("mult", "Ntotal",   "E1");
+				for(auto tree : file.GetSimplifiedTrees()) {
+					TString name(tree.second.Get()->GetName());
+					if(name.BeginsWith("mult")) tree.second.DrawAndSaveAllBranches("E1");
 				}
 			}
-
-		// * Draw useful primary vertex plots
 			if(draw_vertex) {
 				if(setranges) {
 					file.DrawBranches("vertex", "vy0:vx0", "colz");
@@ -90,8 +80,6 @@ void FitInvMassSignal()
 					file.DrawBranches("vertex", "vy0", "vz0", 60, -.4,    .5,    40, -.154, -.146, "colz");
 				}
 			}
-
-		// * Draw useful ToF plots
 			if(draw_tof) {
 				if(setranges) {
 					file.DrawBranches("tof1", "ptrk", "tof", 120, 2., 15., 80, 0., 1.5, "colz", "z");
@@ -101,8 +89,6 @@ void FitInvMassSignal()
 					file.DrawBranches("tof2", "tof:ptrk", "colz");
 				}
 			}
-
-		// * Draw useful dEdx plots
 			if(draw_pid) {
 				if(setranges) {
 					file.DrawBranches("pid", "ptrk", "dedx", 120, 0., 30., 80, .2, 1.25, "colz");
@@ -114,8 +100,6 @@ void FitInvMassSignal()
 					file.DrawBranches("pid", "tof2:ptrk", "colz");
 				}
 			}
-
-		// * Draw useful fit4c plots
 			if(draw_fit) {
 				if(setranges) {
 					file.DrawBranches("fit4c", "mD0",    500,  .7,    2.,      "E1", "y");
