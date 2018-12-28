@@ -26,24 +26,24 @@
 	const char* filename = "/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_0.root";
 
 	// * TERMINAL OUTPUT * //
-	const bool print = false; //!< Whether or not to use the precisely set histogram ranges.
+	const bool print = 0; //!< Whether or not to use the precisely set histogram ranges.
 
 	// * PLOT STYLE * //
-	const bool setranges = false; //!< Whether or not to precisely set histogram ranges.
-	const bool plotstats = true; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
+	const bool setranges = 0; //!< Whether or not to precisely set histogram ranges.
+	const bool plotstats = 1; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
 
 	// * WHICH BRANCHES TO PLOT * //
-	const bool pureplot    = true; //!< Whether or not to plot histograms of branches <i>without fit</i>.
-	const bool draw_mult   = true; //!< Whether or not to draw the multiplicity branches.
-	const bool draw_vertex = false; //!< Whether or not to draw the `"vertex"` branch.
-	const bool draw_tof    = false; //!< Whether or not to draw the `"tof*"` branches.
-	const bool draw_fit    = false; //!< Whether or not to draw the `"fit"` branches.
+	const bool pureplot    = 1; //!< Whether or not to plot histograms of branches <i>without fit</i>.
+	const bool draw_mult   = 0; //!< Whether or not to draw the multiplicity branches.
+	const bool draw_vertex = 0; //!< Whether or not to draw the `"vertex"` branch.
+	const bool draw_tof    = 0; //!< Whether or not to draw the `"tof*"` branches.
+	const bool draw_fit    = 1; //!< Whether or not to draw the `"fit"` branches.
 
 	// * FIT SETTINGS * //
-	const bool fitplots  = false; //!< Whether or not to produce invariant mass fits.
-	const bool do_gauss  = true; //!< Whether or not to produce perform a double Gaussian fit.
-	const bool do_conv_s = true; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
-	const bool do_conv_d = false; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
+	const bool fitplots  = 0; //!< Whether or not to produce invariant mass fits.
+	const bool do_gauss  = 1; //!< Whether or not to produce perform a double Gaussian fit.
+	const bool do_conv_s = 1; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
+	const bool do_conv_d = 0; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
 
 
 
@@ -93,19 +93,31 @@ void FitInvMassSignal()
 			}
 			if(draw_fit) {
 				if(setranges) {
-					file.DrawBranches("fit4c_all",  "mD0",    500,  .7,    2.,      "E1", "y");
-					file.DrawBranches("fit4c_best", "mD0",    500,  .7,    2.,      "E1", "y");
-					file.DrawBranches("fit4c_all",  "mphi",   500,  .97,   1.7,     "E1", "y");
-					file.DrawBranches("fit4c_best", "mphi",   500,  .97,   1.7,     "E1", "y");
-					file.DrawBranches("fit4c_all",  "mJpsi", 2000, 3.0967, 3.09685, "E1", "y");
-					file.DrawBranches("fit4c_best", "mJpsi", 2000, 3.0967, 3.09685, "E1", "y");
+					file.DrawBranches("fit4c_all",      "mD0",    500,  .7,    2.,      "E1", "y");
+					file.DrawBranches("fit4c_best",     "mD0",    500,  .7,    2.,      "E1", "y");
+					file.DrawBranches("fit4c_best_D0",  "mD0",    500,  .7,    2.,      "E1", "y");
+					file.DrawBranches("fit4c_best_phi", "mD0",    500,  .7,    2.,      "E1", "y");
+					file.DrawBranches("fit4c_all",      "mphi",   500,  .97,   1.7,     "E1", "y");
+					file.DrawBranches("fit4c_best",     "mphi",   500,  .97,   1.7,     "E1", "y");
+					file.DrawBranches("fit4c_best_D0",  "mphi",   500,  .97,   1.7,     "E1", "y");
+					file.DrawBranches("fit4c_best_phi", "mphi",   500,  .97,   1.7,     "E1", "y");
+					file.DrawBranches("fit4c_all",      "mJpsi", 2000, 3.0967, 3.09685, "E1", "y");
+					file.DrawBranches("fit4c_best",     "mJpsi", 2000, 3.0967, 3.09685, "E1", "y");
+					file.DrawBranches("fit4c_best_D0",  "mJpsi", 2000, 3.0967, 3.09685, "E1", "y");
+					file.DrawBranches("fit4c_best_phi", "mJpsi", 2000, 3.0967, 3.09685, "E1", "y");
 				} else {
-					file.DrawBranches("fit4c_all",  "mD0",   "E1", "y");
-					file.DrawBranches("fit4c_best", "mD0",   "E1", "y");
-					file.DrawBranches("fit4c_all",  "mphi",  "E1", "y");
-					file.DrawBranches("fit4c_best", "mphi",  "E1", "y");
-					file.DrawBranches("fit4c_all",  "mJpsi", "E1", "y");
-					file.DrawBranches("fit4c_best", "mJpsi", "E1", "y");
+					file.DrawBranches("fit4c_all",      "mD0",   "E1", "y");
+					file.DrawBranches("fit4c_best",     "mD0",   "E1", "y");
+					file.DrawBranches("fit4c_best_D0",  "mD0",   "E1", "y");
+					file.DrawBranches("fit4c_best_phi", "mD0",   "E1", "y");
+					file.DrawBranches("fit4c_all",      "mphi",  "E1", "y");
+					file.DrawBranches("fit4c_best",     "mphi",  "E1", "y");
+					file.DrawBranches("fit4c_best_D0",  "mphi",  "E1", "y");
+					file.DrawBranches("fit4c_best_phi", "mphi",  "E1", "y");
+					file.DrawBranches("fit4c_all",      "mJpsi", "E1", "y");
+					file.DrawBranches("fit4c_best",     "mJpsi", "E1", "y");
+					file.DrawBranches("fit4c_best_D0",  "mJpsi", "E1", "y");
+					file.DrawBranches("fit4c_best_phi", "mJpsi", "E1", "y");
 				}
 			}
 		}
