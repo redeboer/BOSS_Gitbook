@@ -76,7 +76,7 @@ set -e # exit if a command or function exits with a non-zero status
 		echo
 		echo "DST files will be loaded from the $(ls ${searchTerm} | wc -l) files matching this search pattern:"
 		echo "   \"${searchTerm}\""
-		AskForInput "\nTo continue, press ENTER, else Ctrl+C ..."
+		AskForInput "\nTo write job files, press ENTER, else Ctrl+C ..."
 
 	# * Create and EMPTY scripts directory * #
 		CreateOrEmptyDirectory "${scriptFolder}" "ana"  "${packageName}"
@@ -99,7 +99,7 @@ set -e # exit if a command or function exits with a non-zero status
 				outputFile="${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt"
 				# Replace simple parameters in template
 				awk '{flag = 1}
-					{sub(/__PACKAGENAME__/,'${packageName}')}
+					{sub(/__PACKAGENAME__/,"'${packageName}'")}
 					{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
 					{sub(/__NEVENTS__/,'${nEventsPerJob}')}
 					{sub(/__OUTPUTPATH__/,"'${outputFolder}'")}
@@ -116,7 +116,7 @@ set -e # exit if a command or function exits with a non-zero status
 
 			# * Generate the submit files (sub)
 				outputFile="${scriptFolder}/sub/sub_${packageName}_data_${jobNo}.sh"
-				echo "#\!/bin/bash" > "${outputFile}" # empty file and write first line
+				echo "#!/bin/bash" > "${outputFile}" # empty file and write first line
 				echo "{ boss.exe \"${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt\"; } &> \"${outputFolder}/log/ana_${packageName}_${jobNo}.log\"" >> "${outputFile}"
 				ChangeLineEndingsFromWindowsToUnix "${outputFile}"
 				chmod +x "${outputFile}"

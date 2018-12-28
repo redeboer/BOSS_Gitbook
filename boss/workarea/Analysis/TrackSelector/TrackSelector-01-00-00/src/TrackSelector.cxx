@@ -2,7 +2,6 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "CLHEP/Geometry/Point3D.h"
 	#include "CLHEP/Vector/LorentzVector.h"
 	#include "CLHEP/Vector/ThreeVector.h"
 	#include "CLHEP/Vector/TwoVector.h"
@@ -15,10 +14,6 @@
 	#include "TrackSelector/TrackSelector.h"
 	#include "VertexFit/Helix.h"
 	#include "VertexFit/IVertexDbSvc.h"
-
-	#ifndef ENABLE_BACKWARDS_COMPATIBILITY
-		typedef HepGeom::Point3D<double> HepPoint3D;
-	#endif
 
 	using CLHEP::Hep2Vector;
 	using CLHEP::Hep3Vector;
@@ -59,17 +54,21 @@
 	{
 		fLog << MSG::DEBUG << "===>> TrackSelector::TrackSelector() <<===" << endmsg;
 
-		/// * The `"do_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
-		declareProperty("do_mult",        fDo_mult        = false);
-		declareProperty("do_vertex",      fDo_vertex      = false);
-		declareProperty("do_charged",     fDo_charged     = false);
-		declareProperty("do_neutral",     fDo_neutral     = false);
-		declareProperty("do_dedx",        fDo_dedx        = false);
-		declareProperty("do_ToFEC",       fDo_ToFEC       = false);
-		declareProperty("do_ToFIB",       fDo_ToFIB       = false);
-		declareProperty("do_ToFOB",       fDo_ToFOB       = false);
-		declareProperty("do_PID",         fDo_PID         = false);
-		declareProperty("do_mult_select", fDo_mult_select = false);
+		/// * The `"do_<treename>"` properties determine whether or not to make a selection of 'good' neutral and/or charged tracks.
+		declareProperty("do_charged", fDo_charged = false);
+		declareProperty("do_neutral", fDo_neutral = false);
+
+		/// * The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
+		declareProperty("write_mult",        fWrite_mult        = false);
+		declareProperty("write_vertex",      fWrite_vertex      = false);
+		declareProperty("write_charged",     fWrite_charged     = false);
+		declareProperty("write_neutral",     fWrite_neutral     = false);
+		declareProperty("write_dedx",        fWrite_dedx        = false);
+		declareProperty("write_ToFEC",       fWrite_ToFEC       = false);
+		declareProperty("write_ToFIB",       fWrite_ToFIB       = false);
+		declareProperty("write_ToFOB",       fWrite_ToFOB       = false);
+		declareProperty("write_PID",         fWrite_PID         = false);
+		declareProperty("write_mult_select", fWrite_mult_select = false);
 
 		/// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
 		declareProperty("cut_MaxVr0",          fCut_MaxVr0          = 1.);
@@ -99,36 +98,38 @@
 		/// <ol type="A">
 		/// <li> `"mult"`: Multiplicities of the total event
 			/// <ol>
-			if(fDo_mult) {
+			if(fWrite_mult) {
 				fMap_mult["Ntotal"];       /// <li> `"Ntotal"`:       Total number of events per track.
 				fMap_mult["Ncharge"];      /// <li> `"Ncharge"`:      Number of charged tracks.
 				fMap_mult["Nneutral"];     /// <li> `"Nneutral"`:     Number of charged tracks.
-				fMap_mult["NgoodCharged"]; /// <li> `"NgoodCharged"`: Number of 'good' charged tracks.
-				fMap_mult["NgoodNeutral"]; /// <li> `"NgoodNeutral"`: Number of 'good' neutral tracks.
-				fMap_mult["Nmdc"];         /// <li> `"Nmdc"`:         Number of charged tracks in MDC.
+				if(fDo_charged) {
+					fMap_mult["NgoodCharged"]; /// <li> `"NgoodCharged"`: Number of 'good' charged tracks.
+					fMap_mult["Nmdc"];         /// <li> `"Nmdc"`:         Number of charged tracks in MDC.
+				}
+				if(fDo_neutral) fMap_mult["NgoodNeutral"]; /// <li> `"NgoodNeutral"`: Number of 'good' neutral tracks.
 				AddItemsToNTuples("mult", fMap_mult, "Event multiplicities");
 			}
 			/// </ol>
 
 		/// <li> `"vertex"`: Vertex info
 			/// <ol>
-			if(fDo_vertex) {
-				fMap_vertex["vx0"]; /// <li> `"vx0"`: Primary \f$x\f$ coordinate of the collision point.
-				fMap_vertex["vy0"]; /// <li> `"vy0"`: Primary \f$y\f$ coordinate of the collision point.
-				fMap_vertex["vz0"]; /// <li> `"vz0"`: Primary \f$z\f$ coordinate of the collision point.
-				AddItemsToNTuples("vertex", fMap_vertex, "Primary vertex");
+			if(fWrite_vertex) {
+				fMap_vertex["vx0"]; /// <li> `"vx0"`: \f$x\f$ coordinate of the collision point.
+				fMap_vertex["vy0"]; /// <li> `"vy0"`: \f$y\f$ coordinate of the collision point.
+				fMap_vertex["vz0"]; /// <li> `"vz0"`: \f$z\f$ coordinate of the collision point.
+				AddItemsToNTuples("vertex", fMap_vertex, "Primary vertex (collision point)");
 			}
 			/// </ol>
 
 		/// <li> `"charged"`: Charged track info.
 			/// <ol>
-			if(fDo_charged) {
-				fMap_charged["vx"];    /// <li> `"vx"`:    Primary \f$x\f$ coordinate of the vertex as determined by MDC.
-				fMap_charged["vy"];    /// <li> `"vy"`:    Primary \f$y\f$ coordinate of the vertex as determined by MDC.
-				fMap_charged["vz"];    /// <li> `"vz"`:    Primary \f$z\f$ coordinate of the vertex as determined by MDC.
+			if(fDo_charged && fWrite_charged) {
+				fMap_charged["vx"];    /// <li> `"vx"`:    \f$x\f$ coordinate of the secondary vertex as determined by MDC.
+				fMap_charged["vy"];    /// <li> `"vy"`:    \f$y\f$ coordinate of the secondary vertex as determined by MDC.
+				fMap_charged["vz"];    /// <li> `"vz"`:    \f$z\f$ coordinate of the secondary vertex as determined by MDC.
 				fMap_charged["vr"];    /// <li> `"vr"`:    Distance from origin in \f$xy\f$ plane.
-				fMap_charged["rvxy"];  /// <li> `"rvxy"`:  Nearest distance to IP in \f$xy\f$ plane.
-				fMap_charged["rvz"];   /// <li> `"rvz"`:   Nearest distance to IP in \f$z\f$ direction.
+				fMap_charged["rvxy"];  /// <li> `"rvxy"`:  Nearest distance to interaction point in \f$xy\f$ plane.
+				fMap_charged["rvz"];   /// <li> `"rvz"`:   Nearest distance to interaction point in \f$z\f$ direction.
 				fMap_charged["rvphi"]; /// <li> `"rvphi"`: Angle in the \f$xy\f$plane. @todo Get explanation of geometry (angle) definitions in an event.
 				fMap_charged["phi"];   /// <li> `"phi"`:   Helix angle of the particle.
 				fMap_charged["p"];     /// <li> `"p"`:     Momentum \f$p\f$ of the track.
@@ -138,7 +139,7 @@
 
 		/// <li> `"neutral"`: Neutral track info.
 			/// <ol>
-			if(fDo_neutral) {
+			if(fDo_neutral && fWrite_neutral) {
 				fMap_neutral["E"];     /// <li> `"E"`: Energy of the neutral track as determined by the EM calorimeter.
 				fMap_neutral["x"];     /// <li> `"x"`: \f$x\f$-coordinate of the neutral track according to the EMC.
 				fMap_neutral["y"];     /// <li> `"y"`: \f$y\f$-coordinate of the neutral track according to the EMC.
@@ -151,29 +152,29 @@
 			/// </ol>
 
 		/// <li> `"dedx"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
-			if(fDo_dedx) {
+			if(fWrite_dedx) {
 				BookNtupleItemsDedx("dedx", fMap_dedx, "dE/dx of all charged tracks");
 			}
 
 		/// <li> `"ToFEC"`, `"ToFIB"`, and `"ToFOB"`: information from the three Time-of-Flight detectors. See `TrackSelector::BookNtupleItemsTof` for more info.
-			if(fDo_ToFEC) BookNtupleItemsTof("ToFEC", fMap_TofEC, "End cap ToF of all tracks");
-			if(fDo_ToFIB) BookNtupleItemsTof("ToFIB", fMap_TofIB, "Inner barrel ToF of all tracks");
-			if(fDo_ToFOB) BookNtupleItemsTof("ToFOB", fMap_TofOB, "Outer barrel ToF of all tracks");
+			if(fWrite_ToFEC) BookNtupleItemsTof("ToFEC", fMap_TofEC, "End cap ToF of all tracks");
+			if(fWrite_ToFIB) BookNtupleItemsTof("ToFIB", fMap_TofIB, "Inner barrel ToF of all tracks");
+			if(fWrite_ToFOB) BookNtupleItemsTof("ToFOB", fMap_TofOB, "Outer barrel ToF of all tracks");
 
 		/// <li> `"PID"`: Track PID information.
 			/// <ul>
-			if(fDo_PID) {
-				fMap_PID["p"];        /// <li> `"p"]; `:       Momentum of the track as reconstructed by MDC.
-				fMap_PID["cost"];     /// <li> `"cost"`:    Theta angle of the track.
-				fMap_PID["chiToFIB"]; /// <li> `"chiToFIB"`:   \f$\chi^2\f$ of the inner barrel ToF of the track.
-				fMap_PID["chiToFEC"]; /// <li> `"chiToFEC"`:   \f$\chi^2\f$ of the end cap ToF of the track.
-				fMap_PID["chiToFOB"]; /// <li> `"chiToFOB"`:   \f$\chi^2\f$ of the outer barrel ToF of the track.
-				fMap_PID["chidEdx"];  /// <li> `"chidEdx"`: \f$\chi^2\f$ of the energy loss \f$dE/dx\f$ of the identified track.
-				fMap_PID["prob_K"];   /// <li> `"prob_K"`:  Probability that the track is from a kaon according to the probability method.
-				fMap_PID["prob_e"];   /// <li> `"prob_e"`:  Probability that the track is from a electron according to the probability method.
-				fMap_PID["prob_mu"];  /// <li> `"prob_mu"`: Probability that the track is from a muon according to the probability method.
-				fMap_PID["prob_p"];   /// <li> `"prob_p"`:  Probability that the track is from a proton according to the probability method.
-				fMap_PID["prob_pi"];  /// <li> `"prob_pi"`: Probability that the track is from a pion according to the probability method.
+			if(fWrite_PID) {
+				fMap_PID["p"];        /// <li> `"p"`:        Momentum of the track as reconstructed by MDC.
+				fMap_PID["cost"];     /// <li> `"cost"`:     Theta angle of the track.
+				fMap_PID["chiToFIB"]; /// <li> `"chiToFIB"`: \f$\chi^2\f$ of the inner barrel ToF of the track.
+				fMap_PID["chiToFEC"]; /// <li> `"chiToFEC"`: \f$\chi^2\f$ of the end cap ToF of the track.
+				fMap_PID["chiToFOB"]; /// <li> `"chiToFOB"`: \f$\chi^2\f$ of the outer barrel ToF of the track.
+				fMap_PID["chidEdx"];  /// <li> `"chidEdx"`:  \f$\chi^2\f$ of the energy loss \f$dE/dx\f$ of the identified track.
+				fMap_PID["prob_K"];   /// <li> `"prob_K"`:   Probability that the track is from a kaon according to the probability method.
+				fMap_PID["prob_e"];   /// <li> `"prob_e"`:   Probability that the track is from a electron according to the probability method.
+				fMap_PID["prob_mu"];  /// <li> `"prob_mu"`:  Probability that the track is from a muon according to the probability method.
+				fMap_PID["prob_p"];   /// <li> `"prob_p"`:   Probability that the track is from a proton according to the probability method.
+				fMap_PID["prob_pi"];  /// <li> `"prob_pi"`:  Probability that the track is from a pion according to the probability method.
 				AddItemsToNTuples("PID", fMap_PID, "Particle Identification parameters");
 			}
 			/// </ul>
@@ -218,28 +219,24 @@
 			// * Set vertex origin *
 				IVertexDbSvc* vtxsvc;
 				Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
-				double v0x, v0y, v0z;
 				if(vtxsvc->isVertexValid()){
 					double* dbv = vtxsvc->PrimaryVertex();
-					double* vv = vtxsvc->SigmaPrimaryVertex();
-					v0x = dbv[0];
-					v0y = dbv[1];
-					v0z = dbv[2];
+					// double* vv  = vtxsvc->SigmaPrimaryVertex();
+					fVertexPoint.set(dbv[0], dbv[1], dbv[2]);
 				}
 
 
 		/// <li> Create selection charged tracks and write track info:
 			/// Note: the first part of the set of reconstructed tracks are the charged tracks.
 
-			// * Set counters and data members *
-			int nChargesMDC = 0;
+			// * Reset counters and initialize PID instance *
 			fGoodChargedTracks.clear();
 			fPIDInstance = ParticleID::instance();
 
 			// * Only perform if there are charged tracks *
-			if(fEvtRecEvent->totalCharged()) {
+			if(fDo_charged && fEvtRecEvent->totalCharged()) {
 
-				// * Loop over charged tracks *
+				fNChargesMDC = 0;
 				fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
 				for(int i = 0; i < fEvtRecEvent->totalCharged(); ++i) {
 					/// <ol>
@@ -254,35 +251,34 @@
 						// * Get kinematics of track
 						double phi  = fTrackMDC->helix(1);
 						double vr =
-							(fTrackMDC->x() - v0x) * cos(phi) +
-							(fTrackMDC->y() - v0y) * sin(phi);
+							(fTrackMDC->x() - fVertexPoint.x()) * cos(phi) +
+							(fTrackMDC->y() - fVertexPoint.y()) * sin(phi);
 
 						// * Get radii of track vertex
 						HepVector a = fTrackMDC->helix();
 						HepSymMatrix Ea = fTrackMDC->err();
 						HepPoint3D point0(0., 0., 0.); // initial point for MDC reconstruction
-						HepPoint3D IP(v0x, v0y, v0z);
 						VFHelix helixip(point0, a, Ea);
-						helixip.pivot(IP);
+						helixip.pivot(fVertexPoint); /// @todo Check if `helixip.pivot(fVertexPoint)` doesn't affect `fVertexPoint`.
 						HepVector vecipa = helixip.a();
 						double rvxy  = fabs(vecipa[0]); // nearest distance to IP in xy plane
-						double rvz    = vecipa[3];       // nearest distance to IP in z direction
+						double rvz   = vecipa[3];       // nearest distance to IP in z direction
 						double rvphi = vecipa[1];       // angle in the xy-plane (?)
 
-					/// <li> Apply vertex cuts, store 
-
-						// * Apply vertex cuts
-						if(fTrackMDC->z() >= fCut_MaxVz0)   continue;
-						if(vr             >= fCut_MaxVr0)   continue;
-						if(rvz            >= fCut_MaxRvz0)  continue;
-						if(rvxy           >= fCut_MaxRvxy0) continue;
+					/// <li> Apply primary vertex cuts:
+						/// <ul>
+						if(fabs(fTrackMDC->z()) >= fCut_MaxVz0) continue; /// <li> $z$ coordinate of the collision point has to be within `cut_MaxVz0`
+						if(fabs(rvz) >= fCut_MaxRvz0)  continue; /// <li> \f$z\f$ coordinate of the distance to the interaction point has to be within `cut_MaxRvz0`
+						if(vr        >= fCut_MaxVr0)   continue; /// <li> radius in $xy$ plane has to be less than `cut_MaxVr0`
+						if(rvxy      >= fCut_MaxRvxy0) continue; /// <li> distance to the interaction point in \f$xy\f$ plane has to be within `cut_MaxRvxy0`
+						/// </ul>
 
 						// * Add charged track to vector
 						fGoodChargedTracks.push_back(*fTrackIterator);
-						nChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
+						fNChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
 
 					/// <li> <b>Write</b> charged track vertex position info ("charged" branch)
-						if(fDo_charged) {
+						if(fWrite_charged) {
 							fMap_charged.at("vx")    = fTrackMDC->x();
 							fMap_charged.at("vy")    = fTrackMDC->y();
 							fMap_charged.at("vz")    = fTrackMDC->z();
@@ -296,10 +292,10 @@
 						}
 
 					/// <li> <b>Write</b> dE/dx PID information ("dedx" branch)
-						if(fDo_dedx) WriteDedxInfo(*fTrackIterator, "dedx", fMap_dedx);
+						if(fWrite_dedx) WriteDedxInfo(*fTrackIterator, "dedx", fMap_dedx);
 
 					/// <li> <b>Write</b> Time-of-Flight PID information ("tof*" branch)
-						if(fDo_ToFEC || fDo_ToFIB || fDo_ToFOB) {
+						if(fWrite_ToFEC || fWrite_ToFIB || fWrite_ToFOB) {
 
 							// * Check if MDC and TOF info for track are valid *
 							if(!(*fTrackIterator)->isMdcTrackValid()) continue;
@@ -317,16 +313,16 @@
 								if(!hitStatus.is_counter()) continue;
 								if(hitStatus.is_barrel()) {
 									if(hitStatus.layer() == 1) { // inner barrel
-										if(fDo_ToFIB) WriteTofInformation(iter_tof, ptrk, "ToFIB", fMap_TofIB);
+										if(fWrite_ToFIB) WriteTofInformation(iter_tof, ptrk, "ToFIB", fMap_TofIB);
 									} else if(hitStatus.layer() == 2) { // outer barrel
-										if(fDo_ToFOB) WriteTofInformation(iter_tof, ptrk, "ToFOB", fMap_TofOB);
+										if(fWrite_ToFOB) WriteTofInformation(iter_tof, ptrk, "ToFOB", fMap_TofOB);
 									}
 								}
-								else if(fDo_ToFEC && hitStatus.layer() == 0) // end cap
+								else if(fWrite_ToFEC && hitStatus.layer() == 0) // end cap
 									WriteTofInformation(iter_tof, ptrk, "ToFEC", fMap_TofEC);
 							}
 
-						} // if(fDo_tofec || fDo_tofib || fDo_tofob)
+						} // if(fWrite_tofec || fWrite_tofib || fWrite_tofob)
 
 					/// </ol>
 				}
@@ -343,7 +339,7 @@
 			fGoodNeutralTracks.clear();
 
 			// * Only perform if there are neutral tracks *
-			if(fEvtRecEvent->totalNeutral()) {
+			if(fDo_neutral && fEvtRecEvent->totalNeutral()) {
 
 				// * Loop over neutral tracks *
 				fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
@@ -359,8 +355,8 @@
 					/// <li> Apply photon energy cut (set by `TrackSelector.cut_PhotonEnergy`).
 						if(fTrackEMC->energy() < fCut_MinPhotonEnergy) continue;
 
-					/// <li> <b>Write</b> neutral track information (if `do_neutral` is set to `true`).
-						if(fDo_neutral) {
+					/// <li> <b>Write</b> neutral track information (if `write_neutral` is set to `true`).
+						if(fWrite_neutral) {
 							fMap_neutral.at("E")     = fTrackEMC->energy();
 							fMap_neutral.at("x")     = fTrackEMC->x();
 							fMap_neutral.at("y")     = fTrackEMC->y();
@@ -383,26 +379,29 @@
 
 
 		/// <li> <b>write</b> event info (`"mult"` branch)
-			if(fDo_mult) {
+			if(fWrite_mult) {
 				fMap_mult.at("Ntotal")       = fEvtRecEvent->totalTracks();
 				fMap_mult.at("Ncharge")      = fEvtRecEvent->totalCharged();
 				fMap_mult.at("Nneutral")     = fEvtRecEvent->totalNeutral();
-				fMap_mult.at("NgoodCharged") = fGoodChargedTracks.size();
-				fMap_mult.at("NgoodNeutral") = fGoodNeutralTracks.size();
-				fMap_mult.at("Nmdc")         = nChargesMDC;
+				if(fDo_charged) {
+					fMap_mult.at("NgoodCharged") = fGoodChargedTracks.size();
+					fMap_mult.at("Nmdc")         = fNChargesMDC;
+				}
+				if(fDo_neutral) fMap_mult.at("NgoodNeutral") = fGoodNeutralTracks.size();
 				fNTupleMap.at("mult")->write();
 			}
 
 		/// <li> <b>write</b> event info (`"vertex"` branch)
-			if(fDo_vertex) {
-				fMap_vertex.at("vx0") = v0x;
-				fMap_vertex.at("vy0") = v0y;
-				fMap_vertex.at("vz0") = v0z;
+			if(fWrite_vertex) {
+				fMap_vertex.at("vx0") = fVertexPoint.x();
+				fMap_vertex.at("vy0") = fVertexPoint.y();
+				fMap_vertex.at("vz0") = fVertexPoint.z();
 				fNTupleMap.at("vertex")->write();
 			}
 
 		/// <li> Perform derived algoritm as defined in `TrackSelector::execute_rest`.
 			if(execute_rest() == StatusCode::SUCCESS) return StatusCode::SUCCESS;
+			if(fPIDInstance) delete fPIDInstance;
 
 		/// </ol>
 		return StatusCode::SUCCESS;
@@ -447,6 +446,7 @@
 		return ptrk;
 	}
 
+
 	/**
 	 * @brief   Helper function that allows you to create pair of a string with a `NTuplePtr`.
 	 * @details This function first attempts to see if there is already an `NTuple` in the output file. If not, it will book an `NTuple` of 
@@ -465,6 +465,93 @@
 		}
 		fNTupleMap[tupleName] = nt.ptr(); /// Use `map::operator[]` if you want to book an `NTuple::Item` and use `map::at` if you want to access the `NTuple` by key value. This ensures that the programme throws an exception if you ask for the wrong key later.
 		return nt;
+	}
+
+
+	/**
+	 * @brief Method that standardizes the initialisation of the particle identification system. Define here <i>as general as possible</i>, but use in the derived subalgorithms.
+	 * @details See http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
+	 * 
+	 * @param method Which method to use: probability, likelihood, or neuron network (see `TSGlobals::PIDMethod`). You can also combine using e.g. `pid->methodLikelihood() | pid->methodProbability()`.
+	 * @param pidsys PID systems you want to call. Can combined using bit seperators (`|`), e.g. `pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE()` for \f$dE/dx\f$ plus all ToF detectors.
+	 * @param pidcase Which particles to identify. For instance, `pid->onlyPion() | pid->onlyKaon()` in the case of pions and kaons.
+	 * @param chimin Minimal \f$\chi^2\f$ of the resulting particle identification.
+	 */
+	ParticleID* TrackSelector::InitializePID(const int method, const int pidsys, const int pidcase, const double chimin)
+	{
+		// * Initialise PID sub-system and set method: probability, likelihood, or neuron network
+		fPIDInstance->init();
+		fPIDInstance->setMethod(method);
+		fPIDInstance->setChiMinCut(chimin);
+		fPIDInstance->setRecTrack(*fTrackIterator);
+
+		// * Choose ID system and which particles to use
+		fPIDInstance->usePidSys(pidsys);
+		fPIDInstance->identify(pidcase);
+
+		// * Perform PID
+		fPIDInstance->calculate();
+		if(!(fPIDInstance->IsPidInfoValid())) return nullptr;
+		return fPIDInstance;
+	}
+
+
+	/**
+	 * @brief Automatically assign all <i>mapped values</i> of `map` as items to an `NTuplePtr`.
+	 * 
+	 * @param nt The `NTuplePtr` to which you want to add the <i>mapped values</i> of `map`.
+	 * @param map The `map` from which you want to load the <i>mapped values</i>.
+	 */
+	void TrackSelector::AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<double> > &map)
+	{
+		if(!nt) return;
+		std::map<std::string, NTuple::Item<double> >::iterator it = map.begin();
+		for(; it != map.end(); ++it) {
+			nt->addItem(it->first, it->second);
+			fLog << MSG::DEBUG << "  added \"" << it->first << "\"" << endmsg;
+		}
+		fLog << MSG::INFO << "  total: " << map.size() << " items" << endmsg;
+	}
+
+
+	/**
+	 * @brief Automatically assign all <i>mapped values</i> of `map` as items to an `NTuplePtr`. The `NTuplePtr` is booked automatically.
+	 * 
+	 * @param tupleName Name of the `NTuplePtr` to which you want to add the <i>mapped values</i> of `map`.
+	 * @param map The `map` from which you want to load the <i>mapped values</i>.
+	 * @param tupleTitle Title of the `NTuplePtr`. You can later use this title as a more detailed description in your analysis of the resulting histograms.
+	 */
+	void TrackSelector::AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	{
+		AddItemsToNTuples(BookNTuple(tupleName, tupleTitle), map);
+	}
+
+
+	/**
+	 * @brief This function encapsulates the `addItem` procedure for the \f$dE/dx\f$ energy loss branch (`"dedx"`).
+	 * @details This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
+	 */
+	void TrackSelector::BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	{
+		/// <ol>
+		map["p"];          /// <li> `"p"`:          Momentum of the track as reconstructed by MDC.
+		map["dedx_mom"];   /// <li> `"dedx_mom"`    "\f$dE/dx\f$ calib used momentum".
+		map["dedx_e"];     /// <li> `"dedx_e"`      Expected value of \f$dE/dx\f$ in case of electron hypothesis.
+		map["dedx_mu"];    /// <li> `"dedx_mu"`     Expected value of \f$dE/dx\f$ in case of muon hypothesis.
+		map["dedx_pi"];    /// <li> `"dedx_pi"`     Expected value of \f$dE/dx\f$ in case of pion hypothesis.
+		map["dedx_K"];     /// <li> `"dedx_K"`      Expected value of \f$dE/dx\f$ in case of kaon hypothesis.
+		map["dedx_P"];     /// <li> `"dedx_P"`      Expected value of \f$dE/dx\f$ in case of proton hypothesis.
+		map["chie"];       /// <li> `"chie"`:       \f$\chi^2\f$ in case of electron ("number of \f$\sigma\f$ from \f$e^\pm\f$").
+		map["chimu"];      /// <li> `"chimu"`:      \f$\chi^2\f$ in case of muon ("number of \f$\sigma\f$ from \f$\mu^\pm\f$").
+		map["chipi"];      /// <li> `"chipi"`:      \f$\chi^2\f$ in case of pion ("number of \f$\sigma\f$ from \f$\pi^\pm\f$").
+		map["chik"];       /// <li> `"chik"`:       \f$\chi^2\f$ in case of kaon ("number of \f$\sigma\f$ from \f$K^\pm\f$").
+		map["chip"];       /// <li> `"chip"`:       \f$\chi^2\f$ in case of proton ("number of \f$\sigma\f$ from \f$p^\pm\f$").
+		map["probPH"];     /// <li> `"probPH"`:     Most probable pulse height from truncated mean.
+		map["normPH"];     /// <li> `"normPH"`:     Normalized pulse height.
+		map["Ngoodhits"];  /// <li> `"Ngoodhits"`:  Number of good \f$dE/dx\f$ hits (excluding overflow).
+		map["Ntotalhits"]; /// <li> `"Ntotalhits"`: Number of good \f$dE/dx\f$ hits (including overflow).
+		AddItemsToNTuples(tupleName, map, tupleTitle);
+		/// </ol>
 	}
 
 
@@ -492,24 +579,95 @@
 
 
 	/**
-	 * @brief This function encapsulates the `addItem` procedure for the \f$dE/dx\f$ energy loss branch (`"dedx"`).
-	 * @details This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
+	 * @brief Compare the measure for the best fit with the previous measure vallue and set the pointer to this `KalmanKinematicFit` object.
 	 */
-	void TrackSelector::BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	void TrackSelector::CompareWithBestFit(double value, double &bestValue, KalmanKinematicFit* fit, KalmanKinematicFit* &bestfit)
 	{
-		/// <ol>
-		map["p"];      /// <li> `"p"`:      Momentum of the track as reconstructed by MDC.
-		map["chie"];   /// <li> `"chie"`:   Chi squared in case of electron.
-		map["chimu"];  /// <li> `"chimu"`:  Chi squared in case of muon.
-		map["chipi"];  /// <li> `"chipi"`:  Chi squared in case of pion.
-		map["chik"];   /// <li> `"chik"`:   Chi squared in case of kaon.
-		map["chip"];   /// <li> `"chip"`:   Chi squared in case of proton.
-		map["probPH"]; /// <li> `"probPH"`: Most probable pulse height from truncated mean.
-		map["normPH"]; /// <li> `"normPH"`: Normalized pulse height.
-		map["ghit"];   /// <li> `"ghit"`:   Number of good hits.
-		map["thit"];   /// <li> `"thit"`:   Total number of hits.
-		AddItemsToNTuples(tupleName, map, tupleTitle);
-		/// </ol>
+		if(value < bestValue) {
+			bestfit   = fit;
+			bestValue = value;
+		}
+	}
+
+
+	/**
+	 * @brief Encapsulates of the writing procedure for \f$dE/dx\f$ energy loss information <i>for one track</i>.
+	 * @details Here, you should use `map::at` to access the `NTuple::Item`s and `NTuplePtr`, because you want your package to throw an exception if the element does not exist. See http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115 for available data members of `RecMdcDedx`
+	 * @param evtRecTrack Pointer to the reconstructed track of which you want to write the \f$dE/dx\f$ data.
+	 * @param tupleName The name of the tuple to which you want to write the information.
+	 * @param map The `map` from which you want to get the `NTuple::Item`s.
+	 */
+	void TrackSelector::WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map)
+	{
+
+		// * Check if dE/dx and MDC info exists *
+		if(!evtRecTrack->isMdcTrackValid()) return;
+		if(!evtRecTrack->isMdcDedxValid())  return;
+		fTrackMDC  = evtRecTrack->mdcTrack();
+		fTrackDedx = evtRecTrack->mdcDedx();
+
+		// * <b>write</b> energy loss PID info ("dedx" branch) *
+		map.at("p")          = fTrackMDC->p();
+		map.at("dedx_mom")   = fTrackDedx->getDedxMoment();
+		map.at("dedx_e")     = fTrackDedx->getDedxExpect(0);
+		map.at("dedx_mu")    = fTrackDedx->getDedxExpect(1);
+		map.at("dedx_pi")    = fTrackDedx->getDedxExpect(2);
+		map.at("dedx_K")     = fTrackDedx->getDedxExpect(3);
+		map.at("dedx_P")     = fTrackDedx->getDedxExpect(4);
+		map.at("chie")       = fTrackDedx->chiE();
+		map.at("chimu")      = fTrackDedx->chiMu();
+		map.at("chipi")      = fTrackDedx->chiPi();
+		map.at("chik")       = fTrackDedx->chiK();
+		map.at("chip")       = fTrackDedx->chiP();
+		map.at("probPH")     = fTrackDedx->probPH();
+		map.at("normPH")     = fTrackDedx->normPH();
+		map.at("Ngoodhits")  = fTrackDedx->numGoodHits();
+		map.at("Ntotalhits") = fTrackDedx->numTotalHits();
+		fNTupleMap.at(tupleName)->write();
+
+	}
+
+
+	/**
+	 * @brief Encapsulates a `for` loop of the writing procedure for \f$dE/dx\f$ energy loss information.
+	 * @details This method allows you to write \f$dE/dx\f$ information for any selection of charged tracks. Just feed it a vector that contains such a collection of `EvtRecTrack` pointers.
+	 * 
+	 * @param vector The selection of charged tracks that of which you want to write the \f$dE/dx\f$ data.
+	 * @param tupleName The name of the tuple to which you want to write the information.
+	 * @param map The `map` from which you want to get the `NTuple::Item`s.
+	 */
+	void TrackSelector::WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map)
+	{
+		fLog << MSG::DEBUG << "Writing \"" << tupleName << "\" info" << endmsg;
+		for(fTrackIterator = vector.begin(); fTrackIterator != vector.end(); ++fTrackIterator) {
+			WriteDedxInfo(*fTrackIterator, tupleName, map);
+		}
+	}
+
+
+	/**
+	 * @brief Encapsulates the proces of writing PID info. This allows you to write the PID information after the particle selection as well.
+	 */
+	void TrackSelector::WritePIDInformation()
+	{
+		if(!fWrite_PID) return;
+		if(!fPIDInstance) return;
+		fLog << MSG::DEBUG << "Writing PID information" << endmsg;
+		fTrackMDC = (*fTrackIterator)->mdcTrack();
+		if(fTrackMDC) {
+			fMap_PID.at("p")    = fTrackMDC->p();
+			fMap_PID.at("cost") = cos(fTrackMDC->theta());
+		}
+		fMap_PID.at("chiToFEC") = fPIDInstance->chiTofE(2);
+		fMap_PID.at("chiToFIB") = fPIDInstance->chiTof1(2);
+		fMap_PID.at("chiToFOB") = fPIDInstance->chiTof2(2);
+		fMap_PID.at("chidEdx")  = fPIDInstance->chiDedx(2);
+		fMap_PID.at("prob_K")   = fPIDInstance->probKaon();
+		fMap_PID.at("prob_e")   = fPIDInstance->probElectron();
+		fMap_PID.at("prob_mu")  = fPIDInstance->probMuon();
+		fMap_PID.at("prob_p")   = fPIDInstance->probProton();
+		fMap_PID.at("prob_pi")  = fPIDInstance->probPion();
+		fNTupleMap.at("PID")->write();
 	}
 
 
@@ -543,137 +701,4 @@
 		map.at("tof_p")    = path - texp[4];
 		fNTupleMap.at(tupleName)->write();
 
-	}
-
-
-	/**
-	 * @brief Encapsulates a `for` loop of the writing procedure for \f$dE/dx\f$ energy loss information.
-	 * @details This method allows you to write \f$dE/dx\f$ information for any selection of charged tracks. Just feed it a vector that contains such a collection of `EvtRecTrack` pointers.
-	 * 
-	 * @param vector The selection of charged tracks that of which you want to write the \f$dE/dx\f$ data.
-	 * @param tupleName The name of the tuple to which you want to write the information.
-	 * @param map The `map` from which you want to get the `NTuple::Item`s.
-	 */
-	void TrackSelector::WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map)
-	{
-		for(fTrackIterator = vector.begin(); fTrackIterator != vector.end(); ++fTrackIterator) {
-			WriteDedxInfo(*fTrackIterator, tupleName, map);
-		}
-	}
-
-
-	/**
-	 * @brief Encapsulates of the writing procedure for \f$dE/dx\f$ energy loss information <i>for one track</i>.
-	 * @details Here, you should use `map::at` to access the `NTuple::Item`s and `NTuplePtr`, because you want your package to throw an exception if the element does not exist.
-	 * @param evtRecTrack Pointer to the reconstructed track of which you want to write the \f$dE/dx\f$ data.
-	 * @param tupleName The name of the tuple to which you want to write the information.
-	 * @param map The `map` from which you want to get the `NTuple::Item`s.
-	 */
-	void TrackSelector::WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map)
-	{
-
-		// * Check if dE/dx and MDC info exists *
-		if(!evtRecTrack->isMdcTrackValid()) return;
-		if(!evtRecTrack->isMdcDedxValid())  return;
-		fTrackMDC  = evtRecTrack->mdcTrack();
-		fTrackDedx = evtRecTrack->mdcDedx();
-
-		// * <b>write</b> energy loss PID info ("dedx" branch) *
-		map.at("p")   = fTrackMDC->p();
-		map.at("chie")   = fTrackDedx->chiE();
-		map.at("chimu")  = fTrackDedx->chiMu();
-		map.at("chipi")  = fTrackDedx->chiPi();
-		map.at("chik")   = fTrackDedx->chiK();
-		map.at("chip")   = fTrackDedx->chiP();
-		map.at("probPH") = fTrackDedx->probPH();
-		map.at("normPH") = fTrackDedx->normPH();
-		map.at("ghit")   = fTrackDedx->numGoodHits();
-		map.at("thit")   = fTrackDedx->numTotalHits();
-		fNTupleMap.at(tupleName)->write();
-
-	}
-
-	/**
-	 * @brief Automatically assign all <i>mapped values</i> of `map` as items to an `NTuplePtr`.
-	 * 
-	 * @param nt The `NTuplePtr` to which you want to add the <i>mapped values</i> of `map`.
-	 * @param map The `map` from which you want to load the <i>mapped values</i>.
-	 */
-	void TrackSelector::AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<double> > &map)
-	{
-		if(!nt) return;
-		std::map<std::string, NTuple::Item<double> >::iterator it = map.begin();
-		for(; it != map.end(); ++it) {
-			nt->addItem(it->first, it->second);
-			fLog << MSG::DEBUG << "  added \"" << it->first << "\"" << endmsg;
-		}
-		fLog << MSG::INFO << "  total: " << map.size() << " items" << endmsg;
-	}
-
-	/**
-	 * @brief Automatically assign all <i>mapped values</i> of `map` as items to an `NTuplePtr`. The `NTuplePtr` is booked automatically.
-	 * 
-	 * @param tupleName Name of the `NTuplePtr` to which you want to add the <i>mapped values</i> of `map`.
-	 * @param map The `map` from which you want to load the <i>mapped values</i>.
-	 * @param tupleTitle Title of the `NTuplePtr`. You can later use this title as a more detailed description in your analysis of the resulting histograms.
-	 */
-	void TrackSelector::AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
-	{
-		AddItemsToNTuples(BookNTuple(tupleName, tupleTitle), map);
-	}
-
-	/**
-	 * @brief Encapsulates the proces of writing PID info. This allows you to write the PID information after the particle selection as well.
-	 */
-	void TrackSelector::WritePIDInformation()
-	{
-		if(!fDo_PID) return;
-		if(!fPIDInstance) return;
-		fLog << MSG::DEBUG << "Writing PID information" << endmsg;
-		fTrackMDC = (*fTrackIterator)->mdcTrack();
-		if(fTrackMDC) {
-			fMap_PID.at("p")    = fTrackMDC->p();
-			fMap_PID.at("cost") = cos(fTrackMDC->theta());
-		}
-		fMap_PID.at("chiToFEC") = fPIDInstance->chiTofE(2);
-		fMap_PID.at("chiToFIB") = fPIDInstance->chiTof1(2);
-		fMap_PID.at("chiToFOB") = fPIDInstance->chiTof2(2);
-		fMap_PID.at("chidEdx")  = fPIDInstance->chiDedx(2);
-		fMap_PID.at("prob_K")   = fPIDInstance->probKaon();
-		fMap_PID.at("prob_e")   = fPIDInstance->probElectron();
-		fMap_PID.at("prob_mu")  = fPIDInstance->probMuon();
-		fMap_PID.at("prob_p")   = fPIDInstance->probProton();
-		fMap_PID.at("prob_pi")  = fPIDInstance->probPion();
-		fNTupleMap.at("PID")->write();
-	}
-
-	/**
-	 * @brief Method that standardizes the initialisation of the particle identification system. Define here <i>as general as possible</i>, but use in the derived subalgorithms.
-	 * @details See http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
-	 * 
-	 * @param method Which method to use: probability, likelihood, or neuron network (see `TSGlobals::PIDMethod`).
-	 * @param pidsys PID systems you want to call. Can combined using bit seperators (`|`), e.g. `pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE()` for \f$dE/dx\f$ plus all ToF detectors.
-	 * @param pidcase Which particles to identify. For instance, `pid->onlyPion() | pid->onlyKaon()` in the case of pions and kaons.
-	 * @param chimin Minimal \f$\chi^2\f$ of the resulting particle identification.
-	 */
-	ParticleID* TrackSelector::InitializePID(PIDMethod method, const int pidsys, const int pidcase, const double chimin)
-	{
-		// * Initialise PID sub-system and set method: probability, likelihood, or neuron network
-		fPIDInstance->init();
-		switch(method) {
-			case Probability:   fPIDInstance->setMethod(fPIDInstance->methodProbability());   break;
-			case Likelihood:    fPIDInstance->setMethod(fPIDInstance->methodLikelihood());    break;
-			case NeuronNetwork: fPIDInstance->setMethod(fPIDInstance->methodNeuronNetwork()); break;
-			default: return nullptr;
-		}
-		fPIDInstance->setChiMinCut(chimin);
-		fPIDInstance->setRecTrack(*fTrackIterator);
-
-		// * Choose ID system and which particles to use
-		fPIDInstance->usePidSys(pidsys);
-		fPIDInstance->identify(pidcase);
-
-		// * Perform PID
-		fPIDInstance->calculate();
-		if(!(fPIDInstance->IsPidInfoValid())) return nullptr;
 	}

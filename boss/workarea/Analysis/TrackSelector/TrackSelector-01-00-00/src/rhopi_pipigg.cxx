@@ -36,11 +36,11 @@
 	{
 		fLog << MSG::DEBUG << "===>> rhopi_pipigg::rhopi_pipigg() <<===" << endmsg;
 
-		/// * The `"do_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
-		declareProperty("do_fit4c_all",  fDo_fit4c_all  = false);
-		declareProperty("do_fit4c_best", fDo_fit4c_best = false);
-		declareProperty("do_fit5c_all",  fDo_fit5c_all  = false);
-		declareProperty("do_fit5c_best", fDo_fit5c_best = false);
+		/// * The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
+		declareProperty("write_fit4c_all",  fWrite_fit4c_all  = false);
+		declareProperty("write_fit4c_best", fWrite_fit4c_best = false);
+		declareProperty("write_fit5c_all",  fWrite_fit5c_all  = false);
+		declareProperty("write_fit5c_best", fWrite_fit5c_best = false);
 
 		/// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
 		declareProperty("cut_MaxGammaPhi",   fCut_MaxGammaPhi   =  20.0);
@@ -66,7 +66,7 @@
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
-			if(fDo_mult_select) {
+			if(fWrite_mult_select) {
 				fMap_mult_select["NPhotons"]; /// <li> `"NPhotons"`: Number of \f$\gamma\f$s.
 				fMap_mult_select["NPionNeg"]; /// <li> `"NPionNeg"`: Number of \f$\pi^-\f$s.
 				fMap_mult_select["NPionPos"]; /// <li> `"NPionPos"`: Number of \f$\pi^+\f$s.
@@ -75,19 +75,19 @@
 			/// </ol>
 
 		/// <li> `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
-			if(fDo_dedx) {
+			if(fWrite_dedx) {
 				BookNtupleItemsDedx("dedx_pi", fMap_dedx_pi);
 			}
 
 		/// <li> `"fit4c_all"`, `"fit4c_best"`, `"fit5c_all"`, and `"fit5c_best"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItemsDedx` for more info.
-			if(fDo_fit4c_all)  BookNtupleItemsFit("fit4c_all", fMap_fit4c_all, "4-constraint fit information (CMS 4-momentum)");
-			if(fDo_fit4c_best) BookNtupleItemsFit("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
-			if(fDo_fit5c_all)  BookNtupleItemsFit("fit5c_all", fMap_fit5c_all, "5-constraint fit information (CMS 4-momentum)");
-			if(fDo_fit5c_best) BookNtupleItemsFit("fit5c_best", fMap_fit5c_best, "5-constraint fit information of the invariant masses closest to the reconstructed particles");
+			if(fWrite_fit4c_all)  BookNtupleItemsFit("fit4c_all", fMap_fit4c_all, "4-constraint fit information (CMS 4-momentum)");
+			if(fWrite_fit4c_best) BookNtupleItemsFit("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
+			if(fWrite_fit5c_all)  BookNtupleItemsFit("fit5c_all", fMap_fit5c_all, "5-constraint fit information (CMS 4-momentum)");
+			if(fWrite_fit5c_best) BookNtupleItemsFit("fit5c_best", fMap_fit5c_best, "5-constraint fit information of the invariant masses closest to the reconstructed particles");
 
 		/// <li> `"photon"`: information of the selected photons
 			/// <ol>
-			if(fDo_photon) {
+			if(fWrite_photon) {
 				fMap_photon["E"];     /// <li> Energy of the photon.
 				fMap_photon["phi"];   /// <li> Smallest angle between the photon and the nearest charged pion.
 				fMap_photon["theta"]; /// <li> Smallest angle between the photon and the nearest charged pion.
@@ -127,7 +127,7 @@
 				/// <li> Initialise PID and skip if it fails:
 					/// <ul>
 					if(!InitializePID(
-						Probability,
+						fPIDInstance->methodProbability(),
 							/// <li> use <b>probability method</b>
 						fPIDInstance->useDedx() | fPIDInstance->useTof1() | fPIDInstance->useTof2() | fPIDInstance->useTofE(),
 							/// <li> use \f$dE/dx\f$ and the three ToF detectors
@@ -139,7 +139,7 @@
 					/// </ul>
 
 				/// <li> <b>Write</b> Particle Identification information of all tracks
-					if(fDo_PID) WritePIDInformation();
+					if(fWrite_PID) WritePIDInformation();
 
 				/// <li> Identify type of charged particle and add to related vector: (this package: only pions).
 					RecMdcKalTrack* mdcKalTrk = (*fTrackIterator)->mdcKalTrack(); /// `RecMdcKalTrack` (Kalman) is used, but this can be substituted by `RecMdcTrack`.
@@ -181,7 +181,7 @@
 					fSmallestAngle = fSmallestAngle * 180 / (CLHEP::pi);
 
 				/// <li> <b>Write</b> photon info (`"photon"` branch)
-					if(fDo_photon) {
+					if(fWrite_photon) {
 						fMap_photon.at("E")     = fTrackEMC->energy();
 						fMap_photon.at("phi")   = fSmallestTheta;
 						fMap_photon.at("theta") = fSmallestPhi;
@@ -212,15 +212,15 @@
 
 
 		/// <li> <b>Write</b> \f$dE/dx\f$ PID information (`"dedx_pi"` branch)
-			if(fDo_dedx) {
+			if(fWrite_dedx) {
 				WriteDedxInfoForVector(fPionNeg, "dedx_pi", fMap_dedx_pi);
 				WriteDedxInfoForVector(fPionPos, "dedx_pi", fMap_dedx_pi);
 			}
 
 
 		/// <li> Perform Kalman 4-constraint Kalman kinematic fit for all combinations
-			if(fDo_fit4c_all || fDo_fit4c_best) {
-				double bestMeasure = 1e5;
+			if(fWrite_fit4c_all || fWrite_fit4c_best) {
+				double bestFitMeasure = 1e5;
 				KalmanKinematicFit *bestKalmanFit = nullptr;
 				for(fGamma1Iter  = fGamma.begin();   fGamma1Iter  != fGamma.end();   ++fGamma1Iter)
 				for(fGamma2Iter  = fGamma1Iter+1;    fGamma2Iter  != fGamma.end();   ++fGamma2Iter)
@@ -261,7 +261,7 @@
 						WTrackParameter wpim = vtxfit->wtrk(0);
 						WTrackParameter wpip = vtxfit->wtrk(1);
 
-					// * Get Kalman kinematic fit for this combination and store if better than previous one
+					// * Get EMC showers
 						RecEmcShower *g1Trk = (*fGamma1Iter)->emcShower();
 						RecEmcShower *g2Trk = (*fGamma2Iter)->emcShower();
 
@@ -279,22 +279,20 @@
 							if(kkmfit->chisq() > fCut_MaxPIDChiSq) continue;
 							/// Compute the measure for the best Kalman kinematic fit and keep a pointer to this result if better than previous.
 							ComputeInvariantMasses(kkmfit);
-							if(MeasureForBestFit4c() < bestMeasure) bestKalmanFit = kkmfit;
+							CompareWithBestFit(MeasureForBestFit5c(), bestFitMeasure, kkmfit, bestKalmanFit);
 							/// <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
-							if(fDo_fit4c_all) WriteFitResults(kkmfit, fMap_fit4c_all, "fit4c_all");
+							if(fWrite_fit4c_all) WriteFitResults(kkmfit, fMap_fit4c_all, "fit4c_all");
 						}
 
 				}
 
 				/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branch)
-				if(fDo_fit4c_best) {
-					if(bestKalmanFit) {
-						ComputeInvariantMasses(bestKalmanFit);
-						WriteFitResults(bestKalmanFit, fMap_fit4c_best, "fit4c_best");
-					}
+				if(fWrite_fit4c_best && bestKalmanFit) {
+					ComputeInvariantMasses(bestKalmanFit);
+					WriteFitResults(bestKalmanFit, fMap_fit4c_best, "fit4c_best");
 				}
 
-			} // end of fDo_fit4c_all || fDo_fit4c_best
+			} // end of fWrite_fit4c_all || fWrite_fit4c_best
 
 
 		/// <li> Apply a cut on the number of particles: <i>only events with one \f$\pi^-\f$ and one \f$\pi^+\f$</i>
@@ -303,9 +301,11 @@
 
 
 		/// <li> Perform Kalman 5-constraint Kalman kinematic fit for all combinations
-			if(fDo_fit5c_all || fDo_fit5c_best) {
-				double bestMeasure = 1e5;
+			if(fWrite_fit5c_all || fWrite_fit5c_best) {
+				// * Reset best fit parameters * //
+				double bestFitMeasure = 1e5;
 				KalmanKinematicFit *bestKalmanFit = nullptr;
+				// * Loop over all combinations of pi-, pi+, and gamma * //
 				for(fGamma1Iter  = fGamma.begin();   fGamma1Iter  != fGamma.end();   ++fGamma1Iter)
 				for(fGamma2Iter  = fGamma1Iter+1;    fGamma2Iter  != fGamma.end();   ++fGamma2Iter)
 				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
@@ -345,7 +345,7 @@
 						WTrackParameter wpim = vtxfit->wtrk(0);
 						WTrackParameter wpip = vtxfit->wtrk(1);
 
-					// * Get Kalman kinematic fit for this combination and store if better than previous one
+					// * Get EMC showers
 						RecEmcShower *g1Trk = (*fGamma1Iter)->emcShower();
 						RecEmcShower *g2Trk = (*fGamma2Iter)->emcShower();
 
@@ -364,22 +364,20 @@
 							if(kkmfit->chisq() > fCut_MaxPIDChiSq) continue;
 							/// Compute the measure for the best Kalman kinematic fit and keep a pointer to this result if better than previous.
 							ComputeInvariantMasses(kkmfit);
-							if(MeasureForBestFit5c() < bestMeasure) bestKalmanFit = kkmfit;
+							CompareWithBestFit(MeasureForBestFit5c(), bestFitMeasure, kkmfit, bestKalmanFit);
 							/// <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit5c_all"`).
-							if(fDo_fit5c_all) WriteFitResults(kkmfit, fMap_fit5c_all, "fit5c_all");
+							if(fWrite_fit5c_all) WriteFitResults(kkmfit, fMap_fit5c_all, "fit5c_all");
 						}
 
-				}
+				} // end of loop over particle combinations
 
 				/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit5c_best"` branch)
-				if(fDo_fit5c_best) {
-					if(bestKalmanFit) {
-						ComputeInvariantMasses(bestKalmanFit);
-						WriteFitResults(bestKalmanFit, fMap_fit5c_best, "fit5c_best");
-					}
+				if(fWrite_fit5c_best && bestKalmanFit) {
+					ComputeInvariantMasses(bestKalmanFit);
+					WriteFitResults(bestKalmanFit, fMap_fit5c_best, "fit5c_best");
 				}
 
-			} // end of fDo_fit5c_all || fDo_fit5c_best
+			} // end of fWrite_fit5c_all || fWrite_fit5c_best
 
 
 		/// </ol>

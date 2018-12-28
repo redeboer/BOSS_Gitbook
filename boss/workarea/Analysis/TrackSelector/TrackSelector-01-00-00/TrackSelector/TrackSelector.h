@@ -12,6 +12,7 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+	#include "CLHEP/Geometry/Point3D.h"
 	#include "EmcRecEventModel/RecEmcShower.h"
 	#include "EventModel/EventHeader.h"
 	#include "EvtRecEvent/EvtRecEvent.h"
@@ -27,6 +28,10 @@
 	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this requires a newer version of `gcc`.
 	#include <string>
 	#include <vector>
+
+	#ifndef ENABLE_BACKWARDS_COMPATIBILITY
+		typedef HepGeom::Point3D<double> HepPoint3D;
+	#endif
 
 
 
@@ -48,11 +53,6 @@
 		const double gM_Jpsi = 3.0969;     /// Mass of \f$J/\psi\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf">PDG</a>.
 		const double gEcms   = 3.097;      /// Center-of-mass energy.
 		const HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
-		enum PIDMethod {
-			Probability,
-			Likelihood,
-			NeuronNetwork
-		};
 	};
 
 
@@ -80,24 +80,25 @@ protected:
 		virtual StatusCode finalize_rest() = 0; //!< This function is executed at the end of `finalize`. It should be further defined in derived subalgorithms.
 
 	// * Protected methods * //
-		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle = "ks N-Tuple example");
-		ParticleID* InitializePID(TSGlobals::PIDMethod method, const int pidsys, const int pidcase, const double chimin=4.);
-		void AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="ks N-Tuple example");
+		HepLorentzVector ComputeMomentum(EvtRecTrack *track);
+		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle="ks N-Tuple example");
+		ParticleID* InitializePID(const int method, const int pidsys, const int pidcase, const double chimin=4.);
 		void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<double> > &map);
-		void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle = "dE/dx info");
-		void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle = "Time-of-Flight info");
+		void AddItemsToNTuples  (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="ks N-Tuple example");
+		void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="dE/dx info");
+		void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="Time-of-Flight info");
+		void CompareWithBestFit(double value, double &bestValue, KalmanKinematicFit* fit, KalmanKinematicFit* &bestfit);
 		void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
-		void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 		void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 		void WritePIDInformation();
+		void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 
 	// * Protected data members * //
-		HepLorentzVector ComputeMomentum(EvtRecTrack *track);
 		MsgStream fLog; //!< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
 		ParticleID *fPIDInstance; //!< Pointer to instance of particle identification (PID). Only used in <i>derived subalgorithms</i>.
-		RecEmcShower *fTrackEMC; //!< Pointer to the track info from the EM calorimeter. It is a data member to make it accessible to other methods as well.
-		RecMdcDedx *fTrackDedx; //!< Pointer to the \f$dE/dx\f$ info from the MDC. It is a data member to make it accessible to other methods as well.
-		RecMdcTrack *fTrackMDC; //!< Pointer to the track info from the MDC. It is a data member to make it accessible to other methods as well.
+		RecEmcShower *fTrackEMC; //!< Pointer to the track info from the EM calorimeter. It is a data member to make it accessible to other methods as well. See http://bes3.to.infn.it/Boss/7.0.2/html/classRecEmcShower.html.
+		RecMdcDedx *fTrackDedx; //!< Pointer to the \f$dE/dx\f$ info from the MDC. It is a data member to make it accessible to other methods as well. See http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html.
+		RecMdcTrack *fTrackMDC; //!< Pointer to the track info from the MDC. It is a data member to make it accessible to other methods as well. See http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcTrack.html.
 		SmartDataPtr<Event::EventHeader> fEventHeader;  //!< Data pointer for  `Event::EventHeader` which is set in `execute()` in each event.
 		SmartDataPtr<EvtRecEvent> fEvtRecEvent;  //!< Data pointer for `EventModel::EvtRec::EvtRecEvent` which is set in `execute()` in each event.
 		SmartDataPtr<EvtRecTrackCol> fEvtRecTrkCol; //!< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in `execute()` in each event.
@@ -111,18 +112,18 @@ protected:
 	// ! NTuple data members ! //
 		/// `NTuple`s are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each `NTuple::Item` represents its leaves. The name of the leaves is determined when calling `NTuple::addItem`.
 		/// Note that the `NTuple::Items` have to be added to the NTuple during the `TrackSelector::initialize()` step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
-
-		// * Maps of Ntuples *
-			bool fDo_PID;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
-			bool fDo_ToFEC;   //!< Package property that determines whether or not to record data from the Time-of-Flight end cap detector.
-			bool fDo_ToFIB;   //!< Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector.
-			bool fDo_ToFOB;   //!< Package property that determines whether or not to record data from the Time-of-Flight outer barrel detector.
-			bool fDo_charged; //!< Package property that determines whether or not to record charged track vertex info.
-			bool fDo_dedx;    //!< Package property that determines whether or not to record energy loss (\f$dE/dx\f$).
-			bool fDo_mult;    //!< Package property that determines whether or not to record multiplicities.
-			bool fDo_mult_select; //!< Package property that determines whether or not to write the multiplicities <i>of the selected particles</i>.
-			bool fDo_neutral; //!< Package property that determines whether or not to record neutral track info.
-			bool fDo_vertex;  //!< Package property that determines whether or not to record primary vertex info.
+			bool fDo_charged; //!< Package property that determines whether or not to make a selection of 'good' charged tracks.
+			bool fDo_neutral; //!< Package property that determines whether or not to make a selection of 'good' neutral tracks.
+			bool fWrite_PID;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
+			bool fWrite_ToFEC;   //!< Package property that determines whether or not to record data from the Time-of-Flight end cap detector.
+			bool fWrite_ToFIB;   //!< Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector.
+			bool fWrite_ToFOB;   //!< Package property that determines whether or not to record data from the Time-of-Flight outer barrel detector.
+			bool fWrite_charged; //!< Package property that determines whether or not to record charged track vertex info.
+			bool fWrite_dedx;    //!< Package property that determines whether or not to record energy loss (\f$dE/dx\f$).
+			bool fWrite_mult;    //!< Package property that determines whether or not to record multiplicities.
+			bool fWrite_mult_select; //!< Package property that determines whether or not to write the multiplicities <i>of the selected particles</i>.
+			bool fWrite_neutral; //!< Package property that determines whether or not to record neutral track info.
+			bool fWrite_vertex;  //!< Package property that determines whether or not to record primary vertex info.
 			std::map<std::string, NTuple::Item<double> > fMap_PID;     //!< Container for the general PID information (TOF, \f$dE/dx\f$, etc) branch. <b>Needs to be filled in the derived class!</b>
 			std::map<std::string, NTuple::Item<double> > fMap_TofEC;   //!< Container for the data from the Time-of-Flight end cap detector branch.
 			std::map<std::string, NTuple::Item<double> > fMap_TofIB;   //!< Container for the data from the Time-of-Flight inner barrel detector branch.
@@ -144,6 +145,10 @@ protected:
 		double fCut_MinPhotonEnergy; //!< Minimimal cut on the photon energy.
 		double fCut_MaxPIDChiSq; //!< Maximum \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits
 		double fCut_MinPIDProb; //!< Minimimal probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6">`ParticleID::probPion`</a>.
+
+	// * Stored values * //
+	HepPoint3D fVertexPoint; //!< Coordinates of the interaction point (primary vertex). Set in each event in `TrackSelector::execute`.
+	Int_t fNChargesMDC; //!< Number of charges detected in the MDC.
 
 };
 
