@@ -261,6 +261,7 @@
 		while((obj = next())) {
 			const char* name = obj->GetName();
 			int max = fTree->GetMaximum(name);
+			if(!max) continue;
 			DrawBranches(name, max, 0, max, true, "E1", logScale);
 		}
 	}

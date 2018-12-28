@@ -23,7 +23,7 @@
 // ! ============================== ! //
 
 	// * INPUT FILE * //
-	const char* filename = "/mnt/c/IHEP/scratchfs/bes/deboer/data/root/ana_DzeroPhi_mc_resultTrackSelector.root";
+	const char* filename = "/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_0.root";
 
 	// * TERMINAL OUTPUT * //
 	const bool print = false; //!< Whether or not to use the precisely set histogram ranges.
@@ -34,10 +34,10 @@
 
 	// * WHICH BRANCHES TO PLOT * //
 	const bool pureplot    = true; //!< Whether or not to plot histograms of branches <i>without fit</i>.
-	const bool draw_mult   = false; //!< Whether or not to draw the multiplicity branches.
+	const bool draw_mult   = true; //!< Whether or not to draw the multiplicity branches.
 	const bool draw_vertex = false; //!< Whether or not to draw the `"vertex"` branch.
 	const bool draw_tof    = false; //!< Whether or not to draw the `"tof*"` branches.
-	const bool draw_fit    = true; //!< Whether or not to draw the `"fit"` branches.
+	const bool draw_fit    = false; //!< Whether or not to draw the `"fit"` branches.
 
 	// * FIT SETTINGS * //
 	const bool fitplots  = false; //!< Whether or not to produce invariant mass fits.
