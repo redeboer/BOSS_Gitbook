@@ -28,7 +28,7 @@ fileToRead="filenames/ExampleFile_DstFiles" # filenames/ExampleFile_DzeroPhi_mc
 # * In case of analysing Monte Carlo output * #
 if [ ${analyseMC} == 1 ]; then
 	gExampleFromFile=0
-	directoryToRead="/scratchfs/bes/deboer/data/dst/"
+	directoryToRead="/scratchfs/bes/deboer/data/dst/D0phi_KpiKK_MC_1e5"
 	identifier="${packageName}"
 fi
 

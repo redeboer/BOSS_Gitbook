@@ -14,8 +14,8 @@ source CommonFunctions.sh
 
 # * Scripts parameters * #
 packageName="D0phi_KpiKK"
-nJobs=10
-nEventsPerJob=10000
+nJobs=50
+nEventsPerJob=20000
 outputLevel=4
 
 # * Create job from template and submit * #

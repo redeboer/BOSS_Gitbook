@@ -5,26 +5,26 @@ ApplicationMgr.DLLs   += {"TrackSelector"};
 ApplicationMgr.TopAlg += {"rhopi_pipigg"};
 
 // * Whether or not to select neutral/charged particles *
-D0phi_KpiKK.do_charged = true;
-D0phi_KpiKK.do_neutral = true;
+D0phi_KpiKK.do_charged = 1;
+D0phi_KpiKK.do_neutral = 1;
 
 // * Whether or not to fill a tree/NTuple (TrackSelector) *
-rhopi_pipigg.write_mult    = true;
-rhopi_pipigg.write_vertex  = true;
-rhopi_pipigg.write_charged = true;
-rhopi_pipigg.write_neutral = true;
-rhopi_pipigg.write_dedx    = true;
-rhopi_pipigg.write_TofEC   = true;
-rhopi_pipigg.write_TofIB   = true;
-rhopi_pipigg.write_TofOB   = true;
-rhopi_pipigg.write_PID     = true;
+rhopi_pipigg.write_mult    = 1;
+rhopi_pipigg.write_vertex  = 1;
+rhopi_pipigg.write_charged = 1;
+rhopi_pipigg.write_neutral = 1;
+rhopi_pipigg.write_dedx    = 1;
+rhopi_pipigg.write_TofEC   = 0;
+rhopi_pipigg.write_TofIB   = 1;
+rhopi_pipigg.write_TofOB   = 1;
+rhopi_pipigg.write_PID     = 1;
 
 // * Whether or not to fill a tree/NTuple (rhopi_pipigg) *
-rhopi_pipigg.write_mult_select = true;
-rhopi_pipigg.write_fit4c_all   = true;
-rhopi_pipigg.write_fit4c_best  = true;
-rhopi_pipigg.write_fit5c_all   = true;
-rhopi_pipigg.write_fit5c_best  = true;
+rhopi_pipigg.write_mult_select = 1;
+rhopi_pipigg.write_fit4c_all   = 1;
+rhopi_pipigg.write_fit4c_best  = 1;
+rhopi_pipigg.write_fit5c_all   = 1;
+rhopi_pipigg.write_fit5c_best  = 1;
 
 // * Primary vertex cuts *
 rhopi_pipigg.cut_MaxVr0    = 1e6; // 1.0
