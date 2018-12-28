@@ -39,8 +39,8 @@
 		/// * The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
 		declareProperty("write_fit4c_all",     fWrite_fit4c_all     = false);
 		declareProperty("write_fit4c_best",    fWrite_fit4c_best    = false);
-		declareProperty("write_fit4c_bestD0",  fWrite_fit4c_bestD0  = false);
-		declareProperty("write_fit4c_bestphi", fWrite_fit4c_bestphi = false);
+		declareProperty("write_fit4c_best_D0",  fWrite_fit4c_best_D0  = false);
+		declareProperty("write_fit4c_best_phi", fWrite_fit4c_best_phi = false);
 
 	}
 
@@ -76,10 +76,10 @@
 			}
 
 		/// <li> `"fit4c_*"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItemsFit` for more info.
-			if(fWrite_fit4c_all)     BookNtupleItemsFit("fit4c_all",     fMap_fit4c_all,     "4-constraint fit information (CMS 4-momentum)");
-			if(fWrite_fit4c_best)    BookNtupleItemsFit("fit4c_best",    fMap_fit4c_best,    "4-constraint fit information of the invariant masses closest to the reconstructed particles");
-			if(fWrite_fit4c_bestD0)  BookNtupleItemsFit("fit4c_bestD0",  fMap_fit4c_best,    "4-constraint fit information of the invariant masses closest to #m_{D^{0}}");
-			if(fWrite_fit4c_bestphi) BookNtupleItemsFit("fit4c_bestphi", fMap_fit4c_bestphi, "4-constraint fit information of the invariant masses closest to #m_{\phi}");
+			if(fWrite_fit4c_all)      BookNtupleItemsFit("fit4c_all",      fMap_fit4c_all,      "4-constraint fit information (CMS 4-momentum)");
+			if(fWrite_fit4c_best)     BookNtupleItemsFit("fit4c_best",     fMap_fit4c_best,     "4-constraint fit information of the invariant masses closest to the reconstructed particles");
+			if(fWrite_fit4c_best_D0)  BookNtupleItemsFit("fit4c_best_D0",  fMap_fit4c_best_D0,  "4-constraint fit information of the invariant masses closest to #m_{D^{0}}");
+			if(fWrite_fit4c_best_phi) BookNtupleItemsFit("fit4c_best_phi", fMap_fit4c_best_phi, "4-constraint fit information of the invariant masses closest to #m_{\phi}");
 
 		/// </ol>
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
@@ -151,6 +151,12 @@
 			fLog << MSG::DEBUG << "Number of K+:  " << fPionPos.size() << endmsg;
 
 
+		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
+			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
+			if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
+			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
+
+
 		/// <li> <b>Write</b> the multiplicities of the selected particles.
 			if(fWrite_mult_select) {
 				fMap_mult_select.at("NKaonNeg") = fKaonNeg.size();
@@ -158,12 +164,6 @@
 				fMap_mult_select.at("NPionPos") = fPionPos.size();
 				fNTupleMap.at("mult_select")->write();
 			}
-
-
-		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
-			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
-			if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
-			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
 
 
 		/// <li> <b>Write</b> \f$dE/dx\f$ PID information (`"dedx"` branch)
@@ -180,7 +180,7 @@
 			/// 	\left(\frac{m_{K^-K^+}  -m_{\phi}}{m_{\phi}}\right).
 			/// \f]
 			/// See `D0phi_KpiKK::MeasureForBestFit*` for the definition of this measure.
-			if(fWrite_fit4c_all || fWrite_fit4c_best || fWrite_fit4c_bestD0 || fWrite_fit4c_bestphi) {
+			if(fWrite_fit4c_all || fWrite_fit4c_best || fWrite_fit4c_best_D0 || fWrite_fit4c_best_phi) {
 				// * Reset best fit parameters * //
 				double bestFitMeasure_D0  = 1e5;
 				double bestFitMeasure_phi = 1e5;
@@ -223,26 +223,21 @@
 
 						VertexFit* vtxfit = VertexFit::instance();
 						vtxfit->init();
-						vtxfit->AddTrack(0, wvpipTrk);
-						vtxfit->AddTrack(1, wvKpTrk);
-						vtxfit->AddTrack(2, wvKmTrk1);
-						vtxfit->AddTrack(3, wvKmTrk2);
+						vtxfit->AddTrack(0, wvKmTrk1);
+						vtxfit->AddTrack(1, wvKmTrk2);
+						vtxfit->AddTrack(2, wvKpTrk);
+						vtxfit->AddTrack(3, wvpipTrk);
 						vtxfit->AddVertex(0, vxpar, 0, 1);
 						if(!vtxfit->Fit(0)) continue;
 						vtxfit->Swim(0);
-
-						WTrackParameter wpip = vtxfit->wtrk(0);
-						WTrackParameter wKp  = vtxfit->wtrk(1);
-						WTrackParameter wKm1 = vtxfit->wtrk(2);
-						WTrackParameter wKm2 = vtxfit->wtrk(3);
 
 					// * Get Kalman kinematic fit for this combination and store if better than previous one
 						KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
 						kkmfit->init();
 						kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K- (1st occurrence)
-						kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi+
-						kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K- (2nd occurrence)
-						kkmfit->AddTrack(3, vtxfit->wtrk(3)); // K+
+						kkmfit->AddTrack(1, vtxfit->wtrk(1)); // K- (2nd occurrence)
+						kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K+
+						kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi+
 						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
 						if(kkmfit->Fit()) {
 							/// Apply max. \f$\chi^2\f$ cut (determined by `fCut_MaxPIDChiSq`).
@@ -260,17 +255,17 @@
 
 
 		/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best_*"` branches)
-			if(fWrite_fit4c_bestD0 && bestKalmanFit_D0) {
-				ComputeInvariantMasses(bestKalmanFit_D0);
-				WriteFitResults(bestKalmanFit_D0, fMap_fit4c_bestD0, "fit4c_bestD0");
-			}
-			if(fWrite_fit4c_bestphi && bestKalmanFit_phi) {
-				ComputeInvariantMasses(bestKalmanFit_phi);
-				WriteFitResults(bestKalmanFit_phi, fMap_fit4c_bestphi, "fit4c_bestphi");
-			}
 			if(fWrite_fit4c_best && bestKalmanFit) {
 				ComputeInvariantMasses(bestKalmanFit);
 				WriteFitResults(bestKalmanFit, fMap_fit4c_best, "fit4c_best");
+			}
+			if(fWrite_fit4c_best_D0 && bestKalmanFit_D0) {
+				ComputeInvariantMasses(bestKalmanFit_D0);
+				WriteFitResults(bestKalmanFit_D0, fMap_fit4c_best_D0, "fit4c_best_D0");
+			}
+			if(fWrite_fit4c_best_phi && bestKalmanFit_phi) {
+				ComputeInvariantMasses(bestKalmanFit_phi);
+				WriteFitResults(bestKalmanFit_phi, fMap_fit4c_best_phi, "fit4c_best_phi");
 			}
 
 			} // end of fWrite_fit4c_*
@@ -333,8 +328,8 @@
 	 */
 	void D0phi_KpiKK::ComputeInvariantMasses(KalmanKinematicFit *kkmfit)
 	{
-		HepLorentzVector pD0   = kkmfit->pfit(0) + kkmfit->pfit(1); // K^- pi^+
-		HepLorentzVector pphi  = kkmfit->pfit(2) + kkmfit->pfit(3); // K^- K^+
+		HepLorentzVector pD0   = kkmfit->pfit(0) + kkmfit->pfit(3); // K^- pi^+
+		HepLorentzVector pphi  = kkmfit->pfit(1) + kkmfit->pfit(2); // K^- K^+
 		HepLorentzVector pJpsi = pD0 + pphi;                        // D^0 phi
 		fM_D0   = pD0.m();
 		fM_phi  = pphi.m();
