@@ -99,7 +99,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0d0f7ca92e6f18b1c29f94f611a4fec5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a0d0f7ca92e6f18b1c29f94f611a4fec5">BOSSRootFile</a> ()</td></tr>
 <tr class="memdesc:a0d0f7ca92e6f18b1c29f94f611a4fec5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a0d0f7ca92e6f18b1c29f94f611a4fec5">More...</a><br /></td></tr>
 <tr class="separator:a0d0f7ca92e6f18b1c29f94f611a4fec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a438e2cf19d0b317e0cdc586da1d5a854"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a438e2cf19d0b317e0cdc586da1d5a854">BOSSRootFile</a> (const char *filename, bool <a class="el" href="InvestigateBOSSRootFile_8C.html#a98704691bff479196601fa28ca402e2a">print</a>=true)</td></tr>
+<tr class="memitem:a438e2cf19d0b317e0cdc586da1d5a854"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a438e2cf19d0b317e0cdc586da1d5a854">BOSSRootFile</a> (const char *<a class="el" href="AnalyseDzeroPhi__MC_8C.html#a7efa5e9c7494c7d4586359300221aa5d">filename</a>, bool <a class="el" href="InvestigateBOSSRootFile_8C.html#a98704691bff479196601fa28ca402e2a">print</a>=true)</td></tr>
 <tr class="memdesc:a438e2cf19d0b317e0cdc586da1d5a854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that opens a <code>TFile</code> and unordered_maps its contents.  <a href="#a438e2cf19d0b317e0cdc586da1d5a854">More...</a><br /></td></tr>
 <tr class="separator:a438e2cf19d0b317e0cdc586da1d5a854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d1e6e27e9caa9214544d70cb53ac887"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a8d1e6e27e9caa9214544d70cb53ac887">~BOSSRootFile</a> ()</td></tr>
@@ -134,14 +134,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5047522205120d44357ea8497e6e1fce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a5047522205120d44357ea8497e6e1fce">QuickDrawAndSaveAll</a> (Option_t *opt=&quot;&quot;)</td></tr>
 <tr class="memdesc:a5047522205120d44357ea8497e6e1fce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the distributions of all branches available in the ROOT file.  <a href="#a5047522205120d44357ea8497e6e1fce">More...</a><br /></td></tr>
 <tr class="separator:a5047522205120d44357ea8497e6e1fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c2e2406263cf75798c229aea96b6e48"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a1c2e2406263cf75798c229aea96b6e48">GetNumberOfEvents</a> (const char *treeName)</td></tr>
-<tr class="memdesc:a1c2e2406263cf75798c229aea96b6e48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of events in one of the <code>TTree</code>s.  <a href="#a1c2e2406263cf75798c229aea96b6e48">More...</a><br /></td></tr>
-<tr class="separator:a1c2e2406263cf75798c229aea96b6e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a156cc14cc8b599abccb633dc75aca151"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSimplifiedTree.html">SimplifiedTree</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a156cc14cc8b599abccb633dc75aca151">operator[]</a> (const char *name)</td></tr>
+<tr class="separator:a156cc14cc8b599abccb633dc75aca151"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa023a7dcfc74edfc1a031945812a7cb3"><td class="memItemLeft" align="right" valign="top">TTree *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#aa023a7dcfc74edfc1a031945812a7cb3">FindTree</a> (const char *treeName, bool terminate=false)</td></tr>
 <tr class="memdesc:aa023a7dcfc74edfc1a031945812a7cb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Look for a tree in the files and get its <code>TTree</code>.  <a href="#aa023a7dcfc74edfc1a031945812a7cb3">More...</a><br /></td></tr>
 <tr class="separator:aa023a7dcfc74edfc1a031945812a7cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a156cc14cc8b599abccb633dc75aca151"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSimplifiedTree.html">SimplifiedTree</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a156cc14cc8b599abccb633dc75aca151">operator[]</a> (const char *name)</td></tr>
-<tr class="separator:a156cc14cc8b599abccb633dc75aca151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c2e2406263cf75798c229aea96b6e48"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a1c2e2406263cf75798c229aea96b6e48">GetNumberOfEvents</a> (const char *treeName)</td></tr>
+<tr class="memdesc:a1c2e2406263cf75798c229aea96b6e48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of events in one of the <code>TTree</code>s.  <a href="#a1c2e2406263cf75798c229aea96b6e48">More...</a><br /></td></tr>
+<tr class="separator:a1c2e2406263cf75798c229aea96b6e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ec3e0fb75d60e565ca30b53e3a8b98e"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, <a class="el" href="classSimplifiedTree.html">SimplifiedTree</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSRootFile.html#a2ec3e0fb75d60e565ca30b53e3a8b98e">GetSimplifiedTrees</a> ()</td></tr>
+<tr class="separator:a2ec3e0fb75d60e565ca30b53e3a8b98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -198,7 +200,7 @@ Protected Attributes</h2></td></tr>
 <p>Default constructor. </p>
 <p>Currently does nothing as there are no null pointers to set. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00088">88</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00089">89</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -230,7 +232,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Constructor that opens a <code>TFile</code> and unordered_maps its contents. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00096">96</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00097">97</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -251,7 +253,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Destructor that closes the <code>TFile</code> if needed. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00107">107</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00108">108</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -273,7 +275,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Close file. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00116">116</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00117">117</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -302,7 +304,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Encapsulation of the default destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00341">341</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00342">342</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -343,12 +345,12 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">treeName</td><td>Name of the <code>TTree</code> that you are looking for. </td></tr>
     <tr><td class="paramname">opt</td><td>Draw options. </td></tr>
-    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_26.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
+    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_28.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00212">212</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00213">213</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -413,16 +415,16 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">treeName</td><td>Name of the <code>TTree</code> that you are looking for. </td></tr>
     <tr><td class="paramname">branchX</td><td>Branch that you want to plot. You may use a formula. </td></tr>
-    <tr><td class="paramname">nBinx</td><td>Number of bins to use on the <img class="formulaInl" alt="$x$" src="form_26.png"/>-axis. </td></tr>
-    <tr><td class="paramname">x1</td><td>Lower limit on the <img class="formulaInl" alt="$x$" src="form_26.png"/>-axis. </td></tr>
-    <tr><td class="paramname">x2</td><td>Upper limit on the <img class="formulaInl" alt="$x$" src="form_26.png"/>-axis.. </td></tr>
+    <tr><td class="paramname">nBinx</td><td>Number of bins to use on the <img class="formulaInl" alt="$x$" src="form_28.png"/>-axis. </td></tr>
+    <tr><td class="paramname">x1</td><td>Lower limit on the <img class="formulaInl" alt="$x$" src="form_28.png"/>-axis. </td></tr>
+    <tr><td class="paramname">x2</td><td>Upper limit on the <img class="formulaInl" alt="$x$" src="form_28.png"/>-axis.. </td></tr>
     <tr><td class="paramname">opt</td><td>Draw options. </td></tr>
-    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_26.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
+    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_28.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00169">169</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00170">170</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -510,21 +512,21 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">treeName</td><td>Name of the <code>TTree</code> that you are looking for. </td></tr>
-    <tr><td class="paramname">branchX</td><td>Branch that you want to plot on the <img class="formulaInl" alt="$x$" src="form_26.png"/>-axis. You may use a formula. </td></tr>
-    <tr><td class="paramname">branchY</td><td>Branch that you want to plot on the <img class="formulaInl" alt="$y$" src="form_27.png"/>-axis. You may use a formula. </td></tr>
-    <tr><td class="paramname">nBinx</td><td>Number of bins to use on the <img class="formulaInl" alt="$x$" src="form_26.png"/>-axis. </td></tr>
-    <tr><td class="paramname">x1</td><td>Lower limit on the <img class="formulaInl" alt="$x$" src="form_26.png"/>-axis. </td></tr>
-    <tr><td class="paramname">x2</td><td>Upper limit on the <img class="formulaInl" alt="$x$" src="form_26.png"/>-axis. </td></tr>
-    <tr><td class="paramname">nBiny</td><td>Number of bins to use on the <img class="formulaInl" alt="$y$" src="form_27.png"/>-axis. </td></tr>
-    <tr><td class="paramname">y1</td><td>Lower limit on the <img class="formulaInl" alt="$y$" src="form_27.png"/>-axis. </td></tr>
-    <tr><td class="paramname">y2</td><td>Upper limit on the <img class="formulaInl" alt="$y$" src="form_27.png"/>-axis. </td></tr>
+    <tr><td class="paramname">branchX</td><td>Branch that you want to plot on the <img class="formulaInl" alt="$x$" src="form_28.png"/>-axis. You may use a formula. </td></tr>
+    <tr><td class="paramname">branchY</td><td>Branch that you want to plot on the <img class="formulaInl" alt="$y$" src="form_29.png"/>-axis. You may use a formula. </td></tr>
+    <tr><td class="paramname">nBinx</td><td>Number of bins to use on the <img class="formulaInl" alt="$x$" src="form_28.png"/>-axis. </td></tr>
+    <tr><td class="paramname">x1</td><td>Lower limit on the <img class="formulaInl" alt="$x$" src="form_28.png"/>-axis. </td></tr>
+    <tr><td class="paramname">x2</td><td>Upper limit on the <img class="formulaInl" alt="$x$" src="form_28.png"/>-axis. </td></tr>
+    <tr><td class="paramname">nBiny</td><td>Number of bins to use on the <img class="formulaInl" alt="$y$" src="form_29.png"/>-axis. </td></tr>
+    <tr><td class="paramname">y1</td><td>Lower limit on the <img class="formulaInl" alt="$y$" src="form_29.png"/>-axis. </td></tr>
+    <tr><td class="paramname">y2</td><td>Upper limit on the <img class="formulaInl" alt="$y$" src="form_29.png"/>-axis. </td></tr>
     <tr><td class="paramname">opt</td><td>Draw options. </td></tr>
-    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_26.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
+    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_28.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00190">190</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00191">191</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -572,12 +574,12 @@ Protected Attributes</h2></td></tr>
     <tr><td class="paramname">treeName</td><td>Name of the <code>TTree</code> that you are looking for. </td></tr>
     <tr><td class="paramname">branchNames</td><td>Name of the branch names that you want to plot. See <a href="https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7">https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7</a> for the syntax. </td></tr>
     <tr><td class="paramname">opt</td><td>Draw options. </td></tr>
-    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_26.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
+    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_28.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00226">226</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00227">227</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -617,7 +619,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TTree* Tree object that contains the trees. Returns a <code>nullptr</code> if this <code>TTree</code> does not exist. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00146">146</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00147">147</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -646,7 +648,34 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int Tree object that contains the trees. Returns a <code>nullptr</code> if this <code>TTree</code> does not exist. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00133">133</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00134">134</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+
+</div>
+</div>
+<a id="a2ec3e0fb75d60e565ca30b53e3a8b98e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ec3e0fb75d60e565ca30b53e3a8b98e">&#9670;&nbsp;</a></span>GetSimplifiedTrees()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;std::string, <a class="el" href="classSimplifiedTree.html">SimplifiedTree</a>&gt;&amp; BOSSRootFile::GetSimplifiedTrees </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00063">63</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -675,7 +704,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Initialize (null)pointers and clear the <code>unordered_map</code> of <code>TTree</code>s. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00351">351</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00352">352</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -696,7 +725,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Check if file is loaded. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00199">199</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00200">200</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -726,7 +755,7 @@ Protected Attributes</h2></td></tr>
 
 <p>If the ROOT <code>TFile</code> could be successfully loaded, this method will generate a <code>unordered_map</code> of pointers to all <code>TTree</code>s in the main folder of the ROOT file. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00360">360</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00361">361</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -756,7 +785,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Attempt to open <code>TFile</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00301">301</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00302">302</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -784,7 +813,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00062">62</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00060">60</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -805,7 +834,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Print information about all trees in the <code>TFile</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00234">234</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00235">235</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -844,7 +873,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00270">270</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00271">271</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -890,7 +919,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00286">286</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00287">287</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -952,7 +981,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00323">323</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00324">324</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -979,7 +1008,7 @@ template&lt;class T &gt; </div>
 
 <p>The <code>TFile</code> that has been loaded. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00066">66</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00067">67</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>
@@ -1005,7 +1034,7 @@ template&lt;class T &gt; </div>
 
 <p>Map of pointers to all <code>TTree</code>s in the ROOT file. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00067">67</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSRootFile_8h_source.html#l00068">68</a> of file <a class="el" href="BOSSRootFile_8h_source.html">BOSSRootFile.h</a>.</p>
 
 </div>
 </div>

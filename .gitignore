@@ -62,3 +62,6 @@ Tag
 *ACLiC_dict_rdict.pcm
 execute
 main
+
+# Ignore temporary files
+*.tmp

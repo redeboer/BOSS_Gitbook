@@ -11,6 +11,7 @@ var classBOSSRootFile =
     [ "DrawBranches", "classBOSSRootFile.html#af5855a00b8a71a92f3996afb4cbab641", null ],
     [ "FindTree", "classBOSSRootFile.html#aa023a7dcfc74edfc1a031945812a7cb3", null ],
     [ "GetNumberOfEvents", "classBOSSRootFile.html#a1c2e2406263cf75798c229aea96b6e48", null ],
+    [ "GetSimplifiedTrees", "classBOSSRootFile.html#a2ec3e0fb75d60e565ca30b53e3a8b98e", null ],
     [ "Initialize", "classBOSSRootFile.html#a3cf31e409d40fc19ade885757af5979f", null ],
     [ "IsZombie", "classBOSSRootFile.html#a868c91e1482044ce8b2e7924fc72d8fc", null ],
     [ "LoadTrees", "classBOSSRootFile.html#aa7b4f44726e14198cf7084a09bac5b19", null ],

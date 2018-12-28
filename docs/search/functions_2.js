@@ -2,6 +2,7 @@ var searchData=
 [
   ['closefile',['CloseFile',['../classBOSSRootFile.html#a31e7e27e5a8e75b340f4da4fbdd823fd',1,'BOSSRootFile']]],
   ['comparechainvshadd',['CompareChainVsHadd',['../CompareChainVsHadd_8C.html#a2099460c6c4fa3fb0090a53295f389b9',1,'CompareChainVsHadd.C']]],
+  ['comparewithbestfit',['CompareWithBestFit',['../classTrackSelector.html#a27becebd99038f9ee2f614e813290fe6',1,'TrackSelector']]],
   ['computegammavector',['ComputeGammaVector',['../classrhopi__pipigg.html#aecd04c4b5ddb174bfa9309a28168e11a',1,'rhopi_pipigg']]],
   ['computeinvariantmasses',['ComputeInvariantMasses',['../classD0phi__KpiKK.html#ac1f61991294fedd96402ca0f9d302831',1,'D0phi_KpiKK::ComputeInvariantMasses()'],['../classrhopi__pipigg.html#a9c140207943a83c61bf48db893c7dad1',1,'rhopi_pipigg::ComputeInvariantMasses()']]],
   ['computemean',['ComputeMean',['../classSimplifiedTree.html#aa248856917bd4ef031293fb3353329da',1,'SimplifiedTree']]],

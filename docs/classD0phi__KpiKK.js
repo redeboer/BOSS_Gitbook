@@ -7,9 +7,9 @@ var classD0phi__KpiKK =
     [ "finalize_rest", "classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752", null ],
     [ "initialize_rest", "classD0phi__KpiKK.html#a72e81af7a2e5613c50f149200c8e0518", null ],
     [ "MeasureForBestFit", "classD0phi__KpiKK.html#a8528cf70709d54481d188de3dbe49918", null ],
+    [ "MeasureForBestFit_D0", "classD0phi__KpiKK.html#aa06bbab5dd3e699d05b9c089cb98045f", null ],
+    [ "MeasureForBestFit_phi", "classD0phi__KpiKK.html#a0848bf66341ad77ef61b742a6e5c5025", null ],
     [ "WriteFitResults", "classD0phi__KpiKK.html#ac2d1627c2d7626c46e2ab1006512cd07", null ],
-    [ "fDo_fit4c_all", "classD0phi__KpiKK.html#adf3507b9eb18a9324476629befc1c76b", null ],
-    [ "fDo_fit4c_best", "classD0phi__KpiKK.html#a43d07a9567acfe58558f3524c8109d84", null ],
     [ "fKaonNeg", "classD0phi__KpiKK.html#afd19015366820f50472c723e6610e53e", null ],
     [ "fKaonNeg1Iter", "classD0phi__KpiKK.html#aebcf4c26733e5acf860f729f69aea22e", null ],
     [ "fKaonNeg2Iter", "classD0phi__KpiKK.html#a6e7b9cd8c6e71952ce5693903dea34ba", null ],
@@ -22,6 +22,12 @@ var classD0phi__KpiKK =
     [ "fMap_dedx_pi", "classD0phi__KpiKK.html#a0f9add1b7c597155bc975ac8082201cf", null ],
     [ "fMap_fit4c_all", "classD0phi__KpiKK.html#abd6b4198ae69700be1a6d99f7bf077e2", null ],
     [ "fMap_fit4c_best", "classD0phi__KpiKK.html#aa4ccae145676d8a54ae7fc7b312601ee", null ],
+    [ "fMap_fit4c_bestD0", "classD0phi__KpiKK.html#a6cce9a4f8c2abc60275db60cd32f0b71", null ],
+    [ "fMap_fit4c_bestphi", "classD0phi__KpiKK.html#a21ff8e2a93ad27273d5276e696db3348", null ],
     [ "fPionPos", "classD0phi__KpiKK.html#a0f0f6eced07ae025fac22c189f48f758", null ],
-    [ "fPionPosIter", "classD0phi__KpiKK.html#a78d6aaabd91bde8018fcb1a3bdbaaa95", null ]
+    [ "fPionPosIter", "classD0phi__KpiKK.html#a78d6aaabd91bde8018fcb1a3bdbaaa95", null ],
+    [ "fWrite_fit4c_all", "classD0phi__KpiKK.html#a84fb92469e97bbd83b24b32cce0493eb", null ],
+    [ "fWrite_fit4c_best", "classD0phi__KpiKK.html#a4bcf5e4faa99e0aceb261ea22efcc1f8", null ],
+    [ "fWrite_fit4c_bestD0", "classD0phi__KpiKK.html#a5f6a25ead1b9556c1ca28cbebb4baa5e", null ],
+    [ "fWrite_fit4c_bestphi", "classD0phi__KpiKK.html#a4ecb9138b8df96a3064be60a415de206", null ]
 ];

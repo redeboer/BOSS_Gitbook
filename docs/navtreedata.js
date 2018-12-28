@@ -7,9 +7,7 @@ var NAVTREE =
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ],
-        [ "Enumerations", "namespacemembers_enum.html", null ],
-        [ "Enumerator", "namespacemembers_eval.html", null ]
+        [ "Variables", "namespacemembers_vars.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -38,8 +36,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AnalyseDzeroPhi__MC_8C.html",
-"classReconstructedParticle.html#a03c956b9a28c14587c8bf9bc5a90d32d",
-"classrhopi__pipigg.html#a6629ea1bbc89350881ebb059080ef7c5"
+"classParticle.html#ad34f1d39fb95328fcfb59d74f71a736c",
+"classrhopi__pipigg.html#a1fbc1008cc2e79fe4bdccad5f5a66e03"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

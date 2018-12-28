@@ -248,7 +248,6 @@
 	 * @brief Draw the distributions of all branches of the underlying `TTree` if its name starts with `"mult"`.
 	 * @details This function additionally ensures that the bin width is set to 1 and that the histograms are drawn in `"E1"` mode (see https://root.cern.ch/doc/master/classTHistPainter.html).
 	 * 
-	 * @param opt Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
 	void SimplifiedTree::DrawAndSaveAllMultiplicityBranches(const TString& logScale)

@@ -4,6 +4,7 @@ var classSimplifiedTree =
     [ "SimplifiedTree", "classSimplifiedTree.html#aae73269beceeb816787a6f95e650c771", null ],
     [ "ComputeMean", "classSimplifiedTree.html#aa248856917bd4ef031293fb3353329da", null ],
     [ "DrawAndSaveAllBranches", "classSimplifiedTree.html#ae9083544380ca3ddd79bc6f9b2dc1ef2", null ],
+    [ "DrawAndSaveAllMultiplicityBranches", "classSimplifiedTree.html#a0ce1acc831d813c06df5839f7269e50d", null ],
     [ "DrawBranches", "classSimplifiedTree.html#a36fbce2cf215bf170e27103e8c55ba32", null ],
     [ "DrawBranches", "classSimplifiedTree.html#a07b234dc4b18e28b7f8213cdde1336e5", null ],
     [ "DrawBranches", "classSimplifiedTree.html#a0556127ad5f40ba1b449fc228a5982f4", null ],

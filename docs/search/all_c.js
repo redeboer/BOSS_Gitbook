@@ -6,6 +6,5 @@ var searchData=
   ['ncut3',['Ncut3',['../RhopiAlg_8cxx.html#abdd8572dc795b0d4176087cdc0a2bfe1',1,'RhopiAlg.cxx']]],
   ['ncut4',['Ncut4',['../RhopiAlg_8cxx.html#afc66a2c95f4c764112c430d34ac53985',1,'RhopiAlg.cxx']]],
   ['ncut5',['Ncut5',['../RhopiAlg_8cxx.html#a87a44bb9989e7d593d89d0b2b7aa553d',1,'RhopiAlg.cxx']]],
-  ['ncut6',['Ncut6',['../RhopiAlg_8cxx.html#af1d2be22861b1e83a550b9ca430b58cf',1,'RhopiAlg.cxx']]],
-  ['neuronnetwork',['NeuronNetwork',['../namespaceTSGlobals.html#a27fa7fc91d15c0db15c223868688f1a4abadf31dd625e7444924bdb8dd13bbd07',1,'TSGlobals']]]
+  ['ncut6',['Ncut6',['../RhopiAlg_8cxx.html#af1d2be22861b1e83a550b9ca430b58cf',1,'RhopiAlg.cxx']]]
 ];
