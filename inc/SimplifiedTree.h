@@ -55,6 +55,7 @@
 			TH2F* DrawBranches(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, const bool save=true, Option_t* opt="", const TString &logScale="");
 			double ComputeMean(TTree* tree, const char* branchName);
 			void DrawAndSaveAllBranches(Option_t* opt="", const TString &logScale="");
+			void DrawAndSaveAllMultiplicityBranches(const TString &logScale="");
 			void DrawBranches(const char* branchNames, const bool save=true, Option_t* opt="", const TString &logScale="");
 
 	private:
@@ -192,6 +193,7 @@
 		return mean;
 	}
 
+
 	/**
 	 * @brief Draw a distribution of one of the branches in the file.
 	 *
@@ -239,6 +241,28 @@
 		TIter next(fTree->GetListOfBranches());
 		TObject *obj  = nullptr;
 		while((obj = next())) DrawBranches(obj->GetName(), true, opt, logScale);
+	}
+
+
+	/**
+	 * @brief Draw the distributions of all branches of the underlying `TTree` if its name starts with `"mult"`.
+	 * @details This function additionally ensures that the bin width is set to 1 and that the histograms are drawn in `"E1"` mode (see https://root.cern.ch/doc/master/classTHistPainter.html).
+	 * 
+	 * @param opt Draw options.
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 */
+	void SimplifiedTree::DrawAndSaveAllMultiplicityBranches(const TString& logScale)
+	{
+		if(!fTree) return;
+		TString name(fTree->GetName());
+		if(!name.BeginsWith("mult")) return;
+		TIter next(fTree->GetListOfBranches());
+		TObject *obj  = nullptr;
+		while((obj = next())) {
+			const char* name = obj->GetName();
+			int max = fTree->GetMaximum(name);
+			DrawBranches(name, max, 0, max, true, "E1", logScale);
+		}
 	}
 
 	/**

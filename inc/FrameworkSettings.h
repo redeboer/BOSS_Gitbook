@@ -50,7 +50,7 @@ namespace Settings
 	namespace Output
 	{
 		const char* Extension = "pdf"; //!< Default extension of output plots (e.g. `png`, `eps`, `jpg`, etc.).
-		const TString PlotOutputDir = Form("../plots/%s", Extension); //!< Default output directory for plots.
+		const TString PlotOutputDir = Form("/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/%s", Extension); //!< Default output directory for plots.
 	}
 	/**
 	 * @brief List of relevant particles used in this analysis.
