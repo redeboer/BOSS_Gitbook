@@ -4,19 +4,25 @@
 ApplicationMgr.DLLs   += {"TrackSelector"};
 ApplicationMgr.TopAlg += {"D0phi_KpiKK"};
 
-// * Whether or not to fill a tree/NTuple *
-D0phi_KpiKK.do_mult      = true;
-D0phi_KpiKK.do_vertex    = true;
-D0phi_KpiKK.do_charged   = true;
-D0phi_KpiKK.do_neutral   = false;
-D0phi_KpiKK.do_dedx      = true;
-D0phi_KpiKK.do_TofEC     = true;
-D0phi_KpiKK.do_TofIB     = true;
-D0phi_KpiKK.do_TofOB     = true;
-D0phi_KpiKK.do_PID       = true;
-D0phi_KpiKK.do_mult_select = true;
-D0phi_KpiKK.do_fit4c_all   = true;
-D0phi_KpiKK.do_fit4c_best  = true;
+// * Whether or not to select neutral/charged particles *
+D0phi_KpiKK.do_charged = true;
+D0phi_KpiKK.do_neutral = false;
+
+// * Whether or not to fill a tree/NTuple (TrackSelector) *
+D0phi_KpiKK.write_mult     = true;
+D0phi_KpiKK.write_vertex   = true;
+D0phi_KpiKK.write_charged  = true;
+D0phi_KpiKK.write_neutral  = false;
+D0phi_KpiKK.write_dedx     = true;
+D0phi_KpiKK.write_TofEC    = true;
+D0phi_KpiKK.write_TofIB    = true;
+D0phi_KpiKK.write_TofOB    = true;
+D0phi_KpiKK.write_PID      = true;
+
+// * Whether or not to fill a tree/NTuple (D0phi_KpiKK) *
+D0phi_KpiKK.write_mult_select = true;
+D0phi_KpiKK.write_fit4c_all   = true;
+D0phi_KpiKK.write_fit4c_best  = true;
 
 // * Primary vertex cuts *
 D0phi_KpiKK.cut_MaxVr0    = 1e6;

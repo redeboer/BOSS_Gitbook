@@ -66,7 +66,7 @@ set -e # exit if a command or function exits with a non-zero status
 	# * User input
 	echo "This will create ${nJobs} \"sim\" and \"rec\" jobOptions files with ${nEventsPerJob} events each in job."
 	echo "  --> Total number of events: $(printf "%'d" $((${nJobs} * ${nEventsPerJob})))"
-	AskForInput "\nTo continue, press ENTER, else Ctrl+C ..."
+	AskForInput "\nTo write job files, press ENTER, else Ctrl+C ..."
 
 	# * Create and EMPTY scripts directory
 	CreateOrEmptyDirectory "${scriptFolder}" "sim"  "${packageName}"
@@ -118,7 +118,7 @@ set -e # exit if a command or function exits with a non-zero status
 
 		# * Generate the submit files (sub)
 		outputFile="${scriptFolder}/sub/sub_${packageName}_mc_${jobNo}.sh"
-		echo "#\!/bin/bash" > "${outputFile}" # empty file and write first line
+		echo "#!/bin/bash" > "${outputFile}" # empty file and write first line
 		echo "{ boss.exe \"${scriptFolder}/sim/sim_${packageName}_${jobNo}.txt\"; } &> \"${outputFolder}/log/sim_${packageName}_${jobNo}.log\"" >> "${outputFile}"
 		echo "{ boss.exe \"${scriptFolder}/rec/rec_${packageName}_${jobNo}.txt\"; } &> \"${outputFolder}/log/rec_${packageName}_${jobNo}.log\"" >> "${outputFile}"
 		ChangeLineEndingsFromWindowsToUnix "${outputFile}"

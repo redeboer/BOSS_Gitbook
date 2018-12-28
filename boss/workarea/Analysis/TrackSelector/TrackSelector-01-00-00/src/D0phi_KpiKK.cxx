@@ -36,9 +36,11 @@
 	{
 		fLog << MSG::DEBUG << "===>> D0phi_KpiKK::D0phi_KpiKK() <<===" << endmsg;
 
-		/// * The `"do_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
-		declareProperty("do_fit4c_all",  fDo_fit4c_all  = false);
-		declareProperty("do_fit4c_best", fDo_fit4c_best = false);
+		/// * The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
+		declareProperty("write_fit4c_all",     fWrite_fit4c_all     = false);
+		declareProperty("write_fit4c_best",    fWrite_fit4c_best    = false);
+		declareProperty("write_fit4c_bestD0",  fWrite_fit4c_bestD0  = false);
+		declareProperty("write_fit4c_bestphi", fWrite_fit4c_bestphi = false);
 
 	}
 
@@ -59,7 +61,7 @@
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
-			if(fDo_mult_select) {
+			if(fWrite_mult_select) {
 				fMap_mult_select["NKaonPos"]; /// <li> `"NKaonPos"`: Number of \f$K^+\f$.
 				fMap_mult_select["NKaonNeg"]; /// <li> `"NKaonNeg"`: Number of \f$K^-\f$.
 				fMap_mult_select["NPionPos"]; /// <li> `"NPionPos"`: Number of \f$\pi^-\f$.
@@ -68,14 +70,16 @@
 			/// </ol>
 
 		/// <li> `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
-			if(fDo_dedx) {
+			if(fWrite_dedx) {
 				BookNtupleItemsDedx("dedx_K",  fMap_dedx_K);
 				BookNtupleItemsDedx("dedx_pi", fMap_dedx_pi);
 			}
 
-		/// <li> `"fit4c_all"` and `"fit5c_best"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItemsDedx` for more info.
-			if(fDo_fit4c_all)  BookNtupleItemsFit("fit4c_all", fMap_fit4c_all, "4-constraint fit information (CMS 4-momentum)");
-			if(fDo_fit4c_best) BookNtupleItemsFit("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
+		/// <li> `"fit4c_*"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItemsFit` for more info.
+			if(fWrite_fit4c_all)     BookNtupleItemsFit("fit4c_all",     fMap_fit4c_all,     "4-constraint fit information (CMS 4-momentum)");
+			if(fWrite_fit4c_best)    BookNtupleItemsFit("fit4c_best",    fMap_fit4c_best,    "4-constraint fit information of the invariant masses closest to the reconstructed particles");
+			if(fWrite_fit4c_bestD0)  BookNtupleItemsFit("fit4c_bestD0",  fMap_fit4c_best,    "4-constraint fit information of the invariant masses closest to #m_{D^{0}}");
+			if(fWrite_fit4c_bestphi) BookNtupleItemsFit("fit4c_bestphi", fMap_fit4c_bestphi, "4-constraint fit information of the invariant masses closest to #m_{\phi}");
 
 		/// </ol>
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
@@ -108,7 +112,7 @@
 				/// <li> Initialise PID and skip if it fails:
 					/// <ul>
 					if(!InitializePID(
-						Probability,
+						fPIDInstance->methodProbability(),
 							/// <li> use <b>probability method</b>
 						fPIDInstance->useDedx() | fPIDInstance->useTof1() | fPIDInstance->useTof2() | fPIDInstance->useTofE(),
 							/// <li> use \f$dE/dx\f$ and the three ToF detectors
@@ -120,7 +124,7 @@
 					/// </ul>
 
 				/// <li> <b>Write</b> Particle Identification information of all tracks
-					if(fDo_PID) WritePIDInformation();
+					if(fWrite_PID) WritePIDInformation();
 
 				/// <li> Identify type of charged particle and add to related vector: (this package: kaon and pion).
 					RecMdcKalTrack* mdcKalTrk = (*fTrackIterator)->mdcKalTrack(); /// `RecMdcKalTrack` (Kalman) is used, but this can be substituted by `RecMdcTrack`.
@@ -148,7 +152,7 @@
 
 
 		/// <li> <b>Write</b> the multiplicities of the selected particles.
-			if(fDo_mult_select) {
+			if(fWrite_mult_select) {
 				fMap_mult_select.at("NKaonNeg") = fKaonNeg.size();
 				fMap_mult_select.at("NKaonPos") = fKaonPos.size();
 				fMap_mult_select.at("NPionPos") = fPionPos.size();
@@ -163,7 +167,7 @@
 
 
 		/// <li> <b>Write</b> \f$dE/dx\f$ PID information (`"dedx"` branch)
-			if(fDo_dedx) {
+			if(fWrite_dedx) {
 				WriteDedxInfoForVector(fKaonNeg, "dedx_K",  fMap_dedx_K);
 				WriteDedxInfoForVector(fKaonPos, "dedx_K",  fMap_dedx_K);
 				WriteDedxInfoForVector(fPionPos, "dedx_pi", fMap_dedx_pi);
@@ -175,14 +179,20 @@
 			/// 	\left(\frac{m_{K^-\pi^+}-m_{D^0} }{m_{D^0} }\right) \cdot
 			/// 	\left(\frac{m_{K^-K^+}  -m_{\phi}}{m_{\phi}}\right).
 			/// \f]
-			/// See `D0phi_KpiKK::MeasureForBestFit` for the definition of this measure.
-			if(fDo_fit4c_all || fDo_fit4c_best) {
-				double bestMeasure = 1e5;
-				KalmanKinematicFit *bestKalmanFit = nullptr;
+			/// See `D0phi_KpiKK::MeasureForBestFit*` for the definition of this measure.
+			if(fWrite_fit4c_all || fWrite_fit4c_best || fWrite_fit4c_bestD0 || fWrite_fit4c_bestphi) {
+				// * Reset best fit parameters * //
+				double bestFitMeasure_D0  = 1e5;
+				double bestFitMeasure_phi = 1e5;
+				double bestFitMeasure     = 1e5;
+				KalmanKinematicFit *bestKalmanFit_D0  = nullptr;
+				KalmanKinematicFit *bestKalmanFit_phi = nullptr;
+				KalmanKinematicFit *bestKalmanFit     = nullptr;
+				// * Loop over all combinations of K-, K+, and pi+ * //
 				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
 				for(fKaonNeg2Iter = fKaonNeg1Iter+1;  fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
-				for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter != fKaonPos.end();  ++fKaonPosIter)
-				for(fPionPosIter  = fPionPos.begin(); fPionPosIter != fPionPos.end();  ++fPionPosIter)
+				for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter  != fKaonPos.end(); ++fKaonPosIter)
+				for(fPionPosIter  = fPionPos.begin(); fPionPosIter  != fPionPos.end(); ++fPionPosIter)
 				{
 
 					// * Get Kalman tracks reconstructed by the MDC
@@ -239,23 +249,31 @@
 							if(kkmfit->chisq() > fCut_MaxPIDChiSq) continue;
 							/// Compute the measure for the best Kalman kinematic fit and keep a pointer to this result if better than previous.
 							ComputeInvariantMasses(kkmfit);
-							if(MeasureForBestFit() < bestMeasure) bestKalmanFit = kkmfit;
+							CompareWithBestFit(MeasureForBestFit_D0(),  bestFitMeasure_D0 , kkmfit, bestKalmanFit_D0);
+							CompareWithBestFit(MeasureForBestFit_phi(), bestFitMeasure_phi, kkmfit, bestKalmanFit_phi);
+							CompareWithBestFit(MeasureForBestFit(),     bestFitMeasure,     kkmfit, bestKalmanFit);
 							/// <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
-							if(fDo_fit4c_all) WriteFitResults(kkmfit, fMap_fit4c_all, "fit4c_all");
+							if(fWrite_fit4c_all) WriteFitResults(kkmfit, fMap_fit4c_all, "fit4c_all");
 						}
 
-				}
+				} // end of loop over particle combinations
 
 
-		/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branch)
-				if(fDo_fit4c_best) {
-					if(bestKalmanFit) {
-						ComputeInvariantMasses(bestKalmanFit);
-						WriteFitResults(bestKalmanFit, fMap_fit4c_best, "fit4c_best");
-					}
-				}
+		/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best_*"` branches)
+			if(fWrite_fit4c_bestD0 && bestKalmanFit_D0) {
+				ComputeInvariantMasses(bestKalmanFit_D0);
+				WriteFitResults(bestKalmanFit_D0, fMap_fit4c_bestD0, "fit4c_bestD0");
+			}
+			if(fWrite_fit4c_bestphi && bestKalmanFit_phi) {
+				ComputeInvariantMasses(bestKalmanFit_phi);
+				WriteFitResults(bestKalmanFit_phi, fMap_fit4c_bestphi, "fit4c_bestphi");
+			}
+			if(fWrite_fit4c_best && bestKalmanFit) {
+				ComputeInvariantMasses(bestKalmanFit);
+				WriteFitResults(bestKalmanFit, fMap_fit4c_best, "fit4c_best");
+			}
 
-			} // end of fDo_fit4c_all || fDo_fit4c_best
+			} // end of fWrite_fit4c_*
 
 
 		/// </ol>
@@ -282,11 +300,31 @@
 
 	/**
 	 * @brief Method that provides a measure for the best Kalman kinematic fit.
-	 * @details The closer this value to zero, the better the result.
+	 * @details This method is used in deciding which kinematic Kalman fit is the best. The closer this value to zero, the better the result.
 	 */
 	double D0phi_KpiKK::MeasureForBestFit()
 	{
 		return ((fM_D0-gM_D0)/gM_D0) * ((fM_phi-gM_phi)/gM_phi);
+	}
+
+
+	/**
+	 * @brief Return the procentual difference between the reconstructed invariant mass and the mass that we expect it to be in the case of \f$D^0 \rightarrow K^-\pi^+\f$.
+	 * @details This method is used in deciding which kinematic Kalman fit is the best. The closer this value to zero, the better the result.
+	 */
+	double D0phi_KpiKK::MeasureForBestFit_D0()
+	{
+		return (fM_D0-gM_D0)/gM_D0;
+	}
+
+
+	/**
+	 * @brief Return the procentual difference between the reconstructed invariant mass and the mass that we expect it to be in the case of \f$\phi \rightarrow K^-K^+\f$.
+	 * @details This method is used in deciding which kinematic Kalman fit is the best. The closer this value to zero, the better the result.
+	 */
+	double D0phi_KpiKK::MeasureForBestFit_phi()
+	{
+		return (fM_phi-gM_phi)/gM_phi;
 	}
 
 
@@ -314,7 +352,6 @@
 		map.at("mphi")  = fM_phi;
 		map.at("mJpsi") = fM_Jpsi;
 		map.at("chisq") = kkmfit->chisq();
-		map.at("fitMeasure") = MeasureForBestFit();
 		fNTupleMap.at(tupleName)->write();
 	}
 
@@ -329,7 +366,6 @@
 		map["mphi"];  /// <li> `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
 		map["mJpsi"]; /// <li> `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
 		map["chisq"]; /// <li> `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
-		map["fitMeasure"]; /// <li> `"fitMeasure"`: Measure that is used to decide which combination results in the best fit.
 		AddItemsToNTuples(tupleName, map, tupleTitle);
 		/// </ol>
 	}
