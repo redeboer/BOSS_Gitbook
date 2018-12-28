@@ -13,10 +13,11 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-packageName="D0phi_KpiKK" # RhopiAlg
-nJobs=25
+packageName="D0phi_KpiKK"
+nJobs=10
 nEventsPerJob=10000
+outputLevel=4
 
 # * Create job from template and submit * #
-bash CreateJobFiles_mc.sh "${packageName}" ${nJobs} ${nEventsPerJob}
+bash CreateJobFiles_mc.sh "${packageName}" ${nJobs} ${nEventsPerJob} ${outputLevel}
 bash SubmitAll.sh "${packageName}_mc"

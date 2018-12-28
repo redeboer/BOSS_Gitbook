@@ -1,0 +1,28 @@
+/**
+ * @brief Template for creating `jobOptions_ana_<packagename>.txt` files for the analysis step in the BOSS framework.
+ * @date December 28th, 2018
+ * @author Remco DE BOER <remco.de.boer@ihep.ac.cn> or <r.e.deboer@students.uu.nl>
+ */
+
+// * ------- INCLUDES ------- * //
+#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+#include "$MAGNETICFIELDROOT/share/MagneticField.txt"
+#include "$ABSCORROOT/share/jobOptions_AbsCor.txt"
+#include "$TRACKSELECTORROOT/share/__PACKAGENAME__.txt"
+
+// * ------- ROOT input data file (rec or dst) ------- * //
+EventCnvSvc.digiRootInputFile = {__INPUTFILES__
+};
+
+// * ------- OUTPUT PRINTOUT LEVEL ------- * //
+/// Set output level threshold: 2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL
+MessageSvc.OutputLevel = __OUTPUTLEVEL__;
+MessageSvc.useColors   = true;
+
+// * ------- Number of events ------- * //
+/// Number of events to be processed (-1 stands for all events)
+ApplicationMgr.EvtMax = __NEVENTS__;
+
+// * ------- ROOT output data file (root) ------- * //
+ApplicationMgr.HistogramPersistency = "ROOT";
+NTupleSvc.Output = { "FILE1 DATAFILE='__OUTPUTPATH__/__OUTPUTFILE__' OPT='NEW' TYP='ROOT'"};

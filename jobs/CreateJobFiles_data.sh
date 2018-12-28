@@ -4,11 +4,14 @@
 # *        AUTHOR: Remco de Boer (@IHEP), EMAIL: remco.de.boer@ihep.ac.cn
 # *  ORGANIZATION: IHEP, CAS (Beijing, CHINA)
 # *       CREATED: 8 November 2018
-# *         USAGE: bash CreateJobFiles_data.sh <search term> <package name> <number of events>
-# *     ARGUMENTS: 1) input file that will be used to create the list of dst files,
-# *                   use wild cards to add more files (check default value below)
-# *                2) package name (default is "RhopiAlg_data")
-# *                3) number of events per job (default is -1, i.e. all events)
+# *         USAGE: bash CreateJobFiles_data.sh <package name> <search term> <number of events> <output level>
+# *     ARGUMENTS:
+# *       1) package name (default is "d0phi_KpiKK")
+# *       2) input file that will be used to create the list of dst files,
+# *          use wild cards to add a selection of files (check default value below)
+# *       3) number of events per job (default is -1, i.e. all events)
+# *       4) terminal output level (default is 4)
+# *          2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL
 # * ===============================================================================
 
 set -e # exit if a command or function exits with a non-zero status
@@ -28,15 +31,18 @@ set -e # exit if a command or function exits with a non-zero status
 # ! ================================ ! #
 # ! ------- Script arguments ------- ! #
 # ! ================================ ! #
-	# * (1) input files that will be used to create the list of dst files
-	searchTerm="filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_*.txt"
-	if [ $# -ge 1 ]; then searchTerm="${1}"; fi
-	# * (2) package name (optional -- default is "RhopiAlg_data")
-	packageName="RhopiAlg_data" # default argument
-	if [ $# -ge 2 ]; then packageName="${2}"; fi
-	# * (3) number of events per job (optional -- default is -1, i.e. all events)
+	# * (1) Package name
+	packageName="d0phi_KpiKK" # default argument
+	if [ $# -ge 1 ]; then packageName="${1}"; fi
+	# * (2) Input files that will be used to create the list of dst files
+	searchTerm="filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_*.txt" # default argument
+	if [ $# -ge 2 ]; then searchTerm="${2}"; fi
+	# * (3) Number of events per job
 	nEventsPerJob=-1 # default argument
 	if [ $# -ge 3 ]; then nEventsPerJob=${3}; fi
+	# * (4) Terminal message output level
+	outputLevel=4 # default argument: 4 (MSG::WARNING)
+	if [ $# -ge 4 ]; then outputLevel=${4}; fi
 
 
 # * ================================= * #
@@ -64,62 +70,54 @@ set -e # exit if a command or function exits with a non-zero status
 # * ============================= * #
 
 	# * User input * #
-		echo "This will create \"ana_${packageName}\" job files with ${nEventsPerJob} events each."
-		echo "Job option files will be written to folder:"
+		echo "This will create \"ana_${packageName}_*.txt\" job files with ${nEventsPerJob} events each."
+		echo "These files will be written to folder:"
 		echo "   \"${scriptFolder}/ana\""
 		echo
 		echo "DST files will be loaded from the $(ls ${searchTerm} | wc -l) files matching this search pattern:"
 		echo "   \"${searchTerm}\""
 		AskForInput "\nTo continue, press ENTER, else Ctrl+C ..."
 
-	# * Create and EMPTY scripts directory (no need for sim and rec in data analysis) * #
+	# * Create and EMPTY scripts directory * #
 		CreateOrEmptyDirectory "${scriptFolder}" "ana"  "${packageName}"
-		CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${packageName}"
+		CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${packageName}_data"
 	# * Create and EMPTY output directory * #
-		CreateOrEmptyDirectory "${outputFolder}" "dst"  "${packageName}"
 		CreateOrEmptyDirectory "${outputFolder}" "log"  "${packageName}"
-		CreateOrEmptyDirectory "${outputFolder}" "raw"  "${packageName}"
 		CreateOrEmptyDirectory "${outputFolder}" "root" "${packageName}"
 
 	# * Loop over input files * #
 		jobNo=0 # set counter
-		# echo ${searchTerm}
 		for file in $(ls ${searchTerm}); do
 			echo "Parsing \"$(basename "${file}")\""
 
 			# * Format file for implementation into vector
 				FormatTextFileToCppVectorArguments "${file}"
 
-			# * Generate the analyse files (ana)
-				templateName="${scriptFolder}/templates/jobOptions_ana_${packageName}.txt"
+			# * Generate the analysis files (ana)
+				templateName="${scriptFolder}/templates/analysis.txt"
 				CheckIfFileExists "${templateName}"
 				outputFile="${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt"
 				# Replace simple parameters in template
 				awk '{flag = 1}
-					{sub(/ROOTFILE/,"root/ana_'${packageName}'_'${jobNo}'.root")}
-					{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
-					{sub(/NEVENTS/,'${nEventsPerJob}')}
+					{sub(/__PACKAGENAME__/,'${packageName}')}
+					{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
+					{sub(/__NEVENTS__/,'${nEventsPerJob}')}
+					{sub(/__OUTPUTPATH__/,"'${outputFolder}'")}
+					{sub(/__OUTPUTFILE__/,"root/'${packageName}'_'${jobNo}'.root")}
 					{if(flag == 1) {print $0} else {next} }' \
 				"${templateName}" > "${outputFile}"
 				# Fill in vector of input DST files
-				sed -i "/DSTFILES/{
-					s/DSTFILES//g
+				sed -i "/__INPUTFILES__/{
+					s/__INPUTFILES__//g
 					r ${file}
 				}" "${outputFile}"
 				ChangeLineEndingsFromWindowsToUnix "${outputFile}"
 				chmod +x "${outputFile}"
 
 			# * Generate the submit files (sub)
-				templateName="${scriptFolder}/templates/submit_data.sh"
-				outputFile="${scriptFolder}/sub/sub_${packageName}_${jobNo}.sh"
-				CheckIfFileExists "${templateName}"
-				awk '{flag = 1}
-					{sub(/SCRIPT_PATH/,"'${scriptFolder}'")}
-					{sub(/OUTPUT_PATH/,"'${outputFolder}'")}
-					{sub(/ANA_BOS/,"ana/ana_'${packageName}'_'${jobNo}'.txt")}
-					{sub(/ANA_LOG/,"log/ana_'${packageName}'_'${jobNo}'.log")}
-					{if(flag == 1) {print $0} else {next} }' \
-				"${templateName}" > "${outputFile}"
+				outputFile="${scriptFolder}/sub/sub_${packageName}_data_${jobNo}.sh"
+				echo "#\!/bin/bash" > "${outputFile}" # empty file and write first line
+				echo "{ boss.exe \"${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt\"; } &> \"${outputFolder}/log/ana_${packageName}_${jobNo}.log\"" >> "${outputFile}"
 				ChangeLineEndingsFromWindowsToUnix "${outputFile}"
 				chmod +x "${outputFile}"
 
