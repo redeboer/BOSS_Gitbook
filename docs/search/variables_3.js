@@ -1,22 +1,6 @@
 var searchData=
 [
-  ['gbranchename',['gBrancheName',['../CompareChainVsHadd_8C.html#a241c9c45cc2042fc316d22ceac35eb5d',1,'CompareChainVsHadd.C']]],
-  ['gdefaultntimes',['gDefaultNTimes',['../CompareChainVsHadd_8C.html#a60a723826c10d3877fdffbd3d429c15a',1,'CompareChainVsHadd.C']]],
-  ['gdefaultoutputfilename',['gDefaultOutputFileName',['../CompareChainVsHadd_8C.html#ab17e022eddaae4f4d52a6a42a84026e0',1,'CompareChainVsHadd.C']]],
-  ['gecms',['gEcms',['../namespaceTSGlobals.html#a7627214df596524af6630d00620e99c7',1,'TSGlobals']]],
-  ['gfiletoload',['gFileToLoad',['../CompareChainVsHadd_8C.html#aa3dda915a68202f6344b5bb828e71e0e',1,'CompareChainVsHadd.C']]],
-  ['gm_5fd0',['gM_D0',['../namespaceTSGlobals.html#a2a9b392d7ba7887fbea1cfe5b0b936c3',1,'TSGlobals']]],
-  ['gm_5fjpsi',['gM_Jpsi',['../namespaceTSGlobals.html#aa28898a97d6edd6e532f0e7ffc612cee',1,'TSGlobals']]],
-  ['gm_5fk',['gM_K',['../namespaceTSGlobals.html#a6331f215e01f26c9e2606f3cfdad160e',1,'TSGlobals']]],
-  ['gm_5fphi',['gM_phi',['../namespaceTSGlobals.html#a433fc06b01bc452af90c5e99a111f971',1,'TSGlobals']]],
-  ['gm_5fpi',['gM_pi',['../namespaceTSGlobals.html#a5cc91b07af99bf0aa2bfb412d553abc9',1,'TSGlobals']]],
-  ['gm_5fpi0',['gM_pi0',['../namespaceTSGlobals.html#a371dcec7e794e8a868c1eaed4fe7ded1',1,'TSGlobals']]],
-  ['gm_5frho',['gM_rho',['../namespaceTSGlobals.html#aec8a67002d4b9735788d316dda8decfc',1,'TSGlobals']]],
-  ['gmasses',['gMasses',['../TrackSelector_8cxx.html#a94635a4a9049c12a1635e76e633dbfe6',1,'TrackSelector.cxx']]],
-  ['gnmasses',['gNMasses',['../TrackSelector_8cxx.html#add1e3e93af63c85166fd1d56dcbbd123',1,'TrackSelector.cxx']]],
-  ['gpdg',['gPDG',['../Particle_8h.html#ac9e84faed4bc1858d832bc0242dbfb9e',1,'Particle.h']]],
-  ['gsigmascalefactorlow',['gSigmaScaleFactorLow',['../namespaceSettings_1_1Fit.html#a77774996889347bcfb0241479ff4a796',1,'Settings::Fit']]],
-  ['gsigmascalefactorup',['gSigmaScaleFactorUp',['../namespaceSettings_1_1Fit.html#a869e829da176886304d7e7fd0351154e',1,'Settings::Fit']]],
-  ['gspeedoflight',['gSpeedOfLight',['../TrackSelector_8cxx.html#ac1a7910e0394ee042f649bd450d63034',1,'TrackSelector.cxx']]],
-  ['gtreename',['gTreeName',['../CompareChainVsHadd_8C.html#a0c1ca9e8f58c539cd9b3115a8a4f0f0d',1,'CompareChainVsHadd.C']]]
+  ['ecms',['Ecms',['../RhopiAlg_8cxx.html#a123ac7871ce3ce2f3ef73eddc6aae85a',1,'RhopiAlg.cxx']]],
+  ['evtmax',['EvtMax',['../analysis_8txt.html#a3c4ed05ade11989cbde89043b370396c',1,'EvtMax():&#160;analysis.txt'],['../reconstruction_8txt.html#a3c4ed05ade11989cbde89043b370396c',1,'EvtMax():&#160;reconstruction.txt'],['../simulation_8txt.html#a3c4ed05ade11989cbde89043b370396c',1,'EvtMax():&#160;simulation.txt']]],
+  ['extension',['Extension',['../namespaceSettings_1_1Output.html#a56c2848c86dd66f8be712d5280dc2cbf',1,'Settings::Output']]]
 ];

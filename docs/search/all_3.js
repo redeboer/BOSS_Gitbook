@@ -7,6 +7,8 @@ var searchData=
   ['destruct',['Destruct',['../classBOSSRootChain.html#a639e7dccc2e76225a4172295df017a2a',1,'BOSSRootChain::Destruct()'],['../classBOSSRootFile.html#aa998ff5e02eb2c6b13aee8a1d1862b48',1,'BOSSRootFile::Destruct()']]],
   ['determinenamelatex',['DetermineNameLaTeX',['../classParticle.html#ae97e941db471dbe130c5aa7277d8c224',1,'Particle']]],
   ['determinereconstructionparameters',['DetermineReconstructionParameters',['../classReconstructedParticle.html#a606b46b3150f197eaa289912f1c5e7a3',1,'ReconstructedParticle']]],
+  ['digirootinputfile',['digiRootInputFile',['../analysis_8txt.html#a446768866ea6630267275fe573572b01',1,'digiRootInputFile():&#160;analysis.txt'],['../reconstruction_8txt.html#a446768866ea6630267275fe573572b01',1,'digiRootInputFile():&#160;reconstruction.txt']]],
+  ['digirootoutputfile',['digiRootOutputFile',['../reconstruction_8txt.html#a3c034903d619cba92b50a5c7ae6d4973',1,'digiRootOutputFile():&#160;reconstruction.txt'],['../simulation_8txt.html#a87d281e476082930b5dcf7e7fed33b8a',1,'digiRootOutputFile():&#160;simulation.txt']]],
   ['do_5fconv',['do_conv',['../InvestigateBOSSRootFile_8C.html#a6f5064227e8c5776c3e7aedbd29e72b7',1,'InvestigateBOSSRootFile.C']]],
   ['do_5fconv_5fd',['do_conv_d',['../AnalyseDzeroPhi__data_8C.html#a2843580ed826e215b44a680df910ef63',1,'do_conv_d():&#160;AnalyseDzeroPhi_data.C'],['../AnalyseDzeroPhi__MC_8C.html#a2843580ed826e215b44a680df910ef63',1,'do_conv_d():&#160;AnalyseDzeroPhi_MC.C']]],
   ['do_5fconv_5fs',['do_conv_s',['../AnalyseDzeroPhi__data_8C.html#ad9ed63db90fa0169b0e9a7adddc5bc5f',1,'do_conv_s():&#160;AnalyseDzeroPhi_data.C'],['../AnalyseDzeroPhi__MC_8C.html#ad9ed63db90fa0169b0e9a7adddc5bc5f',1,'do_conv_s():&#160;AnalyseDzeroPhi_MC.C']]],

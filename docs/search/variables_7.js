@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['setranges',['setranges',['../AnalyseDzeroPhi__data_8C.html#a0b2d25f24081e5e209992b9769d11360',1,'setranges():&#160;AnalyseDzeroPhi_data.C'],['../AnalyseDzeroPhi__MC_8C.html#a0b2d25f24081e5e209992b9769d11360',1,'setranges():&#160;AnalyseDzeroPhi_MC.C'],['../InvestigateBOSSRootFile_8C.html#a0b2d25f24081e5e209992b9769d11360',1,'setranges():&#160;InvestigateBOSSRootFile.C']]]
+  ['mpi0',['mpi0',['../RhopiAlg_8cxx.html#ab7b35acf658c14d92b5b892a4fa74761',1,'RhopiAlg.cxx']]],
+  ['mrho0',['mrho0',['../RhopiAlg_8cxx.html#a359fc7286cb3fe45739029aab90fef22',1,'RhopiAlg.cxx']]]
 ];
