@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "BOSS Afterburner", "index.html", [
+    [ "Doxygen pages of the BOSS Afterburner repository", "index.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],

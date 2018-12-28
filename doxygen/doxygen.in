@@ -34,7 +34,8 @@ PROJECT_NAME           = "BOSS Afterburner"
 
 INPUT  = ".."
 # INPUT += "../README.md"
-# USE_MDFILE_AS_MAINPAGE = "../README.md"
+INPUT += "DoxygenMainPage.md"
+USE_MDFILE_AS_MAINPAGE = "DoxygenMainPage.md"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.
