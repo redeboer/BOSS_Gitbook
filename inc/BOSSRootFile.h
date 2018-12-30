@@ -28,7 +28,9 @@
 	#include <iostream>
 	#include <string>
 	#include <utility>
+	#include <list>
 	#include <unordered_map>
+	#include <math.h>
 
 
 
@@ -53,13 +55,15 @@
 		void DrawBranches(const char* treeName, const char* branchNames, Option_t* opt="", const TString &logScale="");
 		void Print();
 		void Print(const char* nameOfTree, Option_t *opt = "toponly");
+		void PrintCutFlow();
 		void PrintTrees(Option_t *opt="");
 		void QuickDrawAndSaveAll(Option_t* opt="");
 
 		// * GETTERS * //
+		Long64_t GetEntries(const char* treeName);
+		Long64_t GetLargestEntries() const;
 		SimplifiedTree& operator[](const char* name) { return fTrees.at(name); }
 		TTree* FindTree(const char* treeName, bool terminate = false);
-		int GetNumberOfEvents(const char* treeName);
 		std::unordered_map<std::string, SimplifiedTree>& GetSimplifiedTrees() { return fTrees; }
 
 	protected:
@@ -69,6 +73,7 @@
 
 		// * PRIVATE METHODS * //
 		bool OpenFile(const char*);
+		std::list<SimplifiedTree*> CreateOrderedMap();
 		template<class T> int SetBranchAddress(TTree* tree, const char* branchName, T& address);
 		void Destruct();
 		void Initialize();
@@ -129,13 +134,25 @@
 	/**
 	 * @brief Get the number of events in one of the `TTree`s.
 	 * @param treeName Name of the `TTree` that you are looking for.
-	 * @return int Tree object that contains the trees. Returns a `nullptr` if this `TTree` does not exist.
+	 * @return Tree object that contains the trees. Returns a `nullptr` if this `TTree` does not exist.
 	 */
-	int BOSSRootFile::GetNumberOfEvents(const char* treeName)
+	Long64_t BOSSRootFile::GetEntries(const char* treeName)
 	{
 		TTree* tree = FindTree(treeName);
 		if(tree) return tree->GetEntries();
 		return 0;
+	}
+
+	/**
+	 * @brief Return the largest number of events in all of the `TTree`s in the loaded ROOT file.
+	 */
+	Long64_t BOSSRootFile::GetLargestEntries() const
+	{
+		Long64_t largest = 0;
+		for(auto it = fTrees.begin(); it != fTrees.end(); ++it)
+			if(it->second.GetEntries() > largest)
+				largest = it->second.GetEntries();
+		return largest;
 	}
 
 	/**
@@ -281,16 +298,32 @@
 
 
 	/**
+	 * @brief Method that prints the number of entries of each `TTree` in the ROOT file. This allows you to get an idea of the cut flow of the original macro. (Of course, have a look at your original source code `.cxx` to see what these numbers mean.)
+	 */
+	void BOSSRootFile::PrintCutFlow()
+	{
+		auto width = std::ceil(std::log10(GetLargestEntries()));
+		width += 2;
+		width += width/3;
+		auto list = CreateOrderedMap();
+		std::cout << std::endl << "CUT FLOW FOR " << fTrees.size() << " TREES" << std::endl;
+		for(auto it : list) {
+			std::cout
+				<< std::right << std::setw(width) << CommonFunctions::Print::CommaFormattedString(it->GetEntries()) << "  "
+				<< std::left  << "\"" << it->Get()->GetName() << "\"" << std::endl;
+		}
+		std::cout << std::endl;
+	}
+
+
+	/**
 	 * @brief Draw the distributions of all branches available in the ROOT file.
 	 * @param opt Draw options.
 	 */
 	void BOSSRootFile::QuickDrawAndSaveAll(Option_t* opt)
 	{
-		std::unordered_map<std::string, SimplifiedTree>::iterator it = fTrees.begin();
-		for(; it != fTrees.end(); ++it) it->second.DrawAndSaveAllBranches(opt);
+		for(auto it = fTrees.begin(); it != fTrees.end(); ++it) it->second.DrawAndSaveAllBranches(opt);
 	}
-
-
 
 // * =============================== * //
 // * ------- PRIVATE METHODS ------- * //
@@ -309,6 +342,27 @@
 			return false;
 		}
 		return true; // if successful
+	}
+
+
+	/**
+	 * @brief Create a `list` that is ordered by the number of entries in the `TTree`.
+	 */
+	std::list<SimplifiedTree*> BOSSRootFile::CreateOrderedMap()
+	{
+		// * Create list of pointers to `SimplifiedTree` * //
+		std::list<SimplifiedTree*> outputList;
+		for(auto it = fTrees.begin(); it != fTrees.end(); ++it) outputList.push_back(&(it->second));
+		// * Sort resulting list based on number of entries * //
+		outputList.sort([](SimplifiedTree* const & a, SimplifiedTree* const & b)
+		{
+			std::string nameA = a->Get()->GetName();
+			std::string nameB = b->Get()->GetName();
+			return a->GetEntries() != b->GetEntries() ?
+				a->GetEntries() > b->GetEntries() :
+				nameA < nameB;
+		});
+		return outputList;
 	}
 
 

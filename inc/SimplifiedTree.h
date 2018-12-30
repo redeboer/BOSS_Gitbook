@@ -48,6 +48,7 @@
 			Long64_t&  Get_L(const char* name) { return fMap_L.at(name); }
 			ULong64_t& Get_l(const char* name) { return fMap_l.at(name); }
 			Bool_t&    Get_O(const char* name) { return fMap_O.at(name); }
+			Long64_t   GetEntries() const { return fTree->GetEntries(); }
 
 		// * INFORMATION * //
 			TH1F* DrawBranches(const char* branchX, const Int_t nBinx, const double x1, const double x2, const bool save=true, Option_t* opt="", const TString &logScale="");

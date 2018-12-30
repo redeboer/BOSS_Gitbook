@@ -36,6 +36,9 @@
 	#include "TString.h"
 	#include "TSystem.h"
 	#include "TTree.h"
+	#include <iomanip>
+	#include <locale>
+	#include <string>
 	#include <utility> // for shared pointers
 
 // * ============================ * //
@@ -84,6 +87,10 @@
 		namespace Loop
 		{
 			template<typename FUNCTOR, typename ...Rest> void LoopTree(TTree* tree, FUNCTOR&& lambda, Rest&&... args);
+		}
+		namespace Print
+		{
+			template<typename TYPE> std::string CommaFormattedString(TYPE number);
 		}
 
 	}
@@ -736,5 +743,26 @@
 		std::cout << "\rSuccesfully looped over " << nEntries << " events in the \"" << tree->GetName() << "\" tree" << std::endl;
 	}
 
+
+// * =================================== * //
+// * ------- SUB-NAMESPACE PRINT ------- * //
+// * =================================== * //
+
+	/**
+	 * @brief Create a string from a number that has a number between each 
+	 * @param number Number that you want to format.
+	 * @return Formatted string.
+	 */
+	template<typename TYPE>
+	std::string CommonFunctions::Print::CommaFormattedString(TYPE number)
+	{
+		std::string output = std::to_string(number);
+		int insertPosition = output.length()-3;
+		while (insertPosition > 0) {
+			output.insert(insertPosition, ",");
+			insertPosition -= 3;
+		}
+		return output;
+	}
 
 #endif
