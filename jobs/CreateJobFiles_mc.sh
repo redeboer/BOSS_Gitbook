@@ -64,7 +64,7 @@ set -e # exit if a command or function exits with a non-zero status
 # * ============================= * #
 
 	# * User input
-	echo "This will create ${nJobs} \"sim\" and \"rec\" jobOptions files with ${nEventsPerJob} events each in job."
+	echo "This will create ${nJobs} \"${packageName}\" simulation and reconstruction job option files with ${nEventsPerJob} events each in job."
 	echo "  --> Total number of events: $(printf "%'d" $((${nJobs} * ${nEventsPerJob})))"
 	AskForInput "\nTo write job files, press ENTER, else Ctrl+C ..."
 

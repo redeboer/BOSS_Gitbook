@@ -6,7 +6,7 @@
 	#include "CLHEP/Vector/LorentzVector.h"
 	#include "CLHEP/Vector/ThreeVector.h"
 	#include "CLHEP/Vector/TwoVector.h"
-	#include "TrackSelector/D0phi_KpiKK.h"
+	#include "D0phi_KpiKK/D0phi_KpiKK.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include "VertexFit/VertexFit.h"
 	#include <string>
@@ -37,8 +37,8 @@
 		fLog << MSG::DEBUG << "===>> D0phi_KpiKK::D0phi_KpiKK() <<===" << endmsg;
 
 		/// * The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
-		declareProperty("write_fit4c_all",     fWrite_fit4c_all     = false);
-		declareProperty("write_fit4c_best",    fWrite_fit4c_best    = false);
+		declareProperty("write_fit4c_all",      fWrite_fit4c_all      = false);
+		declareProperty("write_fit4c_best",     fWrite_fit4c_best     = false);
 		declareProperty("write_fit4c_best_D0",  fWrite_fit4c_best_D0  = false);
 		declareProperty("write_fit4c_best_phi", fWrite_fit4c_best_phi = false);
 
@@ -147,8 +147,8 @@
 
 			// * Finish good photon selection *
 			fLog << MSG::DEBUG
-				<< "N_{K^-}  = "  << fKaonNeg.size()
-				<< "N_{K^+}  = "  << fKaonPos.size()
+				<< "N_{K^-}  = "  << fKaonNeg.size() << ", "
+				<< "N_{K^+}  = "  << fKaonPos.size() << ", "
 				<< "N_{\pi^+} = " << fPionPos.size()
 				<< endmsg;
 
@@ -184,16 +184,19 @@
 			/// See `D0phi_KpiKK::MeasureForBestFit*` for the definition of this measure.
 			if(fWrite_fit4c_all || fWrite_fit4c_best || fWrite_fit4c_best_D0 || fWrite_fit4c_best_phi) {
 				// * Reset best fit parameters * //
+				KKFitResult_D0phi_KpiKK bestKalmanFit;
 				KKFitResult_D0phi_KpiKK bestKalmanFit_D0;
 				KKFitResult_D0phi_KpiKK bestKalmanFit_phi;
-				KKFitResult_D0phi_KpiKK bestKalmanFit;
+				bestKalmanFit.fBestCompareValue     = 1e9;
+				bestKalmanFit.fBestCompareValue_D0  = 1e9;
+				bestKalmanFit.fBestCompareValue_phi = 1e9;
 				// * Loop over all combinations of K-, K+, and pi+ * //
 				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
-				for(fKaonNeg2Iter = fKaonNeg1Iter+1;  fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
+				for(fKaonNeg2Iter = fKaonNeg.begin(); fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
 				for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter  != fKaonPos.end(); ++fKaonPosIter)
 				for(fPionPosIter  = fPionPos.begin(); fPionPosIter  != fPionPos.end(); ++fPionPosIter)
 				{
-
+					if(fKaonNeg1Iter == fKaonNeg2Iter) continue;
 					// * Get Kalman tracks reconstructed by the MDC
 						RecMdcKalTrack* kalTrkKm1 = (*fKaonNeg1Iter)->mdcKalTrack();
 						RecMdcKalTrack* kalTrkKm2 = (*fKaonNeg2Iter)->mdcKalTrack();
@@ -239,34 +242,21 @@
 						kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi+
 						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
 						if(kkmfit->Fit()) {
-							/// Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
+							/// # Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
 							if(kkmfit->chisq() > fCut_PIDChiSq_max) continue;
-							/// Compute the measure for the best Kalman kinematic fit and keep a pointer to this result if better than previous.
+							/// # <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
 							KKFitResult_D0phi_KpiKK fitresult(kkmfit);
+							if(fWrite_fit4c_all) WriteFitResults(fitresult, fMap_fit4c_all, "fit4c_all");
+							/// # Decide if this fit is better than the previous
 							if(fitresult.IsBetter())     bestKalmanFit     = fitresult;
 							if(fitresult.IsBetter_D0())  bestKalmanFit_D0  = fitresult;
 							if(fitresult.IsBetter_phi()) bestKalmanFit_phi = fitresult;
-							/// <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
-							if(fWrite_fit4c_all) WriteFitResults(kkmfit, fMap_fit4c_all, "fit4c_all");
 						}
-						kkmfitList.push_back(kkmfit);
-
 				} // end of loop over particle combinations
-
-
 		/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best_*"` branches)
-				if(fWrite_fit4c_best && bestKalmanFit) {
-					ComputeInvariantMasses(bestKalmanFit);
-					WriteFitResults(bestKalmanFit, fMap_fit4c_best, "fit4c_best");
-				}
-				if(fWrite_fit4c_best_D0 && bestKalmanFit_D0) {
-					ComputeInvariantMasses(bestKalmanFit_D0);
-					WriteFitResults(bestKalmanFit_D0, fMap_fit4c_best_D0, "fit4c_best_D0");
-				}
-				if(fWrite_fit4c_best_phi && bestKalmanFit_phi) {
-					ComputeInvariantMasses(bestKalmanFit_phi);
-					WriteFitResults(bestKalmanFit_phi, fMap_fit4c_best_phi, "fit4c_best_phi");
-				}
+				if(fWrite_fit4c_best)     WriteFitResults(bestKalmanFit,     fMap_fit4c_best,     "fit4c_best");
+				if(fWrite_fit4c_best_D0)  WriteFitResults(bestKalmanFit_D0,  fMap_fit4c_best_D0,  "fit4c_best_D0");
+				if(fWrite_fit4c_best_phi) WriteFitResults(bestKalmanFit_phi, fMap_fit4c_best_phi, "fit4c_best_phi");
 
 			} // end of fWrite_fit4c_*
 
@@ -299,6 +289,10 @@
 	 */
 	void D0phi_KpiKK::WriteFitResults(KKFitResult_D0phi_KpiKK &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName)
 	{
+		if(!fitresult.HasFit()) {
+			fLog << MSG::DEBUG << "KalmanKinematicFit for \"" << tupleName << "\" is empty" << endmsg;
+			return;
+		}
 		fLog << MSG::DEBUG << "Writing fit results \"" << tupleName << "\"" << endmsg;
 		map.at("mD0")   = fitresult.fM_D0;
 		map.at("mphi")  = fitresult.fM_phi;
@@ -320,72 +314,4 @@
 		map["chisq"]; /// <li> `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
 		AddItemsToNTuples(tupleName, map, tupleTitle);
 		/// </ol>
-	}
-
-
-
-// * ============================ * //
-// * ------- KKFITRESULTS ------- * //
-// * ============================ * //
-
-
-	void KKFitResult_D0phi_KpiKK::SetValues_rest()
-	{
-		/// # Test whether `KalmanKinematicFit` pointer exists.
-		if(!fFit) return;
-		/// # Get Lorentz vectors of the decay products:
-		HepLorentzVector pKaonNeg1 =  fFit->pfit(0); /// * \f$K^-\f$ (first occurrence)
-		HepLorentzVector pKaonNeg2 =  fFit->pfit(1); /// * \f$K^-\f$ (second occurrence)
-		HepLorentzVector pKaonPos  =  fFit->pfit(2); /// * \f$K^+\f$
-		HepLorentzVector pPionPos  =  fFit->pfit(3); /// * \f$\pi^+\f$
-		/// # Compute Lorentz vectors of the particles to be reconstructed:
-		HepLorentzVector pD0   = pKaonNeg1 + pPionPos; /// * \f$D^0 \rightarrow K^-\pi^+\f$
-		HepLorentzVector pphi  = pKaonNeg2 + pKaonPos; /// * \f$\phi \rightarrow K^-K^+\f$
-		HepLorentzVector pJpsi = pD0 + pphi;           /// * \f$J/\psi \rightarrow D^0\phi\f$
-		/// # Compute invariant masses:
-		fM_D0   = pD0.m();    /// * \f$M_{K^-\pi^+}\f$
-		fM_phi  = pphi.m();   /// * \f$M_{K^-K^+}\f$
-		fM_Jpsi = pJpsi.m();  /// * \f$M_{D^0\phi}\f$
-		/// # Compute measures for best fit:
-		fFitMeasure_D0  = (fM_D0  - gM_D0 ) / gM_D0;    /// * `fFitMeasure_D0`  = \f$\frac{M_{K^-\pi^+} - m_{D^0}   }{m_{D^0}   }\f$ (procentual difference with \f$m_{D^0}\f$)
-		fFitMeasure_phi = (fM_phi - gM_phi) / gM_phi;   /// * `fFitMeasure_phi` = \f$\frac{M_{K^-K^+}   - m_{\phi}  }{m_{\phi}  }\f$ (procentual difference with \f$m_{\phi}\f$)
-		fFitMeasure = fFitMeasure_D0 * fFitMeasure_phi; /// * `fFitMeasure` = `fFitMeasure_D0 * fFitMeasure_phi` (product of procentual differences)
-	}
-
-
-	void KKFitResult_D0phi_KpiKK::ResetCompareMeasures()
-	{
-		fFitMeasure     = 1e9;
-		fFitMeasure_D0  = 1e9;
-		fFitMeasure_phi = 1e9;
-	}
-
-
-	bool KKFitResult_D0phi_KpiKK::IsBetter()
-	{
-		/// # Returns `false` if the object does not contain a `KalmanKinematicFit`.
-		if(!fFit) return false;
-		/// # Returns `false` if its own `fCompareValue` worse than `fBestCompareValue`.
-		if(fCompareValue > fBestCompareValue) return false;
-		/// # If not, update `fBestCompareValue`
-		fBestCompareValue = fCompareValue;
-		return true;
-	}
-
-
-	bool KKFitResult_D0phi_KpiKK::IsBetter()
-	{
-		return IsBetter(fCompareValue, fBestCompareValue);
-	}
-
-
-	bool KKFitResult_D0phi_KpiKK::IsBetter_D0()
-	{
-		return IsBetter(fCompareValue_D0, fBestCompareValue_D0);
-	}
-
-
-	bool KKFitResult_D0phi_KpiKK::IsBetter_phi()
-	{
-		return IsBetter(fCompareValue_D0, fBestCompareValue_D0);
 	}

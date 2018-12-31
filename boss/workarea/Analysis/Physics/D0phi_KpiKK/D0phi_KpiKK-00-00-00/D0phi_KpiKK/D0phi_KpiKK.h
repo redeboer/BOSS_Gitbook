@@ -13,6 +13,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 	#include "TrackSelector/TrackSelector.h"
+	#include "D0phi_KpiKK/KKFitResult_D0phi_KpiKK.h"
 
 
 
@@ -58,33 +59,8 @@ protected:
 private:
 	// * Private methods
 	void BookNtupleItemsFit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle);
-	void WriteFitResults(KalmanKinematicFit *kkmfit, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName);
+	void WriteFitResults(KKFitResult_D0phi_KpiKK &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName);
 
-};
-
-
-/**
- * @brief Derived class for a container that contains important fit results of the `KalmanKinematicFit`, including masses.
- */
-class KKFitResult_D0phi_KpiKK : public KKFitResult
-{
-	KKFitResult_D0phi_KpiKK() {}
-	KKFitResult_D0phi_KpiKK(KalmanKinematicFit* kkmfit) : KKFitResult(kkmfit) {}
-
-	// * Public data members * //
-	static double fBestCompareValue_D0  = 1e9; //!< Current best value for the comparison with regard to \f$D^0\f$. See `KKFitResult::fBestCompareValue`.
-	static double fBestCompareValue_phi = 1e9; //!< Current best value for the comparison with regard to \f$\phi\f$. See `KKFitResult::fBestCompareValue`.
-	double fM_D0;   //!< Current computed mass of \f$D^0\f$.
-	double fM_Jpsi; //!< Current computed mass of \f$J/\psi\f$.
-	double fM_phi;  //!< Current computed mass of \f$\phi\f$.
-	double fFitMeasure;
-	double fFitMeasure_D0;
-	double fFitMeasure_phi;
-	bool IsBetter_D0();
-	bool IsBetter_phi();
-
-private:
-	// void SetValues_rest();
 };
 
 #endif

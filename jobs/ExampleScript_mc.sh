@@ -13,9 +13,9 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-packageName="D0phi_KpiKK"
-nJobs=50
-nEventsPerJob=20000
+packageName="rhopi_pipigg" # D0phi_KpiKK
+nJobs=20
+nEventsPerJob=5000
 outputLevel=4
 
 # * Create job from template and submit * #
