@@ -1,7 +1,7 @@
 #include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
 
 // * Define which packages to load *
-ApplicationMgr.DLLs   += {"TrackSelector"};
+ApplicationMgr.DLLs   += {"rhopi_pipigg"};
 ApplicationMgr.TopAlg += {"rhopi_pipigg"};
 
 // * Whether or not to select neutral/charged particles *
@@ -27,15 +27,15 @@ rhopi_pipigg.write_fit5c_all   = 1;
 rhopi_pipigg.write_fit5c_best  = 1;
 
 // * Primary vertex cuts *
-rhopi_pipigg.cut_Vr0_max    = 1e6; // 1.0
-rhopi_pipigg.cut_Vz0_max    = 1e6; // 5.0
-rhopi_pipigg.cut_Vrvz0_max  = 10.;
-rhopi_pipigg.cut_Vrvxy0_max = 1.;
+rhopi_pipigg.cut_MaxVr0    = 1e6; // 1.0
+rhopi_pipigg.cut_MaxVz0    = 1e6; // 5.0
+rhopi_pipigg.cut_MaxVrvz0  = 10.;
+rhopi_pipigg.cut_MaxVrvxy0 = 1.;
 
 // * Particle PID cuts *
-rhopi_pipigg.cut_PhotonEnergy_min = 0.04;
-rhopi_pipigg.cut_PIDChiSq_max     = 200.;
-rhopi_pipigg.cut_PIDProb_min      = 0.001;
-rhopi_pipigg.cut_GammaAngle_max   = 20.0;
-rhopi_pipigg.cut_GammaPhi_max     = 20.0;
-rhopi_pipigg.cut_GammaTheta_max   = 20.0;
+rhopi_pipigg.cut_MinPhotonEnergy = 0.04;
+rhopi_pipigg.cut_MaxPIDChiSq     = 200.;
+rhopi_pipigg.cut_MinPIDProb      = 0.001;
+rhopi_pipigg.cut_MaxGammaAngle   = 20.0;
+rhopi_pipigg.cut_MaxGammaPhi     = 20.0;
+rhopi_pipigg.cut_MaxGammaTheta   = 20.0;

@@ -70,7 +70,7 @@ set -e # exit if a command or function exits with a non-zero status
 # * ============================= * #
 
 	# * User input * #
-		echo "This will create \"ana_${packageName}_*.txt\" job files with ${nEventsPerJob} events each."
+		echo "This will create \"${packageName}_*.txt\" analysis job option files with ${nEventsPerJob} events each."
 		echo "These files will be written to folder:"
 		echo "   \"${scriptFolder}/ana\""
 		echo
@@ -97,8 +97,10 @@ set -e # exit if a command or function exits with a non-zero status
 				templateName="${scriptFolder}/templates/analysis.txt"
 				CheckIfFileExists "${templateName}"
 				outputFile="${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt"
+				packageNameCAP=$(echo ${packageName} | awk '{print toupper($0)}') # to upper case
 				# Replace simple parameters in template
 				awk '{flag = 1}
+					{sub(/__PACKAGENAME_CAP__/,"'${packageNameCAP}'")}
 					{sub(/__PACKAGENAME__/,"'${packageName}'")}
 					{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
 					{sub(/__NEVENTS__/,'${nEventsPerJob}')}
