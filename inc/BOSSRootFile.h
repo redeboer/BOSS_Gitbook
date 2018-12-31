@@ -29,6 +29,7 @@
 	#include <string>
 	#include <utility>
 	#include <list>
+	#include <map>
 	#include <unordered_map>
 	#include <math.h>
 
@@ -302,17 +303,37 @@
 	 */
 	void BOSSRootFile::PrintCutFlow()
 	{
-		auto width = std::ceil(std::log10(GetLargestEntries()));
-		width += 2;
-		width += width/3;
-		auto list = CreateOrderedMap();
-		std::cout << std::endl << "CUT FLOW FOR " << fTrees.size() << " TREES" << std::endl;
-		for(auto it : list) {
-			std::cout
-				<< std::right << std::setw(width) << CommonFunctions::Print::CommaFormattedString(it->GetEntries()) << "  "
-				<< std::left  << "\"" << it->Get()->GetName() << "\"" << std::endl;
-		}
-		std::cout << std::endl;
+		/// 1. Write number of entries per `TTree`.
+			auto width = std::ceil(std::log10(GetLargestEntries()));
+			width += 2;
+			width += width/3;
+			auto list = CreateOrderedMap();
+			std::cout << std::endl << "CUT FLOW FOR " << fTrees.size() << " TREES" << std::endl;
+			for(auto it : list) {
+				std::cout
+					<< std::right << std::setw(width) << CommonFunctions::Print::CommaFormattedString(it->GetEntries()) << "  "
+					<< std::left  << "\"" << it->Get()->GetName() << "\"" << std::endl;
+			}
+			std::cout << std::endl;
+		/// 2. If there is a `TTree` called `"_cutvalues"`, print these values and names as well.
+			auto key = fTrees.find("_cutvalues");
+			if(key == fTrees.end()) return;
+			if(!key->second.GetEntries()) return;
+			key->second.Get()->GetEntry(0); // get first entry of `TTree`
+			std::cout << "CUT PARAMTERS" << std::endl;
+			std::map<std::string, Double_t> tempMap; // temp *sorted* `map`
+			int length = 0;
+			for(auto it : key->second.Get_D()) {
+				tempMap[it.first] = it.second;
+				if(it.first.length() > length) length = it.first.length();
+			}
+			length += 4;
+			for(auto it : tempMap) {
+				std::cout
+					<< std::setw(length) << std::right << it.first << ": "
+					<< it.second << std::endl;
+			}
+			std::cout << std::endl;
 	}
 
 
@@ -352,7 +373,10 @@
 	{
 		// * Create list of pointers to `SimplifiedTree` * //
 		std::list<SimplifiedTree*> outputList;
-		for(auto it = fTrees.begin(); it != fTrees.end(); ++it) outputList.push_back(&(it->second));
+		for(auto it = fTrees.begin(); it != fTrees.end(); ++it) {
+			TString name(it->second.Get()->GetName());
+			if(!name.EqualTo("_cutvalues")) outputList.push_back(&(it->second));
+		}
 		// * Sort resulting list based on number of entries * //
 		outputList.sort([](SimplifiedTree* const & a, SimplifiedTree* const & b)
 		{

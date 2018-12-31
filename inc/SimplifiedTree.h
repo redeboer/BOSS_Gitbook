@@ -37,6 +37,17 @@
 
 		// * GETTERS * //
 			TTree* Get() { return fTree; }
+			std::unordered_map<std::string, Char_t>&    Get_B() { return fMap_B; }
+			std::unordered_map<std::string, UChar_t>&   Get_b() { return fMap_b; }
+			std::unordered_map<std::string, Short_t>&   Get_S() { return fMap_S; }
+			std::unordered_map<std::string, UShort_t>&  Get_s() { return fMap_s; }
+			std::unordered_map<std::string, Int_t>&     Get_I() { return fMap_I; }
+			std::unordered_map<std::string, UInt_t>&    Get_i() { return fMap_i; }
+			std::unordered_map<std::string, Float_t>&   Get_F() { return fMap_F; }
+			std::unordered_map<std::string, Double_t>&  Get_D() { return fMap_D; }
+			std::unordered_map<std::string, Long64_t>&  Get_L() { return fMap_L; }
+			std::unordered_map<std::string, ULong64_t>& Get_l() { return fMap_l; }
+			std::unordered_map<std::string, Bool_t>&    Get_O() { return fMap_O; }
 			Char_t&    Get_B(const char* name) { return fMap_B.at(name); }
 			UChar_t&   Get_b(const char* name) { return fMap_b.at(name); }
 			Short_t&   Get_S(const char* name) { return fMap_S.at(name); }

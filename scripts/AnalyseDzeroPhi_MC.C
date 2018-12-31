@@ -23,7 +23,9 @@
 // ! ============================== ! //
 
 	// * INPUT FILE * //
-	const char* filename = "/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_MC_1e5.root";
+	const char* filename =
+		// "/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_MC_1e6.root";
+		"/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_0.root";
 
 	// * TERMINAL OUTPUT * //
 	const bool print = 0; //!< Whether or not to use the precisely set histogram ranges.
@@ -33,7 +35,7 @@
 	const bool plotstats = 1; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
 
 	// * WHICH BRANCHES TO PLOT * //
-	const bool pureplot    = 1; //!< Whether or not to plot histograms of branches <i>without fit</i>.
+	const bool pureplot    = 0; //!< Whether or not to plot histograms of branches <i>without fit</i>.
 	const bool draw_mult   = 1; //!< Whether or not to draw the multiplicity branches.
 	const bool draw_vertex = 1; //!< Whether or not to draw the `"vertex"` branch.
 	const bool draw_tof    = 1; //!< Whether or not to draw the `"tof*"` branches.
@@ -62,7 +64,7 @@ void FitInvMassSignal()
 		if(file.IsZombie()) return;
 		if(!plotstats) gStyle->SetOptStat(0);
 		file.PrintCutFlow();
-return;
+// return;
 
 	// * PLOT BRANCHES WITHOUT FITS * //
 		if(pureplot) {
