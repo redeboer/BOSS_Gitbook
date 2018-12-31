@@ -15,6 +15,7 @@ var searchData=
   ['setranges',['setranges',['../AnalyseDzeroPhi__data_8C.html#a0b2d25f24081e5e209992b9769d11360',1,'setranges():&#160;AnalyseDzeroPhi_data.C'],['../AnalyseDzeroPhi__MC_8C.html#a0b2d25f24081e5e209992b9769d11360',1,'setranges():&#160;AnalyseDzeroPhi_MC.C'],['../InvestigateBOSSRootFile_8C.html#a0b2d25f24081e5e209992b9769d11360',1,'setranges():&#160;InvestigateBOSSRootFile.C']]],
   ['setsmallestangles',['SetSmallestAngles',['../classrhopi__pipigg.html#a7b6e6252d16466e637ecc28a82c5df8d',1,'rhopi_pipigg']]],
   ['settings',['Settings',['../namespaceSettings.html',1,'']]],
+  ['setvalues',['SetValues',['../classKKFitResult__D0phi__KpiKK.html#a78ab66239f9af5cc4a81c23cee333d8f',1,'KKFitResult_D0phi_KpiKK::SetValues()'],['../classKKFitResult.html#add33917bee1940892f0b180d5f6cf6ea',1,'KKFitResult::SetValues()']]],
   ['shared_5fptr',['SHARED_PTR',['../FrameworkSettings_8h.html#aad1cfcc8d905aaf9a625304b8d6f476e',1,'FrameworkSettings.h']]],
   ['simplifiedtree',['SimplifiedTree',['../classSimplifiedTree.html',1,'SimplifiedTree'],['../classSimplifiedTree.html#ad6bec648c9ae733912f3aa156d8773de',1,'SimplifiedTree::SimplifiedTree()'],['../classSimplifiedTree.html#aae73269beceeb816787a6f95e650c771',1,'SimplifiedTree::SimplifiedTree(TTree *fTree, bool print=true)']]],
   ['simplifiedtree_2eh',['SimplifiedTree.h',['../SimplifiedTree_8h.html',1,'']]],

@@ -1,13 +1,8 @@
 var searchData=
 [
-  ['savecanvas',['SaveCanvas',['../namespaceCommonFunctions_1_1Draw.html#a36f64ebbbd69516c8d22dec07fc3037e',1,'CommonFunctions::Draw']]],
-  ['setaddress',['SetAddress',['../classSimplifiedTree.html#ad555eb545bd6dc66e0be1f9084f9b135',1,'SimplifiedTree']]],
-  ['setaddresssafe',['SetAddressSafe',['../classSimplifiedTree.html#af87a25b6a6ce6e05be3390f23b91252a',1,'SimplifiedTree']]],
-  ['setaxistitles',['SetAxisTitles',['../namespaceCommonFunctions_1_1Hist.html#a1fc2ea57d25a75da6bcdd3b83c063b6f',1,'CommonFunctions::Hist']]],
-  ['setbranchaddress',['SetBranchAddress',['../classBOSSRootChain.html#ace5af0bff981d3283f12c359c9f18c21',1,'BOSSRootChain::SetBranchAddress()'],['../classBOSSRootFile.html#a04105374cbf3e7a745edf371afee4111',1,'BOSSRootFile::SetBranchAddress()']]],
-  ['setdaughterlabel',['SetDaughterLabel',['../classReconstructedParticle.html#a07eb465bf055a192e36f364dfb4ae7ef',1,'ReconstructedParticle']]],
-  ['setlogscale',['SetLogScale',['../namespaceCommonFunctions_1_1Draw.html#a909c1fc4f2ff18ee7626a4188795d4d2',1,'CommonFunctions::Draw']]],
-  ['setoutputfilename',['SetOutputFilename',['../namespaceCommonFunctions_1_1File.html#a59d365fb3792eaa3bab6d275a1a2d9ba',1,'CommonFunctions::File']]],
-  ['setsmallestangles',['SetSmallestAngles',['../classrhopi__pipigg.html#a7b6e6252d16466e637ecc28a82c5df8d',1,'rhopi_pipigg']]],
-  ['simplifiedtree',['SimplifiedTree',['../classSimplifiedTree.html#ad6bec648c9ae733912f3aa156d8773de',1,'SimplifiedTree::SimplifiedTree()'],['../classSimplifiedTree.html#aae73269beceeb816787a6f95e650c771',1,'SimplifiedTree::SimplifiedTree(TTree *fTree, bool print=true)']]]
+  ['reconstructedparticle',['ReconstructedParticle',['../classReconstructedParticle.html#a92d433507c9aaa350dd5999eff1c5cab',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode)'],['../classReconstructedParticle.html#a4d4ac611435e63765574304852ec23e6',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode)'],['../classReconstructedParticle.html#a38b19a3d3f5b338ac7e5e553cc925442',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode, const char *daughters)'],['../classReconstructedParticle.html#a95cf3aff593e7dbbb86849109cadc894',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode, const char *daughters)']]],
+  ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#a5a404d3db862276fa70b85a353496d4e',1,'Settings::Particles']]],
+  ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],
+  ['rhopi_5fpipigg',['rhopi_pipigg',['../classrhopi__pipigg.html#a6a2dce6146cebb243245965e9d9d3a85',1,'rhopi_pipigg']]],
+  ['rhopialg',['RhopiAlg',['../classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb',1,'RhopiAlg']]]
 ];

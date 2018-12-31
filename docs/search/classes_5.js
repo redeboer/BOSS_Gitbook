@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['trackselector',['TrackSelector',['../classTrackSelector.html',1,'']]]
+  ['simplifiedtree',['SimplifiedTree',['../classSimplifiedTree.html',1,'']]]
 ];

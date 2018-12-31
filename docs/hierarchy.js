@@ -9,6 +9,9 @@ var hierarchy =
     ] ],
     [ "BOSSRootChain", "classBOSSRootChain.html", null ],
     [ "BOSSRootFile", "classBOSSRootFile.html", null ],
+    [ "KKFitResult", "classKKFitResult.html", [
+      [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", null ]
+    ] ],
     [ "Particle", "classParticle.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", null ]
     ] ],

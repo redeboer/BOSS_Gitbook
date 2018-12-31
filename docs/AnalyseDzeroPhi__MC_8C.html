@@ -103,7 +103,7 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a7efa5e9c7494c7d4586359300221aa5d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AnalyseDzeroPhi__MC_8C.html#a7efa5e9c7494c7d4586359300221aa5d">filename</a> = &quot;/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_MC_1e5.root&quot;</td></tr>
+<tr class="memitem:a7efa5e9c7494c7d4586359300221aa5d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AnalyseDzeroPhi__MC_8C.html#a7efa5e9c7494c7d4586359300221aa5d">filename</a></td></tr>
 <tr class="separator:a7efa5e9c7494c7d4586359300221aa5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98704691bff479196601fa28ca402e2a"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AnalyseDzeroPhi__MC_8C.html#a98704691bff479196601fa28ca402e2a">print</a> = 0</td></tr>
 <tr class="memdesc:a98704691bff479196601fa28ca402e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to use the precisely set histogram ranges.  <a href="#a98704691bff479196601fa28ca402e2a">More...</a><br /></td></tr>
@@ -114,7 +114,7 @@ Variables</h2></td></tr>
 <tr class="memitem:ab52728055a03022adc39e2431ec655cd"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AnalyseDzeroPhi__MC_8C.html#ab52728055a03022adc39e2431ec655cd">plotstats</a> = 1</td></tr>
 <tr class="memdesc:ab52728055a03022adc39e2431ec655cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the legend in the upper right corner with histogram statistics.  <a href="#ab52728055a03022adc39e2431ec655cd">More...</a><br /></td></tr>
 <tr class="separator:ab52728055a03022adc39e2431ec655cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a256076e616aa416b2ef78d2cd1210c42"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AnalyseDzeroPhi__MC_8C.html#a256076e616aa416b2ef78d2cd1210c42">pureplot</a> = 1</td></tr>
+<tr class="memitem:a256076e616aa416b2ef78d2cd1210c42"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AnalyseDzeroPhi__MC_8C.html#a256076e616aa416b2ef78d2cd1210c42">pureplot</a> = 0</td></tr>
 <tr class="memdesc:a256076e616aa416b2ef78d2cd1210c42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to plot histograms of branches <em>without fit</em>.  <a href="#a256076e616aa416b2ef78d2cd1210c42">More...</a><br /></td></tr>
 <tr class="separator:a256076e616aa416b2ef78d2cd1210c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c08aca6102b4f9d72aedce131eaf26e"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AnalyseDzeroPhi__MC_8C.html#a5c08aca6102b4f9d72aedce131eaf26e">draw_mult</a> = 1</td></tr>
@@ -161,7 +161,7 @@ Variables</h2></td></tr>
 <p>Main function used when compiling and executing in <code>ROOT</code>. </p>
 <p>To investigate the contents of the ROOT file, you first need to know which <code>TTree</code>s and branches it contains. If you simply construct the <code><a class="el" href="classBOSSRootFile.html" title="General container for BOSS analysis output. ">BOSSRootFile</a></code> by giving it a file name, all <code>TTree</code>s will be loaded automatically as well as addresses for each of their branches. Five the constructer <code>true</code> as its second argument, and the names of these <code>TTree</code>s, their branches, and the types of these branches (behind the slash <code>/</code> after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00056">56</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00058">58</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -183,7 +183,7 @@ Variables</h2></td></tr>
 <p>Main function that is called when executing the executable compiled using e.g. </p>
 <p><code>g++</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00167">167</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00169">169</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -202,7 +202,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to produce perform a Breit-Wigner convoluted with a <em>double</em> Gaussian. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00046">46</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00048">48</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -220,7 +220,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to produce perform a Breit-Wigner convoluted with a <em>single</em> Gaussian. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00045">45</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00047">47</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -238,7 +238,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to produce perform a double Gaussian fit. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00044">44</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00046">46</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -256,7 +256,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to draw the <code>"fit"</code> branches. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00040">40</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00042">42</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -274,7 +274,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to draw the multiplicity branches. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00037">37</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00039">39</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -292,7 +292,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to draw the <code>"tof*"</code> branches. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00039">39</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00041">41</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -310,7 +310,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to draw the <code>"vertex"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00038">38</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00040">40</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -321,11 +321,11 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* filename = &quot;/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_MC_1e5.root&quot;</td>
+          <td class="memname">const char* filename</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">        </div><div class="line">        <span class="stringliteral">&quot;/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_0.root&quot;</span></div></div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00026">26</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
@@ -344,7 +344,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to produce invariant mass fits. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00043">43</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00045">45</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -362,7 +362,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to draw the legend in the upper right corner with histogram statistics. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00033">33</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00035">35</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -380,7 +380,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to use the precisely set histogram ranges. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00029">29</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00031">31</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -391,14 +391,14 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const bool pureplot = 1</td>
+          <td class="memname">const bool pureplot = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Whether or not to plot histograms of branches <em>without fit</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00036">36</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00038">38</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>
@@ -416,7 +416,7 @@ Variables</h2></td></tr>
 
 <p>Whether or not to precisely set histogram ranges. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00032">32</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html#l00034">34</a> of file <a class="el" href="AnalyseDzeroPhi__MC_8C_source.html">AnalyseDzeroPhi_MC.C</a>.</p>
 
 </div>
 </div>

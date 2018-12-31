@@ -242,12 +242,12 @@
 						kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi+
 						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
 						if(kkmfit->Fit()) {
-							/// # Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
+							/// -# Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
 							if(kkmfit->chisq() > fCut_PIDChiSq_max) continue;
-							/// # <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
+							/// -# <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
 							KKFitResult_D0phi_KpiKK fitresult(kkmfit);
 							if(fWrite_fit4c_all) WriteFitResults(fitresult, fMap_fit4c_all, "fit4c_all");
-							/// # Decide if this fit is better than the previous
+							/// -# Decide if this fit is better than the previous
 							if(fitresult.IsBetter())     bestKalmanFit     = fitresult;
 							if(fitresult.IsBetter_D0())  bestKalmanFit_D0  = fitresult;
 							if(fitresult.IsBetter_phi()) bestKalmanFit_phi = fitresult;

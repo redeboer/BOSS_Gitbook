@@ -1,54 +1,61 @@
-\form#0:$K^+$
+\form#0:$ J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ \pi^-\pi^+ $
 \form#1:$K^-$
-\form#2:$\pi^-$
-\form#3:$dE/dx$
-\form#4:$\chi^2 > 4.0$
-\form#5:\[ \left(\frac{m_{K^-\pi^+}-m_{D^0} }{m_{D^0} }\right) \cdot \left(\frac{m_{K^-K^+} -m_{\phi}}{m_{\phi}}\right). \]
-\form#6:$\chi^2$
-\form#7:$D^0 \rightarrow K^-\pi^+$
-\form#8:$\phi \rightarrow K^-K^+$
-\form#9:$K^- \pi^+$
-\form#10:$D^0$
-\form#11:$K^+ K^+ $
-\form#12:$\phi$
-\form#13:$D^0 \phi $
-\form#14:$J/\psi$
-\form#15:$\gamma$
-\form#16:$\pi^+$
-\form#17:$\pm$
-\form#18:$\pi^0 \rightarrow \gamma\gamma$
-\form#19:$\rho^0 \rightarrow \pi^-\pi^+$
-\form#20:$\rho^- \rightarrow \pi^0\pi^-$
-\form#21:$\rho^+ \rightarrow \pi^0\pi^+$
-\form#22:$J/\psi \rightarrow \rho^0\pi^0$
-\form#23:$J/\psi \rightarrow \rho^-\pi^+$
-\form#24:$J/\psi \rightarrow \rho^+\pi^-$
-\form#25:$rho^0 \rightarrow \pi^-\pi^+$
-\form#26:$rho^- \rightarrow \pi^0\pi^-$
-\form#27:$rho^+ \rightarrow \pi^0\pi^+$
-\form#28:$x$
-\form#29:$y$
-\form#30:$z$
-\form#31:$xy$
-\form#32:$p$
-\form#33:$\theta$
-\form#34:$Z$
-\form#35:$R$
-\form#36:$ J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ \pi^-\pi^+ $
-\form#37:$m_{D^0}$
-\form#38:$m_\phi$
-\form#39:$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\\gamma\gamma $
-\form#40:$\rho^{0\pm}$
-\form#41:$\pi^0$
-\form#42:$\pi^\pm$
-\form#43:$K^\pm$
-\form#44:$r$
-\form#45:$\chi_\mathrm{red}^2$
-\form#46:$ e^- $
-\form#47:$ \mu^- $
-\form#48:$ \pi^+ $
-\form#49:$ \pi^0 $
-\form#50:$ \rho^\pm $
-\form#51:$ \rho^0 $
-\form#52:$ K^\pm $
-\form#53:$ p $
+\form#2:$K^+$
+\form#3:$\pi^+$
+\form#4:$m_{D^0}$
+\form#5:$m_\phi$
+\form#6:$D^0$
+\form#7:$\phi$
+\form#8:$J/\psi$
+\form#9:$\pi^-$
+\form#10:$dE/dx$
+\form#11:$\chi^2 > 4.0$
+\form#12:\[ \left(\frac{m_{K^-\pi^+}-m_{D^0} }{m_{D^0} }\right) \cdot \left(\frac{m_{K^-K^+} -m_{\phi}}{m_{\phi}}\right). \]
+\form#13:$\chi^2$
+\form#14:$K^- \pi^+$
+\form#15:$K^+ K^+ $
+\form#16:$D^0 \phi $
+\form#17:$D^0 \rightarrow K^-\pi^+$
+\form#18:$\phi \rightarrow K^-K^+$
+\form#19:$J/\psi \rightarrow D^0\phi$
+\form#20:$M_{K^-\pi^+}$
+\form#21:$M_{K^-K^+}$
+\form#22:$M_{D^0\phi}$
+\form#23:$\frac{M_{K^-\pi^+} - m_{D^0} }{m_{D^0} }$
+\form#24:$\frac{M_{K^-K^+} - m_{\phi}}{m_{\phi} }$
+\form#25:$m_{\phi}$
+\form#26:$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\\gamma\gamma $
+\form#27:$\gamma$
+\form#28:$\theta$
+\form#29:$\pi^0 \rightarrow \gamma\gamma$
+\form#30:$\rho^0 \rightarrow \pi^-\pi^+$
+\form#31:$\rho^- \rightarrow \pi^0\pi^-$
+\form#32:$\rho^+ \rightarrow \pi^0\pi^+$
+\form#33:$J/\psi \rightarrow \rho^0\pi^0$
+\form#34:$J/\psi \rightarrow \rho^+\pi^-$
+\form#35:$J/\psi \rightarrow \rho^-\pi^+$
+\form#36:$\pm$
+\form#37:$rho^0 \rightarrow \pi^-\pi^+$
+\form#38:$rho^- \rightarrow \pi^0\pi^-$
+\form#39:$rho^+ \rightarrow \pi^0\pi^+$
+\form#40:$x$
+\form#41:$y$
+\form#42:$z$
+\form#43:$xy$
+\form#44:$p$
+\form#45:$Z$
+\form#46:$R$
+\form#47:$\rho^{0\pm}$
+\form#48:$\pi^0$
+\form#49:$\pi^\pm$
+\form#50:$K^\pm$
+\form#51:$r$
+\form#52:$\chi_\mathrm{red}^2$
+\form#53:$ e^- $
+\form#54:$ \mu^- $
+\form#55:$ \pi^+ $
+\form#56:$ \pi^0 $
+\form#57:$ \rho^\pm $
+\form#58:$ \rho^0 $
+\form#59:$ K^\pm $
+\form#60:$ p $

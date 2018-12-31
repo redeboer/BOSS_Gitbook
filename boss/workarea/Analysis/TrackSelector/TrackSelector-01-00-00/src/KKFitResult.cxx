@@ -52,11 +52,11 @@
 	 */
 	bool KKFitResult::IsBetter(const double &value, double &bestvalue)
 	{
-		/// # Returns `false` if the object does not contain a `KalmanKinematicFit`.
+		/// -# Returns `false` if the object does not contain a `KalmanKinematicFit`.
 		if(!fFit) return false;
-		/// # Returns `false` if its own `fCompareValue` worse than `fBestCompareValue`.
+		/// -# Returns `false` if its own `fCompareValue` worse than `fBestCompareValue`.
 		if(value > bestvalue) return false;
-		/// # If not, update `fBestCompareValue`
+		/// -# If not, update `fBestCompareValue`
 		bestvalue = value;
 		return true;
 	}

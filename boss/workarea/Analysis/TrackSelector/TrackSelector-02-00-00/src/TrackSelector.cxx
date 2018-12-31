@@ -584,7 +584,7 @@
 	 */
 	void TrackSelector::WriteCuts()
 	{
-		/// # Create list of cut tuples based on declared properties (they are added if they start with `"cut_"`)
+		/// -# Create list of cut tuples based on declared properties (they are added if they start with `"cut_"`)
 		std::vector<Property*>::const_iterator it;
 		for(it = getProperties().begin(); it != getProperties().end(); ++it) {
 			TString cutname((*it)->name());
@@ -594,7 +594,7 @@
 			}
 		}
 		AddItemsToNTuples("_cutvalues", fMap_cuts, "Cut values");
-		/// # Set values of these `NTuple::Item`s
+		/// -# Set values of these `NTuple::Item`s
 		for(it = getProperties().begin(); it != getProperties().end(); ++it) {
 			TString cutname((*it)->name());
 			if(cutname.BeginsWith("cut_")) {
@@ -603,7 +603,7 @@
 				fMap_cuts[cutname.Data()] = value.Atof();
 			}
 		}
-		/// # Write values to output file
+		/// -# Write values to output file
 		fNTupleMap.at("_cutvalues")->write();
 	}
 

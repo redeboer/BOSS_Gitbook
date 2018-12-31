@@ -314,6 +314,7 @@ EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/DzeroPhi/*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-02-*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/TrackSelector/TrackSelector-00-*
+EXCLUDE_PATTERNS += */boss/workarea/Analysis/TrackSelector/TrackSelector-01-*
 EXCLUDE_PATTERNS += */boss/workarea/Generator/*
 EXCLUDE_PATTERNS += */scripts/Analyse_*.C
 EXCLUDE_PATTERNS += *_entries.cxx

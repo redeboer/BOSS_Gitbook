@@ -331,22 +331,22 @@
 
 	void KKFitResult_D0phi_KpiKK::SetValues_rest()
 	{
-		/// # Test whether `KalmanKinematicFit` pointer exists.
+		/// -# Test whether `KalmanKinematicFit` pointer exists.
 		if(!fFit) return;
-		/// # Get Lorentz vectors of the decay products:
+		/// -# Get Lorentz vectors of the decay products:
 		HepLorentzVector pKaonNeg1 =  fFit->pfit(0); /// * \f$K^-\f$ (first occurrence)
 		HepLorentzVector pKaonNeg2 =  fFit->pfit(1); /// * \f$K^-\f$ (second occurrence)
 		HepLorentzVector pKaonPos  =  fFit->pfit(2); /// * \f$K^+\f$
 		HepLorentzVector pPionPos  =  fFit->pfit(3); /// * \f$\pi^+\f$
-		/// # Compute Lorentz vectors of the particles to be reconstructed:
+		/// -# Compute Lorentz vectors of the particles to be reconstructed:
 		HepLorentzVector pD0   = pKaonNeg1 + pPionPos; /// * \f$D^0 \rightarrow K^-\pi^+\f$
 		HepLorentzVector pphi  = pKaonNeg2 + pKaonPos; /// * \f$\phi \rightarrow K^-K^+\f$
 		HepLorentzVector pJpsi = pD0 + pphi;           /// * \f$J/\psi \rightarrow D^0\phi\f$
-		/// # Compute invariant masses:
+		/// -# Compute invariant masses:
 		fM_D0   = pD0.m();    /// * \f$M_{K^-\pi^+}\f$
 		fM_phi  = pphi.m();   /// * \f$M_{K^-K^+}\f$
 		fM_Jpsi = pJpsi.m();  /// * \f$M_{D^0\phi}\f$
-		/// # Compute measures for best fit:
+		/// -# Compute measures for best fit:
 		fFitMeasure_D0  = (fM_D0  - gM_D0 ) / gM_D0;    /// * `fFitMeasure_D0`  = \f$\frac{M_{K^-\pi^+} - m_{D^0}   }{m_{D^0}   }\f$ (procentual difference with \f$m_{D^0}\f$)
 		fFitMeasure_phi = (fM_phi - gM_phi) / gM_phi;   /// * `fFitMeasure_phi` = \f$\frac{M_{K^-K^+}   - m_{\phi}  }{m_{\phi}  }\f$ (procentual difference with \f$m_{\phi}\f$)
 		fFitMeasure = fFitMeasure_D0 * fFitMeasure_phi; /// * `fFitMeasure` = `fFitMeasure_D0 * fFitMeasure_phi` (product of procentual differences)
@@ -363,11 +363,11 @@
 
 	bool KKFitResult_D0phi_KpiKK::IsBetter()
 	{
-		/// # Returns `false` if the object does not contain a `KalmanKinematicFit`.
+		/// -# Returns `false` if the object does not contain a `KalmanKinematicFit`.
 		if(!fFit) return false;
-		/// # Returns `false` if its own `fCompareValue` worse than `fBestCompareValue`.
+		/// -# Returns `false` if its own `fCompareValue` worse than `fBestCompareValue`.
 		if(fCompareValue > fBestCompareValue) return false;
-		/// # If not, update `fBestCompareValue`
+		/// -# If not, update `fBestCompareValue`
 		fBestCompareValue = fCompareValue;
 		return true;
 	}
