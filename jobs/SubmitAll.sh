@@ -52,7 +52,7 @@
 # * ================================ * #
 
 	CheckFolder ${scriptFolder}
-	nJobs=$(ls ${scriptFolder}/sub/sub_${analysisType}_*.sh | wc -l)
+	nJobs=$(ls ${scriptFolder}/sub/* | grep -E sub_${analysisType}_[0-9]+.sh$ | wc -l)
 	if [ ${nJobs} == 0 ]; then
 		PrintErrorMessage "ERROR: No jobs of type \"${analysisType}\" available"
 		exit
@@ -64,7 +64,7 @@
 # * ====================================== * #
 
 	AskForInput "Press ENTER to submit ${nJobs} \"${analysisType}\" jobs..."
-	for job in $(ls ${scriptFolder}/sub/sub_${analysisType}_*.sh); do
+	for job in $(ls ${scriptFolder}/sub/* | grep -E sub_${analysisType}_[0-9]+.sh$); do
 		hep_sub -g physics "${job}"
 		if [ $? != 0 ]; then
 			PrintErrorMessage "Aborted submitting jobs"

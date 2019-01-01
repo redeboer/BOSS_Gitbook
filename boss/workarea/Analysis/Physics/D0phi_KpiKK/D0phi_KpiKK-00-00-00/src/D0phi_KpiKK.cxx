@@ -114,9 +114,13 @@
 					if(!InitializePID(
 						fPIDInstance->methodProbability(),
 							/// <li> use <b>probability method</b>
-						fPIDInstance->useDedx() | fPIDInstance->useTof1() | fPIDInstance->useTof2() | fPIDInstance->useTofE(),
+						fPIDInstance->useDedx() |
+						fPIDInstance->useTof1() |
+						fPIDInstance->useTof2() |
+						fPIDInstance->useTofE(),
 							/// <li> use \f$dE/dx\f$ and the three ToF detectors
-						fPIDInstance->onlyPion() | fPIDInstance->onlyKaon(),
+						fPIDInstance->onlyPion() |
+						fPIDInstance->onlyKaon(),
 							/// <li> identify only pions and kaons
 						4.0
 							/// <li> use \f$\chi^2 > 4.0\f$
@@ -149,14 +153,7 @@
 			fLog << MSG::DEBUG
 				<< "N_{K^-}  = "  << fKaonNeg.size() << ", "
 				<< "N_{K^+}  = "  << fKaonPos.size() << ", "
-				<< "N_{\pi^+} = " << fPionPos.size()
-				<< endmsg;
-
-
-		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
-			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
-			if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
-			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
+				<< "N_{\pi^+} = " << fPionPos.size() << endmsg;
 
 
 		/// <li> <b>Write</b> the multiplicities of the selected particles.
@@ -166,6 +163,12 @@
 				fMap_mult_select.at("NPionPos") = fPionPos.size();
 				fNTupleMap.at("mult_select")->write();
 			}
+
+
+		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
+			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
+			if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
+			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
 
 
 		/// <li> <b>Write</b> \f$dE/dx\f$ PID information (`"dedx"` branch)
