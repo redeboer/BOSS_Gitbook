@@ -24,15 +24,15 @@
 
 	// * INPUT FILE * //
 	const char* filename =
-		// "/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_MC_1e6.root";
-		"/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_0.root";
+		"/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_MC_1e6.root";
+		// "/mnt/c/IHEP/scratchfs/bes/deboer/data/root/D0phi_KpiKK_0.root";
 
 	// * TERMINAL OUTPUT * //
-	const bool print = 0; //!< Whether or not to use the precisely set histogram ranges.
+	const bool print = 1; //!< Whether or not to use the precisely set histogram ranges.
 
 	// * PLOT STYLE * //
 	const bool setranges = 1; //!< Whether or not to precisely set histogram ranges.
-	const bool plotstats = 1; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
+	const bool plotstats = 0; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
 
 	// * WHICH BRANCHES TO PLOT * //
 	const bool pureplot    = 0; //!< Whether or not to plot histograms of branches <i>without fit</i>.

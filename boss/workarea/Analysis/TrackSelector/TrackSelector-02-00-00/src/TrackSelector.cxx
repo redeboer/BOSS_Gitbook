@@ -535,22 +535,22 @@
 	void TrackSelector::BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		/// <ol>
-		map["p"];          /// <li> `"p"`:          Momentum of the track as reconstructed by MDC.
-		map["dedx_mom"];   /// <li> `"dedx_mom"`    "\f$dE/dx\f$ calib used momentum".
-		map["dedx_e"];     /// <li> `"dedx_e"`      Expected value of \f$dE/dx\f$ in case of electron hypothesis.
-		map["dedx_mu"];    /// <li> `"dedx_mu"`     Expected value of \f$dE/dx\f$ in case of muon hypothesis.
-		map["dedx_pi"];    /// <li> `"dedx_pi"`     Expected value of \f$dE/dx\f$ in case of pion hypothesis.
-		map["dedx_K"];     /// <li> `"dedx_K"`      Expected value of \f$dE/dx\f$ in case of kaon hypothesis.
-		map["dedx_P"];     /// <li> `"dedx_P"`      Expected value of \f$dE/dx\f$ in case of proton hypothesis.
-		map["chie"];       /// <li> `"chie"`:       \f$\chi^2\f$ in case of electron ("number of \f$\sigma\f$ from \f$e^\pm\f$").
-		map["chimu"];      /// <li> `"chimu"`:      \f$\chi^2\f$ in case of muon ("number of \f$\sigma\f$ from \f$\mu^\pm\f$").
-		map["chipi"];      /// <li> `"chipi"`:      \f$\chi^2\f$ in case of pion ("number of \f$\sigma\f$ from \f$\pi^\pm\f$").
-		map["chik"];       /// <li> `"chik"`:       \f$\chi^2\f$ in case of kaon ("number of \f$\sigma\f$ from \f$K^\pm\f$").
-		map["chip"];       /// <li> `"chip"`:       \f$\chi^2\f$ in case of proton ("number of \f$\sigma\f$ from \f$p^\pm\f$").
-		map["probPH"];     /// <li> `"probPH"`:     Most probable pulse height from truncated mean.
-		map["normPH"];     /// <li> `"normPH"`:     Normalized pulse height.
+		// map["dedx_K"];     /// <li> `"dedx_K"`      Expected value of \f$dE/dx\f$ in case of kaon hypothesis.
+		// map["dedx_P"];     /// <li> `"dedx_P"`      Expected value of \f$dE/dx\f$ in case of proton hypothesis.
+		// map["dedx_e"];     /// <li> `"dedx_e"`      Expected value of \f$dE/dx\f$ in case of electron hypothesis.
+		// map["dedx_mom"];   /// <li> `"dedx_mom"`    "\f$dE/dx\f$ calib used momentum".
+		// map["dedx_mu"];    /// <li> `"dedx_mu"`     Expected value of \f$dE/dx\f$ in case of muon hypothesis.
+		// map["dedx_pi"];    /// <li> `"dedx_pi"`     Expected value of \f$dE/dx\f$ in case of pion hypothesis.
 		map["Ngoodhits"];  /// <li> `"Ngoodhits"`:  Number of good \f$dE/dx\f$ hits (excluding overflow).
 		map["Ntotalhits"]; /// <li> `"Ntotalhits"`: Number of good \f$dE/dx\f$ hits (including overflow).
+		map["chie"];       /// <li> `"chie"`:       \f$\chi^2\f$ in case of electron ("number of \f$\sigma\f$ from \f$e^\pm\f$").
+		map["chik"];       /// <li> `"chik"`:       \f$\chi^2\f$ in case of kaon ("number of \f$\sigma\f$ from \f$K^\pm\f$").
+		map["chimu"];      /// <li> `"chimu"`:      \f$\chi^2\f$ in case of muon ("number of \f$\sigma\f$ from \f$\mu^\pm\f$").
+		map["chip"];       /// <li> `"chip"`:       \f$\chi^2\f$ in case of proton ("number of \f$\sigma\f$ from \f$p^\pm\f$").
+		map["chipi"];      /// <li> `"chipi"`:      \f$\chi^2\f$ in case of pion ("number of \f$\sigma\f$ from \f$\pi^\pm\f$").
+		map["normPH"];     /// <li> `"normPH"`:     Normalized pulse height.
+		map["p"];          /// <li> `"p"`:          Momentum of the track as reconstructed by MDC.
+		map["probPH"];     /// <li> `"probPH"`:     Most probable pulse height from truncated mean.
 		AddItemsToNTuples(tupleName, map, tupleTitle);
 		/// </ol>
 	}
@@ -625,22 +625,22 @@
 		fTrackDedx = evtRecTrack->mdcDedx();
 
 		// * <b>write</b> energy loss PID info ("dedx" branch) *
-		map.at("p")          = fTrackMDC->p();
-		map.at("dedx_mom")   = fTrackDedx->getDedxMoment();
-		map.at("dedx_e")     = fTrackDedx->getDedxExpect(0);
-		map.at("dedx_mu")    = fTrackDedx->getDedxExpect(1);
-		map.at("dedx_pi")    = fTrackDedx->getDedxExpect(2);
-		map.at("dedx_K")     = fTrackDedx->getDedxExpect(3);
-		map.at("dedx_P")     = fTrackDedx->getDedxExpect(4);
-		map.at("chie")       = fTrackDedx->chiE();
-		map.at("chimu")      = fTrackDedx->chiMu();
-		map.at("chipi")      = fTrackDedx->chiPi();
-		map.at("chik")       = fTrackDedx->chiK();
-		map.at("chip")       = fTrackDedx->chiP();
-		map.at("probPH")     = fTrackDedx->probPH();
-		map.at("normPH")     = fTrackDedx->normPH();
+		// map.at("dedx_K")     = fTrackDedx->getDedxExpect(3);
+		// map.at("dedx_P")     = fTrackDedx->getDedxExpect(4);
+		// map.at("dedx_e")     = fTrackDedx->getDedxExpect(0);
+		// map.at("dedx_mom")   = fTrackDedx->getDedxMoment();
+		// map.at("dedx_mu")    = fTrackDedx->getDedxExpect(1);
+		// map.at("dedx_pi")    = fTrackDedx->getDedxExpect(2);
 		map.at("Ngoodhits")  = fTrackDedx->numGoodHits();
 		map.at("Ntotalhits") = fTrackDedx->numTotalHits();
+		map.at("chie")       = fTrackDedx->chiE();
+		map.at("chik")       = fTrackDedx->chiK();
+		map.at("chimu")      = fTrackDedx->chiMu();
+		map.at("chip")       = fTrackDedx->chiP();
+		map.at("chipi")      = fTrackDedx->chiPi();
+		map.at("normPH")     = fTrackDedx->normPH();
+		map.at("p")          = fTrackMDC->p();
+		map.at("probPH")     = fTrackDedx->probPH();
 		fNTupleMap.at(tupleName)->write();
 
 	}
