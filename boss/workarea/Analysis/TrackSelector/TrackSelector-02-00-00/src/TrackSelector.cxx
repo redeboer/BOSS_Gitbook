@@ -50,7 +50,15 @@
 		fLog(msgSvc(), name),
 		fEventHeader (eventSvc(), "/Event/EventHeader"),
 		fEvtRecEvent (eventSvc(), EventModel::EvtRec::EvtRecEvent),
-		fEvtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol)
+		fEvtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol),
+		/// * The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
+		fCut_Vr0         ("Vr0"),
+		fCut_Vz0         ("Vz0"),
+		fCut_Vrvz0       ("Vrvz0"),
+		fCut_Vrvxy0      ("Vrvxy0"),
+		fCut_PhotonEnergy("PhotonEnergy"),
+		fCut_PIDChiSq    ("PIDChiSq"),
+		fCut_PIDProb     ("PIDProb")
 	{
 		fLog << MSG::DEBUG << "===>> TrackSelector::TrackSelector() <<===" << endmsg;
 
@@ -70,14 +78,17 @@
 		declareProperty("write_PID",         fWrite_PID         = false);
 		declareProperty("write_mult_select", fWrite_mult_select = false);
 
-		/// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
-		declareProperty("cut_Vr0_max",          fCut_Vr0_max          = 1.);
-		declareProperty("cut_Vz0_max",          fCut_Vz0_max          = 5.);
-		declareProperty("cut_Vrvz0_max",        fCut_Rvz0_max         = 10.);
-		declareProperty("cut_Vrvxy0_max",       fCut_Rvxy0_max        = 1.);
-		declareProperty("cut_PhotonEnergy_min", fCut_PhotonEnergy_min = 0.04);
-		declareProperty("cut_PIDChiSq_max",     fCut_PIDChiSq_max     = 200.);
-		declareProperty("cut_PIDProb_min",      fCut_PIDProb_min      = 0.001);
+		/// * Book cut values
+		BookNTupleForCuts();
+
+		// /// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
+		// declareProperty("cut_Vr0_max",          fCut_Vr0_max          = 1.);
+		// declareProperty("cut_Vz0_max",          fCut_Vz0_max          = 5.);
+		// declareProperty("cut_Vrvz0_max",        fCut_Rvz0_max         = 10.);
+		// declareProperty("cut_Vrvxy0_max",       fCut_Rvxy0_max        = 1.);
+		// declareProperty("cut_PhotonEnergy_min", fCut_PhotonEnergy_min = 0.04);
+		// declareProperty("cut_PIDChiSq_max",     fCut_PIDChiSq_max     = 200.);
+		// declareProperty("cut_PIDProb_min",      fCut_PIDProb_min      = 0.001);
 
 	}
 
@@ -180,7 +191,8 @@
 			/// </ul>
 
 		/// </ol>
-		if(initialize_rest() == StatusCode::SUCCESS) return StatusCode::SUCCESS;
+		initialize_rest();
+		BookNtupleItemsCuts();
 		fLog << MSG::INFO << "Successfully returned from TrackSelector::initialize()" << endmsg;
 		return StatusCode::SUCCESS;
 	}
@@ -415,7 +427,7 @@
 	StatusCode TrackSelector::finalize()
 	{
 		fLog << MSG::INFO << "===>> TrackSelector::finalize() <<===" << endmsg;
-		WriteCuts();
+		CutObject::Write();
 
 		if(finalize_rest() == StatusCode::SUCCESS) return StatusCode::SUCCESS;
 		fLog << MSG::INFO << "Successfully returned from TrackSelector::finalize()" << endmsg;
@@ -525,6 +537,24 @@
 	void TrackSelector::AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		AddItemsToNTuples(BookNTuple(tupleName, tupleTitle), map);
+	}
+
+
+	/**
+	 * @brief Automatically assign all cut values as declared in the constructor to an `NTuple` called `"_cutvalues"`.
+	 * 
+	 * @param nt The `NTuplePtr` to which you want to add the <i>mapped values</i> of `map`.
+	 * @param map The `map` from which you want to load the <i>mapped values</i>.
+	 */
+	void TrackSelector::BookNTupleForCuts()
+	{
+		CutObject::ntuple = BookNTuple("_cutvalues", "1st entry: min value, 2nd entry: max value, 3rd entry: number passed");
+		std::list<CutObject*>::iterator cut = CutOBject::Instances.begin();
+		for(; cut != CutOBject::Instances.end(); ++cut) {
+			CutObject::ntuple->addItem(cut->NameMin(), cut->min);
+			CutObject::ntuple->addItem(cut->NameMax(), cut->max);
+			fLog << MSG::INFO << "  added cut \"" << cut->name << "\"" << endmsg;
+		}
 	}
 
 

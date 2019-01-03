@@ -97,7 +97,6 @@
 			BOSSOutputLoader file(gFilename.value.data(), gPrint.value); /// To investigate the contents of the ROOT file, you first need to know which `TTree`s and branches it contains. If you simply construct the `BOSSOutputLoader` by giving it a file name, all `TTree`s will be loaded automatically as well as addresses for each of their branches. Five the constructer `true` as its second argument, and the names of these `TTree`s, their branches, and the types of these branches (behind the slash `/` after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b>
 			if(file.IsZombie()) return;
 			LoadConfiguration("configs/D0phi_KpiKK_MC.txt");
-return;
 			if(!gPlotstats.value) gStyle->SetOptStat(0);
 			file.PrintCutFlow();
 
@@ -333,7 +332,10 @@ void SetParameter(ArgPair<bool> &par, const string &parname, const string &parva
 		gPad->Clear();
 		histToDraw->Scale(-1.);
 		histToDraw->Add(histToSubtract);
-		histToDraw->Draw("E1");
+		histToSubtract->SetLineColor(kWhite);
+		// histToSubtract->SetMarkerColor(kWhite);
+		histToSubtract->Draw("E1");
+		histToDraw->Draw("E1, same");
 		SaveCanvas(Form("%s", histToDraw->GetName()), gPad, setLog);
 	}
 

@@ -27,6 +27,7 @@
 	#include "THStack.h"
 	#include "TofRecEvent/RecTofTrack.h"
 	#include "VertexFit/KalmanKinematicFit.h"
+	#include "TrackSelector/CutObject.h"
 	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this requires a newer version of `gcc`.
 	#include <string>
 	#include <vector>
@@ -87,6 +88,7 @@ protected:
 		ParticleID* InitializePID(const int method, const int pidsys, const int pidcase, const double chimin=4.);
 		void AddItemsToNTuples  (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="ks N-Tuple example");
 		void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<double> > &map);
+		void BookNtupleItemsCuts();
 		void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="dE/dx info");
 		void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="Time-of-Flight info");
 		void WriteCuts();
@@ -141,13 +143,21 @@ protected:
 
 	// * Maps, vectors, and iterators * //
 		/// The private data members are used to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see corresponding `.cxx` file).
-		double fCut_Vr0_max; //!< Maximal cut on the radius \f$r\f$ of the primary vertex.
-		double fCut_Vz0_max; //!< Maximal cut on the \f$z\f$ coordinate of the primary vertex.
-		double fCut_Rvz0_max;
-		double fCut_Rvxy0_max;
-		double fCut_PhotonEnergy_min; //!< Minimimal cut on the photon energy.
-		double fCut_PIDChiSq_max; //!< Maximum \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits
-		double fCut_PIDProb_min; //!< Minimimal probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6">`ParticleID::probPion`</a>.
+		CutObject fCut_Vr0; //!< Cut on the radius \f$r\f$ of the primary vertex.
+		CutObject fCut_Vz0; //!< Cut on the \f$z\f$ coordinate of the primary vertex.
+		CutObject fCut_Rvz0; //!< Cut on the distance in the \f$xy\f$ plane between the primary vertex and the vertex of the charged track.
+		CutObject fCut_Rvxy0; //!< Cut on the distance in the \f$z\f$ direction between the primary vertex and the vertex of the charged track.
+		CutObject fCut_PhotonEnergy; //!< Cut on the photon energy.
+		CutObject fCut_PIDChiSq; //!< Cut on the \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits
+		CutObject fCut_PIDProb; //!< Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6">`ParticleID::probPion`</a>.
+
+		// double fCut_Vr0_max; //!< Maximal cut on the radius \f$r\f$ of the primary vertex.
+		// double fCut_Vz0_max; //!< Maximal cut on the \f$z\f$ coordinate of the primary vertex.
+		// double fCut_Rvz0_max; //!< Maximum cut on the distance in the \f$xy\f$ plane between the primary vertex and the vertex of the charged track.
+		// double fCut_Rvxy0_max; //!< Maxmimu cut on the distance in the \f$z\f$ direction between the primary vertex and the vertex of the charged track.
+		// double fCut_PhotonEnergy_min; //!< Minimimal cut on the photon energy.
+		// double fCut_PIDChiSq_max; //!< Maximum \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits
+		// double fCut_PIDProb_min; //!< Minimimal probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6">`ParticleID::probPion`</a>.
 
 	// * Stored values * //
 	HepPoint3D fVertexPoint; //!< Coordinates of the interaction point (primary vertex). Set in each event in `TrackSelector::execute`.
