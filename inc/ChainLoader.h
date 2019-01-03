@@ -1,8 +1,8 @@
-#ifndef Physics_Analysis_SimplifiedTree_H
-#define Physics_Analysis_SimplifiedTree_H
+#ifndef Physics_Analysis_ChainLoader_H
+#define Physics_Analysis_ChainLoader_H
 
 /**
- * @brief    A container class for a `TTree` that allows easy access to its branches. Addresses are set automatically upon construction.
+ * @brief    A container class for a `TChain` that allows easy access to its branches. Addresses are set automatically upon construction.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
  * @date     December 21st, 2018
  */
@@ -15,6 +15,7 @@
 	#include "TList.h"
 	#include "TObject.h"
 	#include "TTree.h"
+	#include "TChain.h"
 	#include "TH1F.h"
 	#include "TH2F.h"
 	#include <iostream>
@@ -27,16 +28,16 @@
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
-	class SimplifiedTree
+	class ChainLoader
 	{
 	public:
 
 		// * CONSTRUCTORS AND DESTRUCTORS * //
-		SimplifiedTree() : fTree(nullptr) {}
-		SimplifiedTree(TTree* fTree, bool print = true);
+		ChainLoader() {}
+		ChainLoader(TTree* tree) : fChain(tree->GetName(), tree->GetTitle()) {}
 
 		// * GETTERS * //
-			TTree* Get() { return fTree; }
+			TChain& GetChain() { return fChain; }
 			std::unordered_map<std::string, Char_t>&    Get_B() { return fMap_B; }
 			std::unordered_map<std::string, UChar_t>&   Get_b() { return fMap_b; }
 			std::unordered_map<std::string, Short_t>&   Get_S() { return fMap_S; }
@@ -59,21 +60,25 @@
 			Long64_t&  Get_L(const char* name) { return fMap_L.at(name); }
 			ULong64_t& Get_l(const char* name) { return fMap_l.at(name); }
 			Bool_t&    Get_O(const char* name) { return fMap_O.at(name); }
-			Long64_t   GetEntries() const { return fTree->GetEntries(); }
+			Long64_t   GetEntries() const { return fChain.GetEntries(); }
+
+		// * SETTERS * //
+			Int_t Add(const char* filename) { return fChain.Add(filename); }
 
 		// * INFORMATION * //
 			TH1F* DrawBranches(const char* branchX, const Int_t nBinx, const double x1, const double x2, const bool save=true, Option_t* opt="", const TString &logScale="");
 			TH1F* GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins=100, Option_t *opt="", const TString &logScale="");
 			TH2F* DrawBranches(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, const bool save=true, Option_t* opt="", const TString &logScale="");
-			double ComputeMean(TTree* tree, const char* branchName);
+			double ComputeMean(TChain* tree, const char* branchName);
+			void BookAddresses(bool print=false);
 			void DrawAndSaveAllBranches(Option_t* opt="", const TString &logScale="");
-			void DrawAndSaveAllMultiplicityBranches(const TString &logScale="");
+			void DrawAndSaveAllMultiplicityBranches(const TString &logScale="", Option_t* opt="E1");
 			void DrawBranches(const char* branchNames, const bool save=true, Option_t* opt="", const TString &logScale="");
 
 	private:
 
 		// * DATA MEMBERS * //
-			TTree* fTree;
+			TChain fChain;
 			std::unordered_map<std::string, Char_t>    fMap_B; //!< Map of addresses for Char_t (8 bit signed integer).
 			std::unordered_map<std::string, UChar_t>   fMap_b; //!< Map of addresses for UChar_t (8 bit unsigned integer).
 			std::unordered_map<std::string, Short_t>   fMap_S; //!< Map of addresses for Short_t (16 bit signed integer).
@@ -98,46 +103,48 @@
 // * ------- CONSTRUCTORS ------- * //
 // * ============================ * //
 
+
 	/**
-	 * @brief Automatically book addresses for all branches of a `TTree`. The branches are accessible by name (use `Get_<type>`, though you have to the `type` to use this).
+	 * @brief Automatically book addresses for all branches of the underlying `TChain`. The branches are accessible by name (use method `Get_<type>`, though you have to the `type` to use this).
 	 * 
-	 * @param fTree The `TTree` that you want to load.
-	 * @param print Whether or not to print the `TTree` names and its branches+types. Give `true` to the `SimplifiedTree` constructor for debugging purposes in particular.
+	 * @param print Whether or not to print the `TChain` names and its branches+types. Use `true` for debugging purposes in particular.
 	 */
-	SimplifiedTree::SimplifiedTree(TTree* fTree, bool print) : fTree(fTree)
+	void ChainLoader::BookAddresses(bool print)
 	{
-		if(!fTree) return;
-		TIter next(fTree->GetListOfBranches());
-		TObject *obj  = nullptr;
-		if(print) {
-			std::cout << "Tree \"" << fTree->GetName() << "\" (" << fTree->GetEntries() << " entries)" << std::endl;
-			std::cout << fTree->GetTitle() << std::endl;
-			std::cout << "   "
-				<< std::setw(18) << std::left  << "BRANCH NAME"
-				<< std::setw(12) << std::right << "MEAN" << std::endl;
-		}
-		while((obj = next())) {
-			std::string type(obj->GetTitle()); /// The data type of a branch can be determined from the last character of its title. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the labels of each type.
-			if(print) std::cout << "   "
-				<< std::setw(18) << std::left  << type
-				<< std::setw(12) << std::right << ComputeMean(fTree, obj->GetName()) << std::endl;
-			switch(type.back()) {
-				case 'B' : SetAddress(obj, fMap_B); break;
-				case 'b' : SetAddress(obj, fMap_b); break;
-				case 'S' : SetAddress(obj, fMap_S); break;
-				case 's' : SetAddress(obj, fMap_s); break;
-				case 'I' : SetAddress(obj, fMap_I); break;
-				case 'i' : SetAddress(obj, fMap_i); break;
-				case 'F' : SetAddress(obj, fMap_F); break;
-				case 'D' : SetAddress(obj, fMap_D); break;
-				case 'L' : SetAddress(obj, fMap_L); break;
-				case 'l' : SetAddress(obj, fMap_l); break;
-				case 'O' : SetAddress(obj, fMap_O); break;
-				default :
-					std::cout << "ERROR: Unable to book address for branch \"" << type << "\"" << std::endl;
+		if(!fChain.GetNbranches()) return;
+		/// -# Get list of `TBranches`.
+			TIter next(fChain.GetListOfBranches());
+			TObject *obj  = nullptr;
+			if(print) {
+				std::cout << "Tree \"" << fChain.GetName() << "\" (" << fChain.GetEntries() << " entries)" << std::endl;
+				std::cout << fChain.GetTitle() << std::endl;
+				std::cout << "   "
+					<< std::setw(18) << std::left  << "BRANCH NAME"
+					<< std::setw(12) << std::right << "MEAN" << std::endl;
 			}
-		}
-		if(print) std::cout << std::endl;
+		/// -# Loop over list of `TBranches` and determine `typename` of the branch. The data type of a branch can be determined from the last character of its title. See <a href="https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7">`TTree`</a> for the labels of each type.
+			while((obj = next())) {
+				std::string type(obj->GetTitle());
+				if(print) std::cout << "   "
+					<< std::setw(18) << std::left  << type
+					<< std::setw(12) << std::right << ComputeMean(&fChain, obj->GetName()) << std::endl;
+				switch(type.back()) {
+					case 'B' : SetAddress(obj, fMap_B); break;
+					case 'b' : SetAddress(obj, fMap_b); break;
+					case 'S' : SetAddress(obj, fMap_S); break;
+					case 's' : SetAddress(obj, fMap_s); break;
+					case 'I' : SetAddress(obj, fMap_I); break;
+					case 'i' : SetAddress(obj, fMap_i); break;
+					case 'F' : SetAddress(obj, fMap_F); break;
+					case 'D' : SetAddress(obj, fMap_D); break;
+					case 'L' : SetAddress(obj, fMap_L); break;
+					case 'l' : SetAddress(obj, fMap_l); break;
+					case 'O' : SetAddress(obj, fMap_O); break;
+					default :
+						std::cout << "ERROR: Unable to book address for branch \"" << type << "\"" << std::endl;
+				}
+			}
+			if(print) std::cout << std::endl;
 	}
 
 
@@ -154,15 +161,15 @@
 	 * @param opt Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	void SimplifiedTree::DrawBranches(const char* branchNames, const bool save, Option_t* opt, const TString& logScale)
+	void ChainLoader::DrawBranches(const char* branchNames, const bool save, Option_t* opt, const TString& logScale)
 	{
 		// * Check input arguments * //
-		if(!fTree) return;
+		if(!fChain.GetEntries()) return;
 		TString outputName(branchNames);
 		if(outputName.Contains(">")) outputName.Resize(outputName.First('>'));
 		// * Draw histogram and save * //
-		fTree->Draw(branchNames, "", opt);
-		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fTree->GetName(), outputName.Data()), gPad, logScale);
+		fChain.Draw(branchNames, "", opt);
+		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), outputName.Data()), gPad, logScale);
 	}
 
 	/**
@@ -176,28 +183,31 @@
 	 * @param opt Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	TH1F* SimplifiedTree::DrawBranches(const char* branchX, const Int_t nBinx, const double x1, const double x2, const bool save, Option_t* opt, const TString &logScale)
+	TH1F* ChainLoader::DrawBranches(const char* branchX, const Int_t nBinx, const double x1, const double x2, const bool save, Option_t* opt, const TString &logScale)
 	{
 		// * Draw histogram * //
 		const char* histName = Form("hist_%s", branchX);
 		DrawBranches(Form("%s>>%s(%i,%f,%f)", branchX, histName, nBinx, x1, x2), false, opt, logScale);
 		// * Modify histogram * //
 		TH1F *hist = (TH1F*)gDirectory->Get(histName);
-		hist->SetTitle(Form("#it{%s} branch of the \"%s\" tree", branchX, fTree->GetName()));
+		hist->SetTitle(Form("#it{%s} branch of the \"%s\" tree", branchX, fChain.GetName()));
 		CommonFunctions::Hist::SetAxisTitles(hist, branchX, Form("count / %g", hist->GetBinWidth(1)));
 		// * Save and return histogram * //
-		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fTree->GetName(), branchX), gPad, logScale);
+		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), branchX), gPad, logScale);
 		return hist;
 	}
 
 
 	/**
-	 * @brief
+	 * @brief Compute mean value of a branch in the `TChain`.
+	 * 
+	 * @param chain `TChain` that you want to check.
+	 * @param branchName Name of the branch that you want to check.
 	 */
-	double SimplifiedTree::ComputeMean(TTree* tree, const char* branchName)
+	double ChainLoader::ComputeMean(TChain* chain, const char* branchName)
 	{
-		if(!tree) return -1e6;
-		tree->Draw(branchName);
+		if(!chain) return -1e6;
+		chain->Draw(branchName);
 		TH1F *htemp = (TH1F*)gPad->GetPrimitive("htemp");
 		if(!htemp) return -1e6;
 		double mean = htemp->GetMean();
@@ -221,14 +231,14 @@
 	 * @param opt Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	TH2F* SimplifiedTree::DrawBranches(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, const bool save, Option_t* opt, const TString &logScale)
+	TH2F* ChainLoader::DrawBranches(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, const bool save, Option_t* opt, const TString &logScale)
 	{
 		// * Draw histogram * //
 		const char* histName = Form("hist_%s_%s", branchX, branchY);
 		DrawBranches(Form("%s:%s>>%s(%i,%f,%f,%i,%f,%f)", branchX, branchY, histName, nBinx, x1, x2, nBiny, y1, y2), false, opt, logScale);
 		// * Modify histogram * //
 		TH2F *hist = (TH2F*)gDirectory->Get(histName);
-		hist->SetTitle(Form("\"%s\" tree: #it{%s} vs #it{%s}", fTree->GetName(), branchX, branchY));
+		hist->SetTitle(Form("\"%s\" tree: #it{%s} vs #it{%s}", fChain.GetName(), branchX, branchY));
 		CommonFunctions::Hist::SetAxisTitles(
 			hist, branchX, branchY,
 			Form("count / (%gx%g)",
@@ -236,44 +246,44 @@
 				hist->GetYaxis()->GetBinWidth(1)
 			));
 		// * Save and return histogram * //
-		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s:%s", fTree->GetName(), branchY, branchX), gPad, logScale);
+		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s:%s", fChain.GetName(), branchY, branchX), gPad, logScale);
 		return hist;
 	}
 
 
 	/**
-	 * @brief Draw the distributions of all branches of the underlying `TTree`.
+	 * @brief Draw the distributions of all branches of the underlying `TChain`.
 	 * 
 	 * @param opt Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	void SimplifiedTree::DrawAndSaveAllBranches(Option_t* opt, const TString& logScale)
+	void ChainLoader::DrawAndSaveAllBranches(Option_t* opt, const TString& logScale)
 	{
-		if(!fTree) return;
-		TIter next(fTree->GetListOfBranches());
+		if(!fChain.GetNtrees()) return;
+		TIter next(fChain.GetListOfBranches());
 		TObject *obj  = nullptr;
 		while((obj = next())) DrawBranches(obj->GetName(), true, opt, logScale);
 	}
 
 
 	/**
-	 * @brief Draw the distributions of all branches of the underlying `TTree` if its name starts with `"mult"`.
+	 * @brief Draw the distributions of all branches of the underlying `TChain` if its name starts with `"mult"`.
 	 * @details This function additionally ensures that the bin width is set to 1 and that the histograms are drawn in `"E1"` mode (see https://root.cern.ch/doc/master/classTHistPainter.html).
 	 * 
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	void SimplifiedTree::DrawAndSaveAllMultiplicityBranches(const TString& logScale)
+	void ChainLoader::DrawAndSaveAllMultiplicityBranches(const TString& logScale, Option_t* opt)
 	{
-		if(!fTree) return;
-		TString name(fTree->GetName());
+		if(!fChain.GetNtrees()) return;
+		TString name(fChain.GetName());
 		if(!name.BeginsWith("mult")) return;
-		TIter next(fTree->GetListOfBranches());
+		TIter next(fChain.GetListOfBranches());
 		TObject *obj  = nullptr;
 		while((obj = next())) {
 			const char* name = obj->GetName();
-			int max = fTree->GetMaximum(name);
+			int max = fChain.GetMaximum(name);
 			if(!max) continue;
-			DrawBranches(name, max, 0, max, true, "E1", logScale);
+			DrawBranches(name, max, 0, max, true, opt, logScale);
 		}
 	}
 
@@ -286,7 +296,7 @@
 	 * @param opt Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	TH1F* SimplifiedTree::GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins, Option_t *opt, const TString &logScale)
+	TH1F* ChainLoader::GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins, Option_t *opt, const TString &logScale)
 	{
 		// * Check input arguments * //
 		if(*branchName != 'm') {
@@ -309,29 +319,29 @@
 // * =============================== * //
 
 	/**
-	 * @brief Set a memory address for one of the branches of `fTree`.
+	 * @brief Set a memory address for one of the branches of `fChain`.
 	 * 
 	 * @tparam TYPE The `typename` of the address. It is determined by the `map` you feed it.
 	 * @param obj The object from which you want to load the address. This is usually a `TBranch` object.
 	 * @param map The type of address you a want to assign (`double`, `int`, etc) is determined by the `map` you feed it. This map should be one of the `fMap_*` data members of this class.
 	 */
 	template<typename TYPE>
-	void SimplifiedTree::SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map)
+	void ChainLoader::SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map)
 	{
-		fTree->SetBranchAddress(obj->GetName(), &map[obj->GetName()]);
+		fChain.SetBranchAddress(obj->GetName(), &map[obj->GetName()]);
 	}
 
 	/**
-	 * @brief Set a memory address for one of the branches of `fTree`. Only do this if `fTree` exists.
+	 * @brief Set a memory address for one of the branches of `fChain`. Only do this if `fChain` exists.
 	 * 
 	 * @tparam TYPE The `typename` of the address. It is determined by the `map` you feed it.
 	 * @param obj The object from which you want to load the address. This is usually a `TBranch` object.
 	 * @param map The type of address you a want to assign (`double`, `int`, etc) is determined by the `map` you feed it. This map should be one of the `fMap_*` data members of this class.
 	 */
 	template<typename TYPE>
-	void SimplifiedTree::SetAddressSafe(TObject* obj, std::unordered_map<std::string, TYPE> &map)
+	void ChainLoader::SetAddressSafe(TObject* obj, std::unordered_map<std::string, TYPE> &map)
 	{
-		if(fTree) SetAddress(obj, map);
+		if(fChain) SetAddress(obj, map);
 	}
 
 

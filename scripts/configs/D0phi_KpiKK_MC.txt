@@ -1,0 +1,26 @@
+/**
+ * @brief Analysis configuration file for analysing MC output of the `D0phi_KpiKK_data` package.
+ */
+
+// * FILE NAME * //
+	InputFile = "/mnt/d/IHEP/root/D0phi_KpiKK_data"
+
+// * TERMINAL OUTPUT * //
+	Print branches = false
+
+// * PLOT STYLE * //
+	set plot ranges = true
+	gPlotstats      = false
+
+// * WHICH BRANCHES TO PLOT * //
+	gPureplot    = true
+	gDraw_mult   = false
+	gDraw_vertex = false
+	gDraw_tof    = false
+	gDraw_fit    = true
+
+// * FIT SETTINGS * //
+	gFitplots  = false
+	gDo_gauss  = true
+	gDo_conv_s = false
+	gDo_conv_d = false

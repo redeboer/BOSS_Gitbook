@@ -9,7 +9,7 @@
 // * ======================================== * //
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
-	#include "../inc/BOSSRootFile.h"
+	#include "../inc/BOSSOutputLoader.h"
 	#include "TStyle.h"
 	#include <iostream>
 	using namespace CommonFunctions::Fit;
@@ -22,29 +22,25 @@
 // ! ------- MACRO SETTINGS ------- ! //
 // ! ============================== ! //
 
-	// * INPUT FILE * //
-	const char* filename = "/mnt/c/IHEP/scratchfs/bes/deboer/data/root/ana_DzeroPhi_mc_resultTrackSelector.root";
-
 	// * TERMINAL OUTPUT * //
-	const bool print = true; //!< Whether or not to use the precisely set histogram ranges.
+	const bool print = false; //!< Whether or not to use the precisely set histogram ranges.
 
 	// * PLOT STYLE * //
-	const bool setranges = false; //!< Whether or not to precisely set histogram ranges.
+	const bool setranges = true; //!< Whether or not to precisely set histogram ranges.
 	const bool plotstats = true; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
 
 	// * WHICH BRANCHES TO PLOT * //
-	const bool pureplot    = false; //!< Whether or not to plot histograms of branches <i>without fit</i>.
+	const bool fitplots    = false; //!< Whether or not to plot histograms of branches <i>without fit</i>.
 	const bool draw_mult   = true; //!< Whether or not to draw the `"mult"` branch.
 	const bool draw_vertex = true; //!< Whether or not to draw the `"vertex"` branch.
 	const bool draw_tof    = true; //!< Whether or not to draw the `"tof*"` branches.
 	const bool draw_pid    = true; //!< Whether or not to draw the `"pid"` branches.
-	const bool draw_fit    = false; //!< Whether or not to draw the `"fit"` branches.
+	const bool draw_fit    = true; //!< Whether or not to draw the `"fit"` branches.
 
 	// * FIT SETTINGS * //
-	const bool fitplot     = false; //!< Whether or not to produce invariant mass fits.
-	const bool do_gauss    = true; //!< Whether or not to produce perform a double Gaussian fit.
-	const bool do_conv_s   = true; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
-	const bool do_conv_d   = false; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
+	const bool performfits = true; //!< Whether or not to produce invariant mass fits.
+	const bool do_gauss    = false; //!< Whether or not to produce perform a double Gaussian fit.
+	const bool do_conv     = true; //!< Whether or not to produce perform a Breit-Wigner convoluted with a double Gaussian.
 
 
 
@@ -57,40 +53,55 @@
 void FitInvMassSignal()
 {
 
+
 	// * OPEN INPUT FILE * //
-		BOSSRootFile file(filename, print); /// To investigate the contents of the ROOT file, you first need to know which `TTree`s and branches it contains. If you simply construct the `BOSSRootFile` by giving it a file name, all `TTree`s will be loaded automatically as well as addresses for each of their branches. Five the constructer `true` as its second argument, and the names of these `TTree`s, their branches, and the types of these branches (behind the slash `/` after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b>
+		BOSSOutputLoader file("../data/root/ana_DzeroPhi_mc_result3.root", print); /// To investigate the contents of the ROOT file, you first need to know which `TTree`s and branches it contains. If you simply construct the `BOSSOutputLoader` by giving it a file name, all `TTree`s will be loaded automatically as well as addresses for each of their branches. Five the constructer `true` as its second argument, and the names of these `TTree`s, their branches, and the types of these branches (behind the slash `/` after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b>
 		if(file.IsZombie()) return;
 		if(plotstats) gStyle->SetOptStat(0);
 
 
 	// * PLOT BRANCHES WITHOUT FITS * //
-		if(pureplot) {
+		if(fitplots) {
+		// * Draw useful multiplicity plots
 			if(draw_mult) {
-				for(auto tree : file.GetSimplifiedTrees()) {
-					TString name(tree.second.Get()->GetName());
-					if(name.BeginsWith("mult")) tree.second.DrawAndSaveAllMultiplicityBranches();
+				if(setranges) {
+				} else {
+					file.DrawBranches("mult", "NKaonNeg", "E1");
+					file.DrawBranches("mult", "NKaonPos", "E1");
+					file.DrawBranches("mult", "NPionPos", "E1");
+					file.DrawBranches("mult", "Ncharge",  "E1");
+					file.DrawBranches("mult", "Ngood",    "E1");
+					file.DrawBranches("mult", "Nmdc",     "E1");
+					file.DrawBranches("mult", "Nneutral", "E1");
+					file.DrawBranches("mult", "Ntotal",   "E1");
 				}
 			}
+
+		// * Draw useful primary vertex plots
 			if(draw_vertex) {
 				if(setranges) {
-					file.DrawBranches("vertex", "vx0", "vy0", 60,  .18, .23, 40, -.2, -.15, "colz");
-					file.DrawBranches("vertex", "vx0", "vz0", 60,  .18, .23, 40, -.25, .15, "colz");
-					file.DrawBranches("vertex", "vy0", "vz0", 60, -.2, -.15, 40, -.25, .15, "colz");
-				} else {
 					file.DrawBranches("vertex", "vy0:vx0", "colz");
 					file.DrawBranches("vertex", "vz0:vx0", "colz");
 					file.DrawBranches("vertex", "vz0:vy0", "colz");
+				} else {
+					file.DrawBranches("vertex", "vx0", "vy0", 60, -.154, -.146,  40,  .08,   .122, "colz");
+					file.DrawBranches("vertex", "vx0", "vz0", 60, -.4,    .5,    60,  .08,   .122, "colz");
+					file.DrawBranches("vertex", "vy0", "vz0", 60, -.4,    .5,    40, -.154, -.146, "colz");
 				}
 			}
+
+		// * Draw useful ToF plots
 			if(draw_tof) {
 				if(setranges) {
-					file.DrawBranches("ToFIB", "ptrk", "tof", 120, 2., 15., 80, 0., 1.5, "colz", "z");
-					file.DrawBranches("ToFOB", "ptrk", "tof", 120, 2., 15., 80, 0., 1.5, "colz", "z");
+					file.DrawBranches("tof1", "ptrk", "tof", 120, 2., 15., 80, 0., 1.5, "colz", "z");
+					file.DrawBranches("tof2", "ptrk", "tof", 120, 2., 15., 80, 0., 1.5, "colz", "z");
 				} else {
-					file.DrawBranches("ToFIB", "tof:ptrk", "colz");
-					file.DrawBranches("ToFOB", "tof:ptrk", "colz");
+					file.DrawBranches("tof1", "tof:ptrk", "colz");
+					file.DrawBranches("tof2", "tof:ptrk", "colz");
 				}
 			}
+
+		// * Draw useful dEdx plots
 			if(draw_pid) {
 				if(setranges) {
 					file.DrawBranches("pid", "ptrk", "dedx", 120, 0., 30., 80, .2, 1.25, "colz");
@@ -102,6 +113,8 @@ void FitInvMassSignal()
 					file.DrawBranches("pid", "tof2:ptrk", "colz");
 				}
 			}
+
+		// * Draw useful fit4c plots
 			if(draw_fit) {
 				if(setranges) {
 					file.DrawBranches("fit4c", "mD0",    500,  .7,    2.,      "E1", "y");
@@ -117,7 +130,7 @@ void FitInvMassSignal()
 
 
 	// * PERFORM FITS * //
-		if(fitplot) {
+		if(performfits) {
 		// * Particles to reconstruct
 			ReconstructedParticle D0  (421, "K^{-}#pi^{+}");
 			ReconstructedParticle phi (333, "K^{+}K^{-}");
@@ -136,14 +149,14 @@ void FitInvMassSignal()
 			}
 
 		// * Fit Breit-Wigner convoluted with singe Gaussian
-			if(do_conv_s) {
+			if(do_conv) {
 				FitBWGaussianConvolution(hist_D0,   D0,   0, "y");
 				FitBWGaussianConvolution(hist_phi,  phi,  2, "y");
 				// FitBWGaussianConvolution(hist_Jpsi, Jpsi, 2, "y"); //! useless plot
 			}
 
 		// * Fit Breit-Wigner convoluted with double Gaussian
-			if(do_conv_s) {
+			if(do_conv) {
 				FitBWDoubleGaussianConvolution(hist_D0,   D0,   0, "y");
 				FitBWDoubleGaussianConvolution(hist_phi,  phi,  2, "y");
 				// FitBWDoubleGaussianConvolution(hist_Jpsi, Jpsi, 2, "y"); //! useless plot

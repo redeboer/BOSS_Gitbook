@@ -14,7 +14,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 	#include "FrameworkSettings.h"
-	#include "SimplifiedTree.h"
+	#include "TChainLoader.h"
 	#include "TCanvas.h"
 	#include "TFile.h"
 	#include "TH1D.h"
@@ -63,18 +63,18 @@
 		// * GETTERS * //
 		Long64_t GetEntries(const char* treeName);
 		Long64_t GetLargestEntries() const;
-		SimplifiedTree& operator[](const char* name) { return fTrees.at(name); }
+		TChainLoader& operator[](const char* name) { return fTrees.at(name); }
 		TTree* FindTree(const char* treeName, bool terminate = false);
-		std::unordered_map<std::string, SimplifiedTree>& GetSimplifiedTrees() { return fTrees; }
+		std::unordered_map<std::string, TChainLoader>& GetTChainLoaders() { return fTrees; }
 
 	protected:
 		// * DATA MEMBERS * //
 		TFile fFile; //!< The `TFile` that has been loaded.
-		std::unordered_map<std::string, SimplifiedTree> fTrees; //!< Map of pointers to all `TTree`s in the ROOT file.
+		std::unordered_map<std::string, TChainLoader> fTrees; //!< Map of pointers to all `TTree`s in the ROOT file.
 
 		// * PRIVATE METHODS * //
 		bool OpenFile(const char*);
-		std::list<SimplifiedTree*> CreateOrderedMap();
+		std::list<TChainLoader*> CreateOrderedMap();
 		template<class T> int SetBranchAddress(TTree* tree, const char* branchName, T& address);
 		void Destruct();
 		void Initialize();
@@ -261,7 +261,7 @@
 		std::cout << std::endl << "File name: \"" << fFile.GetName() << "\"" << std::endl;
 		if(fTrees.size()) {
 			std::cout << "  contains " << fTrees.size() << " TTrees:" << std::endl;
-			std::unordered_map<std::string, SimplifiedTree>::iterator it = fTrees.begin();
+			std::unordered_map<std::string, TChainLoader>::iterator it = fTrees.begin();
 			for(; it != fTrees.end(); ++it) {
 				TTree* tree = it->second.Get();
 				if(tree) std::cout << "    \"" <<
@@ -369,16 +369,16 @@
 	/**
 	 * @brief Create a `list` that is ordered by the number of entries in the `TTree`.
 	 */
-	std::list<SimplifiedTree*> BOSSRootFile::CreateOrderedMap()
+	std::list<TChainLoader*> BOSSRootFile::CreateOrderedMap()
 	{
-		// * Create list of pointers to `SimplifiedTree` * //
-		std::list<SimplifiedTree*> outputList;
+		// * Create list of pointers to `TChainLoader` * //
+		std::list<TChainLoader*> outputList;
 		for(auto it = fTrees.begin(); it != fTrees.end(); ++it) {
 			TString name(it->second.Get()->GetName());
 			if(!name.EqualTo("_cutvalues")) outputList.push_back(&(it->second));
 		}
 		// * Sort resulting list based on number of entries * //
-		outputList.sort([](SimplifiedTree* const & a, SimplifiedTree* const & b)
+		outputList.sort([](TChainLoader* const & a, TChainLoader* const & b)
 		{
 			std::string nameA = a->Get()->GetName();
 			std::string nameB = b->Get()->GetName();
@@ -446,7 +446,7 @@
 		while((obj = next())) {
 			if((key = dynamic_cast<TKey*>(obj))) {
 				if((tree = dynamic_cast<TTree*>(key->ReadObj()))) {
-					fTrees.emplace(tree->GetName(), SimplifiedTree(tree, print));
+					fTrees.emplace(tree->GetName(), TChainLoader(tree, print));
 				}
 			}
 		}
