@@ -28,3 +28,9 @@
 **@todo** Explain how to replace [`pdt.table`](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Generator/BesEvtGen/BesEvtGen-00-04-00/share/pdt.table) in [`BesEvtGen`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Generator/BesEvtGen).
 {% endhint %}
 
+### Obtaining information about Monte Carlo truth
+
+{% hint style="warning" %}
+**@todo** Investigate sub-packages of `McTruth`, such as [`MdcMcHit`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvent_1_1MdcMcHit.html).
+{% endhint %}
+
