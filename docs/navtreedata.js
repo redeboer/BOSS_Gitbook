@@ -36,9 +36,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AnalyseDzeroPhi__MC_8C.html",
-"classKKFitResult.html#abc4f946d8e902b15aadaba7e65b24c23",
-"classTrackSelector.html#a94dfa3d4153e1798e155e5a0e5d733af"
+"AnalyseBOSSOutput_8C.html",
+"classCutObject.html#a5b245fd9baa02c432dae09f4da6af1d8",
+"classTrackSelector.html#ab5fd02e78941091412181bed4af630f4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

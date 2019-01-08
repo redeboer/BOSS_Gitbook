@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quickdrawandsaveall',['QuickDrawAndSaveAll',['../classBOSSRootFile.html#a5047522205120d44357ea8497e6e1fce',1,'BOSSRootFile']]]
+  ['quickdrawandsaveall',['QuickDrawAndSaveAll',['../classBOSSOutputLoader.html#a7de51f3b1839e921329ac4ee86bb4408',1,'BOSSOutputLoader']]]
 ];

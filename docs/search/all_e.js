@@ -3,17 +3,13 @@ var searchData=
   ['p',['P',['../namespaceSettings_1_1Particles.html#a83833507ff0e0f2022c7e3b731ba9156',1,'Settings::Particles']]],
   ['particle',['Particle',['../classParticle.html',1,'Particle'],['../classParticle.html#a019a9808db99237fb6fbe423f62ce2a6',1,'Particle::Particle(int pdgCode)'],['../classParticle.html#a7121e9afc2587bcad901ea025bada0d0',1,'Particle::Particle(const char *pdgCode)']]],
   ['particle_2eh',['Particle.h',['../Particle_8h.html',1,'']]],
-  ['performfits',['performfits',['../InvestigateBOSSRootFile_8C.html#af812bd559c02c2cd596579fbd2b32d51',1,'InvestigateBOSSRootFile.C']]],
   ['pi0',['Pi0',['../namespaceSettings_1_1Particles.html#aa534e80659835947f45397eb4ce034d8',1,'Settings::Particles']]],
   ['pip',['Pip',['../namespaceSettings_1_1Particles.html#ac9ed6f077e1c0ffdd1c127ba86724796',1,'Settings::Particles']]],
   ['plotfrom',['PlotFrom',['../classReconstructedParticle.html#a5dfb6fe049949fe4ce0c843656855ce8',1,'ReconstructedParticle']]],
   ['plotoutputdir',['PlotOutputDir',['../namespaceSettings_1_1Output.html#a6b2502545822c854885380b81f2717a2',1,'Settings::Output']]],
-  ['plotstats',['plotstats',['../AnalyseDzeroPhi__data_8C.html#ab52728055a03022adc39e2431ec655cd',1,'plotstats():&#160;AnalyseDzeroPhi_data.C'],['../AnalyseDzeroPhi__MC_8C.html#ab52728055a03022adc39e2431ec655cd',1,'plotstats():&#160;AnalyseDzeroPhi_MC.C'],['../InvestigateBOSSRootFile_8C.html#ab52728055a03022adc39e2431ec655cd',1,'plotstats():&#160;InvestigateBOSSRootFile.C']]],
   ['plotuntil',['PlotUntil',['../classReconstructedParticle.html#acc96b978020b1c1f1ff8c2c67a23849d',1,'ReconstructedParticle']]],
-  ['print',['Print',['../classBOSSRootChain.html#adca72fa5fd571738863603451c29e580',1,'BOSSRootChain::Print(const char *nameOfChain, Option_t *option=&quot;toponly&quot;)'],['../classBOSSRootChain.html#aea16da8d3d22fcbd51a001edcb4d51df',1,'BOSSRootChain::Print()'],['../classBOSSRootFile.html#a5eb701bf9d34142c3567327efa8493fa',1,'BOSSRootFile::Print()'],['../classBOSSRootFile.html#add09ace2fe1bdb5d9ae21654c94e89a4',1,'BOSSRootFile::Print(const char *nameOfTree, Option_t *opt=&quot;toponly&quot;)'],['../AnalyseDzeroPhi__data_8C.html#a98704691bff479196601fa28ca402e2a',1,'print():&#160;AnalyseDzeroPhi_data.C'],['../AnalyseDzeroPhi__MC_8C.html#a98704691bff479196601fa28ca402e2a',1,'print():&#160;AnalyseDzeroPhi_MC.C'],['../InvestigateBOSSRootFile_8C.html#a98704691bff479196601fa28ca402e2a',1,'print():&#160;InvestigateBOSSRootFile.C']]],
-  ['printcutflow',['PrintCutFlow',['../classBOSSRootFile.html#ac9f612907f93e4861399bc9f042993f5',1,'BOSSRootFile']]],
-  ['printfiles',['PrintFiles',['../classBOSSRootChain.html#adec16f859915ca863fa805f7040ddcd5',1,'BOSSRootChain']]],
-  ['printtrees',['PrintTrees',['../classBOSSRootChain.html#aa66bb2d2df46e757bb8679cd922f0f44',1,'BOSSRootChain::PrintTrees()'],['../classBOSSRootFile.html#a3e48c5e5c709a4a0db51f2c20bb6b7f4',1,'BOSSRootFile::PrintTrees()']]],
-  ['printwithoption',['PrintWithOption',['../classBOSSRootChain.html#a2d529143aa8aa7f7024bf1df314e7eb2',1,'BOSSRootChain']]],
-  ['pureplot',['pureplot',['../AnalyseDzeroPhi__data_8C.html#a256076e616aa416b2ef78d2cd1210c42',1,'pureplot():&#160;AnalyseDzeroPhi_data.C'],['../AnalyseDzeroPhi__MC_8C.html#a256076e616aa416b2ef78d2cd1210c42',1,'pureplot():&#160;AnalyseDzeroPhi_MC.C']]]
+  ['print',['Print',['../classArgPair__base.html#a7210f345546043554abe9f41e4ba2248',1,'ArgPair_base::Print()'],['../classArgPair.html#a1e617032dfc44e10206331ff80d7f605',1,'ArgPair::Print()'],['../classBOSSOutputLoader.html#a807591427984893d638714c96a1479bc',1,'BOSSOutputLoader::Print()'],['../classBOSSOutputLoader.html#a3cc6a67703f6f864789ffdb0644d1d9c',1,'BOSSOutputLoader::Print(const char *nameOfTree, Option_t *opt=&quot;toponly&quot;)']]],
+  ['printall',['PrintAll',['../classArgPair__base.html#a437de6354d80b601906092a6a747c59b',1,'ArgPair_base']]],
+  ['printcutflow',['PrintCutFlow',['../classBOSSOutputLoader.html#a338edf7defc51792b6fb191e6bc04c5c',1,'BOSSOutputLoader']]],
+  ['printtrees',['PrintTrees',['../classBOSSOutputLoader.html#a4404988dfe7b6f8079110575938a6661',1,'BOSSOutputLoader']]]
 ];

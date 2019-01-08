@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['loadchains',['LoadChains',['../classBOSSRootChain.html#aeb8e87abb7c774e2071d953f54bb1ac8',1,'BOSSRootChain']]],
-  ['loadtrees',['LoadTrees',['../classBOSSRootFile.html#aa7b4f44726e14198cf7084a09bac5b19',1,'BOSSRootFile']]],
+  ['loadchains',['LoadChains',['../classBOSSOutputLoader.html#a2afea5ff1c5ea9999cc436befc24deea',1,'BOSSOutputLoader']]],
+  ['loadconfiguration',['LoadConfiguration',['../AnalyseBOSSOutput_8C.html#a4b6d683c2253faf6854d6e8cd7cf819c',1,'AnalyseBOSSOutput.C']]],
   ['looptree',['LoopTree',['../namespaceCommonFunctions_1_1Loop.html#aceaee3e4acedcbc73f348434d11f7497',1,'CommonFunctions::Loop']]]
 ];

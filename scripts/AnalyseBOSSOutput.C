@@ -10,11 +10,13 @@
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
 	#include "../inc/BOSSOutputLoader.h"
+	#include "../inc/ArgPair.h"
 	#include "TStyle.h"
 	#include <iostream>
 	#include <utility>
 	#include <fstream>
 	#include <sstream>
+	#include <list>
 	using namespace CommonFunctions::Draw;
 	using namespace CommonFunctions::Fit;
 	using namespace RooFit;
@@ -27,43 +29,30 @@
 // * ------- DEFAULT SETTINGS ------- * //
 // * ================================ * //
 
-	// * STRUCT DEFINITION * //
-	template<typename TYPE>
-	struct ArgPair {
-		string name;
-		TYPE value;
-		void SetValue(const string &input) {
-			istringstream ss(input);
-			ss >> value;
-		}
-		void operator=(const TYPE &val) { value = val; }
-		bool operator==(const string &str) const { return !name.compare(str); }
-		bool operator!=(const string &str) const { return  name.compare(str); }
-		void print() { cout << "  " << name << " = " << value << endl; }
-	};
-
 	// * FILE NAME * //
-	ArgPair<string> gFilename { "InputFile", "/mnt/d/IHEP/root/D0phi_KpiKK_data" };
+	ArgPair<string> gFilename { "Input file or directory", "NOFILE" };
 
 	// * TERMINAL OUTPUT * //
 	ArgPair<bool> gPrint { "Print branches", false };
 
 	// * PLOT STYLE * //
-	ArgPair<bool> gSetranges   { "set plot ranges", true  }; //!< Whether or not to precisely set histogram ranges.
-	ArgPair<bool> gPlotstats   { "gPlotstats",   false }; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
+	ArgPair<string> gLogY { "Use y log scale", "y" }; //!< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
+	ArgPair<string> gLogZ { "Use z log scale", "z" }; //!< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
+	ArgPair<bool> gSetranges   { "Set plot ranges", true }; //!< Whether or not to precisely set histogram ranges.
+	ArgPair<bool> gPlotstats   { "Plot statistics", false }; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
 
 	// * WHICH BRANCHES TO PLOT * //
-	ArgPair<bool> gPureplot    { "gPureplot",    true  }; //!< Whether or not to plot histograms of branches <i>without fit</i>.
-	ArgPair<bool> gDraw_mult   { "gDraw_mult",   false }; //!< Whether or not to draw the multiplicity branches.
-	ArgPair<bool> gDraw_vertex { "gDraw_vertex", false }; //!< Whether or not to draw the `"vertex"` branch.
-	ArgPair<bool> gDraw_tof    { "gDraw_tof",    false }; //!< Whether or not to draw the `"tof*"` branches.
-	ArgPair<bool> gDraw_fit    { "gDraw_fit",    true  }; //!< Whether or not to draw the `"fit"` branches.
+	ArgPair<bool> gPureplot    { "Plot raw data",    true  }; //!< Whether or not to plot histograms of branches <i>without fit</i>.
+	ArgPair<bool> gDraw_mult   { "Draw multiplicites",   false }; //!< Whether or not to draw the multiplicity branches.
+	ArgPair<bool> gDraw_vertex { "Draw vertex", false }; //!< Whether or not to draw the `"vertex"` branch.
+	ArgPair<bool> gDraw_tof    { "Draw ToF",    false }; //!< Whether or not to draw the `"tof*"` branches.
+	ArgPair<bool> gDraw_fit    { "Draw fit branches",    true  }; //!< Whether or not to draw the `"fit"` branches.
 
 	// * FIT SETTINGS * //
-	ArgPair<bool> gFitplots    { "gFitplots",    false }; //!< Whether or not to produce invariant mass fits.
-	ArgPair<bool> gDo_gauss    { "gDo_gauss",    true  }; //!< Whether or not to produce perform a double Gaussian fit.
-	ArgPair<bool> gDo_conv_s   { "gDo_conv_s",   false }; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
-	ArgPair<bool> gDo_conv_d   { "gDo_conv_d",   false }; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
+	ArgPair<bool> gFitplots    { "Perform fits",    false }; //!< Whether or not to produce invariant mass fits.
+	ArgPair<bool> gDo_gauss    { "Do Gaussian",    true  }; //!< Whether or not to produce perform a double Gaussian fit.
+	ArgPair<bool> gDo_conv_s   { "Do single convolution",   false }; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
+	ArgPair<bool> gDo_conv_d   { "Do double convolution",   false }; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
 
 
 
@@ -74,7 +63,7 @@
 	int LoadConfiguration(const char* filename);
 	string GetParameterName(string line);
 	string GetParameterValue(string line);
-	void DrawDifference(TH1F *histToDraw, TH1F *histToSubtract, const char* setLog="");
+	void DrawDifference(TH1 *histToDraw, TH1 *histToSubtract, Option_t* opt="E1", const char* setLog="");
 	void RemoveLeading(string &line, const char c=' ');
 	void RemoveTrailing(string &line, const char c=' ');
 	void Trim(string &line, const char c=' ');
@@ -92,11 +81,10 @@
 	void AnalyseBOSSOutput()
 	{
 
-
 		// * OPEN INPUT FILE * //
+			LoadConfiguration("configs/D0phi_KpiKK_data.txt");
 			BOSSOutputLoader file(gFilename.value.data(), gPrint.value); /// To investigate the contents of the ROOT file, you first need to know which `TTree`s and branches it contains. If you simply construct the `BOSSOutputLoader` by giving it a file name, all `TTree`s will be loaded automatically as well as addresses for each of their branches. Five the constructer `true` as its second argument, and the names of these `TTree`s, their branches, and the types of these branches (behind the slash `/` after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b>
 			if(file.IsZombie()) return;
-			LoadConfiguration("configs/D0phi_KpiKK_MC.txt");
 			if(!gPlotstats.value) gStyle->SetOptStat(0);
 			file.PrintCutFlow();
 
@@ -105,69 +93,74 @@
 				if(gDraw_mult.value) {
 					for(auto tree = file.GetChains().begin(); tree != file.GetChains().end(); ++tree) {
 						TString name(tree->second.GetChain().GetName());
-						if(name.BeginsWith("mult")) tree->second.DrawAndSaveAllMultiplicityBranches("", "");
+						if(name.BeginsWith("mult")) tree->second.DrawAndSaveAllMultiplicityBranches(gLogY.value.data(), "");
 					}
 				}
 				if(gDraw_vertex.value) {
 					if(gSetranges.value) {
-						file.DrawBranches("vertex", "vy0:vx0", "colz");
-						file.DrawBranches("vertex", "vz0:vx0", "colz");
-						file.DrawBranches("vertex", "vz0:vy0", "colz");
+						file.DrawBranches("vertex", "vy0:vx0", "colz", gLogZ.value.data());
+						file.DrawBranches("vertex", "vz0:vx0", "colz", gLogZ.value.data());
+						file.DrawBranches("vertex", "vz0:vy0", "colz", gLogZ.value.data());
 					} else {
-						file.DrawBranches("vertex", "vx0", "vy0", 60, -.154, -.146,  40,  .08,   .122, "colz");
-						file.DrawBranches("vertex", "vx0", "vz0", 60, -.4,    .5,    60,  .08,   .122, "colz");
-						file.DrawBranches("vertex", "vy0", "vz0", 60, -.4,    .5,    40, -.154, -.146, "colz");
+						file.DrawBranches("vertex", "vx0", "vy0", 60, -.154, -.146,  40,  .08,   .122, "colz", gLogZ.value.data());
+						file.DrawBranches("vertex", "vx0", "vz0", 60, -.4,    .5,    60,  .08,   .122, "colz", gLogZ.value.data());
+						file.DrawBranches("vertex", "vy0", "vz0", 60, -.4,    .5,    40, -.154, -.146, "colz", gLogZ.value.data());
 					}
 				}
 				if(gDraw_tof.value) {
 					if(gSetranges.value) {
-						file.DrawBranches("ToFIB", "p", "tof", 120, 2., 15., 80, 0., 1.5, "colz", "z");
-						file.DrawBranches("ToFOB", "p", "tof", 120, 2., 15., 80, 0., 1.5, "colz", "z");
+						file.DrawBranches("ToFIB", "p", "tof", 120, 2., 15., 80, 0., 1.5, "colz", gLogZ.value.data());
+						file.DrawBranches("ToFOB", "p", "tof", 120, 2., 15., 80, 0., 1.5, "colz", gLogZ.value.data());
 					} else {
-						file.DrawBranches("ToFIB", "tof:p", "colz");
-						file.DrawBranches("ToFOB", "tof:p", "colz");
+						file.DrawBranches("ToFIB", "tof:p", "colz", gLogZ.value.data());
+						file.DrawBranches("ToFOB", "tof:p", "colz", gLogZ.value.data());
 					}
 				}
 				if(gDraw_fit.value) {
 					if(gSetranges.value) {
-						auto fit4c_all_mD0        = (TH1F*)(file.DrawBranches("fit4c_all",      "mD0",   100,  .7,    2.,      "E1", "")->Clone("fit4c_all/mD0_inv"));
-						auto fit4c_all_mphi       = (TH1F*)(file.DrawBranches("fit4c_all",      "mphi",  100,  .97,   1.7,     "E1", "")->Clone("fit4c_all/mphi_inv"));
-						auto fit4c_all_mJpsi      = (TH1F*)(file.DrawBranches("fit4c_all",      "mJpsi", 100, 3.0967, 3.09685, "E1", "")->Clone("fit4c_all/mJpsi_inv"));
-						auto fit4c_best_mD0       = (TH1F*)(file.DrawBranches("fit4c_best",     "mD0",   100,  .7,    2.,      "E1", "")->Clone("fit4c_best/mD0_inv"));
-						auto fit4c_best_mphi      = (TH1F*)(file.DrawBranches("fit4c_best",     "mphi",  100,  .97,   1.7,     "E1", "")->Clone("fit4c_best/mphi_inv"));
-						auto fit4c_best_mJpsi     = (TH1F*)(file.DrawBranches("fit4c_best",     "mJpsi", 100, 3.0967, 3.09685, "E1", "")->Clone("fit4c_best/mJpsi_inv"));
-						auto fit4c_best_D0_mD0    = (TH1F*)(file.DrawBranches("fit4c_best_D0",  "mD0",   100,  .7,    2.,      "E1", "")->Clone("fit4c_best_D0/mD0_inv"));
-						auto fit4c_best_D0_mphi   = (TH1F*)(file.DrawBranches("fit4c_best_D0",  "mphi",  100,  .97,   1.7,     "E1", "")->Clone("fit4c_best_D0/mphi_inv"));
-						auto fit4c_best_D0_mJpsi  = (TH1F*)(file.DrawBranches("fit4c_best_D0",  "mJpsi", 100, 3.0967, 3.09685, "E1", "")->Clone("fit4c_best_D0/mJpsi_inv"));
-						auto fit4c_best_phi_mD0   = (TH1F*)(file.DrawBranches("fit4c_best_phi", "mD0",   100,  .7,    2.,      "E1", "")->Clone("fit4c_best_phi/mD0_inv"));
-						auto fit4c_best_phi_mphi  = (TH1F*)(file.DrawBranches("fit4c_best_phi", "mphi",  100,  .97,   1.7,     "E1", "")->Clone("fit4c_best_phi/mphi_inv"));
-						auto fit4c_best_phi_mJpsi = (TH1F*)(file.DrawBranches("fit4c_best_phi", "mJpsi", 100, 3.0967, 3.09685, "E1", "")->Clone("fit4c_best_phi/mJpsi_inv"));
-						DrawDifference(fit4c_best_mD0,       fit4c_all_mD0);
-						DrawDifference(fit4c_best_mphi,      fit4c_all_mphi);
-						DrawDifference(fit4c_best_mJpsi,     fit4c_all_mJpsi);
-						DrawDifference(fit4c_best_D0_mD0,    fit4c_all_mD0);
-						DrawDifference(fit4c_best_D0_mphi,   fit4c_all_mphi);
-						DrawDifference(fit4c_best_D0_mJpsi,  fit4c_all_mJpsi);
-						DrawDifference(fit4c_best_phi_mD0,   fit4c_all_mD0);
-						DrawDifference(fit4c_best_phi_mphi,  fit4c_all_mphi);
-						DrawDifference(fit4c_best_phi_mJpsi, fit4c_all_mJpsi);
+						auto fit4c_all_mD0        = (TH1F*)(file.DrawBranches("fit4c_all",      "mD0",   100,  .7,    2.,      "E1", gLogY.value.data())->Clone("fit4c_all/mD0_inv"));
+						auto fit4c_all_mphi       = (TH1F*)(file.DrawBranches("fit4c_all",      "mphi",  100,  .97,   1.7,     "E1", gLogY.value.data())->Clone("fit4c_all/mphi_inv"));
+						auto fit4c_all_mJpsi      = (TH1F*)(file.DrawBranches("fit4c_all",      "mJpsi", 100, 3.0967, 3.09685, "E1", gLogY.value.data())->Clone("fit4c_all/mJpsi_inv"));
+						auto fit4c_best_mD0       = (TH1F*)(file.DrawBranches("fit4c_best",     "mD0",   100,  .7,    2.,      "E1", gLogY.value.data())->Clone("fit4c_best/mD0_inv"));
+						auto fit4c_best_mphi      = (TH1F*)(file.DrawBranches("fit4c_best",     "mphi",  100,  .97,   1.7,     "E1", gLogY.value.data())->Clone("fit4c_best/mphi_inv"));
+						auto fit4c_best_mJpsi     = (TH1F*)(file.DrawBranches("fit4c_best",     "mJpsi", 100, 3.0967, 3.09685, "E1", gLogY.value.data())->Clone("fit4c_best/mJpsi_inv"));
+						auto fit4c_best_D0_mD0    = (TH1F*)(file.DrawBranches("fit4c_best_D0",  "mD0",   100,  .7,    2.,      "E1", gLogY.value.data())->Clone("fit4c_best_D0/mD0_inv"));
+						auto fit4c_best_D0_mphi   = (TH1F*)(file.DrawBranches("fit4c_best_D0",  "mphi",  100,  .97,   1.7,     "E1", gLogY.value.data())->Clone("fit4c_best_D0/mphi_inv"));
+						auto fit4c_best_D0_mJpsi  = (TH1F*)(file.DrawBranches("fit4c_best_D0",  "mJpsi", 100, 3.0967, 3.09685, "E1", gLogY.value.data())->Clone("fit4c_best_D0/mJpsi_inv"));
+						auto fit4c_best_phi_mD0   = (TH1F*)(file.DrawBranches("fit4c_best_phi", "mD0",   100,  .7,    2.,      "E1", gLogY.value.data())->Clone("fit4c_best_phi/mD0_inv"));
+						auto fit4c_best_phi_mphi  = (TH1F*)(file.DrawBranches("fit4c_best_phi", "mphi",  100,  .97,   1.7,     "E1", gLogY.value.data())->Clone("fit4c_best_phi/mphi_inv"));
+						auto fit4c_best_phi_mJpsi = (TH1F*)(file.DrawBranches("fit4c_best_phi", "mJpsi", 100, 3.0967, 3.09685, "E1", gLogY.value.data())->Clone("fit4c_best_phi/mJpsi_inv"));
+						auto fit4c_all_dalitz     = (TH1F*)(file.DrawBranches("fit4c_all",     "mphi", "mD0", 60, .7, 2., 40, .9, 2.1, "colz", gLogZ.value.data())->Clone("fit4c_best_D0/mD0_mphi_inv"));
+						auto fit4c_best_D0_dalitz = (TH1F*)(file.DrawBranches("fit4c_best_D0", "mphi", "mD0", 60, .7, 2., 40, .9, 2.1, "colz", gLogZ.value.data())->Clone("fit4c_best_D0/mD0_mphi_inv"));
+						DrawDifference(fit4c_best_mD0,       fit4c_all_mD0,    "E1", gLogY.value.data());
+						DrawDifference(fit4c_best_mphi,      fit4c_all_mphi,   "E1", gLogY.value.data());
+						DrawDifference(fit4c_best_mJpsi,     fit4c_all_mJpsi,  "E1", gLogY.value.data());
+						DrawDifference(fit4c_best_D0_mD0,    fit4c_all_mD0,    "E1", gLogY.value.data());
+						DrawDifference(fit4c_best_D0_mphi,   fit4c_all_mphi,   "E1", gLogY.value.data());
+						DrawDifference(fit4c_best_D0_mJpsi,  fit4c_all_mJpsi,  "E1", gLogY.value.data());
+						DrawDifference(fit4c_best_phi_mD0,   fit4c_all_mD0,    "E1", gLogY.value.data());
+						DrawDifference(fit4c_best_phi_mphi,  fit4c_all_mphi,   "E1", gLogY.value.data());
+						DrawDifference(fit4c_best_phi_mJpsi, fit4c_all_mJpsi,  "E1", gLogY.value.data());
+						DrawDifference(fit4c_best_D0_dalitz, fit4c_all_dalitz, "colz",    gLogZ.value.data());
+						DrawAndSave(&file["fit4c_all"].GetChain(), "mphi", "mD0>1.5",  "E1", gLogY.value.data());
+						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0",  "mphi<1.1", "E1", gLogY.value.data());
+						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0:mphi",  "mD0>1.5&&mphi<1.1", "colz", gLogZ.value.data());
 					} else {
-						file.DrawBranches("fit4c_all",      "mD0",   "E1", "y");
-						file.DrawBranches("fit4c_best",     "mD0",   "E1", "y");
-						file.DrawBranches("fit4c_best_D0",  "mD0",   "E1", "y");
-						file.DrawBranches("fit4c_best_phi", "mD0",   "E1", "y");
-						file.DrawBranches("fit4c_all",      "mphi",  "E1", "y");
-						file.DrawBranches("fit4c_best",     "mphi",  "E1", "y");
-						file.DrawBranches("fit4c_best_D0",  "mphi",  "E1", "y");
-						file.DrawBranches("fit4c_best_phi", "mphi",  "E1", "y");
-						file.DrawBranches("fit4c_all",      "mJpsi", "E1", "y");
-						file.DrawBranches("fit4c_best",     "mJpsi", "E1", "y");
-						file.DrawBranches("fit4c_best_D0",  "mJpsi", "E1", "y");
-						file.DrawBranches("fit4c_best_phi", "mJpsi", "E1", "y");
+						file.DrawBranches("fit4c_all",      "mD0",   "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best",     "mD0",   "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best_D0",  "mD0",   "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best_phi", "mD0",   "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_all",      "mphi",  "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best",     "mphi",  "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best_D0",  "mphi",  "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best_phi", "mphi",  "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_all",      "mJpsi", "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best",     "mJpsi", "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best_D0",  "mJpsi", "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best_phi", "mJpsi", "E1", gLogY.value.data());
 					}
 				}
 			}
-
 
 		// * PERFORM FITS * //
 			if(gFitplots.value) {
@@ -183,23 +176,23 @@
 
 			// * Fit double gaussian
 				if(gDo_gauss.value) {
-					FitDoubleGaussian(hist_D0,   D0,   0, "y");
-					FitDoubleGaussian(hist_phi,  phi,  2, "y");
-					// FitDoubleGaussian(hist_Jpsi, Jpsi, 0, "y"); //! useless plot
+					FitDoubleGaussian(hist_D0,   D0,   0, gLogY.value.data());
+					FitDoubleGaussian(hist_phi,  phi,  2, gLogY.value.data());
+					// FitDoubleGaussian(hist_Jpsi, Jpsi, 0, gLogY.value.data()); //! useless plot
 				}
 
 			// * Fit Breit-Wigner convoluted with singe Gaussian
 				if(gDo_conv_s.value) {
-					FitBWGaussianConvolution(hist_D0,   D0,   0, "y");
-					FitBWGaussianConvolution(hist_phi,  phi,  2, "y");
-					// FitBWGaussianConvolution(hist_Jpsi, Jpsi, 2, "y"); //! useless plot
+					FitBWGaussianConvolution(hist_D0,   D0,   0, gLogY.value.data());
+					FitBWGaussianConvolution(hist_phi,  phi,  2, gLogY.value.data());
+					// FitBWGaussianConvolution(hist_Jpsi, Jpsi, 2, gLogY.value.data()); //! useless plot
 				}
 
 			// * Fit Breit-Wigner convoluted with double Gaussian
 				if(gDo_conv_s.value) {
-					FitBWDoubleGaussianConvolution(hist_D0,   D0,   0, "y");
-					FitBWDoubleGaussianConvolution(hist_phi,  phi,  2, "y");
-					// FitBWDoubleGaussianConvolution(hist_Jpsi, Jpsi, 2, "y"); //! useless plot
+					FitBWDoubleGaussianConvolution(hist_D0,   D0,   0, gLogY.value.data());
+					FitBWDoubleGaussianConvolution(hist_phi,  phi,  2, gLogY.value.data());
+					// FitBWDoubleGaussianConvolution(hist_Jpsi, Jpsi, 2, gLogY.value.data()); //! useless plot
 				}
 
 			}
@@ -222,27 +215,6 @@
 // * ------- FUNCTION DEFINITIONS ------- * //
 // * ==================================== * //
 
-template<typename TYPE>
-void SetParameter(ArgPair<TYPE> &par, const string &parname, const string &parvalue)
-{
-	if(par != parname) return;
-	par.SetValue(parvalue);
-	par.print();
-}
-void SetParameter(ArgPair<string> &par, const string &parname, const string &parvalue)
-{
-	if(par != parname) return;
-	par = parvalue;
-	par.print();
-}
-void SetParameter(ArgPair<bool> &par, const string &parname, const string &parvalue)
-{
-	if(par != parname) return;
-	if(!parvalue.compare("false") || parvalue.front()=='0') par = false;
-	else par = true;
-	par.print();
-}
-
 
 	int LoadConfiguration(const char* filename)
 	{
@@ -250,7 +222,7 @@ void SetParameter(ArgPair<bool> &par, const string &parname, const string &parva
 		ifstream file(filename);
 		if(!file.is_open()) return -1;
 		/// -# Print configuration title.
-			cout << endl << "LOADING CONFIGURATION FROM \"" << filename << "\"" << endl;
+		cout << endl << "LOADING CONFIGURATION FROM \"" << filename << "\"" << endl;
 		/// -# Loop over lines.
 		string line;
 		while(getline(file, line)) {
@@ -273,22 +245,11 @@ void SetParameter(ArgPair<bool> &par, const string &parname, const string &parva
 				string parname  { GetParameterName (line) };
 				string parvalue { GetParameterValue(line) };
 			/// <li> Load value if it compares to one of the parameters.
-				SetParameter(gFilename,    parname, parvalue);
-				SetParameter(gPrint,       parname, parvalue);
-				SetParameter(gSetranges,   parname, parvalue);
-				SetParameter(gPlotstats,   parname, parvalue);
-				SetParameter(gPureplot,    parname, parvalue);
-				SetParameter(gDraw_mult,   parname, parvalue);
-				SetParameter(gDraw_vertex, parname, parvalue);
-				SetParameter(gDraw_tof,    parname, parvalue);
-				SetParameter(gDraw_fit,    parname, parvalue);
-				SetParameter(gFitplots,    parname, parvalue);
-				SetParameter(gDo_gauss,    parname, parvalue);
-				SetParameter(gDo_conv_s,   parname, parvalue);
-				SetParameter(gDo_conv_d,   parname, parvalue);
+				ArgPair_base::SetParameters(parname, parvalue);
 			/// </ul>
 		}
-		cout << endl;
+		/// -# Print loaded values in table form.
+		ArgPair_base::PrintAll();
 		/// @return Number of valid loaded arguments
 	}
 
@@ -317,7 +278,8 @@ void SetParameter(ArgPair<bool> &par, const string &parname, const string &parva
 		RemoveLeading(line);
 		RemoveLeading(line, '\t');
 		/// -# Remove quotation marks.
-		Trim(line, 34); // 34 is ASCII for double quoation mark "
+		if(!line.compare("\"\"")) line = ""; // if empty string
+		else Trim(line, 34); // 34 is ASCII for double quoation mark "
 		/// @return Parameter value as infered from line
 		return line;
 	}
@@ -326,7 +288,7 @@ void SetParameter(ArgPair<bool> &par, const string &parname, const string &parva
 	/**
 	 * @brief *TEMPORARY* function that serves as a fix for the bug that causes the wrong best pair to be stored.
 	 */
-	void DrawDifference(TH1F *histToDraw, TH1F *histToSubtract, const char* setLog)
+	void DrawDifference(TH1 *histToDraw, TH1 *histToSubtract, Option_t* opt, const char* setLog)
 	{
 		if(!gPad) return;
 		gPad->Clear();
@@ -334,8 +296,12 @@ void SetParameter(ArgPair<bool> &par, const string &parname, const string &parva
 		histToDraw->Add(histToSubtract);
 		histToSubtract->SetLineColor(kWhite);
 		// histToSubtract->SetMarkerColor(kWhite);
-		histToSubtract->Draw("E1");
-		histToDraw->Draw("E1, same");
+		TString option(opt);
+		if(dynamic_cast<TH1F*>(histToDraw)) {
+			histToSubtract->Draw(option.Data());
+			option += "";
+		}
+		histToDraw->Draw(option.Data());
 		SaveCanvas(Form("%s", histToDraw->GetName()), gPad, setLog);
 	}
 

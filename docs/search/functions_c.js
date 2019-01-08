@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['openfile',['OpenFile',['../classBOSSRootFile.html#a50f2872225d67bcdaee614b7e469a78b',1,'BOSSRootFile']]],
-  ['operator_5b_5d',['operator[]',['../classBOSSRootFile.html#a156cc14cc8b599abccb633dc75aca151',1,'BOSSRootFile']]]
+  ['namemax',['NameMax',['../classCutObject.html#ad851a4dfec1c85774988c83e7186675c',1,'CutObject']]],
+  ['namemin',['NameMin',['../classCutObject.html#aef1906b4d6f9b928abf78f382512840e',1,'CutObject']]]
 ];

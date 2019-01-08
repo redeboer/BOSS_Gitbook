@@ -78,7 +78,7 @@
 	private:
 
 		// * DATA MEMBERS * //
-			TChain fChain;
+			TChain fChain; //!< `TChain` object to which the `TFile`s are added.
 			std::unordered_map<std::string, Char_t>    fMap_B; //!< Map of addresses for Char_t (8 bit signed integer).
 			std::unordered_map<std::string, UChar_t>   fMap_b; //!< Map of addresses for UChar_t (8 bit unsigned integer).
 			std::unordered_map<std::string, Short_t>   fMap_S; //!< Map of addresses for Short_t (16 bit signed integer).
@@ -191,6 +191,10 @@
 		// * Modify histogram * //
 		TH1F *hist = (TH1F*)gDirectory->Get(histName);
 		hist->SetTitle(Form("#it{%s} branch of the \"%s\" tree", branchX, fChain.GetName()));
+		if(!logScale.Contains("y") && !logScale.Contains("Y")) {// NOTE: cannot set y log scale if min value is 0
+			auto maxbin = hist->GetMaximumBin();
+			hist->GetYaxis()->SetRangeUser(0., hist->GetBinContent(maxbin)+1.5*hist->GetBinErrorUp(maxbin));
+		}
 		CommonFunctions::Hist::SetAxisTitles(hist, branchX, Form("count / %g", hist->GetBinWidth(1)));
 		// * Save and return histogram * //
 		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), branchX), gPad, logScale);
@@ -271,6 +275,7 @@
 	 * @details This function additionally ensures that the bin width is set to 1 and that the histograms are drawn in `"E1"` mode (see https://root.cern.ch/doc/master/classTHistPainter.html).
 	 * 
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 * @param opt Draw options.
 	 */
 	void ChainLoader::DrawAndSaveAllMultiplicityBranches(const TString& logScale, Option_t* opt)
 	{

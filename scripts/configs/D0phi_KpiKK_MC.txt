@@ -3,24 +3,26 @@
  */
 
 // * FILE NAME * //
-	InputFile = "/mnt/d/IHEP/root/D0phi_KpiKK_data"
+	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK_MC_1e6.root"
 
 // * TERMINAL OUTPUT * //
 	Print branches = false
 
 // * PLOT STYLE * //
-	set plot ranges = true
-	gPlotstats      = false
+	Use y log scale = ""
+	Use z log scale = "z"
+	Set plot ranges = true
+	Plot statistics = false
 
 // * WHICH BRANCHES TO PLOT * //
-	gPureplot    = true
-	gDraw_mult   = false
-	gDraw_vertex = false
-	gDraw_tof    = false
-	gDraw_fit    = true
+	Plot raw data      = true
+	Draw multiplicites = true
+	Draw vertex        = false
+	Draw ToF           = false
+	Draw fit branches  = true
 
 // * FIT SETTINGS * //
-	gFitplots  = false
-	gDo_gauss  = true
-	gDo_conv_s = false
-	gDo_conv_d = false
+	Perform fits = false
+	Do Gaussian  = true
+	Do single convolution = false
+	Do double convolution = false

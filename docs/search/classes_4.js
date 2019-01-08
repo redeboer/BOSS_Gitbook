@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['reconstructedparticle',['ReconstructedParticle',['../classReconstructedParticle.html',1,'']]],
-  ['rhopi_5fpipigg',['rhopi_pipigg',['../classrhopi__pipigg.html',1,'']]],
-  ['rhopialg',['RhopiAlg',['../classRhopiAlg.html',1,'']]]
+  ['kkfitresult',['KKFitResult',['../classKKFitResult.html',1,'']]],
+  ['kkfitresult_5fd0phi_5fkpikk',['KKFitResult_D0phi_KpiKK',['../classKKFitResult__D0phi__KpiKK.html',1,'']]]
 ];

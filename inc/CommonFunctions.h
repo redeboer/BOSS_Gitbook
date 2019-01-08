@@ -217,6 +217,7 @@
 		if(Error::IsEmptyPtr(pad)) return;
 		logScale.ToLower();
 		// * Set log scale * //
+		pad->SetLogx(0); pad->SetLogy(0); pad->SetLogz(0);
 		if(logScale.Contains("x")) pad->SetLogx();
 		if(logScale.Contains("y")) pad->SetLogy();
 		if(logScale.Contains("z")) pad->SetLogz();

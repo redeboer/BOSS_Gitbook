@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['write',['Write',['../classCutObject.html#ac352b5f7c9751a00e87f372d7edbeaf0',1,'CutObject']]],
   ['writecuts',['WriteCuts',['../classTrackSelector.html#aefb3066d29d1839c5427e2f0f8c0fa22',1,'TrackSelector']]],
   ['writededxinfo',['WriteDedxInfo',['../classTrackSelector.html#a1e61c5641664e0b7c9883d6ba172846e',1,'TrackSelector']]],
   ['writededxinfoforvector',['WriteDedxInfoForVector',['../classTrackSelector.html#ac1eaa42584a11fa2f96466de1e032bfa',1,'TrackSelector']]],
