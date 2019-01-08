@@ -31,7 +31,7 @@ The documentation of this [GitBook](https://besiii.gitbook.io/boss-gitbook) is i
 
 Parts of this tutorial already refer to components of the BOSS Afterburner repository, because it contains example and helper scripts that you might find useful.
 
-The _BOSS Afterburner_ also contains a package structure designed for hadron analysis. This is created in the following section:
+The _BOSS Afterburner_ also contains a package structure designed for hadron analysis. This is described in the following section:
 
 {% page-ref page="docs-packages/main.md" %}
 
