@@ -142,17 +142,17 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a8240b36613fc387844cafe34de58feee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8240b36613fc387844cafe34de58feee">AddItemsToNTuples</a> (NTuplePtr nt, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map)</td></tr>
 <tr class="memdesc:a8240b36613fc387844cafe34de58feee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically assign all <em>mapped values</em> of <code>map</code> as items to an <code>NTuplePtr</code>.  <a href="#a8240b36613fc387844cafe34de58feee">More...</a><br /></td></tr>
 <tr class="separator:a8240b36613fc387844cafe34de58feee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa488b1a206b8b8828d234b6d900704d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aa488b1a206b8b8828d234b6d900704d5">BookNtupleItemsCuts</a> ()</td></tr>
-<tr class="separator:aa488b1a206b8b8828d234b6d900704d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07b15e1875115d75d60c6a98f77e62b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a07b15e1875115d75d60c6a98f77e62b4">DeclareCuts</a> ()</td></tr>
+<tr class="separator:a07b15e1875115d75d60c6a98f77e62b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefb3066d29d1839c5427e2f0f8c0fa22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aefb3066d29d1839c5427e2f0f8c0fa22">WriteCuts</a> ()</td></tr>
+<tr class="memdesc:aefb3066d29d1839c5427e2f0f8c0fa22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all cuts (<code>name</code>, <code>value</code>, and <code>count</code> of accepted) to a branch called "_cutvalues".  <a href="#aefb3066d29d1839c5427e2f0f8c0fa22">More...</a><br /></td></tr>
+<tr class="separator:aefb3066d29d1839c5427e2f0f8c0fa22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5591150f56705a5ec220dcb20b926fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad5591150f56705a5ec220dcb20b926fd">BookNtupleItemsDedx</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map, const char *tupleTitle=&quot;dE/dx info&quot;)</td></tr>
 <tr class="memdesc:ad5591150f56705a5ec220dcb20b926fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss branch (<code>"dedx"</code>).  <a href="#ad5591150f56705a5ec220dcb20b926fd">More...</a><br /></td></tr>
 <tr class="separator:ad5591150f56705a5ec220dcb20b926fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd0f7cf9d253705cf62bc1326e8e3398"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#abd0f7cf9d253705cf62bc1326e8e3398">BookNtupleItemsTof</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map, const char *tupleTitle=&quot;Time-of-Flight info&quot;)</td></tr>
 <tr class="memdesc:abd0f7cf9d253705cf62bc1326e8e3398"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="#abd0f7cf9d253705cf62bc1326e8e3398">More...</a><br /></td></tr>
 <tr class="separator:abd0f7cf9d253705cf62bc1326e8e3398"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefb3066d29d1839c5427e2f0f8c0fa22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aefb3066d29d1839c5427e2f0f8c0fa22">WriteCuts</a> ()</td></tr>
-<tr class="memdesc:aefb3066d29d1839c5427e2f0f8c0fa22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that writes all properties starting with <code>"cut_"</code> to a <code>TTree</code> called <code>"_cutvalues"</code>.  <a href="#aefb3066d29d1839c5427e2f0f8c0fa22">More...</a><br /></td></tr>
-<tr class="separator:aefb3066d29d1839c5427e2f0f8c0fa22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e61c5641664e0b7c9883d6ba172846e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1e61c5641664e0b7c9883d6ba172846e">WriteDedxInfo</a> (EvtRecTrack *evtRecTrack, const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map)</td></tr>
 <tr class="memdesc:a1e61c5641664e0b7c9883d6ba172846e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss information <em>for one track</em>.  <a href="#a1e61c5641664e0b7c9883d6ba172846e">More...</a><br /></td></tr>
 <tr class="separator:a1e61c5641664e0b7c9883d6ba172846e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -275,18 +275,36 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:acf55999a9bc21831ce2f7e097d5597e8"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#acf55999a9bc21831ce2f7e097d5597e8">fMap_vertex</a></td></tr>
 <tr class="memdesc:acf55999a9bc21831ce2f7e097d5597e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the primary vertex info vertex branch.  <a href="#acf55999a9bc21831ce2f7e097d5597e8">More...</a><br /></td></tr>
 <tr class="separator:acf55999a9bc21831ce2f7e097d5597e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff2854fd0d70e2f9a1ed911d124f7374"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aff2854fd0d70e2f9a1ed911d124f7374">fCut_Vr0</a></td></tr>
-<tr class="memdesc:aff2854fd0d70e2f9a1ed911d124f7374"><td class="mdescLeft">&#160;</td><td class="mdescRight">The private data members are used to define cuts. The values for these cuts should be set in the <code><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1" title="Constructor for the TrackSelector algorithm. ">TrackSelector::TrackSelector</a></code> constructor (see corresponding <code>.cxx</code> file).  <a href="#aff2854fd0d70e2f9a1ed911d124f7374">More...</a><br /></td></tr>
-<tr class="separator:aff2854fd0d70e2f9a1ed911d124f7374"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a2dd8a79bf0e027caea7924836bfcf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6a2dd8a79bf0e027caea7924836bfcf2">fCut_Vz0</a></td></tr>
-<tr class="memdesc:a6a2dd8a79bf0e027caea7924836bfcf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$z$" src="form_42.png"/> coordinate of the primary vertex.  <a href="#a6a2dd8a79bf0e027caea7924836bfcf2">More...</a><br /></td></tr>
-<tr class="separator:a6a2dd8a79bf0e027caea7924836bfcf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f94c0e858616e3473b28f6da1a95fb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9f94c0e858616e3473b28f6da1a95fb1">fCut_Rvz0</a></td></tr>
-<tr class="memdesc:a9f94c0e858616e3473b28f6da1a95fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the distance in the <img class="formulaInl" alt="$xy$" src="form_43.png"/> plane between the primary vertex and the vertex of the charged track.  <a href="#a9f94c0e858616e3473b28f6da1a95fb1">More...</a><br /></td></tr>
-<tr class="separator:a9f94c0e858616e3473b28f6da1a95fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebd8c6c04879eaedfc0c6ca796afc3b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aebd8c6c04879eaedfc0c6ca796afc3b9">fCut_Rvxy0</a></td></tr>
-<tr class="memdesc:aebd8c6c04879eaedfc0c6ca796afc3b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the distance in the <img class="formulaInl" alt="$z$" src="form_42.png"/> direction between the primary vertex and the vertex of the charged track.  <a href="#aebd8c6c04879eaedfc0c6ca796afc3b9">More...</a><br /></td></tr>
-<tr class="separator:aebd8c6c04879eaedfc0c6ca796afc3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf6a088cef2a37147d988de4bf78c8d9"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#acf6a088cef2a37147d988de4bf78c8d9">fCutTuples</a></td></tr>
+<tr class="memdesc:acf6a088cef2a37147d988de4bf78c8d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The private data members are used to define cuts. The values for these cuts should be set in the <code><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1" title="Constructor for the TrackSelector algorithm. ">TrackSelector::TrackSelector</a></code> constructor (see corresponding <code>.cxx</code> file).  <a href="#acf6a088cef2a37147d988de4bf78c8d9">More...</a><br /></td></tr>
+<tr class="separator:acf6a088cef2a37147d988de4bf78c8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09abed39657f3aba313c1ce90c0a83b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a09abed39657f3aba313c1ce90c0a83b0">fCounter_Nevents</a></td></tr>
+<tr class="memdesc:a09abed39657f3aba313c1ce90c0a83b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of events.  <a href="#a09abed39657f3aba313c1ce90c0a83b0">More...</a><br /></td></tr>
+<tr class="separator:a09abed39657f3aba313c1ce90c0a83b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97564369e6fba4018e437a69b1c5e5ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a97564369e6fba4018e437a69b1c5e5ff">fCounter_Ntracks</a></td></tr>
+<tr class="memdesc:a97564369e6fba4018e437a69b1c5e5ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of tracks.  <a href="#a97564369e6fba4018e437a69b1c5e5ff">More...</a><br /></td></tr>
+<tr class="separator:a97564369e6fba4018e437a69b1c5e5ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77cfba71855e2615068897ca4ff9cbec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a77cfba71855e2615068897ca4ff9cbec">fCounter_Ncharged</a></td></tr>
+<tr class="memdesc:a77cfba71855e2615068897ca4ff9cbec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of charged tracks.  <a href="#a77cfba71855e2615068897ca4ff9cbec">More...</a><br /></td></tr>
+<tr class="separator:a77cfba71855e2615068897ca4ff9cbec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aedde29adfa7b5abca1f64898c9babe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6aedde29adfa7b5abca1f64898c9babe">fCounter_Nmdcvalid</a></td></tr>
+<tr class="memdesc:a6aedde29adfa7b5abca1f64898c9babe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of charged tracks that are 'MDC valid'.  <a href="#a6aedde29adfa7b5abca1f64898c9babe">More...</a><br /></td></tr>
+<tr class="separator:a6aedde29adfa7b5abca1f64898c9babe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fddcd465b7d901f38d800a8a8fc6ddc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9fddcd465b7d901f38d800a8a8fc6ddc">fCounter_Nneutral</a></td></tr>
+<tr class="memdesc:a9fddcd465b7d901f38d800a8a8fc6ddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of neutral tracks.  <a href="#a9fddcd465b7d901f38d800a8a8fc6ddc">More...</a><br /></td></tr>
+<tr class="separator:a9fddcd465b7d901f38d800a8a8fc6ddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c32957ceff7dadd751f585fff889280"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7c32957ceff7dadd751f585fff889280">fCut_Vxy</a></td></tr>
+<tr class="memdesc:a7c32957ceff7dadd751f585fff889280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the radius <img class="formulaInl" alt="$r$" src="form_51.png"/> of the primary vertex.  <a href="#a7c32957ceff7dadd751f585fff889280">More...</a><br /></td></tr>
+<tr class="separator:a7c32957ceff7dadd751f585fff889280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af432821cbafda619d271cd70784c5fea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af432821cbafda619d271cd70784c5fea">fCut_Vz</a></td></tr>
+<tr class="memdesc:af432821cbafda619d271cd70784c5fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$z$" src="form_42.png"/> coordinate of the primary vertex.  <a href="#af432821cbafda619d271cd70784c5fea">More...</a><br /></td></tr>
+<tr class="separator:af432821cbafda619d271cd70784c5fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33f793884f75196fdc92a1fab33e30f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a33f793884f75196fdc92a1fab33e30f1">fCut_Rxy</a></td></tr>
+<tr class="memdesc:a33f793884f75196fdc92a1fab33e30f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the distance in the <img class="formulaInl" alt="$z$" src="form_42.png"/> direction between the primary vertex and the vertex of the charged track.  <a href="#a33f793884f75196fdc92a1fab33e30f1">More...</a><br /></td></tr>
+<tr class="separator:a33f793884f75196fdc92a1fab33e30f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b4bb6fef6929c8dcd7d2a293d652ca1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9b4bb6fef6929c8dcd7d2a293d652ca1">fCut_Rz</a></td></tr>
+<tr class="memdesc:a9b4bb6fef6929c8dcd7d2a293d652ca1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the distance in the <img class="formulaInl" alt="$xy$" src="form_43.png"/> plane between the primary vertex and the vertex of the charged track.  <a href="#a9b4bb6fef6929c8dcd7d2a293d652ca1">More...</a><br /></td></tr>
+<tr class="separator:a9b4bb6fef6929c8dcd7d2a293d652ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a901e31293863843b8b942720e8a594d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a901e31293863843b8b942720e8a594d8">fCut_PhotonEnergy</a></td></tr>
 <tr class="memdesc:a901e31293863843b8b942720e8a594d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the photon energy.  <a href="#a901e31293863843b8b942720e8a594d8">More...</a><br /></td></tr>
 <tr class="separator:a901e31293863843b8b942720e8a594d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -338,7 +356,7 @@ Protected Attributes</h2></td></tr>
 <ul>
 <li>The <code>"do_&lt;treename&gt;"</code> properties determine whether or not to make a selection of 'good' neutral and/or charged tracks.</li>
 <li>The <code>"write_&lt;treename&gt;"</code> properties determine whether or not the corresponding <code>TTree</code>/<code>NTuple</code> will be filled. Default values are set in the constructor as well.</li>
-<li>Book cut values </li>
+<li>The <code>"cut_&lt;parameter&gt;"</code> properties determine cuts on certain parameters. </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00048">48</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
@@ -397,7 +415,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00537">537</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00544">544</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -444,7 +462,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00518">518</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00525">525</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -493,32 +511,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <p>Use <code>map::operator[]</code> if you want to book an <code>NTuple::Item</code> and use <code>map::at</code> if you want to access the <code>NTuple</code> by key value. This ensures that the programme throws an exception if you ask for the wrong key later. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00470">470</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
-
-</div>
-</div>
-<a id="aa488b1a206b8b8828d234b6d900704d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa488b1a206b8b8828d234b6d900704d5">&#9670;&nbsp;</a></span>BookNtupleItemsCuts()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TrackSelector::BookNtupleItemsCuts </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00477">477</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -607,7 +600,7 @@ Protected Attributes</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00565">565</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00598">598</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -704,7 +697,7 @@ Protected Attributes</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00592">592</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00625">625</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -735,7 +728,34 @@ Protected Attributes</h2></td></tr>
 <p>Compute a 'momentum' for a neutral track. </p>
 <p>The momentum is computed from the neutral track (photon) energy and from the location (angles) where it was detected in the EMC. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00447">447</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00454">454</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a07b15e1875115d75d60c6a98f77e62b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07b15e1875115d75d60c6a98f77e62b4">&#9670;&nbsp;</a></span>DeclareCuts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::DeclareCuts </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00553">553</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -788,11 +808,11 @@ Protected Attributes</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><img class="formulaInl" alt="$z$" src="form_42.png"/> coordinate of the distance to the interaction point has to be within <code>cut_Rvz0_max</code></p>
+<p class="startli">radius in $xy$ plane has to be less than <code>cut_Vr0_max</code></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">radius in $xy$ plane has to be less than <code>cut_Vr0_max</code></p>
+<p class="startli"><img class="formulaInl" alt="$z$" src="form_42.png"/> coordinate of the distance to the interaction point has to be within <code>cut_Rvz0_max</code></p>
 <p class="endli"></p>
 </li>
 <li>
@@ -854,7 +874,7 @@ Protected Attributes</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00204">204</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00201">201</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -905,7 +925,7 @@ Protected Attributes</h2></td></tr>
 <p>Currently does nothing. </p>
 <p>Cut flow could be printed in this step. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Add log output to <code>finalize</code> step. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00427">427</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00431">431</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1141,7 +1161,7 @@ Protected Attributes</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00105">105</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00102">102</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1233,7 +1253,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00493">493</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00500">500</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1260,15 +1280,16 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Method that writes all properties starting with <code>"cut_"</code> to a <code>TTree</code> called <code>"_cutvalues"</code>. </p>
-<p>Best executed in the <code>finalize</code> step. </p>
+<p>Write all cuts (<code>name</code>, <code>value</code>, and <code>count</code> of accepted) to a branch called "_cutvalues". </p>
 <ol type="1">
-<li>Create list of cut tuples based on declared properties (they are added if they start with <code>"cut_"</code>)</li>
-<li>Set values of these <code>NTuple::Item</code>s</li>
-<li>Write values to output file </li>
+<li>For each cut name, create an <code>NTuple::Item&lt;double&gt;</code> in the map <code>fMap_cuts</code>.</li>
+<li>Add the <code>NTuple::Item</code>s of <code>fMap_cuts</code> to an <code>NTuple</code> called <code>"_cutvalues"</code>.</li>
+<li>Write <code>min</code> values to the first entry of <code>"_cutvalues"</code>.</li>
+<li>Write <code>max</code> values to the second entry of <code>"_cutvalues"</code>.</li>
+<li>Write the <code>counter</code> values to the third entry of <code>"_cutvalues"</code>. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00615">615</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00567">567</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1322,7 +1343,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00648">648</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00652">652</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1377,7 +1398,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00687">687</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00691">691</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1407,7 +1428,7 @@ Protected Attributes</h2></td></tr>
 <p>Encapsulates the proces of writing PID info. </p>
 <p>This allows you to write the PID information after the particle selection as well. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00699">699</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00703">703</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1457,11 +1478,141 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00725">725</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00729">729</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a77cfba71855e2615068897ca4ff9cbec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77cfba71855e2615068897ca4ff9cbec">&#9670;&nbsp;</a></span>fCounter_Ncharged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCounter_Ncharged</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Eventual total number of charged tracks. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00149">149</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a09abed39657f3aba313c1ce90c0a83b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09abed39657f3aba313c1ce90c0a83b0">&#9670;&nbsp;</a></span>fCounter_Nevents</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCounter_Nevents</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Eventual total number of events. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00147">147</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a6aedde29adfa7b5abca1f64898c9babe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aedde29adfa7b5abca1f64898c9babe">&#9670;&nbsp;</a></span>fCounter_Nmdcvalid</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCounter_Nmdcvalid</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Eventual total number of charged tracks that are 'MDC valid'. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00150">150</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a9fddcd465b7d901f38d800a8a8fc6ddc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fddcd465b7d901f38d800a8a8fc6ddc">&#9670;&nbsp;</a></span>fCounter_Nneutral</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCounter_Nneutral</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Eventual total number of neutral tracks. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00151">151</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a97564369e6fba4018e437a69b1c5e5ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97564369e6fba4018e437a69b1c5e5ff">&#9670;&nbsp;</a></span>fCounter_Ntracks</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCounter_Ntracks</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Eventual total number of tracks. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00148">148</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
 <a id="a901e31293863843b8b942720e8a594d8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a901e31293863843b8b942720e8a594d8">&#9670;&nbsp;</a></span>fCut_PhotonEnergy</h2>
 
@@ -1484,7 +1635,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Cut on the photon energy. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00150">150</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00156">156</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1510,7 +1661,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Cut on the <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_52.png"/> of the kinematic Kalman fits. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00151">151</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00157">157</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1536,12 +1687,12 @@ Protected Attributes</h2></td></tr>
 
 <p>Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6"><code>ParticleID::probPion</code></a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00152">152</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00158">158</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="aebd8c6c04879eaedfc0c6ca796afc3b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebd8c6c04879eaedfc0c6ca796afc3b9">&#9670;&nbsp;</a></span>fCut_Rvxy0</h2>
+<a id="a33f793884f75196fdc92a1fab33e30f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33f793884f75196fdc92a1fab33e30f1">&#9670;&nbsp;</a></span>fCut_Rxy</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1550,7 +1701,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCut_Rvxy0</td>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCut_Rxy</td>
         </tr>
       </table>
   </td>
@@ -1562,12 +1713,12 @@ Protected Attributes</h2></td></tr>
 
 <p>Cut on the distance in the <img class="formulaInl" alt="$z$" src="form_42.png"/> direction between the primary vertex and the vertex of the charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00149">149</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00154">154</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a9f94c0e858616e3473b28f6da1a95fb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f94c0e858616e3473b28f6da1a95fb1">&#9670;&nbsp;</a></span>fCut_Rvz0</h2>
+<a id="a9b4bb6fef6929c8dcd7d2a293d652ca1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b4bb6fef6929c8dcd7d2a293d652ca1">&#9670;&nbsp;</a></span>fCut_Rz</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1576,7 +1727,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCut_Rvz0</td>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCut_Rz</td>
         </tr>
       </table>
   </td>
@@ -1588,12 +1739,12 @@ Protected Attributes</h2></td></tr>
 
 <p>Cut on the distance in the <img class="formulaInl" alt="$xy$" src="form_43.png"/> plane between the primary vertex and the vertex of the charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00148">148</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00155">155</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="aff2854fd0d70e2f9a1ed911d124f7374"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff2854fd0d70e2f9a1ed911d124f7374">&#9670;&nbsp;</a></span>fCut_Vr0</h2>
+<a id="a7c32957ceff7dadd751f585fff889280"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c32957ceff7dadd751f585fff889280">&#9670;&nbsp;</a></span>fCut_Vxy</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1602,7 +1753,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCut_Vr0</td>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCut_Vxy</td>
         </tr>
       </table>
   </td>
@@ -1612,15 +1763,14 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The private data members are used to define cuts. The values for these cuts should be set in the <code><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1" title="Constructor for the TrackSelector algorithm. ">TrackSelector::TrackSelector</a></code> constructor (see corresponding <code>.cxx</code> file). </p>
 <p>Cut on the radius <img class="formulaInl" alt="$r$" src="form_51.png"/> of the primary vertex. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00146">146</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00152">152</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a6a2dd8a79bf0e027caea7924836bfcf2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a2dd8a79bf0e027caea7924836bfcf2">&#9670;&nbsp;</a></span>fCut_Vz0</h2>
+<a id="af432821cbafda619d271cd70784c5fea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af432821cbafda619d271cd70784c5fea">&#9670;&nbsp;</a></span>fCut_Vz</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1629,7 +1779,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCut_Vz0</td>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCut_Vz</td>
         </tr>
       </table>
   </td>
@@ -1641,7 +1791,33 @@ Protected Attributes</h2></td></tr>
 
 <p>Cut on the <img class="formulaInl" alt="$z$" src="form_42.png"/> coordinate of the primary vertex. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00147">147</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00153">153</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="acf6a088cef2a37147d988de4bf78c8d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf6a088cef2a37147d988de4bf78c8d9">&#9670;&nbsp;</a></span>fCutTuples</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Tuple* TrackSelector::fCutTuples</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The private data members are used to define cuts. The values for these cuts should be set in the <code><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1" title="Constructor for the TrackSelector algorithm. ">TrackSelector::TrackSelector</a></code> constructor (see corresponding <code>.cxx</code> file). </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00146">146</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2189,7 +2365,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Number of charges detected in the MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00164">164</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00162">162</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2371,7 +2547,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Coordinates of the interaction point (primary vertex). Set in each event in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">TrackSelector::execute</a></code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00163">163</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00161">161</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>

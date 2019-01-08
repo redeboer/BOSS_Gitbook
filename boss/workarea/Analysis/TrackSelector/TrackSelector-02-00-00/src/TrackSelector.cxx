@@ -562,10 +562,7 @@
 
 
 	/**
-	 * @brief Automatically assign all cut values as declared in the constructor to an `NTuple` called `"_cutvalues"`.
-	 * 
-	 * @param nt The `NTuplePtr` to which you want to add the <i>mapped values</i> of `map`.
-	 * @param map The `map` from which you want to load the <i>mapped values</i>.
+	 * @brief Write all cuts (`name`, `value`, and `count` of accepted) to a branch called "_cutvalues".
 	 */
 	void TrackSelector::WriteCuts()
 	{

@@ -83,6 +83,7 @@ $(document).ready(function(){initNavTree('classArgPair__base.html','');});
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="classArgPair__base-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -125,6 +126,12 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aea6f9099a0915d48fccb3a8ad5b0a633"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArgPair__base.html#aea6f9099a0915d48fccb3a8ad5b0a633">name</a></td></tr>
 <tr class="separator:aea6f9099a0915d48fccb3a8ad5b0a633"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ae7b891023250778b4e40305be6fba79c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArgPair__base.html#ae7b891023250778b4e40305be6fba79c">PrintName</a> (int width=0)</td></tr>
+<tr class="memdesc:ae7b891023250778b4e40305be6fba79c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that defines the first part of the derived <code><a class="el" href="classArgPair.html#a1e617032dfc44e10206331ff80d7f605" title="Print a name and value this parameter object. ">ArgPair::Print</a></code> method.  <a href="#ae7b891023250778b4e40305be6fba79c">More...</a><br /></td></tr>
+<tr class="separator:ae7b891023250778b4e40305be6fba79c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr class="memitem:ab983569edb4bd7e1956382901c02c67e"><td class="memItemLeft" align="right" valign="top">static std::list&lt; <a class="el" href="classArgPair__base.html">ArgPair_base</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArgPair__base.html#ab983569edb4bd7e1956382901c02c67e">instances</a></td></tr>
@@ -161,7 +168,7 @@ Static Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00028">28</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00027">27</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
 
 </div>
 </div>
@@ -221,7 +228,44 @@ Static Protected Attributes</h2></td></tr>
 <li>Print all items. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00101">101</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00136">136</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
+
+</div>
+</div>
+<a id="ae7b891023250778b4e40305be6fba79c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b891023250778b4e40305be6fba79c">&#9670;&nbsp;</a></span>PrintName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ArgPair_base::PrintName </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method that defines the first part of the derived <code><a class="el" href="classArgPair.html#a1e617032dfc44e10206331ff80d7f605" title="Print a name and value this parameter object. ">ArgPair::Print</a></code> method. </p>
+<p>Since the behavior is the same for each type of parameter, this method has been defined in the <code><a class="el" href="classArgPair__base.html" title="Class that can contain parameters and values of a loaded configuration file. ">ArgPair_base</a></code> base clase. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>Use this parameter if you want to print the <code>name</code> of the parameter in a certain column width. This can be useful when printing a table using <code>PrintAll</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>An indent is printed by default. </p>
+
+<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00085">85</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
 
 </div>
 </div>
@@ -309,7 +353,7 @@ Static Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00152">152</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00187">187</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
 
 </div>
 </div>
@@ -334,7 +378,7 @@ Static Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00041">41</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00034">34</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
 
 </div>
 </div>
@@ -350,7 +394,7 @@ Static Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00039">39</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ArgPair_8h_source.html#l00032">32</a> of file <a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>.</p>
 
 </div>
 </div>

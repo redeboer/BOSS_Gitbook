@@ -78,7 +78,7 @@
 
 
 	/**
-	 * @brief Method that defines the first part of the derived `ArgPair<TYPE>::Print` method.
+	 * @brief Method that defines the first part of the derived `ArgPair::Print` method.
 	 * @details Since the behavior is the same for each type of parameter, this method has been defined in the `ArgPair_base` base clase.
 	 * @param width Use this parameter if you want to print the `name` of the parameter in a certain column width. This can be useful when printing a table using `PrintAll`.
 	 */
@@ -114,7 +114,7 @@
 
 
 	/** 
-	 * @brief Specialisation `ArgPair<TYPE>::Print` in the case of a `string`.
+	 * @brief Specialisation `ArgPair::Print` in the case of a `string`.
 	 * @details This method prints quotation marks around the parameter value.
 	 */
 	template<> void ArgPair<std::string>::PrintValue()
@@ -124,7 +124,7 @@
 
 
 	/** 
-	 * @brief Specialisation `ArgPair<TYPE>::Print` in the case of a `bool`ean.
+	 * @brief Specialisation `ArgPair::Print` in the case of a `bool`ean.
 	 * @details This method prints `false` if the value is `0` and `true` if otherwise.
 	 */
 	template<> void ArgPair<bool>::PrintValue()

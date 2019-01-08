@@ -1,7 +1,7 @@
 var AnalyseBOSSOutput_8C =
 [
     [ "AnalyseBOSSOutput", "AnalyseBOSSOutput_8C.html#a2c84ab278830bc4fdd1c25b61e6929a4", null ],
-    [ "DrawDifference", "AnalyseBOSSOutput_8C.html#ac90278627e59c05d3e9cc9023d559c40", null ],
+    [ "DrawDifference", "AnalyseBOSSOutput_8C.html#abee3cd059976d9c8b0c2082ae1d3fbed", null ],
     [ "GetParameterName", "AnalyseBOSSOutput_8C.html#a272a0b303a0709b326fd89835180dabe", null ],
     [ "GetParameterValue", "AnalyseBOSSOutput_8C.html#a833ee0fdfa4feca5a2062a899d8f19d4", null ],
     [ "LoadConfiguration", "AnalyseBOSSOutput_8C.html#a4b6d683c2253faf6854d6e8cd7cf819c", null ],
