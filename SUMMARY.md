@@ -16,7 +16,7 @@
 ## BOSS Afterburner packages
 
 * [BOSS Afterburner packages](docs-packages/main.md)
-* [The RhopiAlg package and others](docs-packages/rhopi.md)
+* [The RhopiAlg package](docs-packages/rhopi.md)
 * [TrackSelector and derived algorithms](docs-packages/trackselector.md)
 
 ## Working with the BOSS Afterburner

@@ -1,4 +1,4 @@
-# The RhopiAlg package and others
+# The RhopiAlg package
 
 ## The `Rhopi` algorithm
 
@@ -50,7 +50,7 @@ See [header `.h` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/
 ## Other packages
 
 {% hint style="warning" %}
-**To be developed!**
+**To be developed!** Probably integrated in `TrackSelector`.
 {% endhint %}
 
 ### `DzeroOmega`
