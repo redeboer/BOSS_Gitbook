@@ -15,7 +15,6 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 	#include "TString.h"
-	#include "GaudiKernel/NTuple.h"
 	#include <list>
 	#include <string>
 
@@ -29,25 +28,29 @@ class CutObject
 public:
 	CutObject(const std::string &name, const std::string &description="");
 	~CutObject();
+	bool FailsCut(const double &value) { if(value>=max || value<=min) return true; ++counter; return false; }
+	bool FailsMax(const double &value) { if(value>=max) return true; ++counter; return false; }
+	bool FailsMin(const double &value) { if(value<=min) return true; ++counter; return false; }
 	bool operator< (const double &value) const { return value<max; }
 	bool operator==(const double &value) const { return value<max && value>min; }
 	bool operator> (const double &value) const { return value>min; }
 	void operator++() { ++counter; }
+	template<typename T> void operator+=(T incr) { counter += incr; }
 	const char* NameMax() { return Form("cut_%s_max", name.data()); }
 	const char* NameMin() { return Form("cut_%s_min", name.data()); }
-	double& Max() { return max; }
-	double& Min() { return min; }
-	static void Write() { if(ntuple) ntuple->write(); }
 	void SetDescription(const double &str) { description = str; }
 	void SetName(const double &str) { name = str; }
+	void Print(const int wname=0, const int wmin=0, const int wmax=0, const int wcounter=0) const;
 
 	double max;
 	double min;
-	static std::list<CutObject*> instances;
-	static NTuplePtr ntuple;
 	std::string description;
 	std::string name;
 	unsigned long long counter;
+
+	// * STATIC MEMBERS * //
+	static void PrintAll();
+	static std::list<CutObject*> instances;
 
 };
 

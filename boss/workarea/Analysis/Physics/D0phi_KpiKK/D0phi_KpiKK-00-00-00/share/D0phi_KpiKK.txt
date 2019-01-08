@@ -27,10 +27,8 @@ D0phi_KpiKK.write_fit4c_best_D0   = 1;
 D0phi_KpiKK.write_fit4c_best_phi  = 1;
 
 // * Primary vertex cuts *
-D0phi_KpiKK.cut_Vr0_max    = 1e6;
-D0phi_KpiKK.cut_Vz0_max    = 1e6;
-D0phi_KpiKK.cut_Vrvz0_max  = 10.;
-D0phi_KpiKK.cut_Vrvxy0_max = 1.;
+D0phi_KpiKK.cut_declen_z_max  = 10.;
+D0phi_KpiKK.cut_declen_xy_max = 1.;
 
 // * Particle PID cuts *
 D0phi_KpiKK.cut_PhotonEnergy_min = 0.04;

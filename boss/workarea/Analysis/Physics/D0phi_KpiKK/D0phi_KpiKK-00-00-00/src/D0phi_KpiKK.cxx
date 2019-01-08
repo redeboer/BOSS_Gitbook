@@ -133,14 +133,14 @@
 				/// <li> Identify type of charged particle and add to related vector: (this package: kaon and pion).
 					RecMdcKalTrack* mdcKalTrk = (*fTrackIterator)->mdcKalTrack(); /// `RecMdcKalTrack` (Kalman) is used, but this can be substituted by `RecMdcTrack`.
 					if(fPIDInstance->probPion() > fPIDInstance->probKaon()) { /// The particle identification first decides whether the track is more likely to have come from a pion or from a kaon.
-						if(fPIDInstance->probPion() < fCut_PIDProb_min) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `D0phi_KpiKK.txt`).
-						if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon)) continue; /// If, according to the likelihood method, the particle is still more likely to be a kaon than a pion, the track is rejected.
+						// if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon)) continue; /// If, according to the likelihood method, the particle is still more likely to be a kaon than a pion, the track is rejected.
+						if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `D0phi_KpiKK.txt`).
 						RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
 						if(mdcKalTrk->charge() > 0) fPionPos.push_back(*fTrackIterator); /// and the (positive) pion is added to the vector of pions.
 					}
 					else {
-						if(fPIDInstance->probKaon() < fCut_PIDProb_min) continue;
-						if(fPIDInstance->pdf(RecMdcKalTrack::kaon) < fPIDInstance->pdf(RecMdcKalTrack::pion)) continue;
+						// if(fPIDInstance->pdf(RecMdcKalTrack::kaon) < fPIDInstance->pdf(RecMdcKalTrack::pion)) continue;
+						if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) continue;
 						RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
 						if(mdcKalTrk->charge() < 0) fKaonNeg.push_back(*fTrackIterator);
 						else                        fKaonPos.push_back(*fTrackIterator);
@@ -246,7 +246,7 @@
 						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
 						if(kkmfit->Fit()) {
 							/// -# Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
-							if(kkmfit->chisq() > fCut_PIDChiSq_max) continue;
+							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
 							/// -# <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
 							KKFitResult_D0phi_KpiKK fitresult(kkmfit);
 							if(fWrite_fit4c_all) WriteFitResults(fitresult, fMap_fit4c_all, "fit4c_all");

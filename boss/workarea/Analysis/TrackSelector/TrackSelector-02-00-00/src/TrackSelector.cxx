@@ -51,11 +51,17 @@
 		fEventHeader (eventSvc(), "/Event/EventHeader"),
 		fEvtRecEvent (eventSvc(), EventModel::EvtRec::EvtRecEvent),
 		fEvtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol),
+		/// * Counters for number of events and tracks.
+		fCounter_Nevents ("N_events"),
+		fCounter_Ntracks ("N_tracks"),
+		fCounter_Ncharged("N_charged"),
+		fCounter_Nneutral("N_neutral"),
+		fCounter_Nmdcvalid("N_MDCvalid"),
 		/// * The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
-		fCut_Vr0         ("Vr0"),
-		fCut_Vz0         ("Vz0"),
-		fCut_Vrvz0       ("Vrvz0"),
-		fCut_Vrvxy0      ("Vrvxy0"),
+		fCut_Vxy         ("vertex_xy"),
+		fCut_Vz          ("vertex_z"),
+		fCut_Rxy         ("declen_xy"),
+		fCut_Rz          ("declen_z"),
 		fCut_PhotonEnergy("PhotonEnergy"),
 		fCut_PIDChiSq    ("PIDChiSq"),
 		fCut_PIDProb     ("PIDProb")
@@ -78,17 +84,8 @@
 		declareProperty("write_PID",         fWrite_PID         = false);
 		declareProperty("write_mult_select", fWrite_mult_select = false);
 
-		/// * Book cut values
-		BookNTupleForCuts();
-
-		// /// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
-		// declareProperty("cut_Vr0_max",          fCut_Vr0_max          = 1.);
-		// declareProperty("cut_Vz0_max",          fCut_Vz0_max          = 5.);
-		// declareProperty("cut_Vrvz0_max",        fCut_Rvz0_max         = 10.);
-		// declareProperty("cut_Vrvxy0_max",       fCut_Rvxy0_max        = 1.);
-		// declareProperty("cut_PhotonEnergy_min", fCut_PhotonEnergy_min = 0.04);
-		// declareProperty("cut_PIDChiSq_max",     fCut_PIDChiSq_max     = 200.);
-		// declareProperty("cut_PIDProb_min",      fCut_PIDProb_min      = 0.001);
+		/// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
+		DeclareCuts();
 
 	}
 
@@ -192,7 +189,7 @@
 
 		/// </ol>
 		initialize_rest();
-		BookNtupleItemsCuts();
+		// BookNTupleForCuts();
 		fLog << MSG::INFO << "Successfully returned from TrackSelector::initialize()" << endmsg;
 		return StatusCode::SUCCESS;
 	}
@@ -228,6 +225,12 @@
 				<< "Nneutral = " << fEvtRecEvent->totalNeutral() << ", "
 				<< "Ntotal = "   << fEvtRecEvent->totalTracks()  << endmsg;
 
+			// * Increase counters *
+			++fCounter_Nevents;
+			fCounter_Ncharged += fEvtRecEvent->totalCharged();
+			fCounter_Nneutral += fEvtRecEvent->totalNeutral();
+			fCounter_Ntracks  += fEvtRecEvent->totalTracks();
+
 			// * Set vertex origin *
 				IVertexDbSvc* vtxsvc;
 				Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
@@ -258,6 +261,7 @@
 						fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endmsg;
 						fTrackIterator = fEvtRecTrkCol->begin() + i; 
 						if(!(*fTrackIterator)->isMdcTrackValid()) continue;
+						++fCounter_Nmdcvalid;
 						fTrackMDC = (*fTrackIterator)->mdcTrack();
 
 						// * Get kinematics of track
@@ -279,10 +283,10 @@
 
 					/// <li> Apply primary vertex cuts:
 						/// <ul>
-						if(fabs(fTrackMDC->z()) >= fCut_Vz0_max) continue; /// <li> $z$ coordinate of the collision point has to be within `cut_Vz0_max`
-						if(fabs(rvz) >= fCut_Rvz0_max)  continue; /// <li> \f$z\f$ coordinate of the distance to the interaction point has to be within `cut_Rvz0_max`
-						if(vr        >= fCut_Vr0_max)   continue; /// <li> radius in $xy$ plane has to be less than `cut_Vr0_max`
-						if(rvxy      >= fCut_Rvxy0_max) continue; /// <li> distance to the interaction point in \f$xy\f$ plane has to be within `cut_Rvxy0_max`
+						if(fCut_Vz.FailsMax(fabs(fTrackMDC->z()))) continue; /// <li> $z$ coordinate of the collision point has to be within `cut_Vz0_max`
+						if(fCut_Vxy.FailsMax(vr)                  ) continue; /// <li> radius in $xy$ plane has to be less than `cut_Vr0_max`
+						if(fCut_Rz .FailsMax(fabs(rvz))           ) continue; /// <li> \f$z\f$ coordinate of the distance to the interaction point has to be within `cut_Rvz0_max`
+						if(fCut_Rxy.FailsMax(rvxy)                ) continue; /// <li> distance to the interaction point in \f$xy\f$ plane has to be within `cut_Rvxy0_max`
 						/// </ul>
 
 						// * Add charged track to vector
@@ -365,7 +369,7 @@
 						if(!fTrackEMC) continue;
 
 					/// <li> Apply photon energy cut (set by `TrackSelector.cut_PhotonEnergy`).
-						if(fTrackEMC->energy() < fCut_PhotonEnergy_min) continue;
+						if(fCut_PhotonEnergy.FailsMin(fTrackEMC->energy())) continue;
 
 					/// <li> <b>Write</b> neutral track information (if `write_neutral` is set to `true`).
 						if(fWrite_neutral) {
@@ -427,9 +431,12 @@
 	StatusCode TrackSelector::finalize()
 	{
 		fLog << MSG::INFO << "===>> TrackSelector::finalize() <<===" << endmsg;
-		CutObject::Write();
 
-		if(finalize_rest() == StatusCode::SUCCESS) return StatusCode::SUCCESS;
+		finalize_rest();
+
+		WriteCuts();
+		CutObject::PrintAll();
+
 		fLog << MSG::INFO << "Successfully returned from TrackSelector::finalize()" << endmsg;
 		return StatusCode::SUCCESS;
 	}
@@ -541,20 +548,49 @@
 
 
 	/**
+	 * @brief 
+	 */
+	void TrackSelector::DeclareCuts()
+	{
+		std::list<CutObject*>::iterator cut = CutObject::instances.begin();
+		for(; cut != CutObject::instances.end(); ++cut) {
+			declareProperty((*cut)->NameMin(), (*cut)->min);
+			declareProperty((*cut)->NameMax(), (*cut)->max);
+			fLog << MSG::INFO << "  added cut \"" << (*cut)->name << "\"" << endmsg;
+		}
+	}
+
+
+	/**
 	 * @brief Automatically assign all cut values as declared in the constructor to an `NTuple` called `"_cutvalues"`.
 	 * 
 	 * @param nt The `NTuplePtr` to which you want to add the <i>mapped values</i> of `map`.
 	 * @param map The `map` from which you want to load the <i>mapped values</i>.
 	 */
-	void TrackSelector::BookNTupleForCuts()
+	void TrackSelector::WriteCuts()
 	{
-		CutObject::ntuple = BookNTuple("_cutvalues", "1st entry: min value, 2nd entry: max value, 3rd entry: number passed");
-		std::list<CutObject*>::iterator cut = CutOBject::Instances.begin();
-		for(; cut != CutOBject::Instances.end(); ++cut) {
-			CutObject::ntuple->addItem(cut->NameMin(), cut->min);
-			CutObject::ntuple->addItem(cut->NameMax(), cut->max);
-			fLog << MSG::INFO << "  added cut \"" << cut->name << "\"" << endmsg;
+		/// -# For each cut name, create an `NTuple::Item<double>` in the map `fMap_cuts`.
+		std::list<CutObject*>::iterator cut;
+		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+			fMap_cuts[(*cut)->name];
 		}
+		/// -# Add the `NTuple::Item`s of `fMap_cuts` to an `NTuple` called `"_cutvalues"`.
+		AddItemsToNTuples("_cutvalues", fMap_cuts, "1st entry: min value, 2nd entry: max value, 3rd entry: number passed");
+		/// -# Write `min` values to the first entry of `"_cutvalues"`.
+		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+			fMap_cuts[(*cut)->name] = (*cut)->min;
+		}
+		fNTupleMap.at("_cutvalues")->write();
+		/// -# Write `max` values to the second entry of `"_cutvalues"`.
+		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+			fMap_cuts[(*cut)->name] = (*cut)->max;
+		}
+		fNTupleMap.at("_cutvalues")->write();
+		/// -# Write the `counter` values to the third entry of `"_cutvalues"`.
+		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+			fMap_cuts[(*cut)->name] = (*cut)->counter;
+		}
+		fNTupleMap.at("_cutvalues")->write();
 	}
 
 
@@ -606,35 +642,6 @@
 		map["tof_p"];  /// <li> `"tof_p"`:  Difference with ToF in proton hypothesis.
 		AddItemsToNTuples(tupleName, map, tupleTitle);
 		/// </ol>
-	}
-
-	/**
-	 * @brief Method that writes all properties starting with `"cut_"` to a `TTree` called `"_cutvalues"`.
-	 * @details Best executed in the `finalize` step.
-	 */
-	void TrackSelector::WriteCuts()
-	{
-		/// -# Create list of cut tuples based on declared properties (they are added if they start with `"cut_"`)
-		std::vector<Property*>::const_iterator it;
-		for(it = getProperties().begin(); it != getProperties().end(); ++it) {
-			TString cutname((*it)->name());
-			if(cutname.BeginsWith("cut_")) {
-				cutname.ReplaceAll("cut_", "");
-				fMap_cuts[cutname.Data()];
-			}
-		}
-		AddItemsToNTuples("_cutvalues", fMap_cuts, "Cut values");
-		/// -# Set values of these `NTuple::Item`s
-		for(it = getProperties().begin(); it != getProperties().end(); ++it) {
-			TString cutname((*it)->name());
-			if(cutname.BeginsWith("cut_")) {
-				cutname.ReplaceAll("cut_", "");
-				TString value((*it)->toString());
-				fMap_cuts[cutname.Data()] = value.Atof();
-			}
-		}
-		/// -# Write values to output file
-		fNTupleMap.at("_cutvalues")->write();
 	}
 
 
