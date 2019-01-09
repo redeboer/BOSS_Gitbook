@@ -5,30 +5,30 @@
 
 ## Working with BOSS
 
-* [Organisation of the IHEP server](docs-boss/ihep-server.md)
-* [The BOSS Analysis Framework](docs-boss/intro.md)
-* [Setup of your BOSS environment](docs-boss/setup.md)
-* [Set up a BOSS package](docs-boss/setup-package.md)
-* [Running jobs](docs-boss/running-jobs.md)
-* [Monte Carlo simulations](docs-boss/simulations.md)
-* [Data analysis](docs-boss/data-analysis.md)
+* [Organisation of the IHEP server](working-with-boss/ihep-server.md)
+* [The BOSS Analysis Framework](working-with-boss/intro.md)
+* [Setup of your BOSS environment](working-with-boss/setup.md)
+* [Set up a BOSS package](working-with-boss/setup-package.md)
+* [Running jobs](working-with-boss/running-jobs.md)
+* [Monte Carlo simulations](working-with-boss/simulations.md)
+* [Data analysis](working-with-boss/data-analysis.md)
 
 ## BOSS Afterburner packages
 
-* [BOSS Afterburner packages](docs-packages/main.md)
-* [The RhopiAlg package](docs-packages/rhopi.md)
-* [TrackSelector and derived algorithms](docs-packages/trackselector.md)
+* [BOSS Afterburner packages](boss-afterburner-packages/main.md)
+* [The RhopiAlg package](boss-afterburner-packages/rhopi.md)
+* [TrackSelector and derived algorithms](boss-afterburner-packages/trackselector.md)
 
 ## Working with the BOSS Afterburner
 
-* [The BOSS Afterburner](docs-afterburner/intro.md)
-* [Ideas for a RooFit wrapper](docs-afterburner/ideas-for-a-roofit-wrapper.md)
+* [The BOSS Afterburner](working-with-the-boss-afterburner/intro.md)
+* [Ideas for a RooFit wrapper](working-with-the-boss-afterburner/ideas-for-a-roofit-wrapper.md)
 
 ## Appendices
 
-* [Tips, Tricks, and Troubleshooting](docs-appendices/tips.md)
-* [Further reading](docs-appendices/references.md)
-* [Glossary](docs-appendices/glossary.md)
-* [Conventions](docs-appendices/conventions.md)
-* [About](docs-appendices/about.md)
+* [Tips, Tricks, and Troubleshooting](appendices/tips.md)
+* [Further reading](appendices/references.md)
+* [Glossary](appendices/glossary.md)
+* [Conventions](appendices/conventions.md)
+* [About](appendices/about.md)
 
