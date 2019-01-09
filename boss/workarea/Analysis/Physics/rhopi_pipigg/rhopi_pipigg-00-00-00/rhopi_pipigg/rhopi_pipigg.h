@@ -5,10 +5,10 @@
 /// @{
 
 /**
- * @brief    Analyse \f$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\gamma\gamma \f$ events.
- * @details  Based on the original `RhopiAlg` package, but now making use of the `TrackSelector` base algorithm.
- * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
- * @date     December 27th, 2018
+ * @brief   <b>WIP</b> Analyse \f$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\gamma\gamma \f$ events.
+ * @details Based on the original `RhopiAlg` package, but now making use of the `TrackSelector` base algorithm.
+ * @author  Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+ * @date    December 27th, 2018
  */
 
 
