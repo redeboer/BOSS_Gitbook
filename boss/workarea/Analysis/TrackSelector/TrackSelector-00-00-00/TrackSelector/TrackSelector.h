@@ -120,6 +120,6 @@ private:
 };
 
 /// @}
-// end of Doxygen group BOSS
+
 
 #endif

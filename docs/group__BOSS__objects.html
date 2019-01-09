@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BOSS Afterburner: load.cxx Source File</title>
+<title>BOSS Afterburner: Helper objects</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('load_8cxx_source.html','');});
+$(document).ready(function(){initNavTree('group__BOSS__objects.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -79,18 +79,36 @@ $(document).ready(function(){initNavTree('load_8cxx_source.html','');});
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
-<div class="title">load.cxx</div>  </div>
+<div class="title">Helper objects<div class="ingroups"><a class="el" href="group__BOSS.html">BOSS</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="load_8cxx.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;GaudiKernel/LoadFactoryEntries.h&quot;</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;LOAD_FACTORY_ENTRIES(<a class="code" href="classTrackSelector.html">TrackSelector</a>)</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;LOAD_FACTORY_ENTRIES(<a class="code" href="classrhopi__pipigg.html">rhopi_pipigg</a>)</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="ttc" id="classrhopi__pipigg_html"><div class="ttname"><a href="classrhopi__pipigg.html">rhopi_pipigg</a></div><div class="ttdoc">Analyse  events. </div><div class="ttdef"><b>Definition:</b> <a href="rhopi__pipigg_8h_source.html#l00026">rhopi_pipigg.h:26</a></div></div>
-<div class="ttc" id="classTrackSelector_html"><div class="ttname"><a href="classTrackSelector.html">TrackSelector</a></div><div class="ttdoc">Base algorithm that creates a selection of charged and/or neutral tracks. </div><div class="ttdef"><b>Definition:</b> <a href="TrackSelector_8h_source.html#l00073">TrackSelector.h:73</a></div></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p>Helper <b>classes</b> for the event selection packages.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__D0phi__KpiKK.html">KKFitResult_D0phi_KpiKK</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derived class for a container that contains important fit results of the <code>KalmanKinematicFit</code>, including masses.  <a href="classKKFitResult__D0phi__KpiKK.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCutObject.html">CutObject</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This object contains all information and tools for a cut you want to apply.  <a href="classCutObject.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html">KKFitResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for a container that contains important fit results of the <code>KalmanKinematicFit</code>.  <a href="classKKFitResult.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Helper <b>classes</b> for the event selection packages. </p>
+<p>An example would be the <code><a class="el" href="classCutObject.html" title="This object contains all information and tools for a cut you want to apply. ">CutObject</a></code>, which is can be used in all packages for applying cuts and storing their paramters in the final ROOT output file. </p>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d512eca388d0304a639bcc3038caaed2.html">boss</a></li><li class="navelem"><a class="el" href="dir_f89e2a3a4e3f7e3cd35f1001020acb3a.html">workarea</a></li><li class="navelem"><a class="el" href="dir_deefc57b6511e7f47a898946c4bd43a9.html">Analysis</a></li><li class="navelem"><a class="el" href="dir_7c38c780e5c5f17ee51e062c3a587284.html">Physics</a></li><li class="navelem"><a class="el" href="dir_d974c233c20da2ac4a3d57509cfac4dc.html">rhopi_pipigg</a></li><li class="navelem"><a class="el" href="dir_b3411fe7d6cfc087a01ef22cab61ab2c.html">rhopi_pipigg-00-00-00</a></li><li class="navelem"><a class="el" href="dir_86adb7baff183dbaf6c346b2ad64c4d3.html">src</a></li><li class="navelem"><a class="el" href="dir_0db9c6a4fd937a9079a644e7bd6bb3b7.html">components</a></li><li class="navelem"><a class="el" href="load_8cxx.html">load.cxx</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>

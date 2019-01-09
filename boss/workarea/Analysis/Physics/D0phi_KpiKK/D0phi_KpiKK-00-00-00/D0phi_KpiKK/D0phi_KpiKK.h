@@ -1,7 +1,7 @@
 #ifndef Physics_Analysis_D0phi_KpiKK_H
 #define Physics_Analysis_D0phi_KpiKK_H
 
-/// @addtogroup BOSS
+/// @addtogroup BOSS_packages
 /// @{
 
 /**
@@ -66,6 +66,6 @@ private:
 };
 
 /// @}
-// end of Doxygen group BOSS
+
 
 #endif

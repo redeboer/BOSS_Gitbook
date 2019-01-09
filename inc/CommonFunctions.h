@@ -1,13 +1,7 @@
 #ifndef Physics_Analysis_CommonFunctions_H
 #define Physics_Analysis_CommonFunctions_H
 
-
-/**
- * @defgroup BOSS_Afterburner BOSS Afterburner
- * @brief Classes, namespaces, and functions for the <i>BOSS Afterburner</i>. The core of these classes is the `BOSSOutputLoader` class. This class allows you to automatically load a set of ROOT files that have been procuded during the event selection in BOSS. Supporting functions, parameters and other classes are to be found in for instance the `CommonFunctions.h` header file.
- */
-
-/// @addtogroup BOSS_Afterburner
+/// @addtogroup BOSS_Afterburner_functions
 /// @{
 
 /**
@@ -121,6 +115,8 @@
 		}
 
 	}
+
+/// @}
 
 
 
@@ -793,7 +789,5 @@
 		return output;
 	}
 
-/// @}
-// end of Doxygen group BOSS_Afterburner
 
 #endif

@@ -91,13 +91,44 @@ $(document).ready(function(){initNavTree('namespaceCommonFunctions_1_1File.html'
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga59d365fb3792eaa3bab6d275a1a2d9ba"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner.html#ga59d365fb3792eaa3bab6d275a1a2d9ba">SetOutputFilename</a> (const char *filenameWithoutExt)</td></tr>
-<tr class="memdesc:ga59d365fb3792eaa3bab6d275a1a2d9ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a file name from the settings in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> and from the file name (without extension) that you feed it.  <a href="group__BOSS__Afterburner.html#ga59d365fb3792eaa3bab6d275a1a2d9ba">More...</a><br /></td></tr>
-<tr class="separator:ga59d365fb3792eaa3bab6d275a1a2d9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59d365fb3792eaa3bab6d275a1a2d9ba"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1File.html#a59d365fb3792eaa3bab6d275a1a2d9ba">SetOutputFilename</a> (const char *filenameWithoutExt)</td></tr>
+<tr class="memdesc:a59d365fb3792eaa3bab6d275a1a2d9ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a file name from the settings in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> and from the file name (without extension) that you feed it.  <a href="#a59d365fb3792eaa3bab6d275a1a2d9ba">More...</a><br /></td></tr>
+<tr class="separator:a59d365fb3792eaa3bab6d275a1a2d9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Namespace containing functions related to file naming and file I/O. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a59d365fb3792eaa3bab6d275a1a2d9ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59d365fb3792eaa3bab6d275a1a2d9ba">&#9670;&nbsp;</a></span>SetOutputFilename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * CommonFunctions::File::SetOutputFilename </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filenameWithoutExt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates a file name from the settings in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> and from the file name (without extension) that you feed it. </p>
+<p>You don't have to worry about creating the output directory, as it is created automatically from the slashes <code>/</code> in the resulting file name</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filenameWithoutExt</td><td><code>PlotOutputDir</code> in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> will be prepended to this file name and <code>Extension</code> will be appended. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Full path of the resulting output file name. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00281">281</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xmass',['xmass',['../RhopiAlg_8cxx.html#a850891ce5a4a85d92f96c37288dc134a',1,'RhopiAlg.cxx']]]
+  ['_7ecutobject',['~CutObject',['../classCutObject.html#a93d3f2fb2b98fb2013b9aea2f908abe1',1,'CutObject']]]
 ];

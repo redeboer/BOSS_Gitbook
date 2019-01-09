@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['d0phi_5fkpikk',['D0phi_KpiKK',['../classD0phi__KpiKK.html',1,'']]]
+  ['kkfitresult',['KKFitResult',['../classKKFitResult.html',1,'']]],
+  ['kkfitresult_5fd0phi_5fkpikk',['KKFitResult_D0phi_KpiKK',['../classKKFitResult__D0phi__KpiKK.html',1,'']]]
 ];

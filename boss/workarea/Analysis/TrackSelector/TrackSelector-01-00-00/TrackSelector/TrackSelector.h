@@ -1,15 +1,6 @@
 #ifndef Analysis_TrackSelector_H
 #define Analysis_TrackSelector_H
 
-/// @addtogroup BOSS
-/// @{
-
-/**
- * @brief    Base algorithm that creates a selection of charged and/or neutral tracks.
- * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
- * @date     December 14th, 2018
- */
-
 
 
 // * ========================= * //
@@ -45,6 +36,8 @@
 // * ==================================== * //
 
 	/**
+	 * @addtogroup BOSS_globals
+	 * @{
 	 * @brief Namespace that contains some parameters (such as particle masses) that are useful for derived classes of the `TrackSelector` base algorithm.
 	 */
 	namespace TSGlobals
@@ -60,11 +53,20 @@
 		const HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
 	};
 
+/// @}
+
 
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
+/**
+ * @addtogroup BOSS_packages
+ * @{
+ * @brief    Base algorithm that creates a selection of charged and/or neutral tracks.
+ * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+ * @date     December 14th, 2018
+ */
 class TrackSelector : public Algorithm
 {
 public:
@@ -159,6 +161,6 @@ protected:
 };
 
 /// @}
-// end of Doxygen group BOSS
+
 
 #endif

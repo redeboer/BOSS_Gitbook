@@ -1,4 +1,4 @@
-/// @addtogroup BOSS_Afterburner
+/// @addtogroup BOSS_Afterburner_scripts
 /// @{
 	
 /**
@@ -90,4 +90,3 @@ int main()
 }
 
 /// @}
-// end of Doxygen group BOSS_Afterburner

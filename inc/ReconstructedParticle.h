@@ -1,7 +1,7 @@
 #ifndef Physics_Analysis_ReconstructedParticle_H
 #define Physics_Analysis_ReconstructedParticle_H
 
-/// @addtogroup BOSS_Afterburner
+/// @addtogroup BOSS_Afterburner_objects
 /// @{
 
 /**
@@ -75,6 +75,8 @@ protected:
 	void DetermineReconstructionParameters();
 
 };
+
+/// @}
 
 
 // * =========================================== * //
@@ -372,8 +374,5 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 		}
 	}
 }
-
-/// @}
-// end of Doxygen group BOSS_Afterburner
 
 #endif

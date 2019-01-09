@@ -1,7 +1,7 @@
 #ifndef Physics_Analysis_ChainLoader_H
 #define Physics_Analysis_ChainLoader_H
 
-/// @addtogroup BOSS_Afterburner
+/// @addtogroup BOSS_Afterburner_objects
 /// @{
 
 /**
@@ -99,6 +99,8 @@
 			template<typename TYPE> void SetAddressSafe(TObject* obj, std::unordered_map<std::string, TYPE> &map);
 
 	};
+
+/// @}
 
 
 
@@ -351,9 +353,6 @@
 	{
 		if(fChain) SetAddress(obj, map);
 	}
-
-/// @}
-// end of Doxygen group BOSS_Afterburner
 
 
 

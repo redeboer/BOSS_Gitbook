@@ -1,7 +1,7 @@
 #ifndef Physics_Analysis_DzeroPhi_H
 #define Physics_Analysis_DzeroPhi_H
 
-/// @addtogroup BOSS
+/// @addtogroup BOSS_packages
 /// @{
 
 /**
@@ -143,6 +143,6 @@ private:
 };
 
 /// @}
-// end of Doxygen group BOSS
+
 
 #endif

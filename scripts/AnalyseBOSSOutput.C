@@ -1,4 +1,4 @@
-/// @addtogroup BOSS_Afterburner
+/// @addtogroup BOSS_Afterburner_scripts
 /// @{
 	
 /**
@@ -328,4 +328,3 @@
 	}
 
 /// @}
-// end of Doxygen group BOSS_Afterburner

@@ -1,8 +1,8 @@
 var FrameworkSettings_8h =
 [
-    [ "GET_PTR", "group__BOSS__Afterburner.html#ga52d5f012665294cb8e9abe819ce3e63f", null ],
-    [ "SHARED_PTR", "group__BOSS__Afterburner.html#gaad1cfcc8d905aaf9a625304b8d6f476e", null ],
-    [ "UNIQUE_PTR", "group__BOSS__Afterburner.html#gab23c42f2e2fc652c8f76ec9fd0fe9a2b", null ],
+    [ "GET_PTR", "FrameworkSettings_8h.html#a52d5f012665294cb8e9abe819ce3e63f", null ],
+    [ "SHARED_PTR", "FrameworkSettings_8h.html#aad1cfcc8d905aaf9a625304b8d6f476e", null ],
+    [ "UNIQUE_PTR", "FrameworkSettings_8h.html#ab23c42f2e2fc652c8f76ec9fd0fe9a2b", null ],
     [ "Em", "FrameworkSettings_8h.html#aaef63366dac55fce758cceba31ed4fa7", null ],
     [ "K", "FrameworkSettings_8h.html#abce29a1f057a1b534fcac561320c7c44", null ],
     [ "K0", "FrameworkSettings_8h.html#a05993391739a93b43dba53da3d9f00ff", null ],

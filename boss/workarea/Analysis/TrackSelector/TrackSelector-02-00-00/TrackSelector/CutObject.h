@@ -1,7 +1,7 @@
 #ifndef Analysis_CutObject_H
 #define Analysis_CutObject_H
 
-/// @addtogroup BOSS
+/// @addtogroup BOSS_objects
 /// @{
 
 /**
@@ -58,6 +58,6 @@ public:
 };
 
 /// @}
-// end of Doxygen group BOSS
+
 
 #endif

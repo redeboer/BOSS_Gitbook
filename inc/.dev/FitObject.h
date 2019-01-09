@@ -230,7 +230,7 @@ protected:
 	}
 
 /// @}
-// end of Doxygen group BOSS_Afterburner
+
 
 
 #endif

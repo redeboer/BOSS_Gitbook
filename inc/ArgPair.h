@@ -1,7 +1,7 @@
 #ifndef Physics_Analysis_ArgPair_H
 #define Physics_Analysis_ArgPair_H
 
-/// @addtogroup BOSS_Afterburner
+/// @addtogroup BOSS_Afterburner_objects
 /// @{
 
 /**
@@ -53,6 +53,8 @@
 		void PrintValue();
 		void SetValue(const std::string &input);
 	};
+
+/// @}
 
 	// * SPECIALIZATIONS * //
 	template class ArgPair<std::string>;
@@ -194,8 +196,6 @@
 		}
 	}
 
-/// @}
-// end of Doxygen group BOSS_Afterburner
 
 
 #endif

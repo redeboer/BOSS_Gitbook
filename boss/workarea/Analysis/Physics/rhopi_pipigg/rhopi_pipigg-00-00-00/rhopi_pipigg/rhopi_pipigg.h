@@ -1,7 +1,7 @@
 #ifndef Physics_Analysis_rhopi_pipigg_H
 #define Physics_Analysis_rhopi_pipigg_H
 
-/// @addtogroup BOSS
+/// @addtogroup BOSS_packages
 /// @{
 
 /**
@@ -96,6 +96,6 @@ private:
 };
 
 /// @}
-// end of Doxygen group BOSS
+
 
 #endif

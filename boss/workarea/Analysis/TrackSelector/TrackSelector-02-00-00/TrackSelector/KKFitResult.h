@@ -1,7 +1,7 @@
 #ifndef Analysis_KKFitResult_H
 #define Analysis_KKFitResult_H
 
-/// @addtogroup BOSS
+/// @addtogroup BOSS_objects
 /// @{
 
 /**
@@ -51,6 +51,6 @@ protected:
 };
 
 /// @}
-// end of Doxygen group BOSS
+
 
 #endif

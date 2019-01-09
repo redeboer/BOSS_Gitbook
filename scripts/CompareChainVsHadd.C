@@ -1,4 +1,4 @@
-/// @addtogroup BOSS_Afterburner
+/// @addtogroup BOSS_Afterburner_scripts
 /// @{
 	
 /**
@@ -188,4 +188,3 @@ int main(int argc, char *argv[])
 }
 
 /// @}
-// end of Doxygen group BOSS_Afterburner

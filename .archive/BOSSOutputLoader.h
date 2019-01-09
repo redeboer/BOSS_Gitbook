@@ -1,7 +1,7 @@
 #ifndef Physics_Analysis_BOSSOutputLoader_H
 #define Physics_Analysis_BOSSOutputLoader_H
 
-/// @addtogroup BOSS_Afterburner
+/// @addtogroup BOSS_Afterburner_objects
 /// @{
 
 /**
@@ -438,7 +438,7 @@
 	}
 
 /// @}
-// end of Doxygen group BOSS_Afterburner
+
 
 
 
