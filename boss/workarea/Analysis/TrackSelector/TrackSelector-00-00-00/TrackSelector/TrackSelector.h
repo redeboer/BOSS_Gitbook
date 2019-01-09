@@ -1,6 +1,9 @@
 #ifndef Analysis_TrackSelector_H
 #define Analysis_TrackSelector_H
 
+/// @addtogroup BOSS_Afterburner
+/// @{
+
 /**
  * @brief    Analyse \f$ J/\psi \rightarrow D^0 \phi \f$ events.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -115,5 +118,8 @@ private:
 		double fGammaAngleCut;
 
 };
+
+/// @}
+// end of Doxygen group BOSS
 
 #endif

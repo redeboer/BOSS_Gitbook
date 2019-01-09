@@ -1,6 +1,9 @@
 #ifndef Physics_Analysis_ReconstructedParticle_H
 #define Physics_Analysis_ReconstructedParticle_H
 
+/// @addtogroup BOSS_Afterburner
+/// @{
+
 /**
  * @brief    Container for particle data. In essence an container of `ROOT`'s `TParticlePDG`.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -369,5 +372,8 @@ void ReconstructedParticle::DetermineReconstructionParameters()
 		}
 	}
 }
+
+/// @}
+// end of Doxygen group BOSS_Afterburner
 
 #endif

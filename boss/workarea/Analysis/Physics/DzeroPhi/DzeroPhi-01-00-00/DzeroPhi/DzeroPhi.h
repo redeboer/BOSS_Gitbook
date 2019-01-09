@@ -1,6 +1,9 @@
 #ifndef Physics_Analysis_DzeroPhi_H
 #define Physics_Analysis_DzeroPhi_H
 
+/// @addtogroup BOSS
+/// @{
+
 /**
  * @brief    Analyse \f$ J/\psi \rightarrow D^0 \phi \f$ events.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -63,5 +66,8 @@ private:
 			std::map<std::string, NTuple::Item<double> > fFit6c;   //!< Container for the `"fit6c"` branch.
 
 };
+
+/// @}
+// end of Doxygen group BOSS
 
 #endif

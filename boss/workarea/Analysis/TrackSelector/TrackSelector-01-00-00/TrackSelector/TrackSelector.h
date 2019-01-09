@@ -1,6 +1,9 @@
 #ifndef Analysis_TrackSelector_H
 #define Analysis_TrackSelector_H
 
+/// @addtogroup BOSS
+/// @{
+
 /**
  * @brief    Base algorithm that creates a selection of charged and/or neutral tracks.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -154,5 +157,8 @@ protected:
 	Int_t fNChargesMDC; //!< Number of charges detected in the MDC.
 
 };
+
+/// @}
+// end of Doxygen group BOSS
 
 #endif

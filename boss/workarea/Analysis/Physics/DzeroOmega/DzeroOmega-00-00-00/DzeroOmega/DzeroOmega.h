@@ -1,6 +1,9 @@
 #ifndef Physics_Analysis_DzeroOmega_H
 #define Physics_Analysis_DzeroOmega_H
 
+/// @addtogroup BOSS
+/// @{
+
 /**
  * @brief    Analyse \f$ J/\psi \rightarrow D^0 \phi \f$ events.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -172,5 +175,8 @@ private:
 			NTuple::Item<double> fProbPID;   //!< Probability that it is a pion.
 
 };
+
+/// @}
+// end of Doxygen group BOSS
 
 #endif

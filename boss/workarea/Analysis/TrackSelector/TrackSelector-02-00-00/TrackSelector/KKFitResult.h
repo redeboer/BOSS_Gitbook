@@ -1,6 +1,9 @@
 #ifndef Analysis_KKFitResult_H
 #define Analysis_KKFitResult_H
 
+/// @addtogroup BOSS
+/// @{
+
 /**
  * @brief    Base class for a container that contains important fit results of the `KalmanKinematicFit`.
  * @details  This object is necessary, because `KalmanKinematicFit` allows only the existance of one instance (see for instance <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classKalmanKinematicFit.html#67eb34f5902be7b16ce75e60513a995a">here</a>  and the fact that `operator=` of `KalmanKinematicFit` has been made `private`). For each derived algorithm of `TrackSelector`, you should create a derived class of `KKFitResult` where you define how to compute invariant masses and define the measure for the best fit.
@@ -46,5 +49,8 @@ protected:
 	// * PROTECTED DATA MEMBERS * //
 		KalmanKinematicFit* fFit;
 };
+
+/// @}
+// end of Doxygen group BOSS
 
 #endif

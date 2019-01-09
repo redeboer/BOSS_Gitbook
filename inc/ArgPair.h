@@ -1,6 +1,9 @@
 #ifndef Physics_Analysis_ArgPair_H
 #define Physics_Analysis_ArgPair_H
 
+/// @addtogroup BOSS_Afterburner
+/// @{
+
 /**
  * @brief    Class that can contain parameters and values of a loaded configuration file.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -190,6 +193,9 @@
 			item->SetParameter(parname, parvalue, output);
 		}
 	}
+
+/// @}
+// end of Doxygen group BOSS_Afterburner
 
 
 #endif

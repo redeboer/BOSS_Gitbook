@@ -1,6 +1,9 @@
 #ifndef Physics_Analysis_FitObject_H
 #define Physics_Analysis_FitObject_H
 
+/// @addtogroup BOSS_Afterburner
+/// @{
+
 /**
  * @brief    This is a base class for fit specific objects that you use for fitting invariant mass spectra.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -225,6 +228,9 @@ protected:
 		fSigArgs.takeOwnership();
 		fBckArgs.takeOwnership();
 	}
+
+/// @}
+// end of Doxygen group BOSS_Afterburner
 
 
 #endif

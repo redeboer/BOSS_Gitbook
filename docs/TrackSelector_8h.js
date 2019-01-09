@@ -1,7 +1,6 @@
 var TrackSelector_8h =
 [
-    [ "TrackSelector", "classTrackSelector.html", "classTrackSelector" ],
-    [ "HepPoint3D", "TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc", null ],
+    [ "HepPoint3D", "group__BOSS.html#ga188faf2fae63125a32fe38f0567026bc", null ],
     [ "gEcmsVec", "TrackSelector_8h.html#a4128913230513f7535a9f91b5dbe19ec", null ],
     [ "gEcms", "TrackSelector_8h.html#a7627214df596524af6630d00620e99c7", null ],
     [ "gM_D0", "TrackSelector_8h.html#a2a9b392d7ba7887fbea1cfe5b0b936c3", null ],

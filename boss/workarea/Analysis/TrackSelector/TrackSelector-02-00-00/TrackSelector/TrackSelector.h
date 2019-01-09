@@ -1,13 +1,14 @@
 #ifndef Analysis_TrackSelector_H
 #define Analysis_TrackSelector_H
 
+
 /**
- * @brief    Base algorithm that creates a selection of charged and/or neutral tracks.
- * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
- * @date     December 14th, 2018
+ * @defgroup BOSS BOSS framework.
+ * @brief Classes and packages for the BOSS framework. The core of these packages is the `TrackSelector` algorithm, which is the base class for all subalgorithms, such as `D0phi_KpiKK`. Supporting these algorithms are helper classers, such as the `CutObject`.
  */
 
-
+/// @addtogroup BOSS
+/// @{
 
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
@@ -63,6 +64,12 @@
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
+
+/**
+ * @brief    Base algorithm that creates a selection of charged and/or neutral tracks.
+ * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+ * @date     December 14th, 2018
+ */
 class TrackSelector : public Algorithm
 {
 public:
@@ -162,5 +169,8 @@ protected:
 	Int_t fNChargesMDC; //!< Number of charges detected in the MDC.
 
 };
+
+/// @}
+// end of Doxygen group BOSS
 
 #endif

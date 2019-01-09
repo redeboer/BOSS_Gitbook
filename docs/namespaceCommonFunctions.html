@@ -82,35 +82,42 @@ $(document).ready(function(){initNavTree('namespaceCommonFunctions.html','');});
   <div class="summary">
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
-<div class="title">CommonFunctions Namespace Reference</div>  </div>
+<div class="title">CommonFunctions Namespace Reference<div class="ingroups"><a class="el" href="group__BOSS__Afterburner.html">BOSS Afterburner</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Header that is used to collect functions that can be used by different scripts.  
+<p>A namespace that is used to bundle functions that can be used by different analysis scripts.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceCommonFunctions_1_1Draw"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Draw.html">Draw</a></td></tr>
+<tr class="memdesc:namespaceCommonFunctions_1_1Draw"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace containing functions related to drawing and saving plots. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceCommonFunctions_1_1Error"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html">Error</a></td></tr>
+<tr class="memdesc:namespaceCommonFunctions_1_1Error"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace containing functions related to debugging and making macro's handle errors. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceCommonFunctions_1_1File"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1File.html">File</a></td></tr>
+<tr class="memdesc:namespaceCommonFunctions_1_1File"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace containing functions related to file naming and file I/O. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceCommonFunctions_1_1Fit"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Fit.html">Fit</a></td></tr>
+<tr class="memdesc:namespaceCommonFunctions_1_1Fit"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace containing functions related to performing fits on histograms (in particular related to <code>RooFit</code>). <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceCommonFunctions_1_1Hist"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Hist.html">Hist</a></td></tr>
+<tr class="memdesc:namespaceCommonFunctions_1_1Hist"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace containing functions related to generating and modifying histograms. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceCommonFunctions_1_1Loop"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Loop.html">Loop</a></td></tr>
+<tr class="memdesc:namespaceCommonFunctions_1_1Loop"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace containing functions related to looping over objects, for instance over the entries in a <code>TTree</code>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceCommonFunctions_1_1Print"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Print.html">Print</a></td></tr>
+<tr class="memdesc:namespaceCommonFunctions_1_1Print"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace containing functions related to terminal output. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Header that is used to collect functions that can be used by different scripts. </p>
-<p>The idea of sharing these functions is to standardise output. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<div class="textblock"><p>A namespace that is used to bundle functions that can be used by different analysis scripts. </p>
+<p>The idea of sharing these functions is to standardise output. For instance, if a pdf of a histogram is saved through a function defined here, the pdf output can be centrally 'beautified' in this header file.</p>
+<dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>November 20th, 2018 </dd></dl>
-<dl class="section remark"><dt>Remarks</dt><dd><b>DEVELOPMENTAL</b> Namespace that contains functions that you want to be accessible in any of the scripts. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

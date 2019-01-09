@@ -1,3 +1,6 @@
+/// @addtogroup BOSS_Afterburner
+/// @{
+	
 /**
  * @brief    Simple script that allows to quickly investigate the contents of a ROOT file that has been produced with BOSS.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -323,3 +326,6 @@
 		RemoveLeading (line, c);
 		RemoveTrailing(line, c);
 	}
+
+/// @}
+// end of Doxygen group BOSS_Afterburner

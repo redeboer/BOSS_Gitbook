@@ -1,6 +1,9 @@
 #ifndef Physics_Analysis_FitObjectDoubleGauss_H
 #define Physics_Analysis_FitObjectDoubleGauss_H
 
+/// @addtogroup BOSS_Afterburner
+/// @{
+
 /**
  * @brief    Container for objects necessary for fitting invariant mass spectra.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -206,5 +209,8 @@ protected:
 			c.Close();
 
 	}
+
+/// @}
+// end of Doxygen group BOSS_Afterburner
 
 #endif

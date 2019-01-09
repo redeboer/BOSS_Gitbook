@@ -1,3 +1,6 @@
+/// @addtogroup BOSS_Afterburner
+/// @{
+	
 /**
  * @brief    Simple script that shows how to fit a double gaussian on an invariant mass spectrum using `RooFit`.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -85,3 +88,6 @@ int main()
 	FitInvMassSignal();
 	return 0;
 }
+
+/// @}
+// end of Doxygen group BOSS_Afterburner

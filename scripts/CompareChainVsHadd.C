@@ -1,3 +1,6 @@
+/// @addtogroup BOSS_Afterburner
+/// @{
+	
 /**
  * @brief    Simple script that compares the speed of looping over a `TChain` of ROOT files and over one  combined ROOT file (where all the ROOT files have been combined using `hadd`).
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -183,3 +186,6 @@ int main(int argc, char *argv[])
 	// * Default return value * //
 	return 0;
 }
+
+/// @}
+// end of Doxygen group BOSS_Afterburner

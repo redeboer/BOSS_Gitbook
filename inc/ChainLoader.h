@@ -1,6 +1,9 @@
 #ifndef Physics_Analysis_ChainLoader_H
 #define Physics_Analysis_ChainLoader_H
 
+/// @addtogroup BOSS_Afterburner
+/// @{
+
 /**
  * @brief    A container class for a `TChain` that allows easy access to its branches. Addresses are set automatically upon construction.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -348,6 +351,9 @@
 	{
 		if(fChain) SetAddress(obj, map);
 	}
+
+/// @}
+// end of Doxygen group BOSS_Afterburner
 
 
 

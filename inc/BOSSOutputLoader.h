@@ -1,6 +1,9 @@
 #ifndef Physics_Analysis_BOSSOutputLoader_H
 #define Physics_Analysis_BOSSOutputLoader_H
 
+/// @addtogroup BOSS_Afterburner
+/// @{
+
 /**
  * @brief    General container for BOSS analysis output
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -433,6 +436,9 @@
 			if(fFileNames.size() == 1) std::cout << "/" << fFileNames.front(); // in case of one file
 			std::cout << "\"" << std::endl;
 	}
+
+/// @}
+// end of Doxygen group BOSS_Afterburner
 
 
 

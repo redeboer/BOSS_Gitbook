@@ -1,12 +1,14 @@
 #ifndef Physics_Analysis_D0phi_KpiKK_H
 #define Physics_Analysis_D0phi_KpiKK_H
 
+/// @addtogroup BOSS
+/// @{
+
 /**
  * @brief    Analyse \f$ J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ \pi^-\pi^+ \f$ events.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
  * @date     December 14th, 2018
  */
-
 
 
 // * ========================= * //
@@ -62,5 +64,8 @@ private:
 	void WriteFitResults(KKFitResult_D0phi_KpiKK &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName);
 
 };
+
+/// @}
+// end of Doxygen group BOSS
 
 #endif

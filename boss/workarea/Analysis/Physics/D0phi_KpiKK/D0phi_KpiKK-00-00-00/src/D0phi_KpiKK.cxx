@@ -51,8 +51,8 @@
 // * =============================== * //
 
 	/**
-	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
-	 * @details Define and load NTuples here.
+	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once, when the algorithm is initialised.
+	 * @details Define and load `NTuple`s here. Other `NTuple`s have already been defined in the `TrackSelector::initilize` step prior to this this method.
 	 */
 	StatusCode D0phi_KpiKK::initialize_rest()
 	{

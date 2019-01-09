@@ -1,6 +1,9 @@
 #ifndef Physics_Analysis_RhopiAlg_H
 #define Physics_Analysis_RhopiAlg_H
 
+/// @addtogroup BOSS
+/// @{
+
 /**
  * @brief    Modified header of the stock BOSS package `RhopiAlg` (version `00-00-23`).
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -179,5 +182,8 @@ private:
 			NTuple::Item<double> fProbPID;
 
 };
+
+/// @}
+// end of Doxygen group BOSS
 
 #endif

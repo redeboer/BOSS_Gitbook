@@ -1,12 +1,21 @@
 #ifndef Physics_Analysis_CommonFunctions_H
 #define Physics_Analysis_CommonFunctions_H
 
+
 /**
- * @brief   Header that is used to collect functions that can be used by different scripts.
- * @details The idea of sharing these functions is to standardise output.
+ * @defgroup BOSS_Afterburner BOSS Afterburner
+ * @brief Classes, namespaces, and functions for the <i>BOSS Afterburner</i>. The core of these classes is the `BOSSOutputLoader` class. This class allows you to automatically load a set of ROOT files that have been procuded during the event selection in BOSS. Supporting functions, parameters and other classes are to be found in for instance the `CommonFunctions.h` header file.
+ */
+
+/// @addtogroup BOSS_Afterburner
+/// @{
+
+/**
+ * @brief   A namespace that is used to bundle functions that can be used by different analysis scripts.
+ * @details The idea of sharing these functions is to standardise output. For instance, if a pdf of a histogram is saved through a function defined here, the pdf output can be centrally 'beautified' in this header file.
+ * 
  * @author  Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
  * @date    November 20th, 2018
- * @remark  @b DEVELOPMENTAL
  */
 
 
@@ -44,11 +53,11 @@
 // * ============================ * //
 // * ------- DECLARATIONS ------- * //
 // * ============================ * //
-	/**
-	 * @brief Namespace that contains functions that you want to be accessible in any of the scripts.
-	 */
 	namespace CommonFunctions
 	{
+		/**
+		 * @brief Namespace containing functions related to drawing and saving plots.
+		 */
 		namespace Draw
 		{
 			template<class ...ARGS> void DrawAndSave(const char* saveas, Option_t* opt, const char* logScale, ARGS... args);
@@ -62,14 +71,23 @@
 			void SaveCanvas(const char *saveas, TVirtualPad *pad=gPad, TString logScale="");
 			void SetLogScale(TString logScale="", TVirtualPad *pad=gPad);
 		}
+		/**
+		 * @brief Namespace containing functions related to debugging and making macro's handle errors.
+		 */
 		namespace Error
 		{
 			bool IsEmptyPtr(void* ptr);
 		}
+		/**
+		 * @brief Namespace containing functions related to file naming and file I/O.
+		 */
 		namespace File
 		{
 			const char* SetOutputFilename(const char* filenameWithoutExt);
 		}
+		/**
+		 * @brief Namespace containing functions related to performing fits on histograms (in particular related to `RooFit`).
+		 */
 		namespace Fit
 		{
 			RooDataHist CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var, const ReconstructedParticle& particle);
@@ -79,15 +97,24 @@
 			void FitBreitWigner(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0);
 			void FitDoubleGaussian(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0, TString logScale="");
 		}
+		/**
+		 * @brief Namespace containing functions related to generating and modifying histograms.
+		 */
 		namespace Hist
 		{
 			TH1D CreateInvariantMassHistogram(const ReconstructedParticle& particle, const int nBins = 200);
 			void SetAxisTitles(TH1* hist, const char* xAxis, const char* yAxis=nullptr, const char* zAxis=nullptr, bool update=true);
 		}
+		/**
+		 * @brief Namespace containing functions related to looping over objects, for instance over the entries in a `TTree`. Functions here either use a `Lambda` as argument or are defined recursively. This is why support for `C++11` is required for the <i>BOSS Afterburner</i>.
+		 */
 		namespace Loop
 		{
 			template<typename FUNCTOR, typename ...Rest> void LoopTree(TTree* tree, FUNCTOR&& lambda, Rest&&... args);
 		}
+		/**
+		 * @brief Namespace containing functions related to terminal output.
+		 */
 		namespace Print
 		{
 			template<typename TYPE> std::string CommaFormattedString(TYPE number);
@@ -765,5 +792,8 @@
 		}
 		return output;
 	}
+
+/// @}
+// end of Doxygen group BOSS_Afterburner
 
 #endif

@@ -1,6 +1,9 @@
 #ifndef Physics_Analysis_D0phi_KpiKK_H
 #define Physics_Analysis_D0phi_KpiKK_H
 
+/// @addtogroup BOSS
+/// @{
+
 /**
  * @brief    Analyse \f$ J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ \pi^-\pi^+ \f$ events.
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -86,5 +89,8 @@ class KKFitResult_D0phi_KpiKK : public KKFitResult
 private:
 	// void SetValues_rest();
 };
+
+/// @}
+// end of Doxygen group BOSS
 
 #endif

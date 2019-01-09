@@ -3,6 +3,7 @@ var NAVTREE =
   [ "BOSS Afterburner", "index.html", [
     [ "Doxygen pages of the BOSS Afterburner repository", "index.html", null ],
     [ "Todo List", "todo.html", null ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -37,8 +38,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AnalyseBOSSOutput_8C.html",
-"classCutObject.html#a25ed2d3ed4273e19602c42c80d3388e8",
-"classTrackSelector.html#a8611bb6308f03110601aa7787c38a304"
+"classReconstructedParticle.html#a15d2601c33507f5fdf9ab24b0ef9608d",
+"functions_m.html",
+"group__BOSS__Afterburner.html#gae97e941db471dbe130c5aa7277d8c224"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
