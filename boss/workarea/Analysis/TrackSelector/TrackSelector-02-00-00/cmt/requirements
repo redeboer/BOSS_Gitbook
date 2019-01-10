@@ -5,7 +5,8 @@ use BesPolicy BesPolicy-*
 use GaudiInterface GaudiInterface-* External
 
 use DstEvent DstEvent-* Event
-use EventModel   EventModel-*  Event
+use EventModel  EventModel-*  Event
+use McTruth     McTruth-*     Event
 use EvtRecEvent EvtRecEvent-* Event
 
 use VertexFit    VertexFit-*   Analysis 
