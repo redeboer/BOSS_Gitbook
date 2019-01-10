@@ -1,7 +1,7 @@
 var classD0phi__KpiKK =
 [
     [ "D0phi_KpiKK", "classD0phi__KpiKK.html#a8bd58f92dd541a395caadb7a879fe55a", null ],
-    [ "BookNtupleItemsFit", "classD0phi__KpiKK.html#af6703cdbc4c9f35d7015bcbe4a4e5ba9", null ],
+    [ "BookNtupleItems_Fit", "classD0phi__KpiKK.html#adf74e0fefd0862aa9ab55d59905d37fa", null ],
     [ "execute_rest", "classD0phi__KpiKK.html#a0be43dabc8154883ec2f0bf20cab38b4", null ],
     [ "finalize_rest", "classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752", null ],
     [ "initialize_rest", "classD0phi__KpiKK.html#a72e81af7a2e5613c50f149200c8e0518", null ],
@@ -15,6 +15,11 @@ var classD0phi__KpiKK =
     [ "fMap_dedx_pi", "classD0phi__KpiKK.html#a0f9add1b7c597155bc975ac8082201cf", null ],
     [ "fMap_fit4c_all", "classD0phi__KpiKK.html#abd6b4198ae69700be1a6d99f7bf077e2", null ],
     [ "fMap_fit4c_best", "classD0phi__KpiKK.html#aa4ccae145676d8a54ae7fc7b312601ee", null ],
+    [ "fMcD0", "classD0phi__KpiKK.html#a42a4d1ced39ab0fcf1a936dc92d58dbf", null ],
+    [ "fMcKaonNeg", "classD0phi__KpiKK.html#a69a087df8aa5e2d39b2e1a20ab7b5b74", null ],
+    [ "fMcKaonPos", "classD0phi__KpiKK.html#a9a332148ee0b2a8c417016258e380755", null ],
+    [ "fMcPhi", "classD0phi__KpiKK.html#ad967f5c8d411f92461498e8768bd84f8", null ],
+    [ "fMcPionPos", "classD0phi__KpiKK.html#a9c00a16d9bd1ee286e50ad6eb68ced3a", null ],
     [ "fPionPos", "classD0phi__KpiKK.html#a0f0f6eced07ae025fac22c189f48f758", null ],
     [ "fPionPosIter", "classD0phi__KpiKK.html#a78d6aaabd91bde8018fcb1a3bdbaaa95", null ],
     [ "fWrite_fit4c_all", "classD0phi__KpiKK.html#a84fb92469e97bbd83b24b32cce0493eb", null ],

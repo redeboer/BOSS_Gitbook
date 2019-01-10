@@ -2,11 +2,11 @@
 \form#1:$K^-$
 \form#2:$K^+$
 \form#3:$\pi^+$
-\form#4:$m_{D^0}$
-\form#5:$m_\phi$
-\form#6:$D^0$
-\form#7:$J/\psi$
-\form#8:$\phi$
+\form#4:$D^0$
+\form#5:$\phi$
+\form#6:$m_{D^0}$
+\form#7:$m_\phi$
+\form#8:$J/\psi$
 \form#9:$\pi^-$
 \form#10:$dE/dx$
 \form#11:$\chi^2 > 4.0$
@@ -44,19 +44,24 @@
 \form#43:$z$
 \form#44:$xy$
 \form#45:$p$
-\form#46:$Z$
-\form#47:$R$
-\form#48:$\rho^{0\pm}$
-\form#49:$\pi^0$
-\form#50:$\pi^\pm$
-\form#51:$K^\pm$
-\form#52:$r$
-\form#53:$\chi_\mathrm{red}^2$
-\form#54:$ e^- $
-\form#55:$ \mu^- $
-\form#56:$ \pi^+ $
-\form#57:$ \pi^0 $
-\form#58:$ \rho^\pm $
-\form#59:$ \rho^0 $
-\form#60:$ K^\pm $
-\form#61:$ p $
+\form#46:$|\vec{p}|$
+\form#47:$p_x$
+\form#48:$p_y$
+\form#49:$p_z$
+\form#50:$Z$
+\form#51:$R$
+\form#52:$\rho^{0\pm}$
+\form#53:$\pi^0$
+\form#54:$\pi^\pm$
+\form#55:$K^\pm$
+\form#56:$r$
+\form#57:$\cos(\theta)$
+\form#58:$\chi_\mathrm{red}^2$
+\form#59:$ e^- $
+\form#60:$ \mu^- $
+\form#61:$ \pi^+ $
+\form#62:$ \pi^0 $
+\form#63:$ \rho^\pm $
+\form#64:$ \rho^0 $
+\form#65:$ K^\pm $
+\form#66:$ p $

@@ -140,12 +140,18 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a8240b36613fc387844cafe34de58feee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8240b36613fc387844cafe34de58feee">AddItemsToNTuples</a> (NTuplePtr nt, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map)</td></tr>
 <tr class="memdesc:a8240b36613fc387844cafe34de58feee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically assign all <em>mapped values</em> of <code>map</code> as items to an <code>NTuplePtr</code>.  <a href="#a8240b36613fc387844cafe34de58feee">More...</a><br /></td></tr>
 <tr class="separator:a8240b36613fc387844cafe34de58feee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5591150f56705a5ec220dcb20b926fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad5591150f56705a5ec220dcb20b926fd">BookNtupleItemsDedx</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map, const char *tupleTitle=&quot;dE/dx info&quot;)</td></tr>
-<tr class="memdesc:ad5591150f56705a5ec220dcb20b926fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss branch (<code>"dedx"</code>).  <a href="#ad5591150f56705a5ec220dcb20b926fd">More...</a><br /></td></tr>
-<tr class="separator:ad5591150f56705a5ec220dcb20b926fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd0f7cf9d253705cf62bc1326e8e3398"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#abd0f7cf9d253705cf62bc1326e8e3398">BookNtupleItemsTof</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map, const char *tupleTitle=&quot;Time-of-Flight info&quot;)</td></tr>
-<tr class="memdesc:abd0f7cf9d253705cf62bc1326e8e3398"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="#abd0f7cf9d253705cf62bc1326e8e3398">More...</a><br /></td></tr>
-<tr class="separator:abd0f7cf9d253705cf62bc1326e8e3398"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a376de5fc3e2ff325cadfcfe80f54ac92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a376de5fc3e2ff325cadfcfe80f54ac92">BookNtupleItems_McTruth</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map, const char *tupleTitle=&quot;Monte Carlo truth&quot;)</td></tr>
+<tr class="memdesc:a376de5fc3e2ff325cadfcfe80f54ac92"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the MC truth branches (<code>"mctruth*"</code>).  <a href="#a376de5fc3e2ff325cadfcfe80f54ac92">More...</a><br /></td></tr>
+<tr class="separator:a376de5fc3e2ff325cadfcfe80f54ac92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a539aed7ff1a476b81987c9e11ad762e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a539aed7ff1a476b81987c9e11ad762e0">BookNtupleItems_Dedx</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map, const char *tupleTitle=&quot;dE/dx info&quot;)</td></tr>
+<tr class="memdesc:a539aed7ff1a476b81987c9e11ad762e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss branch (<code>"dedx"</code>).  <a href="#a539aed7ff1a476b81987c9e11ad762e0">More...</a><br /></td></tr>
+<tr class="separator:a539aed7ff1a476b81987c9e11ad762e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affc2e5f60b5c5374275b5db444728064"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#affc2e5f60b5c5374275b5db444728064">BookNtupleItems_Tof</a> (const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map, const char *tupleTitle=&quot;Time-of-Flight info&quot;)</td></tr>
+<tr class="memdesc:affc2e5f60b5c5374275b5db444728064"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="#affc2e5f60b5c5374275b5db444728064">More...</a><br /></td></tr>
+<tr class="separator:affc2e5f60b5c5374275b5db444728064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e4c99974df7b5dfaf0c2550e5ca443b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5e4c99974df7b5dfaf0c2550e5ca443b">WriteMcTruth</a> (Event::McParticle *mcTruth, const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map)</td></tr>
+<tr class="memdesc:a5e4c99974df7b5dfaf0c2550e5ca443b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss information <em>for one track</em>.  <a href="#a5e4c99974df7b5dfaf0c2550e5ca443b">More...</a><br /></td></tr>
+<tr class="separator:a5e4c99974df7b5dfaf0c2550e5ca443b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e61c5641664e0b7c9883d6ba172846e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1e61c5641664e0b7c9883d6ba172846e">WriteDedxInfo</a> (EvtRecTrack *evtRecTrack, const char *tupleName, std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;map)</td></tr>
 <tr class="memdesc:a1e61c5641664e0b7c9883d6ba172846e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss information <em>for one track</em>.  <a href="#a1e61c5641664e0b7c9883d6ba172846e">More...</a><br /></td></tr>
 <tr class="separator:a1e61c5641664e0b7c9883d6ba172846e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,9 +196,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ad3bb6fea7280ae9043373d08a5a53d63"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Tuple * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad3bb6fea7280ae9043373d08a5a53d63">fNTupleMap</a></td></tr>
 <tr class="memdesc:ad3bb6fea7280ae9043373d08a5a53d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map for <code>NTuple::Tuple*</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>.  <a href="#ad3bb6fea7280ae9043373d08a5a53d63">More...</a><br /></td></tr>
 <tr class="separator:ad3bb6fea7280ae9043373d08a5a53d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add614b1730419c8f509ee6c08c674aff"><td class="memItemLeft" align="right" valign="top">std::vector&lt; McParticle * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#add614b1730419c8f509ee6c08c674aff">fMcParticles</a></td></tr>
-<tr class="memdesc:add614b1730419c8f509ee6c08c674aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest.  <a href="#add614b1730419c8f509ee6c08c674aff">More...</a><br /></td></tr>
-<tr class="separator:add614b1730419c8f509ee6c08c674aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60eeedf6b57d012332e51d0a7099f017"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Event::McParticle * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017">fMcParticles</a></td></tr>
+<tr class="memdesc:a60eeedf6b57d012332e51d0a7099f017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest.  <a href="#a60eeedf6b57d012332e51d0a7099f017">More...</a><br /></td></tr>
+<tr class="separator:a60eeedf6b57d012332e51d0a7099f017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d146b4022233ef370931942f342ef41"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7d146b4022233ef370931942f342ef41">fGoodChargedTracks</a></td></tr>
 <tr class="memdesc:a7d146b4022233ef370931942f342ef41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.  <a href="#a7d146b4022233ef370931942f342ef41">More...</a><br /></td></tr>
 <tr class="separator:a7d146b4022233ef370931942f342ef41"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,6 +214,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:acbe564e1a35a15c9168fba517fed70a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#acbe564e1a35a15c9168fba517fed70a1">fDo_neutral</a></td></tr>
 <tr class="memdesc:acbe564e1a35a15c9168fba517fed70a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to make a selection of 'good' neutral tracks.  <a href="#acbe564e1a35a15c9168fba517fed70a1">More...</a><br /></td></tr>
 <tr class="separator:acbe564e1a35a15c9168fba517fed70a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6177d4c116285dd27985a12982c21747"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6177d4c116285dd27985a12982c21747">fWrite_mctruth</a></td></tr>
+<tr class="memdesc:a6177d4c116285dd27985a12982c21747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record initial momentum informtation of MC truth.  <a href="#a6177d4c116285dd27985a12982c21747">More...</a><br /></td></tr>
+<tr class="separator:a6177d4c116285dd27985a12982c21747"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af34c115a296654398d20a22843793158"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af34c115a296654398d20a22843793158">fWrite_PID</a></td></tr>
 <tr class="memdesc:af34c115a296654398d20a22843793158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/>, etc).  <a href="#af34c115a296654398d20a22843793158">More...</a><br /></td></tr>
 <tr class="separator:af34c115a296654398d20a22843793158"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -259,6 +268,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ad336f14b9c8fb4919991b284af51aaf3"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad336f14b9c8fb4919991b284af51aaf3">fMap_dedx</a></td></tr>
 <tr class="memdesc:ad336f14b9c8fb4919991b284af51aaf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/>) branch.  <a href="#ad336f14b9c8fb4919991b284af51aaf3">More...</a><br /></td></tr>
 <tr class="separator:ad336f14b9c8fb4919991b284af51aaf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ebfe799708f4658c6961af65ebf3535"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8ebfe799708f4658c6961af65ebf3535">fMap_mctruth</a></td></tr>
+<tr class="memdesc:a8ebfe799708f4658c6961af65ebf3535"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for MC truth info.  <a href="#a8ebfe799708f4658c6961af65ebf3535">More...</a><br /></td></tr>
+<tr class="separator:a8ebfe799708f4658c6961af65ebf3535"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5fd02e78941091412181bed4af630f4"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab5fd02e78941091412181bed4af630f4">fMap_mult</a></td></tr>
 <tr class="memdesc:ab5fd02e78941091412181bed4af630f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the multiplicities branch.  <a href="#ab5fd02e78941091412181bed4af630f4">More...</a><br /></td></tr>
 <tr class="separator:ab5fd02e78941091412181bed4af630f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -290,7 +302,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a9fddcd465b7d901f38d800a8a8fc6ddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of neutral tracks.  <a href="#a9fddcd465b7d901f38d800a8a8fc6ddc">More...</a><br /></td></tr>
 <tr class="separator:a9fddcd465b7d901f38d800a8a8fc6ddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c32957ceff7dadd751f585fff889280"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7c32957ceff7dadd751f585fff889280">fCut_Vxy</a></td></tr>
-<tr class="memdesc:a7c32957ceff7dadd751f585fff889280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the radius <img class="formulaInl" alt="$r$" src="form_52.png"/> of the primary vertex.  <a href="#a7c32957ceff7dadd751f585fff889280">More...</a><br /></td></tr>
+<tr class="memdesc:a7c32957ceff7dadd751f585fff889280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the radius <img class="formulaInl" alt="$r$" src="form_56.png"/> of the primary vertex.  <a href="#a7c32957ceff7dadd751f585fff889280">More...</a><br /></td></tr>
 <tr class="separator:a7c32957ceff7dadd751f585fff889280"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af432821cbafda619d271cd70784c5fea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af432821cbafda619d271cd70784c5fea">fCut_Vz</a></td></tr>
 <tr class="memdesc:af432821cbafda619d271cd70784c5fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$z$" src="form_43.png"/> coordinate of the primary vertex.  <a href="#af432821cbafda619d271cd70784c5fea">More...</a><br /></td></tr>
@@ -301,11 +313,14 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a9b4bb6fef6929c8dcd7d2a293d652ca1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9b4bb6fef6929c8dcd7d2a293d652ca1">fCut_Rz</a></td></tr>
 <tr class="memdesc:a9b4bb6fef6929c8dcd7d2a293d652ca1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the distance in the <img class="formulaInl" alt="$xy$" src="form_44.png"/> plane between the primary vertex and the vertex of the charged track.  <a href="#a9b4bb6fef6929c8dcd7d2a293d652ca1">More...</a><br /></td></tr>
 <tr class="separator:a9b4bb6fef6929c8dcd7d2a293d652ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeda7f5d6bcd06398152f8a2a601c419"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#afeda7f5d6bcd06398152f8a2a601c419">fCut_CosTheta</a></td></tr>
+<tr class="memdesc:afeda7f5d6bcd06398152f8a2a601c419"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on <img class="formulaInl" alt="$\cos(\theta)$" src="form_57.png"/>.  <a href="#afeda7f5d6bcd06398152f8a2a601c419">More...</a><br /></td></tr>
+<tr class="separator:afeda7f5d6bcd06398152f8a2a601c419"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a901e31293863843b8b942720e8a594d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a901e31293863843b8b942720e8a594d8">fCut_PhotonEnergy</a></td></tr>
 <tr class="memdesc:a901e31293863843b8b942720e8a594d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the photon energy.  <a href="#a901e31293863843b8b942720e8a594d8">More...</a><br /></td></tr>
 <tr class="separator:a901e31293863843b8b942720e8a594d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8db8316d9e9d3e3f1742ba0f9cf753d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8db8316d9e9d3e3f1742ba0f9cf753d5">fCut_PIDChiSq</a></td></tr>
-<tr class="memdesc:a8db8316d9e9d3e3f1742ba0f9cf753d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_53.png"/> of the kinematic Kalman fits.  <a href="#a8db8316d9e9d3e3f1742ba0f9cf753d5">More...</a><br /></td></tr>
+<tr class="memdesc:a8db8316d9e9d3e3f1742ba0f9cf753d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_58.png"/> of the kinematic Kalman fits.  <a href="#a8db8316d9e9d3e3f1742ba0f9cf753d5">More...</a><br /></td></tr>
 <tr class="separator:a8db8316d9e9d3e3f1742ba0f9cf753d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9858b0f0874a92d2046843649b3ae12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab9858b0f0874a92d2046843649b3ae12">fCut_PIDProb</a></td></tr>
 <tr class="memdesc:ab9858b0f0874a92d2046843649b3ae12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6"><code>ParticleID::probPion</code></a>.  <a href="#ab9858b0f0874a92d2046843649b3ae12">More...</a><br /></td></tr>
@@ -337,7 +352,7 @@ Private Member Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>December 14th, 2018 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00098">98</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00099">99</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a49dc31c983813eee609c9a0da0bca9b1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a49dc31c983813eee609c9a0da0bca9b1">&#9670;&nbsp;</a></span>TrackSelector()</h2>
@@ -373,7 +388,7 @@ Private Member Functions</h2></td></tr>
 <li>The <code>"cut_&lt;parameter&gt;"</code> properties determine cuts on certain parameters. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00048">48</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00049">49</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -429,7 +444,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00543">543</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00555">555</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -476,7 +491,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00524">524</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00536">536</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -525,12 +540,12 @@ Private Member Functions</h2></td></tr>
 </dl>
 <p>Use <code>map::operator[]</code> if you want to book an <code>NTuple::Item</code> and use <code>map::at</code> if you want to access the <code>NTuple</code> by key value. This ensures that the programme throws an exception if you ask for the wrong key later. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00747">747</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00805">805</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
-<a id="ad5591150f56705a5ec220dcb20b926fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5591150f56705a5ec220dcb20b926fd">&#9670;&nbsp;</a></span>BookNtupleItemsDedx()</h2>
+<a id="a539aed7ff1a476b81987c9e11ad762e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a539aed7ff1a476b81987c9e11ad762e0">&#9670;&nbsp;</a></span>BookNtupleItems_Dedx()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -539,7 +554,7 @@ Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void TrackSelector::BookNtupleItemsDedx </td>
+          <td class="memname">void TrackSelector::BookNtupleItems_Dedx </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>tupleName</em>, </td>
@@ -614,12 +629,12 @@ Private Member Functions</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00553">553</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00581">581</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
-<a id="abd0f7cf9d253705cf62bc1326e8e3398"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd0f7cf9d253705cf62bc1326e8e3398">&#9670;&nbsp;</a></span>BookNtupleItemsTof()</h2>
+<a id="a376de5fc3e2ff325cadfcfe80f54ac92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a376de5fc3e2ff325cadfcfe80f54ac92">&#9670;&nbsp;</a></span>BookNtupleItems_McTruth()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -628,7 +643,75 @@ Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void TrackSelector::BookNtupleItemsTof </td>
+          <td class="memname">void TrackSelector::BookNtupleItems_McTruth </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleTitle</em> = <code>&quot;Monte&#160;Carlo&#160;truth&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function encapsulates the <code>addItem</code> procedure for the MC truth branches (<code>"mctruth*"</code>). </p>
+<ol>
+<li>
+<p class="startli"><code>"E"</code>: True initial energy of the track.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"p"</code>: True initial <img class="formulaInl" alt="$|\vec{p}|$" src="form_46.png"/> 3-momentum of the track.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"px"</code>: True initial <img class="formulaInl" alt="$p_x$" src="form_47.png"/> momentum of the track.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"py"</code>: True initial <img class="formulaInl" alt="$p_y$" src="form_48.png"/> momentum of the track.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"pz"</code>: True initial <img class="formulaInl" alt="$p_z$" src="form_49.png"/> momentum of the track.</p>
+<p class="endli"></p>
+</li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00564">564</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="affc2e5f60b5c5374275b5db444728064"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc2e5f60b5c5374275b5db444728064">&#9670;&nbsp;</a></span>BookNtupleItems_Tof()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::BookNtupleItems_Tof </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>tupleName</em>, </td>
@@ -682,7 +765,7 @@ Private Member Functions</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"zrhit"</code>: Track extrapolate <img class="formulaInl" alt="$Z$" src="form_46.png"/> or <img class="formulaInl" alt="$R$" src="form_47.png"/> Hit position.</p>
+<p class="startli"><code>"zrhit"</code>: Track extrapolate <img class="formulaInl" alt="$Z$" src="form_50.png"/> or <img class="formulaInl" alt="$R$" src="form_51.png"/> Hit position.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -711,7 +794,7 @@ Private Member Functions</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00580">580</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00608">608</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -740,10 +823,10 @@ Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compute a 'momentum' for a neutral track. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>Decide whether these methods should be <code>private</code> or <code>protected</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>Decide whether these methods should be <code>private</code> or <code>protected</code>. </dd></dl>
 <p>The momentum is computed from the neutral track (photon) energy and from the location (angles) where it was detected in the EMC. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00724">724</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00782">782</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -773,7 +856,7 @@ Private Member Functions</h2></td></tr>
 <p>Declare properties for each <code><a class="el" href="classCutObject.html" title="This object contains all information and tools for a cut you want to apply. ">CutObject</a></code>. </p>
 <p>Each <code><a class="el" href="classCutObject.html" title="This object contains all information and tools for a cut you want to apply. ">CutObject</a></code> has two properties: a <code>min</code> and a <code>max</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00764">764</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00822">822</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -834,15 +917,19 @@ Private Member Functions</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Get root index</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>What is the root index and why is it related to <img class="formulaInl" alt="$J/\psi$" src="form_7.png"/>? </dd></dl>
+<p class="startli">Get root index</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>What is the root index and why is it related to <img class="formulaInl" alt="$J/\psi$" src="form_8.png"/>? </dd></dl>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Do not add <img class="formulaInl" alt="$J/\psi$" src="form_7.png"/> (PDG code 443).</p>
+<p class="startli">Do not add <img class="formulaInl" alt="$J/\psi$" src="form_8.png"/> (PDG code 443).</p>
 <p class="endli"></p>
 </li>
 <li>
 <p class="startli">Add the pointer to the <code>fMcParticles</code> vector.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b>Write</b> MC truth initial 4-momentum info if required.</p>
 <p class="endli"></p>
 </li>
 </ul>
@@ -861,7 +948,7 @@ Private Member Functions</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Apply primary vertex cuts:</p>
+<p class="startli">Apply charged track cuts:</p>
 <ul>
 <li>
 <p class="startli"><img class="formulaInl" alt="$z$" src="form_43.png"/> coordinate of the collision point has to be within <code>cut_Vz0_max</code></p>
@@ -877,6 +964,10 @@ Private Member Functions</h2></td></tr>
 </li>
 <li>
 <p class="startli">distance to the interaction point in <img class="formulaInl" alt="$xy$" src="form_44.png"/> plane has to be within <code>cut_Rvxy0_max</code></p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">distance to the interaction point in <img class="formulaInl" alt="$xy$" src="form_44.png"/> plane has to be within <code>cut_costheta_max</code></p>
 <p class="endli"></p>
 </li>
 </ul>
@@ -934,7 +1025,7 @@ Private Member Functions</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00202">202</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00210">210</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -985,7 +1076,7 @@ Private Member Functions</h2></td></tr>
 <p>Is called at the end <em>of the entire process</em>. </p>
 <p>Writes total cut flow to terminal and to the output file. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00470">470</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00480">480</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1147,7 +1238,7 @@ Private Member Functions</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"phi"</code>: <img class="formulaInl" alt="$\phi$" src="form_8.png"/>-angle of the neutral track according to the EMC.</p>
+<p class="startli"><code>"phi"</code>: <img class="formulaInl" alt="$\phi$" src="form_5.png"/>-angle of the neutral track according to the EMC.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -1162,11 +1253,15 @@ Private Member Functions</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"dedx"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#ad5591150f56705a5ec220dcb20b926fd" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). ">TrackSelector::BookNtupleItemsDedx</a></code> for more info.</p>
+<p class="startli"><code>"mctruth"</code>: Initial momentum information of Monte Carlo truth.</p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"ToFEC"</code>, <code>"ToFIB"</code>, and <code>"ToFOB"</code>: information from the three Time-of-Flight detectors. See <code><a class="el" href="classTrackSelector.html#abd0f7cf9d253705cf62bc1326e8e3398" title="This function encapsulates the addItem procedure for the ToF branch. ">TrackSelector::BookNtupleItemsTof</a></code> for more info.</p>
+<p class="startli"><code>"dedx"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#a539aed7ff1a476b81987c9e11ad762e0" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). ">TrackSelector::BookNtupleItems_Dedx</a></code> for more info.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"ToFEC"</code>, <code>"ToFIB"</code>, and <code>"ToFOB"</code>: information from the three Time-of-Flight detectors. See <code><a class="el" href="classTrackSelector.html#affc2e5f60b5c5374275b5db444728064" title="This function encapsulates the addItem procedure for the ToF branch. ">TrackSelector::BookNtupleItems_Tof</a></code> for more info.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -1221,7 +1316,7 @@ Private Member Functions</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00103">103</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00106">106</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1302,7 +1397,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Method that standardizes the initialisation of the particle identification system. </p>
 <p>Define here <em>as general as possible</em>, but use in the derived subalgorithms.</p>
-<p>See <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html">http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html</a> for more info.</p>
+<p>See <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html">http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html</a> for more info. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Since BOSS 7.0.4, <code>ParticleID::useTofCorr()</code> should be used for ToF instead of e.g. <code>useTof1</code>. See talk by Liu Huanhuan on 2019/01/10.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">method</td><td>Which method to use: probability, likelihood, or neuron network (see <code>TSGlobals::PIDMethod</code>). You can also combine using e.g. <code>pid-&gt;methodLikelihood() | pid-&gt;methodProbability()</code>. </td></tr>
@@ -1313,7 +1408,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00499">499</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00510">510</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1349,7 +1444,7 @@ Private Member Functions</h2></td></tr>
 <li>Write the <code>counter</code> values to the third entry of <code>"_cutvalues"</code>. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00778">778</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00836">836</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1403,7 +1498,7 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00607">607</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00635">635</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1458,7 +1553,67 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00646">646</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00704">704</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a5e4c99974df7b5dfaf0c2550e5ca443b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e4c99974df7b5dfaf0c2550e5ca443b">&#9670;&nbsp;</a></span>WriteMcTruth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackSelector::WriteMcTruth </td>
+          <td>(</td>
+          <td class="paramtype">Event::McParticle *&#160;</td>
+          <td class="paramname"><em>mcTruth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tupleName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss information <em>for one track</em>. </p>
+<p>Here, you should use <code>map::at</code> to access the <code>NTuple::Item</code>s and <code>NTuplePtr</code>, because you want your package to throw an exception if the element does not exist. See <a href="http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115">http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115</a> for available data members of <code>RecMdcDedx</code>]</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mcTruth</td><td>Pointer to the <code>McParticle</code> object of which you want to write 4-momentum info. </td></tr>
+    <tr><td class="paramname">tupleName</td><td>The name of the tuple to which you want to write the information. </td></tr>
+    <tr><td class="paramname">map</td><td>The <code>map</code> from which you want to get the <code>NTuple::Item</code>s. </td></tr>
+  </table>
+  </dd>
+</dl>
+<ol type="1">
+<li>Abort if <code>mcTruth</code> is <code>nullptr</code>.</li>
+<li>Obtain relevant info.</li>
+<li><b>Write</b> initial momentum info of MC truth. </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00674">674</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1488,7 +1643,7 @@ Private Member Functions</h2></td></tr>
 <p>Encapsulates the proces of writing PID info. </p>
 <p>This allows you to write the PID information after the particle selection as well. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00658">658</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00716">716</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1538,7 +1693,7 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00684">684</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00742">742</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1565,7 +1720,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Eventual total number of charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00178">178</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00183">183</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1591,7 +1746,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Eventual total number of events. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00176">176</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00181">181</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1617,7 +1772,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Eventual total number of charged tracks that are 'MDC valid'. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00179">179</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00184">184</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1643,7 +1798,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Eventual total number of neutral tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00180">180</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00185">185</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1669,7 +1824,33 @@ Private Member Functions</h2></td></tr>
 
 <p>Eventual total number of tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00177">177</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00182">182</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="afeda7f5d6bcd06398152f8a2a601c419"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeda7f5d6bcd06398152f8a2a601c419">&#9670;&nbsp;</a></span>fCut_CosTheta</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> TrackSelector::fCut_CosTheta</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cut on <img class="formulaInl" alt="$\cos(\theta)$" src="form_57.png"/>. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00190">190</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1695,7 +1876,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Cut on the photon energy. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00185">185</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00191">191</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1719,9 +1900,9 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Cut on the <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_53.png"/> of the kinematic Kalman fits. </p>
+<p>Cut on the <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_58.png"/> of the kinematic Kalman fits. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00186">186</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00192">192</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1747,7 +1928,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6"><code>ParticleID::probPion</code></a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00187">187</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00193">193</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1773,7 +1954,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Cut on the distance in the <img class="formulaInl" alt="$z$" src="form_43.png"/> direction between the primary vertex and the vertex of the charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00183">183</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00188">188</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1799,7 +1980,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Cut on the distance in the <img class="formulaInl" alt="$xy$" src="form_44.png"/> plane between the primary vertex and the vertex of the charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00184">184</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00189">189</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1823,9 +2004,9 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Cut on the radius <img class="formulaInl" alt="$r$" src="form_52.png"/> of the primary vertex. </p>
+<p>Cut on the radius <img class="formulaInl" alt="$r$" src="form_56.png"/> of the primary vertex. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00181">181</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00186">186</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1851,7 +2032,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Cut on the <img class="formulaInl" alt="$z$" src="form_43.png"/> coordinate of the primary vertex. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00182">182</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00187">187</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1877,7 +2058,7 @@ Private Member Functions</h2></td></tr>
 
 <p>The private data members are used to define cuts. The values for these cuts should be set in the <code><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1" title="Constructor for the TrackSelector algorithm. ">TrackSelector::TrackSelector</a></code> constructor (see corresponding <code>.cxx</code> file). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00175">175</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00180">180</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1904,7 +2085,7 @@ Private Member Functions</h2></td></tr>
 <p><code>NTuple</code>s are like vectors, but its members do not necessarily have to be of the same type. </p>
 <p>In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each <code>NTuple::Item</code> represents its leaves. The name of the leaves is determined when calling <code>NTuple::addItem</code>. Note that the <code>NTuple::Items</code> have to be added to the NTuple during the <code><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4" title="(Inherited) initialize step of Algorithm. ">TrackSelector::initialize()</a></code> step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there! Package property that determines whether or not to make a selection of 'good' charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00148">148</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00151">151</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1930,7 +2111,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to make a selection of 'good' neutral tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00149">149</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00152">152</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1956,7 +2137,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Data pointer for <code>"Event/EventHeader"</code> data. It is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> step in each event. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00134">134</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00137">137</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -1982,7 +2163,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Data pointer for <code>EventModel::EvtRec::EvtRecEvent</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00136">136</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00139">139</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2008,7 +2189,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Data pointer for <code>EventModel::EvtRec::EvtRecTrackCol</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> in each event. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00137">137</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00140">140</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2034,7 +2215,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00140">140</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00143">143</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2060,7 +2241,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00141">141</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00144">144</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2086,7 +2267,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00129">129</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00132">132</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2112,7 +2293,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the charged track vertex info charged track vertex branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00165">165</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00169">169</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2138,7 +2319,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the cut parameters. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00160">160</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00164">164</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2164,7 +2345,33 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/>) branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00166">166</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00170">170</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a8ebfe799708f4658c6961af65ebf3535"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ebfe799708f4658c6961af65ebf3535">&#9670;&nbsp;</a></span>fMap_mctruth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; TrackSelector::fMap_mctruth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Container for MC truth info. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00171">171</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2190,7 +2397,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the multiplicities branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00167">167</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00172">172</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2216,7 +2423,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the <code>"mult_select"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00168">168</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00173">173</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2242,7 +2449,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the neutral track info neutral track info branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00169">169</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00174">174</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2268,7 +2475,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/>, etc) branch. <b>Needs to be filled in the derived class!</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00161">161</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00165">165</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2294,7 +2501,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the data from the Time-of-Flight end cap detector branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00162">162</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00166">166</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2320,7 +2527,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the data from the Time-of-Flight inner barrel detector branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00163">163</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00167">167</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2346,7 +2553,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the data from the Time-of-Flight outer barrel detector branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00164">164</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00168">168</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2372,7 +2579,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Container for the primary vertex info vertex branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00170">170</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00175">175</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2398,12 +2605,12 @@ Private Member Functions</h2></td></tr>
 
 <p>Data pointer for <code>"Event/MC/McParticleCol"</code> data. It is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">execute()</a></code> step in each event. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00135">135</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00138">138</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="add614b1730419c8f509ee6c08c674aff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add614b1730419c8f509ee6c08c674aff">&#9670;&nbsp;</a></span>fMcParticles</h2>
+<a id="a60eeedf6b57d012332e51d0a7099f017"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60eeedf6b57d012332e51d0a7099f017">&#9670;&nbsp;</a></span>fMcParticles</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2412,7 +2619,7 @@ Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;McParticle*&gt; TrackSelector::fMcParticles</td>
+          <td class="memname">std::vector&lt;Event::McParticle*&gt; TrackSelector::fMcParticles</td>
         </tr>
       </table>
   </td>
@@ -2423,8 +2630,9 @@ Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Consider defining a <code>map&lt;int, vector&lt;Event::McParticle*&gt; &gt;</code>, where the <code>int</code> key will be the PDG code. This mapping is to define a subset of the list of <code>McParticles</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00139">139</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00142">142</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2450,7 +2658,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Number of charges detected in the MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00191">191</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00197">197</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2476,7 +2684,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Map for <code>NTuple::Tuple*</code>s. The string identifier should be the name of the <code>NTuple</code> and of the eventual <code>TTree</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00138">138</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00141">141</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2502,7 +2710,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Pointer to instance of particle identification (PID). Only used in <em>derived subalgorithms</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00130">130</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00133">133</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2528,7 +2736,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Pointer to the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> info from the MDC. It is a data member to make it accessible to other methods as well. See <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html">http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00132">132</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00135">135</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2554,7 +2762,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Pointer to the track info from the EM calorimeter. It is a data member to make it accessible to other methods as well. See <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecEmcShower.html">http://bes3.to.infn.it/Boss/7.0.2/html/classRecEmcShower.html</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00131">131</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00134">134</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2580,7 +2788,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Iterator for looping over the collection of charged and neutral tracks (<code>EvtRecTrackCol</code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00142">142</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00145">145</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2606,7 +2814,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Pointer to the track info from the MDC. It is a data member to make it accessible to other methods as well. See <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcTrack.html">http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcTrack.html</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00133">133</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00136">136</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2632,7 +2840,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Coordinates of the interaction point (primary vertex). Set in each event in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="Inherited execute method of the Algorithm. ">TrackSelector::execute</a></code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00190">190</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00196">196</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2658,7 +2866,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to record charged track vertex info. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00154">154</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00158">158</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2684,7 +2892,33 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to record energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/>). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00155">155</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00159">159</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="a6177d4c116285dd27985a12982c21747"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6177d4c116285dd27985a12982c21747">&#9670;&nbsp;</a></span>fWrite_mctruth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackSelector::fWrite_mctruth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to record initial momentum informtation of MC truth. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00153">153</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2710,7 +2944,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to record multiplicities. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00156">156</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00160">160</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2736,7 +2970,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to write the multiplicities <em>of the selected particles</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00157">157</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00161">161</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2762,7 +2996,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to record neutral track info. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00158">158</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00162">162</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2788,7 +3022,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to record general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/>, etc). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00150">150</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00154">154</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2814,7 +3048,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to record data from the Time-of-Flight end cap detector. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00151">151</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00155">155</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2840,7 +3074,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00152">152</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00156">156</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2866,7 +3100,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to record data from the Time-of-Flight outer barrel detector. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00153">153</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00157">157</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2892,7 +3126,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Package property that determines whether or not to record primary vertex info. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00159">159</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00163">163</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
