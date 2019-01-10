@@ -16,14 +16,10 @@ var group__BOSS__packages =
       [ "fMap_dedx_pi", "classD0phi__KpiKK.html#a0f9add1b7c597155bc975ac8082201cf", null ],
       [ "fMap_fit4c_all", "classD0phi__KpiKK.html#abd6b4198ae69700be1a6d99f7bf077e2", null ],
       [ "fMap_fit4c_best", "classD0phi__KpiKK.html#aa4ccae145676d8a54ae7fc7b312601ee", null ],
-      [ "fMap_fit4c_best_D0", "classD0phi__KpiKK.html#abd590b3b15585de1244bbf195b10a9d1", null ],
-      [ "fMap_fit4c_best_phi", "classD0phi__KpiKK.html#a91cdaf377dad8768bdc19390cff9e3b8", null ],
       [ "fPionPos", "classD0phi__KpiKK.html#a0f0f6eced07ae025fac22c189f48f758", null ],
       [ "fPionPosIter", "classD0phi__KpiKK.html#a78d6aaabd91bde8018fcb1a3bdbaaa95", null ],
       [ "fWrite_fit4c_all", "classD0phi__KpiKK.html#a84fb92469e97bbd83b24b32cce0493eb", null ],
-      [ "fWrite_fit4c_best", "classD0phi__KpiKK.html#a4bcf5e4faa99e0aceb261ea22efcc1f8", null ],
-      [ "fWrite_fit4c_best_D0", "classD0phi__KpiKK.html#ae3b706bc868371670269665819ee226b", null ],
-      [ "fWrite_fit4c_best_phi", "classD0phi__KpiKK.html#abdc856d410a4bcd40fd5ff9ef0623c07", null ]
+      [ "fWrite_fit4c_best", "classD0phi__KpiKK.html#a4bcf5e4faa99e0aceb261ea22efcc1f8", null ]
     ] ],
     [ "rhopi_pipigg", "classrhopi__pipigg.html", [
       [ "rhopi_pipigg", "classrhopi__pipigg.html#a6a2dce6146cebb243245965e9d9d3a85", null ],

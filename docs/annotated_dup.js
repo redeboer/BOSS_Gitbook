@@ -4,6 +4,7 @@ var annotated_dup =
     [ "Settings", "namespaceSettings.html", null ],
     [ "ArgPair", "classArgPair.html", "classArgPair" ],
     [ "ArgPair_base", "classArgPair__base.html", "classArgPair__base" ],
+    [ "BOSSOutputLoader", "classBOSSOutputLoader.html", "classBOSSOutputLoader" ],
     [ "ChainLoader", "classChainLoader.html", "classChainLoader" ],
     [ "CutObject", "classCutObject.html", "classCutObject" ],
     [ "D0phi_KpiKK", "classD0phi__KpiKK.html", "classD0phi__KpiKK" ],

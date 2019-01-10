@@ -3,18 +3,14 @@ var group__BOSS__objects =
     [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", [
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html#a5e51c24407d7e68bd1122dc3cd9f40cc", null ],
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html#abddabe7845286acd74aff933014aeda2", null ],
-      [ "IsBetter", "classKKFitResult__D0phi__KpiKK.html#aae97871072ef3009ca84dd558b713dff", null ],
-      [ "IsBetter_D0", "classKKFitResult__D0phi__KpiKK.html#ad748e44faafaf8fe36607cde42bbda07", null ],
-      [ "IsBetter_phi", "classKKFitResult__D0phi__KpiKK.html#a46382abb105367ed8b3c9b808da7dea7", null ],
+      [ "IsBetter", "classKKFitResult__D0phi__KpiKK.html#af2a47b6a47ae6061cd53f1220426c06e", null ],
       [ "SetValues", "classKKFitResult__D0phi__KpiKK.html#a78ab66239f9af5cc4a81c23cee333d8f", null ],
-      [ "fBestCompareValue_D0", "classKKFitResult__D0phi__KpiKK.html#a8a95a95bf8d2b20949eeeee92ae6fd2d", null ],
-      [ "fBestCompareValue_phi", "classKKFitResult__D0phi__KpiKK.html#a14f6401051355c65ae25d5c4dca8bd2a", null ],
       [ "fFitMeasure", "classKKFitResult__D0phi__KpiKK.html#a6723773ebd9e3a1ab87e69a243dc3405", null ],
-      [ "fFitMeasure_D0", "classKKFitResult__D0phi__KpiKK.html#a7ad0814e38d716f3738472b95d407407", null ],
-      [ "fFitMeasure_phi", "classKKFitResult__D0phi__KpiKK.html#a0c16b952cfcfab676560bd70b36e50a2", null ],
       [ "fM_D0", "classKKFitResult__D0phi__KpiKK.html#ab914f0526be00c0169d7ec2721beb676", null ],
       [ "fM_Jpsi", "classKKFitResult__D0phi__KpiKK.html#adc58aa1a19aa265aa34202ec164be213", null ],
-      [ "fM_phi", "classKKFitResult__D0phi__KpiKK.html#a077b273f57d25848e5f39aad3e838cd4", null ]
+      [ "fM_phi", "classKKFitResult__D0phi__KpiKK.html#a077b273f57d25848e5f39aad3e838cd4", null ],
+      [ "fP_D0", "classKKFitResult__D0phi__KpiKK.html#a24e1401dcfa14adf4474424ca7fea97d", null ],
+      [ "fP_phi", "classKKFitResult__D0phi__KpiKK.html#a9e7bbf143178726c625711ca91749321", null ]
     ] ],
     [ "CutObject", "classCutObject.html", [
       [ "CutObject", "classCutObject.html#a529ad466034cc01f983c57a03949331d", null ],
@@ -44,8 +40,8 @@ var group__BOSS__objects =
       [ "KKFitResult", "classKKFitResult.html#ac70733af97eb1c5214ae57ccffe88cdf", null ],
       [ "KKFitResult", "classKKFitResult.html#a5d9c2f00419e514a5f8cdd4ab180ceef", null ],
       [ "HasFit", "classKKFitResult.html#abc4f946d8e902b15aadaba7e65b24c23", null ],
-      [ "IsBetter", "classKKFitResult.html#a3761e342b924f9c4d02be820ac9a34fe", null ],
-      [ "IsBetter", "classKKFitResult.html#a5d1efb2607fc6a736135ac7ebfeb4ac3", null ],
+      [ "IsBetter", "classKKFitResult.html#ae099966c518c51c5620025350f1bbb3e", null ],
+      [ "IsBetter", "classKKFitResult.html#a0c87b8ff75e72f27f68bc5814a42c5a3", null ],
       [ "SetValues", "classKKFitResult.html#add33917bee1940892f0b180d5f6cf6ea", null ],
       [ "fBestCompareValue", "classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0", null ],
       [ "fChiSquared", "classKKFitResult.html#ab998d45583725a8561225c1ac7a36a46", null ],

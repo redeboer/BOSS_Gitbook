@@ -10,6 +10,7 @@ var hierarchy =
     [ "ArgPair_base", "classArgPair__base.html", [
       [ "ArgPair< TYPE >", "classArgPair.html", null ]
     ] ],
+    [ "BOSSOutputLoader", "classBOSSOutputLoader.html", null ],
     [ "ChainLoader", "classChainLoader.html", null ],
     [ "CutObject", "classCutObject.html", null ],
     [ "KKFitResult", "classKKFitResult.html", [

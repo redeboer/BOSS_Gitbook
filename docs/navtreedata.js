@@ -38,8 +38,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AnalyseBOSSOutput_8C.html",
-"classKKFitResult__D0phi__KpiKK.html#a6723773ebd9e3a1ab87e69a243dc3405",
-"classrhopi__pipigg.html#a57476c12d2e478409f0a37535f289900"
+"classKKFitResult__D0phi__KpiKK.html",
+"classrhopi__pipigg.html#a518d5a2d8c38728ce4ac4dd1118debdf"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

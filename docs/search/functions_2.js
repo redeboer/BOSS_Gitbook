@@ -8,6 +8,7 @@ var searchData=
   ['computemean',['ComputeMean',['../classChainLoader.html#a58451645958f14410eff8e2b201047ac',1,'ChainLoader']]],
   ['computemomentum',['ComputeMomentum',['../classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0',1,'TrackSelector']]],
   ['createinvariantmasshistogram',['CreateInvariantMassHistogram',['../namespaceCommonFunctions_1_1Hist.html#a85b367ac3ed03637b05ea158385efd8c',1,'CommonFunctions::Hist']]],
+  ['createorderedmap',['CreateOrderedMap',['../group__BOSS__Afterburner__objects.html#gab6d81022b14f0de41438dcf699a5e01c',1,'BOSSOutputLoader']]],
   ['createroofitinvmassdistr',['CreateRooFitInvMassDistr',['../namespaceCommonFunctions_1_1Fit.html#a01b6b2fa0844a972c92e0ae27ba81ead',1,'CommonFunctions::Fit']]],
   ['createroofitinvmassvar',['CreateRooFitInvMassVar',['../namespaceCommonFunctions_1_1Fit.html#a9b760f35ce2828d857cfa8af2b795992',1,'CommonFunctions::Fit']]],
   ['cutobject',['CutObject',['../classCutObject.html#a529ad466034cc01f983c57a03949331d',1,'CutObject']]]

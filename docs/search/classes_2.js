@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['d0phi_5fkpikk',['D0phi_KpiKK',['../classD0phi__KpiKK.html',1,'']]]
+  ['chainloader',['ChainLoader',['../classChainLoader.html',1,'']]],
+  ['cutobject',['CutObject',['../classCutObject.html',1,'']]]
 ];

@@ -54,11 +54,11 @@
 			HepLorentzVector pJpsi = pD0 + pphi;           /// <li> \f$J/\psi \rightarrow D^0\phi\f$
 			/// </ol>
 		/// <li> Compute invariant masses and momentum:
-			fM_D0   = pD0.m();    /// <li> \f$M_{K^-\pi^+}\f$
-			fM_phi  = pphi.m();   /// <li> \f$M_{K^-K^+}\f$
-			fM_Jpsi = pJpsi.m();  /// <li> \f$M_{D^0\phi}\f$
-			fP_D0   = std::sqrt(pD0 .px()*pD0 .px() + pD0 .py()*pD0 .py() + pD0 .pz()*pD0 .pz());  /// <li> \f$|\vec{p}_{K^-\pi^+}|
-			fP_phi  = std::sqrt(pphi.px()*pphi.px() + pphi.py()*pphi.py() + pphi.pz()*pphi.pz());  /// <li> \f$|\vec{p}_{K^-K^+}|
+			fM_D0   = pD0.m();    /// <li> `fM_D0`   = \f$M_{K^-\pi^+}\f$
+			fM_phi  = pphi.m();   /// <li> `fM_phi`  = \f$M_{K^-K^+}\f$
+			fM_Jpsi = pJpsi.m();  /// <li> `fM_Jpsi` = \f$M_{D^0\phi}\f$
+			fP_D0   = std::sqrt(pD0 .px()*pD0 .px() + pD0 .py()*pD0 .py() + pD0 .pz()*pD0 .pz());  /// <li> `fP_D0`  = \f$|\vec{p}_{K^-\pi^+}|\f$
+			fP_phi  = std::sqrt(pphi.px()*pphi.px() + pphi.py()*pphi.py() + pphi.pz()*pphi.pz());  /// <li> `fP_phi` = \f$|\vec{p}_{K^-K^+}|\f$
 		/// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{K^-K^+} - m_{\phi}\f$
 		fFitMeasure = std::abs(fM_phi - gM_phi);
 		/// </ol>

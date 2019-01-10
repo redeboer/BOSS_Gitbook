@@ -2,6 +2,7 @@ var files =
 [
     [ "AnalyseBOSSOutput.C", "AnalyseBOSSOutput_8C.html", "AnalyseBOSSOutput_8C" ],
     [ "ArgPair.h", "ArgPair_8h.html", null ],
+    [ "BOSSOutputLoader.h", "BOSSOutputLoader_8h.html", null ],
     [ "ChainLoader.h", "ChainLoader_8h.html", null ],
     [ "CommonFunctions.h", "CommonFunctions_8h.html", "CommonFunctions_8h" ],
     [ "CompareChainVsHadd.C", "CompareChainVsHadd_8C.html", "CompareChainVsHadd_8C" ],

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['chainloader',['ChainLoader',['../classChainLoader.html',1,'']]],
-  ['cutobject',['CutObject',['../classCutObject.html',1,'']]]
+  ['bossoutputloader',['BOSSOutputLoader',['../classBOSSOutputLoader.html',1,'']]]
 ];
