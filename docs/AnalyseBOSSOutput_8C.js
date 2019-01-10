@@ -13,6 +13,7 @@ var AnalyseBOSSOutput_8C =
     [ "gDo_conv_s", "group__BOSS__Afterburner__scripts.html#gaede6c088f8c87eff491f17c778b830a9", null ],
     [ "gDo_gauss", "group__BOSS__Afterburner__scripts.html#gab231f074512fdca6caa52bcb8ac9e93e", null ],
     [ "gDraw_fit", "group__BOSS__Afterburner__scripts.html#gacafe28372400965474c696882f8ca2d0", null ],
+    [ "gDraw_mctruth", "group__BOSS__Afterburner__scripts.html#ga89034a0776a50a720b3cecd5f6c7fae8", null ],
     [ "gDraw_mult", "group__BOSS__Afterburner__scripts.html#gac6a1f0783f883f961da1704dc31d3364", null ],
     [ "gDraw_tof", "group__BOSS__Afterburner__scripts.html#ga4207b345929532a39ca8801a6155252b", null ],
     [ "gDraw_vertex", "group__BOSS__Afterburner__scripts.html#gabc727588fb7d19ca3da5dc7d22505a21", null ],

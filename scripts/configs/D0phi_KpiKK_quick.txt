@@ -17,6 +17,7 @@
 // * WHICH BRANCHES TO PLOT * //
 	Plot raw data      = true
 	Draw multiplicites = true
+	Draw mctruth       = true
 	Draw vertex        = false
 	Draw ToF           = false
 	Draw fit branches  = true

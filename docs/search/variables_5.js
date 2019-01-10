@@ -7,6 +7,7 @@ var searchData=
   ['gdo_5fconv_5fs',['gDo_conv_s',['../group__BOSS__Afterburner__scripts.html#gaede6c088f8c87eff491f17c778b830a9',1,'AnalyseBOSSOutput.C']]],
   ['gdo_5fgauss',['gDo_gauss',['../group__BOSS__Afterburner__scripts.html#gab231f074512fdca6caa52bcb8ac9e93e',1,'AnalyseBOSSOutput.C']]],
   ['gdraw_5ffit',['gDraw_fit',['../group__BOSS__Afterburner__scripts.html#gacafe28372400965474c696882f8ca2d0',1,'AnalyseBOSSOutput.C']]],
+  ['gdraw_5fmctruth',['gDraw_mctruth',['../group__BOSS__Afterburner__scripts.html#ga89034a0776a50a720b3cecd5f6c7fae8',1,'AnalyseBOSSOutput.C']]],
   ['gdraw_5fmult',['gDraw_mult',['../group__BOSS__Afterburner__scripts.html#gac6a1f0783f883f961da1704dc31d3364',1,'AnalyseBOSSOutput.C']]],
   ['gdraw_5ftof',['gDraw_tof',['../group__BOSS__Afterburner__scripts.html#ga4207b345929532a39ca8801a6155252b',1,'AnalyseBOSSOutput.C']]],
   ['gdraw_5fvertex',['gDraw_vertex',['../group__BOSS__Afterburner__scripts.html#gabc727588fb7d19ca3da5dc7d22505a21',1,'AnalyseBOSSOutput.C']]],

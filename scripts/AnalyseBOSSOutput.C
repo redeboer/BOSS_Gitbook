@@ -46,6 +46,7 @@
 
 	// * WHICH BRANCHES TO PLOT * //
 	ArgPair<bool> gPureplot    { "Plot raw data",      true  }; //!< Whether or not to plot histograms of branches <i>without fit</i>.
+	ArgPair<bool> gDraw_mctruth { "Draw mctruth",      false }; //!< Whether or not to draw the MC truth parameters.
 	ArgPair<bool> gDraw_mult   { "Draw multiplicites", false }; //!< Whether or not to draw the multiplicity branches.
 	ArgPair<bool> gDraw_vertex { "Draw vertex",        false }; //!< Whether or not to draw the `"vertex"` branch.
 	ArgPair<bool> gDraw_tof    { "Draw ToF",           false }; //!< Whether or not to draw the `"tof*"` branches.
@@ -97,6 +98,15 @@
 					for(auto tree = file.GetChains().begin(); tree != file.GetChains().end(); ++tree) {
 						TString name(tree->second.GetChain().GetName());
 						if(name.BeginsWith("mult")) tree->second.DrawAndSaveAllMultiplicityBranches(gLogY.value.data(), "");
+					}
+				}
+				if(gDraw_mctruth.value) {
+					if(gSetranges.value) {
+						file.DrawBranches("mctruth", "E", 150, 0., 3.5, "E1", gLogY.value.data());
+						file.DrawBranches("mctruth", "p", 150, 0., 1.25, "E1", gLogY.value.data());
+					} else {
+						file.DrawBranches("mctruth", "E", "E1", gLogY.value.data());
+						file.DrawBranches("mctruth", "p", "E1", gLogY.value.data());
 					}
 				}
 				if(gDraw_vertex.value) {
