@@ -39,23 +39,23 @@
 	ArgPair<bool> gPrint { "Print branches", false };
 
 	// * PLOT STYLE * //
-	ArgPair<string> gLogY { "Use y log scale", "y" }; //!< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
-	ArgPair<string> gLogZ { "Use z log scale", "z" }; //!< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
-	ArgPair<bool> gSetranges   { "Set plot ranges", true }; //!< Whether or not to precisely set histogram ranges.
-	ArgPair<bool> gPlotstats   { "Plot statistics", false }; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
+	ArgPair<string> gLogY    { "Use y log scale", "y"   }; //!< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
+	ArgPair<string> gLogZ    { "Use z log scale", "z"   }; //!< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
+	ArgPair<bool> gSetranges { "Set plot ranges", true  }; //!< Whether or not to precisely set histogram ranges.
+	ArgPair<bool> gPlotstats { "Plot statistics", false }; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
 
 	// * WHICH BRANCHES TO PLOT * //
-	ArgPair<bool> gPureplot    { "Plot raw data",    true  }; //!< Whether or not to plot histograms of branches <i>without fit</i>.
-	ArgPair<bool> gDraw_mult   { "Draw multiplicites",   false }; //!< Whether or not to draw the multiplicity branches.
-	ArgPair<bool> gDraw_vertex { "Draw vertex", false }; //!< Whether or not to draw the `"vertex"` branch.
-	ArgPair<bool> gDraw_tof    { "Draw ToF",    false }; //!< Whether or not to draw the `"tof*"` branches.
-	ArgPair<bool> gDraw_fit    { "Draw fit branches",    true  }; //!< Whether or not to draw the `"fit"` branches.
+	ArgPair<bool> gPureplot    { "Plot raw data",      true  }; //!< Whether or not to plot histograms of branches <i>without fit</i>.
+	ArgPair<bool> gDraw_mult   { "Draw multiplicites", false }; //!< Whether or not to draw the multiplicity branches.
+	ArgPair<bool> gDraw_vertex { "Draw vertex",        false }; //!< Whether or not to draw the `"vertex"` branch.
+	ArgPair<bool> gDraw_tof    { "Draw ToF",           false }; //!< Whether or not to draw the `"tof*"` branches.
+	ArgPair<bool> gDraw_fit    { "Draw fit branches",  true  }; //!< Whether or not to draw the `"fit"` branches.
 
 	// * FIT SETTINGS * //
-	ArgPair<bool> gFitplots    { "Perform fits",    false }; //!< Whether or not to produce invariant mass fits.
-	ArgPair<bool> gDo_gauss    { "Do Gaussian",    true  }; //!< Whether or not to produce perform a double Gaussian fit.
-	ArgPair<bool> gDo_conv_s   { "Do single convolution",   false }; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
-	ArgPair<bool> gDo_conv_d   { "Do double convolution",   false }; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
+	ArgPair<bool> gFitplots  { "Perform fits",          false }; //!< Whether or not to produce invariant mass fits.
+	ArgPair<bool> gDo_gauss  { "Do Gaussian",           true  }; //!< Whether or not to produce perform a double Gaussian fit.
+	ArgPair<bool> gDo_conv_s { "Do single convolution", false }; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
+	ArgPair<bool> gDo_conv_d { "Do double convolution", false }; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
 
 
 
@@ -81,11 +81,11 @@
 	/**
 	 * @brief Main function used when compiling and executing in `ROOT`.
 	 */
-	void AnalyseBOSSOutput()
+	void AnalyseBOSSOutput(TString configuration_file="configs/D0phi_KpiKK_quick.txt")
 	{
 
 		// * OPEN INPUT FILE * //
-			LoadConfiguration("configs/D0phi_KpiKK_data.txt");
+			LoadConfiguration(configuration_file.Data());
 			BOSSOutputLoader file(gFilename.value.data(), gPrint.value); /// To investigate the contents of the ROOT file, you first need to know which `TTree`s and branches it contains. If you simply construct the `BOSSOutputLoader` by giving it a file name, all `TTree`s will be loaded automatically as well as addresses for each of their branches. Five the constructer `true` as its second argument, and the names of these `TTree`s, their branches, and the types of these branches (behind the slash `/` after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b>
 			if(file.IsZombie()) return;
 			if(!gPlotstats.value) gStyle->SetOptStat(0);
@@ -121,46 +121,41 @@
 				}
 				if(gDraw_fit.value) {
 					if(gSetranges.value) {
-						auto fit4c_all_mD0        = (TH1F*)(file.DrawBranches("fit4c_all",      "mD0",   100,  .7,    2.,      "E1", gLogY.value.data())->Clone("fit4c_all/mD0_inv"));
-						auto fit4c_all_mphi       = (TH1F*)(file.DrawBranches("fit4c_all",      "mphi",  100,  .97,   1.7,     "E1", gLogY.value.data())->Clone("fit4c_all/mphi_inv"));
-						auto fit4c_all_mJpsi      = (TH1F*)(file.DrawBranches("fit4c_all",      "mJpsi", 100, 3.0967, 3.09685, "E1", gLogY.value.data())->Clone("fit4c_all/mJpsi_inv"));
-						auto fit4c_best_mD0       = (TH1F*)(file.DrawBranches("fit4c_best",     "mD0",   100,  .7,    2.,      "E1", gLogY.value.data())->Clone("fit4c_best/mD0_inv"));
-						auto fit4c_best_mphi      = (TH1F*)(file.DrawBranches("fit4c_best",     "mphi",  100,  .97,   1.7,     "E1", gLogY.value.data())->Clone("fit4c_best/mphi_inv"));
-						auto fit4c_best_mJpsi     = (TH1F*)(file.DrawBranches("fit4c_best",     "mJpsi", 100, 3.0967, 3.09685, "E1", gLogY.value.data())->Clone("fit4c_best/mJpsi_inv"));
-						auto fit4c_best_D0_mD0    = (TH1F*)(file.DrawBranches("fit4c_best_D0",  "mD0",   100,  .7,    2.,      "E1", gLogY.value.data())->Clone("fit4c_best_D0/mD0_inv"));
-						auto fit4c_best_D0_mphi   = (TH1F*)(file.DrawBranches("fit4c_best_D0",  "mphi",  100,  .97,   1.7,     "E1", gLogY.value.data())->Clone("fit4c_best_D0/mphi_inv"));
-						auto fit4c_best_D0_mJpsi  = (TH1F*)(file.DrawBranches("fit4c_best_D0",  "mJpsi", 100, 3.0967, 3.09685, "E1", gLogY.value.data())->Clone("fit4c_best_D0/mJpsi_inv"));
-						auto fit4c_best_phi_mD0   = (TH1F*)(file.DrawBranches("fit4c_best_phi", "mD0",   100,  .7,    2.,      "E1", gLogY.value.data())->Clone("fit4c_best_phi/mD0_inv"));
-						auto fit4c_best_phi_mphi  = (TH1F*)(file.DrawBranches("fit4c_best_phi", "mphi",  100,  .97,   1.7,     "E1", gLogY.value.data())->Clone("fit4c_best_phi/mphi_inv"));
-						auto fit4c_best_phi_mJpsi = (TH1F*)(file.DrawBranches("fit4c_best_phi", "mJpsi", 100, 3.0967, 3.09685, "E1", gLogY.value.data())->Clone("fit4c_best_phi/mJpsi_inv"));
-						auto fit4c_all_dalitz     = (TH1F*)(file.DrawBranches("fit4c_all",     "mphi", "mD0", 60, .7, 2., 40, .9, 2.1, "colz", gLogZ.value.data())->Clone("fit4c_best_D0/mD0_mphi_inv"));
-						auto fit4c_best_D0_dalitz = (TH1F*)(file.DrawBranches("fit4c_best_D0", "mphi", "mD0", 60, .7, 2., 40, .9, 2.1, "colz", gLogZ.value.data())->Clone("fit4c_best_D0/mD0_mphi_inv"));
-						DrawDifference(fit4c_best_mD0,       fit4c_all_mD0,    "E1", gLogY.value.data());
-						DrawDifference(fit4c_best_mphi,      fit4c_all_mphi,   "E1", gLogY.value.data());
-						DrawDifference(fit4c_best_mJpsi,     fit4c_all_mJpsi,  "E1", gLogY.value.data());
-						DrawDifference(fit4c_best_D0_mD0,    fit4c_all_mD0,    "E1", gLogY.value.data());
-						DrawDifference(fit4c_best_D0_mphi,   fit4c_all_mphi,   "E1", gLogY.value.data());
-						DrawDifference(fit4c_best_D0_mJpsi,  fit4c_all_mJpsi,  "E1", gLogY.value.data());
-						DrawDifference(fit4c_best_phi_mD0,   fit4c_all_mD0,    "E1", gLogY.value.data());
-						DrawDifference(fit4c_best_phi_mphi,  fit4c_all_mphi,   "E1", gLogY.value.data());
-						DrawDifference(fit4c_best_phi_mJpsi, fit4c_all_mJpsi,  "E1", gLogY.value.data());
-						DrawDifference(fit4c_best_D0_dalitz, fit4c_all_dalitz, "colz",    gLogZ.value.data());
+						/// -# Draw main invariant mass distributions
+						auto fit4c_all_dalitz  = (TH1F*)(file.DrawBranches("fit4c_all",  "mphi", "mD0", 60, .7, 2., 40, .9, 2.1, "colz", gLogZ.value.data())->Clone("fit4c_best_D0/mD0_mphi_inv"));
+						auto fit4c_all_mD0     = (TH1F*)(file.DrawBranches("fit4c_all",  "mD0",   100,  .7,    2.,      "E1", gLogY.value.data())->Clone("fit4c_all/mD0_inv"));
+						auto fit4c_all_mJpsi   = (TH1F*)(file.DrawBranches("fit4c_all",  "mJpsi", 100, 3.0967, 3.09685, "E1", gLogY.value.data())->Clone("fit4c_all/mJpsi_inv"));
+						auto fit4c_all_mphi    = (TH1F*)(file.DrawBranches("fit4c_all",  "mphi",  100,  .97,   1.7,     "E1", gLogY.value.data())->Clone("fit4c_all/mphi_inv"));
+						auto fit4c_best_dalitz = (TH1F*)(file.DrawBranches("fit4c_best", "mphi", "mD0", 60, .7, 2., 40, .9, 2.1, "colz", gLogZ.value.data())->Clone("fit4c_best_D0/mD0_mphi_inv"));
+						auto fit4c_best_mD0    = (TH1F*)(file.DrawBranches("fit4c_best", "mD0",   100,  .7,    2.,      "E1", gLogY.value.data())->Clone("fit4c_best/mD0_inv"));
+						auto fit4c_best_mJpsi  = (TH1F*)(file.DrawBranches("fit4c_best", "mJpsi", 100, 3.0967, 3.09685, "E1", gLogY.value.data())->Clone("fit4c_best/mJpsi_inv"));
+						auto fit4c_best_mphi   = (TH1F*)(file.DrawBranches("fit4c_best", "mphi",  100,  .97,   1.7,     "E1", gLogY.value.data())->Clone("fit4c_best/mphi_inv"));
+						/// -# Draw difference between distributions for all combinations and the best combination
+						DrawDifference(fit4c_best_mD0,    fit4c_all_mD0,    "E1",   gLogY.value.data());
+						DrawDifference(fit4c_best_mphi,   fit4c_all_mphi,   "E1",   gLogY.value.data());
+						DrawDifference(fit4c_best_mJpsi,  fit4c_all_mJpsi,  "E1",   gLogY.value.data());
+						DrawDifference(fit4c_best_dalitz, fit4c_all_dalitz, "colz", gLogZ.value.data());
+						/// -# Draw invariant mass distributions with cuts applied on the other candidate
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mphi", "mD0>1.5",  "E1", gLogY.value.data());
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0",  "mphi<1.1", "E1", gLogY.value.data());
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0:mphi",  "mD0>1.5&&mphi<1.1", "colz", gLogZ.value.data());
+						/// -# Draw 3-momentum distributions
+						file.DrawBranches("fit4c_all",  "pD0",  "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_all",  "pphi", "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best", "pD0",  "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best", "pphi", "E1", gLogY.value.data());
+						/// -# Draw invariant mass versus 3-momentum
+						file.DrawBranches("fit4c_all",  "mD0:pD0",   "colz", gLogY.value.data());
+						file.DrawBranches("fit4c_all",  "mphi:pphi", "colz", gLogY.value.data());
+						file.DrawBranches("fit4c_best", "mD0:pD0",   "colz", gLogY.value.data());
+						file.DrawBranches("fit4c_best", "mphi:pphi", "colz", gLogY.value.data());
 					} else {
-						file.DrawBranches("fit4c_all",      "mD0",   "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best",     "mD0",   "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best_D0",  "mD0",   "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best_phi", "mD0",   "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_all",      "mphi",  "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best",     "mphi",  "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best_D0",  "mphi",  "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best_phi", "mphi",  "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_all",      "mJpsi", "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best",     "mJpsi", "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best_D0",  "mJpsi", "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best_phi", "mJpsi", "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_all",  "mD0",   "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_all",  "mJpsi", "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_all",  "mphi",  "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best", "mD0",   "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best", "mJpsi", "E1", gLogY.value.data());
+						file.DrawBranches("fit4c_best", "mphi",  "E1", gLogY.value.data());
 					}
 				}
 			}
@@ -206,9 +201,14 @@
 	/**
 	 * @brief Main function that is called when executing the executable compiled using e.g. `g++`.
 	 */
-	int main()
+	int main(int argc, char *argv[])
 	{
-		AnalyseBOSSOutput();
+		if(argc > 2) {
+			cout << "FATAL ERROR: Cannot run this macro with more than one argument" << endl;
+			return 1;
+		}
+		if(argc==1) AnalyseBOSSOutput();
+		else        AnalyseBOSSOutput(argv[1]);
 		return 0;
 	}
 
@@ -223,7 +223,10 @@
 	{
 		/// -# Create file stream (`ifstream`) of config `txt` file.
 		ifstream file(filename);
-		if(!file.is_open()) return -1;
+		if(!file.is_open()) {
+			cout << "WARNING: Could not load configuration file \"" << filename << "\"" << endl;
+			return -1;
+		}
 		/// -# Print configuration title.
 		cout << endl << "LOADING CONFIGURATION FROM \"" << filename << "\"" << endl;
 		/// -# Loop over lines.
