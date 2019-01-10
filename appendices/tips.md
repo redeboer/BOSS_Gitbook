@@ -104,3 +104,15 @@ sed -i 's/\r$//' $fileName
 This command is also available is used `source` to load [`jobs/CommonFunctions.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/CommonFunctions.sh), you can use the function `ChangeLineEndingsFromWindowsToUnix`.
 {% endhint %}
 
+### Some header files are not found when compiling my package
+
+Check your `requirements` file. Packages that you need should be declared here as well. For instance, if you want to use `McTruth` packages such as `McParticle.h`, you should add the line:
+
+{% code-tabs %}
+{% code-tabs-item title="requirements" %}
+```text
+use McTruth     McTruth-*     Event
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
