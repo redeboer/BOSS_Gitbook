@@ -45,6 +45,7 @@
 	#include "GaudiKernel/SmartDataPtr.h"
 	#include "GaudiKernel/SmartRefVector.h"
 	#include "ParticleID/ParticleID.h"
+	#include "McTruth/McParticle.h"
 	#include "TH1D.h"
 	#include "THStack.h"
 	#include "TofRecEvent/RecTofTrack.h"
@@ -114,13 +115,9 @@
 			virtual StatusCode finalize_rest() = 0; //!< This function is executed at the end of `finalize`. It should be further defined in derived subalgorithms.
 
 		// * Protected methods * //
-			HepLorentzVector ComputeMomentum(EvtRecTrack *track);
-			NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle="ks N-Tuple example");
 			ParticleID* InitializePID(const int method, const int pidsys, const int pidcase, const double chimin=4.);
 			void AddItemsToNTuples  (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="ks N-Tuple example");
 			void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<double> > &map);
-			void DeclareCuts();
-			void WriteCuts();
 			void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="dE/dx info");
 			void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="Time-of-Flight info");
 			void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
@@ -134,11 +131,12 @@
 			RecEmcShower *fTrackEMC; //!< Pointer to the track info from the EM calorimeter. It is a data member to make it accessible to other methods as well. See http://bes3.to.infn.it/Boss/7.0.2/html/classRecEmcShower.html.
 			RecMdcDedx *fTrackDedx; //!< Pointer to the \f$dE/dx\f$ info from the MDC. It is a data member to make it accessible to other methods as well. See http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html.
 			RecMdcTrack *fTrackMDC; //!< Pointer to the track info from the MDC. It is a data member to make it accessible to other methods as well. See http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcTrack.html.
-			SmartDataPtr<Event::EventHeader> fEventHeader;  //!< Data pointer for  `Event::EventHeader` which is set in `execute()` in each event.
+			SmartDataPtr<Event::EventHeader> fEventHeader;  //!< Data pointer for `"Event/EventHeader"` data. It is set in `execute()` step in each event.
+			SmartDataPtr<Event::McParticleCol> fMcParticleCol; //!< Data pointer for `"Event/MC/McParticleCol"` data. It is set in `execute()` step in each event.
 			SmartDataPtr<EvtRecEvent> fEvtRecEvent;  //!< Data pointer for `EventModel::EvtRec::EvtRecEvent` which is set in `execute()` in each event.
 			SmartDataPtr<EvtRecTrackCol> fEvtRecTrkCol; //!< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in `execute()` in each event.
 			std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
-			std::map<std::string, std::vector<EvtRecTrack*> > fEvtRecTrackMap; //!< Map of vectors. @todo Decide if this structure is useful.
+			std::vector<McParticle*> fMcParticles; //!< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest.
 			std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.
 			std::vector<EvtRecTrack*> fGoodNeutralTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons).
 			std::vector<EvtRecTrack*>::iterator fTrackIterator; //!< Iterator for looping over the collection of charged and neutral tracks (`EvtRecTrackCol`).
@@ -192,6 +190,15 @@
 		HepPoint3D fVertexPoint; //!< Coordinates of the interaction point (primary vertex). Set in each event in `TrackSelector::execute`.
 		Int_t fNChargesMDC; //!< Number of charges detected in the MDC.
 
+	private:
+
+		// * Private methods * //
+			void DeclareCuts();
+			void WriteCuts();
+
+		///@todo Decide whether these methods should be `private` or `protected`.
+			HepLorentzVector ComputeMomentum(EvtRecTrack *track);
+			NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle="ks N-Tuple example");
 	};
 
 /// @}

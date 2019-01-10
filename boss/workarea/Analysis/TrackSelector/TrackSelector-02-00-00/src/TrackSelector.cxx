@@ -48,9 +48,10 @@
 	TrackSelector::TrackSelector(const std::string &name, ISvcLocator* pSvcLocator) :
 		Algorithm(name, pSvcLocator),
 		fLog(msgSvc(), name),
-		fEventHeader (eventSvc(), "/Event/EventHeader"),
-		fEvtRecEvent (eventSvc(), EventModel::EvtRec::EvtRecEvent),
-		fEvtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol),
+		fEventHeader  (eventSvc(), "/Event/EventHeader"),
+		fMcParticleCol(eventSvc(), "/Event/MC/McParticleCol"),
+		fEvtRecEvent  (eventSvc(), EventModel::EvtRec::EvtRecEvent),
+		fEvtRecTrkCol (eventSvc(), EventModel::EvtRec::EvtRecTrackCol),
 		/// * Counters for number of events and tracks.
 		fCounter_Nevents  ("N_events"),
 		fCounter_Ntracks  ("N_tracks"),
@@ -96,7 +97,7 @@
 // * =============================== * //
 
 	/**
-	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
+	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called once in the beginning <i>of each run</i>.
 	 * @details Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
 	 */
 	StatusCode TrackSelector::initialize()
@@ -208,13 +209,14 @@
 				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html">Namespace `EventModel`</a>
 				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html">Class `EvtRecEvent`</a>
 				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html">Type definition `EvtRecTrackCol`</a>
+				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.0/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed">Type definition `Event::McParticleCol`</a>
 			/// </ul>
 
 			// * Load headers
 			fLog << MSG::DEBUG << "Loading EventHeader, EvtRecEvent, and EvtRecTrackCol" << endmsg;
-			fEventHeader  = SmartDataPtr<Event::EventHeader>(eventSvc(), "/Event/EventHeader");
-			fEvtRecEvent  = SmartDataPtr<EvtRecEvent>       (eventSvc(), EventModel::EvtRec::EvtRecEvent);
-			fEvtRecTrkCol = SmartDataPtr<EvtRecTrackCol>    (eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
+			fEventHeader   = SmartDataPtr<Event::EventHeader>(eventSvc(), "/Event/EventHeader");
+			fEvtRecEvent   = SmartDataPtr<EvtRecEvent>       (eventSvc(), EventModel::EvtRec::EvtRecEvent);
+			fEvtRecTrkCol  = SmartDataPtr<EvtRecTrackCol>    (eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
 
 			// * Log run number, event number, and number of events *
 			fLog << MSG::DEBUG
@@ -240,6 +242,44 @@
 					fVertexPoint.set(dbv[0], dbv[1], dbv[2]);
 				}
 
+		/// <li> Get Monte Carlo truth if available (that is, if the run number is negative).
+			if(fEventHeader->runNumber()<0) {
+				/// <ol>
+				/// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `FILE1`.
+				fMcParticleCol = SmartDataPtr<Event::McParticleCol>(eventSvc(), "/Event/MC/McParticleCol");
+
+				/// <li> <b>Abort</b> if does not exist.
+				///@todo Might have to make this aborting behaviour less strict.
+				if(!mcParticleCol) {
+					fLog << MSG::ERROR << "Could not retrieve McParticelCol" << endmsg;
+					return(StatusCode::FAILURE);
+				}
+
+				/// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data available in `McParticle`, see <a href="http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html">here</a>. Only add to `fMcParticles` if the `McParticle` satisfies:
+				Event::McParticleCol::iterator iter_mc = mcParticleCol->begin();
+				m_nmcps = 0;
+				bool jpsiDecay(false);
+				int rootIndex(-1);
+				for (; iter_mc!=mcParticleCol->end(); iter_mc++) {
+					/// <ul>
+					/// <li> Do not add primary parties @todo Why?
+					if( (*iter_mc)->primaryParticle()) continue;
+					/// <li> Only add if the decay has been generated. @todo Why? What does this mean precisely?
+					if(!(*iter_mc)->decayFromGenerator()) continue;
+					/// <li> Get root index @todo What is the root index and why is it related to \f$J/\psi\f$?
+					if( (*iter_mc)->particleProperty() == 443) {
+						jpsiDecay=true;
+						rootIndex=(*iter_mc)->trackIndex();
+					}
+					/// <li> Do not add \f$J/\psi\f$ (PDG code 443).
+					if(!jpsiDecay) continue;
+					/// <li> Add the pointer to the `fMcParticles` vector.
+					fMcParticles.push_back(*iter_mc);
+					/// </ul>
+				} // end of for loop
+				/// </ol>
+
+			} // end of if runNumber<0
 
 		/// <li> Create selection charged tracks and write track info:
 			/// Note: the first part of the set of reconstructed tracks are the charged tracks.
@@ -283,8 +323,8 @@
 
 					/// <li> Apply primary vertex cuts:
 						/// <ul>
-						if(fCut_Vz.FailsMax(fabs(fTrackMDC->z()))) continue; /// <li> $z$ coordinate of the collision point has to be within `cut_Vz0_max`
-						if(fCut_Vxy.FailsMax(vr)                  ) continue; /// <li> radius in $xy$ plane has to be less than `cut_Vr0_max`
+						if(fCut_Vz.FailsMax(fabs(fTrackMDC->z()))) continue; /// <li> \f$z\f$ coordinate of the collision point has to be within `cut_Vz0_max`
+						if(fCut_Vxy.FailsMax(vr)                  ) continue; /// <li> radius in \f$xy\f$ plane has to be less than `cut_Vr0_max`
 						if(fCut_Rz .FailsMax(fabs(rvz))           ) continue; /// <li> \f$z\f$ coordinate of the distance to the interaction point has to be within `cut_Rvz0_max`
 						if(fCut_Rxy.FailsMax(rvxy)                ) continue; /// <li> distance to the interaction point in \f$xy\f$ plane has to be within `cut_Rvxy0_max`
 						/// </ul>
@@ -394,7 +434,7 @@
 			}
 
 
-		/// <li> <b>write</b> event info (`"mult"` branch)
+		/// <li> <b>Write</b> event info (`"mult"` branch)
 			if(fWrite_mult) {
 				fMap_mult.at("Ntotal")       = fEvtRecEvent->totalTracks();
 				fMap_mult.at("Ncharge")      = fEvtRecEvent->totalCharged();
@@ -407,7 +447,7 @@
 				fNTupleMap.at("mult")->write();
 			}
 
-		/// <li> <b>write</b> event info (`"vertex"` branch)
+		/// <li> <b>Write</b> event info (`"vertex"` branch)
 			if(fWrite_vertex) {
 				fMap_vertex.at("vx0") = fVertexPoint.x();
 				fMap_vertex.at("vy0") = fVertexPoint.y();
@@ -425,8 +465,7 @@
 
 
 	/**
-	 * @brief Currently does nothing. Cut flow could be printed in this step.
-	 * @todo Add log output to `finalize` step.
+	 * @brief Is called at the end <i>of the entire process</i>. Writes total cut flow to terminal and to the output file.
 	 */
 	StatusCode TrackSelector::finalize()
 	{
@@ -446,46 +485,6 @@
 // * =================================== * //
 // * -------- PROTECTED METHODS -------- * //
 // * =================================== * //
-
-	/**
-	 * @brief Compute a 'momentum' for a neutral track.
-	 * @details The momentum is computed from the neutral track (photon) energy and from the location (angles) where it was detected in the EMC.
-	 */
-	HepLorentzVector TrackSelector::ComputeMomentum(EvtRecTrack *track)
-	{
-		RecEmcShower *emcTrk = track->emcShower();
-		double eraw = emcTrk->energy();
-		double phi  = emcTrk->phi();
-		double the  = emcTrk->theta();
-		HepLorentzVector ptrk(
-			eraw * sin(the) * cos(phi), // px
-			eraw * sin(the) * sin(phi), // py
-			eraw * cos(the),            // pz
-			eraw);
-		// ptrk = ptrk.boost(-0.011, 0, 0); // boost to center-of-mass frame
-		return ptrk;
-	}
-
-
-	/**
-	 * @brief   Helper function that allows you to create pair of a string with a `NTuplePtr`.
-	 * @details This function first attempts to see if there is already an `NTuple` in the output file. If not, it will book an `NTuple` of 
-	 *
-	 * @param tupleName This will not only be the name of your `NTuple`, but also the name of the `TTree` in the output ROOT file when you use `NTuple::write()`. The name used here is also used as identifier in `NTuplePtr` map `fNTupleMap`. In other words, you can get any of the `NTuplePtr`s in this map by using `fNTupleMap[<tuple name>]`. If there is no `NTuple` of this name, it will return a `nullptr`.
-	 * @param tupleTitle Description of the `NTuple`. Has a default value if you don't want to think about this.
-	 */
-	NTuplePtr TrackSelector::BookNTuple(const char* tupleName, const char* tupleTitle)
-	{
-		const char* bookName = Form("FILE1/%s", tupleName);
-		NTuplePtr nt(ntupleSvc(), bookName); // attempt to get from file
-		if(!nt) { // if not available in file, book a new one
-			fLog << MSG::INFO << "Booked NTuple \"" << tupleName << "\"" << endmsg;
-			nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, tupleTitle);
-			if(!nt) fLog << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << " (" << tupleName << ")" << endmsg;
-		}
-		fNTupleMap[tupleName] = nt.ptr(); /// Use `map::operator[]` if you want to book an `NTuple::Item` and use `map::at` if you want to access the `NTuple` by key value. This ensures that the programme throws an exception if you ask for the wrong key later.
-		return nt;
-	}
 
 
 	/**
@@ -544,50 +543,6 @@
 	void TrackSelector::AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		AddItemsToNTuples(BookNTuple(tupleName, tupleTitle), map);
-	}
-
-
-	/**
-	 * @brief 
-	 */
-	void TrackSelector::DeclareCuts()
-	{
-		std::list<CutObject*>::iterator cut = CutObject::instances.begin();
-		for(; cut != CutObject::instances.end(); ++cut) {
-			declareProperty((*cut)->NameMin(), (*cut)->min);
-			declareProperty((*cut)->NameMax(), (*cut)->max);
-			fLog << MSG::INFO << "  added cut \"" << (*cut)->name << "\"" << endmsg;
-		}
-	}
-
-
-	/**
-	 * @brief Write all cuts (`name`, `value`, and `count` of accepted) to a branch called "_cutvalues".
-	 */
-	void TrackSelector::WriteCuts()
-	{
-		/// -# For each cut name, create an `NTuple::Item<double>` in the map `fMap_cuts`.
-		std::list<CutObject*>::iterator cut;
-		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
-			fMap_cuts[(*cut)->name];
-		}
-		/// -# Add the `NTuple::Item`s of `fMap_cuts` to an `NTuple` called `"_cutvalues"`.
-		AddItemsToNTuples("_cutvalues", fMap_cuts, "1st entry: min value, 2nd entry: max value, 3rd entry: number passed");
-		/// -# Write `min` values to the first entry of `"_cutvalues"`.
-		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
-			fMap_cuts[(*cut)->name] = (*cut)->min;
-		}
-		fNTupleMap.at("_cutvalues")->write();
-		/// -# Write `max` values to the second entry of `"_cutvalues"`.
-		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
-			fMap_cuts[(*cut)->name] = (*cut)->max;
-		}
-		fNTupleMap.at("_cutvalues")->write();
-		/// -# Write the `counter` values to the third entry of `"_cutvalues"`.
-		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
-			fMap_cuts[(*cut)->name] = (*cut)->counter;
-		}
-		fNTupleMap.at("_cutvalues")->write();
 	}
 
 
@@ -753,4 +708,95 @@
 		map.at("tof_p")    = path - texp[4];
 		fNTupleMap.at(tupleName)->write();
 
+	}
+
+
+
+// * =================================== * //
+// * -------- PROTECTED METHODS -------- * //
+// * =================================== * //
+
+
+	/**
+	 * @brief Compute a 'momentum' for a neutral track.
+	 * @details The momentum is computed from the neutral track (photon) energy and from the location (angles) where it was detected in the EMC.
+	 */
+	HepLorentzVector TrackSelector::ComputeMomentum(EvtRecTrack *track)
+	{
+		RecEmcShower *emcTrk = track->emcShower();
+		double eraw = emcTrk->energy();
+		double phi  = emcTrk->phi();
+		double the  = emcTrk->theta();
+		HepLorentzVector ptrk(
+			eraw * sin(the) * cos(phi), // px
+			eraw * sin(the) * sin(phi), // py
+			eraw * cos(the),            // pz
+			eraw);
+		// ptrk = ptrk.boost(-0.011, 0, 0); // boost to center-of-mass frame
+		return ptrk;
+	}
+
+
+	/**
+	 * @brief   Helper function that allows you to create pair of a string with a `NTuplePtr`.
+	 * @details This function first attempts to see if there is already an `NTuple` in the output file. If not, it will book an `NTuple` of 
+	 *
+	 * @param tupleName This will not only be the name of your `NTuple`, but also the name of the `TTree` in the output ROOT file when you use `NTuple::write()`. The name used here is also used as identifier in `NTuplePtr` map `fNTupleMap`. In other words, you can get any of the `NTuplePtr`s in this map by using `fNTupleMap[<tuple name>]`. If there is no `NTuple` of this name, it will return a `nullptr`.
+	 * @param tupleTitle Description of the `NTuple`. Has a default value if you don't want to think about this.
+	 */
+	NTuplePtr TrackSelector::BookNTuple(const char* tupleName, const char* tupleTitle)
+	{
+		const char* bookName = Form("FILE1/%s", tupleName);
+		NTuplePtr nt(ntupleSvc(), bookName); // attempt to get from file
+		if(!nt) { // if not available in file, book a new one
+			fLog << MSG::INFO << "Booked NTuple \"" << tupleName << "\"" << endmsg;
+			nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, tupleTitle);
+			if(!nt) fLog << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << " (" << tupleName << ")" << endmsg;
+		}
+		fNTupleMap[tupleName] = nt.ptr(); /// Use `map::operator[]` if you want to book an `NTuple::Item` and use `map::at` if you want to access the `NTuple` by key value. This ensures that the programme throws an exception if you ask for the wrong key later.
+		return nt;
+	}
+
+
+	/**
+	 * @brief Declare properties for each `CutObject`. Each `CutObject` has two properties: a `min` and a `max`.
+	 */
+	void TrackSelector::DeclareCuts()
+	{
+		std::list<CutObject*>::iterator cut = CutObject::instances.begin();
+		for(; cut != CutObject::instances.end(); ++cut) {
+			declareProperty((*cut)->NameMin(), (*cut)->min);
+			declareProperty((*cut)->NameMax(), (*cut)->max);
+			fLog << MSG::INFO << "  added cut \"" << (*cut)->name << "\"" << endmsg;
+		}
+	}
+
+
+	/**
+	 * @brief Write all cuts (`name`, `value`, and `count` of accepted) to a branch called "_cutvalues".
+	 */
+	void TrackSelector::WriteCuts()
+	{
+		/// -# For each cut name, create an `NTuple::Item<double>` in the map `fMap_cuts`.
+		std::list<CutObject*>::iterator cut;
+		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+			fMap_cuts[(*cut)->name];
+		}
+		/// -# Add the `NTuple::Item`s of `fMap_cuts` to an `NTuple` called `"_cutvalues"`.
+		AddItemsToNTuples("_cutvalues", fMap_cuts, "1st entry: min value, 2nd entry: max value, 3rd entry: number passed");
+		/// -# Write `min` values to the first entry of `"_cutvalues"`.
+		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+			fMap_cuts[(*cut)->name] = (*cut)->min;
+		}
+		fNTupleMap.at("_cutvalues")->write();
+		/// -# Write `max` values to the second entry of `"_cutvalues"`.
+		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+			fMap_cuts[(*cut)->name] = (*cut)->max;
+		}
+		fNTupleMap.at("_cutvalues")->write();
+		/// -# Write the `counter` values to the third entry of `"_cutvalues"`.
+		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+			fMap_cuts[(*cut)->name] = (*cut)->counter;
+		}
+		fNTupleMap.at("_cutvalues")->write();
 	}
