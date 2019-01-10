@@ -33,7 +33,7 @@ public:
 
 	// * INFORMATION * //
 		bool HasFit() { return fFit; }
-		virtual bool IsBetter() = 0;
+		virtual bool IsBetter() const = 0;
 
 	// * PUBLIC DATA MEMBERS * //
 		double fChiSquared;
@@ -43,7 +43,7 @@ public:
 
 protected:
 	// * PROTECTED METHODS * //
-		bool IsBetter(double &value, double &bestvalue);
+		bool IsBetter(const double &value, double &bestvalue) const;
 		void SetValues(KalmanKinematicFit* kkmfit);
 
 	// * PROTECTED DATA MEMBERS * //

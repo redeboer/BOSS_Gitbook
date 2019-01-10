@@ -13,7 +13,7 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-packageName="rhopi_pipigg" # D0phi_KpiKK
+packageName="D0phi_KpiKK"
 nJobs=20
 nEventsPerJob=5000
 outputLevel=4

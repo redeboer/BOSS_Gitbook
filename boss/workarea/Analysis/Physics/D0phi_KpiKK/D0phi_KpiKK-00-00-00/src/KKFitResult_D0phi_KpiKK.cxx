@@ -5,6 +5,7 @@
 	#include "CLHEP/Vector/LorentzVector.h"
 	#include "TrackSelector/TrackSelector.h"
 	#include "D0phi_KpiKK/KKFitResult_D0phi_KpiKK.h"
+	#include <cmath>
 
 	using CLHEP::HepLorentzVector;
 	using namespace TSGlobals;
@@ -15,16 +16,11 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	double KKFitResult_D0phi_KpiKK::fBestCompareValue_D0  = 1e9;
-	double KKFitResult_D0phi_KpiKK::fBestCompareValue_phi = 1e9;
-
 	/**
 	 * @brief
 	 */
 	KKFitResult_D0phi_KpiKK::KKFitResult_D0phi_KpiKK(KalmanKinematicFit* kkmfit) :
 		fFitMeasure(1e9),
-		fFitMeasure_D0(1e9),
-		fFitMeasure_phi(1e9),
 		KKFitResult(kkmfit)
 	{
 		SetValues(fFit);
@@ -41,41 +37,35 @@
 	 */
 	void KKFitResult_D0phi_KpiKK::SetValues(KalmanKinematicFit* kkmfit)
 	{
-		/// -# Test whether `KalmanKinematicFit` pointer exists.
+		/// <ol>
+		/// <li> Test whether `KalmanKinematicFit` pointer exists.
 		if(!fFit) return;
-		/// -# Get Lorentz vectors of the decay products:
-		HepLorentzVector pKaonNeg1 =  fFit->pfit(0); /// * \f$K^-\f$ (first occurrence)
-		HepLorentzVector pKaonNeg2 =  fFit->pfit(1); /// * \f$K^-\f$ (second occurrence)
-		HepLorentzVector pKaonPos  =  fFit->pfit(2); /// * \f$K^+\f$
-		HepLorentzVector pPionPos  =  fFit->pfit(3); /// * \f$\pi^+\f$
-		/// -# Compute Lorentz vectors of the particles to be reconstructed:
-		HepLorentzVector pD0   = pKaonNeg1 + pPionPos; /// * \f$D^0 \rightarrow K^-\pi^+\f$
-		HepLorentzVector pphi  = pKaonNeg2 + pKaonPos; /// * \f$\phi \rightarrow K^-K^+\f$
-		HepLorentzVector pJpsi = pD0 + pphi;           /// * \f$J/\psi \rightarrow D^0\phi\f$
-		/// -# Compute invariant masses:
-		fM_D0   = pD0.m();    /// * \f$M_{K^-\pi^+}\f$
-		fM_phi  = pphi.m();   /// * \f$M_{K^-K^+}\f$
-		fM_Jpsi = pJpsi.m();  /// * \f$M_{D^0\phi}\f$
-		/// -# Compute measures for best fit:
-		fFitMeasure_D0  = (fM_D0  - gM_D0 ) / gM_D0;    /// * `fFitMeasure_D0`  = \f$\frac{M_{K^-\pi^+} - m_{D^0} }{m_{D^0}   }\f$ (procentual difference with \f$m_{D^0}\f$)
-		fFitMeasure_phi = (fM_phi - gM_phi) / gM_phi;   /// * `fFitMeasure_phi` = \f$\frac{M_{K^-K^+}   - m_{\phi}}{m_{\phi}  }\f$ (procentual difference with \f$m_{\phi}\f$)
-		fFitMeasure = fFitMeasure_D0 * fFitMeasure_phi; /// * `fFitMeasure` = `fFitMeasure_D0 * fFitMeasure_phi` (product of procentual differences)
+		/// <li> Get Lorentz vectors of the decay products:
+			/// <ol>
+			HepLorentzVector pKaonNeg1 =  fFit->pfit(0); /// <li> \f$K^-\f$ (first occurrence)
+			HepLorentzVector pKaonNeg2 =  fFit->pfit(1); /// <li> \f$K^-\f$ (second occurrence)
+			HepLorentzVector pKaonPos  =  fFit->pfit(2); /// <li> \f$K^+\f$
+			HepLorentzVector pPionPos  =  fFit->pfit(3); /// <li> \f$\pi^+\f$
+			/// </ol>
+		/// <li> Compute Lorentz vectors of the particles to be reconstructed:
+			/// <ol>
+			HepLorentzVector pD0   = pKaonNeg1 + pPionPos; /// <li> \f$D^0 \rightarrow K^-\pi^+\f$
+			HepLorentzVector pphi  = pKaonNeg2 + pKaonPos; /// <li> \f$\phi \rightarrow K^-K^+\f$
+			HepLorentzVector pJpsi = pD0 + pphi;           /// <li> \f$J/\psi \rightarrow D^0\phi\f$
+			/// </ol>
+		/// <li> Compute invariant masses and momentum:
+			fM_D0   = pD0.m();    /// <li> \f$M_{K^-\pi^+}\f$
+			fM_phi  = pphi.m();   /// <li> \f$M_{K^-K^+}\f$
+			fM_Jpsi = pJpsi.m();  /// <li> \f$M_{D^0\phi}\f$
+			fP_D0   = std::sqrt(pD0 .px()*pD0 .px() + pD0 .py()*pD0 .py() + pD0 .pz()*pD0 .pz());  /// <li> \f$|\vec{p}_{K^-\pi^+}|
+			fP_phi  = std::sqrt(pphi.px()*pphi.px() + pphi.py()*pphi.py() + pphi.pz()*pphi.pz());  /// <li> \f$|\vec{p}_{K^-K^+}|
+		/// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{K^-K^+} - m_{\phi}\f$
+		fFitMeasure = std::abs(fM_phi - gM_phi);
+		/// </ol>
 	}
 
 
-	bool KKFitResult_D0phi_KpiKK::IsBetter()
+	bool KKFitResult_D0phi_KpiKK::IsBetter() const
 	{
 		return KKFitResult::IsBetter(fFitMeasure, fBestCompareValue);
-	}
-
-
-	bool KKFitResult_D0phi_KpiKK::IsBetter_D0()
-	{
-		return KKFitResult::IsBetter(fFitMeasure_D0, fBestCompareValue_D0);
-	}
-
-
-	bool KKFitResult_D0phi_KpiKK::IsBetter_phi()
-	{
-		return KKFitResult::IsBetter(fFitMeasure_D0, fBestCompareValue_D0);
 	}
