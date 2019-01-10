@@ -145,7 +145,7 @@ Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a78ab66239f9af5cc4a81c23cee333d8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__D0phi__KpiKK.html#a78ab66239f9af5cc4a81c23cee333d8f">SetValues</a> (KalmanKinematicFit *kkmfit)</td></tr>
-<tr class="memdesc:a78ab66239f9af5cc4a81c23cee333d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructof for the <code><a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a></code> base class.  <a href="#a78ab66239f9af5cc4a81c23cee333d8f">More...</a><br /></td></tr>
+<tr class="memdesc:a78ab66239f9af5cc4a81c23cee333d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function for the constructor (hence <code>private</code> method).  <a href="#a78ab66239f9af5cc4a81c23cee333d8f">More...</a><br /></td></tr>
 <tr class="separator:a78ab66239f9af5cc4a81c23cee333d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -245,7 +245,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classKKFitResult.html#ae099966c518c51c5620025350f1bbb3e">KKFitResult</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="KKFitResult__D0phi__KpiKK_8cxx_source.html#l00068">68</a> of file <a class="el" href="KKFitResult__D0phi__KpiKK_8cxx_source.html">KKFitResult_D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KKFitResult__D0phi__KpiKK_8cxx_source.html#l00070">70</a> of file <a class="el" href="KKFitResult__D0phi__KpiKK_8cxx_source.html">KKFitResult_D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -273,15 +273,15 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructof for the <code><a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a></code> base class. </p>
+<p>Helper function for the constructor (hence <code>private</code> method). </p>
 <ol>
 <li>
 <p class="startli">Test whether <code>KalmanKinematicFit</code> pointer exists.</p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Get Lorentz vectors of the decay products:</p>
-<ol>
+<p class="startli">Get Lorentz vectors of the decay products using <code>KalmanKinematicFit::pfit</code>:</p>
+<ul>
 <li>
 <p class="startli"><img class="formulaInl" alt="$K^-$" src="form_1.png"/> (first occurrence)</p>
 <p class="endli"></p>
@@ -298,12 +298,12 @@ Additional Inherited Members</h2></td></tr>
 <p class="startli"><img class="formulaInl" alt="$\pi^+$" src="form_3.png"/></p>
 <p class="endli"></p>
 </li>
-</ol>
+</ul>
 <p class="endli"></p>
 </li>
 <li>
 <p class="startli">Compute Lorentz vectors of the particles to be reconstructed:</p>
-<ol>
+<ul>
 <li>
 <p class="startli"><img class="formulaInl" alt="$D^0 \rightarrow K^-\pi^+$" src="form_18.png"/></p>
 <p class="endli"></p>
@@ -316,13 +316,12 @@ Additional Inherited Members</h2></td></tr>
 <p class="startli"><img class="formulaInl" alt="$J/\psi \rightarrow D^0\phi$" src="form_20.png"/></p>
 <p class="endli"></p>
 </li>
-</ol>
+</ul>
 <p class="endli"></p>
 </li>
 <li>
 <p class="startli">Compute invariant masses and momentum:</p>
-<p class="endli"></p>
-</li>
+<ul>
 <li>
 <p class="startli"><code>fM_D0</code> = <img class="formulaInl" alt="$M_{K^-\pi^+}$" src="form_21.png"/></p>
 <p class="endli"></p>
@@ -341,6 +340,9 @@ Additional Inherited Members</h2></td></tr>
 </li>
 <li>
 <p class="startli"><code>fP_phi</code> = <img class="formulaInl" alt="$|\vec{p}_{K^-K^+}|$" src="form_25.png"/></p>
+<p class="endli"></p>
+</li>
+</ul>
 <p class="endli"></p>
 </li>
 <li>
