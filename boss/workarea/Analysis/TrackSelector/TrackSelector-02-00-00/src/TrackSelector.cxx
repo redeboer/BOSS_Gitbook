@@ -52,10 +52,10 @@
 		fEvtRecEvent (eventSvc(), EventModel::EvtRec::EvtRecEvent),
 		fEvtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol),
 		/// * Counters for number of events and tracks.
-		fCounter_Nevents ("N_events"),
-		fCounter_Ntracks ("N_tracks"),
-		fCounter_Ncharged("N_charged"),
-		fCounter_Nneutral("N_neutral"),
+		fCounter_Nevents  ("N_events"),
+		fCounter_Ntracks  ("N_tracks"),
+		fCounter_Ncharged ("N_charged"),
+		fCounter_Nneutral ("N_neutral"),
 		fCounter_Nmdcvalid("N_MDCvalid"),
 		/// * The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
 		fCut_Vxy         ("vertex_xy"),

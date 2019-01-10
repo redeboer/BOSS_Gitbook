@@ -37,10 +37,8 @@
 		fLog << MSG::DEBUG << "===>> D0phi_KpiKK::D0phi_KpiKK() <<===" << endmsg;
 
 		/// * The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
-		declareProperty("write_fit4c_all",      fWrite_fit4c_all      = false);
-		declareProperty("write_fit4c_best",     fWrite_fit4c_best     = false);
-		declareProperty("write_fit4c_best_D0",  fWrite_fit4c_best_D0  = false);
-		declareProperty("write_fit4c_best_phi", fWrite_fit4c_best_phi = false);
+		declareProperty("write_fit4c_all",  fWrite_fit4c_all  = false);
+		declareProperty("write_fit4c_best", fWrite_fit4c_best = false);
 
 	}
 
@@ -76,10 +74,8 @@
 			}
 
 		/// <li> `"fit4c_*"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItemsFit` for more info.
-			if(fWrite_fit4c_all)      BookNtupleItemsFit("fit4c_all",      fMap_fit4c_all,      "4-constraint fit information (CMS 4-momentum)");
-			if(fWrite_fit4c_best)     BookNtupleItemsFit("fit4c_best",     fMap_fit4c_best,     "4-constraint fit information of the invariant masses closest to the reconstructed particles");
-			if(fWrite_fit4c_best_D0)  BookNtupleItemsFit("fit4c_best_D0",  fMap_fit4c_best_D0,  "4-constraint fit information of the invariant masses closest to #m_{D^{0}}");
-			if(fWrite_fit4c_best_phi) BookNtupleItemsFit("fit4c_best_phi", fMap_fit4c_best_phi, "4-constraint fit information of the invariant masses closest to #m_{\phi}");
+			if(fWrite_fit4c_all)  BookNtupleItemsFit("fit4c_all",  fMap_fit4c_all,  "4-constraint fit information (CMS 4-momentum)");
+			if(fWrite_fit4c_best) BookNtupleItemsFit("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
 
 		/// </ol>
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
@@ -179,20 +175,11 @@
 			}
 
 
-		/// <li> Perform Kalman 4-constraint Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of:
-			/// \f[
-			/// 	\left(\frac{m_{K^-\pi^+}-m_{D^0} }{m_{D^0} }\right) \cdot
-			/// 	\left(\frac{m_{K^-K^+}  -m_{\phi}}{m_{\phi}}\right).
-			/// \f]
-			/// See `D0phi_KpiKK::MeasureForBestFit*` for the definition of this measure.
-			if(fWrite_fit4c_all || fWrite_fit4c_best || fWrite_fit4c_best_D0 || fWrite_fit4c_best_phi) {
+		/// <li> Perform Kalman 4-constraint Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of: \f$m_{K^-K^+}-m_{\phi}\f$ (that is the combination for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\phi\f$). See `D0phi_KpiKK::MeasureForBestFit` for the definition of this measure.
+			if(fWrite_fit4c_all || fWrite_fit4c_best) {
 				// * Reset best fit parameters * //
 				KKFitResult_D0phi_KpiKK bestKalmanFit;
-				KKFitResult_D0phi_KpiKK bestKalmanFit_D0;
-				KKFitResult_D0phi_KpiKK bestKalmanFit_phi;
 				bestKalmanFit.fBestCompareValue     = 1e9;
-				bestKalmanFit.fBestCompareValue_D0  = 1e9;
-				bestKalmanFit.fBestCompareValue_phi = 1e9;
 				// * Loop over all combinations of K-, K+, and pi+ * //
 				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
 				for(fKaonNeg2Iter = fKaonNeg.begin(); fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
@@ -245,21 +232,19 @@
 						kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi+
 						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
 						if(kkmfit->Fit()) {
-							/// -# Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
+							/// <ol>
+							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
 							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
-							/// -# <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
+							/// <li> <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
 							KKFitResult_D0phi_KpiKK fitresult(kkmfit);
 							if(fWrite_fit4c_all) WriteFitResults(fitresult, fMap_fit4c_all, "fit4c_all");
-							/// -# Decide if this fit is better than the previous
-							if(fitresult.IsBetter())     bestKalmanFit     = fitresult;
-							if(fitresult.IsBetter_D0())  bestKalmanFit_D0  = fitresult;
-							if(fitresult.IsBetter_phi()) bestKalmanFit_phi = fitresult;
+							/// <li> Decide if this fit is better than the previous
+							if(fitresult.IsBetter()) bestKalmanFit = fitresult;
+							/// </ol>
 						}
 				} // end of loop over particle combinations
 		/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best_*"` branches)
-				if(fWrite_fit4c_best)     WriteFitResults(bestKalmanFit,     fMap_fit4c_best,     "fit4c_best");
-				if(fWrite_fit4c_best_D0)  WriteFitResults(bestKalmanFit_D0,  fMap_fit4c_best_D0,  "fit4c_best_D0");
-				if(fWrite_fit4c_best_phi) WriteFitResults(bestKalmanFit_phi, fMap_fit4c_best_phi, "fit4c_best_phi");
+				if(fWrite_fit4c_best) WriteFitResults(bestKalmanFit, fMap_fit4c_best, "fit4c_best");
 
 			} // end of fWrite_fit4c_*
 
@@ -298,8 +283,10 @@
 		}
 		fLog << MSG::DEBUG << "Writing fit results \"" << tupleName << "\"" << endmsg;
 		map.at("mD0")   = fitresult.fM_D0;
-		map.at("mphi")  = fitresult.fM_phi;
 		map.at("mJpsi") = fitresult.fM_Jpsi;
+		map.at("mphi")  = fitresult.fM_phi;
+		map.at("pD0")   = fitresult.fP_D0;
+		map.at("pphi")  = fitresult.fP_phi;
 		map.at("chisq") = fitresult.fChiSquared;
 		fNTupleMap.at(tupleName)->write();
 	}
@@ -314,6 +301,8 @@
 		map["mD0"];   /// <li> `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
 		map["mphi"];  /// <li> `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
 		map["mJpsi"]; /// <li> `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
+		map["pD0"];   /// <li> `"pD0"`:   3-momentum mass for the combination \f$K^- \pi^+\f$ (\f$D^0\f$ candidate).
+		map["pphi"];  /// <li> `"pphi"`:  3-momentum mass for the combination \f$K^+ K^+  \f$ (\f$\phi\f$ candidate).
 		map["chisq"]; /// <li> `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
 		AddItemsToNTuples(tupleName, map, tupleTitle);
 		/// </ol>

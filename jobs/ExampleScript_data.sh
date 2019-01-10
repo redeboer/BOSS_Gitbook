@@ -29,10 +29,9 @@ fileToRead="filenames/ExampleFile_DstFiles" # filenames/ExampleFile_DzeroPhi_mc
 if [ ${analyseMC} == 1 ]; then
 	gExampleFromFile=0
 	nEventsPerJob=-1
-	directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}_MC_1e5"
+	directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}_MC_1e6"
 	identifier="${packageName}"
 fi
-
 
 # * Create job from template and submit * #
 if [ ${gExampleFromFile} == 1 ]; then

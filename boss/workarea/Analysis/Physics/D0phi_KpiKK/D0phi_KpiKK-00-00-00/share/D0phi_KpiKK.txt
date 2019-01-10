@@ -23,8 +23,6 @@ D0phi_KpiKK.write_PID      = 1;
 D0phi_KpiKK.write_mult_select     = 1;
 D0phi_KpiKK.write_fit4c_all       = 1;
 D0phi_KpiKK.write_fit4c_best      = 1;
-D0phi_KpiKK.write_fit4c_best_D0   = 1;
-D0phi_KpiKK.write_fit4c_best_phi  = 1;
 
 // * Primary vertex cuts *
 D0phi_KpiKK.cut_declen_z_max  = 10.;
