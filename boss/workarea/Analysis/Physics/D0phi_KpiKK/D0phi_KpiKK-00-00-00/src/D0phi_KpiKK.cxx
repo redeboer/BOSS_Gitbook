@@ -67,15 +67,15 @@
 			}
 			/// </ol>
 
-		/// <li> `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
+		/// <li> `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItems_Dedx` for more info.
 			if(fWrite_dedx) {
-				BookNtupleItemsDedx("dedx_K",  fMap_dedx_K);
-				BookNtupleItemsDedx("dedx_pi", fMap_dedx_pi);
+				BookNtupleItems_Dedx("dedx_K",  fMap_dedx_K);
+				BookNtupleItems_Dedx("dedx_pi", fMap_dedx_pi);
 			}
 
-		/// <li> `"fit4c_*"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItemsFit` for more info.
-			if(fWrite_fit4c_all)  BookNtupleItemsFit("fit4c_all",  fMap_fit4c_all,  "4-constraint fit information (CMS 4-momentum)");
-			if(fWrite_fit4c_best) BookNtupleItemsFit("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
+		/// <li> `"fit4c_*"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItems_Fit` for more info.
+			if(fWrite_fit4c_all)  BookNtupleItems_Fit("fit4c_all",  fMap_fit4c_all,  "4-constraint fit information (CMS 4-momentum)");
+			if(fWrite_fit4c_best) BookNtupleItems_Fit("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
 
 		/// </ol>
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
@@ -108,18 +108,16 @@
 				/// <li> Initialise PID and skip if it fails:
 					/// <ul>
 					if(!InitializePID(
+						/// <li> use <b>probability method</b>
 						fPIDInstance->methodProbability(),
-							/// <li> use <b>probability method</b>
+						/// <li> use \f$dE/dx\f$ and the three ToF detectors. Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
 						fPIDInstance->useDedx() |
-						fPIDInstance->useTof1() |
-						fPIDInstance->useTof2() |
-						fPIDInstance->useTofE(),
-							/// <li> use \f$dE/dx\f$ and the three ToF detectors
+						fPIDInstance->useTofCorr(),
+						/// <li> identify only pions and kaons
 						fPIDInstance->onlyPion() |
 						fPIDInstance->onlyKaon(),
-							/// <li> identify only pions and kaons
+						/// <li> use \f$\chi^2 > 4.0\f$
 						4.0
-							/// <li> use \f$\chi^2 > 4.0\f$
 					)) continue;
 					/// </ul>
 
@@ -160,6 +158,22 @@
 				fNTupleMap.at("mult_select")->write();
 			}
 
+
+		/// <li> Make selection of MC truth particles by looping over the collection of MC particles created in `TrackSelector::execute()`. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.
+			if(fEventHeader->runNumber()<0) {
+				std::vector<Event::McParticle*>::iterator it;
+				for(it=fMcParticles.begin(); it!=fMcParticles.end(); ++it) {
+					switch((*it)->particleProperty()) {
+						case  421 : fMcD0     .push_back(*it); break;
+						case  333 : fMcPhi    .push_back(*it); break;
+						case -321 : fMcKaonNeg.push_back(*it); break;
+						case  321 : fMcKaonPos.push_back(*it); break;
+						case  211 : fMcPionPos.push_back(*it); break;
+						default :
+							fLog << MSG::DEBUG << "McParticle " << (*it)->particleProperty() << " not defined in switch" << endmsg;
+					}
+				}
+			}
 
 		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
 			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
@@ -295,7 +309,7 @@
 	/**
 	 * @brief This function encapsulates the `addItem` procedure for the fit branches.
 	 */ 
-	void D0phi_KpiKK::BookNtupleItemsFit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	void D0phi_KpiKK::BookNtupleItems_Fit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		/// <ol>
 		map["mD0"];   /// <li> `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).

@@ -14,6 +14,7 @@
 	#include "TrackSelector/TrackSelector.h"
 	#include "VertexFit/Helix.h"
 	#include "VertexFit/IVertexDbSvc.h"
+	#include <cmath>
 
 	using CLHEP::Hep2Vector;
 	using CLHEP::Hep3Vector;
@@ -63,6 +64,7 @@
 		fCut_Vz          ("vertex_z"),
 		fCut_Rxy         ("declen_xy"),
 		fCut_Rz          ("declen_z"),
+		fCut_CosTheta    ("costheta"),
 		fCut_PhotonEnergy("PhotonEnergy"),
 		fCut_PIDChiSq    ("PIDChiSq"),
 		fCut_PIDProb     ("PIDProb")
@@ -78,6 +80,7 @@
 		declareProperty("write_vertex",      fWrite_vertex      = false);
 		declareProperty("write_charged",     fWrite_charged     = false);
 		declareProperty("write_neutral",     fWrite_neutral     = false);
+		declareProperty("write_mctruth",     fWrite_mctruth     = false);
 		declareProperty("write_dedx",        fWrite_dedx        = false);
 		declareProperty("write_ToFEC",       fWrite_ToFEC       = false);
 		declareProperty("write_ToFIB",       fWrite_ToFIB       = false);
@@ -160,15 +163,20 @@
 			}
 			/// </ol>
 
-		/// <li> `"dedx"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
-			if(fWrite_dedx) {
-				BookNtupleItemsDedx("dedx", fMap_dedx, "dE/dx of all charged tracks");
+		/// <li> `"mctruth"`: Initial momentum information of Monte Carlo truth.
+			if(fWrite_mctruth) {
+				BookNtupleItems_McTruth("mctruth", fMap_mctruth, "MC truth of all tracks");
 			}
 
-		/// <li> `"ToFEC"`, `"ToFIB"`, and `"ToFOB"`: information from the three Time-of-Flight detectors. See `TrackSelector::BookNtupleItemsTof` for more info.
-			if(fWrite_ToFEC) BookNtupleItemsTof("ToFEC", fMap_TofEC, "End cap ToF of all tracks");
-			if(fWrite_ToFIB) BookNtupleItemsTof("ToFIB", fMap_TofIB, "Inner barrel ToF of all tracks");
-			if(fWrite_ToFOB) BookNtupleItemsTof("ToFOB", fMap_TofOB, "Outer barrel ToF of all tracks");
+		/// <li> `"dedx"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItems_Dedx` for more info.
+			if(fWrite_dedx) {
+				BookNtupleItems_Dedx("dedx", fMap_dedx, "dE/dx of all charged tracks");
+			}
+
+		/// <li> `"ToFEC"`, `"ToFIB"`, and `"ToFOB"`: information from the three Time-of-Flight detectors. See `TrackSelector::BookNtupleItems_Tof` for more info.
+			if(fWrite_ToFEC) BookNtupleItems_Tof("ToFEC", fMap_TofEC, "End cap ToF of all tracks");
+			if(fWrite_ToFIB) BookNtupleItems_Tof("ToFIB", fMap_TofIB, "Inner barrel ToF of all tracks");
+			if(fWrite_ToFOB) BookNtupleItems_Tof("ToFOB", fMap_TofOB, "Outer barrel ToF of all tracks");
 
 		/// <li> `"PID"`: Track PID information.
 			/// <ul>
@@ -250,17 +258,16 @@
 
 				/// <li> <b>Abort</b> if does not exist.
 				///@todo Might have to make this aborting behaviour less strict.
-				if(!mcParticleCol) {
+				if(!fMcParticleCol) {
 					fLog << MSG::ERROR << "Could not retrieve McParticelCol" << endmsg;
 					return(StatusCode::FAILURE);
 				}
 
 				/// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data available in `McParticle`, see <a href="http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html">here</a>. Only add to `fMcParticles` if the `McParticle` satisfies:
-				Event::McParticleCol::iterator iter_mc = mcParticleCol->begin();
-				m_nmcps = 0;
+				Event::McParticleCol::iterator iter_mc = fMcParticleCol->begin();
 				bool jpsiDecay(false);
 				int rootIndex(-1);
-				for (; iter_mc!=mcParticleCol->end(); iter_mc++) {
+				for (; iter_mc!=fMcParticleCol->end(); iter_mc++) {
 					/// <ul>
 					/// <li> Do not add primary parties @todo Why?
 					if( (*iter_mc)->primaryParticle()) continue;
@@ -275,6 +282,8 @@
 					if(!jpsiDecay) continue;
 					/// <li> Add the pointer to the `fMcParticles` vector.
 					fMcParticles.push_back(*iter_mc);
+					/// <li> <b>Write</b> MC truth initial 4-momentum info if required.
+					if(fWrite_mctruth) WriteMcTruth(*iter_mc, "mctruth", fMap_mctruth);
 					/// </ul>
 				} // end of for loop
 				/// </ol>
@@ -321,12 +330,13 @@
 						double rvz   = vecipa[3];       // nearest distance to IP in z direction
 						double rvphi = vecipa[1];       // angle in the xy-plane (?)
 
-					/// <li> Apply primary vertex cuts:
+					/// <li> Apply charged track cuts:
 						/// <ul>
-						if(fCut_Vz.FailsMax(fabs(fTrackMDC->z()))) continue; /// <li> \f$z\f$ coordinate of the collision point has to be within `cut_Vz0_max`
+						if(fCut_Vz .FailsMax(fabs(fTrackMDC->z()))) continue; /// <li> \f$z\f$ coordinate of the collision point has to be within `cut_Vz0_max`
 						if(fCut_Vxy.FailsMax(vr)                  ) continue; /// <li> radius in \f$xy\f$ plane has to be less than `cut_Vr0_max`
 						if(fCut_Rz .FailsMax(fabs(rvz))           ) continue; /// <li> \f$z\f$ coordinate of the distance to the interaction point has to be within `cut_Rvz0_max`
 						if(fCut_Rxy.FailsMax(rvxy)                ) continue; /// <li> distance to the interaction point in \f$xy\f$ plane has to be within `cut_Rvxy0_max`
+						if(fCut_CosTheta.FailsMax(fabs(cos(fTrackMDC->theta())))) continue; /// <li> distance to the interaction point in \f$xy\f$ plane has to be within `cut_costheta_max`
 						/// </ul>
 
 						// * Add charged track to vector
@@ -490,6 +500,7 @@
 	/**
 	 * @brief Method that standardizes the initialisation of the particle identification system. Define here <i>as general as possible</i>, but use in the derived subalgorithms.
 	 * @details See http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
+	 * @todo Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`. See talk by Liu Huanhuan on 2019/01/10.
 	 * 
 	 * @param method Which method to use: probability, likelihood, or neuron network (see `TSGlobals::PIDMethod`). You can also combine using e.g. `pid->methodLikelihood() | pid->methodProbability()`.
 	 * @param pidsys PID systems you want to call. Can combined using bit seperators (`|`), e.g. `pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE()` for \f$dE/dx\f$ plus all ToF detectors.
@@ -498,6 +509,7 @@
 	 */
 	ParticleID* TrackSelector::InitializePID(const int method, const int pidsys, const int pidcase, const double chimin)
 	{
+
 		// * Initialise PID sub-system and set method: probability, likelihood, or neuron network
 		fPIDInstance->init();
 		fPIDInstance->setMethod(method);
@@ -547,10 +559,26 @@
 
 
 	/**
+	 * @brief This function encapsulates the `addItem` procedure for the MC truth branches (`"mctruth*"`).
+	 */
+	void TrackSelector::BookNtupleItems_McTruth(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	{
+		/// <ol>
+		map["E"];  /// <li> `"E"`:  True initial energy of the track.
+		map["p"];  /// <li> `"p"`:  True initial \f$|\vec{p}|\f$ 3-momentum of the track.
+		map["px"]; /// <li> `"px"`: True initial \f$p_x\f$ momentum of the track.
+		map["py"]; /// <li> `"py"`: True initial \f$p_y\f$ momentum of the track.
+		map["pz"]; /// <li> `"pz"`: True initial \f$p_z\f$ momentum of the track.
+		AddItemsToNTuples(tupleName, map, tupleTitle);
+		/// </ol>
+	}
+
+
+	/**
 	 * @brief This function encapsulates the `addItem` procedure for the \f$dE/dx\f$ energy loss branch (`"dedx"`).
 	 * @details This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
 	 */
-	void TrackSelector::BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	void TrackSelector::BookNtupleItems_Dedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		/// <ol>
 		// map["dedx_K"];     /// <li> `"dedx_K"`      Expected value of \f$dE/dx\f$ in case of kaon hypothesis.
@@ -577,7 +605,7 @@
 	/**
 	 * @brief This function encapsulates the `addItem` procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.
 	 */ 
-	void TrackSelector::BookNtupleItemsTof(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	void TrackSelector::BookNtupleItems_Tof(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		/// <ol>
 		map["p"];      /// <li> `"p"`:      Momentum of the track as reconstructed by MDC.
@@ -630,6 +658,35 @@
 		map.at("normPH")     = fTrackDedx->normPH();
 		map.at("p")          = fTrackMDC->p();
 		map.at("probPH")     = fTrackDedx->probPH();
+		fNTupleMap.at(tupleName)->write();
+
+	}
+
+
+	/**
+	 * @brief Encapsulates of the writing procedure for \f$dE/dx\f$ energy loss information <i>for one track</i>.
+	 * @details Here, you should use `map::at` to access the `NTuple::Item`s and `NTuplePtr`, because you want your package to throw an exception if the element does not exist. See http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115 for available data members of `RecMdcDedx`
+	 * @param evtRecTrack Pointer to the reconstructed track of which you want to write the \f$dE/dx\f$ data.
+	 * @param tupleName The name of the tuple to which you want to write the information.
+	 * @param map The `map` from which you want to get the `NTuple::Item`s.
+	 */
+	void TrackSelector::WriteMcTruth(Event::McParticle* mcTruth, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map)
+	{
+		/// -# Abort if `mcTruth` is `nullptr`.
+		if(!mcTruth) return;
+
+		/// -# Obtain relevant info.
+		HepLorentzVector vec(mcTruth->initialFourMomentum());
+
+		/// -# <b>Write</b> initial momentum info of MC truth.
+		map.at("E") = vec.e();
+		map.at("p") = std::sqrt(
+			vec.px()*vec.px() +
+			vec.py()*vec.py() +
+			vec.pz()*vec.pz());
+		map.at("px") = vec.px();
+		map.at("py") = vec.py();
+		map.at("pz") = vec.pz();
 		fNTupleMap.at(tupleName)->write();
 
 	}

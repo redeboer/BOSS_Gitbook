@@ -6,7 +6,7 @@ use GaudiInterface GaudiInterface-* External
 
 use DstEvent DstEvent-* Event
 use EventModel   EventModel-*  Event
-use EvtRecEvent EvtRecEvent-* Event
+use EvtRecEvent  EvtRecEvent-* Event
 
 use VertexFit    VertexFit-*   Analysis 
 use ParticleID   ParticleID-*  Analysis

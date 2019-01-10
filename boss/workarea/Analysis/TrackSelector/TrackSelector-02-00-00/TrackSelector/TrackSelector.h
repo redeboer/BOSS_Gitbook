@@ -46,6 +46,7 @@
 	#include "GaudiKernel/SmartRefVector.h"
 	#include "ParticleID/ParticleID.h"
 	#include "McTruth/McParticle.h"
+	#include "McTruth/McEvent.h"
 	#include "TH1D.h"
 	#include "THStack.h"
 	#include "TofRecEvent/RecTofTrack.h"
@@ -111,15 +112,17 @@
 
 		// * Algorithm steps that have to be defined in derived algorithm classes *
 			virtual StatusCode initialize_rest() = 0; //!< This function is executed at the end of `initialize`. It should be further defined in derived subalgorithms.
-			virtual StatusCode execute_rest() = 0; //!< This function is executed at the end of `execute`. It should be further defined in derived subalgorithms.
-			virtual StatusCode finalize_rest() = 0; //!< This function is executed at the end of `finalize`. It should be further defined in derived subalgorithms.
+			virtual StatusCode execute_rest() = 0;    //!< This function is executed at the end of `execute`. It should be further defined in derived subalgorithms.
+			virtual StatusCode finalize_rest() = 0;   //!< This function is executed at the end of `finalize`. It should be further defined in derived subalgorithms.
 
 		// * Protected methods * //
 			ParticleID* InitializePID(const int method, const int pidsys, const int pidcase, const double chimin=4.);
 			void AddItemsToNTuples  (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="ks N-Tuple example");
 			void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<double> > &map);
-			void BookNtupleItemsDedx(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="dE/dx info");
-			void BookNtupleItemsTof (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="Time-of-Flight info");
+			void BookNtupleItems_McTruth(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="Monte Carlo truth");
+			void BookNtupleItems_Dedx   (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="dE/dx info");
+			void BookNtupleItems_Tof    (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="Time-of-Flight info");
+			void WriteMcTruth(Event::McParticle* mcTruth, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 			void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 			void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 			void WritePIDInformation();
@@ -136,7 +139,7 @@
 			SmartDataPtr<EvtRecEvent> fEvtRecEvent;  //!< Data pointer for `EventModel::EvtRec::EvtRecEvent` which is set in `execute()` in each event.
 			SmartDataPtr<EvtRecTrackCol> fEvtRecTrkCol; //!< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in `execute()` in each event.
 			std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
-			std::vector<McParticle*> fMcParticles; //!< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest.
+			std::vector<Event::McParticle*> fMcParticles; //!< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. @todo Consider defining a `map<int, vector<Event::McParticle*> >`, where the `int` key will be the PDG code. This mapping is to define a subset of the list of `McParticles`.
 			std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.
 			std::vector<EvtRecTrack*> fGoodNeutralTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons).
 			std::vector<EvtRecTrack*>::iterator fTrackIterator; //!< Iterator for looping over the collection of charged and neutral tracks (`EvtRecTrackCol`).
@@ -147,6 +150,7 @@
 			/// Note that the `NTuple::Items` have to be added to the NTuple during the `TrackSelector::initialize()` step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
 				bool fDo_charged; //!< Package property that determines whether or not to make a selection of 'good' charged tracks.
 				bool fDo_neutral; //!< Package property that determines whether or not to make a selection of 'good' neutral tracks.
+				bool fWrite_mctruth; //!< Package property that determines whether or not to record initial momentum informtation of MC truth.
 				bool fWrite_PID;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
 				bool fWrite_ToFEC;   //!< Package property that determines whether or not to record data from the Time-of-Flight end cap detector.
 				bool fWrite_ToFIB;   //!< Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector.
@@ -164,6 +168,7 @@
 				std::map<std::string, NTuple::Item<double> > fMap_TofOB;   //!< Container for the data from the Time-of-Flight outer barrel detector branch.
 				std::map<std::string, NTuple::Item<double> > fMap_charged; //!< Container for the charged track vertex info charged track vertex branch.
 				std::map<std::string, NTuple::Item<double> > fMap_dedx;    //!< Container for the energy loss (\f$dE/dx\f$) branch.
+				std::map<std::string, NTuple::Item<double> > fMap_mctruth; //!< Container for MC truth info.
 				std::map<std::string, NTuple::Item<double> > fMap_mult;    //!< Container for the multiplicities branch.
 				std::map<std::string, NTuple::Item<double> > fMap_mult_select; //!< Container for the `"mult_select"` branch.
 				std::map<std::string, NTuple::Item<double> > fMap_neutral; //!< Container for the neutral track info neutral track info branch.
@@ -182,6 +187,7 @@
 			CutObject fCut_Vz;  //!< Cut on the \f$z\f$ coordinate of the primary vertex.
 			CutObject fCut_Rxy; //!< Cut on the distance in the \f$z\f$ direction between the primary vertex and the vertex of the charged track.
 			CutObject fCut_Rz;  //!< Cut on the distance in the \f$xy\f$ plane between the primary vertex and the vertex of the charged track.
+			CutObject fCut_CosTheta; //!< Cut on \f$\cos(\theta)\f$.
 			CutObject fCut_PhotonEnergy; //!< Cut on the photon energy.
 			CutObject fCut_PIDChiSq; //!< Cut on the \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits
 			CutObject fCut_PIDProb; //!< Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See e.g. <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6">`ParticleID::probPion`</a>.
