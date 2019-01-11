@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['max',['max',['../classCutObject.html#ad3e3069201e74f477a8f4ac206b206a2',1,'CutObject']]],
-  ['min',['min',['../classCutObject.html#a7025d070037c80b7e71669ec81c9706f',1,'CutObject']]],
-  ['mpi0',['mpi0',['../RhopiAlg_8cxx.html#ab7b35acf658c14d92b5b892a4fa74761',1,'RhopiAlg.cxx']]],
-  ['mrho0',['mrho0',['../RhopiAlg_8cxx.html#a359fc7286cb3fe45739029aab90fef22',1,'RhopiAlg.cxx']]]
+  ['k',['K',['../namespaceSettings_1_1Particles.html#ab3fa6179c2325ff85d64b7a6db4f8b63',1,'Settings::Particles']]],
+  ['k0',['K0',['../namespaceSettings_1_1Particles.html#abc81abc1f98aa1ea4a44b9796264b97d',1,'Settings::Particles']]]
 ];

@@ -313,6 +313,7 @@
 				return;
 			}
 		/// <li> If `"_cutvalues"` contains 3 entries, consider entry 0 to be the `min` value, entry 1 to be the `max`, and entry 2 to be `count` (the number of events or tracks that passed the cut).
+			/// <ol>
 			/// <li> Declare remaining two vectors for `max` and `count`.
 			std::vector<double> entry1(tot);
 			std::vector<int>    entry2(tot);

@@ -7,5 +7,5 @@ var searchData=
   ['bookntupleitems_5fmctruth',['BookNtupleItems_McTruth',['../classTrackSelector.html#a376de5fc3e2ff325cadfcfe80f54ac92',1,'TrackSelector']]],
   ['bookntupleitems_5ftof',['BookNtupleItems_Tof',['../classTrackSelector.html#affc2e5f60b5c5374275b5db444728064',1,'TrackSelector']]],
   ['bookntupleitemsfit',['BookNtupleItemsFit',['../classrhopi__pipigg.html#a57476c12d2e478409f0a37535f289900',1,'rhopi_pipigg']]],
-  ['bossoutputloader',['BOSSOutputLoader',['../classBOSSOutputLoader.html#a10870242930d8d48ded8bde0575a2233',1,'BOSSOutputLoader::BOSSOutputLoader()'],['../group__BOSS__Afterburner__objects.html#ga72e3e535f28f63137071e24ae2cd2a71',1,'BOSSOutputLoader::BOSSOutputLoader(const char *directoryPath, bool print=true)']]]
+  ['bossoutputloader',['BOSSOutputLoader',['../classBOSSOutputLoader.html#a10870242930d8d48ded8bde0575a2233',1,'BOSSOutputLoader::BOSSOutputLoader()'],['../classBOSSOutputLoader.html#a72e3e535f28f63137071e24ae2cd2a71',1,'BOSSOutputLoader::BOSSOutputLoader(const char *directoryPath, bool print=true)']]]
 ];

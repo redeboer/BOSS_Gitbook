@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['gbranchename',['gBrancheName',['../group__BOSS__Afterburner__scripts.html#ga241c9c45cc2042fc316d22ceac35eb5d',1,'CompareChainVsHadd.C']]],
-  ['gdefaultntimes',['gDefaultNTimes',['../group__BOSS__Afterburner__scripts.html#ga60a723826c10d3877fdffbd3d429c15a',1,'CompareChainVsHadd.C']]],
-  ['gdefaultoutputfilename',['gDefaultOutputFileName',['../group__BOSS__Afterburner__scripts.html#gab17e022eddaae4f4d52a6a42a84026e0',1,'CompareChainVsHadd.C']]],
   ['gdo_5fconv_5fd',['gDo_conv_d',['../group__BOSS__Afterburner__scripts.html#gac4d79ab366e7011a6d7961d214cd1f8b',1,'AnalyseBOSSOutput.C']]],
   ['gdo_5fconv_5fs',['gDo_conv_s',['../group__BOSS__Afterburner__scripts.html#gaede6c088f8c87eff491f17c778b830a9',1,'AnalyseBOSSOutput.C']]],
   ['gdo_5fgauss',['gDo_gauss',['../group__BOSS__Afterburner__scripts.html#gab231f074512fdca6caa52bcb8ac9e93e',1,'AnalyseBOSSOutput.C']]],
@@ -14,7 +11,6 @@ var searchData=
   ['gecms',['gEcms',['../namespaceTSGlobals.html#a7627214df596524af6630d00620e99c7',1,'TSGlobals']]],
   ['generatejpsi',['GenerateJPsi',['../simulation_8txt.html#a4ed12cc59fe19170c9a4c26c96a0681e',1,'simulation.txt']]],
   ['gfilename',['gFilename',['../group__BOSS__Afterburner__scripts.html#ga23636f4759ac48447dafee25ab31c4af',1,'AnalyseBOSSOutput.C']]],
-  ['gfiletoload',['gFileToLoad',['../group__BOSS__Afterburner__scripts.html#gaa3dda915a68202f6344b5bb828e71e0e',1,'CompareChainVsHadd.C']]],
   ['gfitplots',['gFitplots',['../group__BOSS__Afterburner__scripts.html#ga1827bd3f0564f0233ec11fa4e85b29e9',1,'AnalyseBOSSOutput.C']]],
   ['glogy',['gLogY',['../group__BOSS__Afterburner__scripts.html#ga67e3cc7f35b93bfe3745fe9db832357c',1,'AnalyseBOSSOutput.C']]],
   ['glogz',['gLogZ',['../group__BOSS__Afterburner__scripts.html#gace0514f8d9b2f469e930e6ec10ad4225',1,'AnalyseBOSSOutput.C']]],
@@ -34,6 +30,5 @@ var searchData=
   ['gsetranges',['gSetranges',['../group__BOSS__Afterburner__scripts.html#ga735228ae997a3dd3c1317e50c6d83043',1,'AnalyseBOSSOutput.C']]],
   ['gsigmascalefactorlow',['gSigmaScaleFactorLow',['../namespaceSettings_1_1Fit.html#a77774996889347bcfb0241479ff4a796',1,'Settings::Fit']]],
   ['gsigmascalefactorup',['gSigmaScaleFactorUp',['../namespaceSettings_1_1Fit.html#a869e829da176886304d7e7fd0351154e',1,'Settings::Fit']]],
-  ['gspeedoflight',['gSpeedOfLight',['../TrackSelector_8cxx.html#ac1a7910e0394ee042f649bd450d63034',1,'TrackSelector.cxx']]],
-  ['gtreename',['gTreeName',['../group__BOSS__Afterburner__scripts.html#ga0c1ca9e8f58c539cd9b3115a8a4f0f0d',1,'CompareChainVsHadd.C']]]
+  ['gspeedoflight',['gSpeedOfLight',['../TrackSelector_8cxx.html#ac1a7910e0394ee042f649bd450d63034',1,'TrackSelector.cxx']]]
 ];
