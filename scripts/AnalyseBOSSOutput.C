@@ -12,8 +12,9 @@
 // * ======================================== * //
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
-	#include "../inc/BOSSOutputLoader.h"
-	#include "../inc/ArgPair.h"
+	#include "CommonFunctions.h"
+	#include "BOSSOutputLoader.h"
+	#include "ArgPair.h"
 	#include "TStyle.h"
 	#include <iostream>
 	#include <utility>

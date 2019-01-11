@@ -17,7 +17,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 	#include "TString.h"
-	#include "../inc/FitObject.h"
+	#include "FitObject.h"
 	#include "RooGaussian.h"
 	#include "RooPolynomial.h"
 	#include "RooRealVar.h"

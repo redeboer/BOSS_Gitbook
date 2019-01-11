@@ -16,11 +16,11 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-	#include "../inc/FrameworkSettings.h"
-	#include "../inc/ReconstructedParticle.h"
+	#include "FrameworkSettings.h"
+	#include "ReconstructedParticle.h"
+	#include "RooAddPdf.h"
 	#include "RooDataHist.h"
 	#include "RooRealVar.h"
-	#include "RooAddPdf.h"
 	#include "TH1D.h"
 	#include <iostream>
 	#include <utility>

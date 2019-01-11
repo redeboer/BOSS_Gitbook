@@ -67,7 +67,7 @@
 				std::cout << name << " > " << min << "    " << counter << std::endl;
 				return;
 			}
-			// if only a min value
+			// if only a max value
 			if((max <  DBL_MAX) && (min == -DBL_MAX)) {
 				std::cout << name << " < " << max << "    " << counter << std::endl;
 				return;

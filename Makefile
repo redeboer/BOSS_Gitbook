@@ -1,72 +1,60 @@
-# ! Still under development -- copied from the NIKHEFproject2018 repository
-
-# # Author: Remco de Boer
-# # Date: May 20th, 2018
-
-# BINDIR = bin/
-# INCLUDE_PATH = \
-#   -Icore \
-#   -Ialgorithms \
-#   -Iobjs
-
-# # Compiler
-# CC = g++
-
-# # Compiler flags: 'load' ROOT
-# ROOTCFLAGS := $(shell root-config --cflags)
-# ROOTLIBS   := $(shell root-config --glibs)
-# CFLAGS = -fPIC -w -g -W ${ROOTCFLAGS} -O3 #-std=c++0x
-# LFLAGS = ${ROOTLIBS} -g -lGenVector -lMinuit -O3
-
-# # Automatically decide what to compile
-# # Core parts of the framework
-# CORE  = $(notdir $(wildcard core/*.cxx))
-# COREOBJS  = $(CORE:.cxx=.o)
-# COREOBJS := $(addprefix ${BINDIR}, ${COREOBJS})
-
-# # Data classes
-# OBJECTS = $(notdir $(wildcard objs/*.cxx))
-# OBJOBJS = $(OBJECTS:.cxx=.do)
-# OBJOBJS := $(addprefix ${BINDIR}, ${OBJOBJS})
-
-# # User algorithms
-# ALGORITHMS = $(notdir $(wildcard algorithms/*.cxx))
-# ALGOBJS = $(ALGORITHMS:.cxx=.ao)
-# ALGOBJS := $(addprefix ${BINDIR}, ${ALGOBJS})
-
-# # Executable
-# EXE = execute
-
-# # Compile core, user algorithms and make an executable for each user algorithm
-# all : ${COREOBJS} ${ALGOBJS} ${OBJOBJS} ${EXE}
-# 	@echo "COMPILING DONE"
-
-# # Compile core algorithms
-# ${BINDIR}%.o : core/%.cxx core/%.h
-# 	@echo "Compiling $(notdir $<)"
-# 	@$(CC) $(CFLAGS) ${INCLUDE_PATH} -c $< -o $@
-
-# ${BINDIR}%.ao : algorithms/%.cxx algorithms/%.h
-# 	@echo "Compiling $(notdir $<)"
-# 	@$(CC) $(CFLAGS) ${INCLUDE_PATH} -c $< -o $@
-
-# ${BINDIR}%.do : objs/%.cxx objs/%.h
-# 	@echo "Compiling $(notdir $<)"
-# 	@$(CC) $(CFLAGS) ${INCLUDE_PATH} -c $< -o $@
-
-# ${BINDIR}Steering.o : core/Steering.cxx
-# 	@echo "Compiling Steering file"
-# 	@$(CC) $(CFLAGS) ${INCLUDE_PATH} -c core/Steering.cxx -o ${BINDIR}Steering.o
-
-# ${EXE} : ${COREOBJS} ${ALGOBJS} ${OBJOBJS}
-# 	@echo "Making executable \"${EXE}\""
-# 	@$(CC) -o ${EXE} $(COREOBJS) ${OBJOBJS} ${ALGOBJS} $(LFLAGS)
-
-# # Remove all executables and object files
-# # This rule can be called using "make clean"
-# clean:
-# 	@rm -f ${BINDIR}*
-# 	@rm -f ${EXE}
-# 	@echo "Deleted all binary files and the executable"
+# * Author: Remco de Boer <remco.de.boer@ihep.ac.cn>
+# * Date: January 11th, 2019
+# * Based on the NIKHEFproject2018 repository
 
 
+# * PATH DEFINITIONS * #
+BINDIR = bin
+EXEDIR = exe
+INCLUDE_PATH = -Iinc
+LIBNAME = BossAfterburner
+
+
+# * COMPILER FLAGS * #
+COMPILER = clang++ #g++
+ROOTINC    := -I$(shell root-config --incdir)
+ROOTCFLAGS := $(shell root-config --cflags)
+ROOTLIBS   := $(shell root-config --libs --evelibs --glibs)
+CFLAGS = -fPIC -w -g -W ${ROOTCFLAGS}
+LFLAGS = ${ROOTLIBS} -g -lGenVector  -lRooFit -lRooFitCore -lRooStats -lMinuit
+
+
+# * INVENTORIES OF OBJECTS AND THEIR EVENTUAL BINARIES * #
+# * for the objects (inc and src)
+OBJECTS  = $(notdir $(wildcard src/*.cxx))
+OBJ_BIN  = $(OBJECTS:.cxx=.o)
+OBJ_BIN := $(addprefix ${BINDIR}/, ${OBJ_BIN})
+
+# * for the scripts (executables)
+SCRIPTS  = $(notdir $(wildcard scripts/*.C))
+SCR_BIN  = $(SCRIPTS:.C=.exe)
+SCR_BIN := $(addprefix ${EXEDIR}/, ${SCR_BIN})
+
+# * Compile objects: the parametesr are the rules defines below and above
+all : ${OBJ_BIN} LINK ${SCR_BIN}
+	@echo "COMPILING DONE"
+
+
+# * COMPILE RULES * #
+# * for the objects (inc and src)
+${BINDIR}/%.o : src/%.cxx inc/%.h
+	@echo "Compiling object \"$(notdir $<)\""
+	@$(COMPILER) $(CFLAGS) ${INCLUDE_PATH} -c $< -o $@
+
+# * for linking the objects generated above.
+LINK :
+	@ar q lib${LIBNAME}.a ${OBJ_BIN}
+
+# * for the scripts (executables)
+${EXEDIR}/%.exe : scripts/%.C
+	@echo "Compiling script \"$(notdir $<)\""
+	@$(COMPILER) $< -o $@ ${CFLAGS} ${INCLUDE_PATH} -L. -l${LIBNAME} ${LFLAGS}
+	#$(COMPILER) $< -o $@ ${ROOTINC} ${INCLUDE_PATH} -L. -l${LIBNAME} ${LFLAGS}
+
+# * REMOVE ALL BINARIES * #
+# * This rule can be called using "make clean"
+clean:
+	@rm -f ${BINDIR}/*.o
+	@echo "Deleted all binary files in \"${BINDIR}\""
+	@rm -f ${EXEDIR}/*.exe
+	@echo "Deleted all binary files in \"${EXEDIR}\""

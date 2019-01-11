@@ -1,7 +1,6 @@
 #ifndef BOSS_Afterburner_Settings_H
 #define BOSS_Afterburner_Settings_H
 
-
 // * ========================================= * //
 // * ------- DOXYGEN GROUP DEFINITIONS ------- * //
 // * ========================================= * //
@@ -43,7 +42,6 @@
 
 	#include "Particle.h"
 	#include "TString.h"
-	#include <iostream>
 
 	// * For backward compatibility with ROOT5 * //
 	#ifdef __CINT__
@@ -59,11 +57,12 @@
 
 
 
-// * ================================= * //
-// * ------- CLASS DEFINITIONS ------- * //
-// * ================================= * //
+// * ============================ * //
+// * ------- DECLARATIONS ------- * //
+// * ============================ * //
 /// @addtogroup BOSS_Afterburner_settings
 /// @{
+
 
 	/**
 	 * @brief    Helper namespace in case of `C++11` compilation. The `std::make_unique` method of `std::unique_ptr` has not been defined by default and needs to be defined seperately, hence the '`_fix`' of `std`.
@@ -72,11 +71,8 @@
 	 */
 	namespace std_fix {
 		template <typename T, typename... Args>
-		std::unique_ptr<T> make_unique(Args&&... args)
-		{
-			return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-		}
-	} // namespace std_fix
+		std::unique_ptr<T> make_unique(Args&&... args);
+	}
 
 
 	/**
@@ -90,18 +86,18 @@
 	{
 		namespace Detector
 		{
-			const double TofUnitCm = 29.9792458; //!< Time of Flight path unit in cm.
-			const double TofUnitMm = 299.792458; //!< Time of Flight path unit in mm.
+			extern const double TofUnitCm;
+			extern const double TofUnitMm;
 		}
 		namespace Fit
 		{
-			const double gSigmaScaleFactorLow = 0.; //!< This `double` parametr will be used when constructing a `RooRealVar` object for the sigma's of the double Gaussian. The lower boundary of this `RooRealVar` sigma object will be set to this factor times the estimated sigma).
-			const double gSigmaScaleFactorUp = 10.; //!< This `double` parameter will be used when constructing a `RooRealVar` object for the sigma's of the double Gaussian. The upper boundary of this `RooRealVar` sigma object will be set to this factor times the estimated sigma).
+			extern const double gSigmaScaleFactorLow;
+			extern const double gSigmaScaleFactorUp;
 		}
 		namespace Output
 		{
-			const char* Extension = "pdf"; //!< Default extension of output plots (e.g. `png`, `eps`, `jpg`, etc.).
-			const TString PlotOutputDir = Form("/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/%s", Extension); //!< Default output directory for plots.
+			extern const char* Extension;
+			extern const TString PlotOutputDir;
 		}
 		/**
 		 * @brief List of relevant particles used in this analysis.
@@ -109,18 +105,17 @@
 		 */
 		namespace Particles
 		{
-			const Particle Em  (11);   //!< Electron (\f$ e^- \f$).
-			const Particle Mum (13);   //!< Muon (\f$ \mu^- \f$).
-			const Particle Pip (211);  //!< Positive pion (\f$ \pi^+ \f$).
-			const Particle Pi0 (111);  //!< Neutral pion (\f$ \pi^0 \f$).
-			const Particle Rhop(213);  //!< Positive rho meson (\f$ \rho^\pm \f$).
-			const Particle Rho0(113);  //!< Neutral rho meson (\f$ \rho^0 \f$).
-			const Particle K   (321);  //!< Positive kaon (\f$ K^\pm \f$).
-			const Particle K0  (311);  //!< Neutral kaon (\f$ K^\pm \f$).
-			const Particle P   (2212); //!< Proton (\f$ p \f$).
+			extern const Particle Em;  
+			extern const Particle Mum; 
+			extern const Particle Pip; 
+			extern const Particle Pi0; 
+			extern const Particle Rhop;
+			extern const Particle Rho0;
+			extern const Particle K;   
+			extern const Particle K0;  
+			extern const Particle P;   
 		}
 	}
-
 
 
 /// @}
