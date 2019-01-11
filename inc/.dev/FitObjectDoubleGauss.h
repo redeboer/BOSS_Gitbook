@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_FitObjectDoubleGauss_H
-#define Physics_Analysis_FitObjectDoubleGauss_H
+#ifndef BOSS_Afterburner_FitObjectDoubleGauss_H
+#define BOSS_Afterburner_FitObjectDoubleGauss_H
 
 /// @addtogroup BOSS_Afterburner
 /// @{

@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_ArgPair_H
-#define Physics_Analysis_ArgPair_H
+#ifndef BOSS_Afterburner_ArgPair_H
+#define BOSS_Afterburner_ArgPair_H
 
 /// @addtogroup BOSS_Afterburner_objects
 /// @{

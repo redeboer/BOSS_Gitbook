@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_FitObject_H
-#define Physics_Analysis_FitObject_H
+#ifndef BOSS_Afterburner_FitObject_H
+#define BOSS_Afterburner_FitObject_H
 
 /// @addtogroup BOSS_Afterburner
 /// @{

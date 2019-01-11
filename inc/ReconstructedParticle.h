@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_ReconstructedParticle_H
-#define Physics_Analysis_ReconstructedParticle_H
+#ifndef BOSS_Afterburner_ReconstructedParticle_H
+#define BOSS_Afterburner_ReconstructedParticle_H
 
 /// @addtogroup BOSS_Afterburner_objects
 /// @{

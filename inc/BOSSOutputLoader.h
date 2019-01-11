@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_BOSSOutputLoader_H
-#define Physics_Analysis_BOSSOutputLoader_H
+#ifndef BOSS_Afterburner_BOSSOutputLoader_H
+#define BOSS_Afterburner_BOSSOutputLoader_H
 
 /// @addtogroup BOSS_Afterburner_objects
 /// @{
@@ -15,8 +15,8 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-	#include "FrameworkSettings.h"
 	#include "ChainLoader.h"
+	#include "FrameworkSettings.h"
 	#include "TCanvas.h"
 	#include "TChain.h"
 	#include "TFile.h"
@@ -30,12 +30,10 @@
 	#include "TSystemDirectory.h"
 	#include "TTree.h"
 	#include <iostream>
-	#include <string>
-	#include <utility>
 	#include <list>
 	#include <map>
+	#include <string>
 	#include <unordered_map>
-	#include <math.h>
 
 
 
@@ -59,6 +57,7 @@
 		void Print();
 		void Print(const char* nameOfTree, Option_t *opt = "toponly");
 		void PrintCutFlow();
+		void PrintCuts();
 		void PrintTrees(Option_t *opt="");
 		void QuickDrawAndSaveAll(Option_t* opt="");
 
@@ -319,7 +318,7 @@
 	void BOSSOutputLoader::PrintCutFlow()
 	{
 		if(!fChains.size()) return;
-		/// 1. Write number of entries per `TChain`.
+		/// -# Write number of entries per `TChain`.
 			auto width = std::ceil(std::log10(GetLargestEntries()));
 			width += 2;
 			width += width/3;
@@ -331,7 +330,7 @@
 					<< std::left  << "\"" << it->GetChain().GetName() << "\"" << std::endl;
 			}
 			std::cout << std::endl;
-		/// 2. If there is a `TChain` called `"_cutvalues"`, print these values and names as well.
+		/// -# If there is a `TChain` called `"_cutvalues"`, print these values and names as well.
 			auto key = fChains.find("_cutvalues");
 			if(key == fChains.end()) return;
 			if(!key->second.GetEntries()) return;
@@ -350,6 +349,53 @@
 					<< it.second << std::endl;
 			}
 			std::cout << std::endl;
+	}
+	void BOSSOutputLoader::PrintCuts()
+	{
+		/// -# Search for a `TChain` called `"_cutvalues"` and return if it doesn't exist or if it is empty.
+			auto key = fChains.find("_cutvalues");
+			if(key == fChains.end()) return;
+			if(!key->second.GetEntries()) return;
+		/// -# Get the maximum number of characters in all of the cut names.
+			key->second.GetChain().GetEntry(0); // get first entry of `TChain`
+			int length = 0;
+			for(auto it : key->second.Get_D()) {
+				if(it.first.length() > length) length = it.first.length();
+			}
+			length += 4; // some indent
+		/// -# Use entry 0 to get the 
+				std::map<std::string, Double_t> tempMap; // temp *sorted* `map`
+				for(auto it : key->second.Get_D()) {
+					tempMap[it.first] = it.second;
+				}
+		/// -# If `"_cutvalues"` contains only 1 entry, print a list of cut paramters and their values. (This is for backward compatibility with the older versions of `TrackSelector`.)
+			if(key->second.GetEntries()==1) {
+				std::cout << "CUT PARAMTERS" << std::endl;
+				for(auto it : tempMap) {
+					std::cout
+						<< std::setw(length) << std::right << it.first << ": "
+						<< it.second << std::endl;
+				}
+				std::cout << std::endl;
+		/// -# If `"_cutvalues"` contains 3 entries, consider the entry 0 to be the `min` value, entry 1 to be the `max`, and entry 2 to be `count` (the number of events or tracks that passed the cut).
+			} else {
+			if(key->second.GetEntries()==1) {
+
+				std::vector<std::string> names (key->second.Get_D().size());
+				std::vector<double>      min   (key->second.Get_D().size());
+				std::vector<double>      max   (key->second.Get_D().size());
+				std::vector<int>         counts(key->second.Get_D().size());
+				std::cout << "CUT PARAMTERS" << std::endl;
+				for(auto it : key->second.Get_D()) {
+					tempMap[it.first] = it.second;
+				}
+				for(auto it : tempMap) {
+					std::cout
+						<< std::setw(length) << std::right << it.first << ": "
+						<< it.second << std::endl;
+				}
+				std::cout << std::endl;
+			}
 	}
 
 

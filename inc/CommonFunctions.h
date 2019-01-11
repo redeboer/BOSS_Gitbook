@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_CommonFunctions_H
-#define Physics_Analysis_CommonFunctions_H
+#ifndef BOSS_Afterburner_CommonFunctions_H
+#define BOSS_Afterburner_CommonFunctions_H
 
 /// @addtogroup BOSS_Afterburner_functions
 /// @{

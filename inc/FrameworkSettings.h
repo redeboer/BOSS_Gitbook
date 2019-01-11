@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_Settings_H
-#define Physics_Analysis_Settings_H
+#ifndef BOSS_Afterburner_Settings_H
+#define BOSS_Afterburner_Settings_H
 
 
 // * ========================================= * //

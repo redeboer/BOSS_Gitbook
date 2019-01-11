@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_ChainLoader_H
-#define Physics_Analysis_ChainLoader_H
+#ifndef BOSS_Afterburner_ChainLoader_H
+#define BOSS_Afterburner_ChainLoader_H
 
 /// @addtogroup BOSS_Afterburner_objects
 /// @{
