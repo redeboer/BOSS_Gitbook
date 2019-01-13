@@ -91,10 +91,6 @@ $(document).ready(function(){initNavTree('namespaceCommonFunctions_1_1Draw.html'
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6b0e72f8ca1433e3a776b30c55834bb6"><td class="memTemplParams" colspan="2">template&lt;class ... ARGS&gt; </td></tr>
-<tr class="memitem:a6b0e72f8ca1433e3a776b30c55834bb6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Draw.html#a6b0e72f8ca1433e3a776b30c55834bb6">DrawAndSave</a> (const char *saveas, Option_t *opt, const char *logScale, ARGS... args)</td></tr>
-<tr class="memdesc:a6b0e72f8ca1433e3a776b30c55834bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that allows you to draw and save any set of <code>TObject</code>s.  <a href="#a6b0e72f8ca1433e3a776b30c55834bb6">More...</a><br /></td></tr>
-<tr class="separator:a6b0e72f8ca1433e3a776b30c55834bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81cfd9c79c2b2a4294a1c2cb36b0a140"><td class="memTemplParams" colspan="2">template&lt;class... ARGS&gt; </td></tr>
 <tr class="memitem:a81cfd9c79c2b2a4294a1c2cb36b0a140"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Draw.html#a81cfd9c79c2b2a4294a1c2cb36b0a140">DrawAndSaveRecursion</a> (Option_t *opt, ARGS &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a81cfd9c79c2b2a4294a1c2cb36b0a140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start recursion for <code>DrawAndSaveRecursion</code>.  <a href="#a81cfd9c79c2b2a4294a1c2cb36b0a140">More...</a><br /></td></tr>
@@ -105,8 +101,11 @@ Functions</h2></td></tr>
 <tr class="separator:ae2f83fb2d8bfb27ebab8274c541309df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a687e67d924a0235247d45ea1bbd34734"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a687e67d924a0235247d45ea1bbd34734"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Draw.html#a687e67d924a0235247d45ea1bbd34734">DrawAndSaveRecursion</a> (Option_t *opt)</td></tr>
-<tr class="memdesc:a687e67d924a0235247d45ea1bbd34734"><td class="mdescLeft">&#160;</td><td class="mdescRight">End recursion for <code>DrawAndSaveRecursion</code>.  <a href="#a687e67d924a0235247d45ea1bbd34734">More...</a><br /></td></tr>
 <tr class="separator:a687e67d924a0235247d45ea1bbd34734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b0e72f8ca1433e3a776b30c55834bb6"><td class="memTemplParams" colspan="2">template&lt;class ... ARGS&gt; </td></tr>
+<tr class="memitem:a6b0e72f8ca1433e3a776b30c55834bb6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Draw.html#a6b0e72f8ca1433e3a776b30c55834bb6">DrawAndSave</a> (const char *saveas, Option_t *opt, const char *logScale, ARGS... args)</td></tr>
+<tr class="memdesc:a6b0e72f8ca1433e3a776b30c55834bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">End recursion for <code>DrawAndSaveRecursion</code>.  <a href="#a6b0e72f8ca1433e3a776b30c55834bb6">More...</a><br /></td></tr>
+<tr class="separator:a6b0e72f8ca1433e3a776b30c55834bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2b71536eaca6c706a102e89f80b0589"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Draw.html#ab2b71536eaca6c706a102e89f80b0589">DrawAndSave</a> (TH1 &amp;hist, const char *saveas, Option_t *opt, TString logScale=&quot;&quot;)</td></tr>
 <tr class="memdesc:ab2b71536eaca6c706a102e89f80b0589"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary function that is used by the more specific <code>DrawAndSave</code> functions for <code>TH1D</code> and <code>TH2D</code>.  <a href="#ab2b71536eaca6c706a102e89f80b0589">More...</a><br /></td></tr>
 <tr class="separator:ab2b71536eaca6c706a102e89f80b0589"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,7 +168,9 @@ template&lt;class ... ARGS&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Function that allows you to draw and save any set of <code>TObject</code>s. </p>
+<p>End recursion for <code>DrawAndSaveRecursion</code>. </p>
+<p>Function that allows you to draw and save any set of <code>TObject</code>s.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>Impossible to compile in <code>make</code> framework? </dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">ARGS</td><td>The type of objects that you want to draw.</td></tr>
@@ -187,7 +188,7 @@ template&lt;class ... ARGS&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00055">55</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00061">61</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -240,7 +241,7 @@ template&lt;class ... ARGS&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00075">75</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00081">81</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -286,7 +287,7 @@ template&lt;class ... ARGS&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00089">89</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00095">95</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -332,7 +333,7 @@ template&lt;class ... ARGS&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00102">102</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00108">108</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -392,7 +393,7 @@ template&lt;class ... ARGS&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00117">117</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00123">123</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -435,6 +436,9 @@ template&lt;class... ARGS&gt; </div>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class TYPE , class... ARGS&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void CommonFunctions::Draw::DrawAndSaveRecursion </td>
@@ -460,6 +464,11 @@ template&lt;class TYPE , class... ARGS&gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>The <code>DrawAndSaveRecursion</code> functions are necessary for <code>DrawAndSave</code>, which is a <em>variadic</em> template function. </p>
@@ -484,8 +493,13 @@ template&lt;class TYPE , class... ARGS&gt; </div>
   </table>
   </dd>
 </dl>
+<p>Some useful information for defining template functions in the <code>.cxx</code> file:</p><ul>
+<li><a href="https://isocpp.org/wiki/faq/templates#template-specialization-speed">https://isocpp.org/wiki/faq/templates#template-specialization-speed</a></li>
+<li><a href="https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl">https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl</a></li>
+<li><a href="https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl-export-keyword">https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl-export-keyword</a> </li>
+</ul>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00046">46</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00038">38</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -496,6 +510,9 @@ template&lt;class TYPE , class... ARGS&gt; </div>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void CommonFunctions::Draw::DrawAndSaveRecursion </td>
@@ -505,12 +522,14 @@ template&lt;&gt; </div>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>End recursion for <code>DrawAndSaveRecursion</code>. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>Impossible to compile in <code>make</code> framework? </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00047">47</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00050">50</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
@@ -556,7 +575,7 @@ template&lt;&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00130">130</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00136">136</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -595,7 +614,7 @@ template&lt;&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00143">143</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00149">149</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>

@@ -5,7 +5,7 @@ var FrameworkSettings_8h =
     [ "UNIQUE_PTR", "FrameworkSettings_8h.html#ab23c42f2e2fc652c8f76ec9fd0fe9a2b", null ],
     [ "make_unique", "FrameworkSettings_8h.html#a7485bb18d755dcdc0d74f6a8a3b84292", null ],
     [ "Em", "FrameworkSettings_8h.html#ac54bcf071f4b1203600c9ba31e2c989e", null ],
-    [ "Extension", "FrameworkSettings_8h.html#a8478a73db2bbed31823016281780789c", null ],
+    [ "Extension", "FrameworkSettings_8h.html#a4bfabf1c1163d0e356555172cf825a40", null ],
     [ "gSigmaScaleFactorLow", "FrameworkSettings_8h.html#a77774996889347bcfb0241479ff4a796", null ],
     [ "gSigmaScaleFactorUp", "FrameworkSettings_8h.html#a869e829da176886304d7e7fd0351154e", null ],
     [ "K", "FrameworkSettings_8h.html#ab3fa6179c2325ff85d64b7a6db4f8b63", null ],

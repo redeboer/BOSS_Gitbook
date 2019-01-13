@@ -88,24 +88,32 @@ $(document).ready(function(){initNavTree('namespaceSettings_1_1Output.html','');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a8478a73db2bbed31823016281780789c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceSettings_1_1Output.html#a8478a73db2bbed31823016281780789c">Extension</a> = &quot;pdf&quot;</td></tr>
-<tr class="memdesc:a8478a73db2bbed31823016281780789c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default extension of output plots (e.g. <code>png</code>, <code>eps</code>, <code>jpg</code>, etc.).  <a href="#a8478a73db2bbed31823016281780789c">More...</a><br /></td></tr>
-<tr class="separator:a8478a73db2bbed31823016281780789c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b2502545822c854885380b81f2717a2"><td class="memItemLeft" align="right" valign="top">const TString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceSettings_1_1Output.html#a6b2502545822c854885380b81f2717a2">PlotOutputDir</a> = Form(&quot;/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/%s&quot;, Extension)</td></tr>
+<tr class="memitem:a4bfabf1c1163d0e356555172cf825a40"><td class="memItemLeft" align="right" valign="top">const TString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceSettings_1_1Output.html#a4bfabf1c1163d0e356555172cf825a40">Extension</a> = &quot;pdf&quot;</td></tr>
+<tr class="memdesc:a4bfabf1c1163d0e356555172cf825a40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default extension of output plots (e.g. <code>png</code>, <code>eps</code>, <code>jpg</code>, etc.).  <a href="#a4bfabf1c1163d0e356555172cf825a40">More...</a><br /></td></tr>
+<tr class="separator:a4bfabf1c1163d0e356555172cf825a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b2502545822c854885380b81f2717a2"><td class="memItemLeft" align="right" valign="top">const TString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceSettings_1_1Output.html#a6b2502545822c854885380b81f2717a2">PlotOutputDir</a> = Form(&quot;/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/%s&quot;, Extension.Data())</td></tr>
 <tr class="memdesc:a6b2502545822c854885380b81f2717a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default output directory for plots.  <a href="#a6b2502545822c854885380b81f2717a2">More...</a><br /></td></tr>
 <tr class="separator:a6b2502545822c854885380b81f2717a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a8478a73db2bbed31823016281780789c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8478a73db2bbed31823016281780789c">&#9670;&nbsp;</a></span>Extension</h2>
+<a id="a4bfabf1c1163d0e356555172cf825a40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bfabf1c1163d0e356555172cf825a40">&#9670;&nbsp;</a></span>Extension</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char * Settings::Output::Extension = &quot;pdf&quot;</td>
+          <td class="memname">const TString Settings::Output::Extension = &quot;pdf&quot;</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Default extension of output plots (e.g. <code>png</code>, <code>eps</code>, <code>jpg</code>, etc.). </p>
@@ -119,11 +127,19 @@ Variables</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const TString Settings::Output::PlotOutputDir = Form(&quot;/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/%s&quot;, Extension)</td>
+          <td class="memname">const TString Settings::Output::PlotOutputDir = Form(&quot;/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/%s&quot;, Extension.Data())</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Default output directory for plots. </p>
