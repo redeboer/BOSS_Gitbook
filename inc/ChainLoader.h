@@ -91,8 +91,10 @@
 			std::unordered_map<std::string, Bool_t>    fMap_O; //!< Map of addresses for Bool_t (boolean).
 
 		// * PRIVATE METHODS * //
-			template<typename TYPE> void SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map);
-			template<typename TYPE> void SetAddressSafe(TObject* obj, std::unordered_map<std::string, TYPE> &map);
+			template<typename TYPE>
+			void SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map);
+			template<typename TYPE>
+			void SetAddressSafe(TObject* obj, std::unordered_map<std::string, TYPE> &map);
 
 	};
 

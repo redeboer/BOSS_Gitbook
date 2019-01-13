@@ -795,34 +795,3 @@
 	{
 		AddItemsToNTuples(BookNTuple(tupleName), map);
 	}
-
-	// /**
-	//  * @brief Function that allows you to draw and save any set of `TObject`s.
-	//  */
-	// template<typename TYPE, class ...ARGS>
-	// void AddItemsToNTuples(std::map<std::string, NTuple::Item<TYPE> > &map, Option_t* option, const char* logScale, ARGS... args)
-	// {
-	// 	// * Create canvas * //
-	// 		TCanvas c;
-	// 		SetLogScale(c, logScale);
-	// 		c.SetBatch();
-	// 	// * Draw objects * //
-	// 		DrawAndSaveRecursion(option, args...);
-	// 	// * Save canvas * //
-	// 		const TString outputDir = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
-	// 		gSystem->mkdir(outputDir.Data());
-	// 		c.SaveAs(Form("%s/%s.%s", outputDir.Data(), filename, Settings::Output::Extension));
-	// }
-
-	// /**
-	//  * @brief The `CreateNTuples` functions are necessary for `AddItemsToNTuples`, which is a variadic template function.
-	//  */
-	// template<class... ARGS> void AddItemsToNTuples(Option_t* option, ARGS&&... args); // start recursion
-	// template<class TYPE, class... ARGS>
-	// void AddItemsToNTuples(Option_t* option, TYPE first, ARGS... args)
-	// {
-	// 	auto obj = dynamic_cast<TObject*>(first);
-	// 	if(obj) obj->Draw(option);
-	// 	AddItemsToNTuples(option, args...); // continue recursion
-	// }
-	// template<> void AddItemsToNTuples(Option_t* option) {} // end recursion

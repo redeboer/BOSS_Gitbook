@@ -41,10 +41,17 @@
 		 */
 		namespace Draw
 		{
-			template<class ...ARGS> void DrawAndSave(const char* saveas, Option_t* opt, const char* logScale, ARGS... args);
-			template<class... ARGS> void DrawAndSaveRecursion(Option_t* opt, ARGS&&... args); //!< Start recursion for `DrawAndSaveRecursion`.
-			template<class TYPE, class... ARGS> void DrawAndSaveRecursion(Option_t* opt, TYPE first, ARGS... args);
-			template<> void DrawAndSaveRecursion(Option_t* opt) {} //!< End recursion for `DrawAndSaveRecursion`. @todo Impossible to compile in `make` framework?
+			template<class... ARGS> extern
+			void DrawAndSaveRecursion(Option_t* opt, ARGS&&... args);
+				//!< Start recursion for `DrawAndSaveRecursion`.
+			template<class TYPE, class... ARGS> extern
+			void DrawAndSaveRecursion(Option_t* opt, TYPE first, ARGS... args);
+			template<> inline
+			void DrawAndSaveRecursion(Option_t* opt) {};
+				//!< End recursion for `DrawAndSaveRecursion`. @todo Impossible to compile in `make` framework?
+
+			template<class ...ARGS> extern
+			void DrawAndSave(const char* saveas, Option_t* opt, const char* logScale, ARGS... args);
 			void DrawAndSave(TH1 &hist, const char* saveas, Option_t* opt, TString logScale="");
 			void DrawAndSave(TH1D &hist, const char* saveas, TString logScale="");
 			void DrawAndSave(TH2D &hist, const char* saveas, TString logScale="");
@@ -91,17 +98,20 @@
 		 */
 		namespace Loop
 		{
-			template<typename FUNCTOR, typename ...Rest> void LoopTree(TTree* tree, FUNCTOR&& lambda, Rest&&... args);
+			template<typename FUNCTOR, typename ...Rest> extern
+			void LoopTree(TTree* tree, FUNCTOR&& lambda, Rest&&... args);
 		}
 		/**
 		 * @brief Namespace containing functions related to terminal output.
 		 */
 		namespace Print
 		{
-			template<typename TYPE> std::string CommaFormattedString(TYPE number);
+			template<typename TYPE> extern
+			std::string CommaFormattedString(TYPE number);
 		}
 
 	}
+
 
 
 /// @}

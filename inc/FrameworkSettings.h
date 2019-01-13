@@ -70,7 +70,7 @@
 	 * @date     October 25th, 2018
 	 */
 	namespace std_fix {
-		template <typename T, typename... Args>
+		template <typename T, typename... Args> extern
 		std::unique_ptr<T> make_unique(Args&&... args);
 	}
 
@@ -96,7 +96,7 @@
 		}
 		namespace Output
 		{
-			extern const char* Extension;
+			extern const TString Extension;
 			extern const TString PlotOutputDir;
 		}
 		/**

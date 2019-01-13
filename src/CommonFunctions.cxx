@@ -20,9 +20,10 @@
 
 
 
-// * =================================== * //
+// * ================================== * //
 // * ------- SUB-NAMESPACE DRAW ------- * //
-// * =================================== * //
+// * ================================== * //
+
 
 	/**
 	 * @brief The `DrawAndSaveRecursion` functions are necessary for `DrawAndSave`, which is a <i>variadic</i> template function.
@@ -33,9 +34,14 @@
 	 * @param first The first object that you want to plot.
 	 * @param args The objects that you want to plot.
 	 */
-	template<class TYPE, class... ARGS>
+	template<class TYPE, class... ARGS> inline
 	void CommonFunctions::Draw::DrawAndSaveRecursion(Option_t* opt, TYPE first, ARGS... args)
+
 	{
+		/// Some useful information for defining template functions in the `.cxx` file:
+		/// - https://isocpp.org/wiki/faq/templates#template-specialization-speed
+		/// - https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl
+		/// - https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl-export-keyword
 		auto obj = dynamic_cast<TObject*>(first);
 		if(obj) obj->Draw(opt);
 		DrawAndSaveRecursion(opt, args...); // continue recursion
@@ -190,7 +196,7 @@
 	const char* CommonFunctions::File::SetOutputFilename(const char* filenameWithoutExt)
 	{
 		// * Create full path * //
-		const char* fullpath = Form("%s/%s/%s.%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__, filenameWithoutExt, Settings::Output::Extension);
+		const char* fullpath = Form("%s/%s/%s.%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__, filenameWithoutExt, Settings::Output::Extension.Data());
 		// * Create dirname * //
 		TString dirname(fullpath);
 		Int_t pos = dirname.Last('/');

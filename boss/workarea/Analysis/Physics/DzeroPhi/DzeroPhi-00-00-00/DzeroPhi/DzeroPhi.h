@@ -62,10 +62,6 @@ protected:
 		template<typename TYPE> void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
 		template<typename TYPE> void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<std::string, NTuple::Item<TYPE> > &map);
 
-		// template<class... ARGS> void DrawAndSaveRecursion(Option_t* option, ARGS&&... args);
-		// template<class TYPE, class... ARGS> void DrawAndSaveRecursion(Option_t* option, TYPE first, ARGS... args);
-		// template<> void DrawAndSaveRecursion(Option_t* option) {} // end recursion
-
 	// * Protected data members * //
 		double fSmallestChiSq;
 		MsgStream fLog; //!< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
