@@ -110,15 +110,15 @@
 		 */
 		namespace Particles
 		{
-			inline const Particle Em(11);   //!< Electron (\f$ e^- \f$). 
-			inline const Particle Mum(13);   //!< Muon (\f$ \mu^- \f$).
-			inline const Particle Pip(211);  //!< Positive pion (\f$ \pi^+ \f$).
-			inline const Particle Pi0(111);  //!< Neutral pion (\f$ \pi^0 \f$).
+			inline const Particle Em  (11);   //!< Electron (\f$ e^- \f$). 
+			inline const Particle Mum (13);   //!< Muon (\f$ \mu^- \f$).
+			inline const Particle Pip (211);  //!< Positive pion (\f$ \pi^+ \f$).
+			inline const Particle Pi0 (111);  //!< Neutral pion (\f$ \pi^0 \f$).
 			inline const Particle Rhop(213);  //!< Positive rho meson (\f$ \rho^\pm \f$).
 			inline const Particle Rho0(113);  //!< Neutral rho meson (\f$ \rho^0 \f$).
-			inline const Particle K(321);  //!< Positive kaon (\f$ K^\pm \f$).  
-			inline const Particle K0(311);  //!< Neutral kaon (\f$ K^\pm \f$). 
-			inline const Particle P(2212); //!< Proton (\f$ p \f$).  
+			inline const Particle K   (321);  //!< Positive kaon (\f$ K^\pm \f$).  
+			inline const Particle K0  (311);  //!< Neutral kaon (\f$ K^\pm \f$). 
+			inline const Particle P   (2212); //!< Proton (\f$ p \f$).  
 		}
 	}
 

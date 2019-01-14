@@ -11,6 +11,7 @@
 	#include "TSystemDirectory.h"
 	#include "TTree.h"
 	#include <iostream>
+	#include <iomanip>
 	#include <map>
 
 
@@ -263,26 +264,14 @@
 					<< std::left  << "\"" << it->GetChain().GetName() << "\"" << std::endl;
 			}
 			std::cout << std::endl;
-		/// -# If there is a `TChain` called `"_cutvalues"`, print these values and names as well.
-			auto key = fChains.find("_cutvalues");
-			if(key == fChains.end()) return;
-			if(!key->second.GetEntries()) return;
-			key->second.GetChain().GetEntry(0); // get first entry of `TChain`
-			std::cout << "CUT PARAMTERS" << std::endl;
-			std::map<std::string, Double_t> tempMap; // temp *sorted* `map`
-			int length = 0;
-			for(auto it : key->second.Get_D()) {
-				tempMap[it.first] = it.second;
-				if(it.first.length() > length) length = it.first.length();
-			}
-			length += 4;
-			for(auto it : tempMap) {
-				std::cout
-					<< std::setw(length) << std::right << it.first << ": "
-					<< it.second << std::endl;
-			}
-			std::cout << std::endl;
+		/// -# If there is a `TChain` called `"_cutvalues"`, print these values and names as well using `PrintCuts`.
+			PrintCuts();
 	}
+
+
+	/**
+	 * @brief Function that allows you to print the cut definitions if they have been stored in the output ROOT file.
+	 */
 	void BOSSOutputLoader::PrintCuts()
 	{
 		/// <ol>
@@ -292,45 +281,31 @@
 			if(!key->second.GetEntries()) return;
 		/// <li> Use entry 0 to get the names of the cut parameters. We use a *sorted* `map` so that the keys are sorted automatically. At the same time, the maximum number of characters in all of the cut names is also determined.
 			key->second.GetChain().GetEntry(0);
-			size_t i = 0, tot = key->second.Get_D().size();
-			std::vector<std::string> names (tot);
-			std::vector<double>      entry0(tot);
+			std::map<std::string, std::vector<double> > cuts;
 			int length = 0;
 			for(auto it : key->second.Get_D()) {
-				names [i] = it.first;
-				entry0[i] = it.second;
-				if(names[i].length() > length) length = names[i].length();
-				++i;
+				cuts[it.first].push_back(it.second);
+				if(it.first.length() > length) length = it.first.length();
 			}
-			length += 4; // some indent
 		/// <li> If `"_cutvalues"` contains only 1 entry, <b>only</b> print a list of cut paramters and their values. Entry 0 of the `"_cutvalues"` tree is considered to be that value. (This is for backward compatibility with output of the older versions of `TrackSelector`.)
 			if(key->second.GetEntries()==1) {
 				std::cout << "CUT PARAMTERS" << std::endl;
-				for(i=0; i<tot; ++i) {
-					std::cout << std::setw(length) << std::right << names[i] << ": " << entry0[i] << std::endl;
+				for(auto it : cuts) {
+					std::cout << "  " << std::setw(length) << std::right << it.first << ": " << it.second << std::endl;
 				}
 				std::cout << std::endl;
 				return;
 			}
 		/// <li> If `"_cutvalues"` contains 3 entries, consider entry 0 to be the `min` value, entry 1 to be the `max`, and entry 2 to be `count` (the number of events or tracks that passed the cut).
 			/// <ol>
-			/// <li> Declare remaining two vectors for `max` and `count`.
-			std::vector<double> entry1(tot);
-			std::vector<int>    entry2(tot);
 			/// <li> Get values from entry 1 (`max`).
 			key->second.GetChain().GetEntry(1);
-			i = 0;
-			for(auto it : key->second.Get_D()) {
-				entry1[i] = it.second;
-				++i;
-			}
+			for(auto it : key->second.Get_D())
+				cuts[it.first].push_back(it.second);
 			/// <li> Get values from entry 2 (`count`).
 			key->second.GetChain().GetEntry(2);
-			i = 0;
-			for(auto it : key->second.Get_D()) {
-				entry2[i] = it.second;
-				++i;
-			}
+			for(auto it : key->second.Get_D())
+				cuts[it.first].push_back(it.second);
 			/// </ol>
 		/// <li> And print loaded values as a table: one row per parameters.
 			/// <ol>
@@ -341,12 +316,15 @@
 				<< std::setw(10)     << std::right << "MAX" << " | "
 				<< std::setw(10)     << std::right << "COUNT"
 				<< std::endl;
-			for(i=0; i<tot; ++i) {
+			/// <li> Print horizontal line beneath it.
+			std::cout << "  " << std::setfill('-') << std::setw(length+39) << "" << std::endl;
+			std::cout << std::setfill(' ');
+			for(auto it : entry0) {
 				/// <li> Column 1: <b>cut name</b>.
-				std::cout << std::setw(length) << std::left << names[i] << " | ";
+				std::cout << "  " << std::setw(length) << std::left << it.first << " | ";
 				/// <li> Column 2: <b>minimum</b>, if available.
 				std::cout << std::setw(10) << std::right;
-				if(entry0[i] > -DBL_MAX) std::cout << entry0[i];
+				if(it.second > -DBL_MAX) std::cout << it.second;
 				else std::cout << "";
 				std::cout << " | ";
 				/// <li> Column 3: <b>maximum</b>, if available.
@@ -356,6 +334,7 @@
 				std::cout << " | ";
 				/// <li> Column 4: <b>counter</b>, if available.
 				std::cout << std::setw(10) << std::right << entry2[i] << std::endl;
+				++i;
 				/// </ol>
 			}
 			std::cout << std::endl;
