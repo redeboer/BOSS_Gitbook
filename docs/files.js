@@ -13,7 +13,6 @@ var files =
     [ "CutObject.h", "CutObject_8h.html", null ],
     [ "D0phi_KpiKK.cxx", "D0phi__KpiKK_8cxx.html", "D0phi__KpiKK_8cxx" ],
     [ "D0phi_KpiKK.h", "D0phi__KpiKK_8h.html", null ],
-    [ "FrameworkSettings.cxx", "FrameworkSettings_8cxx.html", null ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
     [ "KKFitResult.cxx", "KKFitResult_8cxx.html", null ],
     [ "KKFitResult.h", "KKFitResult_8h.html", null ],

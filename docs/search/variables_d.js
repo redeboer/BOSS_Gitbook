@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#ac583aabf3b24dda24e97df945e029821',1,'Settings::Particles']]],
-  ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#af3bd991f771c237bda4e02a1f123d259',1,'Settings::Particles']]],
-  ['rndmseed',['RndmSeed',['../reconstruction_8txt.html#a8c2c1e69b2ea073b3e629c2ed6dd0b49',1,'RndmSeed():&#160;reconstruction.txt'],['../simulation_8txt.html#a8c2c1e69b2ea073b3e629c2ed6dd0b49',1,'RndmSeed():&#160;simulation.txt']]],
-  ['runidlist',['RunIdList',['../simulation_8txt.html#ae04425acdc7696b1027a5caef59d8e2a',1,'simulation.txt']]]
+  ['tofunitcm',['TofUnitCm',['../namespaceSettings_1_1Detector.html#a715b085f4483020a4a81cca11ee0a6e3',1,'Settings::Detector']]],
+  ['tofunitmm',['TofUnitMm',['../namespaceSettings_1_1Detector.html#abb477379321d99bd67bac345e4764fe0',1,'Settings::Detector']]],
+  ['tupletofib',['TupleTofIB',['../classRhopiAlg.html#a4ab8fcbab557d9bec8ab8852052277a7',1,'RhopiAlg']]],
+  ['tupletofob',['TupleTofOB',['../classRhopiAlg.html#a92e7f99a73482be4d206bd4dc86e83dc',1,'RhopiAlg']]]
 ];

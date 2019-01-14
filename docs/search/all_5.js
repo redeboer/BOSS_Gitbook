@@ -185,7 +185,6 @@ var searchData=
   ['fqualtofec',['fQualTofEC',['../classRhopiAlg.html#aa0b82adab74d48f63aa4c684f477fab9',1,'RhopiAlg']]],
   ['fqualtofib',['fQualTofIB',['../classRhopiAlg.html#a0ff889bcc8308d10ee9a8e94678e96ca',1,'RhopiAlg']]],
   ['fqualtofob',['fQualTofOB',['../classRhopiAlg.html#afc7aa7620209a9b2935d9bbd0dc2e6cc',1,'RhopiAlg']]],
-  ['frameworksettings_2ecxx',['FrameworkSettings.cxx',['../FrameworkSettings_8cxx.html',1,'']]],
   ['frameworksettings_2eh',['FrameworkSettings.h',['../FrameworkSettings_8h.html',1,'']]],
   ['frhittofec',['fRhitTofEC',['../classRhopiAlg.html#a1f3708b502c4dd8befb59d03a2abe921',1,'RhopiAlg']]],
   ['frvphi0',['fRvphi0',['../classRhopiAlg.html#a104623b8329459f4a38b3d2b967f27c2',1,'RhopiAlg']]],
