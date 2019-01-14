@@ -1,7 +1,6 @@
 var files =
 [
     [ "AnalyseBOSSOutput.C", "AnalyseBOSSOutput_8C.html", "AnalyseBOSSOutput_8C" ],
-    [ "ArgPair.cxx", "ArgPair_8cxx.html", null ],
     [ "ArgPair.h", "ArgPair_8h.html", null ],
     [ "BOSSOutputLoader.cxx", "BOSSOutputLoader_8cxx.html", null ],
     [ "BOSSOutputLoader.h", "BOSSOutputLoader_8h.html", null ],

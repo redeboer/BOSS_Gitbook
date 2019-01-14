@@ -6,7 +6,6 @@ var searchData=
   ['analysebossoutput_2ec',['AnalyseBOSSOutput.C',['../AnalyseBOSSOutput_8C.html',1,'']]],
   ['analysis_2etxt',['analysis.txt',['../analysis_8txt.html',1,'']]],
   ['argpair',['ArgPair',['../classArgPair.html',1,'ArgPair&lt; TYPE &gt;'],['../classArgPair.html#ab081561a5120ff3f666889fea4d6d279',1,'ArgPair::ArgPair()']]],
-  ['argpair_2ecxx',['ArgPair.cxx',['../ArgPair_8cxx.html',1,'']]],
   ['argpair_2eh',['ArgPair.h',['../ArgPair_8h.html',1,'']]],
   ['argpair_5fbase',['ArgPair_base',['../classArgPair__base.html',1,'ArgPair_base'],['../classArgPair__base.html#aa078191ff7872ab8bf4efe61e69dd5db',1,'ArgPair_base::ArgPair_base()']]]
 ];
