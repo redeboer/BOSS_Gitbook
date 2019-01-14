@@ -6,7 +6,8 @@ echo "Which version of \"topoana\" do you want to load?"
 echo "(if left empty, version ${VersionToCopy} will be used)"
 read tempVersion
 
-if [ "$VersionToCopy" != "" ]; then
+if [ "${tempVersion}" != "" ]; then
+echo "huh?"
 	VersionToCopy="${tempVersion}"
 fi
 
@@ -25,5 +26,5 @@ mkdir -p "${TargetPath}/v${VersionToCopy}"
 rm -rf "${TargetPath}/v${VersionToCopy}/"*
 
 echo "Copying \"${PathToCopy}\""
-echo "     to \"${TargetPath}\""
-cp -R "${PathToCopy}/"* "${TargetPath}/"
+echo "     to \"${TargetPath}\" ..."
+cp -fR "${PathToCopy}/"* "${TargetPath}/"
