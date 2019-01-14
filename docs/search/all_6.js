@@ -1,6 +1,7 @@
 var searchData=
 [
   ['globals',['Globals',['../group__BOSS__globals.html',1,'']]],
+  ['gconfigs',['gConfigs',['../namespaceSettings_1_1File.html#a890b21da3444e2402f9fa92a3879b297',1,'Settings::File']]],
   ['gdo_5fconv_5fd',['gDo_conv_d',['../group__BOSS__Afterburner__scripts.html#gac4d79ab366e7011a6d7961d214cd1f8b',1,'AnalyseBOSSOutput.C']]],
   ['gdo_5fconv_5fs',['gDo_conv_s',['../group__BOSS__Afterburner__scripts.html#gaede6c088f8c87eff491f17c778b830a9',1,'AnalyseBOSSOutput.C']]],
   ['gdo_5fgauss',['gDo_gauss',['../group__BOSS__Afterburner__scripts.html#gab231f074512fdca6caa52bcb8ac9e93e',1,'AnalyseBOSSOutput.C']]],
@@ -38,6 +39,7 @@ var searchData=
   ['getmassoffsetpercentage',['GetMassOffsetPercentage',['../classReconstructedParticle.html#a130e103764c1162501de2c1f023c30b5',1,'ReconstructedParticle']]],
   ['getname',['GetName',['../classParticle.html#a4f2ca39f24510c12afcb574c6bb57e42',1,'Particle']]],
   ['getnamelatex',['GetNameLaTeX',['../classParticle.html#a0ad89f7795ac792af9aa0c553b555eee',1,'Particle']]],
+  ['getoutputfilename',['GetOutputFilename',['../namespaceCommonFunctions_1_1File.html#a5428d97ac7295f19b8894f4833c358a5',1,'CommonFunctions::File']]],
   ['getparametername',['GetParameterName',['../group__BOSS__Afterburner__scripts.html#ga272a0b303a0709b326fd89835180dabe',1,'AnalyseBOSSOutput.C']]],
   ['getparametervalue',['GetParameterValue',['../group__BOSS__Afterburner__scripts.html#ga833ee0fdfa4feca5a2062a899d8f19d4',1,'AnalyseBOSSOutput.C']]],
   ['getparticlepdg',['GetParticlePDG',['../classParticle.html#aa9f7152d465aadc5f9414edc45a47386',1,'Particle']]],
@@ -45,6 +47,7 @@ var searchData=
   ['getplotrange',['GetPlotRange',['../classReconstructedParticle.html#aec7bbf487e76d3fc2c5cdb1b61fbd6bf',1,'ReconstructedParticle::GetPlotRange() const'],['../classReconstructedParticle.html#a6731ad7c08ab43cfc7dde67fb7ee47c3',1,'ReconstructedParticle::GetPlotRange(double &amp;from, double &amp;to) const']]],
   ['getsinglegaussianwidth',['GetSingleGaussianWidth',['../classReconstructedParticle.html#a8944e483c1d550ce861712db203db913',1,'ReconstructedParticle']]],
   ['getuppermass',['GetUpperMass',['../classReconstructedParticle.html#add109d84e447cce041b5c0289ba4526e',1,'ReconstructedParticle']]],
+  ['gextension',['gExtension',['../namespaceSettings_1_1File.html#a7175930b2173ec145ea7aeff45b48063',1,'Settings::File']]],
   ['gfilename',['gFilename',['../group__BOSS__Afterburner__scripts.html#ga23636f4759ac48447dafee25ab31c4af',1,'AnalyseBOSSOutput.C']]],
   ['gfitplots',['gFitplots',['../group__BOSS__Afterburner__scripts.html#ga1827bd3f0564f0233ec11fa4e85b29e9',1,'AnalyseBOSSOutput.C']]],
   ['glogy',['gLogY',['../group__BOSS__Afterburner__scripts.html#ga67e3cc7f35b93bfe3745fe9db832357c',1,'AnalyseBOSSOutput.C']]],
@@ -59,11 +62,12 @@ var searchData=
   ['gmasses',['gMasses',['../TrackSelector_8cxx.html#a94635a4a9049c12a1635e76e633dbfe6',1,'TrackSelector.cxx']]],
   ['gnmasses',['gNMasses',['../TrackSelector_8cxx.html#add1e3e93af63c85166fd1d56dcbbd123',1,'TrackSelector.cxx']]],
   ['gpdg',['gPDG',['../group__BOSS__Afterburner__settings.html#gac9e84faed4bc1858d832bc0242dbfb9e',1,'Particle.h']]],
+  ['gplotoutputdir',['gPlotOutputDir',['../namespaceSettings_1_1File.html#a362a79dc7589cbb88544209eadc814a4',1,'Settings::File']]],
   ['gplotstats',['gPlotstats',['../group__BOSS__Afterburner__scripts.html#gab0a71b90503aaf15bd393481cef03552',1,'AnalyseBOSSOutput.C']]],
   ['gprint',['gPrint',['../group__BOSS__Afterburner__scripts.html#ga56ea38d6c3c3dc20803a9bb94b04faf0',1,'AnalyseBOSSOutput.C']]],
   ['gpureplot',['gPureplot',['../group__BOSS__Afterburner__scripts.html#gace36d74e3ff06c0af48488f32863378a',1,'AnalyseBOSSOutput.C']]],
   ['gsetranges',['gSetranges',['../group__BOSS__Afterburner__scripts.html#ga735228ae997a3dd3c1317e50c6d83043',1,'AnalyseBOSSOutput.C']]],
-  ['gsigmascalefactorlow',['gSigmaScaleFactorLow',['../namespaceSettings_1_1Fit.html#a77774996889347bcfb0241479ff4a796',1,'Settings::Fit']]],
-  ['gsigmascalefactorup',['gSigmaScaleFactorUp',['../namespaceSettings_1_1Fit.html#a869e829da176886304d7e7fd0351154e',1,'Settings::Fit']]],
+  ['gsigmascalefactorlow',['gSigmaScaleFactorLow',['../namespaceSettings_1_1Fit.html#ac3e4eee61b387e1ee055453f23505cc8',1,'Settings::Fit']]],
+  ['gsigmascalefactorup',['gSigmaScaleFactorUp',['../namespaceSettings_1_1Fit.html#a6ae0a60c2e70326a709a2f039a609d06',1,'Settings::Fit']]],
   ['gspeedoflight',['gSpeedOfLight',['../TrackSelector_8cxx.html#ac1a7910e0394ee042f649bd450d63034',1,'TrackSelector.cxx']]]
 ];

@@ -16,6 +16,7 @@ var CommonFunctions_8h =
     [ "FitBWDoubleGaussianConvolution", "CommonFunctions_8h.html#af08b07df04a9458f49ef55bb3afb2a92", null ],
     [ "FitBWGaussianConvolution", "CommonFunctions_8h.html#a61603b01eb3aef3310f0917bd0e1c89e", null ],
     [ "FitDoubleGaussian", "CommonFunctions_8h.html#a3c21e48c1bf5db89bc65c5ba1b8f9be9", null ],
+    [ "GetOutputFilename", "CommonFunctions_8h.html#a5428d97ac7295f19b8894f4833c358a5", null ],
     [ "IsEmptyPtr", "CommonFunctions_8h.html#ae8f9a2074dbef8890193c38e3c7366a6", null ],
     [ "LoopTree", "CommonFunctions_8h.html#aceaee3e4acedcbc73f348434d11f7497", null ],
     [ "SaveCanvas", "CommonFunctions_8h.html#a36f64ebbbd69516c8d22dec07fc3037e", null ],

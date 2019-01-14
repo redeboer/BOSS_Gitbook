@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('namespaceCommonFunctions_1_1File.html'
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a5428d97ac7295f19b8894f4833c358a5"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1File.html#a5428d97ac7295f19b8894f4833c358a5">GetOutputFilename</a> (const char *filenameWithoutExt)</td></tr>
+<tr class="memdesc:a5428d97ac7295f19b8894f4833c358a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a default output file name according to the <code>FrameworkSettings</code>.  <a href="#a5428d97ac7295f19b8894f4833c358a5">More...</a><br /></td></tr>
+<tr class="separator:a5428d97ac7295f19b8894f4833c358a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59d365fb3792eaa3bab6d275a1a2d9ba"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1File.html#a59d365fb3792eaa3bab6d275a1a2d9ba">SetOutputFilename</a> (const char *filenameWithoutExt)</td></tr>
 <tr class="memdesc:a59d365fb3792eaa3bab6d275a1a2d9ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a file name from the settings in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> and from the file name (without extension) that you feed it.  <a href="#a59d365fb3792eaa3bab6d275a1a2d9ba">More...</a><br /></td></tr>
 <tr class="separator:a59d365fb3792eaa3bab6d275a1a2d9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -98,6 +101,36 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Namespace containing functions related to file naming and file I/O. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a5428d97ac7295f19b8894f4833c358a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5428d97ac7295f19b8894f4833c358a5">&#9670;&nbsp;</a></span>GetOutputFilename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * CommonFunctions::File::GetOutputFilename </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filenameWithoutExt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function creates a default output file name according to the <code>FrameworkSettings</code>. </p>
+<p>The file name consists of the plots output director, with the extension as subfolder and then the filename you want.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filenameWithoutExt</td><td>Output file name to which <code>gPlotOutputDir</code> in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> will be prepended and <b><code>gExtension</code> will be appended</b>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Full path of the resulting output file name. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00147">147</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+
+</div>
+</div>
 <a id="a59d365fb3792eaa3bab6d275a1a2d9ba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a59d365fb3792eaa3bab6d275a1a2d9ba">&#9670;&nbsp;</a></span>SetOutputFilename()</h2>
 
@@ -118,13 +151,13 @@ Functions</h2></td></tr>
 <p>You don't have to worry about creating the output directory, as it is created automatically from the slashes <code>/</code> in the resulting file name</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filenameWithoutExt</td><td><code>PlotOutputDir</code> in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> will be prepended to this file name and <code>Extension</code> will be appended. </td></tr>
+    <tr><td class="paramname">filenameWithoutExt</td><td>Output file name to which <code>gPlotOutputDir</code> in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code> will be prepended and <code>gExtension</code> will be appended. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Full path of the resulting output file name. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00148">148</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00160">160</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>

@@ -13,10 +13,11 @@ var FrameworkSettings_8h =
     [ "Pip", "FrameworkSettings_8h.html#ac9ed6f077e1c0ffdd1c127ba86724796", null ],
     [ "Rho0", "FrameworkSettings_8h.html#a5a404d3db862276fa70b85a353496d4e", null ],
     [ "Rhop", "FrameworkSettings_8h.html#ac5ee28e78d69a5286adf393275007703", null ],
-    [ "Extension", "FrameworkSettings_8h.html#a4bfabf1c1163d0e356555172cf825a40", null ],
-    [ "gSigmaScaleFactorLow", "FrameworkSettings_8h.html#a77774996889347bcfb0241479ff4a796", null ],
-    [ "gSigmaScaleFactorUp", "FrameworkSettings_8h.html#a869e829da176886304d7e7fd0351154e", null ],
-    [ "PlotOutputDir", "FrameworkSettings_8h.html#a6b2502545822c854885380b81f2717a2", null ],
-    [ "TofUnitCm", "FrameworkSettings_8h.html#a715b085f4483020a4a81cca11ee0a6e3", null ],
-    [ "TofUnitMm", "FrameworkSettings_8h.html#abb477379321d99bd67bac345e4764fe0", null ]
+    [ "gConfigs", "FrameworkSettings_8h.html#a890b21da3444e2402f9fa92a3879b297", null ],
+    [ "gExtension", "FrameworkSettings_8h.html#a7175930b2173ec145ea7aeff45b48063", null ],
+    [ "gPlotOutputDir", "FrameworkSettings_8h.html#a362a79dc7589cbb88544209eadc814a4", null ],
+    [ "gSigmaScaleFactorLow", "FrameworkSettings_8h.html#ac3e4eee61b387e1ee055453f23505cc8", null ],
+    [ "gSigmaScaleFactorUp", "FrameworkSettings_8h.html#a6ae0a60c2e70326a709a2f039a609d06", null ],
+    [ "TofUnitCm", "FrameworkSettings_8h.html#a237466bd3bc3165007e367f5266e1fb6", null ],
+    [ "TofUnitMm", "FrameworkSettings_8h.html#a56a0c8c9c4803afe1e5cea4e5fed8fb3", null ]
 ];
