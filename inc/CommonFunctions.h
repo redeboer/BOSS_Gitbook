@@ -9,6 +9,7 @@
 	#include "ReconstructedParticle.h"
 	#include "RooDataHist.h"
 	#include "RooRealVar.h"
+	#include "TCanvas.h"
 	#include "TH1.h"
 	#include "TH1D.h"
 	#include "TH1F.h"
@@ -41,16 +42,16 @@
 		 */
 		namespace Draw
 		{
-			template<class... ARGS> extern
+			template<class... ARGS>
 			void DrawAndSaveRecursion(Option_t* opt, ARGS&&... args);
 				//!< Start recursion for `DrawAndSaveRecursion`.
-			template<class TYPE, class... ARGS> extern
+			template<class TYPE, class... ARGS>
 			void DrawAndSaveRecursion(Option_t* opt, TYPE first, ARGS... args);
 			template<> inline
 			void DrawAndSaveRecursion(Option_t* opt) {};
 				//!< End recursion for `DrawAndSaveRecursion`. @todo Impossible to compile in `make` framework?
 
-			template<class ...ARGS> extern
+			template<class ...ARGS>
 			void DrawAndSave(const char* saveas, Option_t* opt, const char* logScale, ARGS... args);
 			void DrawAndSave(TH1 &hist, const char* saveas, Option_t* opt, TString logScale="");
 			void DrawAndSave(TH1D &hist, const char* saveas, TString logScale="");
@@ -98,7 +99,7 @@
 		 */
 		namespace Loop
 		{
-			template<typename FUNCTOR, typename ...Rest> extern
+			template<typename FUNCTOR, typename ...Rest>
 			void LoopTree(TTree* tree, FUNCTOR&& lambda, Rest&&... args);
 		}
 		/**
@@ -106,7 +107,7 @@
 		 */
 		namespace Print
 		{
-			template<typename TYPE> extern
+			template<typename TYPE>
 			std::string CommaFormattedString(TYPE number);
 		}
 
@@ -115,4 +116,101 @@
 
 
 /// @}
+// * ================================== * //
+// * ------- SUB-NAMESPACE DRAW ------- * //
+// * ================================== * //
+
+
+	/**
+	 * @brief The `DrawAndSaveRecursion` functions are necessary for `DrawAndSave`, which is a <i>variadic</i> template function.
+	 * 
+	 * @tparam TYPE The type of objects that you want to draw. @todo Should ideally be `TObject`s.
+	 * @tparam ARGS The type of the rest of the objects that you want to draw. The type is actually inferred from `TYPE`.
+	 * @param opt Draw options.
+	 * @param first The first object that you want to plot.
+	 * @param args The objects that you want to plot.
+	 */
+	template<class TYPE, class... ARGS> inline
+	void CommonFunctions::Draw::DrawAndSaveRecursion(Option_t* opt, TYPE first, ARGS... args)
+
+	{
+		/// Some useful information for defining template functions in the `.cxx` file:
+		/// - https://isocpp.org/wiki/faq/templates#template-specialization-speed
+		/// - https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl
+		/// - https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl-export-keyword
+		auto obj = dynamic_cast<TObject*>(first);
+		if(obj) obj->Draw(opt);
+		DrawAndSaveRecursion(opt, args...); // continue recursion
+	}
+
+
+	/**
+	 * @brief Function that allows you to draw and save any set of `TObject`s.
+	 * 
+	 * @tparam ARGS The type of objects that you want to draw. @todo Should ideally be `TObject`s.
+	 * @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
+	 * @param opt Draw options.
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 * @param args The objects that you want to plot.
+	 */
+	template<class ...ARGS> inline
+	void CommonFunctions::Draw::DrawAndSave(const char* saveas, Option_t* opt, const char* logScale, ARGS... args)
+	{
+		// * Create canvas in batch mode * //
+		TCanvas c;
+		c.SetBatch();
+		// * Draw objects * //
+		DrawAndSaveRecursion(opt, args...);
+		// * Save canvas * //
+		SaveCanvas(saveas, &c, logScale);
+	}
+
+
+
+// * ================================== * //
+// * ------- SUB-NAMESPACE LOOP ------- * //
+// * ================================== * //
+
+	/**
+	 * @brief Generalisation of the procedure when looping over a `TTree`.
+	 */
+	template<typename FUNCTOR, typename ...Rest> inline
+	void CommonFunctions::Loop::LoopTree(TTree* tree, FUNCTOR&& lambda, Rest&&... args)
+	{
+		if(CommonFunctions::Error::IsEmptyPtr(tree)) return;
+		auto nEntries = tree->GetEntries();
+		std::cout << "Looping over " << nEntries << " events in the \"" << tree->GetName() << "\" tree" << std::flush;
+		for(auto i = 0; i < nEntries; ++i) {
+			tree->GetEntry(i);
+			lambda(args...);
+		}
+		std::cout << "\rSuccesfully looped over " << nEntries << " events in the \"" << tree->GetName() << "\" tree" << std::endl;
+	}
+
+
+
+// * =================================== * //
+// * ------- SUB-NAMESPACE PRINT ------- * //
+// * =================================== * //
+
+
+	/**
+	 * @brief Create a std::string from a number that has a number between each 
+	 * @param number Number that you want to format.
+	 * @return Formatted std::string.
+	 */
+	template<typename TYPE> inline
+	std::string CommonFunctions::Print::CommaFormattedString(TYPE number)
+	{
+		std::string output = std::to_string(number);
+		int insertPosition = output.length()-3;
+		while (insertPosition > 0) {
+			output.insert(insertPosition, ",");
+			insertPosition -= 3;
+		}
+		return output;
+	}
+
+
+
 #endif

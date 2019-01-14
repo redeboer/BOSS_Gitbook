@@ -12,62 +12,14 @@
 	#include "RooLinkedList.h"
 	#include "RooPlot.h"
 	#include "RooPolynomial.h"
-	#include "TCanvas.h"
 	#include "TSystem.h"
 	#include <utility> // for shared pointers
-	// #include <iomanip>
-	// #include <locale>
 
 
 
 // * ================================== * //
 // * ------- SUB-NAMESPACE DRAW ------- * //
 // * ================================== * //
-
-
-	/**
-	 * @brief The `DrawAndSaveRecursion` functions are necessary for `DrawAndSave`, which is a <i>variadic</i> template function.
-	 * 
-	 * @tparam TYPE The type of objects that you want to draw. @todo Should ideally be `TObject`s.
-	 * @tparam ARGS The type of the rest of the objects that you want to draw. The type is actually inferred from `TYPE`.
-	 * @param opt Draw options.
-	 * @param first The first object that you want to plot.
-	 * @param args The objects that you want to plot.
-	 */
-	template<class TYPE, class... ARGS> inline
-	void CommonFunctions::Draw::DrawAndSaveRecursion(Option_t* opt, TYPE first, ARGS... args)
-
-	{
-		/// Some useful information for defining template functions in the `.cxx` file:
-		/// - https://isocpp.org/wiki/faq/templates#template-specialization-speed
-		/// - https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl
-		/// - https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl-export-keyword
-		auto obj = dynamic_cast<TObject*>(first);
-		if(obj) obj->Draw(opt);
-		DrawAndSaveRecursion(opt, args...); // continue recursion
-	}
-
-
-	/**
-	 * @brief Function that allows you to draw and save any set of `TObject`s.
-	 * 
-	 * @tparam ARGS The type of objects that you want to draw. @todo Should ideally be `TObject`s.
-	 * @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
-	 * @param opt Draw options.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 * @param args The objects that you want to plot.
-	 */
-	template<class ...ARGS>
-	void CommonFunctions::Draw::DrawAndSave(const char* saveas, Option_t* opt, const char* logScale, ARGS... args)
-	{
-		// * Create canvas in batch mode * //
-		TCanvas c;
-		c.SetBatch();
-		// * Draw objects * //
-		DrawAndSaveRecursion(opt, args...);
-		// * Save canvas * //
-		SaveCanvas(saveas, &c, logScale);
-	}
 
 
 	/**
@@ -664,48 +616,4 @@
 		if(yAxis) hist->GetYaxis()->SetTitle(yAxis);
 		if(zAxis) hist->GetZaxis()->SetTitle(zAxis);
 		if(update && gPad) gPad->Update();
-	}
-
-
-
-// * ================================== * //
-// * ------- SUB-NAMESPACE LOOP ------- * //
-// * ================================== * //
-
-	/**
-	 * @brief Generalisation of the procedure when looping over a `TTree`.
-	 */
-	template<typename FUNCTOR, typename ...Rest>
-	void CommonFunctions::Loop::LoopTree(TTree* tree, FUNCTOR&& lambda, Rest&&... args)
-	{
-		if(CommonFunctions::Error::IsEmptyPtr(tree)) return;
-		auto nEntries = tree->GetEntries();
-		std::cout << "Looping over " << nEntries << " events in the \"" << tree->GetName() << "\" tree" << std::flush;
-		for(auto i = 0; i < nEntries; ++i) {
-			tree->GetEntry(i);
-			lambda(args...);
-		}
-		std::cout << "\rSuccesfully looped over " << nEntries << " events in the \"" << tree->GetName() << "\" tree" << std::endl;
-	}
-
-
-// * =================================== * //
-// * ------- SUB-NAMESPACE PRINT ------- * //
-// * =================================== * //
-
-	/**
-	 * @brief Create a std::string from a number that has a number between each 
-	 * @param number Number that you want to format.
-	 * @return Formatted std::string.
-	 */
-	template<typename TYPE>
-	std::string CommonFunctions::Print::CommaFormattedString(TYPE number)
-	{
-		std::string output = to_string(number);
-		int insertPosition = output.length()-3;
-		while (insertPosition > 0) {
-			output.insert(insertPosition, ",");
-			insertPosition -= 3;
-		}
-		return output;
 	}
