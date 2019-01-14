@@ -68,14 +68,10 @@
 	 * @brief    Helper namespace in case of `C++11` compilation. The `std::make_unique` method of `std::unique_ptr` has not been defined by default and needs to be defined seperately, hence the '`_fix`' of `std`.
 	 * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	 * @date     October 25th, 2018
-	 * @todo     This version of the header contains the definitions as well (as `inline`) to avoid multiple definitions. But it should be possible to use the old version (`.old` and `.cpp`), which use `extern` and `inline`, without running into multiple definition problems.
 	 */
 	namespace std_fix {
-		template <typename T, typename... Args> inline
-		std::unique_ptr<T> make_unique(Args&&... args)
-		{
-			return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-		}
+		template <typename T, typename... Args> extern
+		std::unique_ptr<T> make_unique(Args&&... args);
 	}
 
 
@@ -90,18 +86,18 @@
 	{
 		namespace Detector
 		{
-			inline const double TofUnitCm = 29.9792458;
-			inline const double TofUnitMm = 299.792458;
+			extern const double TofUnitCm;
+			extern const double TofUnitMm;
 		}
 		namespace Fit
 		{
-			inline const double gSigmaScaleFactorLow = 0.;
-			inline const double gSigmaScaleFactorUp = 10.;
+			extern const double gSigmaScaleFactorLow;
+			extern const double gSigmaScaleFactorUp;
 		}
 		namespace Output
 		{
-			inline const TString Extension = "pdf";
-			inline const TString PlotOutputDir = Form("/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/%s", Extension.Data());
+			extern const TString Extension;
+			extern const TString PlotOutputDir;
 		}
 		/**
 		 * @brief List of relevant particles used in this analysis.
@@ -109,15 +105,15 @@
 		 */
 		namespace Particles
 		{
-			inline const Particle Em(11);   //!< Electron (\f$ e^- \f$). 
-			inline const Particle Mum(13);   //!< Muon (\f$ \mu^- \f$).
-			inline const Particle Pip(211);  //!< Positive pion (\f$ \pi^+ \f$).
-			inline const Particle Pi0(111);  //!< Neutral pion (\f$ \pi^0 \f$).
-			inline const Particle Rhop(213);  //!< Positive rho meson (\f$ \rho^\pm \f$).
-			inline const Particle Rho0(113);  //!< Neutral rho meson (\f$ \rho^0 \f$).
-			inline const Particle K(321);  //!< Positive kaon (\f$ K^\pm \f$).  
-			inline const Particle K0(311);  //!< Neutral kaon (\f$ K^\pm \f$). 
-			inline const Particle P(2212); //!< Proton (\f$ p \f$).  
+			extern const Particle Em;  
+			extern const Particle Mum; 
+			extern const Particle Pip; 
+			extern const Particle Pi0; 
+			extern const Particle Rhop;
+			extern const Particle Rho0;
+			extern const Particle K;   
+			extern const Particle K0;  
+			extern const Particle P;   
 		}
 	}
 
