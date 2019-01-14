@@ -31,25 +31,25 @@
 // * ------- GLOBALS ------- * //
 // * ======================= * //
 	// ! Do not change these parametes ! //
-	const TDatabasePDG gPDG;
-		//!< A `ROOT` `TDatabasePDG` object that contains all info of particles. Has to be constructed once, which is why it is a global.
+inline 	const TDatabasePDG gPDG;
+		inline //!< A `ROOT` `TDatabasePDG` object that contains all info of particles. Has to be constructed once, which is why it is a global.
 	// ! Customise these values ! //
-	const TParticlePDG* gParticlePDG = gPDG.GetParticle(111);
+	inline const TParticlePDG* gParticlePDG = gPDG.GetParticle(111);
 		//!< The particle that you want to analyse. (111 is the PDG code for pi0.
-	const char* gDefaultFileToLoad = "../data/root/ana_rhopi_data_0.root";
+	inline const char* gDefaultFileToLoad = "../data/root/ana_rhopi_data_0.root";
 		//!< Location of the ROOT file that you want to analyse.
-	const char* gTreeToLoad        = "fit4c";
+	inline const char* gTreeToLoad        = "fit4c";
 		//!< `TTree` that you want to loop over.
-	const char* gBrancheToLoad     = "mpi0";
+	inline const char* gBrancheToLoad     = "mpi0";
 		//!< Branche in the `TTree` that you want to use to create the invariant mass plot.
-	const char* gCandidate         = "#pi^{0}";
+	inline const char* gCandidate         = "#pi^{0}";
 		//!< Decay particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">`TLaTeX`</a>).
-	const char* gDaughters         = "#gamma#gamma";
+	inline const char* gDaughters         = "#gamma#gamma";
 		//!< Daughter particle string that will be used in the invariant mass plot labels. Use LaTeX here (see <a href="https://root.cern.ch/doc/master/classTLatex.html">`TLaTeX`</a>).
-	const char* gOutputExtension   = "pdf";
+	inline const char* gOutputExtension   = "pdf";
 		//!< Extension that is used to save the output plots.
 		//!< !! Note that it has to be set before the `gOutputDir` !!
-	const char* gOutputDir         = Form("../plots/%s/script_output/%s", gOutputExtension, __FILE__);
+	inline const char* gOutputDir         = Form("../plots/%s/script_output/%s", gOutputExtension, __FILE__);
 		//!< Directory to which the resulting output files will be written (format determined by `gOutputExtension`). Preferably write to the `plots` folder in this repository, as the contents will be ignored through `.gitignore`.
 		//!< !! No not end this string with a "/" !!
 

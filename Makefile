@@ -11,7 +11,8 @@ LIBNAME = BossAfterburner
 
 
 # * COMPILER FLAGS * #
-COMPILER = clang++ #g++
+# COMPILER = clang++
+COMPILER = g++
 ROOTINC    := -I$(shell root-config --incdir)
 ROOTCFLAGS := $(shell root-config --cflags)
 ROOTLIBS   := $(shell root-config --libs --evelibs --glibs)
@@ -49,7 +50,6 @@ LINK :
 ${EXEDIR}/%.exe : scripts/%.C
 	@echo "Compiling script \"$(notdir $<)\""
 	@$(COMPILER) $< -o $@ ${CFLAGS} ${INCLUDE_PATH} -L. -l${LIBNAME} ${LFLAGS}
-	#$(COMPILER) $< -o $@ ${ROOTINC} ${INCLUDE_PATH} -L. -l${LIBNAME} ${LFLAGS}
 
 # * REMOVE ALL BINARIES * #
 # * This rule can be called using "make clean"

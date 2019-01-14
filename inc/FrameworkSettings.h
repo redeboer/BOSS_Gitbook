@@ -90,18 +90,19 @@
 	{
 		namespace Detector
 		{
-			inline const double TofUnitCm = 29.9792458;
-			inline const double TofUnitMm = 299.792458;
+			inline constexpr double TofUnitCm = 29.9792458;
+			inline constexpr double TofUnitMm = 299.792458;
+		}
+		namespace File
+		{
+			inline constexpr const char* gConfigs = "configs";
+			inline constexpr const char* gExtension = "pdf";
+			inline constexpr const char* gPlotOutputDir = "plots";
 		}
 		namespace Fit
 		{
-			inline const double gSigmaScaleFactorLow = 0.;
-			inline const double gSigmaScaleFactorUp = 10.;
-		}
-		namespace Output
-		{
-			inline const TString Extension = "pdf";
-			inline const TString PlotOutputDir = Form("/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/%s", Extension.Data());
+			inline constexpr double gSigmaScaleFactorLow = 0.;
+			inline constexpr double gSigmaScaleFactorUp = 10.;
 		}
 		/**
 		 * @brief List of relevant particles used in this analysis.

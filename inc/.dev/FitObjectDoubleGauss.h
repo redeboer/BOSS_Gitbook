@@ -203,9 +203,9 @@ protected:
 			TCanvas c;
 			c.SetBatch();
 			frame->Draw();
-			const TString outputDir = Form("%s/%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__);
+			const TString outputDir = Form("%s/%s/%s", Settings::File::gPlotOutputDir, Settings::File::gExtension, __BASE_FILE__);
 			gSystem->mkdir(outputDir.Data());
-			c.SaveAs(Form("%s/DoubleGauss_%s.%s", outputDir.Data(), particle.GetName(), Settings::Output::Extension.Data()));
+			c.SaveAs(Form("%s/DoubleGauss_%s.%s", outputDir.Data(), particle.GetName(), Settings::File::gExtension));
 			c.Close();
 
 	}

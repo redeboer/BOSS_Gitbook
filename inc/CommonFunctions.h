@@ -72,6 +72,7 @@
 		 */
 		namespace File
 		{
+			const char* GetOutputFilename(const char* filenameWithoutExt);
 			const char* SetOutputFilename(const char* filenameWithoutExt);
 		}
 		/**

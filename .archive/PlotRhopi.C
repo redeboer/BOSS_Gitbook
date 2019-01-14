@@ -42,12 +42,12 @@ void PlotAnaOutput()
 
 	// * Set output directories *
 	// ! Set these depending on which histograms you save
-		gSystem->mkdir(Output::Extension);
-		gSystem->mkdir(Form("%s/%s", Output::PlotOutputDir.Data(), "branches"));
-		gSystem->mkdir(Form("%s/%s", Output::PlotOutputDir.Data(), "tof1"));
-		gSystem->mkdir(Form("%s/%s", Output::PlotOutputDir.Data(), "tof2"));
-		gSystem->mkdir(Form("%s/%s", Output::PlotOutputDir.Data(), "fit4c"));
-		gSystem->mkdir(Form("%s/%s", Output::PlotOutputDir.Data(), "fit5c"));
+		gSystem->mkdir(Output::gExtension);
+		gSystem->mkdir(Form("%s/%s/%s", Output::gPlotOutputDir, Output::gExtension, "branches"));
+		gSystem->mkdir(Form("%s/%s/%s", Output::gPlotOutputDir, Output::gExtension, "tof1"));
+		gSystem->mkdir(Form("%s/%s/%s", Output::gPlotOutputDir, Output::gExtension, "tof2"));
+		gSystem->mkdir(Form("%s/%s/%s", Output::gPlotOutputDir, Output::gExtension, "fit4c"));
+		gSystem->mkdir(Form("%s/%s/%s", Output::gPlotOutputDir, Output::gExtension, "fit5c"));
 
 	// * Create histograms * //
 		// * Invariant mass plots *
@@ -177,26 +177,26 @@ void PlotAnaOutput()
 
 	// * Draw and save histograms * //
 		// * Invariant mass plots *
-			DrawAndSave(histFit4c_mpi0,  Form("fit4c/histFit4c_mpi0.%s",  Output::Extension));
-			DrawAndSave(histFit5c_mrho0, Form("fit5c/histFit5c_mrho0.%s", Output::Extension));
-			DrawAndSave(histFit5c_mrhom, Form("fit5c/histFit5c_mrhom.%s", Output::Extension));
-			DrawAndSave(histFit5c_mrhop, Form("fit5c/histFit5c_mrhop.%s", Output::Extension));
+			DrawAndSave(histFit4c_mpi0,  Form("fit4c/histFit4c_mpi0.%s",  Output::gExtension));
+			DrawAndSave(histFit5c_mrho0, Form("fit5c/histFit5c_mrho0.%s", Output::gExtension));
+			DrawAndSave(histFit5c_mrhom, Form("fit5c/histFit5c_mrhom.%s", Output::gExtension));
+			DrawAndSave(histFit5c_mrhop, Form("fit5c/histFit5c_mrhop.%s", Output::gExtension));
 		// * Outer barrel plots *
-			DrawAndSave(histFit5c_dalitz_rhom_rho0, Form("fit5c/histFit5c_dalitz_rhom_rho0.%s", Output::Extension));
-			DrawAndSave(histFit5c_dalitz_rhop_rho0, Form("fit5c/histFit5c_dalitz_rhop_rho0.%s", Output::Extension));
-			DrawAndSave(histFit5c_dalitz_rhom_rhop, Form("fit5c/histFit5c_dalitz_rhom_rhop.%s", Output::Extension));
+			DrawAndSave(histFit5c_dalitz_rhom_rho0, Form("fit5c/histFit5c_dalitz_rhom_rho0.%s", Output::gExtension));
+			DrawAndSave(histFit5c_dalitz_rhop_rho0, Form("fit5c/histFit5c_dalitz_rhop_rho0.%s", Output::gExtension));
+			DrawAndSave(histFit5c_dalitz_rhom_rhop, Form("fit5c/histFit5c_dalitz_rhom_rhop.%s", Output::gExtension));
 		// * Inner barrel ToF *
-			DrawAndSave(histTof1_e,  Form("tof1/histTof1_e.%s",  Output::Extension));
-			DrawAndSave(histTof1_mu, Form("tof1/histTof1_mu.%s", Output::Extension));
-			DrawAndSave(histTof1_pi, Form("tof1/histTof1_pi.%s", Output::Extension));
-			DrawAndSave(histTof1_k,  Form("tof1/histTof1_k.%s",  Output::Extension));
-			DrawAndSave(histTof1_p,  Form("tof1/histTof1_p.%s",  Output::Extension));
+			DrawAndSave(histTof1_e,  Form("tof1/histTof1_e.%s",  Output::gExtension));
+			DrawAndSave(histTof1_mu, Form("tof1/histTof1_mu.%s", Output::gExtension));
+			DrawAndSave(histTof1_pi, Form("tof1/histTof1_pi.%s", Output::gExtension));
+			DrawAndSave(histTof1_k,  Form("tof1/histTof1_k.%s",  Output::gExtension));
+			DrawAndSave(histTof1_p,  Form("tof1/histTof1_p.%s",  Output::gExtension));
 		// * Outer barrel ToF *
-			DrawAndSave(histTof2_e,  Form("tof2/histTof2_e.%s",  Output::Extension));
-			DrawAndSave(histTof2_mu, Form("tof2/histTof2_mu.%s", Output::Extension));
-			DrawAndSave(histTof2_pi, Form("tof2/histTof2_pi.%s", Output::Extension));
-			DrawAndSave(histTof2_k,  Form("tof2/histTof2_k.%s",  Output::Extension));
-			DrawAndSave(histTof2_p,  Form("tof2/histTof2_p.%s",  Output::Extension));
+			DrawAndSave(histTof2_e,  Form("tof2/histTof2_e.%s",  Output::gExtension));
+			DrawAndSave(histTof2_mu, Form("tof2/histTof2_mu.%s", Output::gExtension));
+			DrawAndSave(histTof2_pi, Form("tof2/histTof2_pi.%s", Output::gExtension));
+			DrawAndSave(histTof2_k,  Form("tof2/histTof2_k.%s",  Output::gExtension));
+			DrawAndSave(histTof2_p,  Form("tof2/histTof2_p.%s",  Output::gExtension));
 
 	// * TEMP *
 		// // * Get entry

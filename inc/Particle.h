@@ -14,7 +14,7 @@
 /// @addtogroup BOSS_Afterburner_settings
 /// @{
 
-	const TDatabasePDG gPDG; //!< A `ROOT` `TDatabasePDG` object that contains all info of particles. Has to be constructed once, which is why it is a global.
+	inline const TDatabasePDG gPDG; //!< A `ROOT` `TDatabasePDG` object that contains all info of particles. Has to be constructed once, which is why it is a global.
 
 /// @}
 // * ================================ * //

@@ -139,16 +139,28 @@
 
 
 	/**
+	 * @brief This function creates a default output file name according to the `FrameworkSettings`. The file name consists of the plots output director, with the extension as subfolder and then the filename you want.
+	 * 
+	 * @param filenameWithoutExt Output file name to which `gPlotOutputDir` in `FrameworkSettings.h` will be prepended and <b>`gExtension` will be appended</b>.
+	 * @return Full path of the resulting output file name.
+	 */
+	const char* CommonFunctions::File::GetOutputFilename(const char* filenameWithoutExt)
+	{
+		return Form("%s/%s/%s.%s", Settings::File::gPlotOutputDir, Settings::File::gExtension, filenameWithoutExt, Settings::File::gExtension);
+	}
+
+
+	/**
 	 * @brief This function creates a file name from the settings in `FrameworkSettings.h` and from the file name (without extension) that you feed it.
 	 * @details You don't have to worry about creating the output directory, as it is created automatically from the slashes `/` in the resulting file name
 	 * 
-	 * @param filenameWithoutExt `PlotOutputDir` in `FrameworkSettings.h` will be prepended to this file name and `Extension` will be appended.
+	 * @param filenameWithoutExt Output file name to which `gPlotOutputDir` in `FrameworkSettings.h` will be prepended and `gExtension` will be appended.
 	 * @return Full path of the resulting output file name.
 	 */
 	const char* CommonFunctions::File::SetOutputFilename(const char* filenameWithoutExt)
 	{
 		// * Create full path * //
-		const char* fullpath = Form("%s/%s/%s.%s", Settings::Output::PlotOutputDir.Data(), __BASE_FILE__, filenameWithoutExt, Settings::Output::Extension.Data());
+		const char* fullpath = GetOutputFilename(filenameWithoutExt);
 		// * Create dirname * //
 		TString dirname(fullpath);
 		Int_t pos = dirname.Last('/');
