@@ -143,7 +143,7 @@ BESIII has some documentation on working with CMT available [here](https://docbe
 {% hint style="info" %}
 #### Compare package output
 
-Another reason for working with a copy of the old version of your package is that you can still checkout and run that old version \(just repeat the above procedure within the folder of that old version\). This allows you to run the same analysis \(see [Running jobs](running-jobs.md)\) again in the old package so that you can compare the output. **Making sure that structural updates of components of software still result in the same output is a vital part of software development!**
+Another reason for working with a copy of the old version of your package is that you can still checkout and run that old version \(just repeat the above procedure within the folder of that old version\). This allows you to run the same analysis \(see [Running jobs](../jobs/)\) again in the old package so that you can compare the output. **Making sure that structural updates of components of software still result in the same output is a vital part of software development!**
 {% endhint %}
 
 ### Adding packages to BOSS <a id="adding-packages-to-boss"></a>
@@ -210,5 +210,5 @@ Note that in [Step 5 when we set up the work area](https://besiii.gitbook.io/bos
 
 ### Other example packages
 
-{% page-ref page="../docs-packages/rhopi.md" %}
+{% page-ref page="../packages/rhopi.md" %}
 
