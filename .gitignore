@@ -71,6 +71,7 @@ main
 
 # Compontents of topoana
 **.err
+**.tex
 **.log
 **.out
 **.root
