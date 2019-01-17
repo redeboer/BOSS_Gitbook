@@ -1,0 +1,61 @@
+Event trees and their respective initial-final states:
+
+index:  1	iEvtTr:  0	iEvtIFSts:  0	nEvts:  158	nCcEvts:  ---	nTotEvts:  158	nCmltEvts:  158
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+( e+ e- --> B0 anti-B0 )
+
+index:  2	iEvtTr:  1	iEvtIFSts:  1	nEvts:  19	nCcEvts:  23	nTotEvts:  42	nCmltEvts:  200
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 B0
+( e+ e- --> B0 B0 )
+
+
+Event initial-final states:
+
+index:  1	iEvtIFSts:  0	nEvts:  158	nCcEvts:  ---	nTotEvts:  158	nCmltEvts:  158
+  e+ e- --> B0 anti-B0
+
+index:  2	iEvtIFSts:  1	nEvts:  19	nCcEvts:  23	nTotEvts:  42	nCmltEvts:  200
+  e+ e- --> B0 B0
+
+
+Signal inclusive event branches:
+
+index:  1	iSigIncEvtBr:  0	nEtrs:  0	nCcEtrs:  0	nTotEtrs:  0	nCmltEtrs:  0
+  B0 --> J/psi + anything
+
+index:  2	iSigIncEvtBr:  1	nEtrs:  0	nCcEtrs:  0	nTotEtrs:  0	nCmltEtrs:  0
+  B0 --> e+ nu_e + anything
+
+
+Signal event trees and their respective initial-final states:
+
+index:  1	iSigEvtTr:  0	iSigEvtIFSts:  0	iEvtTr:  0	iEvtIFSts:  0	nEvts:  158	nCcEvts:  ---	nTotEvts:  158	nCmltEvts:  158
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+( e+ e- --> B0 anti-B0 )
+
+index:  2	iSigEvtTr:  1	iSigEvtIFSts:  1	iEvtTr:  1_cc	iEvtIFSts:  1_cc	nEvts:  23	nCcEvts:  19	nTotEvts:  42	nCmltEvts:  200
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> anti-B0 anti-B0
+( e+ e- --> anti-B0 anti-B0 )
+
+
+Signal event initial-final states corresponding to signal event trees:
+
+index:  1	iSigEvtIFSts:  0	iEvtIFSts:  0	nEvts:  158	nCcEvts:  ---	nTotEvts:  158	nCmltEvts:  158
+  e+ e- --> B0 anti-B0
+
+index:  2	iSigEvtIFSts:  1	iEvtIFSts:  1_cc	nEvts:  23	nCcEvts:  19	nTotEvts:  42	nCmltEvts:  200
+  e+ e- --> anti-B0 anti-B0
+
+
+Signal event initial-final states:
+
+index:  1	iSigEvtIFSts2:  0	iEvtIFSts2:  0	nEvts:  158	nCcEvts:  ---	nTotEvts:  158	nCmltEvts:  158
+  e+ e- --> B0 anti-B0
+
+index:  2	iSigEvtIFSts2:  1	iEvtIFSts2:  1	nEvts:  19	nCcEvts:  23	nTotEvts:  42	nCmltEvts:  200
+  e+ e- --> B0 B0
+

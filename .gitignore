@@ -67,3 +67,14 @@ main
 *.tmp
 *.bosserr
 *.bosslog
+
+# Compontents of topoana
+**/TopoAna/**/*.err
+**/TopoAna/**/*.out
+**/TopoAna/**/*.root
+**/TopoAna/**/*.time
+**/TopoAna/**/*.dat_auto
+**/TopoAna/**/*.dat_temp*
+**/TopoAna/**/*.log
+**/TopoAna/*/*/*/**/*.pdf
+**/TopoAna/**/test/*
