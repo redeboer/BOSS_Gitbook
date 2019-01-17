@@ -15,7 +15,7 @@ There are two main directories that you will be using:
 1. the _BOSS workarea_, from which access to BOSS is managed and which contains your own BOSS packages \(mostly event selection\), and
 2. an _analysis folder_, which contains scripts that you design yourself to analyse output from BOSS \(for example fitting histograms\). You can even decide to have this folder locally on your own pc.
 
-It is totally up to you where you place these folders. A common procedure is to put the _analysis folder_ in the `ihepbatch` folder, but have a look at the [organisation of the IHEP server](ihep-server.md) to decide if there is some other folder that meets your needs.
+It is totally up to you where you place these folders. A common procedure is to put the _analysis folder_ in the `ihepbatch` folder, but have a look at the [organisation of the IHEP server]() to decide if there is some other folder that meets your needs.
 
 {% hint style="info" %}
 #### Optional helper for beginners:
@@ -30,7 +30,7 @@ Data generated with BOSS through the _workarea_ scripts will then be written to 
 {% hint style="info" %}
 #### In case of large data
 
-If you work with large data samples, you may want to write your output to[`scratchfs`](ihep-server.md). Take care to modify the paths your job option files accordingly!
+If you work with large data samples, you may want to write your output to[`scratchfs`](). Take care to modify the paths your job option files accordingly!
 {% endhint %}
 
 ## \(A\) Set up the _BOSS Afterburner_

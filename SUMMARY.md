@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Main page](README.md)
+* [Contents of the tutorial pages](contents.md)
 * [Introduction to BESIII](intro.md)
 
 ## Working with BOSS
@@ -28,8 +29,8 @@
 ## Appendices
 
 * [Tips, Tricks, and Troubleshooting](docs-appendices/tips.md)
-* [Further reading](docs-appendices/references.md)
 * [Glossary](docs-appendices/glossary.md)
 * [Conventions](docs-appendices/conventions.md)
+* [Further reading](docs-appendices/references.md)
 * [About](docs-appendices/about.md)
 
