@@ -55,7 +55,7 @@ Jobs that take a long time to be executed in the queue will be killed by the ser
 
 You can do all this by hand, but it is much more convenient to generate these files with some script \(whether C++, bash or `tcsh`\) that can generate `jobOptions*.txt` files from a certain _template file_. In these, you for instance replace the specific paths and seed number you used by generic tokens like `INPUTFILE`, `OUTPUTFILE`, and `RANDOMSEED`. You can then use the script to replace these unique tokens by a path or a unique number. Have a look at the [`awk`](https://www.tldp.org/LDP/abs/html/awk.html) and [`sed`](https://www.gnu.org/software/sed/manual/sed.html) commands to get the idea.
 
-### Splitting scripts in the BOSS Afterburner <a id="splitting-scripts-in-the-boss-afterburner"></a>
+## Splitting scripts in the BOSS Afterburner
 
 The BOSS Afterburner offers some bash scripts that can do job splitting for you. In the case of Monte Carlo simulation, reconstruction, and analysis, you work with run numbers and with unique random seed numbers, whereas in data analysis, you have to make selections of `dst` data files. The[`jobs` folder of the BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner/tree/master/jobs) therefore contains two different types of generation scripts.
 
@@ -63,13 +63,13 @@ As you can see, the folder contains a `templates` folder with files that contain
 
 Finally, script procedures that are shared by both type of job option generation have been grouped into functions in the `CommonFunctions.sh` shell script.
 
-#### Job options for Monte Carlo simulations <a id="job-options-for-monte-carlo-simulations"></a>
+### Job options for Monte Carlo simulations
 
 These are built on four job option template files: one for the `sim` step, one for `rec`, one for `ana`, and one for the shell script that you feed to the 'queue' \(`hep_sub`\). Here, the complicating ingredient is the random seed number \(which has to be unique for each `sim` job option file\) and the list of run numbers \(which will determine the parameters in simulation and reconstruction\).
 
 Usage is illustrated in the [`ExampleScript_mc.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/ExampleScript_mc.sh) script.
 
-#### Job options for data \(or inclusive Monte Carlo\) analysis <a id="job-options-for-data-or-inclusive-monte-carlo-analysis"></a>
+### Job options for data \(or Monte Carlo\) analysis
 
 These only result in `ana` job option files and in a shell script that you use to submit to the queue. Here, the complicating ingredient is the list of `dst` that you feed to the `ana` job option file. This list of filenames has to be split up into subgroups \(one for each job option file\) and has to be inserted into the C++ code \(at `EventCnvSvc.digiRootInputFile`\), formatted as a C++ vector of strings. You will also want not to put too many `dst` files there, because you then run the risk that job will be killed if the run time is too long. The generation of this type of job option files is therefore comprised of two parts:
 
@@ -82,11 +82,5 @@ Usage of both the relevant functions in the `CommonFunctions.sh` script and of t
 #### Analysing all events
 
 In data analysis, you usually want to use all events available: cuts are applied to get rid of events you don't want. It is therefore better to use **`-1`**, which stands for '_all_ events', for the maximum number of events in `ApplicationMgr.EvtMax`.
-{% endhint %}
-
-{% hint style="danger" %}
-Currently, this it the end of the tutorial. The rest is still under development.
-
-Since this tutorial is still being tested, please provide any comments or feedback you have to [remco.de.boer@ihep.ac.cn](mailto:remco.de.boer@ihep.ac.cn).
 {% endhint %}
 
