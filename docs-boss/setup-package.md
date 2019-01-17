@@ -210,5 +210,5 @@ Note that in [Step 5 when we set up the work area](https://besiii.gitbook.io/bos
 
 ### Other example packages
 
-{% page-ref page="rhopi.md" %}
+{% page-ref page="../docs-packages/rhopi.md" %}
 

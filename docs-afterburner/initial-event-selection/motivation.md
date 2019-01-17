@@ -1,4 +1,4 @@
-# TrackSelector and derived algorithms
+# Motivation
 
 {% hint style="danger" %}
 **The `TrackSelector` package and derived packages are still being developed and tested.**

@@ -1,6 +1,6 @@
-# The RhopiAlg package
+# RhopiAlg
 
-## The `Rhopi` algorithm
+## The `RhopiAlg` package
 
 ### Introduction
 
