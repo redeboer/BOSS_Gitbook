@@ -1,0 +1,2002 @@
+\documentclass[landscape]{article}
+\usepackage{/home/belle2/zhouxy/studyarea/c++/tools/topoana/v1.6.0/share/geometry}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+\usepackage{/home/belle2/zhouxy/studyarea/c++/tools/topoana/v1.6.0/share/makecell}
+\usepackage{color}
+\begin{document}
+\title{Topology Analysis \footnote{\normalsize{This package is implemented with reference to a program called {\sc Topo}, which is developed by Prof. Shuxian Du from Zhengzhou University in China and has been widely used by people in BESIII collaboration. Several years ago, when I was a PhD student working on BESIII experiment, I learned the idea of topology analysis and a lot of programming techniques from the {\sc Topo} program. So, I really appreciate Prof. Du's original work very much. To meet my own needs and to practice developing analysis tools with C++, ROOT and LaTex, I wrote the package from scratch. At that time, the package functioned well but was relatively simple. At the end of last year (2017), my co-supervisor, Prof. Chengping Shen reminded me that it could be a useful tool for Belle II experiment as well. So, I revised and extended it, making it more well-rounded and suitable for Belle II experiment. Here, I would like to thank Prof. Du for his orignial work, Prof. Shen for his suggestion and encouragement, and Wencheng Yan, Sen Jia, Yubo Li, Suxian Li, Longke Li, Guanda Gong, Junhao Yin, Xiaoping Qin, Xiqing Hao, HongPeng Wang, JiaWei Zhang for their efforts in helping me test the program.}} \\ \vspace{0.1cm} \Large{(v1.6.0)}}
+\author{Xingyu Zhou \footnote{\normalsize{Email: zhouxy@buaa.edu.cn}} \\ \vspace{0.1cm} Beihang University}
+\maketitle
+
+\clearpage
+
+\newgeometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\listoftables
+
+\newgeometry{left=0.0cm,right=0.0cm,top=2.5cm,bottom=2.5cm}
+
+\clearpage
+
+\begin{table}[htbp!]
+\caption{Event trees and their respective initial-final states.}
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+1 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \bar{K}^{0} K^{*+} D^{*0} D_{1}^{-} ,
+\bar{K}^{0} \rightarrow K_{L} ,
+K^{*+} \rightarrow \pi^{0} K^{+} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+D_{1}^{-} \rightarrow \pi^{0} \bar{D}^{*-} ,
+\pi^{0} \rightarrow e^{+} e^{-} ,
+$ \\ $
+D^{0} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} K_{S} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\bar{D}^{0} \rightarrow \rho^{-} K^{*+} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+K^{*+} \rightarrow \pi^{+} K^{0} ,
+$ \\ $
+\pi^{0} \rightarrow e^{+} e^{-} ,
+K^{0} \rightarrow K_{L} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{+} e^{-} e^{-} K_{L} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma 
+$) } & 28 & 28 & 25 & 25 \\
+\hline
+2 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} K^{+} K^{*-} D^{*0} D_{1}^{\prime-} ,
+K^{*-} \rightarrow \pi^{0} K^{-} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+D_{1}^{\prime-} \rightarrow \pi^{-} \bar{D}^{*0} ,
+D^{0} \rightarrow \rho^{+} K^{*-} ,
+\bar{D}^{*0} \rightarrow \bar{D}^{0} \gamma ,
+$ \\ $
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+K^{*-} \rightarrow \pi^{0} K^{-} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K^{*} ,
+\pi^{0} \rightarrow e^{+} e^{-} ,
+K^{*} \rightarrow \pi^{-} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{-} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 58 & 57 & 14 & 39 \\
+\hline
+3 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \rho^{+} \rho^{-} \omega \bar{D}^{0} D^{*0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{D}^{0} \rightarrow e^{-} \bar{\nu}_{e} K^{+} ,
+$ \\ $
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+D^{0} \rightarrow \rho^{0} \bar{K}^{*} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 22 & 22 & 11 & 50 \\
+\hline
+4 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \bar{K}^{0} \eta^{\prime} \bar{D}^{*-} D_{s1}^{\prime+} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+\eta^{\prime} \rightarrow \pi^{+} \pi^{-} \eta ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D_{s1}^{\prime+} \rightarrow \pi^{0} D_{s}^{*+} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} ,
+$ \\ $
+\eta \rightarrow \pi^{0} \pi^{0} \pi^{0} ,
+\bar{D}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{+} ,
+D_{s}^{*+} \rightarrow D_{s}^{+} \gamma ,
+D_{s}^{+} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 40 & 40 & 10 & 60 \\
+\hline
+5 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \rho^{0} \pi^{+} \pi^{-} D^{*+} \bar{D}^{*-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} K^{-} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{-} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma 
+$) } & 57 & 48 & 9 & 69 \\
+\hline
+6 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \bar{K}^{0} K^{*} D^{0} D_{1}^{\prime-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+K^{*} \rightarrow \pi^{-} K^{+} ,
+D^{0} \rightarrow \pi^{+} \omega K^{-} ,
+D_{1}^{\prime-} \rightarrow \pi^{-} \bar{D}^{*0} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{D}^{*0} \rightarrow \bar{D}^{0} \gamma ,
+\bar{D}^{0} \rightarrow \pi^{-} K^{+} \eta^{\prime} ,
+\eta^{\prime} \rightarrow \rho^{0} \gamma ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{-} \gamma \gamma \gamma \gamma 
+$) } & 0 & 0 & 8 & 77 \\
+\hline
+7 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \bar{D}^{0} D_{1}^{0} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\bar{D}^{0} \rightarrow \pi^{-} \omega K^{+} ,
+D_{1}^{0} \rightarrow \pi^{-} D^{*+} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+$ \\ $
+D^{0} \rightarrow \rho^{0} \pi^{+} K^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 50 & 50 & 6 & 83 \\
+\hline
+8 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \omega \omega D^{*0} \bar{D}^{*0} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+D^{0} \rightarrow K_{L} \pi^{+} \pi^{-} ,
+$ \\ $
+\bar{D}^{0} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} K^{0} ,
+K^{0} \rightarrow K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 103 & 98 & 6 & 89 \\
+\hline
+9 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} K^{*} \bar{K}^{*} D^{*+} \bar{D}^{*-} ,
+K^{*} \rightarrow \pi^{0} K^{0} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+K^{0} \rightarrow K_{S} ,
+$ \\ $
+D^{0} \rightarrow \pi^{0} \eta K_{S} ,
+\bar{D}^{0} \rightarrow \rho^{0} \pi^{-} K^{+} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\eta \rightarrow \pi^{0} \pi^{0} \pi^{0} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 53 & 53 & 4 & 93 \\
+\hline
+10 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \rho^{0} \pi^{+} \omega \bar{D}^{*-} D^{*0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\bar{D}^{0} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} ,
+$ \\ $
+D^{0} \rightarrow \mu^{+} \nu_{\mu} K^{*-} ,
+K^{*-} \rightarrow \pi^{-} \bar{K}^{0} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 87 & 85 & 4 & 97 \\
+\hline
+11 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} D^{0} \bar{D}^{*0} ,
+D^{0} \rightarrow e^{+} \nu_{e} \pi^{-} \bar{K}^{0} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+\bar{K}^{0} \rightarrow K_{L} ,
+\pi^{0} \rightarrow e^{+} e^{-} ,
+\bar{D}^{0} \rightarrow \pi^{-} K_1^{+} ,
+$ \\ $
+K_1^{+} \rightarrow \rho^{+} K^{0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+K^{0} \rightarrow K_{L} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{+} e^{-} \nu_{e} K_{L} K_{L} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma 
+$) } & 11 & 11 & 4 & 101 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+12 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \rho^{0} \pi^{+} \pi^{-} \omega D^{*+} \bar{D}^{*-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{0} D^{-} ,
+$ \\ $
+D^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+D^{-} \rightarrow \pi^{-} \pi^{-} K^{+} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 105 & 100 & 4 & 105 \\
+\hline
+13 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} K^{-} D^{*+} \bar{D}^{*-} \Delta^{0} \bar{\Sigma}^{*+} ,
+D^{*+} \rightarrow \pi^{0} D^{+} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+\Delta^{0} \rightarrow \pi^{0} n ,
+\bar{\Sigma}^{*+} \rightarrow \pi^{+} \bar{\Lambda} ,
+D^{+} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} K^{-} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K^{+} K^{-} ,
+\bar{\Lambda} \rightarrow \pi^{+} \bar{p} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} K^{-} K^{-} n \bar{p} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 17 & 17 & 3 & 108 \\
+\hline
+14 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \rho^{-} D^{*+} \bar{D}^{0} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+D^{0} \rightarrow \pi^{+} \pi^{-} K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma 
+$) } & 34 & 34 & 3 & 111 \\
+\hline
+15 & \makecell{ $ 
+e^{+} e^{-} \rightarrow K^{*} D^{*+} D_{s}^{*-} ,
+K^{*} \rightarrow \pi^{-} K^{+} ,
+D^{*+} \rightarrow \pi^{0} D^{+} ,
+D_{s}^{*-} \rightarrow D_{s}^{-} \gamma ,
+D^{+} \rightarrow e^{+} \nu_{e} \bar{K}^{*} ,
+D_{s}^{-} \rightarrow \rho^{-} \phi ,
+$ \\ $
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\phi \rightarrow \pi^{0} \rho^{0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 35 & 35 & 3 & 114 \\
+\hline
+16 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{-} K^{+} K^{-} D^{*+} \bar{D}^{*-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{0} D^{-} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} K^{-} ,
+D^{-} \rightarrow K_{L} a_{1}^{-} ,
+$ \\ $
+a_{1}^{-} \rightarrow \pi^{0} \rho^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 1 & 1 & 3 & 117 \\
+\hline
+17 & \makecell{ $ 
+e^{+} e^{-} \rightarrow K^{-} K^{*+} \bar{D}^{0} D_{1}^{\prime0} ,
+K^{*+} \rightarrow \pi^{0} K^{+} ,
+\bar{D}^{0} \rightarrow K_{S} \eta^{\prime} ,
+D_{1}^{\prime0} \rightarrow \pi^{-} D^{*+} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\eta^{\prime} \rightarrow \pi^{+} \pi^{-} \eta ,
+$ \\ $
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\eta \rightarrow \pi^{0} \pi^{0} \pi^{0} ,
+D^{0} \rightarrow K^{-} a_{1}^{+} ,
+a_{1}^{+} \rightarrow \rho^{0} \pi^{+} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 68 & 66 & 3 & 120 \\
+\hline
+18 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{-} \rho^{+} K^{0} \bar{K}^{0} \eta^{\prime} D^{0} \bar{D}_{0}^{*0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+K^{0} \rightarrow K_{L} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+\eta^{\prime} \rightarrow \pi^{0} \pi^{0} \eta ,
+D^{0} \rightarrow \pi^{0} \pi^{0} \pi^{+} \pi^{-} ,
+$ \\ $
+\bar{D}_{0}^{*0} \rightarrow \pi^{+} D^{-} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\eta \rightarrow \pi^{0} \pi^{0} \pi^{0} ,
+D^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{-} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 71 & 69 & 3 & 123 \\
+\hline
+19 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \rho^{0} \rho^{-} D^{*+} \bar{D}_{1}^{0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}_{1}^{0} \rightarrow \pi^{+} \bar{D}^{*-} ,
+$ \\ $
+D^{0} \rightarrow \rho^{+} K^{*-} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+K^{*-} \rightarrow \pi^{-} \bar{K}^{0} ,
+\bar{D}^{0} \rightarrow \rho^{-} K^{*+} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+$ \\ $
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+K^{*+} \rightarrow \pi^{+} K^{0} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} ,
+K^{0} \rightarrow K_{L} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 73 & 71 & 3 & 126 \\
+\hline
+20 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{-} K^{0} D^{*+} D_{s}^{*-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+K^{0} \rightarrow K_{L} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D_{s}^{*-} \rightarrow D_{s}^{-} \gamma ,
+D^{0} \rightarrow K_{S} \phi ,
+$ \\ $
+D_{s}^{-} \rightarrow K^{0} K^{*-} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\phi \rightarrow \pi^{0} \rho^{0} ,
+K^{0} \rightarrow K_{S} ,
+K^{*-} \rightarrow \pi^{0} K^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma 
+$) } & 77 & 75 & 3 & 129 \\
+\hline
+21 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{-} D^{*+} D_{s}^{*-} p \bar{\Lambda} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D_{s}^{*-} \rightarrow D_{s}^{-} \gamma ,
+\bar{\Lambda} \rightarrow \pi^{0} \bar{n} ,
+D^{0} \rightarrow \pi^{+} \omega K^{-} ,
+D_{s}^{-} \rightarrow \rho^{-} \eta ,
+$ \\ $
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \bar{n} p \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 83 & 81 & 3 & 132 \\
+\hline
+22 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{-} \bar{K}^{0} K^{+} \bar{D}^{*-} \bar{\Sigma}^{0} \Xi_{c}^{+} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+\bar{\Sigma}^{0} \rightarrow \bar{\Lambda} \gamma ,
+\Xi_{c}^{+} \rightarrow e^{+} \nu_{e} \Xi^{0} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\bar{D}^{0} \rightarrow \pi^{+} \pi^{-} K_{S} ,
+\bar{\Lambda} \rightarrow \pi^{0} \bar{n} ,
+\Xi^{0} \rightarrow \pi^{0} \Lambda ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\Lambda \rightarrow \pi^{-} p 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \bar{n} p \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 42 & 42 & 3 & 135 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+23 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{-} D^{*+} \bar{D}^{0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} K^{+} ,
+D^{0} \rightarrow \pi^{+} \eta K^{-} ,
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma 
+$) } & 90 & 87 & 3 & 138 \\
+\hline
+24 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} K^{0} \bar{K}^{*} \bar{D}^{*-} D_{1}^{0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+K^{0} \rightarrow K_{S} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{0} D^{-} ,
+D_{1}^{0} \rightarrow \pi^{-} D^{*+} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+D^{-} \rightarrow \pi^{0} \pi^{-} K_{S} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+D^{0} \rightarrow \pi^{+} \pi^{+} \pi^{-} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} K^{-} \gamma \gamma \gamma \gamma 
+$) } & 100 & 95 & 3 & 141 \\
+\hline
+25 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \rho^{-} \omega K^{0} D^{*+} D_{s}^{*-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+K^{0} \rightarrow K_{S} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D_{s}^{*-} \rightarrow \pi^{0} D_{s}^{-} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} K^{-} ,
+D_{s}^{-} \rightarrow \rho^{-} \eta^{\prime} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\eta^{\prime} \rightarrow \rho^{0} \gamma ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 43 & 43 & 3 & 144 \\
+\hline
+26 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{-} \omega \bar{K}^{0} K^{*+} D^{*+} \bar{D}^{*-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+K^{*+} \rightarrow \pi^{+} K^{0} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+$ \\ $
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} ,
+K^{0} \rightarrow K_{L} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+\bar{D}^{0} \rightarrow \pi^{+} \pi^{-} K_{S} ,
+K_{L} \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+$ \\ $
+K_{S} \rightarrow \pi^{0} \pi^{0} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 49 & 49 & 3 & 147 \\
+\hline
+27 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} D^{-} D_{1}^{0} ,
+D^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} K^{*} ,
+D_{1}^{0} \rightarrow \pi^{-} D^{*+} ,
+K^{*} \rightarrow \pi^{0} K^{0} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+K^{0} \rightarrow K_{S} ,
+$ \\ $
+D^{0} \rightarrow e^{+} \nu_{e} K^{-} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \mu^{-} \bar{\nu}_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma 
+$) } & 36 & 36 & 2 & 149 \\
+\hline
+28 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \rho^{-} D^{*+} \bar{D}^{*-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{+} \eta K^{-} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+$ \\ $
+\eta \rightarrow \pi^{0} \pi^{0} \pi^{0} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 72 & 70 & 2 & 151 \\
+\hline
+29 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} \rho^{+} \bar{D}^{*-} D^{0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} K^{-} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 19 & 19 & 2 & 153 \\
+\hline
+30 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \rho^{+} \omega \bar{D}^{*-} D^{0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{+} \pi^{-} \bar{K}^{*} ,
+\bar{D}^{0} \rightarrow K^{+} a_{1}^{-} ,
+$ \\ $
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+a_{1}^{-} \rightarrow \pi^{0} \rho^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 74 & 72 & 2 & 155 \\
+\hline
+31 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} \eta K^{+} D^{*+} D_{s}^{*-} ,
+\eta \rightarrow e^{+} e^{-} \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D_{s}^{*-} \rightarrow D_{s}^{-} \gamma ,
+D^{0} \rightarrow \omega \bar{K}^{*} ,
+D_{s}^{-} \rightarrow \pi^{-} \eta^{\prime} ,
+$ \\ $
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+\eta^{\prime} \rightarrow \pi^{+} \pi^{-} \eta ,
+\eta \rightarrow \pi^{0} \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{-} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 76 & 74 & 2 & 157 \\
+\hline
+32 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \bar{K}^{0} K^{*} K^{+} K^{-} K^{-} \bar{D}^{*-} D_{s}^{*+} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+K^{*} \rightarrow \pi^{-} K^{+} ,
+\bar{D}^{*-} \rightarrow \pi^{0} D^{-} ,
+D_{s}^{*+} \rightarrow D_{s}^{+} \gamma ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+$ \\ $
+D^{-} \rightarrow \pi^{-} \pi^{-} K^{+} ,
+D_{s}^{+} \rightarrow \rho^{+} \eta^{\prime} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\eta^{\prime} \rightarrow \pi^{+} \pi^{-} \eta ,
+\eta \rightarrow \pi^{0} \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 54 & 54 & 2 & 159 \\
+\hline
+33 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \rho^{-} D^{-} D^{*0} \bar{n} p ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{-} \rightarrow \pi^{-} \omega K^{*} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+K^{*} \rightarrow \pi^{-} K^{+} ,
+$ \\ $
+D^{0} \rightarrow \pi^{+} \omega K^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \bar{n} p \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 80 & 78 & 2 & 161 \\
+\hline
+34 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \bar{K}^{0} \bar{D}^{*0} D_{s}^{+} p \bar{\Delta}^{++} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+D_{s}^{+} \rightarrow e^{+} \nu_{e} \eta ,
+\bar{\Delta}^{++} \rightarrow \pi^{-} \bar{p} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} ,
+\pi^{0} \rightarrow e^{+} e^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{+} e^{-} \nu_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} p \bar{p} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 82 & 80 & 2 & 163 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+35 & \makecell{ $ 
+e^{+} e^{-} \rightarrow K^{0} D^{*+} D_{s}^{*-} ,
+K^{0} \rightarrow K_{L} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D_{s}^{*-} \rightarrow \pi^{0} D_{s}^{-} ,
+D^{0} \rightarrow \pi^{+} \pi^{-} K_{S} ,
+D_{s}^{-} \rightarrow K^{0} K^{*-} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+K^{0} \rightarrow K_{L} ,
+K^{*-} \rightarrow \pi^{-} \bar{K}^{0} ,
+K_{L} \rightarrow e^{+} \nu_{e} \pi^{-} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 55 & 55 & 2 & 165 \\
+\hline
+36 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} D^{*0} \bar{D}_{1}^{\prime0} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\bar{D}_{1}^{\prime0} \rightarrow \pi^{+} \bar{D}^{*-} ,
+D^{0} \rightarrow K_{L} \pi^{-} K^{+} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+\bar{D}^{0} \rightarrow K_{L} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma 
+$) } & 33 & 33 & 2 & 167 \\
+\hline
+37 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} K^{-} D_{s}^{*+} D_{1}^{-} ,
+D_{s}^{*+} \rightarrow D_{s}^{+} \gamma ,
+D_{1}^{-} \rightarrow \pi^{0} \bar{D}^{*-} ,
+D_{s}^{+} \rightarrow \bar{K}^{*} K^{*+} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+$ \\ $
+K^{*+} \rightarrow \pi^{+} K^{0} ,
+\bar{D}^{0} \rightarrow \pi^{+} \pi^{-} K^{*} ,
+K^{0} \rightarrow K_{S} ,
+K^{*} \rightarrow \pi^{-} K^{+} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 24 & 24 & 2 & 169 \\
+\hline
+38 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \bar{D}^{*-} D^{*0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\bar{D}^{0} \rightarrow e^{-} \bar{\nu}_{e} K^{+} ,
+$ \\ $
+D^{0} \rightarrow \pi^{0} \bar{K}_1^{0} ,
+\bar{K}_1^{0} \rightarrow \pi^{0} \pi^{+} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 94 & 22 & 2 & 171 \\
+\hline
+39 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{-} \pi^{-} D^{*+} \bar{D}^{*0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*0} \rightarrow \bar{D}^{0} \gamma ,
+D^{0} \rightarrow \pi^{+} \pi^{+} \pi^{-} K^{-} ,
+\bar{D}^{0} \rightarrow \pi^{-} K_1^{+} ,
+$ \\ $
+K_1^{+} \rightarrow \pi^{+} \pi^{-} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma 
+$) } & 98 & 93 & 2 & 173 \\
+\hline
+40 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{-} \bar{K}^{0} K^{*} D^{*+} \bar{D}^{*-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+K^{*} \rightarrow \pi^{0} K^{0} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+K^{0} \rightarrow K_{L} ,
+D^{0} \rightarrow \pi^{-} K^{*+} ,
+\bar{D}^{0} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} K^{+} ,
+K_{L} \rightarrow e^{-} \nu_{e} \pi^{+} ,
+K^{*+} \rightarrow \pi^{0} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} e^{-} \nu_{e} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 64 & 63 & 2 & 175 \\
+\hline
+41 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{-} \pi^{-} D^{*+} \bar{D}^{*0} \bar{p} \Delta^{++} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+\Delta^{++} \rightarrow \pi^{+} p ,
+D^{0} \rightarrow \pi^{0} \pi^{0} \pi^{0} \pi^{+} \pi^{-} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{-} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} p \bar{p} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 102 & 97 & 2 & 177 \\
+\hline
+42 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{-} \omega \bar{D}^{*0} \bar{\Delta}^{+} \Sigma_{c}^{*++} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{D}^{*0} \rightarrow \bar{D}^{0} \gamma ,
+\bar{\Delta}^{+} \rightarrow \bar{p} ,
+\Sigma_{c}^{*++} \rightarrow \pi^{+} \Lambda_{c}^{+} ,
+\bar{D}^{0} \rightarrow K^{+} a_{1}^{-} ,
+$ \\ $
+\Lambda_{c}^{+} \rightarrow \pi^{+} \pi^{+} \pi^{-} \Sigma^{0} ,
+a_{1}^{-} \rightarrow \rho^{0} \pi^{-} ,
+\Sigma^{0} \rightarrow \Lambda \gamma ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\Lambda \rightarrow \pi^{-} p 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} p \bar{p} \gamma \gamma \gamma \gamma 
+$) } & 25 & 25 & 2 & 179 \\
+\hline
+43 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{+} \omega \bar{D}^{*-} D^{*0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\bar{D}^{0} \rightarrow K^{+} a_{1}^{-} ,
+$ \\ $
+D^{0} \rightarrow \pi^{0} K_{S} ,
+a_{1}^{-} \rightarrow \rho^{0} \pi^{-} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 69 & 67 & 2 & 181 \\
+\hline
+44 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{-} D^{*+} \bar{D}^{*0} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+D^{0} \rightarrow e^{+} \nu_{e} K^{-} ,
+\bar{D}^{0} \rightarrow K^{+} a_{1}^{-} ,
+a_{1}^{-} \rightarrow \rho^{0} \pi^{-} ,
+$ \\ $
+\rho^{0} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 15 & 15 & 1 & 182 \\
+\hline
+45 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} D^{0} \bar{D}^{*0} n \bar{p} ,
+D^{0} \rightarrow \omega \bar{K}^{*} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+\bar{D}^{0} \rightarrow \pi^{+} \pi^{-} K_{S} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{-} n \bar{p} \gamma \gamma \gamma \gamma 
+$) } & 44 & 44 & 1 & 183 \\
+\hline
+46 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \rho^{-} D^{*+} \bar{D}^{*0} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*0} \rightarrow \bar{D}^{0} \gamma ,
+D^{0} \rightarrow \pi^{+} \pi^{-} \bar{K}^{*} ,
+\bar{D}^{0} \rightarrow K_{S} \eta^{\prime} ,
+$ \\ $
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\eta^{\prime} \rightarrow \pi^{+} \pi^{-} \eta ,
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 45 & 45 & 1 & 184 \\
+\hline
+47 & \makecell{ $ 
+e^{+} e^{-} \rightarrow K^{+} D^{*+} D_{s}^{-} n \bar{p} ,
+D^{*+} \rightarrow \pi^{0} D^{+} ,
+D_{s}^{-} \rightarrow \rho^{-} \eta^{\prime} ,
+\pi^{0} \rightarrow e^{+} e^{-} ,
+D^{+} \rightarrow K_{S} K^{*+} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+$ \\ $
+\eta^{\prime} \rightarrow \rho^{0} \gamma ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+K^{*+} \rightarrow \pi^{+} K^{0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+K^{0} \rightarrow K_{L} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{-} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} n \bar{p} \gamma \gamma \gamma 
+$) } & 46 & 46 & 1 & 185 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+48 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} \bar{D}^{0} D^{*0} ,
+\bar{D}^{0} \rightarrow \pi^{+} \pi^{+} \pi^{-} K^{-} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} \bar{K}^{*} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} K^{-} \gamma \gamma \gamma \gamma 
+$) } & 47 & 47 & 1 & 186 \\
+\hline
+49 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{-} \omega D^{0} \bar{D}^{0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} K^{-} ,
+\bar{D}^{0} \rightarrow \pi^{+} \pi^{-} K^{*} ,
+K^{*} \rightarrow \pi^{-} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma 
+$) } & 48 & 48 & 1 & 187 \\
+\hline
+50 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} K^{*} K^{*-} D^{+} \bar{D}^{*-} ,
+K^{*} \rightarrow \pi^{-} K^{+} ,
+K^{*-} \rightarrow \pi^{0} K^{-} ,
+D^{+} \rightarrow \mu^{+} \nu_{\mu} \bar{K}_1^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+\bar{K}_1^{0} \rightarrow \pi^{0} \bar{K}^{*} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \pi^{-} K_1^{+} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+K_1^{+} \rightarrow \pi^{+} K^{*} ,
+K^{*} \rightarrow \pi^{-} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma 
+$) } & 16 & 16 & 1 & 188 \\
+\hline
+51 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \eta \bar{K}^{0} K^{+} \bar{D}^{*-} D^{0} ,
+\eta \rightarrow \pi^{0} \pi^{0} \pi^{0} ,
+\bar{K}^{0} \rightarrow K_{L} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{0} \pi^{0} K_{L} ,
+K_{L} \rightarrow \mu^{+} \nu_{\mu} \pi^{-} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \pi^{+} \pi^{-} K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} K_{L} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 3 & 3 & 1 & 189 \\
+\hline
+52 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} D^{*0} \Delta^{+} \bar{\Sigma}_{c}^{--} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\Delta^{+} \rightarrow \pi^{0} p ,
+\bar{\Sigma}_{c}^{--} \rightarrow \pi^{-} \bar{\Lambda}_{c}^{-} ,
+D^{0} \rightarrow e^{+} \nu_{e} K^{-} ,
+\bar{\Lambda}_{c}^{-} \rightarrow K^{+} \bar{\Delta}^{++} ,
+$ \\ $
+\bar{\Delta}^{++} \rightarrow \pi^{-} \bar{p} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{-} \pi^{-} K^{+} K^{-} p \bar{p} \gamma \gamma \gamma \gamma 
+$) } & 51 & 51 & 1 & 190 \\
+\hline
+53 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} D^{*+} \bar{D}^{*-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{0} \pi^{0} K_{L} ,
+\bar{D}^{0} \rightarrow \pi^{+} \pi^{-} K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma 
+$) } & 52 & 52 & 1 & 191 \\
+\hline
+54 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \omega \bar{D}^{*-} D^{*0} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K^{*} ,
+D^{0} \rightarrow \pi^{+} K^{-} ,
+$ \\ $
+K^{*} \rightarrow \pi^{-} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 18 & 18 & 1 & 192 \\
+\hline
+55 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \rho^{0} \pi^{+} D^{*0} D_{1}^{\prime-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+D_{1}^{\prime-} \rightarrow \pi^{-} \bar{D}^{*0} ,
+D^{0} \rightarrow \eta K_{S} ,
+\bar{D}^{*0} \rightarrow \bar{D}^{0} \gamma ,
+$ \\ $
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\bar{D}^{0} \rightarrow \rho^{-} K^{*+} ,
+\pi^{0} \rightarrow e^{+} e^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+K^{*+} \rightarrow \pi^{+} K^{0} ,
+$ \\ $
+K^{0} \rightarrow K_{S} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{-} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 4 & 4 & 1 & 193 \\
+\hline
+56 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \omega D^{0} \bar{D}^{*0} \Delta^{++} \bar{\Delta}^{++} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{0} \rightarrow K_{L} \pi^{+} \pi^{-} ,
+\bar{D}^{*0} \rightarrow \bar{D}^{0} \gamma ,
+\Delta^{++} \rightarrow \pi^{+} p ,
+\bar{\Delta}^{++} \rightarrow \pi^{-} \bar{p} ,
+$ \\ $
+\bar{D}^{0} \rightarrow K^{+} a_{1}^{-} ,
+a_{1}^{-} \rightarrow \pi^{0} \rho^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} p \bar{p} \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 20 & 20 & 1 & 194 \\
+\hline
+57 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{-} \omega \omega D^{*+} \bar{D}^{*0} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{0} K_{L} \pi^{+} \pi^{-} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \rho^{-} K^{*+} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+K^{*+} \rightarrow \pi^{0} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 56 & 56 & 1 & 195 \\
+\hline
+58 & \makecell{ $ 
+e^{+} e^{-} \rightarrow D^{-} D_{2}^{*0} \bar{n} p ,
+D^{-} \rightarrow \pi^{0} \pi^{-} K_{S} ,
+D_{2}^{*0} \rightarrow \pi^{-} D^{+} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+D^{+} \rightarrow \mu^{+} \nu_{\mu} \bar{K}^{*} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{-} \bar{n} p \gamma \gamma 
+$) } & 21 & 21 & 1 & 196 \\
+\hline
+59 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{-} D^{*+} \bar{D}^{*-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow K_{L} \eta ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{-} K^{+} ,
+$ \\ $
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma 
+$) } & 5 & 5 & 1 & 197 \\
+\hline
+60 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} \pi^{-} \rho^{+} \rho^{+} D^{*0} \bar{D}^{*0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+D^{*0} \rightarrow D^{0} \gamma ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+\pi^{0} \rightarrow e^{+} e^{-} ,
+$ \\ $
+D^{0} \rightarrow \rho^{+} K^{*-} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{0} K^{0} \bar{K}^{0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+K^{*-} \rightarrow \pi^{-} \bar{K}^{0} ,
+K^{0} \rightarrow K_{L} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+$ \\ $
+\bar{K}^{0} \rightarrow K_{L} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{-} K_{L} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 59 & 58 & 1 & 198 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+61 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{-} \rho^{+} \rho^{-} \rho^{-} D^{*0} \bar{D}^{*0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{*0} \rightarrow D^{0} \gamma ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+$ \\ $
+D^{0} \rightarrow \pi^{0} \pi^{0} \bar{K}^{*} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 60 & 59 & 1 & 199 \\
+\hline
+62 & \makecell{ $ 
+e^{+} e^{-} \rightarrow K^{0} \bar{K}^{0} D^{*+} \bar{D}^{*-} ,
+K^{0} \rightarrow K_{S} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+D^{0} \rightarrow \omega K_{S} ,
+\bar{D}^{0} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} K^{+} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma 
+$) } & 61 & 60 & 1 & 200 \\
+\hline
+63 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \rho^{-} D^{*+} \bar{D}^{*-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{*+} \rightarrow \pi^{0} D^{+} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{+} \rightarrow K_{L} a_{1}^{+} ,
+\bar{D}^{0} \rightarrow \pi^{-} \eta K^{+} ,
+$ \\ $
+a_{1}^{+} \rightarrow \pi^{0} \rho^{+} ,
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 62 & 61 & 1 & 201 \\
+\hline
+64 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \bar{D}^{*-} D^{*0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\bar{D}^{0} \rightarrow \pi^{-} \omega K^{+} ,
+D^{0} \rightarrow \omega \bar{K}^{*} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+$ \\ $
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 63 & 62 & 1 & 202 \\
+\hline
+65 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} K^{-} \bar{D}^{*-} D_{s1}^{\prime+} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D_{s1}^{\prime+} \rightarrow D_{s}^{+} \gamma ,
+\bar{D}^{0} \rightarrow \rho^{0} K^{*} ,
+D_{s}^{+} \rightarrow \rho^{+} \phi ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+$ \\ $
+K^{*} \rightarrow \pi^{0} K^{0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\phi \rightarrow K_{L} K_{S} ,
+K^{0} \rightarrow K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma 
+$) } & 23 & 23 & 1 & 203 \\
+\hline
+66 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} D^{*0} \bar{D}_{2}^{*0} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\bar{D}_{2}^{*0} \rightarrow \pi^{+} \bar{D}^{*-} ,
+D^{0} \rightarrow K^{-} a_{1}^{+} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+a_{1}^{+} \rightarrow \pi^{0} \rho^{+} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \omega K^{*} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+K^{*} \rightarrow \pi^{-} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 65 & 62 & 1 & 204 \\
+\hline
+67 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} D^{*0} \bar{D}^{*0} ,
+D^{*0} \rightarrow D^{0} \gamma ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+D^{0} \rightarrow K_{S} \eta^{\prime} ,
+\bar{D}^{0} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} K^{0} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+$ \\ $
+\eta^{\prime} \rightarrow \pi^{+} \pi^{-} \eta ,
+K^{0} \rightarrow K_{L} ,
+\eta \rightarrow \gamma \gamma 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma 
+$) } & 66 & 64 & 1 & 205 \\
+\hline
+68 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{+} \omega D^{+} \bar{D}^{*-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{+} \rightarrow e^{+} \nu_{e} \bar{K}^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{0} D^{-} ,
+$ \\ $
+\bar{K}^{0} \rightarrow K_{L} ,
+D^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 67 & 65 & 1 & 206 \\
+\hline
+69 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \omega K^{*+} D^{*+} D_{s}^{*-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+K^{*+} \rightarrow \pi^{+} K^{0} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D_{s}^{*-} \rightarrow D_{s}^{-} \gamma ,
+$ \\ $
+K^{0} \rightarrow K_{S} ,
+D^{0} \rightarrow \pi^{+} \pi^{-} K_{S} ,
+D_{s}^{-} \rightarrow e^{-} \bar{\nu}_{e} \eta ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} ,
+\eta \rightarrow \gamma \gamma 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 6 & 6 & 1 & 207 \\
+\hline
+70 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} D_{2}^{*-} \bar{\Sigma}^{0} \Xi_{c}^{0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+D_{2}^{*-} \rightarrow \pi^{0} D^{-} ,
+\bar{\Sigma}^{0} \rightarrow \bar{\Lambda} \gamma ,
+\Xi_{c}^{0} \rightarrow e^{+} \nu_{e} \Xi^{-} ,
+D^{-} \rightarrow \pi^{-} K_{S} ,
+$ \\ $
+\bar{\Lambda} \rightarrow \pi^{0} \bar{n} ,
+\Xi^{-} \rightarrow \pi^{-} \Lambda ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\Lambda \rightarrow \pi^{-} p 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \bar{n} p \gamma \gamma \gamma \gamma \gamma 
+$) } & 7 & 7 & 1 & 208 \\
+\hline
+71 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{-} \rho^{+} \omega p \bar{\Lambda}_{c}^{-} D_{1}^{\prime0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{\Lambda}_{c}^{-} \rightarrow \pi^{+} \pi^{-} \bar{\Sigma}^{-} ,
+D_{1}^{\prime0} \rightarrow \pi^{-} D^{*+} ,
+\bar{\Sigma}^{-} \rightarrow \pi^{-} \bar{n} ,
+$ \\ $
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \bar{n} p \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 70 & 68 & 1 & 209 \\
+\hline
+72 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{-} \bar{K}^{0} K^{+} \bar{D}^{*-} D_{2}^{*0} ,
+\pi^{0} \rightarrow e^{+} e^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+\bar{D}^{*-} \rightarrow \pi^{0} D^{-} ,
+D_{2}^{*0} \rightarrow \pi^{-} D^{*+} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+D^{-} \rightarrow K_{S} K^{*-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} ,
+K^{*-} \rightarrow \pi^{-} \bar{K}^{0} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} K^{-} ,
+$ \\ $
+\bar{K}^{0} \rightarrow K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{-} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 26 & 26 & 1 & 210 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+73 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \bar{D}^{*-} D^{*0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{0} D^{-} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+D^{-} \rightarrow \rho^{0} \pi^{-} K^{*} ,
+D^{0} \rightarrow \mu^{+} \nu_{\mu} K^{-} ,
+$ \\ $
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+K^{*} \rightarrow \pi^{0} K^{0} ,
+K^{0} \rightarrow K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 27 & 27 & 1 & 211 \\
+\hline
+74 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \bar{D}^{*-} D^{*0} ,
+\pi^{0} \rightarrow e^{+} e^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{*0} \rightarrow D^{0} \gamma ,
+\bar{D}^{0} \rightarrow \pi^{-} K^{+} \eta^{\prime} ,
+$ \\ $
+D^{0} \rightarrow \pi^{0} \pi^{0} K^{0} \bar{K}^{0} ,
+\eta^{\prime} \rightarrow \rho^{0} \gamma ,
+K^{0} \rightarrow K_{L} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{-} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 8 & 8 & 1 & 212 \\
+\hline
+75 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{-} \rho^{+} K^{-} \bar{D}^{*0} D_{s}^{+} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+D_{s}^{+} \rightarrow \rho^{+} \eta^{\prime} ,
+\bar{D}^{0} \rightarrow \pi^{-} K_1^{+} ,
+$ \\ $
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\eta^{\prime} \rightarrow \pi^{+} \pi^{-} \eta ,
+K_1^{+} \rightarrow \pi^{+} \pi^{-} K^{+} ,
+\eta \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 29 & 29 & 1 & 213 \\
+\hline
+76 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{-} D^{-} \bar{p} \Sigma_{c}^{*0} ,
+D^{-} \rightarrow \pi^{0} \pi^{-} K^{*} ,
+\Sigma_{c}^{*0} \rightarrow \pi^{-} \Lambda_{c}^{+} ,
+K^{*} \rightarrow \pi^{-} K^{+} ,
+\Lambda_{c}^{+} \rightarrow \pi^{+} \omega \Sigma^{0} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+$ \\ $
+\Sigma^{0} \rightarrow \Lambda \gamma ,
+\Lambda \rightarrow \pi^{-} p 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} p \bar{p} \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 75 & 73 & 1 & 214 \\
+\hline
+77 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \bar{D}^{0} D^{*0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\bar{D}^{0} \rightarrow \rho^{-} K^{*+} ,
+D^{*0} \rightarrow D^{0} \gamma ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+$ \\ $
+K^{*+} \rightarrow \pi^{+} K^{0} ,
+D^{0} \rightarrow K_{L} \eta^{\prime} ,
+\pi^{0} \rightarrow e^{+} e^{-} ,
+K^{0} \rightarrow K_{L} ,
+\eta^{\prime} \rightarrow \pi^{0} \pi^{0} \eta ,
+K_{L} \rightarrow \mu^{+} \nu_{\mu} \pi^{-} ,
+$ \\ $
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{-} \mu^{+} \nu_{\mu} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 30 & 30 & 1 & 215 \\
+\hline
+78 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} \eta^{\prime} D^{0} \bar{D}^{*0} ,
+\eta^{\prime} \rightarrow \pi^{+} \pi^{-} \eta ,
+D^{0} \rightarrow \pi^{0} \pi^{0} \bar{K}^{*} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{K}^{*} \rightarrow \pi^{0} \bar{K}^{0} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{-} K^{+} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 31 & 31 & 1 & 216 \\
+\hline
+79 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \rho^{-} \omega D^{*+} \bar{D}^{*-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{0} D^{+} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{+} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} K^{-} ,
+$ \\ $
+\bar{D}^{0} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 78 & 76 & 1 & 217 \\
+\hline
+80 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{-} \bar{D}^{*-} \bar{\Delta}^{-} \Sigma_{c}^{*+} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+\bar{\Delta}^{-} \rightarrow \pi^{+} \bar{n} ,
+\Sigma_{c}^{*+} \rightarrow \pi^{0} \Lambda_{c}^{+} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+$ \\ $
+\Lambda_{c}^{+} \rightarrow \bar{K}^{0} p ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\bar{K}^{0} \rightarrow K_{L} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \bar{n} p \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 79 & 77 & 1 & 218 \\
+\hline
+81 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{+} D^{*+} \bar{D}^{*-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{0} \bar{K}_1^{0} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \rho^{0} \pi^{-} K^{+} ,
+\bar{K}_1^{0} \rightarrow \rho^{+} K^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 32 & 32 & 1 & 219 \\
+\hline
+82 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \rho^{-} D^{*+} \bar{D}^{*-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{+} \pi^{-} \bar{K}^{*} ,
+\bar{D}^{0} \rightarrow \eta K_{S} ,
+$ \\ $
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+\eta \rightarrow \gamma \gamma ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 81 & 79 & 1 & 220 \\
+\hline
+83 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \rho^{-} \bar{D}^{*0} D_{1}^{\prime+} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\bar{D}^{*0} \rightarrow \bar{D}^{0} \gamma ,
+D_{1}^{\prime+} \rightarrow \pi^{0} D^{*+} ,
+\bar{D}^{0} \rightarrow \pi^{-} K^{+} ,
+$ \\ $
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D^{0} \rightarrow K_{L} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 9 & 9 & 1 & 221 \\
+\hline
+84 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{-} \rho^{-} D^{*+} \bar{D}^{*0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{0} \pi^{-} K^{+} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \eta \eta^{\prime} ,
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\eta^{\prime} \rightarrow \pi^{+} \pi^{-} \eta ,
+\eta \rightarrow \pi^{0} \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 10 & 10 & 1 & 222 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+85 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \pi^{-} \pi^{-} D^{*+} \bar{D}^{*0} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+D^{0} \rightarrow K_{L} \pi^{+} \pi^{-} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 84 & 82 & 1 & 223 \\
+\hline
+86 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \omega \bar{D}_{0}^{*0} D_{1}^{\prime0} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{D}_{0}^{*0} \rightarrow \pi^{+} D^{-} ,
+D_{1}^{\prime0} \rightarrow \pi^{-} D^{*+} ,
+D^{-} \rightarrow e^{-} \bar{\nu}_{e} \rho^{0} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+$ \\ $
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+D^{0} \rightarrow K_{L} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma 
+$) } & 85 & 83 & 1 & 224 \\
+\hline
+87 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} D^{*+} \Delta^{+} \bar{\Sigma}_{c}^{--} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\Delta^{+} \rightarrow \pi^{+} n ,
+\bar{\Sigma}_{c}^{--} \rightarrow \pi^{-} \bar{\Lambda}_{c}^{-} ,
+D^{0} \rightarrow K^{-} a_{1}^{+} ,
+\bar{\Lambda}_{c}^{-} \rightarrow \pi^{-} \bar{\Lambda} ,
+$ \\ $
+a_{1}^{+} \rightarrow \pi^{0} \rho^{+} ,
+\bar{\Lambda} \rightarrow \pi^{0} \bar{n} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{-} n \bar{n} \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 86 & 84 & 1 & 225 \\
+\hline
+88 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{-} \rho^{-} D^{*+} \bar{D}^{*0} \bar{\Sigma}^{+} \Sigma^{0} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*0} \rightarrow \bar{D}^{0} \gamma ,
+\bar{\Sigma}^{+} \rightarrow \pi^{+} \bar{n} ,
+$ \\ $
+\Sigma^{0} \rightarrow \Lambda \gamma ,
+D^{0} \rightarrow \pi^{0} K_{L} \pi^{+} \pi^{-} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{-} K^{+} ,
+\Lambda \rightarrow \pi^{0} n 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} n \bar{n} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 2 & 2 & 1 & 226 \\
+\hline
+89 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \omega D^{*+} \bar{D}^{*-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{0} D^{+} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{+} \rightarrow \pi^{0} \pi^{+} \bar{K}^{*} ,
+\bar{D}^{0} \rightarrow \pi^{-} K_1^{+} ,
+$ \\ $
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} ,
+K_1^{+} \rightarrow \pi^{0} \pi^{0} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 88 & 62 & 1 & 227 \\
+\hline
+90 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} K^{*} D^{*+} D_{s}^{*-} ,
+K^{*} \rightarrow \pi^{0} K^{0} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D_{s}^{*-} \rightarrow D_{s}^{-} \gamma ,
+K^{0} \rightarrow K_{S} ,
+D^{0} \rightarrow K_{L} K^{+} K^{-} ,
+$ \\ $
+D_{s}^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 89 & 86 & 1 & 228 \\
+\hline
+91 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \pi^{-} D^{*+} \bar{D}^{*0} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+\bar{D}^{0} \rightarrow K^{+} a_{1}^{-} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+$ \\ $
+a_{1}^{-} \rightarrow \rho^{0} \pi^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma 
+$) } & 12 & 12 & 1 & 229 \\
+\hline
+92 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} D^{+} D^{-} ,
+D^{+} \rightarrow K_{S} a_{1}^{+} ,
+D^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{-} K^{+} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+a_{1}^{+} \rightarrow \pi^{0} \rho^{+} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma 
+$) } & 91 & 88 & 1 & 230 \\
+\hline
+93 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \omega D^{*+} \bar{D}^{*-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} K^{-} ,
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{-} K^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 92 & 89 & 1 & 231 \\
+\hline
+94 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} K^{0} D^{+} D_{s}^{*-} ,
+K^{0} \rightarrow K_{S} ,
+D^{+} \rightarrow e^{+} \nu_{e} \bar{K}_1^{0} ,
+D_{s}^{*-} \rightarrow D_{s}^{-} \gamma ,
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+\bar{K}_1^{0} \rightarrow \omega \bar{K}^{0} ,
+$ \\ $
+D_{s}^{-} \rightarrow \rho^{-} \eta^{\prime} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\bar{K}^{0} \rightarrow K_{L} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\eta^{\prime} \rightarrow \pi^{0} \pi^{0} \eta ,
+\eta \rightarrow \pi^{0} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 93 & 90 & 1 & 232 \\
+\hline
+95 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \rho^{-} \omega D^{*0} \bar{D}^{*0} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{*0} \rightarrow D^{0} \gamma ,
+\bar{D}^{*0} \rightarrow \pi^{0} \bar{D}^{0} ,
+D^{0} \rightarrow \rho^{+} K^{*-} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{-} K^{+} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+K^{*-} \rightarrow \pi^{0} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 37 & 37 & 1 & 233 \\
+\hline
+96 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{-} \rho^{-} D^{*+} \bar{D}^{*-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \rho^{0} \bar{K}^{*} ,
+\bar{D}^{0} \rightarrow \pi^{0} K^{*} ,
+$ \\ $
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\bar{K}^{*} \rightarrow \pi^{0} \bar{K}^{0} ,
+K^{*} \rightarrow \pi^{0} K^{0} ,
+\bar{K}^{0} \rightarrow K_{L} ,
+K^{0} \rightarrow K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 95 & 82 & 1 & 234 \\
+\hline
+97 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{+} \rho^{-} \bar{D}^{*-} D^{0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{0} D^{-} ,
+D^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} K_{S} ,
+D^{-} \rightarrow \pi^{-} \pi^{-} K^{+} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 96 & 91 & 1 & 235 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+98 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{-} \eta K^{0} D_{s}^{*-} D_{0}^{*+} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\eta \rightarrow \pi^{0} \pi^{0} \pi^{0} ,
+K^{0} \rightarrow K_{S} ,
+D_{s}^{*-} \rightarrow D_{s}^{-} \gamma ,
+D_{0}^{*+} \rightarrow \pi^{+} D^{0} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} ,
+D_{s}^{-} \rightarrow K^{*} K^{*-} ,
+D^{0} \rightarrow \pi^{0} K_{L} \pi^{+} \pi^{-} ,
+K^{*} \rightarrow \pi^{-} K^{+} ,
+K^{*-} \rightarrow \pi^{0} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 97 & 92 & 1 & 236 \\
+\hline
+99 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \omega \omega D^{*+} \bar{D}^{*-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{0} D^{+} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{+} \rightarrow e^{+} \nu_{e} \bar{K}^{*} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \pi^{0} \pi^{-} K^{+} ,
+\bar{K}^{*} \rightarrow \pi^{+} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 38 & 38 & 1 & 237 \\
+\hline
+100 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} K^{0} K^{-} D^{*+} \bar{D}^{*-} ,
+K^{0} \rightarrow K_{L} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{0} D^{-} ,
+D^{0} \rightarrow \pi^{0} \pi^{0} \pi^{0} \pi^{+} K^{-} ,
+D^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} K^{0} ,
+$ \\ $
+K^{0} \rightarrow K_{L} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} K_{L} K_{L} \pi^{+} \pi^{+} \pi^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 99 & 94 & 1 & 238 \\
+\hline
+101 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{-} \rho^{+} K^{-} K^{*+} D^{*+} \bar{D}^{*-} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+K^{*+} \rightarrow \pi^{0} K^{+} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow K^{+} K^{-} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \pi^{-} \omega K^{+} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 39 & 39 & 1 & 239 \\
+\hline
+102 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \omega D^{*+} \bar{D}^{*-} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\omega \rightarrow \pi^{0} \pi^{+} \pi^{-} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow \rho^{0} \bar{K}^{*} ,
+$ \\ $
+\bar{D}^{0} \rightarrow K^{+} a_{1}^{-} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+\bar{K}^{*} \rightarrow \pi^{0} \bar{K}^{0} ,
+a_{1}^{-} \rightarrow \rho^{0} \pi^{-} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} ,
+$ \\ $
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 101 & 96 & 1 & 240 \\
+\hline
+103 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} D^{-} D^{*+} n \bar{n} ,
+D^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{-} K^{+} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D^{0} \rightarrow \pi^{+} \pi^{+} \pi^{-} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} n \bar{n} 
+$) } & 13 & 13 & 1 & 241 \\
+\hline
+104 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{+} \rho^{+} \rho^{-} \bar{D}^{*-} D^{0} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\rho^{+} \rightarrow \pi^{0} \pi^{+} ,
+\rho^{-} \rightarrow \pi^{0} \pi^{-} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{0} \rightarrow K^{+} K^{-} ,
+$ \\ $
+\bar{D}^{0} \rightarrow \rho^{0} \pi^{-} K^{+} ,
+\rho^{0} \rightarrow \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 41 & 41 & 1 & 242 \\
+\hline
+105 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{-} K^{-} K^{*+} K^{*+} D^{*+} D_{s}^{*-} ,
+K^{*+} \rightarrow \pi^{0} K^{+} ,
+K^{*+} \rightarrow \pi^{+} K^{0} ,
+D^{*+} \rightarrow \pi^{+} D^{0} ,
+D_{s}^{*-} \rightarrow D_{s}^{-} \gamma ,
+K^{0} \rightarrow K_{L} ,
+$ \\ $
+D^{0} \rightarrow \pi^{0} K_{L} \pi^{+} \pi^{-} ,
+D_{s}^{-} \rightarrow K^{0} K^{*-} ,
+K^{0} \rightarrow K_{L} ,
+K^{*-} \rightarrow \pi^{-} \bar{K}^{0} ,
+\bar{K}^{0} \rightarrow K_{S} ,
+K_{S} \rightarrow \pi^{0} \pi^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} K_{L} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 104 & 99 & 1 & 243 \\
+\hline
+106 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \pi^{+} K^{+} K^{-} \bar{D}^{*-} D^{*0} ,
+\bar{D}^{*-} \rightarrow \pi^{-} \bar{D}^{0} ,
+D^{*0} \rightarrow \pi^{0} D^{0} ,
+\bar{D}^{0} \rightarrow \pi^{0} K_{L} \pi^{+} \pi^{-} ,
+D^{0} \rightarrow \pi^{0} \pi^{0} \pi^{+} \pi^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma 
+$) } & 14 & 14 & 1 & 244 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\caption{Event initial-final states.}
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+index & event initial-final states & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+1 & $ e^{+} e^{-} \rightarrow e^{+} e^{+} e^{-} e^{-} K_{L} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma $ & 28 & 25 & 25 \\
+\hline
+2 & $ e^{+} e^{-} \rightarrow e^{+} e^{-} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 57 & 14 & 39 \\
+\hline
+3 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 22 & 13 & 52 \\
+\hline
+4 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma $ & 48 & 10 & 62 \\
+\hline
+5 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 40 & 10 & 72 \\
+\hline
+6 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{-} \gamma \gamma \gamma \gamma $ & 0 & 8 & 80 \\
+\hline
+7 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma $ & 50 & 6 & 86 \\
+\hline
+8 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 98 & 6 & 92 \\
+\hline
+9 & $ e^{+} e^{-} \rightarrow e^{+} e^{+} e^{-} \nu_{e} K_{L} K_{L} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma $ & 11 & 4 & 96 \\
+\hline
+10 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 85 & 4 & 100 \\
+\hline
+11 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 53 & 4 & 104 \\
+\hline
+12 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 100 & 4 & 108 \\
+\hline
+13 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 49 & 3 & 111 \\
+\hline
+14 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma $ & 34 & 3 & 114 \\
+\hline
+15 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 35 & 3 & 117 \\
+\hline
+16 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 1 & 3 & 120 \\
+\hline
+17 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 62 & 3 & 123 \\
+\hline
+18 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 66 & 3 & 126 \\
+\hline
+19 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 69 & 3 & 129 \\
+\hline
+20 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 71 & 3 & 132 \\
+\hline
+21 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma $ & 75 & 3 & 135 \\
+\hline
+22 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \bar{n} p \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 81 & 3 & 138 \\
+\hline
+23 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \bar{n} p \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 42 & 3 & 141 \\
+\hline
+24 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma $ & 87 & 3 & 144 \\
+\hline
+25 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} K^{-} \gamma \gamma \gamma \gamma $ & 95 & 3 & 147 \\
+\hline
+26 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 43 & 3 & 150 \\
+\hline
+27 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} K^{-} K^{-} n \bar{p} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 17 & 3 & 153 \\
+\hline
+28 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 19 & 2 & 155 \\
+\hline
+29 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 70 & 2 & 157 \\
+\hline
+30 & $ e^{+} e^{-} \rightarrow K_{L} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma $ & 33 & 2 & 159 \\
+\hline
+31 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 72 & 2 & 161 \\
+\hline
+32 & $ e^{+} e^{-} \rightarrow e^{+} e^{-} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 74 & 2 & 163 \\
+\hline
+33 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 54 & 2 & 165 \\
+\hline
+34 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \bar{n} p \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 78 & 2 & 167 \\
+\hline
+35 & $ e^{+} e^{-} \rightarrow e^{+} e^{+} e^{-} \nu_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} p \bar{p} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 80 & 2 & 169 \\
+\hline
+36 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma $ & 55 & 2 & 171 \\
+\hline
+37 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 82 & 2 & 173 \\
+\hline
+38 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 24 & 2 & 175 \\
+\hline
+39 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} p \bar{p} \gamma \gamma \gamma \gamma $ & 25 & 2 & 177 \\
+\hline
+40 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma $ & 93 & 2 & 179 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+index & event initial-final states & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+41 & $ e^{+} e^{-} \rightarrow e^{-} e^{-} \nu_{e} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma $ & 63 & 2 & 181 \\
+\hline
+42 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} p \bar{p} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 97 & 2 & 183 \\
+\hline
+43 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \mu^{-} \bar{\nu}_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma $ & 36 & 2 & 185 \\
+\hline
+44 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 67 & 2 & 187 \\
+\hline
+45 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{-} n \bar{p} \gamma \gamma \gamma \gamma $ & 44 & 1 & 188 \\
+\hline
+46 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 45 & 1 & 189 \\
+\hline
+47 & $ e^{+} e^{-} \rightarrow e^{+} e^{-} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} n \bar{p} \gamma \gamma \gamma $ & 46 & 1 & 190 \\
+\hline
+48 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} K^{-} \gamma \gamma \gamma \gamma $ & 47 & 1 & 191 \\
+\hline
+49 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma $ & 16 & 1 & 192 \\
+\hline
+50 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} K_{L} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 3 & 1 & 193 \\
+\hline
+51 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 18 & 1 & 194 \\
+\hline
+52 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{-} \pi^{-} K^{+} K^{-} p \bar{p} \gamma \gamma \gamma \gamma $ & 51 & 1 & 195 \\
+\hline
+53 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma $ & 52 & 1 & 196 \\
+\hline
+54 & $ e^{+} e^{-} \rightarrow e^{+} e^{-} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 4 & 1 & 197 \\
+\hline
+55 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} p \bar{p} \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 20 & 1 & 198 \\
+\hline
+56 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{-} \bar{n} p \gamma \gamma $ & 21 & 1 & 199 \\
+\hline
+57 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 56 & 1 & 200 \\
+\hline
+58 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma $ & 5 & 1 & 201 \\
+\hline
+59 & $ e^{+} e^{-} \rightarrow e^{+} e^{-} K_{L} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 58 & 1 & 202 \\
+\hline
+60 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 59 & 1 & 203 \\
+\hline
+61 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma $ & 60 & 1 & 204 \\
+\hline
+62 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 61 & 1 & 205 \\
+\hline
+63 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma $ & 23 & 1 & 206 \\
+\hline
+64 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 6 & 1 & 207 \\
+\hline
+65 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma $ & 64 & 1 & 208 \\
+\hline
+66 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 65 & 1 & 209 \\
+\hline
+67 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \bar{n} p \gamma \gamma \gamma \gamma \gamma $ & 7 & 1 & 210 \\
+\hline
+68 & $ e^{+} e^{-} \rightarrow e^{+} e^{-} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 26 & 1 & 211 \\
+\hline
+69 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \bar{n} p \gamma \gamma \gamma \gamma \gamma \gamma $ & 68 & 1 & 212 \\
+\hline
+70 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 27 & 1 & 213 \\
+\hline
+71 & $ e^{+} e^{-} \rightarrow e^{+} e^{-} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 8 & 1 & 214 \\
+\hline
+72 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 29 & 1 & 215 \\
+\hline
+73 & $ e^{+} e^{-} \rightarrow e^{+} e^{-} \mu^{+} \nu_{\mu} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 30 & 1 & 216 \\
+\hline
+74 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} p \bar{p} \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 73 & 1 & 217 \\
+\hline
+75 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 31 & 1 & 218 \\
+\hline
+76 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma $ & 32 & 1 & 219 \\
+\hline
+77 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 76 & 1 & 220 \\
+\hline
+78 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \bar{n} p \gamma \gamma \gamma \gamma \gamma \gamma $ & 77 & 1 & 221 \\
+\hline
+79 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 9 & 1 & 222 \\
+\hline
+80 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma $ & 79 & 1 & 223 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+index & event initial-final states & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+81 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 10 & 1 & 224 \\
+\hline
+82 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} n \bar{n} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 2 & 1 & 225 \\
+\hline
+83 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma $ & 12 & 1 & 226 \\
+\hline
+84 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma $ & 83 & 1 & 227 \\
+\hline
+85 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{-} n \bar{n} \gamma \gamma \gamma \gamma \gamma \gamma $ & 84 & 1 & 228 \\
+\hline
+86 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 37 & 1 & 229 \\
+\hline
+87 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 86 & 1 & 230 \\
+\hline
+88 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 38 & 1 & 231 \\
+\hline
+89 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma $ & 88 & 1 & 232 \\
+\hline
+90 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 89 & 1 & 233 \\
+\hline
+91 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 90 & 1 & 234 \\
+\hline
+92 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 91 & 1 & 235 \\
+\hline
+93 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 92 & 1 & 236 \\
+\hline
+94 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma $ & 39 & 1 & 237 \\
+\hline
+95 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} K_{L} K_{L} \pi^{+} \pi^{+} \pi^{+} K^{-} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 94 & 1 & 238 \\
+\hline
+96 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} n \bar{n} $ & 13 & 1 & 239 \\
+\hline
+97 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 96 & 1 & 240 \\
+\hline
+98 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 41 & 1 & 241 \\
+\hline
+99 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 14 & 1 & 242 \\
+\hline
+100 & $ e^{+} e^{-} \rightarrow K_{L} K_{L} K_{L} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma \gamma $ & 99 & 1 & 243 \\
+\hline
+101 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{+} K^{-} \gamma \gamma \gamma \gamma \gamma \gamma $ & 15 & 1 & 244 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\caption{Signal inclusive sequential event branches.}
+\small
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+index & \thead{signal inclusive sequential event branches} & iSigIncSeqEvtBrs & nEtrs & nCmltEtrs \\
+\hline
+1 & \makecell{ $ 
+D^{*+} \rightarrow D^{0} \rm{+anything} ,
+D^{0} \rightarrow \pi^{+} \pi^{-} K_{S} ,
+K_{S} \rightarrow \pi^{+} \pi^{-} 
+$ } & 0 & 5 & 5 \\
+\hline
+\end{tabular}
+\end{table}
+\end{document}

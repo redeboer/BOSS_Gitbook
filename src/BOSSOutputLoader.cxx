@@ -291,7 +291,7 @@
 			if(key->second.GetEntries()==1) {
 				std::cout << "CUT PARAMTERS" << std::endl;
 				for(auto it : cuts) {
-					std::cout << "  " << std::setw(length) << std::right << it.first << ": " << it.second << std::endl;
+					std::cout << "  " << std::setw(length) << std::right << it.first << ": " << it.second[0] << std::endl;
 				}
 				std::cout << std::endl;
 				return;
@@ -319,22 +319,21 @@
 			/// <li> Print horizontal line beneath it.
 			std::cout << "  " << std::setfill('-') << std::setw(length+39) << "" << std::endl;
 			std::cout << std::setfill(' ');
-			for(auto it : entry0) {
+			for(auto it : cuts) {
 				/// <li> Column 1: <b>cut name</b>.
 				std::cout << "  " << std::setw(length) << std::left << it.first << " | ";
 				/// <li> Column 2: <b>minimum</b>, if available.
 				std::cout << std::setw(10) << std::right;
-				if(it.second > -DBL_MAX) std::cout << it.second;
+				if(it.second[0] > -DBL_MAX) std::cout << it.second[0];
 				else std::cout << "";
 				std::cout << " | ";
 				/// <li> Column 3: <b>maximum</b>, if available.
 				std::cout << std::setw(10) << std::right;
-				if(entry1[i] < DBL_MAX) std::cout << entry1[i];
+				if(it.second[1] < DBL_MAX) std::cout << it.second[1];
 				else std::cout << "";
 				std::cout << " | ";
 				/// <li> Column 4: <b>counter</b>, if available.
-				std::cout << std::setw(10) << std::right << entry2[i] << std::endl;
-				++i;
+				std::cout << std::setw(10) << std::right << it.second[2] << std::endl;
 				/// </ol>
 			}
 			std::cout << std::endl;

@@ -3,13 +3,13 @@
  */
 
 // * FILE NAME * //
-	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK_MC_1e6_190101.root"
+	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK_MC_1e6.root"
 
 // * TERMINAL OUTPUT * //
 	Print branches = false
 
 // * PLOT STYLE * //
-	Use y log scale = ""
+	Use y log scale = "y"
 	Use z log scale = "z"
 	Set plot ranges = true
 	Plot statistics = false

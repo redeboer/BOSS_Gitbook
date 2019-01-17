@@ -1,0 +1,2436 @@
+\documentclass[landscape]{article}
+\usepackage{/home/belle2/zhouxy/studyarea/c++/tools/topoana/v1.5.3/share/geometry}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+\usepackage{/home/belle2/zhouxy/studyarea/c++/tools/topoana/v1.5.3/share/makecell}
+\usepackage{color}
+\begin{document}
+\title{Topology Analysis \footnote{\normalsize{This package is implemented with reference to a program called {\sc Topo}, which is developed by Prof. Shuxian Du from Zhengzhou University in China and has been widely used by people in BESIII collaboration. Several years ago, when I was a PhD student working on BESIII experiment, I learned the idea of topology analysis and a lot of programming techniques from the {\sc Topo} program. So, I really appreciate Prof. Du's original work very much. To meet my own needs and to practice developing analysis tools with C++, ROOT and LaTex, I wrote the package from scratch. At that time, the package functioned well but was relatively simple. At the end of last year (2017), my co-supervisor, Prof. Chengping Shen reminded me that it could be a useful tool for Belle II experiment as well. So, I revised and extended it, making it more well-rounded and suitable for Belle II experiment. Here, I would like to thank Prof. Du for his orignial work, Prof. Shen for his suggestion and encouragement, and Wencheng Yan, Sen Jia, Yubo Li, Suxian Li, Longke Li and Guanda Gong for their efforts in helping me test the program.}} \\ \vspace{0.1cm} \Large{(v1.5)}}
+\author{Xingyu Zhou \footnote{\normalsize{Email: zhouxy@buaa.edu.cn}} \\ \vspace{0.1cm} Beihang University}
+\maketitle
+
+\clearpage
+
+\newgeometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\listoftables
+
+\newgeometry{left=0.0cm,right=0.0cm,top=2.5cm,bottom=2.5cm}
+
+\clearpage
+
+\begin{table}[htbp!]
+\caption{Event trees and their respective initial-final states.}
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+1 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{+} D^{0} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} \pi^{+} \bar{D}^{*-} D^{0} D_{s}^{*-} 
+$) } & 0 & 0 & 1 & 1 \\
+\hline
+2 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{-} K^{*+} J/\psi ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} \pi^{-} K^{*+} D^{*+} J/\psi 
+$) } & 1 & 1 & 1 & 2 \\
+\hline
+3 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{*+} \bar{D}^{*-} D^{*0} ,
+\bar{B}^{0} \rightarrow \pi^{0} \rho^{0} \rho^{-} \eta D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \rho^{-} \eta K^{*+} D^{+} \bar{D}^{*-} D^{*0} 
+$) } & 2 & 2 & 1 & 3 \\
+\hline
+4 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} a_{1}^{+} ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} D^{*+} \bar{D}^{*-} a_{1}^{+} 
+$) } & 3 & 3 & 1 & 4 \\
+\hline
+5 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow D^{-} D_{s1}^{\prime+} ,
+B^{0} \rightarrow \pi^{0} \rho^{+} \omega \bar{D}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{+} \omega D^{-} \bar{D}^{*-} D_{s1}^{\prime+} 
+$) } & 4 & 4 & 1 & 5 \\
+\hline
+6 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{-} D^{+} D_{s}^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{-} D^{+} \bar{D}^{*-} D_{s}^{-} 
+$) } & 5 & 5 & 1 & 6 \\
+\hline
+7 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{0} \pi^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} K^{*} K^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \pi^{+} K^{*} K^{-} D^{+} \bar{D}^{*-} 
+$) } & 6 & 6 & 1 & 7 \\
+\hline
+8 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \tau^{+} \nu_{\tau} \bar{D}^{*-} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \eta \eta D^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \pi^{0} \pi^{+} \eta \eta D^{-} \bar{D}^{*-} 
+$) } & 7 & 7 & 1 & 8 \\
+\hline
+9 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{0} \pi^{+} \pi^{+} \pi^{-} D^{*+} \bar{D}^{*-} 
+$) } & 8 & 8 & 1 & 9 \\
+\hline
+10 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{0} D^{-} D^{*+} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K^{0} D^{-} D^{*+} D^{*+} D_{s}^{*-} 
+$) } & 9 & 9 & 1 & 10 \\
+\hline
+11 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \rho^{0} K^{0} K^{*-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \rho^{0} K^{0} K^{*-} D^{+} \bar{D}^{*-} 
+$) } & 10 & 10 & 1 & 11 \\
+\hline
+12 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{-} K^{+} J/\psi ,
+\bar{B}^{0} \rightarrow D^{+} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{-} K^{+} D^{+} D_{s}^{*-} J/\psi 
+$) } & 11 & 11 & 1 & 12 \\
+\hline
+13 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \pi^{-} K^{0} D^{0} \bar{D}^{0} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \rho^{-} \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \rho^{-} K^{0} D^{+} D^{0} \bar{D}^{0} 
+$) } & 12 & 12 & 1 & 13 \\
+\hline
+14 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \eta \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow K^{0} K^{*-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \eta K^{0} K^{*-} D^{*+} \bar{D}^{*-} 
+$) } & 13 & 13 & 1 & 14 \\
+\hline
+15 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{+} D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{-} K^{+} K^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{-} \rho^{+} K^{+} K^{-} D^{-} D^{*+} 
+$) } & 14 & 14 & 1 & 15 \\
+\hline
+16 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{0} \pi^{+} \eta \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} \pi^{0} \pi^{+} \eta D^{*+} \bar{D}^{*-} 
+$) } & 15 & 15 & 1 & 16 \\
+\hline
+17 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} K^{*-} D^{0} \bar{D}^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{0} \pi^{+} K^{*-} \bar{D}^{*-} D^{0} \bar{D}^{*0} 
+$) } & 16 & 16 & 1 & 17 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+18 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{*} D^{-} D^{*+} ,
+\bar{B}^{0} \rightarrow \pi^{0} \eta \bar{K}^{0} K^{-} D_{s}^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \eta \bar{K}^{0} K^{*} K^{-} D^{-} D^{*+} D_{s}^{+} 
+$) } & 17 & 17 & 1 & 18 \\
+\hline
+19 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} D_{s}^{*+} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} \bar{D}^{*-} D_{s}^{*+} 
+$) } & 18 & 18 & 1 & 19 \\
+\hline
+20 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} D_{2}^{*-} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \bar{D}^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} D_{2}^{*-} \bar{D}^{*0} 
+$) } & 19 & 19 & 1 & 20 \\
+\hline
+21 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} ,
+\bar{B}^{0} \rightarrow \pi^{0} \bar{K}^{*} K^{+} K^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{0} \bar{K}^{*} K^{+} K^{-} D^{*+} 
+$) } & 20 & 20 & 1 & 21 \\
+\hline
+22 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \pi^{+} \omega K^{0} K^{*-} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \omega K^{0} K^{*-} D^{*+} \bar{D}^{*-} 
+$) } & 21 & 21 & 1 & 22 \\
+\hline
+23 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} D_{s}^{*+} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{0} \rho^{-} \eta \omega D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{-} \eta \omega D^{*+} \bar{D}^{*-} D_{s}^{*+} 
+$) } & 22 & 22 & 1 & 23 \\
+\hline
+24 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow K^{*} D^{+} \bar{D}^{*-} ,
+B^{0} \rightarrow \pi^{+} \pi^{-} \rho^{-} \omega K^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \rho^{-} \omega K^{*} K^{*+} D^{+} \bar{D}^{*-} 
+$) } & 23 & 23 & 1 & 24 \\
+\hline
+25 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \rho^{0} \pi^{-} \rho^{+} \rho^{+} \eta D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{+} \bar{K}^{*} \bar{D}^{*-} D^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{-} \rho^{+} \rho^{+} \eta \bar{K}^{*} D^{-} \bar{D}^{*-} D^{0} 
+$) } & 24 & 24 & 1 & 25 \\
+\hline
+26 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{0} \bar{D}^{0} D^{*0} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{-} \omega D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} \omega K^{0} D^{+} \bar{D}^{0} D^{*0} 
+$) } & 25 & 25 & 1 & 26 \\
+\hline
+27 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} D^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \mu^{+} \nu_{\mu} D^{-} \bar{D}^{*-} 
+$) } & 26 & 26 & 1 & 27 \\
+\hline
+28 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D_{1}^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \mu^{-} \nu_{\mu} \bar{\nu}_{\mu} \bar{D}^{*-} D_{1}^{+} 
+$) } & 27 & 27 & 1 & 28 \\
+\hline
+29 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \tau^{+} \nu_{\tau} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \rho^{-} D^{+} \bar{D}^{*-} 
+$) } & 28 & 28 & 1 & 29 \\
+\hline
+30 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{-} \rho^{-} D^{+} ,
+\bar{B}^{0} \rightarrow \pi^{+} \rho^{-} \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{-} \rho^{-} \rho^{-} \rho^{-} D^{+} D^{+} 
+$) } & 29 & 29 & 1 & 30 \\
+\hline
+31 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} D_{1}^{-} ,
+\bar{B}^{0} \rightarrow \bar{K}_1^{0} \gamma 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \bar{K}_1^{0} D_{1}^{-} \gamma 
+$) } & 30 & 30 & 1 & 31 \\
+\hline
+32 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{-} K^{+} D^{*+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \rho^{0} \rho^{-} \eta \omega D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{-} \eta \omega K^{+} D^{+} D^{*+} \bar{D}^{*-} 
+$) } & 31 & 31 & 1 & 32 \\
+\hline
+33 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow D^{-} D_{s}^{+} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} \pi^{-} \pi^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} \pi^{-} \pi^{-} D^{+} D^{-} D_{s}^{+} 
+$) } & 32 & 32 & 1 & 33 \\
+\hline
+34 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \tau^{+} \nu_{\tau} D_{0}^{*-} ,
+B^{0} \rightarrow \rho^{+} \eta \omega \bar{D}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \rho^{+} \eta \omega \bar{D}^{*-} D_{0}^{*-} 
+$) } & 33 & 33 & 1 & 34 \\
+\hline
+35 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} \bar{\Delta}^{0} \Delta^{+} ,
+\bar{B}^{0} \rightarrow \bar{K}^{*} \chi_{c1} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \bar{K}^{*} \bar{D}^{*-} \bar{\Delta}^{0} \Delta^{+} \chi_{c1} 
+$) } & 34 & 34 & 1 & 35 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+36 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{0} \bar{p} \Delta^{+} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D_{1}^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \bar{D}^{0} \bar{p} \Delta^{+} D_{1}^{+} 
+$) } & 35 & 35 & 1 & 36 \\
+\hline
+37 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \pi^{-} D^{-} D^{*+} 
+$) } & 36 & 36 & 1 & 37 \\
+\hline
+38 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \eta D^{+} p \bar{\Delta}^{++} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \rho^{-} \eta D^{+} D^{+} p \bar{\Delta}^{++} 
+$) } & 37 & 37 & 1 & 38 \\
+\hline
+39 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \pi^{-} D^{+} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{0} K^{*} K^{*-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{-} K^{*} K^{*-} D^{+} D^{+} 
+$) } & 38 & 38 & 1 & 39 \\
+\hline
+40 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \pi^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \rho^{-} D^{*+} \gamma 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \rho^{-} D^{*+} \bar{D}^{*-} \gamma 
+$) } & 39 & 39 & 1 & 40 \\
+\hline
+41 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{0} \pi^{0} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \mu^{-} \bar{\nu}_{\mu} \bar{\nu}_{\mu} \pi^{0} \pi^{0} D^{*+} D^{*+} 
+$) } & 40 & 40 & 1 & 41 \\
+\hline
+42 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{-} \omega D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{-} \omega D^{*+} \bar{D}^{*-} 
+$) } & 41 & 41 & 1 & 42 \\
+\hline
+43 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \pi^{+} K^{-} \eta_{c}(2S) ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} D^{+} \Sigma^{-} \bar{\Sigma}^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} K^{-} D^{+} \Sigma^{-} \bar{\Sigma}^{0} \eta_{c}(2S) 
+$) } & 42 & 42 & 1 & 43 \\
+\hline
+44 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \eta D^{-} D_{s}^{+} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \eta D^{-} D^{*+} D_{s}^{+} 
+$) } & 43 & 43 & 1 & 44 \\
+\hline
+45 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \omega K^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s}^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \omega K^{+} D^{*+} \bar{D}^{*-} D_{s}^{-} 
+$) } & 44 & 44 & 1 & 45 \\
+\hline
+46 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \eta \bar{D}^{*-} D_{s}^{+} ,
+B^{0} \rightarrow \pi^{0} \pi^{-} \rho^{+} \bar{K}^{0} K^{+} D^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} \rho^{+} \eta \bar{K}^{0} K^{+} D^{-} \bar{D}^{*-} D_{s}^{+} 
+$) } & 45 & 45 & 1 & 46 \\
+\hline
+47 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \eta \eta \bar{K}^{0} K^{+} D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \rho^{0} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \rho^{-} \eta \eta \bar{K}^{0} K^{+} D^{-} D^{*+} 
+$) } & 46 & 46 & 1 & 47 \\
+\hline
+48 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \rho^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{+} K^{-} D^{+} D^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \rho^{+} K^{-} D^{+} D^{-} \bar{D}^{*-} 
+$) } & 47 & 47 & 1 & 48 \\
+\hline
+49 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \rho^{+} D^{-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \rho^{0} \rho^{+} D^{+} D^{-} 
+$) } & 48 & 48 & 1 & 49 \\
+\hline
+50 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \pi^{-} \rho^{+} \eta D^{-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{+} \pi^{-} \rho^{+} \eta D^{-} D^{*+} 
+$) } & 49 & 49 & 1 & 50 \\
+\hline
+51 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \eta D^{-} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \bar{D}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{0} \pi^{+} \pi^{+} \pi^{-} \eta D^{-} \bar{D}^{*-} 
+$) } & 50 & 50 & 1 & 51 \\
+\hline
+52 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} \rho^{-} D^{-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} \pi^{+} \pi^{+} \rho^{-} D^{+} D^{-} 
+$) } & 51 & 51 & 1 & 52 \\
+\hline
+53 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \pi^{+} \pi^{+} \pi^{-} \omega D^{-} ,
+\bar{B}^{0} \rightarrow \rho^{+} \rho^{-} D^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{+} \rho^{-} \omega D^{-} D^{*0} 
+$) } & 52 & 52 & 1 & 53 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+54 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{-} \bar{D}^{0} D_{s}^{+} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{-} D^{*+} \bar{D}^{0} D_{s}^{+} D_{s}^{*-} 
+$) } & 53 & 53 & 1 & 54 \\
+\hline
+55 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} a_{1}^{+} ,
+\bar{B}^{0} \rightarrow \pi^{0} \rho^{0} \rho^{0} \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \rho^{0} \rho^{-} D^{+} \bar{D}^{*-} a_{1}^{+} 
+$) } & 54 & 54 & 1 & 55 \\
+\hline
+56 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \Delta^{+} \bar{\Xi}_{c}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} D^{0} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} D^{0} D_{s}^{*-} \Delta^{+} \bar{\Xi}_{c}^{*-} 
+$) } & 55 & 55 & 1 & 56 \\
+\hline
+57 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \bar{\Delta}^{+} \Sigma_{c}^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{0} \bar{D}^{*-} \bar{\Delta}^{+} \Sigma_{c}^{+} 
+$) } & 56 & 56 & 1 & 57 \\
+\hline
+58 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \pi^{+} \pi^{-} \bar{D}^{*0} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \rho^{0} \pi^{+} \pi^{-} D^{*+} \bar{D}^{*0} 
+$) } & 57 & 57 & 1 & 58 \\
+\hline
+59 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow D^{+} \Delta^{0} \bar{\Delta}^{+} ,
+\bar{B}^{0} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{-} \eta \eta 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{-} \eta \eta D^{+} \Delta^{0} \bar{\Delta}^{+} 
+$) } & 58 & 58 & 1 & 59 \\
+\hline
+60 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{0} \pi^{0} \rho^{0} \rho^{0} \pi^{+} \pi^{-} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \pi^{0} \rho^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} D^{*+} \bar{D}^{*-} 
+$) } & 59 & 59 & 1 & 60 \\
+\hline
+61 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \omega \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{-} \bar{K}^{0} D^{+} \bar{D}^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \omega \bar{K}^{0} D^{+} \bar{D}^{*-} \bar{D}^{*0} 
+$) } & 60 & 60 & 1 & 61 \\
+\hline
+62 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{+} \bar{K}^{*} \bar{D}^{*-} D^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \bar{K}^{*} \bar{D}^{*-} \bar{D}^{*-} D^{0} 
+$) } & 61 & 61 & 1 & 62 \\
+\hline
+63 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} a_{1}^{+} ,
+B^{0} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} D^{-} \Delta^{+} \bar{\Delta}^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} D^{-} \bar{D}^{*-} \Delta^{+} \bar{\Delta}^{+} a_{1}^{+} 
+$) } & 62 & 62 & 1 & 63 \\
+\hline
+64 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \pi^{-} \eta \bar{D}^{0} ,
+\bar{B}^{0} \rightarrow \pi^{-} \pi^{-} \pi^{-} \rho^{+} \rho^{+} \omega D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \rho^{+} \rho^{+} \eta \omega D^{*+} \bar{D}^{0} 
+$) } & 63 & 63 & 1 & 64 \\
+\hline
+65 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \pi^{+} K^{-} K^{*+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{0} \rho^{0} \rho^{0} \pi^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \rho^{0} \rho^{0} \pi^{+} \pi^{-} K^{-} K^{*+} D^{+} \bar{D}^{*-} 
+$) } & 64 & 64 & 1 & 65 \\
+\hline
+66 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{0} \pi^{+} \pi^{-} \pi^{-} D^{*+} p \bar{p} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{0} \pi^{0} \pi^{+} \pi^{-} \pi^{-} D^{-} D^{*+} p \bar{p} 
+$) } & 65 & 65 & 1 & 66 \\
+\hline
+67 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} D_{0}^{*-} ,
+\bar{B}^{0} \rightarrow \tau^{-} \bar{\nu}_{\tau} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \tau^{-} \bar{\nu}_{\tau} D^{*+} D_{0}^{*-} 
+$) } & 66 & 66 & 1 & 67 \\
+\hline
+68 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \omega \omega \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \eta D^{+} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \eta \omega \omega D^{+} \bar{D}^{*-} D_{s}^{*-} 
+$) } & 67 & 67 & 1 & 68 \\
+\hline
+69 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{+} ,
+\bar{B}^{0} \rightarrow \rho^{0} \rho^{-} \eta D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \rho^{0} \rho^{-} \eta D^{+} D^{*+} 
+$) } & 68 & 68 & 1 & 69 \\
+\hline
+70 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{+} D^{-} ,
+\bar{B}^{0} \rightarrow \rho^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{+} \rho^{-} D^{-} D^{*+} 
+$) } & 69 & 69 & 1 & 70 \\
+\hline
+71 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{-} K^{+} D^{0} \bar{D}^{0} ,
+\bar{B}^{0} \rightarrow K^{*-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{-} K^{+} K^{*-} D^{+} D^{0} \bar{D}^{0} 
+$) } & 70 & 70 & 1 & 71 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+72 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{0} \pi^{+} \rho^{+} \rho^{-} D^{-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} \pi^{0} \pi^{+} \rho^{+} \rho^{-} D^{+} D^{-} 
+$) } & 71 & 71 & 1 & 72 \\
+\hline
+73 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{*} n \bar{\Sigma}_{c}^{*0} ,
+\bar{B}^{0} \rightarrow \pi^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{-} K^{*} D^{+} n \bar{\Sigma}_{c}^{*0} 
+$) } & 72 & 72 & 1 & 73 \\
+\hline
+74 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{-} \pi^{-} D^{*+} \bar{n} \Delta^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{-} \pi^{-} D^{*+} \bar{D}^{*-} \bar{n} \Delta^{+} 
+$) } & 73 & 73 & 1 & 74 \\
+\hline
+75 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{*+} \bar{D}^{*-} D^{0} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s0}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K^{*+} D^{*+} \bar{D}^{*-} D^{0} D_{s0}^{*-} 
+$) } & 74 & 74 & 1 & 75 \\
+\hline
+76 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} \rho^{+} \bar{D}^{*-} D^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \pi^{+} \pi^{-} \rho^{+} \bar{D}^{*-} \bar{D}^{*-} D^{*0} 
+$) } & 75 & 75 & 1 & 76 \\
+\hline
+77 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \rho^{+} \omega \omega D^{-} ,
+\bar{B}^{0} \rightarrow K^{-} D^{*+} \bar{D}^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{+} \omega \omega K^{-} D^{-} D^{*+} \bar{D}^{*0} 
+$) } & 76 & 76 & 1 & 77 \\
+\hline
+78 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} \rho^{-} \omega \bar{K}^{0} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} \pi^{+} \pi^{-} \rho^{-} \omega \bar{K}^{0} D^{*+} D^{*+} 
+$) } & 77 & 77 & 1 & 78 \\
+\hline
+79 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \eta D^{-} ,
+\bar{B}^{0} \rightarrow \rho^{0} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \rho^{0} \pi^{-} \eta D^{-} D^{*+} 
+$) } & 78 & 78 & 1 & 79 \\
+\hline
+80 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \pi^{+} \pi^{-} \rho^{+} \eta \eta \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \rho^{0} \pi^{+} \pi^{-} \rho^{+} \eta \eta D^{*+} \bar{D}^{*-} 
+$) } & 79 & 79 & 1 & 80 \\
+\hline
+81 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \tau^{+} \nu_{\tau} D_{0}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{-} \omega K^{0} \bar{K}^{0} \bar{K}^{*} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \pi^{0} \pi^{-} \omega K^{0} \bar{K}^{0} \bar{K}^{*} D^{*+} D_{0}^{*-} 
+$) } & 80 & 80 & 1 & 81 \\
+\hline
+82 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow D^{-} a_{1}^{+} ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{-} D^{+} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} D^{+} D^{-} D_{s}^{*-} a_{1}^{+} 
+$) } & 81 & 81 & 1 & 82 \\
+\hline
+83 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{+} \eta \omega D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{+} D^{0} D_{s}^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \rho^{+} \eta \omega D^{-} D^{0} D_{s}^{-} 
+$) } & 82 & 82 & 1 & 83 \\
+\hline
+84 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} K^{0} D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{0} D^{-} D^{*+} 
+$) } & 83 & 83 & 1 & 84 \\
+\hline
+85 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \rho^{-} \bar{D}^{*0} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} \eta D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} \pi^{+} \rho^{-} \eta D^{+} \bar{D}^{*0} 
+$) } & 84 & 84 & 1 & 85 \\
+\hline
+86 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \eta^{\prime} D^{+} \bar{D}^{*-} ,
+B^{0} \rightarrow \omega \bar{D}^{*-} \bar{n} p 
+$ \\ ($
+e^{+} e^{-} \rightarrow \omega \eta^{\prime} D^{+} \bar{D}^{*-} \bar{D}^{*-} \bar{n} p 
+$) } & 85 & 85 & 1 & 86 \\
+\hline
+87 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \pi^{-} \rho^{+} D^{-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D_{2}^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{-} \rho^{+} D^{-} D_{2}^{*+} 
+$) } & 86 & 86 & 1 & 87 \\
+\hline
+88 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \pi^{+} \eta D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{-} \rho^{+} K^{0} K^{*-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{-} \rho^{+} \eta K^{0} K^{*-} D^{+} D^{-} 
+$) } & 87 & 87 & 1 & 88 \\
+\hline
+89 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} p \bar{\Sigma}_{c}^{*-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D_{0}^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \rho^{0} p \bar{\Sigma}_{c}^{*-} D_{0}^{*+} 
+$) } & 88 & 88 & 1 & 89 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+90 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{-} \pi^{-} D^{+} \bar{n} p 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{-} \pi^{-} D^{+} \bar{D}^{*-} \bar{n} p 
+$) } & 89 & 89 & 1 & 90 \\
+\hline
+91 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} \rho^{+} D^{-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{0} \pi^{+} \pi^{-} \rho^{+} D^{-} D^{*+} 
+$) } & 90 & 90 & 1 & 91 \\
+\hline
+92 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{-} K^{*+} J/\psi ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} K^{-} \eta_{c}(2S) 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} K^{-} K^{*+} J/\psi \eta_{c}(2S) 
+$) } & 91 & 91 & 1 & 92 \\
+\hline
+93 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \bar{K}^{0} \psi^{\prime} ,
+\bar{B}^{0} \rightarrow \pi^{-} \rho^{+} \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{-} \rho^{+} \rho^{-} \bar{K}^{0} D^{+} \psi^{\prime} 
+$) } & 92 & 92 & 1 & 93 \\
+\hline
+94 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \rho^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{-} K^{0} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{+} K^{0} D^{+} \bar{D}^{*-} 
+$) } & 93 & 93 & 1 & 94 \\
+\hline
+95 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{+} \omega D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \omega K^{0} K^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{+} \omega \omega K^{0} K^{-} D^{+} D^{-} 
+$) } & 94 & 94 & 1 & 95 \\
+\hline
+96 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{-} \nu_{e} \bar{\nu}_{e} D^{*+} \bar{D}^{*-} 
+$) } & 95 & 95 & 1 & 96 \\
+\hline
+97 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{*+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{-} D^{*+} \Delta^{+} \bar{\Delta}^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} K^{*+} D^{*+} \bar{D}^{*-} \Delta^{+} \bar{\Delta}^{+} 
+$) } & 96 & 96 & 1 & 97 \\
+\hline
+98 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow D_{2}^{*-} D_{s}^{*+} ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{-} D^{+} D_{s}^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} D^{+} D_{2}^{*-} D_{s}^{-} D_{s}^{*+} 
+$) } & 97 & 97 & 1 & 98 \\
+\hline
+99 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K_{L} \eta_{c} ,
+\bar{B}^{0} \rightarrow \pi^{-} \pi^{-} \rho^{+} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K_{L} \pi^{-} \pi^{-} \rho^{+} D^{*+} \eta_{c} 
+$) } & 98 & 98 & 1 & 99 \\
+\hline
+100 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow K^{*} K^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} K^{*} K^{-} D^{+} \bar{D}^{*-} 
+$) } & 99 & 99 & 1 & 100 \\
+\hline
+101 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \rho^{-} \eta \bar{D}^{0} ,
+\bar{B}^{0} \rightarrow \pi^{-} \rho^{+} \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \rho^{+} \rho^{-} \rho^{-} \eta D^{+} \bar{D}^{0} 
+$) } & 100 & 100 & 1 & 101 \\
+\hline
+102 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{0} \eta \omega \bar{D}^{0} ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{-} D^{+} D_{s}^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \pi^{-} \eta \omega D^{+} \bar{D}^{0} D_{s}^{-} 
+$) } & 101 & 101 & 1 & 102 \\
+\hline
+103 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \rho^{+} \omega \omega D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{-} \pi^{-} \rho^{+} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \rho^{0} \pi^{-} \pi^{-} \rho^{+} \rho^{+} \omega \omega D^{-} D^{*+} 
+$) } & 102 & 102 & 1 & 103 \\
+\hline
+104 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow D^{-} D_{s}^{*+} ,
+\bar{B}^{0} \rightarrow \rho^{0} \pi^{-} \rho^{+} D^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{+} D^{-} D^{0} D_{s}^{*+} 
+$) } & 103 & 103 & 1 & 104 \\
+\hline
+105 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{-} \omega D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{+} D^{*0} D_{s}^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \omega D^{-} D^{*0} D_{s}^{-} 
+$) } & 104 & 104 & 1 & 105 \\
+\hline
+106 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{+} K^{+} K^{-} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \rho^{+} K^{+} K^{-} D^{*+} \bar{D}^{*-} 
+$) } & 105 & 105 & 1 & 106 \\
+\hline
+107 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{0} J/\psi ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \pi^{-} K^{0} D^{*+} J/\psi 
+$) } & 106 & 106 & 1 & 107 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+108 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{0} \pi^{+} \rho^{-} \bar{D}^{*0} ,
+\bar{B}^{0} \rightarrow \rho^{-} \eta \omega \omega D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \rho^{-} \rho^{-} \eta \omega \omega D^{*+} \bar{D}^{*0} 
+$) } & 107 & 107 & 1 & 108 \\
+\hline
+109 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \pi^{-} \bar{D}^{*0} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \rho^{-} D^{+} \bar{D}^{*0} 
+$) } & 108 & 108 & 1 & 109 \\
+\hline
+110 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \rho^{0} \pi^{-} D^{*+} ,
+\bar{B}^{0} \rightarrow \bar{K}^{0} \bar{\Sigma}^{*0} \Sigma_{c}^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \bar{K}^{0} D^{*+} \bar{\Sigma}^{*0} \Sigma_{c}^{*0} 
+$) } & 109 & 109 & 1 & 110 \\
+\hline
+111 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s}^{*-} ,
+\bar{B}^{0} \rightarrow \rho^{0} \pi^{+} \bar{\Delta}^{++} \Lambda_{c}^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} D^{*+} D_{s}^{*-} \bar{\Delta}^{++} \Lambda_{c}^{+} 
+$) } & 110 & 110 & 1 & 111 \\
+\hline
+112 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} D_{2}^{*-} ,
+\bar{B}^{0} \rightarrow \rho^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \rho^{-} D^{*+} D_{2}^{*-} 
+$) } & 111 & 111 & 1 & 112 \\
+\hline
+113 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} D^{-} ,
+\bar{B}^{0} \rightarrow D_{s}^{*+} \bar{\Delta}^{+} \Lambda 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} D^{-} D_{s}^{*+} \bar{\Delta}^{+} \Lambda 
+$) } & 112 & 112 & 1 & 113 \\
+\hline
+114 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow K^{-} D^{*+} \bar{D}^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} K^{-} D^{*+} \bar{D}^{*-} \bar{D}^{*0} 
+$) } & 113 & 113 & 1 & 114 \\
+\hline
+115 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} D_{s1}^{\prime+} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} \bar{D}^{*-} D_{s1}^{\prime+} 
+$) } & 114 & 114 & 1 & 115 \\
+\hline
+116 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s}^{*-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D_{1}^{\prime+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} D_{s}^{*-} D_{1}^{\prime+} 
+$) } & 115 & 115 & 1 & 116 \\
+\hline
+117 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \eta \bar{K}^{0} K^{*} D^{-} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \eta \bar{K}^{0} K^{*} D^{-} D^{*+} D_{s}^{*-} 
+$) } & 116 & 116 & 1 & 117 \\
+\hline
+118 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{-} \eta \bar{K}^{0} K^{+} \bar{D}^{*0} ,
+\bar{B}^{0} \rightarrow \pi^{-} \eta D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{-} \rho^{-} \eta \eta \bar{K}^{0} K^{+} D^{*+} \bar{D}^{*0} 
+$) } & 117 & 117 & 1 & 118 \\
+\hline
+119 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{0} \bar{D}^{0} ,
+B^{0} \rightarrow \pi^{0} \rho^{0} \rho^{+} \omega D^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \rho^{0} \rho^{+} \omega D^{-} \bar{D}^{0} 
+$) } & 118 & 118 & 1 & 119 \\
+\hline
+120 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{0} D^{*+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} K^{0} D^{*+} D^{*+} \bar{D}^{*-} 
+$) } & 119 & 119 & 1 & 120 \\
+\hline
+121 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \mu^{-} \bar{\nu}_{\mu} D^{*+} D^{*+} 
+$) } & 120 & 120 & 1 & 121 \\
+\hline
+122 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{-} \omega D^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \omega \bar{D}^{*-} D^{*0} 
+$) } & 121 & 121 & 1 & 122 \\
+\hline
+123 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \mu^{+} \nu_{\mu} D^{*+} \bar{D}^{*-} 
+$) } & 122 & 122 & 1 & 123 \\
+\hline
+124 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \tau^{+} \nu_{\tau} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \omega K^{*-} D_{s}^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \pi^{0} \omega K^{*-} \bar{D}^{*-} D_{s}^{+} 
+$) } & 123 & 123 & 1 & 124 \\
+\hline
+125 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{-} \bar{K}^{0} K^{+} \bar{D}^{*0} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{-} \bar{K}^{0} K^{+} D^{+} \bar{D}^{*0} 
+$) } & 124 & 124 & 1 & 125 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+126 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} D_{1}^{\prime-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \mu^{-} \nu_{\mu} \bar{\nu}_{\mu} D^{*+} D_{1}^{\prime-} 
+$) } & 125 & 125 & 1 & 126 \\
+\hline
+127 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow D_{2}^{*+} D_{s}^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \bar{D}^{*-} D_{2}^{*+} D_{s}^{-} 
+$) } & 126 & 126 & 1 & 127 \\
+\hline
+128 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} ,
+\bar{B}^{0} \rightarrow \bar{K}^{*} D^{+} D^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \bar{K}^{*} D^{+} D^{-} D^{*+} 
+$) } & 127 & 127 & 1 & 128 \\
+\hline
+129 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} D_{1}^{\prime-} ,
+\bar{B}^{0} \rightarrow \pi^{+} D^{0} D_{s}^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} D^{0} D_{s}^{-} D_{1}^{\prime-} 
+$) } & 128 & 128 & 1 & 129 \\
+\hline
+130 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} a_{1}^{+} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} \bar{D}^{*-} a_{1}^{+} 
+$) } & 129 & 129 & 1 & 130 \\
+\hline
+131 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \eta \bar{K}^{0} K^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \rho^{-} \eta D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{-} \eta \eta \bar{K}^{0} K^{+} D^{+} \bar{D}^{*-} 
+$) } & 130 & 130 & 1 & 131 \\
+\hline
+132 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \rho^{-} D^{+} ,
+\bar{B}^{0} \rightarrow \rho^{0} \pi^{-} \omega D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{-} \omega D^{+} D^{+} 
+$) } & 131 & 131 & 1 & 132 \\
+\hline
+133 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} D_{s}^{+} ,
+B^{0} \rightarrow e^{+} \nu_{e} D_{2}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} D_{2}^{*-} D_{s}^{+} 
+$) } & 132 & 132 & 1 & 133 \\
+\hline
+134 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \pi^{-} \rho^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow D_{2}^{*+} D_{s}^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \rho^{+} \bar{D}^{*-} D_{2}^{*+} D_{s}^{-} 
+$) } & 133 & 133 & 1 & 134 \\
+\hline
+135 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \omega K^{+} D_{s}^{*-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{0} \omega K^{+} D^{*+} D_{s}^{*-} 
+$) } & 134 & 134 & 1 & 135 \\
+\hline
+136 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow D_{s}^{*+} D_{1}^{\prime-} ,
+\bar{B}^{0} \rightarrow \rho^{0} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} D^{*+} D_{s}^{*+} D_{1}^{\prime-} 
+$) } & 135 & 135 & 1 & 136 \\
+\hline
+137 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \pi^{-} \rho^{+} \rho^{+} K^{0} D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \rho^{0} \pi^{-} \eta \omega D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \rho^{0} \pi^{-} \pi^{-} \rho^{+} \rho^{+} \eta \omega K^{0} D^{+} D^{-} 
+$) } & 136 & 136 & 1 & 137 \\
+\hline
+138 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{0} K^{+} D_{s}^{*-} ,
+\bar{B}^{0} \rightarrow D^{*0} n \bar{n} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} K^{+} D^{*0} D_{s}^{*-} n \bar{n} 
+$) } & 137 & 137 & 1 & 138 \\
+\hline
+139 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} D^{-} ,
+B^{0} \rightarrow K^{+} \Delta^{+} \bar{\Sigma}_{c}^{*--} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} K^{+} D^{-} \Delta^{+} \bar{\Sigma}_{c}^{*--} 
+$) } & 138 & 138 & 1 & 139 \\
+\hline
+140 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{+} \rho^{+} \rho^{-} \eta \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \bar{K}^{0} K^{*} K^{+} K^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \rho^{+} \rho^{+} \rho^{-} \eta \bar{K}^{0} K^{*} K^{+} K^{*-} \bar{D}^{*-} 
+$) } & 139 & 139 & 1 & 140 \\
+\hline
+141 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \rho^{0} \pi^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \rho^{0} \pi^{-} D^{+} \bar{D}^{*-} 
+$) } & 140 & 140 & 1 & 141 \\
+\hline
+142 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow D^{-} D_{s}^{*+} \gamma ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{-} \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \rho^{-} D^{+} D^{-} D_{s}^{*+} \gamma 
+$) } & 141 & 141 & 1 & 142 \\
+\hline
+143 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{+} n \bar{\Sigma}_{c}^{-} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s1}^{\prime-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{+} D^{*+} n \bar{\Sigma}_{c}^{-} D_{s1}^{\prime-} 
+$) } & 142 & 142 & 1 & 143 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+144 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{+} ,
+\bar{B}^{0} \rightarrow \bar{K}^{*} K^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \bar{K}^{*} K^{-} D^{+} D^{*+} 
+$) } & 143 & 143 & 1 & 144 \\
+\hline
+145 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \pi^{+} \pi^{-} \omega \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \omega D^{*+} \bar{D}^{*-} 
+$) } & 144 & 144 & 1 & 145 \\
+\hline
+146 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} K^{0} \bar{K}^{*} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{+} K^{-} D^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} K^{0} \bar{K}^{*} K^{-} D^{-} D^{*+} \bar{D}^{*-} 
+$) } & 145 & 145 & 1 & 146 \\
+\hline
+147 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \rho^{-} D_{2}^{*+} ,
+\bar{B}^{0} \rightarrow \rho^{0} \pi^{+} K^{*-} \eta_{c} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \rho^{-} K^{*-} D_{2}^{*+} \eta_{c} 
+$) } & 146 & 146 & 1 & 147 \\
+\hline
+148 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \pi^{+} \pi^{+} \rho^{-} D^{-} ,
+\bar{B}^{0} \rightarrow D_{s}^{*-} D_{1}^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{+} \rho^{-} D^{-} D_{s}^{*-} D_{1}^{+} 
+$) } & 147 & 147 & 1 & 148 \\
+\hline
+149 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \rho^{0} \pi^{+} D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{-} \pi^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} D^{+} D^{-} 
+$) } & 148 & 148 & 1 & 149 \\
+\hline
+150 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \tau^{+} \nu_{\tau} D_{0}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \omega K^{*} K^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \pi^{0} \omega K^{*} K^{-} D^{+} D_{0}^{*-} 
+$) } & 149 & 149 & 1 & 150 \\
+\hline
+151 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{-} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} e^{-} \nu_{e} \bar{\nu}_{e} \pi^{+} \pi^{-} D^{*+} \bar{D}^{*-} 
+$) } & 150 & 150 & 1 & 151 \\
+\hline
+152 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \bar{D}^{*-} \bar{\Sigma}^{0} \Sigma^{+} ,
+\bar{B}^{0} \rightarrow \eta \bar{K}^{0} J/\psi 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \eta \bar{K}^{0} \bar{D}^{*-} J/\psi \bar{\Sigma}^{0} \Sigma^{+} 
+$) } & 151 & 151 & 1 & 152 \\
+\hline
+153 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \rho^{0} \rho^{0} \rho^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \rho^{0} \rho^{0} \rho^{0} \rho^{+} D^{*+} \bar{D}^{*-} 
+$) } & 152 & 152 & 1 & 153 \\
+\hline
+154 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{*+} D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{+} K^{-} \chi_{c1} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} K^{-} K^{*+} D^{-} \chi_{c1} 
+$) } & 153 & 153 & 1 & 154 \\
+\hline
+155 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{*+} D^{-} D^{0} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D_{2}^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} K^{*+} D^{-} D_{2}^{*+} D^{0} 
+$) } & 154 & 154 & 1 & 155 \\
+\hline
+156 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{+} D^{-} ,
+\bar{B}^{0} \rightarrow \pi^{-} \pi^{-} \rho^{+} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{-} \pi^{-} \rho^{+} \rho^{+} D^{-} D^{*+} 
+$) } & 155 & 155 & 1 & 156 \\
+\hline
+157 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \rho^{0} \rho^{-} D^{*+} \gamma 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{0} \rho^{0} \rho^{-} D^{*+} \bar{D}^{*-} \gamma 
+$) } & 156 & 156 & 1 & 157 \\
+\hline
+158 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \pi^{+} \bar{D}^{*-} ,
+B^{0} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \eta \omega D^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \eta \omega D^{-} \bar{D}^{*-} 
+$) } & 157 & 157 & 1 & 158 \\
+\hline
+159 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{-} K^{0} D^{+} \bar{D}^{*0} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{-} K^{0} D^{+} D^{+} \bar{D}^{*0} 
+$) } & 158 & 158 & 1 & 159 \\
+\hline
+160 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} D_{1}^{-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \mu^{+} \nu_{\mu} D^{*+} D_{1}^{-} 
+$) } & 159 & 159 & 1 & 160 \\
+\hline
+161 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{K}^{0} K^{+} D^{-} ,
+\bar{B}^{0} \rightarrow \rho^{0} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \bar{K}^{0} K^{+} D^{-} D^{*+} 
+$) } & 160 & 160 & 1 & 161 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+162 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s}^{-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{0} \pi^{-} \omega D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{-} \omega D^{+} D^{*+} D_{s}^{-} 
+$) } & 161 & 161 & 1 & 162 \\
+\hline
+163 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \omega \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s}^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \omega D^{*+} \bar{D}^{*-} D_{s}^{-} 
+$) } & 162 & 162 & 1 & 163 \\
+\hline
+164 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \Sigma^{0} \bar{\Xi}_{c}^{0} ,
+\bar{B}^{0} \rightarrow D^{+} D_{s1}^{\prime-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} D^{+} \Sigma^{0} \bar{\Xi}_{c}^{0} D_{s1}^{\prime-} 
+$) } & 163 & 163 & 1 & 164 \\
+\hline
+165 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \eta \omega \bar{D}^{*0} ,
+\bar{B}^{0} \rightarrow \pi^{0} \rho^{-} \omega D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \rho^{-} \eta \omega \omega D^{*+} \bar{D}^{*0} 
+$) } & 164 & 164 & 1 & 165 \\
+\hline
+166 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} \bar{\Delta}^{-} \Delta^{0} ,
+\bar{B}^{0} \rightarrow \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{-} D^{+} \bar{D}^{*-} \bar{\Delta}^{-} \Delta^{0} 
+$) } & 165 & 165 & 1 & 166 \\
+\hline
+167 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{-} p \bar{\Sigma}_{c}^{0} ,
+\bar{B}^{0} \rightarrow \tau^{-} \bar{\nu}_{\tau} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \tau^{-} \bar{\nu}_{\tau} \rho^{-} D^{*+} p \bar{\Sigma}_{c}^{0} 
+$) } & 166 & 166 & 1 & 167 \\
+\hline
+168 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \pi^{+} K^{*-} J/\psi ,
+\bar{B}^{0} \rightarrow \bar{K}^{0} D^{*0} \bar{D}^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{+} \bar{K}^{0} K^{*-} D^{*0} \bar{D}^{*0} J/\psi 
+$) } & 167 & 167 & 1 & 168 \\
+\hline
+169 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{-} K^{*+} D^{0} \bar{D}^{*0} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} \pi^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{*+} D^{*+} D^{0} \bar{D}^{*0} 
+$) } & 168 & 168 & 1 & 169 \\
+\hline
+170 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} D^{-} ,
+B^{0} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \eta K^{+} K^{+} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \eta K^{+} K^{+} D^{-} D_{s}^{*-} 
+$) } & 169 & 169 & 1 & 170 \\
+\hline
+171 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \pi^{0} \bar{K}^{0} D^{-} \Delta^{0} \bar{\Sigma}^{+} ,
+B^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \bar{D}^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \bar{K}^{0} D^{-} \bar{D}^{0} \Delta^{0} \bar{\Sigma}^{+} 
+$) } & 170 & 170 & 1 & 171 \\
+\hline
+172 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{+} \rho^{-} \rho^{-} \omega D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \rho^{-} \rho^{-} \omega D^{*+} \bar{D}^{*-} 
+$) } & 171 & 171 & 1 & 172 \\
+\hline
+173 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} D_{s1}^{\prime+} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{+} K^{-} D^{-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} K^{-} D^{-} \bar{D}^{*-} D_{s1}^{\prime+} 
+$) } & 172 & 172 & 1 & 173 \\
+\hline
+174 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow K^{*} D^{-} D^{*+} ,
+\bar{B}^{0} \rightarrow \rho^{0} \rho^{-} \eta D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \rho^{-} \eta K^{*} D^{-} D^{*+} D^{*+} 
+$) } & 173 & 173 & 1 & 174 \\
+\hline
+175 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \rho^{-} \omega D^{+} \gamma ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{0} \pi^{+} K^{0} K^{0} K^{-} K^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \rho^{-} \omega K^{0} K^{0} K^{-} K^{-} D^{+} D^{*+} \gamma 
+$) } & 174 & 174 & 1 & 175 \\
+\hline
+176 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \tau^{+} \nu_{\tau} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \bar{n} \Sigma_{c}^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \pi^{0} \bar{D}^{*-} \bar{n} \Sigma_{c}^{0} 
+$) } & 175 & 175 & 1 & 176 \\
+\hline
+177 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{-} D^{-} \bar{\Delta}^{0} \Delta^{++} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \rho^{-} D^{-} D^{*+} \bar{\Delta}^{0} \Delta^{++} 
+$) } & 176 & 176 & 1 & 177 \\
+\hline
+178 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} D^{-} \bar{n} p ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{0} \pi^{0} \pi^{+} K^{*-} \bar{D}^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \pi^{0} \pi^{+} K^{*-} D^{-} \bar{D}^{*0} \bar{n} p 
+$) } & 177 & 177 & 1 & 178 \\
+\hline
+179 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} ,
+\bar{B}^{0} \rightarrow D^{+} \Delta^{-} \bar{n} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{+} D^{*+} \Delta^{-} \bar{n} 
+$) } & 178 & 178 & 1 & 179 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+180 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} D^{0} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \pi^{+} \bar{D}^{*-} D^{0} D_{s}^{*-} 
+$) } & 179 & 179 & 1 & 180 \\
+\hline
+181 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} X_{u}^{-} ,
+\bar{B}^{0} \rightarrow \bar{K}^{*} \bar{\Lambda} \Xi_{c}^{*0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} X_{u}^{-} \bar{K}^{*} \bar{\Lambda} \Xi_{c}^{*0} 
+$) } & 180 & 180 & 1 & 181 \\
+\hline
+182 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \rho^{0} \pi^{+} \omega \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{+} \pi^{-} \rho^{-} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \omega D^{+} \bar{D}^{*-} 
+$) } & 181 & 181 & 1 & 182 \\
+\hline
+183 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow \bar{B}^{0} \bar{B}^{0} ,
+\bar{B}^{0} \rightarrow D^{*+} D_{s1}^{\prime-} ,
+\bar{B}^{0} \rightarrow \pi^{-} \eta D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{-} \eta D^{*+} D^{*+} D_{s1}^{\prime-} 
+$) } & 182 & 182 & 1 & 183 \\
+\hline
+184 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} D_{1}^{\prime-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \pi^{-} \rho^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \pi^{+} \pi^{-} \rho^{-} D^{*+} D_{1}^{\prime-} 
+$) } & 183 & 183 & 1 & 184 \\
+\hline
+185 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+B^{0} \rightarrow \pi^{0} \omega D^{-} \bar{\Delta}^{-} \Delta^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \omega D^{-} \bar{D}^{*-} \bar{\Delta}^{-} \Delta^{0} 
+$) } & 184 & 184 & 1 & 185 \\
+\hline
+186 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \omega \bar{K}^{0} K^{*} \bar{K}^{*} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \omega \bar{K}^{0} K^{*} \bar{K}^{*} \bar{D}^{*-} 
+$) } & 185 & 185 & 1 & 186 \\
+\hline
+187 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} D_{2}^{*-} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \mu^{-} \nu_{\mu} \bar{\nu}_{\mu} D^{*+} D_{2}^{*-} 
+$) } & 186 & 186 & 1 & 187 \\
+\hline
+188 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \pi^{-} \rho^{+} \rho^{-} \bar{D}^{0} ,
+\bar{B}^{0} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{+} \pi^{-} \rho^{+} \rho^{-} D^{*+} \bar{D}^{0} 
+$) } & 187 & 187 & 1 & 188 \\
+\hline
+189 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \bar{D}^{*-} D_{s1}^{\prime+} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} D_{2}^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \bar{D}^{*-} D_{2}^{*+} D_{s1}^{\prime+} 
+$) } & 188 & 188 & 1 & 189 \\
+\hline
+190 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{+} \eta \eta \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \pi^{0} \pi^{+} \eta K^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \rho^{+} \eta \eta \eta K^{*-} \bar{D}^{*-} 
+$) } & 189 & 189 & 1 & 190 \\
+\hline
+191 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \Delta^{+} \bar{\Sigma}_{c}^{*--} ,
+\bar{B}^{0} \rightarrow \rho^{0} \pi^{-} \pi^{-} \rho^{+} \bar{K}^{*} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{-} \pi^{-} \rho^{+} \bar{K}^{*} D^{*+} \Delta^{+} \bar{\Sigma}_{c}^{*--} 
+$) } & 190 & 190 & 1 & 191 \\
+\hline
+192 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} D^{-} ,
+\bar{B}^{0} \rightarrow \rho^{0} \rho^{-} D^{*+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} \rho^{0} \rho^{-} D^{-} D^{*+} 
+$) } & 191 & 191 & 1 & 192 \\
+\hline
+193 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{+} \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow \rho^{0} \pi^{-} K^{0} \bar{K}^{*} D^{+} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{+} K^{0} \bar{K}^{*} D^{+} \bar{D}^{*-} 
+$) } & 192 & 192 & 1 & 193 \\
+\hline
+194 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow e^{+} \nu_{e} D^{-} ,
+\bar{B}^{0} \rightarrow K^{*-} D^{*+} \bar{D}^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{+} \nu_{e} K^{*-} D^{-} D^{*+} \bar{D}^{0} 
+$) } & 193 & 193 & 1 & 194 \\
+\hline
+195 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow J/\psi K_1^{0} ,
+\bar{B}^{0} \rightarrow \pi^{0} D^{+} D_{s}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} D^{+} D_{s}^{*-} J/\psi K_1^{0} 
+$) } & 194 & 194 & 1 & 195 \\
+\hline
+196 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow K^{*} D^{+} D^{-} ,
+B^{0} \rightarrow \bar{D}^{*-} \bar{\Delta}^{-} \Delta^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow K^{*} D^{+} D^{-} \bar{D}^{*-} \bar{\Delta}^{-} \Delta^{0} 
+$) } & 195 & 195 & 1 & 196 \\
+\hline
+197 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{0} \pi^{-} \eta \bar{D}^{*0} D_{s}^{*+} ,
+\bar{B}^{0} \rightarrow D^{*0} \Delta^{0} \bar{\Delta}^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} \eta D^{*0} \bar{D}^{*0} D_{s}^{*+} \Delta^{0} \bar{\Delta}^{0} 
+$) } & 196 & 196 & 1 & 197 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|c|}
+\hline
+index & \thead{event tree \\ (event initial-final states)} & iEvtTr & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+198 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \rho^{0} \pi^{+} \omega \bar{D}^{*-} ,
+\bar{B}^{0} \rightarrow D^{0} n \bar{n} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \omega \bar{D}^{*-} D^{0} n \bar{n} 
+$) } & 197 & 197 & 1 & 198 \\
+\hline
+199 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} B^{0} ,
+B^{0} \rightarrow \mu^{+} \nu_{\mu} \bar{D}^{*-} ,
+B^{0} \rightarrow \rho^{0} \pi^{+} \pi^{-} \rho^{+} \omega \bar{D}^{*-} 
+$ \\ ($
+e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \rho^{0} \pi^{+} \pi^{-} \rho^{+} \omega \bar{D}^{*-} \bar{D}^{*-} 
+$) } & 198 & 198 & 1 & 199 \\
+\hline
+200 & \makecell{ $ 
+e^{+} e^{-} \rightarrow \Upsilon(4S) ,
+\Upsilon(4S) \rightarrow B^{0} \bar{B}^{0} ,
+B^{0} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} D^{-} ,
+\bar{B}^{0} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} D^{0} 
+$ \\ ($
+e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} D^{-} D^{0} 
+$) } & 199 & 199 & 1 & 200 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\caption{Event initial-final states.}
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|}
+\hline
+index & event initial-final states & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+1 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} \pi^{+} \bar{D}^{*-} D^{0} D_{s}^{*-} $ & 0 & 1 & 1 \\
+\hline
+2 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} \pi^{-} K^{*+} D^{*+} J/\psi $ & 1 & 1 & 2 \\
+\hline
+3 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \rho^{-} \eta K^{*+} D^{+} \bar{D}^{*-} D^{*0} $ & 2 & 1 & 3 \\
+\hline
+4 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} D^{*+} \bar{D}^{*-} a_{1}^{+} $ & 3 & 1 & 4 \\
+\hline
+5 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{+} \omega D^{-} \bar{D}^{*-} D_{s1}^{\prime+} $ & 4 & 1 & 5 \\
+\hline
+6 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \pi^{-} D^{+} \bar{D}^{*-} D_{s}^{-} $ & 5 & 1 & 6 \\
+\hline
+7 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \pi^{+} K^{*} K^{-} D^{+} \bar{D}^{*-} $ & 6 & 1 & 7 \\
+\hline
+8 & $ e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \pi^{0} \pi^{+} \eta \eta D^{-} \bar{D}^{*-} $ & 7 & 1 & 8 \\
+\hline
+9 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{0} \pi^{+} \pi^{+} \pi^{-} D^{*+} \bar{D}^{*-} $ & 8 & 1 & 9 \\
+\hline
+10 & $ e^{+} e^{-} \rightarrow K^{0} D^{-} D^{*+} D^{*+} D_{s}^{*-} $ & 9 & 1 & 10 \\
+\hline
+11 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \rho^{0} K^{0} K^{*-} D^{+} \bar{D}^{*-} $ & 10 & 1 & 11 \\
+\hline
+12 & $ e^{+} e^{-} \rightarrow \rho^{-} K^{+} D^{+} D_{s}^{*-} J/\psi $ & 11 & 1 & 12 \\
+\hline
+13 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \rho^{-} K^{0} D^{+} D^{0} \bar{D}^{0} $ & 12 & 1 & 13 \\
+\hline
+14 & $ e^{+} e^{-} \rightarrow \pi^{+} \eta K^{0} K^{*-} D^{*+} \bar{D}^{*-} $ & 13 & 1 & 14 \\
+\hline
+15 & $ e^{+} e^{-} \rightarrow \pi^{-} \rho^{+} K^{+} K^{-} D^{-} D^{*+} $ & 14 & 1 & 15 \\
+\hline
+16 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} \pi^{0} \pi^{+} \eta D^{*+} \bar{D}^{*-} $ & 15 & 1 & 16 \\
+\hline
+17 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{0} \pi^{+} K^{*-} \bar{D}^{*-} D^{0} \bar{D}^{*0} $ & 16 & 1 & 17 \\
+\hline
+18 & $ e^{+} e^{-} \rightarrow \pi^{0} \eta \bar{K}^{0} K^{*} K^{-} D^{-} D^{*+} D_{s}^{+} $ & 17 & 1 & 18 \\
+\hline
+19 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} \bar{D}^{*-} D_{s}^{*+} $ & 18 & 1 & 19 \\
+\hline
+20 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} D_{2}^{*-} \bar{D}^{*0} $ & 19 & 1 & 20 \\
+\hline
+21 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{0} \bar{K}^{*} K^{+} K^{-} D^{*+} $ & 20 & 1 & 21 \\
+\hline
+22 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \omega K^{0} K^{*-} D^{*+} \bar{D}^{*-} $ & 21 & 1 & 22 \\
+\hline
+23 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{-} \eta \omega D^{*+} \bar{D}^{*-} D_{s}^{*+} $ & 22 & 1 & 23 \\
+\hline
+24 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \rho^{-} \omega K^{*} K^{*+} D^{+} \bar{D}^{*-} $ & 23 & 1 & 24 \\
+\hline
+25 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{-} \rho^{+} \rho^{+} \eta \bar{K}^{*} D^{-} \bar{D}^{*-} D^{0} $ & 24 & 1 & 25 \\
+\hline
+26 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} \omega K^{0} D^{+} \bar{D}^{0} D^{*0} $ & 25 & 1 & 26 \\
+\hline
+27 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \mu^{+} \nu_{\mu} D^{-} \bar{D}^{*-} $ & 26 & 1 & 27 \\
+\hline
+28 & $ e^{+} e^{-} \rightarrow \mu^{+} \mu^{-} \nu_{\mu} \bar{\nu}_{\mu} \bar{D}^{*-} D_{1}^{+} $ & 27 & 1 & 28 \\
+\hline
+29 & $ e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \rho^{-} D^{+} \bar{D}^{*-} $ & 28 & 1 & 29 \\
+\hline
+30 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{-} \rho^{-} \rho^{-} \rho^{-} D^{+} D^{+} $ & 29 & 1 & 30 \\
+\hline
+31 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \bar{K}_1^{0} D_{1}^{-} \gamma $ & 30 & 1 & 31 \\
+\hline
+32 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{-} \eta \omega K^{+} D^{+} D^{*+} \bar{D}^{*-} $ & 31 & 1 & 32 \\
+\hline
+33 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} \pi^{-} \pi^{-} D^{+} D^{-} D_{s}^{+} $ & 32 & 1 & 33 \\
+\hline
+34 & $ e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \rho^{+} \eta \omega \bar{D}^{*-} D_{0}^{*-} $ & 33 & 1 & 34 \\
+\hline
+35 & $ e^{+} e^{-} \rightarrow \bar{K}^{*} \bar{D}^{*-} \bar{\Delta}^{0} \Delta^{+} \chi_{c1} $ & 34 & 1 & 35 \\
+\hline
+36 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \bar{D}^{0} \bar{p} \Delta^{+} D_{1}^{+} $ & 35 & 1 & 36 \\
+\hline
+37 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \pi^{-} D^{-} D^{*+} $ & 36 & 1 & 37 \\
+\hline
+38 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \rho^{-} \eta D^{+} D^{+} p \bar{\Delta}^{++} $ & 37 & 1 & 38 \\
+\hline
+39 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{-} K^{*} K^{*-} D^{+} D^{+} $ & 38 & 1 & 39 \\
+\hline
+40 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \rho^{-} D^{*+} \bar{D}^{*-} \gamma $ & 39 & 1 & 40 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|}
+\hline
+index & event initial-final states & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+41 & $ e^{+} e^{-} \rightarrow \mu^{-} \mu^{-} \bar{\nu}_{\mu} \bar{\nu}_{\mu} \pi^{0} \pi^{0} D^{*+} D^{*+} $ & 40 & 1 & 41 \\
+\hline
+42 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{-} \omega D^{*+} \bar{D}^{*-} $ & 41 & 1 & 42 \\
+\hline
+43 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} K^{-} D^{+} \Sigma^{-} \bar{\Sigma}^{0} \eta_{c}(2S) $ & 42 & 1 & 43 \\
+\hline
+44 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \eta D^{-} D^{*+} D_{s}^{+} $ & 43 & 1 & 44 \\
+\hline
+45 & $ e^{+} e^{-} \rightarrow \omega K^{+} D^{*+} \bar{D}^{*-} D_{s}^{-} $ & 44 & 1 & 45 \\
+\hline
+46 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} \rho^{+} \eta \bar{K}^{0} K^{+} D^{-} \bar{D}^{*-} D_{s}^{+} $ & 45 & 1 & 46 \\
+\hline
+47 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \rho^{-} \eta \eta \bar{K}^{0} K^{+} D^{-} D^{*+} $ & 46 & 1 & 47 \\
+\hline
+48 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \rho^{+} K^{-} D^{+} D^{-} \bar{D}^{*-} $ & 47 & 1 & 48 \\
+\hline
+49 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \rho^{0} \rho^{+} D^{+} D^{-} $ & 48 & 1 & 49 \\
+\hline
+50 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{+} \pi^{-} \rho^{+} \eta D^{-} D^{*+} $ & 49 & 1 & 50 \\
+\hline
+51 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{0} \pi^{+} \pi^{+} \pi^{-} \eta D^{-} \bar{D}^{*-} $ & 50 & 1 & 51 \\
+\hline
+52 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} \pi^{+} \pi^{+} \rho^{-} D^{+} D^{-} $ & 51 & 1 & 52 \\
+\hline
+53 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{+} \rho^{-} \omega D^{-} D^{*0} $ & 52 & 1 & 53 \\
+\hline
+54 & $ e^{+} e^{-} \rightarrow \pi^{-} D^{*+} \bar{D}^{0} D_{s}^{+} D_{s}^{*-} $ & 53 & 1 & 54 \\
+\hline
+55 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \rho^{0} \rho^{-} D^{+} \bar{D}^{*-} a_{1}^{+} $ & 54 & 1 & 55 \\
+\hline
+56 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} D^{0} D_{s}^{*-} \Delta^{+} \bar{\Xi}_{c}^{*-} $ & 55 & 1 & 56 \\
+\hline
+57 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{0} \bar{D}^{*-} \bar{\Delta}^{+} \Sigma_{c}^{+} $ & 56 & 1 & 57 \\
+\hline
+58 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \rho^{0} \pi^{+} \pi^{-} D^{*+} \bar{D}^{*0} $ & 57 & 1 & 58 \\
+\hline
+59 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{-} \eta \eta D^{+} \Delta^{0} \bar{\Delta}^{+} $ & 58 & 1 & 59 \\
+\hline
+60 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \pi^{0} \rho^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} D^{*+} \bar{D}^{*-} $ & 59 & 1 & 60 \\
+\hline
+61 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \omega \bar{K}^{0} D^{+} \bar{D}^{*-} \bar{D}^{*0} $ & 60 & 1 & 61 \\
+\hline
+62 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} \bar{K}^{*} \bar{D}^{*-} \bar{D}^{*-} D^{0} $ & 61 & 1 & 62 \\
+\hline
+63 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} D^{-} \bar{D}^{*-} \Delta^{+} \bar{\Delta}^{+} a_{1}^{+} $ & 62 & 1 & 63 \\
+\hline
+64 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \pi^{-} \pi^{-} \pi^{-} \rho^{+} \rho^{+} \eta \omega D^{*+} \bar{D}^{0} $ & 63 & 1 & 64 \\
+\hline
+65 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \rho^{0} \rho^{0} \pi^{+} \pi^{-} K^{-} K^{*+} D^{+} \bar{D}^{*-} $ & 64 & 1 & 65 \\
+\hline
+66 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{0} \pi^{0} \pi^{+} \pi^{-} \pi^{-} D^{-} D^{*+} p \bar{p} $ & 65 & 1 & 66 \\
+\hline
+67 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \tau^{-} \bar{\nu}_{\tau} D^{*+} D_{0}^{*-} $ & 66 & 1 & 67 \\
+\hline
+68 & $ e^{+} e^{-} \rightarrow \pi^{+} \eta \omega \omega D^{+} \bar{D}^{*-} D_{s}^{*-} $ & 67 & 1 & 68 \\
+\hline
+69 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \rho^{0} \rho^{-} \eta D^{+} D^{*+} $ & 68 & 1 & 69 \\
+\hline
+70 & $ e^{+} e^{-} \rightarrow \rho^{+} \rho^{-} D^{-} D^{*+} $ & 69 & 1 & 70 \\
+\hline
+71 & $ e^{+} e^{-} \rightarrow \pi^{-} K^{+} K^{*-} D^{+} D^{0} \bar{D}^{0} $ & 70 & 1 & 71 \\
+\hline
+72 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} \pi^{0} \pi^{+} \rho^{+} \rho^{-} D^{+} D^{-} $ & 71 & 1 & 72 \\
+\hline
+73 & $ e^{+} e^{-} \rightarrow \pi^{-} K^{*} D^{+} n \bar{\Sigma}_{c}^{*0} $ & 72 & 1 & 73 \\
+\hline
+74 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{-} \pi^{-} D^{*+} \bar{D}^{*-} \bar{n} \Delta^{+} $ & 73 & 1 & 74 \\
+\hline
+75 & $ e^{+} e^{-} \rightarrow K^{*+} D^{*+} \bar{D}^{*-} D^{0} D_{s0}^{*-} $ & 74 & 1 & 75 \\
+\hline
+76 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \pi^{+} \pi^{-} \rho^{+} \bar{D}^{*-} \bar{D}^{*-} D^{*0} $ & 75 & 1 & 76 \\
+\hline
+77 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{+} \omega \omega K^{-} D^{-} D^{*+} \bar{D}^{*0} $ & 76 & 1 & 77 \\
+\hline
+78 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} \pi^{+} \pi^{-} \rho^{-} \omega \bar{K}^{0} D^{*+} D^{*+} $ & 77 & 1 & 78 \\
+\hline
+79 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \rho^{0} \pi^{-} \eta D^{-} D^{*+} $ & 78 & 1 & 79 \\
+\hline
+80 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \rho^{0} \pi^{+} \pi^{-} \rho^{+} \eta \eta D^{*+} \bar{D}^{*-} $ & 79 & 1 & 80 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|}
+\hline
+index & event initial-final states & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+81 & $ e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \pi^{0} \pi^{-} \omega K^{0} \bar{K}^{0} \bar{K}^{*} D^{*+} D_{0}^{*-} $ & 80 & 1 & 81 \\
+\hline
+82 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} D^{+} D^{-} D_{s}^{*-} a_{1}^{+} $ & 81 & 1 & 82 \\
+\hline
+83 & $ e^{+} e^{-} \rightarrow \pi^{+} \rho^{+} \eta \omega D^{-} D^{0} D_{s}^{-} $ & 82 & 1 & 83 \\
+\hline
+84 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{0} D^{-} D^{*+} $ & 83 & 1 & 84 \\
+\hline
+85 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{0} \pi^{+} \rho^{-} \eta D^{+} \bar{D}^{*0} $ & 84 & 1 & 85 \\
+\hline
+86 & $ e^{+} e^{-} \rightarrow \omega \eta^{\prime} D^{+} \bar{D}^{*-} \bar{D}^{*-} \bar{n} p $ & 85 & 1 & 86 \\
+\hline
+87 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{-} \rho^{+} D^{-} D_{2}^{*+} $ & 86 & 1 & 87 \\
+\hline
+88 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{-} \rho^{+} \eta K^{0} K^{*-} D^{+} D^{-} $ & 87 & 1 & 88 \\
+\hline
+89 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \rho^{0} p \bar{\Sigma}_{c}^{*-} D_{0}^{*+} $ & 88 & 1 & 89 \\
+\hline
+90 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{-} \pi^{-} D^{+} \bar{D}^{*-} \bar{n} p $ & 89 & 1 & 90 \\
+\hline
+91 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{0} \pi^{+} \pi^{-} \rho^{+} D^{-} D^{*+} $ & 90 & 1 & 91 \\
+\hline
+92 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} K^{-} K^{*+} J/\psi \eta_{c}(2S) $ & 91 & 1 & 92 \\
+\hline
+93 & $ e^{+} e^{-} \rightarrow \pi^{-} \rho^{+} \rho^{-} \bar{K}^{0} D^{+} \psi^{\prime} $ & 92 & 1 & 93 \\
+\hline
+94 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{+} K^{0} D^{+} \bar{D}^{*-} $ & 93 & 1 & 94 \\
+\hline
+95 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{+} \omega \omega K^{0} K^{-} D^{+} D^{-} $ & 94 & 1 & 95 \\
+\hline
+96 & $ e^{+} e^{-} \rightarrow e^{+} e^{-} \nu_{e} \bar{\nu}_{e} D^{*+} \bar{D}^{*-} $ & 95 & 1 & 96 \\
+\hline
+97 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} K^{*+} D^{*+} \bar{D}^{*-} \Delta^{+} \bar{\Delta}^{+} $ & 96 & 1 & 97 \\
+\hline
+98 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} D^{+} D_{2}^{*-} D_{s}^{-} D_{s}^{*+} $ & 97 & 1 & 98 \\
+\hline
+99 & $ e^{+} e^{-} \rightarrow K_{L} \pi^{-} \pi^{-} \rho^{+} D^{*+} \eta_{c} $ & 98 & 1 & 99 \\
+\hline
+100 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \rho^{0} \pi^{+} K^{*} K^{-} D^{+} \bar{D}^{*-} $ & 99 & 1 & 100 \\
+\hline
+101 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \rho^{+} \rho^{-} \rho^{-} \eta D^{+} \bar{D}^{0} $ & 100 & 1 & 101 \\
+\hline
+102 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \pi^{-} \eta \omega D^{+} \bar{D}^{0} D_{s}^{-} $ & 101 & 1 & 102 \\
+\hline
+103 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \rho^{0} \pi^{-} \pi^{-} \rho^{+} \rho^{+} \omega \omega D^{-} D^{*+} $ & 102 & 1 & 103 \\
+\hline
+104 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{+} D^{-} D^{0} D_{s}^{*+} $ & 103 & 1 & 104 \\
+\hline
+105 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \omega D^{-} D^{*0} D_{s}^{-} $ & 104 & 1 & 105 \\
+\hline
+106 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \rho^{+} K^{+} K^{-} D^{*+} \bar{D}^{*-} $ & 105 & 1 & 106 \\
+\hline
+107 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \pi^{-} K^{0} D^{*+} J/\psi $ & 106 & 1 & 107 \\
+\hline
+108 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \rho^{-} \rho^{-} \eta \omega \omega D^{*+} \bar{D}^{*0} $ & 107 & 1 & 108 \\
+\hline
+109 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \rho^{-} D^{+} \bar{D}^{*0} $ & 108 & 1 & 109 \\
+\hline
+110 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \bar{K}^{0} D^{*+} \bar{\Sigma}^{*0} \Sigma_{c}^{*0} $ & 109 & 1 & 110 \\
+\hline
+111 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} D^{*+} D_{s}^{*-} \bar{\Delta}^{++} \Lambda_{c}^{+} $ & 110 & 1 & 111 \\
+\hline
+112 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \rho^{-} D^{*+} D_{2}^{*-} $ & 111 & 1 & 112 \\
+\hline
+113 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} D^{-} D_{s}^{*+} \bar{\Delta}^{+} \Lambda $ & 112 & 1 & 113 \\
+\hline
+114 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} K^{-} D^{*+} \bar{D}^{*-} \bar{D}^{*0} $ & 113 & 1 & 114 \\
+\hline
+115 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} \bar{D}^{*-} D_{s1}^{\prime+} $ & 114 & 1 & 115 \\
+\hline
+116 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{*+} D_{s}^{*-} D_{1}^{\prime+} $ & 115 & 1 & 116 \\
+\hline
+117 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \eta \bar{K}^{0} K^{*} D^{-} D^{*+} D_{s}^{*-} $ & 116 & 1 & 117 \\
+\hline
+118 & $ e^{+} e^{-} \rightarrow \pi^{-} \rho^{-} \eta \eta \bar{K}^{0} K^{+} D^{*+} \bar{D}^{*0} $ & 117 & 1 & 118 \\
+\hline
+119 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \rho^{0} \rho^{+} \omega D^{-} \bar{D}^{0} $ & 118 & 1 & 119 \\
+\hline
+120 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} K^{0} D^{*+} D^{*+} \bar{D}^{*-} $ & 119 & 1 & 120 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|}
+\hline
+index & event initial-final states & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+121 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \mu^{-} \bar{\nu}_{\mu} D^{*+} D^{*+} $ & 120 & 1 & 121 \\
+\hline
+122 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \omega \bar{D}^{*-} D^{*0} $ & 121 & 1 & 122 \\
+\hline
+123 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \mu^{+} \nu_{\mu} D^{*+} \bar{D}^{*-} $ & 122 & 1 & 123 \\
+\hline
+124 & $ e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \pi^{0} \omega K^{*-} \bar{D}^{*-} D_{s}^{+} $ & 123 & 1 & 124 \\
+\hline
+125 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{-} \bar{K}^{0} K^{+} D^{+} \bar{D}^{*0} $ & 124 & 1 & 125 \\
+\hline
+126 & $ e^{+} e^{-} \rightarrow \mu^{+} \mu^{-} \nu_{\mu} \bar{\nu}_{\mu} D^{*+} D_{1}^{\prime-} $ & 125 & 1 & 126 \\
+\hline
+127 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \bar{D}^{*-} D_{2}^{*+} D_{s}^{-} $ & 126 & 1 & 127 \\
+\hline
+128 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \bar{K}^{*} D^{+} D^{-} D^{*+} $ & 127 & 1 & 128 \\
+\hline
+129 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{+} D^{0} D_{s}^{-} D_{1}^{\prime-} $ & 128 & 1 & 129 \\
+\hline
+130 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} D^{*+} \bar{D}^{*-} a_{1}^{+} $ & 129 & 1 & 130 \\
+\hline
+131 & $ e^{+} e^{-} \rightarrow \rho^{-} \eta \eta \bar{K}^{0} K^{+} D^{+} \bar{D}^{*-} $ & 130 & 1 & 131 \\
+\hline
+132 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{-} \omega D^{+} D^{+} $ & 131 & 1 & 132 \\
+\hline
+133 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \bar{D}^{*-} D_{2}^{*-} D_{s}^{+} $ & 132 & 1 & 133 \\
+\hline
+134 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \rho^{+} \bar{D}^{*-} D_{2}^{*+} D_{s}^{-} $ & 133 & 1 & 134 \\
+\hline
+135 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{0} \omega K^{+} D^{*+} D_{s}^{*-} $ & 134 & 1 & 135 \\
+\hline
+136 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} D^{*+} D_{s}^{*+} D_{1}^{\prime-} $ & 135 & 1 & 136 \\
+\hline
+137 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \rho^{0} \pi^{-} \pi^{-} \rho^{+} \rho^{+} \eta \omega K^{0} D^{+} D^{-} $ & 136 & 1 & 137 \\
+\hline
+138 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} K^{+} D^{*0} D_{s}^{*-} n \bar{n} $ & 137 & 1 & 138 \\
+\hline
+139 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} K^{+} D^{-} \Delta^{+} \bar{\Sigma}_{c}^{*--} $ & 138 & 1 & 139 \\
+\hline
+140 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \rho^{+} \rho^{+} \rho^{-} \eta \bar{K}^{0} K^{*} K^{+} K^{*-} \bar{D}^{*-} $ & 139 & 1 & 140 \\
+\hline
+141 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \rho^{0} \pi^{-} D^{+} \bar{D}^{*-} $ & 140 & 1 & 141 \\
+\hline
+142 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{-} \rho^{-} D^{+} D^{-} D_{s}^{*+} \gamma $ & 141 & 1 & 142 \\
+\hline
+143 & $ e^{+} e^{-} \rightarrow \rho^{+} D^{*+} n \bar{\Sigma}_{c}^{-} D_{s1}^{\prime-} $ & 142 & 1 & 143 \\
+\hline
+144 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \bar{K}^{*} K^{-} D^{+} D^{*+} $ & 143 & 1 & 144 \\
+\hline
+145 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \omega D^{*+} \bar{D}^{*-} $ & 144 & 1 & 145 \\
+\hline
+146 & $ e^{+} e^{-} \rightarrow \pi^{+} \pi^{+} K^{0} \bar{K}^{*} K^{-} D^{-} D^{*+} \bar{D}^{*-} $ & 145 & 1 & 146 \\
+\hline
+147 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \rho^{-} K^{*-} D_{2}^{*+} \eta_{c} $ & 146 & 1 & 147 \\
+\hline
+148 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{+} \rho^{-} D^{-} D_{s}^{*-} D_{1}^{+} $ & 147 & 1 & 148 \\
+\hline
+149 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{-} \pi^{-} D^{+} D^{-} $ & 148 & 1 & 149 \\
+\hline
+150 & $ e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \pi^{0} \omega K^{*} K^{-} D^{+} D_{0}^{*-} $ & 149 & 1 & 150 \\
+\hline
+151 & $ e^{+} e^{-} \rightarrow e^{+} e^{-} \nu_{e} \bar{\nu}_{e} \pi^{+} \pi^{-} D^{*+} \bar{D}^{*-} $ & 150 & 1 & 151 \\
+\hline
+152 & $ e^{+} e^{-} \rightarrow \rho^{0} \eta \bar{K}^{0} \bar{D}^{*-} J/\psi \bar{\Sigma}^{0} \Sigma^{+} $ & 151 & 1 & 152 \\
+\hline
+153 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \rho^{0} \rho^{0} \rho^{0} \rho^{+} D^{*+} \bar{D}^{*-} $ & 152 & 1 & 153 \\
+\hline
+154 & $ e^{+} e^{-} \rightarrow \pi^{+} K^{-} K^{*+} D^{-} \chi_{c1} $ & 153 & 1 & 154 \\
+\hline
+155 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} K^{*+} D^{-} D_{2}^{*+} D^{0} $ & 154 & 1 & 155 \\
+\hline
+156 & $ e^{+} e^{-} \rightarrow \pi^{-} \pi^{-} \rho^{+} \rho^{+} D^{-} D^{*+} $ & 155 & 1 & 156 \\
+\hline
+157 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \pi^{0} \rho^{0} \rho^{-} D^{*+} \bar{D}^{*-} \gamma $ & 156 & 1 & 157 \\
+\hline
+158 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \eta \omega D^{-} \bar{D}^{*-} $ & 157 & 1 & 158 \\
+\hline
+159 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{-} K^{0} D^{+} D^{+} \bar{D}^{*0} $ & 158 & 1 & 159 \\
+\hline
+160 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \mu^{+} \nu_{\mu} D^{*+} D_{1}^{-} $ & 159 & 1 & 160 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|}
+\hline
+index & event initial-final states & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+161 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \bar{K}^{0} K^{+} D^{-} D^{*+} $ & 160 & 1 & 161 \\
+\hline
+162 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{-} \omega D^{+} D^{*+} D_{s}^{-} $ & 161 & 1 & 162 \\
+\hline
+163 & $ e^{+} e^{-} \rightarrow \pi^{+} \omega D^{*+} \bar{D}^{*-} D_{s}^{-} $ & 162 & 1 & 163 \\
+\hline
+164 & $ e^{+} e^{-} \rightarrow \pi^{0} D^{+} \Sigma^{0} \bar{\Xi}_{c}^{0} D_{s1}^{\prime-} $ & 163 & 1 & 164 \\
+\hline
+165 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \rho^{-} \eta \omega \omega D^{*+} \bar{D}^{*0} $ & 164 & 1 & 165 \\
+\hline
+166 & $ e^{+} e^{-} \rightarrow \rho^{-} D^{+} \bar{D}^{*-} \bar{\Delta}^{-} \Delta^{0} $ & 165 & 1 & 166 \\
+\hline
+167 & $ e^{+} e^{-} \rightarrow \tau^{-} \bar{\nu}_{\tau} \rho^{-} D^{*+} p \bar{\Sigma}_{c}^{0} $ & 166 & 1 & 167 \\
+\hline
+168 & $ e^{+} e^{-} \rightarrow \pi^{+} \bar{K}^{0} K^{*-} D^{*0} \bar{D}^{*0} J/\psi $ & 167 & 1 & 168 \\
+\hline
+169 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{-} \pi^{-} \pi^{-} K^{*+} D^{*+} D^{0} \bar{D}^{*0} $ & 168 & 1 & 169 \\
+\hline
+170 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \pi^{+} \pi^{-} \pi^{-} \pi^{-} \eta K^{+} K^{+} D^{-} D_{s}^{*-} $ & 169 & 1 & 170 \\
+\hline
+171 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \bar{K}^{0} D^{-} \bar{D}^{0} \Delta^{0} \bar{\Sigma}^{+} $ & 170 & 1 & 171 \\
+\hline
+172 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{+} \rho^{-} \rho^{-} \omega D^{*+} \bar{D}^{*-} $ & 171 & 1 & 172 \\
+\hline
+173 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \pi^{+} K^{-} D^{-} \bar{D}^{*-} D_{s1}^{\prime+} $ & 172 & 1 & 173 \\
+\hline
+174 & $ e^{+} e^{-} \rightarrow \rho^{0} \rho^{-} \eta K^{*} D^{-} D^{*+} D^{*+} $ & 173 & 1 & 174 \\
+\hline
+175 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{+} \rho^{-} \omega K^{0} K^{0} K^{-} K^{-} D^{+} D^{*+} \gamma $ & 174 & 1 & 175 \\
+\hline
+176 & $ e^{+} e^{-} \rightarrow \tau^{+} \nu_{\tau} \pi^{0} \bar{D}^{*-} \bar{n} \Sigma_{c}^{0} $ & 175 & 1 & 176 \\
+\hline
+177 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \rho^{-} D^{-} D^{*+} \bar{\Delta}^{0} \Delta^{++} $ & 176 & 1 & 177 \\
+\hline
+178 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{0} \pi^{0} \pi^{0} \pi^{+} K^{*-} D^{-} \bar{D}^{*0} \bar{n} p $ & 177 & 1 & 178 \\
+\hline
+179 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} D^{+} D^{*+} \Delta^{-} \bar{n} $ & 178 & 1 & 179 \\
+\hline
+180 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \pi^{+} \bar{D}^{*-} D^{0} D_{s}^{*-} $ & 179 & 1 & 180 \\
+\hline
+181 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} X_{u}^{-} \bar{K}^{*} \bar{\Lambda} \Xi_{c}^{*0} $ & 180 & 1 & 181 \\
+\hline
+182 & $ e^{+} e^{-} \rightarrow \pi^{0} \rho^{0} \pi^{+} \pi^{+} \pi^{-} \rho^{-} \omega D^{+} \bar{D}^{*-} $ & 181 & 1 & 182 \\
+\hline
+183 & $ e^{+} e^{-} \rightarrow \pi^{-} \eta D^{*+} D^{*+} D_{s1}^{\prime-} $ & 182 & 1 & 183 \\
+\hline
+184 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \pi^{+} \pi^{-} \rho^{-} D^{*+} D_{1}^{\prime-} $ & 183 & 1 & 184 \\
+\hline
+185 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \pi^{0} \omega D^{-} \bar{D}^{*-} \bar{\Delta}^{-} \Delta^{0} $ & 184 & 1 & 185 \\
+\hline
+186 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \omega \bar{K}^{0} K^{*} \bar{K}^{*} \bar{D}^{*-} $ & 185 & 1 & 186 \\
+\hline
+187 & $ e^{+} e^{-} \rightarrow \mu^{+} \mu^{-} \nu_{\mu} \bar{\nu}_{\mu} D^{*+} D_{2}^{*-} $ & 186 & 1 & 187 \\
+\hline
+188 & $ e^{+} e^{-} \rightarrow \mu^{-} \bar{\nu}_{\mu} \pi^{+} \pi^{-} \rho^{+} \rho^{-} D^{*+} \bar{D}^{0} $ & 187 & 1 & 188 \\
+\hline
+189 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \bar{D}^{*-} D_{2}^{*+} D_{s1}^{\prime+} $ & 188 & 1 & 189 \\
+\hline
+190 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{+} \rho^{+} \eta \eta \eta K^{*-} \bar{D}^{*-} $ & 189 & 1 & 190 \\
+\hline
+191 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \pi^{-} \pi^{-} \rho^{+} \bar{K}^{*} D^{*+} \Delta^{+} \bar{\Sigma}_{c}^{*--} $ & 190 & 1 & 191 \\
+\hline
+192 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} \rho^{0} \rho^{-} D^{-} D^{*+} $ & 191 & 1 & 192 \\
+\hline
+193 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{-} \rho^{+} K^{0} \bar{K}^{*} D^{+} \bar{D}^{*-} $ & 192 & 1 & 193 \\
+\hline
+194 & $ e^{+} e^{-} \rightarrow e^{+} \nu_{e} K^{*-} D^{-} D^{*+} \bar{D}^{0} $ & 193 & 1 & 194 \\
+\hline
+195 & $ e^{+} e^{-} \rightarrow \pi^{0} D^{+} D_{s}^{*-} J/\psi K_1^{0} $ & 194 & 1 & 195 \\
+\hline
+196 & $ e^{+} e^{-} \rightarrow K^{*} D^{+} D^{-} \bar{D}^{*-} \bar{\Delta}^{-} \Delta^{0} $ & 195 & 1 & 196 \\
+\hline
+197 & $ e^{+} e^{-} \rightarrow \pi^{0} \pi^{-} \eta D^{*0} \bar{D}^{*0} D_{s}^{*+} \Delta^{0} \bar{\Delta}^{0} $ & 196 & 1 & 197 \\
+\hline
+198 & $ e^{+} e^{-} \rightarrow \rho^{0} \pi^{+} \omega \bar{D}^{*-} D^{0} n \bar{n} $ & 197 & 1 & 198 \\
+\hline
+199 & $ e^{+} e^{-} \rightarrow \mu^{+} \nu_{\mu} \rho^{0} \pi^{+} \pi^{-} \rho^{+} \omega \bar{D}^{*-} \bar{D}^{*-} $ & 198 & 1 & 199 \\
+\hline
+200 & $ e^{+} e^{-} \rightarrow e^{-} \bar{\nu}_{e} \pi^{+} \pi^{+} \pi^{+} \pi^{+} \pi^{-} \pi^{-} D^{-} D^{0} $ & 199 & 1 & 200 \\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp!]
+\small
+\centering
+\begin{tabular}{|c|>{\centering}p{18cm}|c|c|c|}
+\hline
+index & event initial-final states & iEvtIFSts & nEvts & nCmltEvts \\
+\hline
+\end{tabular}
+\end{table}
+\end{document}
