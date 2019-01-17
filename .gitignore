@@ -61,7 +61,7 @@ Tag
 **.so
 *ACLiC_dict_rdict.pcm
 execute
-boss/workarea/InstallArea/include/**
+boss/workarea/InstallArea/**
 main
 
 # Ignore temporary files
