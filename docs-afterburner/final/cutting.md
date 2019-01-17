@@ -1,4 +1,4 @@
-# Final event selection
+# Cutting
 
 {% hint style="danger" %}
 **This part of the tutorial is not yet finished.**

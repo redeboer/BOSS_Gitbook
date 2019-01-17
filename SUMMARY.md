@@ -27,7 +27,12 @@
   * [Base algorithm: the TrackSelector](docs-afterburner/initial/base.md)
   * [Derived algorithms](docs-afterburner/initial/derived.md)
 * [Final event selection](docs-afterburner/final/README.md)
+  * [Loading](docs-afterburner/final/loading.md)
+  * [Cutting](docs-afterburner/final/cutting.md)
+  * [Drawing](docs-afterburner/final/drawing.md)
+  * [Fitting](docs-afterburner/final/fitting.md)
   * [Ideas for a RooFit wrapper](docs-afterburner/final/roofit-wrapper.md)
+* [Contributing to The BOSS Afterburner](docs-afterburner/contributing-to-the-boss-afterburner.md)
 
 ## Appendices
 

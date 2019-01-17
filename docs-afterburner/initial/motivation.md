@@ -4,7 +4,7 @@
 **The `TrackSelector` package and derived packages are still being developed and tested.**
 
 Tutorial pages are not yet available, but you can meanwhile have a look at the class descriptions:  
-[**https://redeboer.github.io/BOSS\_Afterburner/hierarchy.html**](https://redeboer.github.io/BOSS_Afterburner/hierarchy.html)\*\*\*\*
+[**https://redeboer.github.io/BOSS\_Afterburner/modules.html**](https://redeboer.github.io/BOSS_Afterburner/modules.html)\*\*\*\*
 {% endhint %}
 
 The BOSS Afterburner comes with event selection packages that follow an object-oriented design: all functionality that is shared by all \(light hadron\) analyses are shared through the [`TrackSelector`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html) base algorithm, while the user is to further specialise the analysis in derived algorithms \(such as [`D0phi_KpiKK`](https://redeboer.github.io/BOSS_Afterburner/classD0phi__KpiKK.html)\).
