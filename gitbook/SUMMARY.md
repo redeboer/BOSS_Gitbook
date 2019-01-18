@@ -32,13 +32,13 @@
   * [Drawing](afterburner/final/drawing.md)
   * [Fitting](afterburner/final/fitting.md)
   * [Ideas for a RooFit wrapper](afterburner/final/roofit-wrapper.md)
-* [Contributing to The BOSS Afterburner](afterburner/contributing-to-the-boss-afterburner.md)
+* [Contributing to The BOSS Afterburner](afterburner/contributing.md)
 
 ## Appendices
 
 * [Tips, Tricks, and Troubleshooting](appendices/tips.md)
 * [Further reading](appendices/references.md)
+* [Contributing](appendices/contributing.md)
 * [Glossary](appendices/glossary.md)
 * [About](appendices/about.md)
-* [Contributing](appendices/conventions.md)
 
