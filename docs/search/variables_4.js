@@ -115,7 +115,7 @@ var searchData=
   ['fmap_5fo',['fMap_O',['../classChainLoader.html#a15d04365c56a30f8cdb40cc59545452e',1,'ChainLoader']]],
   ['fmap_5fphoton',['fMap_photon',['../classrhopi__pipigg.html#a2dd4703846e2f59c808f247ac7f78e42',1,'rhopi_pipigg']]],
   ['fmap_5fpid',['fMap_PID',['../classTrackSelector.html#a1f4c2deb3b4cd9c7ac1ee411d547f039',1,'TrackSelector']]],
-  ['fmap_5fs',['fMap_S',['../classChainLoader.html#ac1f73af71c497932462cd4ac27a05622',1,'ChainLoader::fMap_S()'],['../classChainLoader.html#aec1e2d75426bed826afa836d7da5d52c',1,'ChainLoader::fMap_s()']]],
+  ['fmap_5fs',['fMap_s',['../classChainLoader.html#aec1e2d75426bed826afa836d7da5d52c',1,'ChainLoader::fMap_s()'],['../classChainLoader.html#ac1f73af71c497932462cd4ac27a05622',1,'ChainLoader::fMap_S()']]],
   ['fmap_5ftofec',['fMap_TofEC',['../classTrackSelector.html#af93e4723c0b69c8654a0899fc2179bec',1,'TrackSelector']]],
   ['fmap_5ftofib',['fMap_TofIB',['../classTrackSelector.html#ae60c2a2e359ee8fde25e067b4f3cfe63',1,'TrackSelector']]],
   ['fmap_5ftofob',['fMap_TofOB',['../classTrackSelector.html#ad32551077b8fb853c6a0f9ff33dd0923',1,'TrackSelector']]],
