@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 **This repository is still under development!**
 
-Feedback is very welcome, see [About](appendices/about/) for contact details.
+Feedback is very welcome, see [About](appendices/about.md) for contact details.
 {% endhint %}
 
 ## _The BOSS Afterburner_ repository

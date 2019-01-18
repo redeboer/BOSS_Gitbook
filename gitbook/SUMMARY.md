@@ -2,7 +2,6 @@
 
 * [Main page](README.md)
 * [Contents of the tutorial pages](contents.md)
-* [Glossary](GLOSSARY.md)
 
 ## BESIII Software System
 
@@ -39,7 +38,7 @@
 
 * [Tips, Tricks, and Troubleshooting](appendices/tips.md)
 * [Further reading](appendices/references.md)
-* [About](appendices/about/README.md)
-  * [Glossary](appendices/about/glossary.md)
-  * [Contributing](appendices/about/conventions.md)
+* [Glossary](appendices/glossary.md)
+* [About](appendices/about.md)
+* [Contributing](appendices/conventions.md)
 
