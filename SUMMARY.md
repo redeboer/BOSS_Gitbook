@@ -40,5 +40,5 @@
 * [Further reading](docs-appendices/references.md)
 * [About](docs-appendices/about/README.md)
   * [Glossary](docs-appendices/about/glossary.md)
-  * [Conventions](docs-appendices/about/conventions.md)
+  * [Conventions](docs-appendices/about/CONTRIBUTING.md)
 
