@@ -6,10 +6,22 @@ The aim is to agree on a number of conventions that should be followed when coll
 {% endhint %}
 
 Test ..
-{% include "../CONTRIBUTING.md" %}
+{% include_relative  "../CONTRIBUTING.md" %}
+
+Test ../../
+{% include_relative  "../../CONTRIBUTING.md" %}
+
+Test ../../../
+{% include_relative  "../../../CONTRIBUTING.md" %}
+
+Test ../../../../
+{% include_relative  "../../../../CONTRIBUTING.md" %}
+
+Test GitHub
+{% include_relative  "https://raw.githubusercontent.com/redeboer/BOSS_Afterburner/master/CONTRIBUTING.md" %}
 
 Test .
-{% include "./CONTRIBUTING.md" %}
+{% include_relative  "./CONTRIBUTING.md" %}
 
 Test other syntax .
 !INCLUDE "./CONTRIBUTING.md"
