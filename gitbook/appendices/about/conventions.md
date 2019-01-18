@@ -10,3 +10,12 @@ Test ..
 
 Test .
 {% include "./CONTRIBUTING.md" %}
+
+Test other syntax .
+!INCLUDE "./CONTRIBUTING.md"
+
+Test other syntax ..
+!INCLUDE "../CONTRIBUTING.md"
+
+Test other syntax root
+!INCLUDE "CONTRIBUTING.md"
