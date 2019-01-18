@@ -8,7 +8,7 @@ The aim is to agree on a number of conventions that should be followed when coll
 {% endhint %}
 
 Test
-{% include "CONTRIBUTING.md" %}
+{% include "./CONTRIBUTING.md" %}
 
 Test
 {% include "../CONTRIBUTING.md" %}
