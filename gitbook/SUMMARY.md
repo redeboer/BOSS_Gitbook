@@ -38,7 +38,6 @@
 
 * [Tips, Tricks, and Troubleshooting](appendices/tips.md)
 * [Further reading](appendices/references.md)
-* [Glossary](appendices/glossary.md)
+* [Glossary](GLOSSARY.md)
 * [About](appendices/about.md)
 * [Contributing](appendices/conventions.md)
-
