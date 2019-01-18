@@ -187,7 +187,10 @@ Variables</h2></td></tr>
 <p>To investigate the contents of the ROOT file, you first need to know which <code>TTree</code>s and branches it contains. If you simply construct the <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output. ">BOSSOutputLoader</a></code> by giving it a file name, all <code>TTree</code>s will be loaded automatically as well as addresses for each of their branches. Five the constructer <code>true</code> as its second argument, and the names of these <code>TTree</code>s, their branches, and the types of these branches (behind the slash <code>/</code> after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b></p>
 <ol type="1">
 <li>Draw main invariant mass distributions</li>
-<li>Draw difference between distributions for all combinations and the best combination</li>
+<li>Draw invariant mass distributions with cuts applied on the other candidate</li>
+<li>Draw 3-momentum distributions</li>
+<li>Draw invariant mass versus 3-momentum</li>
+<li>Draw main invariant mass distributions</li>
 <li>Draw invariant mass distributions with cuts applied on the other candidate</li>
 <li>Draw 3-momentum distributions</li>
 <li>Draw invariant mass versus 3-momentum </li>
@@ -237,7 +240,7 @@ Variables</h2></td></tr>
 
 <p><em>TEMPORARY</em> function that serves as a fix for the bug that causes the wrong best pair to be stored. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00308">308</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00322">322</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
 
 </div>
 </div>
@@ -263,7 +266,7 @@ Variables</h2></td></tr>
 </ol>
 <dl class="section return"><dt>Returns</dt><dd>Parameter name as deduced from input <code>line</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00274">274</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00288">288</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
 
 </div>
 </div>
@@ -290,7 +293,7 @@ Variables</h2></td></tr>
 </ol>
 <dl class="section return"><dt>Returns</dt><dd>Parameter value as infered from line </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00288">288</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00302">302</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
 
 </div>
 </div>
@@ -345,7 +348,7 @@ Variables</h2></td></tr>
 </ol>
 <dl class="section return"><dt>Returns</dt><dd>Number of valid loaded arguments </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00233">233</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00247">247</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
 
 </div>
 </div>
@@ -378,7 +381,7 @@ Variables</h2></td></tr>
 <p>Main function that is called when executing the executable compiled using e.g. </p>
 <p><code>g++</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00215">215</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00229">229</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
 
 </div>
 </div>
@@ -408,7 +411,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00326">326</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00340">340</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
 
 </div>
 </div>
@@ -438,7 +441,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00332">332</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00346">346</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
 
 </div>
 </div>
@@ -468,7 +471,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00338">338</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00352">352</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
 
 </div>
 </div>
