@@ -23,4 +23,4 @@ There are three channels through which you can access _The BOSS Afterburner_ onl
 
 More briefly put, GitHub 'feeds' the content on GitBook and GitPages.
 
-![Means of accessing The BOSS Afterburner](.gitbook/assets/boss_repository.png)
+![Means of accessing The BOSS Afterburner](gitbook/.gitbook/assets/boss_repository.png)
