@@ -1,0 +1,8 @@
+
+Signal inclusive or intermediate-resonance-allowed sequential event branches:
+
+index:  1	iSigIncOrIRASeqEvtBrs:  0	nCases:  2	nCcCases:  0	nTotCases:  2	nCmltCases:  2
+  B0 --> J/psi anything
+  J/psi (--> X) --> pi0 pi+ pi-
+  pi0 --> e+ e-
+

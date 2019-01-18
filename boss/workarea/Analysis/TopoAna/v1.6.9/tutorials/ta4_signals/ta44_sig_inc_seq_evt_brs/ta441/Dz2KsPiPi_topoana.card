@@ -1,0 +1,44 @@
+# The following six items are indispensable, and they can't be removed or left empty.
+
+% Names of input root files
+{
+  /gpfs/home/belle/chenyq/Belle2/basf2/Dz2KSPiPi/src/d0kspipi_study/Dz2KsPiPi_tools_ccbar.root
+}
+
+% Tree name
+{
+  Dst
+}
+
+% Branch name of the number of particles
+{
+  Nps 
+}
+
+% Branch name of the array of particle identifications
+{
+  Pid  
+}
+
+% Branch name of the array of the mother indeces of particles
+{
+  Midx
+}
+
+% Main name of output files 
+{
+  Dz2KsPiPi_topoana
+}
+
+# The star symbol "*" can be used as a short version of the word "anything" in order to simplify your input.
+% Signal inclusive sequential decay branches
+{
+  0	D*+	-1
+  1	*	0
+  2     D0	0
+  3	K_S0	2
+  4	pi+	2
+  5	pi-	2
+  6     pi+     3
+  7     pi-     3
+}

@@ -1,0 +1,19 @@
+
+#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+#include "$MCTRUTHFORTOPOANAALGROOT/share/jobOptions_MctruthForTopoAna.txt"
+
+// Input rtraw file
+EventCnvSvc.digiRootInputFile=
+{
+"/besfs2/offline/data/664-1/jpsi/12mc/dst/jpsi2012_stream001_run28236_file2.dst"
+};
+
+// Output root file 
+ApplicationMgr.HistogramPersistency="ROOT";
+NTupleSvc.Output={"FILE1 DATAFILE='had.root' OPT='NEW' TYP='ROOT'"};
+
+// Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel=5;
+
+// Number of events to be processed (default is 10)
+ApplicationMgr.EvtMax=20000;

@@ -1,0 +1,42 @@
+# The following six items are indispensable, and they can't be removed or left empty.
+
+% Names of input root files
+{
+  ../ta461/mixed_topoana.root
+}
+
+% Tree name
+{
+  evt 
+}
+
+% Branch name of the number of particles
+{
+  Nps 
+}
+
+% Branch name of the array of particle identifications
+{
+  Pid  
+}
+
+% Branch name of the array of the mother indeces of particles
+{
+  Midx
+}
+
+% Main name of output files 
+{
+  mixed_topoana
+}
+
+% Perform the topology analysis of the decay branches begun with the following particles
+{
+  J/psi 
+}
+
+# Only single-line cuts are supported in the item just like in the method Draw() and GetEntries() of the class TTree.
+% Cut to select entries
+{
+  nTotSigIncOrIRASeqEvtBrs>0
+}

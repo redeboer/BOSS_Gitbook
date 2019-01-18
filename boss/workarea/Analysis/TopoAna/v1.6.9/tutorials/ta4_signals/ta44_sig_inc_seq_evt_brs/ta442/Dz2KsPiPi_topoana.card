@@ -1,0 +1,43 @@
+# The following six items are indispensable, and they can't be removed or left empty.
+
+% Names of input root files
+{
+  ../ta441/Dz2KsPiPi_topoana.root
+}
+
+% Tree name
+{
+  Dst
+}
+
+% Branch name of the number of particles
+{
+  Nps 
+}
+
+% Branch name of the array of particle identifications
+{
+  Pid  
+}
+
+% Branch name of the array of the mother indeces of particles
+{
+  Midx
+}
+
+% Main name of output files 
+{
+  Dz2KsPiPi_topoana
+}
+
+# The maximum numbers of decay branches to be printed for the inclusive decays can be optionally specified on the right sides of their first particles.
+% Perform more taggings and sortings by the decay of the following particles
+{
+  D*+ 
+}
+
+# Only single-line cuts are supported in the item just like in the method Draw() and GetEntries() of the class TTree.
+% Cut to select entries
+{
+  nSigIncSeqEvtBrs>0 
+}

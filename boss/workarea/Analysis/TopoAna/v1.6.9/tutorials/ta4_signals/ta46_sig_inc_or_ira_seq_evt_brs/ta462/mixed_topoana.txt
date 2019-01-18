@@ -1,0 +1,804 @@
+Event trees and their respective initial-final states:
+
+index:  1	iEvtTr:  0	iEvtIFSts:  0	nEtrs:  1	nCmltEtrs:  1
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi+ pi- K*0 J/psi
+  anti-B0 --> pi+ K*- eta_c
+  K*0 --> pi0 K0
+  J/psi --> pi0 pi+ pi-
+  K*- --> pi- anti-K0
+  eta_c --> f_2 f'_2
+  pi0 --> gamma gamma
+  K0 --> K_S0
+  pi0 --> gamma gamma
+  anti-K0 --> K_L0
+  f_2 --> pi+ pi-
+  f'_2 --> K_L0 K_L0
+  K_S0 --> pi0 pi0
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> K_L0 K_L0 K_L0 pi+ pi+ pi+ pi+ pi- pi- pi- pi- gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  2	iEvtTr:  1	iEvtIFSts:  1	nEtrs:  1	nCmltEtrs:  2
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi0 K*0 J/psi
+  anti-B0 --> pi0 rho0 anti-K0 J/psi
+  pi0 --> gamma gamma
+  K*0 --> pi- K+
+  J/psi --> pi- rho+
+  pi0 --> gamma gamma
+  rho0 --> pi+ pi-
+  anti-K0 --> K_S0
+  J/psi --> e+ e-
+  rho+ --> pi0 pi+
+  K_S0 --> pi+ pi-
+  pi0 --> gamma gamma
+( e+ e- --> e+ e- pi+ pi+ pi+ pi- pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma )
+
+index:  3	iEvtTr:  2	iEvtIFSts:  2	nEtrs:  1	nCmltEtrs:  3
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 B0
+  B0 --> pi- K*+ J/psi
+  B0 --> pi+ pi- rho+ D-
+  K*+ --> pi+ K0
+  J/psi --> pi0 pi+ pi-
+  rho+ --> pi0 pi+
+  D- --> pi- pi- K+
+  K0 --> K_L0
+  pi0 --> e+ e-
+  pi0 --> gamma gamma
+( e+ e- --> e+ e- K_L0 pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- K+ gamma gamma )
+
+index:  4	iEvtTr:  3	iEvtIFSts:  3	nEtrs:  1	nCmltEtrs:  4
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> K*0 J/psi
+  anti-B0 --> mu- anti-nu_mu D*+
+  K*0 --> pi- K+
+  J/psi --> pi0 pi+ pi-
+  D*+ --> pi0 D+
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  D+ --> pi0 pi+ anti-K*0
+  pi0 --> gamma gamma
+  anti-K*0 --> pi+ K-
+( e+ e- --> mu- anti-nu_mu pi+ pi+ pi+ pi- pi- K+ K- gamma gamma gamma gamma gamma gamma )
+
+index:  5	iEvtTr:  4	iEvtIFSts:  4	nEtrs:  1	nCmltEtrs:  5
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi- K*+ J/psi
+  anti-B0 --> D*+ D_s1-
+  K*+ --> pi0 K+
+  J/psi --> pi0 pi+ pi-
+  D*+ --> pi+ D0
+  D_s1- --> pi0 D_s*-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  D0 --> pi+ pi- K_S0
+  pi0 --> gamma gamma
+  D_s*- --> D_s- gamma
+  K_S0 --> pi+ pi-
+  D_s- --> pi0 pi- phi
+  pi0 --> gamma gamma
+  phi --> pi0 rho0
+  pi0 --> gamma gamma
+  rho0 --> pi+ pi-
+( e+ e- --> pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  6	iEvtTr:  5	iEvtIFSts:  5	nEtrs:  1	nCmltEtrs:  6
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> K*0 J/psi
+  anti-B0 --> e- anti-nu_e pi+ D0
+  K*0 --> pi- K+
+  J/psi --> pi- rho+
+  D0 --> K_S0 eta'
+  rho+ --> pi0 pi+
+  K_S0 --> pi0 pi0
+  eta' --> pi+ pi- eta
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  eta --> pi0 pi0 pi0
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> e- anti-nu_e pi+ pi+ pi+ pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  7	iEvtTr:  6	iEvtIFSts:  6	nEtrs:  1	nCmltEtrs:  7
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi- K+ J/psi
+  anti-B0 --> D*+ D_s*-
+  J/psi --> pi0 pi+ pi-
+  D*+ --> pi+ D0
+  D_s*- --> pi0 D_s-
+  pi0 --> gamma gamma
+  D0 --> K_L0 pi- K+
+  pi0 --> gamma gamma
+  D_s- --> pi0 pi- omega
+  pi0 --> gamma gamma
+  omega --> pi0 pi+ pi-
+  pi0 --> gamma gamma
+( e+ e- --> K_L0 pi+ pi+ pi+ pi- pi- pi- pi- pi- K+ K+ gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  8	iEvtTr:  7	iEvtIFSts:  7	nEtrs:  1	nCmltEtrs:  8
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 B0
+  B0 --> K0 J/psi
+  B0 --> pi+ pi+ rho- omega D*-
+  K0 --> K_S0
+  J/psi --> pi0 pi+ pi-
+  rho- --> pi0 pi-
+  omega --> pi0 pi+ pi-
+  D*- --> pi0 D-
+  K_S0 --> pi+ pi-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  D- --> pi0 pi- K_S0
+  pi0 --> gamma gamma
+  K_S0 --> pi+ pi-
+( e+ e- --> pi+ pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  9	iEvtTr:  8	iEvtIFSts:  8	nEtrs:  1	nCmltEtrs:  9
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 B0
+  B0 --> K_S0 J/psi
+  B0 --> pi+ rho- omega anti-K0 K*+ D-
+  K_S0 --> pi+ pi-
+  J/psi --> pi+ rho-
+  rho- --> pi0 pi-
+  omega --> pi0 pi+ pi-
+  anti-K0 --> K_S0
+  K*+ --> pi0 K+
+  D- --> pi0 pi- K*0
+  rho- --> pi0 pi-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  K_S0 --> pi+ pi-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  K*0 --> pi- K+
+  pi0 --> gamma gamma
+( e+ e- --> pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- pi- K+ K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  10	iEvtTr:  9	iEvtIFSts:  9	nEtrs:  1	nCmltEtrs:  10
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi0 pi+ rho- J/psi
+  anti-B0 --> pi- pi- rho+ eta D+
+  pi0 --> gamma gamma
+  rho- --> pi0 pi-
+  J/psi --> pi- rho+
+  rho+ --> pi0 pi+
+  eta --> gamma gamma
+  D+ --> mu+ nu_mu pi+ K-
+  pi0 --> gamma gamma
+  rho+ --> pi0 pi+
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> mu+ nu_mu pi+ pi+ pi+ pi+ pi- pi- pi- pi- K- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  11	iEvtTr:  10	iEvtIFSts:  10	nEtrs:  1	nCmltEtrs:  11
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 B0
+  B0 --> pi+ pi- K0 J/psi
+  B0 --> pi0 pi0 pi+ pi+ pi- rho+ rho- D*-
+  K0 --> K_L0
+  J/psi --> pi0 pi+ pi-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  rho+ --> pi0 pi+
+  rho- --> pi0 pi-
+  D*- --> pi0 D-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  D- --> pi- pi- K+
+( e+ e- --> K_L0 pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  12	iEvtTr:  11	iEvtIFSts:  11	nEtrs:  1	nCmltEtrs:  12
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi- K*+ J/psi
+  anti-B0 --> rho0 anti-p- Sigma_c+
+  K*+ --> pi+ K0
+  J/psi --> pi- rho+
+  rho0 --> pi+ pi-
+  Sigma_c+ --> pi0 Lambda_c+
+  K0 --> K_L0
+  rho+ --> pi0 pi+
+  pi0 --> gamma gamma
+  Lambda_c+ --> pi+ pi- Sigma+
+  K_L0 --> mu+ nu_mu pi-
+  pi0 --> gamma gamma
+  Sigma+ --> pi+ n0
+( e+ e- --> mu+ nu_mu pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- n0 anti-p- gamma gamma gamma gamma )
+
+index:  13	iEvtTr:  12	iEvtIFSts:  12	nEtrs:  1	nCmltEtrs:  13
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi+ pi- K*0 J/psi
+  anti-B0 --> J/psi anti-K_10
+  K*0 --> pi- K+
+  J/psi --> pi0 rho0
+  J/psi --> pi+ pi- n0 anti-n0
+  anti-K_10 --> pi0 anti-K*0
+  pi0 --> gamma gamma
+  rho0 --> pi+ pi-
+  pi0 --> gamma gamma
+  anti-K*0 --> pi+ K-
+( e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- pi- K+ K- n0 anti-n0 gamma gamma gamma gamma )
+
+index:  14	iEvtTr:  13	iEvtIFSts:  13	nEtrs:  1	nCmltEtrs:  14
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi+ pi- K0 J/psi
+  anti-B0 --> mu- anti-nu_mu pi0 pi0 D*+
+  K0 --> K_L0
+  J/psi --> pi0 pi+ pi-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  D*+ --> pi+ D0
+  pi0 --> gamma gamma
+  D0 --> pi0 K_L0
+  pi0 --> e+ e-
+( e+ e- --> e+ e- mu- anti-nu_mu K_L0 K_L0 pi+ pi+ pi+ pi- pi- gamma gamma gamma gamma gamma gamma )
+
+index:  15	iEvtTr:  14	iEvtIFSts:  14	nEtrs:  1	nCmltEtrs:  15
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi+ pi- K*0 J/psi
+  anti-B0 --> rho+ rho+ rho- K*- D*0
+  K*0 --> pi- K+
+  J/psi --> pi0 pi+ pi-
+  rho+ --> pi0 pi+
+  rho+ --> pi0 pi+
+  rho- --> pi0 pi-
+  K*- --> pi- anti-K0
+  D*0 --> pi0 D0
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  anti-K0 --> K_S0
+  pi0 --> gamma gamma
+  D0 --> pi- rho+
+  K_S0 --> pi0 pi0
+  rho+ --> pi0 pi+
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  16	iEvtTr:  15	iEvtIFSts:  15	nEtrs:  1	nCmltEtrs:  16
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 B0
+  B0 --> K_S0 J/psi
+  B0 --> pi+ D- n0 anti-n0
+  K_S0 --> pi+ pi-
+  J/psi --> pi0 pi+ pi-
+  D- --> pi- pi- K+
+  pi0 --> gamma gamma
+( e+ e- --> pi+ pi+ pi+ pi- pi- pi- pi- K+ n0 anti-n0 gamma gamma )
+
+index:  17	iEvtTr:  16	iEvtIFSts:  16	nEtrs:  1	nCmltEtrs:  17
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> K*0 phi J/psi
+  anti-B0 --> e- anti-nu_e D*+
+  K*0 --> pi- K+
+  phi --> K+ K-
+  J/psi --> pi0 pi+ pi-
+  D*+ --> pi0 D+
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  D+ --> K_L0 pi+
+( e+ e- --> e- anti-nu_e K_L0 pi+ pi+ pi- pi- K+ K+ K- gamma gamma gamma gamma )
+
+index:  18	iEvtTr:  17	iEvtIFSts:  17	nEtrs:  1	nCmltEtrs:  18
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi+ pi- K*0 J/psi
+  anti-B0 --> K*+ anti-p- Xi'_c0
+  K*0 --> pi- K+
+  J/psi --> pi0 pi+ pi-
+  K*+ --> pi0 K+
+  Xi'_c0 --> Xi_c0 gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  Xi_c0 --> pi+ anti-K0 Sigma-
+  anti-K0 --> K_S0
+  Sigma- --> pi- n0
+  K_S0 --> pi+ pi-
+( e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- K+ K+ n0 anti-p- gamma gamma gamma gamma gamma )
+
+index:  19	iEvtTr:  18	iEvtIFSts:  18	nEtrs:  1	nCmltEtrs:  19
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 B0
+  B0 --> K_S0 J/psi
+  B0 --> rho0 pi+ rho- anti-K0 K+ D-
+  J/psi --> pi+ rho-
+  rho0 --> pi+ pi-
+  rho- --> pi0 pi-
+  anti-K0 --> K_S0
+  D- --> mu- anti-nu_mu K0
+  rho- --> pi0 pi-
+  pi0 --> gamma gamma
+  K_S0 --> pi+ pi-
+  K0 --> K_L0
+  pi0 --> gamma gamma
+( e+ e- --> mu- anti-nu_mu K_L0 pi+ pi+ pi+ pi+ pi- pi- pi- pi- K_S0 K+ gamma gamma gamma gamma )
+
+index:  20	iEvtTr:  19	iEvtIFSts:  19	nEtrs:  1	nCmltEtrs:  20
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> K_L0 J/psi
+  anti-B0 --> pi0 pi- anti-K0 eta' D*+
+  J/psi --> pi0 pi+ pi-
+  pi0 --> gamma gamma
+  anti-K0 --> K_S0
+  eta' --> pi+ pi- eta
+  D*+ --> pi+ D0
+  pi0 --> gamma gamma
+  K_S0 --> pi0 pi0
+  eta --> gamma gamma
+  D0 --> rho0 anti-K*0
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  rho0 --> pi+ pi-
+  anti-K*0 --> pi+ K-
+( e+ e- --> K_L0 pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- K- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  21	iEvtTr:  20	iEvtIFSts:  20	nEtrs:  1	nCmltEtrs:  21
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> K_2*0 J/psi
+  anti-B0 --> mu- anti-nu_mu pi+ pi- D*+
+  K_2*0 --> pi- K*+
+  J/psi --> pi0 pi+ pi-
+  D*+ --> pi+ D0
+  K*+ --> pi0 K+
+  pi0 --> gamma gamma
+  D0 --> pi+ K-
+  pi0 --> gamma gamma
+( e+ e- --> mu- anti-nu_mu pi+ pi+ pi+ pi+ pi- pi- pi- K+ K- gamma gamma gamma gamma )
+
+index:  22	iEvtTr:  21	iEvtIFSts:  21	nEtrs:  1	nCmltEtrs:  22
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> rho- K+ J/psi
+  anti-B0 --> rho0 anti-K*0 eta_c
+  rho- --> pi0 pi-
+  J/psi --> pi0 pi+ pi-
+  rho0 --> pi+ pi-
+  anti-K*0 --> pi+ K-
+  eta_c --> pi+ pi- p+ anti-p-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- pi- K+ K- p+ anti-p- gamma gamma gamma gamma )
+
+index:  23	iEvtTr:  22	iEvtIFSts:  22	nEtrs:  1	nCmltEtrs:  23
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 B0
+  B0 --> K_S0 J/psi
+  B0 --> K+ D*- D0
+  K_S0 --> pi+ pi-
+  J/psi --> pi+ rho-
+  D*- --> pi0 D-
+  D0 --> pi+ pi- anti-K*0
+  rho- --> pi0 pi-
+  pi0 --> gamma gamma
+  D- --> pi- rho- K+
+  anti-K*0 --> pi0 anti-K0
+  pi0 --> gamma gamma
+  rho- --> pi0 pi-
+  pi0 --> gamma gamma
+  anti-K0 --> K_S0
+  pi0 --> gamma gamma
+  K_S0 --> pi+ pi-
+( e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K+ K+ gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  24	iEvtTr:  23	iEvtIFSts:  23	nEtrs:  1	nCmltEtrs:  24
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> J/psi K_10
+  anti-B0 --> e- anti-nu_e D_0*+
+  J/psi --> pi0 pi+ pi-
+  K_10 --> omega K0
+  D_0*+ --> pi0 D+
+  pi0 --> gamma gamma
+  omega --> pi0 pi+ pi-
+  K0 --> K_S0
+  pi0 --> gamma gamma
+  D+ --> pi+ pi+ K-
+  pi0 --> gamma gamma
+  K_S0 --> pi+ pi-
+( e+ e- --> e- anti-nu_e pi+ pi+ pi+ pi+ pi+ pi- pi- pi- K- gamma gamma gamma gamma gamma gamma )
+
+index:  25	iEvtTr:  24	iEvtIFSts:  24	nEtrs:  1	nCmltEtrs:  25
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 B0
+  B0 --> pi0 K*0 J/psi
+  B0 --> K*+ D*- D*0
+  pi0 --> gamma gamma
+  K*0 --> pi- K+
+  J/psi --> pi- rho+
+  K*+ --> pi+ K0
+  D*- --> pi- anti-D0
+  D*0 --> pi0 D0
+  rho+ --> pi0 pi+
+  K0 --> K_L0
+  anti-D0 --> pi- K+
+  pi0 --> gamma gamma
+  D0 --> pi0 pi0 pi0 pi+ pi-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> K_L0 pi+ pi+ pi+ pi- pi- pi- pi- pi- K+ K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  26	iEvtTr:  25	iEvtIFSts:  25	nEtrs:  1	nCmltEtrs:  26
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> K*0 J/psi
+  anti-B0 --> rho0 pi+ pi- pi- D+ n0 anti-n0
+  K*0 --> pi- K+
+  J/psi --> pi- rho+
+  rho0 --> pi+ pi-
+  D+ --> pi0 pi+ pi+ K-
+  rho+ --> pi0 pi+
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- K+ K- n0 anti-n0 gamma gamma gamma gamma )
+
+index:  27	iEvtTr:  26	iEvtIFSts:  26	nEtrs:  1	nCmltEtrs:  27
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi+ pi- K*0 J/psi
+  anti-B0 --> K- D*+ anti-D*0
+  K*0 --> pi- K+
+  J/psi --> pi0 pi+ pi-
+  D*+ --> pi+ D0
+  anti-D*0 --> anti-D0 gamma
+  pi0 --> gamma gamma
+  D0 --> pi0 pi+ K-
+  anti-D0 --> mu- anti-nu_mu K*+
+  pi0 --> gamma gamma
+  K*+ --> pi0 K+
+  pi0 --> gamma gamma
+( e+ e- --> mu- anti-nu_mu pi+ pi+ pi+ pi+ pi- pi- pi- K+ K+ K- K- gamma gamma gamma gamma gamma gamma gamma )
+
+index:  28	iEvtTr:  27	iEvtIFSts:  27	nEtrs:  1	nCmltEtrs:  28
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> rho0 K0 J/psi
+  anti-B0 --> pi0 pi0 pi+ pi- pi- eta D*+
+  rho0 --> pi+ pi-
+  K0 --> K_S0
+  J/psi --> pi0 pi+ pi-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  eta --> pi0 pi0 pi0
+  D*+ --> pi0 D+
+  K_S0 --> pi0 pi0
+  pi0 --> gamma gamma
+  pi0 --> e+ e-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  D+ --> pi+ anti-K'_10
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  anti-K'_10 --> pi+ K*-
+  K*- --> pi- anti-K0
+  anti-K0 --> K_L0
+( e+ e- --> e+ e- K_L0 pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  29	iEvtTr:  28	iEvtIFSts:  28	nEtrs:  1	nCmltEtrs:  29
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> J/psi K_10
+  anti-B0 --> mu- anti-nu_mu D*+
+  J/psi --> pi0 pi+ pi-
+  K_10 --> rho0 K0
+  D*+ --> pi+ D0
+  pi0 --> gamma gamma
+  rho0 --> pi+ pi-
+  K0 --> K_L0
+  D0 --> pi0 K_L0 eta
+  K_L0 --> mu+ nu_mu pi-
+  pi0 --> gamma gamma
+  eta --> gamma gamma
+( e+ e- --> mu+ mu- nu_mu anti-nu_mu K_L0 pi+ pi+ pi+ pi- pi- pi- gamma gamma gamma gamma gamma gamma )
+
+index:  30	iEvtTr:  29	iEvtIFSts:  29	nEtrs:  1	nCmltEtrs:  30
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi+ pi- K*0 J/psi
+  anti-B0 --> pi0 pi+ pi- pi- D*+
+  K*0 --> pi0 K0
+  J/psi --> pi0 pi+ pi-
+  pi0 --> gamma gamma
+  D*+ --> pi+ D0
+  pi0 --> gamma gamma
+  K0 --> K_S0
+  pi0 --> e+ e-
+  D0 --> omega anti-K*0
+  K_S0 --> pi0 pi0
+  omega --> pi0 pi+ pi-
+  anti-K*0 --> pi+ K-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> e+ e- pi+ pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- K- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  31	iEvtTr:  30	iEvtIFSts:  30	nEtrs:  1	nCmltEtrs:  31
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> K*0 J/psi
+  anti-B0 --> omega D*+ n0 anti-p-
+  K*0 --> pi- K+
+  J/psi --> pi0 pi+ pi-
+  omega --> pi0 gamma
+  D*+ --> pi+ D0
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  D0 --> K_L0 pi- K+
+( e+ e- --> K_L0 pi+ pi+ pi- pi- pi- K+ K+ n0 anti-p- gamma gamma gamma gamma gamma )
+
+index:  32	iEvtTr:  31	iEvtIFSts:  31	nEtrs:  1	nCmltEtrs:  32
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> K*0 J/psi
+  anti-B0 --> pi0 pi0 rho0 pi+ pi- D*0
+  K*0 --> pi- K+
+  J/psi --> pi+ rho-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  rho0 --> pi+ pi-
+  D*0 --> D0 gamma
+  rho- --> pi0 pi-
+  D0 --> pi0 pi+ K-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- pi- K+ K- gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  33	iEvtTr:  32	iEvtIFSts:  32	nEtrs:  1	nCmltEtrs:  33
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi+ pi- K0 J/psi
+  anti-B0 --> pi0 pi0 rho- D*+
+  K0 --> K_S0
+  J/psi --> pi0 pi+ pi-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  rho- --> pi0 pi-
+  D*+ --> pi+ D0
+  K_S0 --> pi0 pi0
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  D0 --> pi0 pi+ K-
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- K- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  34	iEvtTr:  33	iEvtIFSts:  33	nEtrs:  1	nCmltEtrs:  34
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> pi+ pi- K0 J/psi
+  anti-B0 --> pi0 rho0 pi- eta D+
+  K0 --> K_L0
+  J/psi --> pi- rho+
+  pi0 --> gamma gamma
+  rho0 --> pi+ pi-
+  eta --> pi+ pi-
+  D+ --> pi+ pi+ K-
+  rho+ --> pi0 pi+
+  pi0 --> gamma gamma
+( e+ e- --> K_L0 pi+ pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- K- gamma gamma gamma gamma )
+
+index:  35	iEvtTr:  34	iEvtIFSts:  34	nEtrs:  1	nCmltEtrs:  35
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> J/psi K'_10
+  anti-B0 --> pi+ pi- rho+ omega K0 K*- D*0
+  J/psi --> pi+ rho-
+  K'_10 --> pi- K*+
+  rho+ --> pi0 pi+
+  omega --> pi0 pi+ pi-
+  K0 --> K_L0
+  K*- --> pi0 K-
+  D*0 --> D0 gamma
+  rho- --> pi0 pi-
+  K*+ --> pi+ K0
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+  D0 --> pi+ K_1-
+  pi0 --> gamma gamma
+  K0 --> K_L0
+  K_1- --> pi0 pi- anti-K0
+  pi0 --> gamma gamma
+  anti-K0 --> K_S0
+  K_S0 --> pi+ pi-
+( e+ e- --> K_L0 K_L0 pi+ pi+ pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  36	iEvtTr:  35	iEvtIFSts:  35	nEtrs:  1	nCmltEtrs:  36
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> J/psi K_10
+  anti-B0 --> e- anti-nu_e D*+
+  J/psi --> pi0 rho0
+  K_10 --> pi- K*+
+  D*+ --> pi0 D+
+  pi0 --> gamma gamma
+  rho0 --> pi+ pi-
+  K*+ --> pi+ K0
+  pi0 --> gamma gamma
+  D+ --> pi0 pi+ K_S0
+  K0 --> K_L0
+  pi0 --> gamma gamma
+  K_S0 --> pi0 pi0
+  pi0 --> gamma gamma
+  pi0 --> gamma gamma
+( e+ e- --> e- anti-nu_e K_L0 pi+ pi+ pi+ pi- pi- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma )
+
+index:  37	iEvtTr:  36	iEvtIFSts:  36	nEtrs:  1	nCmltEtrs:  37
+  e+ e- --> Upsilon(4S)
+  Upsilon(4S) --> B0 anti-B0
+  B0 --> J/psi K_10
+  anti-B0 --> pi+ pi+ pi+ pi- pi- pi- rho- D+
+  J/psi --> pi0 pi+ pi-
+  K_10 --> rho- K+
+  rho- --> pi0 pi-
+  D+ --> mu+ nu_mu anti-K0
+  pi0 --> gamma gamma
+  rho- --> pi0 pi-
+  pi0 --> gamma gamma
+  anti-K0 --> K_L0
+  pi0 --> gamma gamma
+( e+ e- --> mu+ nu_mu K_L0 pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma )
+
+
+Event initial-final states:
+
+index:  1	iEvtIFSts:  0	nEtrs:  1	nCmltEtrs:  1
+  e+ e- --> K_L0 K_L0 K_L0 pi+ pi+ pi+ pi+ pi- pi- pi- pi- gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  2	iEvtIFSts:  1	nEtrs:  1	nCmltEtrs:  2
+  e+ e- --> e+ e- pi+ pi+ pi+ pi- pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma
+
+index:  3	iEvtIFSts:  2	nEtrs:  1	nCmltEtrs:  3
+  e+ e- --> e+ e- K_L0 pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- K+ gamma gamma
+
+index:  4	iEvtIFSts:  3	nEtrs:  1	nCmltEtrs:  4
+  e+ e- --> mu- anti-nu_mu pi+ pi+ pi+ pi- pi- K+ K- gamma gamma gamma gamma gamma gamma
+
+index:  5	iEvtIFSts:  4	nEtrs:  1	nCmltEtrs:  5
+  e+ e- --> pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  6	iEvtIFSts:  5	nEtrs:  1	nCmltEtrs:  6
+  e+ e- --> e- anti-nu_e pi+ pi+ pi+ pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  7	iEvtIFSts:  6	nEtrs:  1	nCmltEtrs:  7
+  e+ e- --> K_L0 pi+ pi+ pi+ pi- pi- pi- pi- pi- K+ K+ gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  8	iEvtIFSts:  7	nEtrs:  1	nCmltEtrs:  8
+  e+ e- --> pi+ pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  9	iEvtIFSts:  8	nEtrs:  1	nCmltEtrs:  9
+  e+ e- --> pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- pi- K+ K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  10	iEvtIFSts:  9	nEtrs:  1	nCmltEtrs:  10
+  e+ e- --> mu+ nu_mu pi+ pi+ pi+ pi+ pi- pi- pi- pi- K- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  11	iEvtIFSts:  10	nEtrs:  1	nCmltEtrs:  11
+  e+ e- --> K_L0 pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  12	iEvtIFSts:  11	nEtrs:  1	nCmltEtrs:  12
+  e+ e- --> mu+ nu_mu pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- n0 anti-p- gamma gamma gamma gamma
+
+index:  13	iEvtIFSts:  12	nEtrs:  1	nCmltEtrs:  13
+  e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- pi- K+ K- n0 anti-n0 gamma gamma gamma gamma
+
+index:  14	iEvtIFSts:  13	nEtrs:  1	nCmltEtrs:  14
+  e+ e- --> e+ e- mu- anti-nu_mu K_L0 K_L0 pi+ pi+ pi+ pi- pi- gamma gamma gamma gamma gamma gamma
+
+index:  15	iEvtIFSts:  14	nEtrs:  1	nCmltEtrs:  15
+  e+ e- --> pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  16	iEvtIFSts:  15	nEtrs:  1	nCmltEtrs:  16
+  e+ e- --> pi+ pi+ pi+ pi- pi- pi- pi- K+ n0 anti-n0 gamma gamma
+
+index:  17	iEvtIFSts:  16	nEtrs:  1	nCmltEtrs:  17
+  e+ e- --> e- anti-nu_e K_L0 pi+ pi+ pi- pi- K+ K+ K- gamma gamma gamma gamma
+
+index:  18	iEvtIFSts:  17	nEtrs:  1	nCmltEtrs:  18
+  e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- K+ K+ n0 anti-p- gamma gamma gamma gamma gamma
+
+index:  19	iEvtIFSts:  18	nEtrs:  1	nCmltEtrs:  19
+  e+ e- --> mu- anti-nu_mu K_L0 pi+ pi+ pi+ pi+ pi- pi- pi- pi- K_S0 K+ gamma gamma gamma gamma
+
+index:  20	iEvtIFSts:  19	nEtrs:  1	nCmltEtrs:  20
+  e+ e- --> K_L0 pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- K- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  21	iEvtIFSts:  20	nEtrs:  1	nCmltEtrs:  21
+  e+ e- --> mu- anti-nu_mu pi+ pi+ pi+ pi+ pi- pi- pi- K+ K- gamma gamma gamma gamma
+
+index:  22	iEvtIFSts:  21	nEtrs:  1	nCmltEtrs:  22
+  e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- pi- K+ K- p+ anti-p- gamma gamma gamma gamma
+
+index:  23	iEvtIFSts:  22	nEtrs:  1	nCmltEtrs:  23
+  e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K+ K+ gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  24	iEvtIFSts:  23	nEtrs:  1	nCmltEtrs:  24
+  e+ e- --> e- anti-nu_e pi+ pi+ pi+ pi+ pi+ pi- pi- pi- K- gamma gamma gamma gamma gamma gamma
+
+index:  25	iEvtIFSts:  24	nEtrs:  1	nCmltEtrs:  25
+  e+ e- --> K_L0 pi+ pi+ pi+ pi- pi- pi- pi- pi- K+ K+ gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  26	iEvtIFSts:  25	nEtrs:  1	nCmltEtrs:  26
+  e+ e- --> pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- K+ K- n0 anti-n0 gamma gamma gamma gamma
+
+index:  27	iEvtIFSts:  26	nEtrs:  1	nCmltEtrs:  27
+  e+ e- --> mu- anti-nu_mu pi+ pi+ pi+ pi+ pi- pi- pi- K+ K+ K- K- gamma gamma gamma gamma gamma gamma gamma
+
+index:  28	iEvtIFSts:  27	nEtrs:  1	nCmltEtrs:  28
+  e+ e- --> e+ e- K_L0 pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  29	iEvtIFSts:  28	nEtrs:  1	nCmltEtrs:  29
+  e+ e- --> mu+ mu- nu_mu anti-nu_mu K_L0 pi+ pi+ pi+ pi- pi- pi- gamma gamma gamma gamma gamma gamma
+
+index:  30	iEvtIFSts:  29	nEtrs:  1	nCmltEtrs:  30
+  e+ e- --> e+ e- pi+ pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- K- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  31	iEvtIFSts:  30	nEtrs:  1	nCmltEtrs:  31
+  e+ e- --> K_L0 pi+ pi+ pi- pi- pi- K+ K+ n0 anti-p- gamma gamma gamma gamma gamma
+
+index:  32	iEvtIFSts:  31	nEtrs:  1	nCmltEtrs:  32
+  e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- pi- K+ K- gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  33	iEvtIFSts:  32	nEtrs:  1	nCmltEtrs:  33
+  e+ e- --> pi+ pi+ pi+ pi+ pi- pi- pi- K- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  34	iEvtIFSts:  33	nEtrs:  1	nCmltEtrs:  34
+  e+ e- --> K_L0 pi+ pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- K- gamma gamma gamma gamma
+
+index:  35	iEvtIFSts:  34	nEtrs:  1	nCmltEtrs:  35
+  e+ e- --> K_L0 K_L0 pi+ pi+ pi+ pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  36	iEvtIFSts:  35	nEtrs:  1	nCmltEtrs:  36
+  e+ e- --> e- anti-nu_e K_L0 pi+ pi+ pi+ pi- pi- gamma gamma gamma gamma gamma gamma gamma gamma gamma gamma
+
+index:  37	iEvtIFSts:  36	nEtrs:  1	nCmltEtrs:  37
+  e+ e- --> mu+ nu_mu K_L0 pi+ pi+ pi+ pi+ pi- pi- pi- pi- pi- pi- K+ gamma gamma gamma gamma gamma gamma
+
+
+Event branches begun with J/psi:
+
+index:  1	iEvtBrP1:  0	nCases:  23	nCmltCases:  23
+  J/psi --> pi0 pi+ pi-
+
+index:  2	iEvtBrP1:  1	nCases:  7	nCmltCases:  30
+  J/psi --> pi- rho+
+
+index:  3	iEvtBrP1:  3	nCases:  5	nCmltCases:  35
+  J/psi --> pi+ rho-
+
+index:  4	iEvtBrP1:  4	nCases:  2	nCmltCases:  37
+  J/psi --> pi0 rho0
+
+index:  5	iEvtBrP1:  2	nCases:  1	nCmltCases:  38
+  J/psi --> e+ e-
+
+index:  6	iEvtBrP1:  5	nCases:  1	nCmltCases:  39
+  J/psi --> pi+ pi- n0 anti-n0
+

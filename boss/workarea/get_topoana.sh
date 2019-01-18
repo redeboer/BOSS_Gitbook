@@ -7,7 +7,6 @@ echo "(if left empty, version ${VersionToCopy} will be used)"
 read tempVersion
 
 if [ "${tempVersion}" != "" ]; then
-echo "huh?"
 	VersionToCopy="${tempVersion}"
 fi
 

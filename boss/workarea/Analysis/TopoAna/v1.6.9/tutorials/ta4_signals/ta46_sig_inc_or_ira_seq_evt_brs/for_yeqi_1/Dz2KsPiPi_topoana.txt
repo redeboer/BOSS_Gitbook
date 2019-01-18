@@ -1,0 +1,8 @@
+
+Signal inclusive or intermediate-resonance-allowed sequential event branches:
+
+index:  1	iSigIncOrIRASeqEvtBrs:  0	nCases:  64724	nCcCases:  63268	nTotCases:  127992	nCmltCases:  127992
+  D*+ --> D0 anything
+  D0 --> pi+ pi- K_S0
+  K_S0 --> pi+ pi-
+

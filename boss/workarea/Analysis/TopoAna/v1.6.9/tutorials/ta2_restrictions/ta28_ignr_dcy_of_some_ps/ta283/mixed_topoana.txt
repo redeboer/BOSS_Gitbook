@@ -1,0 +1,12 @@
+Event trees and their respective initial-final states:
+
+index:  1	iEvtTr:  0	iEvtIFSts:  0	nEvts:  20000	nCmltEvts:  20000
+  e+ e- --> Upsilon(4S)
+( e+ e- --> Upsilon(4S) )
+
+
+Event initial-final states:
+
+index:  1	iEvtIFSts:  0	nEvts:  20000	nCmltEvts:  20000
+  e+ e- --> Upsilon(4S)
+

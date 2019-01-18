@@ -1,0 +1,122 @@
+  D0 --> anti-K0 a_00
+  D0 --> anti-K*0 eta'
+  D0 --> anti-K0 eta'
+  D0 --> anti-K0 f'_0
+  D0 --> anti-K*0 gamma
+  D0 --> anti-K0 K*0
+  D0 --> anti-K*0 K+ K-
+  D0 --> anti-K*0 phi
+  D0 --> anti-K0 phi
+  D0 --> e+ nu_e K-
+  D0 --> e+ nu_e K*-
+  D0 --> e+ nu_e K_1-
+  D0 --> e+ nu_e K_2*-
+  D0 --> e+ nu_e pi-
+  D0 --> e+ nu_e pi0 K-
+  D0 --> e+ nu_e pi- anti-K0
+  D0 --> e+ nu_e rho-
+  D0 --> eta anti-K0
+  D0 --> eta anti-K*0
+  D0 --> eta eta
+  D0 --> eta eta'
+  D0 --> eta phi
+  D0 --> K*0 anti-K*0
+  D0 --> K0 anti-K*0
+  D0 --> K*0 phi
+  D0 --> K- a_0+
+  D0 --> K- a_1+
+  D0 --> K- K*+
+  D0 --> K+ K-
+  D0 --> K+ K*-
+  D0 --> K- K_1+
+  D0 --> K- K'_1+
+  D0 --> K+ K_1-
+  D0 --> K+ K'_1-
+  D0 --> K_L0 K_L0 K_L0
+  D0 --> K_L0 K_L0 pi- K+
+  D0 --> K_L0 K_L0 pi+ K-
+  D0 --> K_S0 K_S0
+  D0 --> K_S0 K_S0 K_S0
+  D0 --> mu+ nu_mu K-
+  D0 --> mu+ nu_mu K*-
+  D0 --> mu+ nu_mu K_1-
+  D0 --> mu+ nu_mu K_2*-
+  D0 --> mu+ nu_mu pi-
+  D0 --> mu+ nu_mu pi0 K-
+  D0 --> mu+ nu_mu pi- anti-K0
+  D0 --> mu+ nu_mu rho-
+  D0 --> omega anti-K0
+  D0 --> omega anti-K*0
+  D0 --> pi0 anti-K*0
+  D0 --> pi0 anti-K_10
+  D0 --> pi0 eta
+  D0 --> pi0 eta'
+  D0 --> pi0 f_0(1500)
+  D0 --> pi0 f_2
+  D0 --> pi0 K+ K-
+  D0 --> pi0 K_L0
+  D0 --> pi0 K_S0
+  D0 --> pi0 phi
+  D0 --> pi0 pi0 anti-K*0
+  D0 --> pi0 pi0 eta anti-K0
+  D0 --> pi0 pi0 f_0
+  D0 --> pi0 pi0 K0 anti-K0
+  D0 --> pi0 pi0 K+ K-
+  D0 --> pi0 pi0 pi0 anti-K0
+  D0 --> pi0 pi0 pi0 pi+ K-
+  D0 --> pi0 pi0 pi0 pi+ pi-
+  D0 --> pi0 pi0 pi0 pi+ pi- anti-K0
+  D0 --> pi0 pi0 pi+ K-
+  D0 --> pi0 pi0 pi+ pi-
+  D0 --> pi0 pi0 pi+ pi- anti-K0
+  D0 --> pi0 pi0 pi+ pi+ pi- pi-
+  D0 --> pi0 pi- K+
+  D0 --> pi0 pi+ K-
+  D0 --> pi0 pi+ K*-
+  D0 --> pi0 pi+ K0 K-
+  D0 --> pi0 pi+ pi- anti-K0
+  D0 --> pi0 pi+ pi- anti-K*0
+  D0 --> pi0 pi+ pi- eta
+  D0 --> pi0 pi+ pi- K+ K-
+  D0 --> pi0 rho0
+  D0 --> pi0 rho0 pi+ pi-
+  D0 --> pi0 rho+ K-
+  D0 --> pi- a_1+
+  D0 --> pi- anti-K*0 K+
+  D0 --> pi- anti-K0 K+
+  D0 --> pi+ eta K-
+  D0 --> pi+ K-
+  D0 --> pi+ K*0 K-
+  D0 --> pi+ K0 K-
+  D0 --> pi+ K_1-
+  D0 --> pi+ K- eta'
+  D0 --> pi+ K+ K- K-
+  D0 --> pi+ K- phi
+  D0 --> pi- K_S0 K_S0 K+
+  D0 --> pi+ K_S0 K_S0 K-
+  D0 --> pi+ omega K-
+  D0 --> pi+ pi-
+  D0 --> pi+ pi- anti-K0
+  D0 --> pi+ pi- anti-K*0
+  D0 --> pi+ pi- eta
+  D0 --> pi+ pi- eta'
+  D0 --> pi+ pi- eta anti-K0
+  D0 --> pi+ pi- f_0
+  D0 --> pi+ pi- f_2
+  D0 --> pi+ pi- K0 anti-K0
+  D0 --> pi+ pi- omega
+  D0 --> pi+ pi- pi- K+
+  D0 --> pi+ pi+ pi- K*-
+  D0 --> pi+ pi+ pi+ pi- pi- K-
+  D0 --> pi+ pi+ pi+ pi- pi- pi-
+  D0 --> pi- rho+
+  D0 --> pi+ rho-
+  D0 --> pi+ rho(2S)-
+  D0 --> rho0 anti-K*0
+  D0 --> rho0 phi
+  D0 --> rho0 pi+ K-
+  D0 --> rho0 pi+ K*-
+  D0 --> rho0 pi+ pi- anti-K0
+  D0 --> rho0 rho0
+  D0 --> rho+ K*-
+  D0 --> rho+ rho-
