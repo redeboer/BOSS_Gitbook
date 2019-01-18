@@ -24,18 +24,16 @@ MctruthForTopoAnaAlg="$(find ${SourceRootPath}/workarea/workarea-*/Analysis/Phys
 	echo "This will copy and OVERWRITE the latest version of the \"topoana\" package (${TopoAna_base}) and of \"${MctruthForTopoAnaAlg_base}\""
 	echo
 	read -p "  Press ENTER to continue..."
+	echo
 
 
 # * Empty output path * #
+	mkdir -p "${TargetPath}/MctruthForTopoAnaAlg"
 	rm -rf "${TargetPath}/${TopoAna_base}"
-	rm -rf "${TargetPath}/${MctruthForTopoAnaAlg}"
+	rm -rf "${TargetPath}/MctruthForTopoAnaAlg/${MctruthForTopoAnaAlg}"
 
 # * Empty output path * #
-	function CopyTheThing()
-	{
-		pathToCopy="${1}"
-		echo "Copying \"$(basename ${pathToCopy})\" to \"${TargetPath}\" ..."
-		cp -fR "${pathToCopy}" "${TargetPath}"
-	}
-	CopyTheThing "${TopoAna}"
-	CopyTheThing "${MctruthForTopoAnaAlg}"
+	echo "Copying \"topoana/$(basename ${TopoAna})\"..."
+	cp -fR "${TopoAna}" "${TargetPath}"
+	echo "Copying \"$(basename ${MctruthForTopoAnaAlg})\"..."
+	cp -fR "${MctruthForTopoAnaAlg}" "${TargetPath}/MctruthForTopoAnaAlg/"
