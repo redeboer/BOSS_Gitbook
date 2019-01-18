@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 **This repository is still under development!**
 
-Feedback is very welcome, see [About](docs-appendices/about/) for contact details.
+Feedback is very welcome, see [About](appendices/about/) for contact details.
 {% endhint %}
 
 ## _The BOSS Afterburner_ repository
@@ -17,7 +17,7 @@ This repository has been set up as an unofficial extension to the BOSS analysis 
 The source code for all of the above is [available on GitHub](https://github.com/redeboer/BOSS_Afterburner) and can be contributed to through `git`.
 
 {% hint style="info" %}
-If you do not have an IHEP networking account, it is better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html) of BESIII — this framework can only be of use if you are a member of the BESIII collaboration and if you have access to the software of this collaboration. You can also have a look at the links in the section [Further reading](docs-appendices/references.md).
+If you do not have an IHEP networking account, it is better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html) of BESIII — this framework can only be of use if you are a member of the BESIII collaboration and if you have access to the software of this collaboration. You can also have a look at the links in the section [Further reading](appendices/references.md).
 {% endhint %}
 
 ## Accessing _The BOSS Afterburner_
