@@ -19,7 +19,7 @@
 # * Setup BOSS area * #
 	source "${BOSSWORKAREA}/${CMTHOMENAME}/setupCMT.sh"
 	source "${BOSSWORKAREA}/${CMTHOMENAME}/setup.sh"
-	source "${BOSSWORKAREA}/${WORKAREANAME}/TestRelease/TestRelease-00-01-00/cmt/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/TestRelease/TestRelease-00-00-00/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/D0phi_KpiKK/D0phi_KpiKK-00-00-00/cmt/setup.sh"
 	export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
 	export PATH=$PATH:/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/TopoAna/v1.6.2/bin

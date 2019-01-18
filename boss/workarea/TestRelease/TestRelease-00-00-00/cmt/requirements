@@ -15,8 +15,8 @@ use ExHelloWorld    *                 BesExamples
 # use KlamsTestAlg    KlamsTestAlg-00-* Analysis/Physics
 use TrackSelector   TrackSelector-*   Analysis
 use RhopiAlg        RhopiAlg-*        Analysis/Physics
-use DzeroPhi        DzeroPhi-*        Analysis/Physics
-use DzeroOmega      DzeroOmega-*      Analysis/Physics
+use D0phi_KpiKK     D0phi_KpiKK-*     Analysis/Physics
+use rhopi_pipigg    rhopi_pipigg-*    Analysis/Physics
 use PipiJpsiAlg     PipiJpsiAlg-*     Analysis/Physics/PsiPrime
 use AbsCor          AbsCor-*          Analysis/PhotonCor
 # use Telesis         Telesis-00-*      Analysis
