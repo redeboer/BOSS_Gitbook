@@ -144,7 +144,7 @@ var searchData=
   ['m_5fvvsigpid5',['m_vVSigPid5',['../classtopoana.html#ad04d8651612038604c057c0760ff97d0',1,'topoana']]],
   ['m_5fvvsigseqidxofhead',['m_vVSigSeqIdxOfHead',['../classtopoana.html#afb30bf531bc652f2a174d9bdfb4697a0',1,'topoana']]],
   ['m_5fvvsigseqmidxofhead',['m_vVSigSeqMidxOfHead',['../classtopoana.html#ada437902512cd5208e71025b093b7ba6',1,'topoana']]],
-  ['main',['main',['../test_8cxx.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;test.cxx'],['../group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;AnalyseBOSSOutput.C']]],
+  ['main',['main',['../group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97',1,'AnalyseBOSSOutput.C']]],
   ['make_5funique',['make_unique',['../namespacestd__fix.html#a5b65c629c2a53fee88cacf05c6cf6e26',1,'std_fix']]],
   ['makemapsonpdata',['makeMapsOnPdata',['../classtopoana.html#a5d022f406792cded195547afa1d8bf53',1,'topoana']]],
   ['max',['max',['../classCutObject.html#ad3e3069201e74f477a8f4ac206b206a2',1,'CutObject']]],

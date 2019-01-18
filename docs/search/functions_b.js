@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['main',['main',['../test_8cxx.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;test.cxx'],['../group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;AnalyseBOSSOutput.C']]],
+  ['main',['main',['../group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97',1,'AnalyseBOSSOutput.C']]],
   ['make_5funique',['make_unique',['../namespacestd__fix.html#a5b65c629c2a53fee88cacf05c6cf6e26',1,'std_fix']]],
   ['makemapsonpdata',['makeMapsOnPdata',['../classtopoana.html#a5d022f406792cded195547afa1d8bf53',1,'topoana']]],
   ['measureforbestfit4c',['MeasureForBestFit4c',['../classrhopi__pipigg.html#ac8b23b964c42c992eb08d413b36cb554',1,'rhopi_pipigg']]],
