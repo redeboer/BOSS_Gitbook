@@ -2,6 +2,7 @@
 
 * [Main page](README.md)
 * [Contents of the tutorial pages](contents.md)
+* [Glossary](GLOSSARY.md)
 
 ## BESIII Software System
 
