@@ -5,7 +5,7 @@
 The aim is to agree on a number of conventions that should be followed when collaborating on the initial and final event selection framework of _The BOSS Afterburner_ repository.
 {% endhint %}
 
-Glossary test 1
+Glossary word 1
 
 Test ..
 {% include "../CONTRIBUTING.md" %}
@@ -20,7 +20,7 @@ Test ../../../../
 {% include "../../../../CONTRIBUTING.md" %}
 
 Test GitHub
-{% include "https://raw.githubusercontent.com/redeboer/BOSS_Afterburner/master/CONTRIBUTING.md" %}
+{% include "git+https://raw.githubusercontent.com/redeboer/BOSS_Afterburner/master/CONTRIBUTING.md" %}
 
 Test .
 {% include "./CONTRIBUTING.md" %}
