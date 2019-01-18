@@ -27,15 +27,15 @@
 // * ------- GLOBALS AND TYPEDEFS ------- * //
 // * ==================================== * //
 
-	const double gMasses[] {
+	constexpr double gMasses[] {
 		0.000511, // electron
 		0.105658, // muon
 		0.139570, // charged pion
 		0.493677, // charged kaon
 		0.938272  // proton
 	};
+	constexpr double gSpeedOfLight = 299.792458; // tof path unit in mm
 	const int gNMasses = sizeof(gMasses)/sizeof(*gMasses);
-	const double gSpeedOfLight = 299.792458; // tof path unit in mm
 
 
 

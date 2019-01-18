@@ -73,14 +73,14 @@
 	 */
 	namespace TSGlobals
 	{
-		const double gM_rho  = 0.77526;    /// Mass of \f$\rho^{0\pm}\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf">PDG</a>.
-		const double gM_pi0  = 0.1349770;  /// Mass of \f$\pi^0\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf">PDG</a>.
-		const double gM_pi   = 0.13957061; /// Mass of \f$\pi^\pm\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-plus-minus.pdf">PDG</a>.
-		const double gM_K    = 0.493677;   /// Mass of \f$K^\pm\f$.
-		const double gM_D0   = 1.86483;    /// Mass of \f$D^0\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf">PDG</a>.
-		const double gM_phi  = 1.019461;   /// Mass of \f$\phi\f$.
-		const double gM_Jpsi = 3.0969;     /// Mass of \f$J/\psi\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf">PDG</a>.
-		const double gEcms   = 3.097;      /// Center-of-mass energy.
+		constexpr double gM_rho  = 0.77526;    /// Mass of \f$\rho^{0\pm}\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf">PDG</a>.
+		constexpr double gM_pi0  = 0.1349770;  /// Mass of \f$\pi^0\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf">PDG</a>.
+		constexpr double gM_pi   = 0.13957061; /// Mass of \f$\pi^\pm\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-plus-minus.pdf">PDG</a>.
+		constexpr double gM_K    = 0.493677;   /// Mass of \f$K^\pm\f$.
+		constexpr double gM_D0   = 1.86483;    /// Mass of \f$D^0\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf">PDG</a>.
+		constexpr double gM_phi  = 1.019461;   /// Mass of \f$\phi\f$.
+		constexpr double gM_Jpsi = 3.0969;     /// Mass of \f$J/\psi\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf">PDG</a>.
+		constexpr double gEcms   = 3.097;      /// Center-of-mass energy.
 		const HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
 	};
 
