@@ -4,7 +4,7 @@
 
 // * ========================================= * //
 // * ------- DOXYGEN GROUP DEFINITIONS ------- * //
-	// * ========================================= * //
+// * ========================================= * //
 
 	/**
 	 * @defgroup BOSS BOSS
@@ -34,6 +34,7 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+
 	#include "CLHEP/Geometry/Point3D.h"
 	#include "EmcRecEventModel/RecEmcShower.h"
 	#include "EventModel/EventHeader.h"
