@@ -18,9 +18,7 @@ var files =
     [ "KKFitResult_D0phi_KpiKK.cxx", "KKFitResult__D0phi__KpiKK_8cxx.html", null ],
     [ "KKFitResult_D0phi_KpiKK.h", "KKFitResult__D0phi__KpiKK_8h.html", null ],
     [ "MctruthForTopoAna.cxx", "MctruthForTopoAna_8cxx.html", "MctruthForTopoAna_8cxx" ],
-    [ "MctruthForTopoAna.h", "MctruthForTopoAna_8h.html", [
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html", "classMctruthForTopoAna" ]
-    ] ],
+    [ "MctruthForTopoAna.h", "MctruthForTopoAna_8h.html", null ],
     [ "Particle.cxx", "Particle_8cxx.html", null ],
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],
     [ "ReconstructedParticle.cxx", "ReconstructedParticle_8cxx.html", null ],
