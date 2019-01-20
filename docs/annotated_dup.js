@@ -10,6 +10,7 @@ var annotated_dup =
     [ "D0phi_KpiKK", "classD0phi__KpiKK.html", "classD0phi__KpiKK" ],
     [ "KKFitResult", "classKKFitResult.html", "classKKFitResult" ],
     [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", "classKKFitResult__D0phi__KpiKK" ],
+    [ "MctruthForTopoAna", "classMctruthForTopoAna.html", "classMctruthForTopoAna" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],
     [ "rhopi_pipigg", "classrhopi__pipigg.html", "classrhopi__pipigg" ],

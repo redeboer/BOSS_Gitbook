@@ -42,6 +42,7 @@
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
+
 	/**
 	 * @brief Constructor for the `TrackSelector` algorithm.
 	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `TrackSelector`), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in `share/jopOptions_TrackSelector.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html for more details.
