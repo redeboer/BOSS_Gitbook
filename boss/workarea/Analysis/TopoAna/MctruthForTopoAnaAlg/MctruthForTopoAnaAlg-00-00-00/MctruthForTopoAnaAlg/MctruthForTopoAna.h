@@ -4,14 +4,14 @@
 #include "GaudiKernel/Algorithm.h"
 #include "GaudiKernel/NTuple.h"
 
-class MctruthForTopoAna : public Algorithm 
+class MctruthForTopoAna : public Algorithm
 {
- public:
-  MctruthForTopoAna(const std::string& name, ISvcLocator* pSvcLocator);
-  StatusCode initialize();
-  StatusCode execute();
-  StatusCode finalize();  
- private:
+public:
+    MctruthForTopoAna(const std::string& name, ISvcLocator* pSvcLocator);
+    StatusCode initialize();
+    StatusCode execute();
+    StatusCode finalize();
+private:
   NTuple::Tuple * m_tuple;
   NTuple::Item<int>  m_ievt;
   NTuple::Item<int>  m_runid;
