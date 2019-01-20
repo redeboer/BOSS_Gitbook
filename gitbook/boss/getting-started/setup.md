@@ -1,7 +1,5 @@
 # Setup of your BOSS environment
 
-
-
 {% hint style="warning" %}
 **Warning:** In it's current version, this tutorial assumes you use a `bash` terminal.
 

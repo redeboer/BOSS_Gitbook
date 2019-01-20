@@ -1,5 +1,7 @@
 # The BOSS Analysis Framework
 
+## What is BOSS?
+
 {% hint style="warning" %}
 **@todo** Write introduction to the [BESIII Offline Software System \(BOSS\)](http://english.ihep.cas.cn/bes/doc/2247.html).
 {% endhint %}
