@@ -14,6 +14,11 @@ Inspiration for this decay channel comes from [arXiv:1402.4025](https://arxiv.or
 
 Still, there is another problem with this purely hadronic decay mode: there are two negative kaons $$K^-$$, so we have to decide which one decayed from $$D^0$$ and which one decayed from $$\phi$$. Luckily, the masses of $$D^0$$ and $$\phi$$ differ quite significantly — $$m_{_{D^0}} = 1864.84 \pm 0.04\text{ MeV}/c$$ versus $$m_{_\phi} = 1019.461 \pm 0.016\text{ MeV}/c$$\) — which means that we can select the best combination based on which combination candidate has an invariant mass closest to these two expected values.
 
+* PDG 2018 listing for $$J/\psi(1S)$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
+* PDG 2018 listing for $$D^0$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
+* PDG 2018 listing for $$\phi(1020)$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-phi-1020.pdf).
+* PDG 2018 listing for $$K^\pm$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-K-plus-minus.pdf).
+
 ## Class description
 
 See [Doxygen pages here](https://redeboer.github.io/BOSS_Afterburner/classD0phi__KpiKK.html).

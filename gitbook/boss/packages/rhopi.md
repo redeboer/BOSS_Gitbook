@@ -1,8 +1,6 @@
 # RhopiAlg
 
-## The `RhopiAlg` package
-
-### Introduction
+## Introduction
 
 One of the basic analysis packages that is already provided in BOSS is the `RhopiAlg` package. Within BESIII, almost everyone knows it, because it is used as the starting point for developing your own packages. `RhopiAlg` is an illustration of a typical procedure in particle physics: reconstructing a decayed particle. For this, you will have to make apply cuts on measured parameters and this package is an illustration of this procedure.
 
@@ -12,7 +10,7 @@ Additionally, when we consider the charged $$\rho^\pm$$ mesons, one of the decay
 
 In reconstructing $$\pi^0$$ and $$\rho^0$$, you will run into another common phenomenon in hadron research: the width of the decaying particle. The width of $$\rho^0$$ is much wider than $$\pi^0$$ and therefore results in interesting differences in the eventual invariant mass spectra. In the final event selection, you will for instance see that a fit of the invariant mass peaks results in different widths.
 
-### Where to find it?
+## Where to find it?
 
 The original `RhopiAlg` package \(version `0.0.23`\) is located here,
 
@@ -26,49 +24,26 @@ A better commented and expanded version is also available within the BOSS Afterb
 
 The `RhopiAlg` package is one of the dependencies of `TestRelease`: you actually use `TestRelease` to run an analysis from `RhopiAlg` \(or any other package\). This also means that you have to follow the normal procedure for updating a package [as described above](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4GgC5cleb1Fpaf0c/primary/docs-boss/setup-package#updating-a-package).
 
-### Declaring and defining properties like cuts
+## Declaring and defining properties like cuts
 
 See [header `.h` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/RhopiAlg/Rhopi.h) for declarations and [source `.cxx` code](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/src/Rhopi.cxx) for definitions of cuts.
 
-### Determining vertex position
+## Determining vertex position
 
-### Writing properties
+## Writing properties
 
-### Looping over charged and neutral tracks
+## Looping over charged and neutral tracks
 
-### Kalman kinematic $$n$$-constraints fit procedure
+## Kalman kinematic $$n$$-constraints fit procedure
 
 * `fit4c` refers to the 4-constraints of the center-of-mass system, namely the 4-momentum of the system \(collision energy and total 3-momentum\). You can use this fit for the reconstruction of $$\pi^0 \rightarrow \gamma\gamma$$. **Note that the** $$\chi_\mathrm{red}^2$$ **of the fit is the same for any combination, as the four constraints are the same in each event.**
 * `fit5c` refers to the 5-constraint reconstruction of $$\rho^\pm \rightarrow \pi^\pm\pi^0 \rightarrow \pi^\pm\gamma\gamma$$.
 
-### Cut flow
+## Cut flow
 
-### Output `root` file
+## Output `root` file
 
 {% hint style="warning" %}
 **@todo** Describe `RhopiAlg` and how to work with it.
 {% endhint %}
-
-## Other packages
-
-{% hint style="warning" %}
-**To be developed!** Probably integrated in `TrackSelector`.
-{% endhint %}
-
-### `DzeroOmega`
-
-Decay channel: $$J/\psi \rightarrow D^0 \omega \rightarrow K^-\pi^+ + \pi^+\pi^-\pi^0$$.
-
-* PDG 2018 listing for $$J/\psi(1S)$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
-* PDG 2018 listing for $$D^0$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
-* PDG 2018 listing for $$\omega(782)$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
-* PDG 2018 listing for $$K^\pm$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-K-plus-minus.pdf).
-
-### `DzeroPhi`
-
-Decay channel: $$J/\psi \rightarrow D^0 \phi \rightarrow K^-\pi^+ + K^+K^-$$.
-
-* PDG 2018 listing for $$J/\psi(1S)$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
-* PDG 2018 listing for $$D^0$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
-* PDG 2018 listing for $$\phi(1020)$$ see [here](http://pdg.lbl.gov/2018/listings/rpp2018-list-phi-1020.pdf).
 
