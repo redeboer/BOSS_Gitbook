@@ -6,7 +6,7 @@
 	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK_0.root"
 
 // * TERMINAL OUTPUT * //
-	Print branches = false
+	Print branches = true
 
 // * PLOT STYLE * //
 	Use y log scale = ""
@@ -15,12 +15,12 @@
 	Plot statistics = false
 
 // * WHICH BRANCHES TO PLOT * //
-	Plot raw data      = true
-	Draw multiplicites = true
-	Draw mctruth       = true
+	Plot raw data      = false
+	Draw multiplicites = false
+	Draw mctruth       = false
 	Draw vertex        = false
 	Draw ToF           = false
-	Draw fit branches  = true
+	Draw fit branches  = false
 
 // * FIT SETTINGS * //
 	Perform fits = false
