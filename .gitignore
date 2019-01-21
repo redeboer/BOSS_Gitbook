@@ -81,3 +81,8 @@ main
 **.dat_temp*
 boss/workarea/Analysis/TopoAna/v1.6.2/test/*
 boss/workarea/Analysis/TopoAna/v1.6.2/test/**
+jobs/topoana/**.txt
+jobs/topoana/**/**.txt
+jobs/topoana/**/*.txt
+jobs/topoana/*/*.txt
+jobs/topoana/*/*/*.txt
