@@ -4,5 +4,5 @@ From October 2018 to May 2019, I will be doing my master research at the BESIII 
 
 In writing the code for my analysis, I have attempted to set up an object-oriented `C++` class structure that is as general in usage as possible. I hope that this allows other members of BESIII to collaborate on the framework that I am building op. Since this code contains `Doxygen` formatted comments, there is an [additional page](https://redeboer.github.io/BOSS_Afterburner/) with documentation on the class structure of that analysis code. In this way, I hope that the class documentation in this repository can also be used to help the user understand the BOSS framework itself and, more importantly, that it can serve as a help to fellow students starting to do analysis on BESIII data.
 
-**Feedback and contributions are very welcome** and can be send to [remco.de.boer@ihep.ac.cn](mailto:remco.de.boer@ihep.ac.cn).
+**Feedback and contributions are very welcome** and can be sent to [remco.de.boer@ihep.ac.cn](mailto:remco.de.boer@ihep.ac.cn).
 
