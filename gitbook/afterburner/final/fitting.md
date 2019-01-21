@@ -1,8 +1,10 @@
 # Fitting
 
 {% hint style="danger" %}
-**This part of the tutorial is not yet finished.**
+**This part of the tutorial is not yet finished** and currently only contains a rough sketch of the contents.
 {% endhint %}
+
+See fit methods defined in namespace [`CommonFunctions::Fit`](https://redeboer.github.io/BOSS_Afterburner/namespaceCommonFunctions_1_1Fit.html).
 
 ## `Ideas for a RooFit` wrapper
 

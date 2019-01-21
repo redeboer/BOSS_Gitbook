@@ -34,7 +34,6 @@
   * [Cutting](afterburner/final/cutting.md)
   * [Drawing](afterburner/final/drawing.md)
   * [Fitting](afterburner/final/fitting.md)
-  * [Ideas for a RooFit wrapper](afterburner/final/roofit-wrapper.md)
 * [Contributing to The BOSS Afterburner](afterburner/contributing.md)
 
 ## Appendices
