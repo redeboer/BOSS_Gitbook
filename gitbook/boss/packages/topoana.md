@@ -1,5 +1,9 @@
 # TopoAna
 
+## Preparing initial event selection
+
+Use the [`MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html) algorithm package.
+
 ## Format of a `topoana` card
 
 This paragraph lists all fields that can be used in your `topoana` card.
