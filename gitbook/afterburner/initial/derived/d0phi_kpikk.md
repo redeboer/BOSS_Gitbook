@@ -1,4 +1,4 @@
-# Example: D0phi\_KpiKK
+# D0phi\_KpiKK
 
 ## Physics
 
