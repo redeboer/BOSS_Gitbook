@@ -14,6 +14,8 @@ If you don't like having to enter your password every time you log in, have a lo
 
 In Windows, there are some nice tools that allow you to access the server. First of all, to be able to use SSH, use will either have to use [PuTTY](https://www.putty.org/) or more extensive software like [Xmanager](https://www.netsarang.com/products/xmg_overview.html). You can also just search for some Linux terminals for Windows. In addition, I would recommend you to work with the \(S\)FTP client [WinSCP](https://winscp.net/eng/index.php). It allows you to easily navigate the file structure of the IHEP server and to quickly transfer---even synchronise---files up and down to your own computer.
 
+## Main directories
+
 When you have logged into the server, you usually start in your home \(`~`\) folder. Move to the root of the server \(`cd /`\) and you'll see that is a large number of other directories. A few of these directories contain space that is assigned to your user account. Here is an overview:
 
 | Path | Data quotum | Max. number of files | Remark |
@@ -30,6 +32,8 @@ When you have logged into the server, you usually start in your home \(`~`\) fol
 
 Of course, here, and in what follows, `$USER` refers to your user name.
 
+## Important data paths
+
 Some other important directories are the following:
 
 * [BOSS Software directory](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_setup_BOSS_environment_on_lxslc)
@@ -43,4 +47,6 @@ Some other important directories are the following:
   * `/besfs2/offline/` \(older versions\)
 
 These directories will be important later in this 'tutorial'.
+
+**For the latest data file locations, see** [**this page**](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Production)**.**
 

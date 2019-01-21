@@ -34,3 +34,6 @@
 **@todo** Investigate sub-packages of `McTruth`, such as [`MdcMcHit`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvent_1_1MdcMcHit.html).
 {% endhint %}
 
+Documentation already existing \(limited and required login\):  
+[https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/MC\_truth](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/MC_truth)
+
