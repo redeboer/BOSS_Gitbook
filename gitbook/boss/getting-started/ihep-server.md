@@ -40,12 +40,11 @@ Some other important directories are the following:
   * `/afs/ihep.ac.cn/bes3/offline/Boss` \(also referred to with `$BesArea`\)
 * [Raw data files](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Raw_Data)
   * `/bes3fs/offline/data/raw`
-  * `/besfs2/offline/data/raw` \(only rounds 3 and 6\)
   * `/besfs/offline/data/randomtrg` \(random trigger data\)
 * [Reconstructed data sets](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Production)
   * `/besfs3/offline/data/`
-  * `/besfs2/offline/` \(older versions\)
-* [Reconstructed Monte Carlo sets](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Jpsi_data) \(for example\):
+  * `/besfs/offline/data/` \(older versions\)
+* [Reconstructed Monte Carlo sets](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Jpsi_data) \(latest version available is `6.6.4`\):
   *  `/besfs2/offline/data/664-1/jpsi/09mc/dst` \(2009; 225M\)
   *  `/besfs2/offline/data/664-1/jpsi/12mc/dst` \(2012; 200M\)
   *  `/besfs2/offline/data/664-1/jpsi/12mc/grid/dst` \(2012; 800M\)
