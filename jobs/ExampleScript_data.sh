@@ -28,8 +28,9 @@ fileToRead="filenames/ExampleFile_DstFiles" # filenames/ExampleFile_DzeroPhi_mc
 # * In case of analysing Monte Carlo output * #
 if [ ${analyseMC} == 1 ]; then
 	gExampleFromFile=0
-	nEventsPerJob=1000
-	directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}_MC_1e6"
+	nEventsPerJob=10000
+	directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}_MC_1e6" # incl
+	directoryToRead="/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst" # excl
 	identifier="${packageName}"
 fi
 

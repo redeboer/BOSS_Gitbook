@@ -265,26 +265,25 @@
 				}
 
 				/// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data available in `McParticle`, see <a href="http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html">here</a>. Only add to `fMcParticles` if the `McParticle` satisfies:
-				Event::McParticleCol::iterator iter_mc = fMcParticleCol->begin();
 				bool jpsiDecay(false);
 				int rootIndex(-1);
-				for (; iter_mc!=fMcParticleCol->end(); iter_mc++) {
+				for(Event::McParticleCol::iterator it = fMcParticleCol->begin(); it!=fMcParticleCol->end(); ++it) {
 					/// <ul>
 					/// <li> Do not add primary parties @todo Why?
-					if( (*iter_mc)->primaryParticle()) continue;
+					if( (*it)->primaryParticle()) continue;
 					/// <li> Only add if the decay has been generated. @todo Why? What does this mean precisely?
-					if(!(*iter_mc)->decayFromGenerator()) continue;
+					if(!(*it)->decayFromGenerator()) continue;
 					/// <li> Get root index @todo What is the root index and why is it related to \f$J/\psi\f$?
-					if( (*iter_mc)->particleProperty() == 443) {
+					if( (*it)->particleProperty() == 443) {
 						jpsiDecay=true;
-						rootIndex=(*iter_mc)->trackIndex();
+						rootIndex=(*it)->trackIndex();
 					}
 					/// <li> Do not add \f$J/\psi\f$ (PDG code 443).
 					if(!jpsiDecay) continue;
 					/// <li> Add the pointer to the `fMcParticles` vector.
-					fMcParticles.push_back(*iter_mc);
+					fMcParticles.push_back(*it);
 					/// <li> <b>Write</b> MC truth initial 4-momentum info if required.
-					if(fWrite_mctruth) WriteMcTruth(*iter_mc, "mctruth", fMap_mctruth);
+					if(fWrite_mctruth) WriteMcTruth(*it, "mctruth", fMap_mctruth);
 					/// </ul>
 				} // end of for loop
 				/// </ol>
@@ -565,6 +564,8 @@
 	void TrackSelector::BookNtupleItems_McTruth(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		/// <ol>
+		map["particle"];  /// <li> `"particle"`: PDG code of the particle
+		map["mother_id"]; /// <li> `"mother"`:   PDG code of the mother
 		map["E"];  /// <li> `"E"`:  True initial energy of the track.
 		map["p"];  /// <li> `"p"`:  True initial \f$|\vec{p}|\f$ 3-momentum of the track.
 		map["px"]; /// <li> `"px"`: True initial \f$p_x\f$ momentum of the track.
@@ -681,6 +682,8 @@
 		HepLorentzVector vec(mcTruth->initialFourMomentum());
 
 		/// -# <b>Write</b> initial momentum info of MC truth.
+		map.at("mother")   = mcTruth->mother().particleProperty();
+		map.at("particle") = mcTruth->particleProperty();	
 		map.at("E") = vec.e();
 		map.at("p") = std::sqrt(
 			vec.px()*vec.px() +
