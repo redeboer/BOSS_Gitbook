@@ -14,7 +14,7 @@ See for instance:
 
 * _Physics Accomplishments and Future Prospects of the BES Experiments at the BEPC Collider_ \(2016\) [https://arxiv.org/abs/1603.09431](https://arxiv.org/abs/1603.09431)
 * _Physics at BESIII_ \(2009\) [https://arxiv.org/abs/0809.1869](https://arxiv.org/abs/0809.1869)
-* BESIII White Paper \(not yet published\) [http://english.ihep.cas.cn/doc/3281.html](http://english.ihep.cas.cn/doc/3281.html)
+* _BESIII White Paper_ \(not yet published\) [https://docbes3.ihep.ac.cn/cgi-bin/DocDB/ShowDocument?docid=759](https://docbes3.ihep.ac.cn/cgi-bin/DocDB/ShowDocument?docid=759)
 
 Output of the detector is analysed using the [BESIII Offline Software System \(BOSS\)](http://english.ihep.cas.cn/bes/doc/2247.html).
 
