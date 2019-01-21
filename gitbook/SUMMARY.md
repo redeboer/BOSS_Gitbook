@@ -24,6 +24,7 @@
 * [Introduction](afterburner/intro.md)
 * [Initial event selection](afterburner/initial/README.md)
   * [Motivation](afterburner/initial/motivation.md)
+  * [Typical cuts](afterburner/initial/typical-cuts.md)
   * [Base algorithm: the TrackSelector](afterburner/initial/base.md)
   * [Derived algorithms](afterburner/initial/derived/README.md)
     * [rhopi\_pipigg](afterburner/initial/derived/rhopi_pipigg.md)
