@@ -45,6 +45,11 @@ Some other important directories are the following:
 * [Reconstructed data sets](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Production)
   * `/besfs3/offline/data/`
   * `/besfs2/offline/` \(older versions\)
+* [Reconstructed Monte Carlo sets](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Jpsi_data) \(for example\):
+  *  `/besfs2/offline/data/664-1/jpsi/09mc/dst` \(2009; 225M\)
+  *  `/besfs2/offline/data/664-1/jpsi/12mc/dst` \(2012; 200M\)
+  *  `/besfs2/offline/data/664-1/jpsi/12mc/grid/dst` \(2012; 800M\)
+  * \(no MC samples available yet for 2018\)
 
 These directories will be important later in this 'tutorial'.
 
