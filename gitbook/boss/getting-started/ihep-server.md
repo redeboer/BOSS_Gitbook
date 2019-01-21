@@ -50,7 +50,7 @@ Some other important directories are the following:
   *  `/besfs2/offline/data/664-1/jpsi/09mc/dst` \(2009; 225M\)
   *  `/besfs2/offline/data/664-1/jpsi/12mc/dst` \(2012; 200M\)
   *  `/besfs2/offline/data/664-1/jpsi/12mc/grid/dst` \(2012; 800M\)
-  * \(no MC samples available yet for 2018\)
+  * \(no reconstructed MC samples available yet for 2018\)
 
 These directories will be important later in this 'tutorial'.
 
