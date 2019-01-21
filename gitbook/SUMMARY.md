@@ -26,6 +26,7 @@
   * [Motivation](afterburner/initial/motivation.md)
   * [Base algorithm: the TrackSelector](afterburner/initial/base.md)
   * [Derived algorithms](afterburner/initial/derived.md)
+  * [Example: D0phi\_KpiKK](afterburner/initial/example-d0phi_kpikk.md)
 * [Final event selection](afterburner/final/README.md)
   * [Loading](afterburner/final/loading.md)
   * [Cutting](afterburner/final/cutting.md)
