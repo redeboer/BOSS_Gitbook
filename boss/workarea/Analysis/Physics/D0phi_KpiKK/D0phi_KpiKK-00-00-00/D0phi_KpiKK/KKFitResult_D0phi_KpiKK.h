@@ -31,7 +31,7 @@ public:
 	// * CONSTRUCTORS * //
 		KKFitResult_D0phi_KpiKK() : fFitMeasure(1e9) {}
 		KKFitResult_D0phi_KpiKK(KalmanKinematicFit* kkmfit);
-		KKFitResult_D0phi_KpiKK(McParticle* kaonNeg1, McParticle* kaonNeg2, McParticle* kaonPos, McParticle* pionPos);
+		KKFitResult_D0phi_KpiKK(Event::McParticle* kaonNeg1, Event::McParticle* kaonNeg2, Event::McParticle* kaonPos, Event::McParticle* pionPos);
 
 	// * INFORMATION * //
 		bool IsBetter() const;
