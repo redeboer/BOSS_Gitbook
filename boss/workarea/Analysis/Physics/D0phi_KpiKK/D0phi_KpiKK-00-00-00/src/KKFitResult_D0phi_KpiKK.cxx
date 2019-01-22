@@ -49,13 +49,12 @@
 		/// <li> Test whether `KalmanKinematicFit` pointer exists.
 		if(!fFit) return;
 		/// <li> Get Lorentz vectors of the decay products using `KalmanKinematicFit::pfit`:
-			/// <ul>
 			SetValues(
 				fFit->pfit(0), /// <li> \f$K^-\f$ (first occurrence)
 				fFit->pfit(1), /// <li> \f$K^-\f$ (second occurrence)
 				fFit->pfit(2), /// <li> \f$K^+\f$
 				fFit->pfit(3)  /// <li> \f$\pi^+\f$
-			)
+			);
 		/// </ol>
 	}
 
