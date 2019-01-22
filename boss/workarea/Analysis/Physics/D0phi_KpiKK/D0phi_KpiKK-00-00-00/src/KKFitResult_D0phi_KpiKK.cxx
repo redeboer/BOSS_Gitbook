@@ -29,7 +29,7 @@
 	/**
 	 * @brief Construct a `KKFitResult_D0phi_KpiKK` object based on a pointer to a `KalmanKinematicFit` object.
 	 */
-	KKFitResult_D0phi_KpiKK::KKFitResult_D0phi_KpiKK(McParticle* kaonNeg1, McParticle* kaonNeg2, McParticle* kaonPos, McParticle* pionPos)
+	KKFitResult_D0phi_KpiKK::KKFitResult_D0phi_KpiKK(Event::McParticle* kaonNeg1, Event::McParticle* kaonNeg2, Event::McParticle* kaonPos, Event::McParticle* pionPos)
 	{
 		SetValues(kaonNeg1, kaonNeg2, kaonPos, pionPos);
 	}
