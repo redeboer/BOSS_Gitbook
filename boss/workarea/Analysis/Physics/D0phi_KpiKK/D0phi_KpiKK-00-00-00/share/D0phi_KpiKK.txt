@@ -12,7 +12,7 @@ D0phi_KpiKK.do_neutral = 0;
 
 // * Whether or not to fill a tree/NTuple (TrackSelector) *
 D0phi_KpiKK.write_mult     = 1;
-D0phi_KpiKK.write_vertex   = 1;
+D0phi_KpiKK.write_vertex   = 0;
 D0phi_KpiKK.write_charged  = 0;
 D0phi_KpiKK.write_neutral  = 0;
 D0phi_KpiKK.write_mctruth  = 1;

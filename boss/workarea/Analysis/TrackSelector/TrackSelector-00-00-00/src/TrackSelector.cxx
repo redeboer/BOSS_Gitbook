@@ -27,14 +27,14 @@
 // * ------- GLOBALS AND TYPEDEFS ------- * //
 // * ==================================== * //
 
-	constexpr double gMasses[] {
+	const double gMasses[] {
 		0.000511, // electron
 		0.105658, // muon
 		0.139570, // charged pion
 		0.493677, // charged kaon
 		0.938272  // proton
 	};
-	constexpr double gSpeedOfLight = 299.792458; // tof path unit in mm
+	const double gSpeedOfLight = 299.792458; // tof path unit in mm
 	const int gNMasses = sizeof(gMasses)/sizeof(*gMasses);
 
 
@@ -565,7 +565,7 @@
 	{
 		/// <ol>
 		map["particle"];  /// <li> `"particle"`: PDG code of the particle
-		map["mother_id"]; /// <li> `"mother"`:   PDG code of the mother
+		map["mother"]; /// <li> `"mother"`:   PDG code of the mother
 		map["E"];  /// <li> `"E"`:  True initial energy of the track.
 		map["p"];  /// <li> `"p"`:  True initial \f$|\vec{p}|\f$ 3-momentum of the track.
 		map["px"]; /// <li> `"px"`: True initial \f$p_x\f$ momentum of the track.

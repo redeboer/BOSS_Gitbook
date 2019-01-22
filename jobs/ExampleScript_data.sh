@@ -14,7 +14,7 @@ source CommonFunctions.sh
 
 # * Scripts parameters * #
 packageName="D0phi_KpiKK"
-nFilesPerJob=100
+nFilesPerJob=40
 nEventsPerJob=-1
 outputLevel=4
 identifier="besfs3_offline_data_703-1_jpsi_round02_dst" # DzeroPhi_mc
@@ -28,7 +28,7 @@ fileToRead="filenames/ExampleFile_DstFiles" # filenames/ExampleFile_DzeroPhi_mc
 # * In case of analysing Monte Carlo output * #
 if [ ${analyseMC} == 1 ]; then
 	gExampleFromFile=0
-	nEventsPerJob=10000
+	nEventsPerJob=-1
 	directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}_MC_1e6" # incl
 	directoryToRead="/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst" # excl
 	identifier="${packageName}"
