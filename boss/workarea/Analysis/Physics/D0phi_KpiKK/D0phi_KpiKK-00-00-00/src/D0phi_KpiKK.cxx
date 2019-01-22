@@ -39,6 +39,7 @@
 		/// * The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
 		declareProperty("write_fit4c_all",  fWrite_fit4c_all  = false);
 		declareProperty("write_fit4c_best", fWrite_fit4c_best = false);
+		declareProperty("write_fit_mc",     fWrite_fit_mc     = false);
 
 	}
 
@@ -76,6 +77,7 @@
 		/// <li> `"fit4c_*"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItems_Fit` for more info.
 			if(fWrite_fit4c_all)  BookNtupleItems_Fit("fit4c_all",  fMap_fit4c_all,  "4-constraint fit information (CMS 4-momentum)");
 			if(fWrite_fit4c_best) BookNtupleItems_Fit("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
+			if(fWrite_fit_mc) BookNtupleItems_Fit("fit_mc", fMap_fit_mc, "Fake fit information according to MC truth");
 
 		/// </ol>
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
@@ -174,6 +176,37 @@
 					}
 				}
 			}
+
+
+		/// <li> Loop over MC truth of final decay products.
+			if(fWrite_fit_mc) {
+				for(fMcKaonNeg1Iter = fMcKaonNeg.begin(); fMcKaonNeg1Iter != fMcKaonNeg.end(); ++fMcKaonNeg1Iter)
+				for(fMcKaonNeg2Iter = fMcKaonNeg.begin(); fMcKaonNeg2Iter != fMcKaonNeg.end(); ++fMcKaonNeg2Iter)
+				for(fMcKaonPosIter  = fMcKaonPos.begin(); fMcKaonPosIter  != fMcKaonPos.end(); ++fMcKaonPosIter)
+				for(fMcPionPosIter  = fMcPionPos.begin(); fMcPionPosIter  != fMcPionPos.end(); ++fMcPionPosIter)
+				{
+					/// <ol>
+					/// <li> Only continue if the two kaons are different.
+						if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
+
+					/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
+						if((*fMcKaonNeg1Iter)->mother().particleProperty != 333) continue; // mother phi
+						if((*fMcKaonNeg2Iter)->mother().particleProperty != 421) continue; // mother D0
+						if((*fMcKaonPosIter) ->mother().particleProperty != 333) continue; // mother phi
+						if((*fMcPionPosIter) ->mother().particleProperty != 421) continue; // mother D0
+
+					/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
+						KKFitResult_D0phi_KpiKK fitresult(
+							*fMcKaonNeg1Iter,
+							*fMcKaonNeg2Iter,
+							*fMcKaonPosIter,
+							*fMcPionPosIter
+						);
+						WriteFitResults(fitresult, fMap_fit_mc, "fit_mc");
+					/// </ol>
+				} // end of loop over particle combinations
+			}
+
 
 		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
 			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;

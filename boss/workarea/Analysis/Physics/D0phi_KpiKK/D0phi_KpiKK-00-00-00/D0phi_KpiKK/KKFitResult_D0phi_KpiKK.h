@@ -15,8 +15,10 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+
 	#include "TrackSelector/KKFitResult.h"
 	#include "TrackSelector/TrackSelector.h"
+	#include "McTruth/McParticle.h"
 
 
 
@@ -29,6 +31,7 @@ public:
 	// * CONSTRUCTORS * //
 		KKFitResult_D0phi_KpiKK() : fFitMeasure(1e9) {}
 		KKFitResult_D0phi_KpiKK(KalmanKinematicFit* kkmfit);
+		KKFitResult_D0phi_KpiKK(McParticle* kaonNeg1, McParticle* kaonNeg2, McParticle* kaonPos, McParticle* pionPos);
 
 	// * INFORMATION * //
 		bool IsBetter() const;
@@ -43,6 +46,9 @@ public:
 
 private:
 	void SetValues(KalmanKinematicFit* kkmfit);
+	void SetValues(const HepLorentzVector &pKaonNeg1, const HepLorentzVector &pKaonNeg2, const HepLorentzVector &pKaonPos, const HepLorentzVector &pPionPos);
+	void SetValues(Event::McParticle *kaonNeg1, Event::McParticle *kaonNeg2, Event::McParticle *kaonPos, Event::McParticle *pionPos);
+
 
 };
 

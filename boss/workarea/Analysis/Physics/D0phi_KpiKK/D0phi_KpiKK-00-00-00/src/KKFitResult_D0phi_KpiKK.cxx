@@ -17,13 +17,21 @@
 // * =========================== * //
 
 	/**
-	 * @brief
+	 * @brief Construct a `KKFitResult_D0phi_KpiKK` object based on a pointer to a `KalmanKinematicFit` object.
 	 */
 	KKFitResult_D0phi_KpiKK::KKFitResult_D0phi_KpiKK(KalmanKinematicFit* kkmfit) :
 		fFitMeasure(1e9),
 		KKFitResult(kkmfit)
 	{
 		SetValues(fFit);
+	}
+
+	/**
+	 * @brief Construct a `KKFitResult_D0phi_KpiKK` object based on a pointer to a `KalmanKinematicFit` object.
+	 */
+	KKFitResult_D0phi_KpiKK::KKFitResult_D0phi_KpiKK(McParticle* kaonNeg1, McParticle* kaonNeg2, McParticle* kaonPos, McParticle* pionPos)
+	{
+		SetValues(kaonNeg1, kaonNeg2, kaonPos, pionPos);
 	}
 
 
@@ -42,11 +50,49 @@
 		if(!fFit) return;
 		/// <li> Get Lorentz vectors of the decay products using `KalmanKinematicFit::pfit`:
 			/// <ul>
-			HepLorentzVector pKaonNeg1 =  fFit->pfit(0); /// <li> \f$K^-\f$ (first occurrence)
-			HepLorentzVector pKaonNeg2 =  fFit->pfit(1); /// <li> \f$K^-\f$ (second occurrence)
-			HepLorentzVector pKaonPos  =  fFit->pfit(2); /// <li> \f$K^+\f$
-			HepLorentzVector pPionPos  =  fFit->pfit(3); /// <li> \f$\pi^+\f$
-			/// </ul>
+			SetValues(
+				fFit->pfit(0), /// <li> \f$K^-\f$ (first occurrence)
+				fFit->pfit(1), /// <li> \f$K^-\f$ (second occurrence)
+				fFit->pfit(2), /// <li> \f$K^+\f$
+				fFit->pfit(3)  /// <li> \f$\pi^+\f$
+			)
+		/// </ol>
+	}
+
+	/**
+	 * @brief Helper function for the constructor (hence `private` method).
+	 */
+	void KKFitResult_D0phi_KpiKK::SetValues(
+		Event::McParticle *kaonNeg1, 
+		Event::McParticle *kaonNeg2, 
+		Event::McParticle *kaonPos, 
+		Event::McParticle *pionPos)
+	{
+		/// <ol>
+		/// <li> Test whether all `Event::McParticle` pointers exist.
+		if(!kaonNeg1) return;
+		if(!kaonNeg2) return;
+		if(!kaonPos)  return;
+		if(!pionPos)  return;
+		/// <li> Apply `SetValues` to the `initialFourMomentum` of these `Event::McParticle` pointers.
+		SetValues(
+			kaonNeg1->initialFourMomentum(),
+			kaonNeg2->initialFourMomentum(),
+			kaonPos ->initialFourMomentum(),
+			pionPos ->initialFourMomentum());
+		/// </ol>
+	}
+
+	/**
+	 * @brief Helper function for the constructor (hence `private` method).
+	 */
+	void KKFitResult_D0phi_KpiKK::SetValues(
+		const HepLorentzVector &pKaonNeg1, 
+		const HepLorentzVector &pKaonNeg2, 
+		const HepLorentzVector &pKaonPos, 
+		const HepLorentzVector &pPionPos)
+	{
+		/// <ol>
 		/// <li> Compute Lorentz vectors of the particles to be reconstructed:
 			/// <ul>
 			HepLorentzVector pD0   = pKaonNeg1 + pPionPos; /// <li> \f$D^0 \rightarrow K^-\pi^+\f$
