@@ -190,14 +190,10 @@
 						if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
 
 					/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
-						if((*fMcKaonNeg1Iter)->mother()
-						.particleProperty != 333) continue; // mother phi
-						if((*fMcKaonNeg2Iter)->mother()
-						.particleProperty != 421) continue; // mother D0
-						if((*fMcKaonPosIter) ->mother()
-						.particleProperty != 333) continue; // mother phi
-						if((*fMcPionPosIter) ->mother()
-						.particleProperty != 421) continue; // mother D0
+						if((*fMcKaonNeg1Iter)->mother().particleProperty() != 333) continue; // mother phi
+						if((*fMcKaonNeg2Iter)->mother().particleProperty() != 421) continue; // mother D0
+						if((*fMcKaonPosIter) ->mother().particleProperty() != 333) continue; // mother phi
+						if((*fMcPionPosIter) ->mother().particleProperty() != 421) continue; // mother D0
 
 					/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
 						KKFitResult_D0phi_KpiKK fitresult(
