@@ -4,10 +4,11 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-	#include <list>
-	#include <string>
-	#include <sstream>
+	#include <iomanip>
 	#include <iostream>
+	#include <list>
+	#include <sstream>
+	#include <string>
 
 
 
@@ -45,7 +46,9 @@
 	template<typename TYPE>
 	class ArgPair : public ArgPair_base {
 	public:
-		ArgPair(const std::string &input, const TYPE &val);
+		// ArgPair(const std::string &input);
+		// ArgPair(const std::string &input, const TYPE &val);
+		ArgPair(const std::string &input, const TYPE val=0);
 		void SetParameter(const std::string &parname, const std::string &parvalue, bool output=false);
 		void operator=(const TYPE &val) { value = val; }
 		bool operator==(const std::string &data) const { return !name.compare(data); }
@@ -72,15 +75,28 @@
 // * ------- CONSTRUCTORS ------- * //
 // * ============================ * //
 
+	// template<typename TYPE> inline
+	// ArgPair<TYPE>::ArgPair(const std::string &input) :
+	// 	ArgPair_base(input)
+	// {
+	// 	ArgPair_base::instances.push_back(this);
+	// }
+
+	// template<typename TYPE> inline
+	// ArgPair<TYPE>::ArgPair(const std::string &input, const TYPE &val) :
+	// 	value(val), ArgPair_base(input)
+	// {
+	// 	ArgPair_base::instances.push_back(this);
+	// }
+
 	template<typename TYPE> inline
-	ArgPair<TYPE>::ArgPair(const std::string &input, const TYPE &val) :
+	ArgPair<TYPE>::ArgPair(const std::string &input, const TYPE val) :
 		value(val), ArgPair_base(input)
 	{
 		ArgPair_base::instances.push_back(this);
 	}
 
-
-	std::list<ArgPair_base*> ArgPair_base::instances;
+	std::list<ArgPair_base*> inline ArgPair_base::instances;
 
 
 

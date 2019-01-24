@@ -54,7 +54,7 @@ ${EXEDIR}/%.exe : scripts/%.C
 # * REMOVE ALL BINARIES * #
 # * This rule can be called using "make clean"
 clean:
-	@rm -f lib${LIBNAME}.a
+	@rm lib${LIBNAME}.a
 	@echo "Deleted libary \"lib${LIBNAME}.a\""
 	@rm -f ${BINDIR}/*
 	@echo "Deleted all binary files in \"${BINDIR}\""

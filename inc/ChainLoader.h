@@ -71,6 +71,7 @@
 		/// @name Setters
 			///@{
 			Int_t Add(const char* filename) { return fChain.Add(filename); }
+			void BookAddresses(bool print=false);
 			///@}
 
 		/// @name Information functions
@@ -84,7 +85,7 @@
 			void DrawAndSaveAllMultiplicityBranches(const TString &logScale="", Option_t *option="E1");
 			///@}
 
-	private:
+	// private:
 		/// @name Data members
 			///@{
 			TChain fChain; //!< `TChain` object to which the `TFile`s are added.
@@ -107,7 +108,6 @@
 
 		/// @name Helper functions
 			///@{
-			void BookAddresses(bool print=false);
 			template<typename TYPE>
 			void SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map);
 			template<typename TYPE>
