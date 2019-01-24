@@ -127,12 +127,12 @@
 	 * @param nBinx Number of bins to use on the \f$x\f$-axis.
 	 * @param x1 Lower limit on the \f$x\f$-axis.
 	 * @param x2 Upper limit on the \f$x\f$-axis..
-	 * @param opt Draw options.
+	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	TH1F* BOSSOutputLoader::DrawBranches(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t* opt, const TString &logScale)
+	TH1F* BOSSOutputLoader::Draw(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option, const TString &logScale, const char* cut)
 	{
-		return fChains.at(treeName).DrawBranches(branchX, nBinx, x1, x2, true, opt, logScale);
+		return fChains.at(treeName).Draw(branchX, nBinx, x1, x2, option, true, logScale, cut);
 	}
 
 
@@ -148,12 +148,12 @@
 	 * @param nBiny Number of bins to use on the \f$y\f$-axis.
 	 * @param y1 Lower limit on the \f$y\f$-axis.
 	 * @param y2 Upper limit on the \f$y\f$-axis.
-	 * @param opt Draw options.
+	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	TH2F* BOSSOutputLoader::DrawBranches(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t* opt, const TString &logScale)
+	TH2F* BOSSOutputLoader::Draw(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option, const TString &logScale, const char* cut)
 	{
-		return fChains.at(treeName).DrawBranches(branchX, branchY, nBinx, x1, x2, nBiny, y1, y2, true, opt, logScale);
+		return fChains.at(treeName).Draw(branchX, branchY, nBinx, x1, x2, nBiny, y1, y2, option, true, logScale, cut);
 	}
 
 
@@ -170,12 +170,12 @@
 	 * @brief Draw the distributions of all branches available in the ROOT file.
 	 * 
 	 * @param treeName Name of the `TChain` that you are looking for.
-	 * @param opt Draw options.
+	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	void BOSSOutputLoader::DrawAndSaveAllBranches(const char* treeName, Option_t* opt, const TString &logScale)
+	void BOSSOutputLoader::DrawAndSaveAllBranches(const char* treeName, Option_t *option, const TString &logScale)
 	{
-		fChains.at(treeName).DrawAndSaveAllBranches(opt, logScale);
+		fChains.at(treeName).DrawAndSaveAllBranches(option, logScale);
 	}
 
 
@@ -184,12 +184,12 @@
 	 * 
 	 * @param treeName Name of the `TChain` that you are looking for.
 	 * @param branchNames Name of the branch names that you want to plot. See https://root.cern.ch/doc/master/classTChain.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
-	 * @param opt Draw options.
+	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	void BOSSOutputLoader::DrawBranches(const char* treeName, const char* branchNames, Option_t* opt, const TString &logScale)
+	void BOSSOutputLoader::Draw(const char* treeName, const char* branchNames, const char* cut, Option_t *option, const TString &logScale)
 	{
-		fChains.at(treeName).DrawBranches(branchNames, true, opt, logScale);
+		fChains.at(treeName).Draw(branchNames, cut, option, true, logScale);
 	}
 
 	/**
@@ -234,12 +234,12 @@
 	 * @brief Print information about a certain tree.
 	 * @details This function loops over the `std::unordered_map` of file names and over the `std::unordered_map` of trees and prints its name and number of events. For each tree, information about its branches is also printed.
 	 * @param nameOfTree
-	 * @param opt
+	 * @param option
 	 */
-	void BOSSOutputLoader::Print(const char* nameOfTree, Option_t *opt)
+	void BOSSOutputLoader::Print(const char* nameOfTree, Option_t *option)
 	{
 		TChain *chain = &FindTree(nameOfTree);
-		chain->Print(opt);
+		chain->Print(option);
 		std::cout << "------------------------------------" << std::endl;
 		std::cout << "Total number of events in TTree \"" << chain->GetName() << "\": " << std::scientific << chain->GetEntries() << std::endl;
 		std::cout << std::endl;
@@ -343,11 +343,11 @@
 
 	/**
 	 * @brief Draw the distributions of all branches available in the ROOT file.
-	 * @param opt Draw options.
+	 * @param option Draw options.
 	 */
-	void BOSSOutputLoader::QuickDrawAndSaveAll(Option_t* opt)
+	void BOSSOutputLoader::QuickDrawAndSaveAll(Option_t *option)
 	{
-		for(auto it = fChains.begin(); it != fChains.end(); ++it) it->second.DrawAndSaveAllBranches(opt);
+		for(auto it = fChains.begin(); it != fChains.end(); ++it) it->second.DrawAndSaveAllBranches(option);
 	}
 
 // * =============================== * //

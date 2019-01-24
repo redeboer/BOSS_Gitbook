@@ -93,6 +93,9 @@
 			if(!gPlotstats.value) gStyle->SetOptStat(0);
 			file.PrintCutFlow();
 
+file["mctruth"].GetChain().Draw("mother", "", "E");
+gPad->SaveAs("temp.pdf");
+return;
 		// * PLOT BRANCHES WITHOUT FITS * //
 			if(gPureplot.value) {
 				if(gDraw_mult.value) {
@@ -103,84 +106,84 @@
 				}
 				if(gDraw_mctruth.value) {
 					if(gSetranges.value) {
-						file.DrawBranches("mctruth", "E", 150, 0., 3.5, "E1", gLogY.value.data());
-						file.DrawBranches("mctruth", "p", 150, 0., 1.25, "E1", gLogY.value.data());
+						file.Draw("mctruth", "E", 150, 0., 3.5, "E1", gLogY.value.data());
+						file.Draw("mctruth", "p", 150, 0., 1.25, "E1", gLogY.value.data());
 					} else {
-						file.DrawBranches("mctruth", "E", "E1", gLogY.value.data());
-						file.DrawBranches("mctruth", "p", "E1", gLogY.value.data());
+						file.Draw("mctruth", "E", "E1", gLogY.value.data());
+						file.Draw("mctruth", "p", "E1", gLogY.value.data());
 					}
 				}
 				if(gDraw_vertex.value) {
 					if(gSetranges.value) {
-						file.DrawBranches("vertex", "vy0:vx0", "colz", gLogZ.value.data());
-						file.DrawBranches("vertex", "vz0:vx0", "colz", gLogZ.value.data());
-						file.DrawBranches("vertex", "vz0:vy0", "colz", gLogZ.value.data());
+						file.Draw("vertex", "vy0:vx0", "colz", gLogZ.value.data());
+						file.Draw("vertex", "vz0:vx0", "colz", gLogZ.value.data());
+						file.Draw("vertex", "vz0:vy0", "colz", gLogZ.value.data());
 					} else {
-						file.DrawBranches("vertex", "vx0", "vy0", 60, -.154, -.146,  40,  .08,   .122, "colz", gLogZ.value.data());
-						file.DrawBranches("vertex", "vx0", "vz0", 60, -.4,    .5,    60,  .08,   .122, "colz", gLogZ.value.data());
-						file.DrawBranches("vertex", "vy0", "vz0", 60, -.4,    .5,    40, -.154, -.146, "colz", gLogZ.value.data());
+						file.Draw("vertex", "vx0", "vy0", 60, -.154, -.146,  40,  .08,   .122, "colz", gLogZ.value.data());
+						file.Draw("vertex", "vx0", "vz0", 60, -.4,    .5,    60,  .08,   .122, "colz", gLogZ.value.data());
+						file.Draw("vertex", "vy0", "vz0", 60, -.4,    .5,    40, -.154, -.146, "colz", gLogZ.value.data());
 					}
 				}
 				if(gDraw_tof.value) {
 					if(gSetranges.value) {
-						file.DrawBranches("ToFIB", "p", "tof", 120, 2., 15., 80, 0., 1.5, "colz", gLogZ.value.data());
-						file.DrawBranches("ToFOB", "p", "tof", 120, 2., 15., 80, 0., 1.5, "colz", gLogZ.value.data());
+						file.Draw("ToFIB", "p", "tof", 120, 2., 15., 80, 0., 1.5, "colz", gLogZ.value.data());
+						file.Draw("ToFOB", "p", "tof", 120, 2., 15., 80, 0., 1.5, "colz", gLogZ.value.data());
 					} else {
-						file.DrawBranches("ToFIB", "tof:p", "colz", gLogZ.value.data());
-						file.DrawBranches("ToFOB", "tof:p", "colz", gLogZ.value.data());
+						file.Draw("ToFIB", "tof:p", "colz", gLogZ.value.data());
+						file.Draw("ToFOB", "tof:p", "colz", gLogZ.value.data());
 					}
 				}
 				if(gDraw_fit.value) {
 					if(gSetranges.value) {
 						/// -# Draw main invariant mass distributions
-						file.DrawBranches("fit4c_all",  "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_all",  "mD0",   400,  .7,    2.,      "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_all",  "mJpsi", 400, 3.0967, 3.09685, "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_all",  "mphi",  400,  .97,   1.7,     "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best", "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_best", "mD0",   400,  .7,    2.,      "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best", "mJpsi", 400, 3.0967, 3.09685, "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best", "mphi",  400,  .97,   1.7,     "E1", gLogY.value.data());
+						file.Draw("fit4c_all",  "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", gLogZ.value.data());
+						file.Draw("fit4c_all",  "mD0",   400,  .7,    2.,      "E1", gLogY.value.data());
+						file.Draw("fit4c_all",  "mJpsi", 400, 3.0967, 3.09685, "E1", gLogY.value.data());
+						file.Draw("fit4c_all",  "mphi",  400,  .97,   1.7,     "E1", gLogY.value.data());
+						file.Draw("fit4c_best", "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", gLogZ.value.data());
+						file.Draw("fit4c_best", "mD0",   400,  .7,    2.,      "E1", gLogY.value.data());
+						file.Draw("fit4c_best", "mJpsi", 400, 3.0967, 3.09685, "E1", gLogY.value.data());
+						file.Draw("fit4c_best", "mphi",  400,  .97,   1.7,     "E1", gLogY.value.data());
 						/// -# Draw invariant mass distributions with cuts applied on the other candidate
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mphi", "mD0>1.5",  "E1", gLogY.value.data());
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0",  "mphi<1.1", "E1", gLogY.value.data());
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0:mphi",  "mD0>1.5&&mphi<1.1", "colz", gLogZ.value.data());
 						/// -# Draw 3-momentum distributions
-						file.DrawBranches("fit4c_all",  "pD0",  400, .4, 1.15, "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_all",  "pphi", 400, .4, 1.15, "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best", "pD0",  400, .4, 1.15, "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best", "pphi", 400, .4, 1.15, "E1", gLogY.value.data());
+						file.Draw("fit4c_all",  "pD0",  400, .4, 1.15, "E1", gLogY.value.data());
+						file.Draw("fit4c_all",  "pphi", 400, .4, 1.15, "E1", gLogY.value.data());
+						file.Draw("fit4c_best", "pD0",  400, .4, 1.15, "E1", gLogY.value.data());
+						file.Draw("fit4c_best", "pphi", 400, .4, 1.15, "E1", gLogY.value.data());
 						/// -# Draw invariant mass versus 3-momentum
-						file.DrawBranches("fit4c_all",  "mD0",  "pD0",  240, .4, 1.15, 160, .97, 1.7, "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_all",  "mphi", "pphi", 240, .4, 1.15, 160,  .7,  2., "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_best", "mD0",  "pD0",  240, .4, 1.15, 160, .97, 1.7, "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_best", "mphi", "pphi", 240, .4, 1.15, 160,  .7,  2., "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_all",  "mD0:pD0",   "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_all",  "mphi:pphi", "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_best", "mD0:pD0",   "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_best", "mphi:pphi", "colz", gLogZ.value.data());
+						file.Draw("fit4c_all",  "mD0",  "pD0",  240, .4, 1.15, 160, .97, 1.7, "colz", gLogZ.value.data());
+						file.Draw("fit4c_all",  "mphi", "pphi", 240, .4, 1.15, 160,  .7,  2., "colz", gLogZ.value.data());
+						file.Draw("fit4c_best", "mD0",  "pD0",  240, .4, 1.15, 160, .97, 1.7, "colz", gLogZ.value.data());
+						file.Draw("fit4c_best", "mphi", "pphi", 240, .4, 1.15, 160,  .7,  2., "colz", gLogZ.value.data());
+						file.Draw("fit4c_all",  "mD0:pD0",   "colz", gLogZ.value.data());
+						file.Draw("fit4c_all",  "mphi:pphi", "colz", gLogZ.value.data());
+						file.Draw("fit4c_best", "mD0:pD0",   "colz", gLogZ.value.data());
+						file.Draw("fit4c_best", "mphi:pphi", "colz", gLogZ.value.data());
 					} else {
 						/// -# Draw main invariant mass distributions
-						file.DrawBranches("fit4c_all",  "mD0",   "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_all",  "mJpsi", "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_all",  "mphi",  "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best", "mD0",   "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best", "mJpsi", "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best", "mphi",  "E1", gLogY.value.data());
+						file.Draw("fit4c_all",  "mD0",   "E1", gLogY.value.data());
+						file.Draw("fit4c_all",  "mJpsi", "E1", gLogY.value.data());
+						file.Draw("fit4c_all",  "mphi",  "E1", gLogY.value.data());
+						file.Draw("fit4c_best", "mD0",   "E1", gLogY.value.data());
+						file.Draw("fit4c_best", "mJpsi", "E1", gLogY.value.data());
+						file.Draw("fit4c_best", "mphi",  "E1", gLogY.value.data());
 						/// -# Draw invariant mass distributions with cuts applied on the other candidate
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mphi", "mD0>1.5",  "E1", gLogY.value.data());
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0",  "mphi<1.1", "E1", gLogY.value.data());
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0:mphi",  "mD0>1.5&&mphi<1.1", "colz", gLogZ.value.data());
 						/// -# Draw 3-momentum distributions
-						file.DrawBranches("fit4c_all",  "pD0",  "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_all",  "pphi", "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best", "pD0",  "E1", gLogY.value.data());
-						file.DrawBranches("fit4c_best", "pphi", "E1", gLogY.value.data());
+						file.Draw("fit4c_all",  "pD0",  "E1", gLogY.value.data());
+						file.Draw("fit4c_all",  "pphi", "E1", gLogY.value.data());
+						file.Draw("fit4c_best", "pD0",  "E1", gLogY.value.data());
+						file.Draw("fit4c_best", "pphi", "E1", gLogY.value.data());
 						/// -# Draw invariant mass versus 3-momentum
-						file.DrawBranches("fit4c_all",  "mD0:pD0",   "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_all",  "mphi:pphi", "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_best", "mD0:pD0",   "colz", gLogZ.value.data());
-						file.DrawBranches("fit4c_best", "mphi:pphi", "colz", gLogZ.value.data());
+						file.Draw("fit4c_all",  "mD0:pD0",   "colz", gLogZ.value.data());
+						file.Draw("fit4c_all",  "mphi:pphi", "colz", gLogZ.value.data());
+						file.Draw("fit4c_best", "mD0:pD0",   "colz", gLogZ.value.data());
+						file.Draw("fit4c_best", "mphi:pphi", "colz", gLogZ.value.data());
 					}
 				}
 			}

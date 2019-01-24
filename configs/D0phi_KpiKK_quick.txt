@@ -3,7 +3,7 @@
  */
 
 // * FILE NAME * //
-	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK_0.root"
+	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK/inclMC/temp.root"
 
 // * TERMINAL OUTPUT * //
 	Print branches = true
@@ -11,13 +11,13 @@
 // * PLOT STYLE * //
 	Use y log scale = ""
 	Use z log scale = "z"
-	Set plot ranges = true
+	Set plot ranges = false
 	Plot statistics = false
 
 // * WHICH BRANCHES TO PLOT * //
-	Plot raw data      = false
+	Plot raw data      = true
 	Draw multiplicites = false
-	Draw mctruth       = false
+	Draw mctruth       = true
 	Draw vertex        = false
 	Draw ToF           = false
 	Draw fit branches  = false

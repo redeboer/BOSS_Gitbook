@@ -35,17 +35,17 @@
 		BOSSOutputLoader(const char* directoryPath, bool print = true);
 
 		// * INFORMATION * //
-		TH1F* DrawBranches(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t* opt="", const TString &setLogx="");
-		TH2F* DrawBranches(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t* opt="", const TString &setLogx="");
+		TH1F* Draw(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option="", const TString &logScale="", const char* cut="");
+		TH2F* Draw(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option="", const TString &logScale="", const char* cut="");
 		bool IsZombie();
-		void DrawAndSaveAllBranches(const char* treeName, Option_t* opt="", const TString &logScale="");
-		void DrawBranches(const char* treeName, const char* branchNames, Option_t* opt="", const TString &logScale="");
+		void Draw(const char* treeName, const char* branchNames, const char* cut="", Option_t *option="", const TString &logScale="");
+		void DrawAndSaveAllBranches(const char* treeName, Option_t *option="", const TString &logScale="");
 		void Print();
-		void Print(const char* nameOfTree, Option_t *opt = "toponly");
+		void Print(const char* nameOfTree, Option_t *option = "toponly");
 		void PrintCutFlow();
 		void PrintCuts();
-		void PrintTrees(Option_t *opt="");
-		void QuickDrawAndSaveAll(Option_t* opt="");
+		void PrintTrees(Option_t *option="");
+		void QuickDrawAndSaveAll(Option_t *option="");
 
 		// * GETTERS * //
 		Long64_t GetEntries(const char* treeName);

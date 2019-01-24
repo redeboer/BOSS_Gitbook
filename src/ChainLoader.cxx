@@ -67,38 +67,19 @@
 	/**
 	 * @brief Draw a distribution of one of the branches in the file.
 	 *
-	 * @param branchNames Names of the branches that you want to plot. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for how this works.
-	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
-	 * @param opt Draw options.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
-	void ChainLoader::DrawBranches(const char* branchNames, const bool save, Option_t* opt, const TString& logScale)
-	{
-		// * Check input arguments * //
-		if(!fChain.GetEntries()) return;
-		TString outputName(branchNames);
-		if(outputName.Contains(">")) outputName.Resize(outputName.First('>'));
-		// * Draw histogram and save * //
-		fChain.Draw(branchNames, "", opt);
-		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), outputName.Data()), gPad, logScale);
-	}
-
-	/**
-	 * @brief Draw a distribution of one of the branches in the file.
-	 *
 	 * @param branchX Branch that you want to plot. You may use a formula.
 	 * @param nBinx Number of bins to use on the \f$x\f$-axis.
 	 * @param x1 Lower limit on the \f$x\f$-axis.
 	 * @param x2 Upper limit on the \f$x\f$-axis.
 	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
-	 * @param opt Draw options.
+	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	TH1F* ChainLoader::DrawBranches(const char* branchX, const Int_t nBinx, const double x1, const double x2, const bool save, Option_t* opt, const TString &logScale)
+	TH1F* ChainLoader::Draw(const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option, const bool save, const TString &logScale, const char* cut)
 	{
 		// * Draw histogram * //
 		const char* histName = Form("hist_%s", branchX);
-		DrawBranches(Form("%s>>%s(%i,%f,%f)", branchX, histName, nBinx, x1, x2), false, opt, logScale);
+		Draw(Form("%s>>%s(%i,%f,%f)", branchX, histName, nBinx, x1, x2), cut, option, save, logScale);
 		// * Modify histogram * //
 		TH1F *hist = (TH1F*)gDirectory->Get(histName);
 		hist->SetTitle(Form("#it{%s} branch of the \"%s\" tree", branchX, fChain.GetName()));
@@ -109,6 +90,66 @@
 		CommonFunctions::Hist::SetAxisTitles(hist, branchX, Form("count / %g", hist->GetBinWidth(1)));
 		// * Save and return histogram * //
 		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), branchX), gPad, logScale);
+		return hist;
+	}
+
+	/**
+	 * @brief Create a histogram object especially for invariant mass analysis.
+	 * 
+	 * @param branchName Names of the branche that you want to plot.
+	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	 * @param nBins Number of bins to use on the \f$x\f$-axis.
+	 * @param option Draw options.
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 */
+	TH1F* ChainLoader::GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins, Option_t *option, const TString &logScale)
+	{
+		// * Check input arguments * //
+		if(*branchName != 'm') {
+			std::cout << "ERROR: branch name \"" << branchName <<  "\" does not start with 'm'" << std::endl;
+			return nullptr;
+		}
+		// * Get histogram and modify
+		TH1F* hist = Draw(branchName, nBins, particle.PlotFrom(), particle.PlotUntil(), option, false, logScale);
+		hist->SetTitle(Form("Invariant mass for %s candidate", particle.GetNameLaTeX()));
+		CommonFunctions::Hist::SetAxisTitles(hist,
+			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
+			Form("count / %g", hist->GetYaxis()->GetBinWidth(1)));
+		return hist;
+	}
+
+
+	/**
+	 * @brief Draw a distribution of one of the branches in the file.
+	 *
+	 * @param branchX Branch that you want to plot on the \f$x\f$-axis. You may use a formula.
+	 * @param branchY Branch that you want to plot on the \f$y\f$-axis. You may use a formula.
+	 * @param nBinx Number of bins to use on the \f$x\f$-axis.
+	 * @param x1 Lower limit on the \f$x\f$-axis.
+	 * @param x2 Upper limit on the \f$x\f$-axis.
+	 * @param nBiny Number of bins to use on the \f$y\f$-axis.
+	 * @param y1 Lower limit on the \f$y\f$-axis.
+	 * @param y2 Upper limit on the \f$y\f$-axis.
+	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
+	 * @param option Draw options.
+	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 */
+	TH2F* ChainLoader::Draw(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option, const bool save, const TString &logScale, const char* cut)
+	{
+		// * Draw histogram * //
+		const char* histName = Form("hist_%s_%s", branchX, branchY);
+		Draw(Form("%s:%s>>%s(%i,%f,%f,%i,%f,%f)", branchX, branchY, histName, nBinx, x1, x2, nBiny, y1, y2), cut, option, save, logScale);
+		// * Modify histogram * //
+		TH2F *hist = (TH2F*)gDirectory->Get(histName);
+		hist->SetTitle(Form("\"%s\" tree: #it{%s} vs #it{%s}", fChain.GetName(), branchX, branchY));
+		CommonFunctions::Hist::SetAxisTitles(
+			hist, branchX, branchY,
+			Form("count / (%gx%g)",
+				hist->GetXaxis()->GetBinWidth(1),
+				hist->GetYaxis()->GetBinWidth(1)
+			));
+		// * Save and return histogram * //
+		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s:%s", fChain.GetName(), branchY, branchX), gPad, logScale);
 		return hist;
 	}
 
@@ -132,52 +173,17 @@
 
 
 	/**
-	 * @brief Draw a distribution of one of the branches in the file.
-	 *
-	 * @param branchX Branch that you want to plot on the \f$x\f$-axis. You may use a formula.
-	 * @param branchY Branch that you want to plot on the \f$y\f$-axis. You may use a formula.
-	 * @param nBinx Number of bins to use on the \f$x\f$-axis.
-	 * @param x1 Lower limit on the \f$x\f$-axis.
-	 * @param x2 Upper limit on the \f$x\f$-axis.
-	 * @param nBiny Number of bins to use on the \f$y\f$-axis.
-	 * @param y1 Lower limit on the \f$y\f$-axis.
-	 * @param y2 Upper limit on the \f$y\f$-axis.
-	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
-	 * @param opt Draw options.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
-	TH2F* ChainLoader::DrawBranches(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, const bool save, Option_t* opt, const TString &logScale)
-	{
-		// * Draw histogram * //
-		const char* histName = Form("hist_%s_%s", branchX, branchY);
-		DrawBranches(Form("%s:%s>>%s(%i,%f,%f,%i,%f,%f)", branchX, branchY, histName, nBinx, x1, x2, nBiny, y1, y2), false, opt, logScale);
-		// * Modify histogram * //
-		TH2F *hist = (TH2F*)gDirectory->Get(histName);
-		hist->SetTitle(Form("\"%s\" tree: #it{%s} vs #it{%s}", fChain.GetName(), branchX, branchY));
-		CommonFunctions::Hist::SetAxisTitles(
-			hist, branchX, branchY,
-			Form("count / (%gx%g)",
-				hist->GetXaxis()->GetBinWidth(1),
-				hist->GetYaxis()->GetBinWidth(1)
-			));
-		// * Save and return histogram * //
-		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s:%s", fChain.GetName(), branchY, branchX), gPad, logScale);
-		return hist;
-	}
-
-
-	/**
 	 * @brief Draw the distributions of all branches of the underlying `TChain`.
 	 * 
-	 * @param opt Draw options.
+	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	void ChainLoader::DrawAndSaveAllBranches(Option_t* opt, const TString& logScale)
+	void ChainLoader::DrawAndSaveAllBranches(Option_t *option, const TString& logScale)
 	{
 		if(!fChain.GetNtrees()) return;
 		TIter next(fChain.GetListOfBranches());
 		TObject *obj  = nullptr;
-		while((obj = next())) DrawBranches(obj->GetName(), true, opt, logScale);
+		while((obj = next())) Draw(obj->GetName(), "", option, true, logScale);
 	}
 
 
@@ -186,9 +192,9 @@
 	 * @details This function additionally ensures that the bin width is set to 1 and that the histograms are drawn in `"E1"` mode (see https://root.cern.ch/doc/master/classTHistPainter.html).
 	 * 
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 * @param opt Draw options.
+	 * @param option Draw options.
 	 */
-	void ChainLoader::DrawAndSaveAllMultiplicityBranches(const TString& logScale, Option_t* opt)
+	void ChainLoader::DrawAndSaveAllMultiplicityBranches(const TString& logScale, Option_t *option)
 	{
 		if(!fChain.GetNtrees()) return;
 		TString name(fChain.GetName());
@@ -199,33 +205,30 @@
 			const char* name = obj->GetName();
 			int max = fChain.GetMaximum(name);
 			if(!max) continue;
-			DrawBranches(name, max, 0, max, true, opt, logScale);
+			Draw(name, max, 0, max, option, true, logScale);
 		}
 	}
 
 	/**
-	 * @brief Create a histogram object especially for invariant mass analysis.
-	 * 
-	 * @param branchName Names of the branche that you want to plot.
-	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-	 * @param nBins Number of bins to use on the \f$x\f$-axis.
-	 * @param opt Draw options.
+	 * @brief Draw a distribution of one of the branches in the file.
+	 *
+	 * @param branchNames Names of the branches that you want to plot. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for how this works.
+	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
+	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */
-	TH1F* ChainLoader::GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins, Option_t *opt, const TString &logScale)
+	void ChainLoader::Draw(const char* branchNames, const char* cut, Option_t *option, const bool save, const TString& logScale)
 	{
-		// * Check input arguments * //
-		if(*branchName != 'm') {
-			std::cout << "ERROR: branch name \"" << branchName <<  "\" does not start with 'm'" << std::endl;
-			return nullptr;
-		}
-		// * Get histogram and modify
-		TH1F* hist = DrawBranches(branchName, nBins, particle.PlotFrom(), particle.PlotUntil(), false, opt, logScale);
-		hist->SetTitle(Form("Invariant mass for %s candidate", particle.GetNameLaTeX()));
-		CommonFunctions::Hist::SetAxisTitles(hist,
-			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
-			Form("count / %g", hist->GetYaxis()->GetBinWidth(1)));
-		return hist;
+		/// <ol>
+		/// <li> Check if `TChain` contains entries.
+		if(!fChain.GetEntries()) return;
+		/// <li> Remove possible output options from `branchNames` parameter.
+		TString outputName(branchNames);
+		if(outputName.Contains(">")) outputName.Resize(outputName.First('>'));
+		/// <li> Draw histogram and save
+		fChain.Draw(branchNames, cut, option);
+		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), outputName.Data()), gPad, logScale);
+		/// </ol>
 	}
 
 

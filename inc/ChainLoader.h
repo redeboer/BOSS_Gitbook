@@ -65,14 +65,14 @@
 			Int_t Add(const char* filename) { return fChain.Add(filename); }
 
 		// * INFORMATION * //
-			TH1F* DrawBranches(const char* branchX, const Int_t nBinx, const double x1, const double x2, const bool save=true, Option_t* opt="", const TString &logScale="");
-			TH1F* GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins=100, Option_t *opt="", const TString &logScale="");
-			TH2F* DrawBranches(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, const bool save=true, Option_t* opt="", const TString &logScale="");
+			TH1F* Draw(const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option="", const bool save=true, const TString &logScale="", const char* cut="");
+			TH1F* GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins=100, Option_t *option="", const TString &logScale="");
+			TH2F* Draw(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option="", const bool save=true, const TString &logScale="", const char* cut="");
 			double ComputeMean(TChain* tree, const char* branchName);
 			void BookAddresses(bool print=false);
-			void DrawAndSaveAllBranches(Option_t* opt="", const TString &logScale="");
-			void DrawAndSaveAllMultiplicityBranches(const TString &logScale="", Option_t* opt="E1");
-			void DrawBranches(const char* branchNames, const bool save=true, Option_t* opt="", const TString &logScale="");
+			void Draw(const char* branchNames, const char* cut="", Option_t *option="", const bool save=true, const TString &logScale="");
+			void DrawAndSaveAllBranches(Option_t *option="", const TString &logScale="");
+			void DrawAndSaveAllMultiplicityBranches(const TString &logScale="", Option_t *option="E1");
 
 	private:
 
