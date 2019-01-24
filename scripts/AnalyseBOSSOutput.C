@@ -93,9 +93,6 @@
 			if(!gPlotstats.value) gStyle->SetOptStat(0);
 			file.PrintCutFlow();
 
-file["mctruth"].GetChain().Draw("mother", "", "E");
-gPad->SaveAs("temp.pdf");
-return;
 		// * PLOT BRANCHES WITHOUT FITS * //
 			if(gPureplot.value) {
 				if(gDraw_mult.value) {

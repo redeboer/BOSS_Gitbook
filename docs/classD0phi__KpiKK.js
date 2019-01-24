@@ -15,13 +15,17 @@ var classD0phi__KpiKK =
     [ "fMap_dedx_pi", "classD0phi__KpiKK.html#a0f9add1b7c597155bc975ac8082201cf", null ],
     [ "fMap_fit4c_all", "classD0phi__KpiKK.html#abd6b4198ae69700be1a6d99f7bf077e2", null ],
     [ "fMap_fit4c_best", "classD0phi__KpiKK.html#aa4ccae145676d8a54ae7fc7b312601ee", null ],
-    [ "fMcD0", "classD0phi__KpiKK.html#a42a4d1ced39ab0fcf1a936dc92d58dbf", null ],
+    [ "fMap_fit_mc", "classD0phi__KpiKK.html#a23a1eca7294602e156a227fad38a5102", null ],
     [ "fMcKaonNeg", "classD0phi__KpiKK.html#a69a087df8aa5e2d39b2e1a20ab7b5b74", null ],
+    [ "fMcKaonNeg1Iter", "classD0phi__KpiKK.html#a63d54152d8a6fe1f3a02f8a109206579", null ],
+    [ "fMcKaonNeg2Iter", "classD0phi__KpiKK.html#a1e4df395aea7bbf8d32bcbd4c22d9e5f", null ],
     [ "fMcKaonPos", "classD0phi__KpiKK.html#a9a332148ee0b2a8c417016258e380755", null ],
-    [ "fMcPhi", "classD0phi__KpiKK.html#ad967f5c8d411f92461498e8768bd84f8", null ],
+    [ "fMcKaonPosIter", "classD0phi__KpiKK.html#ad1830ea701fca390669f8e62ec7a05be", null ],
     [ "fMcPionPos", "classD0phi__KpiKK.html#a9c00a16d9bd1ee286e50ad6eb68ced3a", null ],
+    [ "fMcPionPosIter", "classD0phi__KpiKK.html#a50fa3b34681c5ce75c05c1ff1e5fc369", null ],
     [ "fPionPos", "classD0phi__KpiKK.html#a0f0f6eced07ae025fac22c189f48f758", null ],
     [ "fPionPosIter", "classD0phi__KpiKK.html#a78d6aaabd91bde8018fcb1a3bdbaaa95", null ],
     [ "fWrite_fit4c_all", "classD0phi__KpiKK.html#a84fb92469e97bbd83b24b32cce0493eb", null ],
-    [ "fWrite_fit4c_best", "classD0phi__KpiKK.html#a4bcf5e4faa99e0aceb261ea22efcc1f8", null ]
+    [ "fWrite_fit4c_best", "classD0phi__KpiKK.html#a4bcf5e4faa99e0aceb261ea22efcc1f8", null ],
+    [ "fWrite_fit_mc", "classD0phi__KpiKK.html#ae46594e1a1000d3e8b38539754f87a70", null ]
 ];

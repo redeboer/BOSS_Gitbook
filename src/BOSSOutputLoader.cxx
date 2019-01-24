@@ -129,6 +129,7 @@
 	 * @param x2 Upper limit on the \f$x\f$-axis..
 	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 * @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	 */
 	TH1F* BOSSOutputLoader::Draw(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option, const TString &logScale, const char* cut)
 	{
@@ -150,6 +151,7 @@
 	 * @param y2 Upper limit on the \f$y\f$-axis.
 	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 * @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	 */
 	TH2F* BOSSOutputLoader::Draw(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option, const TString &logScale, const char* cut)
 	{
@@ -184,6 +186,7 @@
 	 * 
 	 * @param treeName Name of the `TChain` that you are looking for.
 	 * @param branchNames Name of the branch names that you want to plot. See https://root.cern.ch/doc/master/classTChain.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
+	 * @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	 */

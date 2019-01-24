@@ -74,6 +74,7 @@
 	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
 	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 * @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	 */
 	TH1F* ChainLoader::Draw(const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option, const bool save, const TString &logScale, const char* cut)
 	{
@@ -133,6 +134,7 @@
 	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
 	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 * @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	 */
 	TH2F* ChainLoader::Draw(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option, const bool save, const TString &logScale, const char* cut)
 	{
@@ -216,6 +218,7 @@
 	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
 	 * @param option Draw options.
 	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	 * @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	 */
 	void ChainLoader::Draw(const char* branchNames, const char* cut, Option_t *option, const bool save, const TString& logScale)
 	{

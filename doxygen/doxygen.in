@@ -303,7 +303,7 @@ RECURSIVE              = YES
 # excluded from the INPUT source files. This way you can easily exclude a
 # subdirectory from a directory tree whose root is specified with the INPUT tag.
 
-EXCLUDE                =
+EXCLUDE                = .bashrc
 
 # If the value of the INPUT tag contains directories, you can use the
 # EXCLUDE_PATTERNS tag to specify one or more wildcard patterns to exclude
@@ -314,6 +314,7 @@ EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-02-*
 EXCLUDE_PATTERNS += */scripts/Analyse_*.C
 EXCLUDE_PATTERNS += *_entries.cxx
 EXCLUDE_PATTERNS += *_load.cxx
+EXCLUDE_PATTERNS += *.bashrc
 EXCLUDE_PATTERNS += entries.cxx
 EXCLUDE_PATTERNS += load.cxx
 
