@@ -34,30 +34,38 @@
 	class Particle
 	{
 	public:
-		// * Constructor and destructors *
-		Particle(int pdgCode);
-		Particle(const char* pdgCode);
+		/// @name Constructor and destructors
+			///@{
+			Particle(int pdgCode);
+			Particle(const char* pdgCode);
+			///@}
 
-		// * Information *
-		bool IsLoaded() const;
+		/// @name Information functions
+			///@{
+			bool IsLoaded() const;
+			///@}
 
-		// * Getters *
-		TParticlePDG* GetParticlePDG() const;
-		int GetPDGCode() const;
-		double GetMass() const;
-		const char* GetNameLaTeX() const;
-		const char* GetName() const;
+		/// @name Getters
+			///@{
+			TParticlePDG* GetParticlePDG() const;
+			int GetPDGCode() const;
+			double GetMass() const;
+			const char* GetNameLaTeX() const;
+			const char* GetName() const;
+			///@}
 
 	protected:
-		// * Data members *
-		TParticlePDG* fParticlePDG;
-		//!< A pointer to its corresponding particle in the PDG.
-		TString fParticleNameLaTeX;
-		//!< Particle name in LaTeX format.
+		/// @name Data members
+			///@{
+			TParticlePDG* fParticlePDG; //!< A pointer to its corresponding particle in the PDG.
+			TString fParticleNameLaTeX; //!< Particle name in LaTeX format.
+			///@}
 
-		// * Private members
-		void Initialize();
-		TString& DetermineNameLaTeX();
+		/// @name Helper methods
+			///@{
+			void Initialize();
+			TString& DetermineNameLaTeX();
+			///@}
 
 	};
 

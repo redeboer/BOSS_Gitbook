@@ -80,9 +80,6 @@ $(document).ready(function(){initNavTree('classBOSSOutputLoader.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classBOSSOutputLoader-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">BOSSOutputLoader Class Reference<div class="ingroups"><a class="el" href="group__BOSS__Afterburner.html">BOSS Afterburner</a> &raquo; <a class="el" href="group__BOSS__Afterburner__objects.html">Objects</a></div></div>  </div>
@@ -96,11 +93,13 @@ $(document).ready(function(){initNavTree('classBOSSOutputLoader.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constructors</div></td></tr>
 <tr class="memitem:a10870242930d8d48ded8bde0575a2233"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a10870242930d8d48ded8bde0575a2233">BOSSOutputLoader</a> ()</td></tr>
 <tr class="separator:a10870242930d8d48ded8bde0575a2233"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72e3e535f28f63137071e24ae2cd2a71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a72e3e535f28f63137071e24ae2cd2a71">BOSSOutputLoader</a> (const char *directoryPath, bool print=true)</td></tr>
 <tr class="memdesc:a72e3e535f28f63137071e24ae2cd2a71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that opens a <code>TFile</code> and unordered_maps its contents.  <a href="#a72e3e535f28f63137071e24ae2cd2a71">More...</a><br /></td></tr>
 <tr class="separator:a72e3e535f28f63137071e24ae2cd2a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Information functions</div></td></tr>
 <tr class="memitem:a34462102493e093373991de0c5926aaf"><td class="memItemLeft" align="right" valign="top">TH1F *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a34462102493e093373991de0c5926aaf">Draw</a> (const char *treeName, const char *branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option=&quot;&quot;, const TString &amp;logScale=&quot;&quot;, const char *cut=&quot;&quot;)</td></tr>
 <tr class="memdesc:a34462102493e093373991de0c5926aaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the distributions of all branches available in the ROOT file.  <a href="#a34462102493e093373991de0c5926aaf">More...</a><br /></td></tr>
 <tr class="separator:a34462102493e093373991de0c5926aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,6 +132,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5b0aaf2ebe76331ec2344954d62829ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a5b0aaf2ebe76331ec2344954d62829ae">QuickDrawAndSaveAll</a> (Option_t *option=&quot;&quot;)</td></tr>
 <tr class="memdesc:a5b0aaf2ebe76331ec2344954d62829ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the distributions of all branches available in the ROOT file.  <a href="#a5b0aaf2ebe76331ec2344954d62829ae">More...</a><br /></td></tr>
 <tr class="separator:a5b0aaf2ebe76331ec2344954d62829ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Getters</div></td></tr>
 <tr class="memitem:accc448fb99a5cd7063768edd73de77d6"><td class="memItemLeft" align="right" valign="top">Long64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#accc448fb99a5cd7063768edd73de77d6">GetEntries</a> (const char *treeName)</td></tr>
 <tr class="memdesc:accc448fb99a5cd7063768edd73de77d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of events in one of the <code>TChain</code>s.  <a href="#accc448fb99a5cd7063768edd73de77d6">More...</a><br /></td></tr>
 <tr class="separator:accc448fb99a5cd7063768edd73de77d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,6 +149,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Helper methods</div></td></tr>
 <tr class="memitem:ab6d81022b14f0de41438dcf699a5e01c"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classChainLoader.html">ChainLoader</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#ab6d81022b14f0de41438dcf699a5e01c">CreateOrderedMap</a> ()</td></tr>
 <tr class="memdesc:ab6d81022b14f0de41438dcf699a5e01c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <code>list</code> that is ordered by the number of entries in the <code>TChain</code>.  <a href="#ab6d81022b14f0de41438dcf699a5e01c">More...</a><br /></td></tr>
 <tr class="separator:ab6d81022b14f0de41438dcf699a5e01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -158,6 +159,7 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Data members</div></td></tr>
 <tr class="memitem:aa606084dd00882bf3d3c6df65bf030e1"><td class="memItemLeft" align="right" valign="top">TString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#aa606084dd00882bf3d3c6df65bf030e1">fDirectoryPath</a></td></tr>
 <tr class="memdesc:aa606084dd00882bf3d3c6df65bf030e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The path of the directory that was was used to load the ROOT files and generate the <code>TChain</code>s in this object.  <a href="#aa606084dd00882bf3d3c6df65bf030e1">More...</a><br /></td></tr>
 <tr class="separator:aa606084dd00882bf3d3c6df65bf030e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,7 +201,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00034">34</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00035">35</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
@@ -656,7 +658,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00055">55</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00060">60</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
@@ -816,7 +818,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00053">53</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00058">58</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
@@ -1054,7 +1056,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Map of <code>TChain</code>s of the loaded ROOT files (contained withing <code><a class="el" href="classChainLoader.html" title="A container class for a TChain that allows easy access to its branches. ">ChainLoader</a></code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00061">61</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00068">68</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
@@ -1080,7 +1082,7 @@ Protected Attributes</h2></td></tr>
 
 <p>The path of the directory that was was used to load the ROOT files and generate the <code>TChain</code>s in this object. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00059">59</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00066">66</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
@@ -1106,7 +1108,7 @@ Protected Attributes</h2></td></tr>
 
 <p>List of filenames that were loaded from the directory. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00060">60</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00067">67</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>

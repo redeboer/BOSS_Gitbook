@@ -30,13 +30,20 @@
 	class ChainLoader
 	{
 	public:
+		/// @name Constructors
+			///@{
+			ChainLoader() {}
+			ChainLoader(TTree* tree) : fChain(tree->GetName(), tree->GetTitle()) {}
+			///@}
 
-		// * CONSTRUCTORS AND DESTRUCTORS * //
-		ChainLoader() {}
-		ChainLoader(TTree* tree) : fChain(tree->GetName(), tree->GetTitle()) {}
+		/// @name Getters
+			///@{
+			TChain&  GetChain() { return fChain; }
+			Long64_t GetEntries() const { return fChain.GetEntries(); }
+			///@}
 
-		// * GETTERS * //
-			TChain& GetChain() { return fChain; }
+		/// @name Getters for branches, with type
+			///@{
 			std::unordered_map<std::string, Char_t>&    Get_B() { return fMap_B; }
 			std::unordered_map<std::string, UChar_t>&   Get_b() { return fMap_b; }
 			std::unordered_map<std::string, Short_t>&   Get_S() { return fMap_S; }
@@ -59,25 +66,32 @@
 			Long64_t&  Get_L(const char* name) { return fMap_L.at(name); }
 			ULong64_t& Get_l(const char* name) { return fMap_l.at(name); }
 			Bool_t&    Get_O(const char* name) { return fMap_O.at(name); }
-			Long64_t   GetEntries() const { return fChain.GetEntries(); }
+			///@}
 
-		// * SETTERS * //
+		/// @name Setters
+			///@{
 			Int_t Add(const char* filename) { return fChain.Add(filename); }
+			///@}
 
-		// * INFORMATION * //
+		/// @name Information functions
+			///@{
 			TH1F* Draw(const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option="", const bool save=true, const TString &logScale="", const char* cut="");
 			TH1F* GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins=100, Option_t *option="", const TString &logScale="");
 			TH2F* Draw(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option="", const bool save=true, const TString &logScale="", const char* cut="");
 			double ComputeMean(TChain* tree, const char* branchName);
-			void BookAddresses(bool print=false);
 			void Draw(const char* branchNames, const char* cut="", Option_t *option="", const bool save=true, const TString &logScale="");
 			void DrawAndSaveAllBranches(Option_t *option="", const TString &logScale="");
 			void DrawAndSaveAllMultiplicityBranches(const TString &logScale="", Option_t *option="E1");
+			///@}
 
 	private:
-
-		// * DATA MEMBERS * //
+		/// @name Data members
+			///@{
 			TChain fChain; //!< `TChain` object to which the `TFile`s are added.
+			///@}
+
+		/// @name Data members: Maps for branch addresses
+			///@{
 			std::unordered_map<std::string, Char_t>    fMap_B; //!< Map of addresses for Char_t (8 bit signed integer).
 			std::unordered_map<std::string, UChar_t>   fMap_b; //!< Map of addresses for UChar_t (8 bit unsigned integer).
 			std::unordered_map<std::string, Short_t>   fMap_S; //!< Map of addresses for Short_t (16 bit signed integer).
@@ -89,12 +103,16 @@
 			std::unordered_map<std::string, Long64_t>  fMap_L; //!< Map of addresses for Long64_t (64 bit signed integer).
 			std::unordered_map<std::string, ULong64_t> fMap_l; //!< Map of addresses for ULong64_t (64 bit unsigned integer).
 			std::unordered_map<std::string, Bool_t>    fMap_O; //!< Map of addresses for Bool_t (boolean).
+			///@}
 
-		// * PRIVATE METHODS * //
+		/// @name Helper functions
+			///@{
+			void BookAddresses(bool print=false);
 			template<typename TYPE>
 			void SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map);
 			template<typename TYPE>
 			void SetAddressSafe(TObject* obj, std::unordered_map<std::string, TYPE> &map);
+			///@}
 
 	};
 

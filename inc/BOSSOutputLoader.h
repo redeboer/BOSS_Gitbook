@@ -30,39 +30,49 @@
 	class BOSSOutputLoader
 	{
 	public:
-		// * CONSTRUCTOR AND DESTRUCTORS * //
-		BOSSOutputLoader() {}
-		BOSSOutputLoader(const char* directoryPath, bool print = true);
+		/// @name Constructors
+			///@{
+			BOSSOutputLoader() {}
+			BOSSOutputLoader(const char* directoryPath, bool print = true);
+			///@}
 
-		// * INFORMATION * //
-		TH1F* Draw(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option="", const TString &logScale="", const char* cut="");
-		TH2F* Draw(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option="", const TString &logScale="", const char* cut="");
-		bool IsZombie();
-		void Draw(const char* treeName, const char* branchNames, const char* cut="", Option_t *option="", const TString &logScale="");
-		void DrawAndSaveAllBranches(const char* treeName, Option_t *option="", const TString &logScale="");
-		void Print();
-		void Print(const char* nameOfTree, Option_t *option = "toponly");
-		void PrintCutFlow();
-		void PrintCuts();
-		void PrintTrees(Option_t *option="");
-		void QuickDrawAndSaveAll(Option_t *option="");
+		/// @name Information functions
+			///@{
+			TH1F* Draw(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option="", const TString &logScale="", const char* cut="");
+			TH2F* Draw(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option="", const TString &logScale="", const char* cut="");
+			bool IsZombie();
+			void Draw(const char* treeName, const char* branchNames, const char* cut="", Option_t *option="", const TString &logScale="");
+			void DrawAndSaveAllBranches(const char* treeName, Option_t *option="", const TString &logScale="");
+			void Print();
+			void Print(const char* nameOfTree, Option_t *option = "toponly");
+			void PrintCutFlow();
+			void PrintCuts();
+			void PrintTrees(Option_t *option="");
+			void QuickDrawAndSaveAll(Option_t *option="");
+			///@}
 
-		// * GETTERS * //
-		Long64_t GetEntries(const char* treeName);
-		Long64_t GetLargestEntries() const;
-		ChainLoader& operator[](const char* name) { return fChains.at(name); }
-		TChain& FindTree(const char* treeName);
-		std::unordered_map<std::string, ChainLoader>& GetChains() { return fChains; }
+		/// @name Getters
+			///@{
+			Long64_t GetEntries(const char* treeName);
+			Long64_t GetLargestEntries() const;
+			ChainLoader& operator[](const char* name) { return fChains.at(name); }
+			TChain& FindTree(const char* treeName);
+			std::unordered_map<std::string, ChainLoader>& GetChains() { return fChains; }
+			///@}
 
 	protected:
-		// * DATA MEMBERS * //
-		TString fDirectoryPath; //!< The path of the directory that was was used to load the ROOT files and generate the `TChain`s in this object.
-		std::list<TString> fFileNames; //!< List of filenames that were loaded from the directory.
-		std::unordered_map<std::string, ChainLoader> fChains; //!< Map of `TChain`s of the loaded ROOT files (contained withing `ChainLoader`).
+		/// @name Data members
+			///@{
+			TString fDirectoryPath; //!< The path of the directory that was was used to load the ROOT files and generate the `TChain`s in this object.
+			std::list<TString> fFileNames; //!< List of filenames that were loaded from the directory.
+			std::unordered_map<std::string, ChainLoader> fChains; //!< Map of `TChain`s of the loaded ROOT files (contained withing `ChainLoader`).
+			///@}
 
-		// * PRIVATE METHODS * //
-		std::list<ChainLoader*> CreateOrderedMap();
-		void LoadChains(bool print = true);
+		/// @name Helper methods
+			///@{
+			std::list<ChainLoader*> CreateOrderedMap();
+			void LoadChains(bool print = true);
+			///@}
 
 	};
 
