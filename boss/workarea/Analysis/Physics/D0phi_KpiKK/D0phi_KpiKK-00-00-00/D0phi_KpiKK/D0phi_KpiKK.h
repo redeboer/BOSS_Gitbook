@@ -39,8 +39,6 @@ protected:
 		std::vector<EvtRecTrack*> fKaonNeg; //!< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$. @todo Decide if this can be formulated in terms of some `fEvtRecTrackMap`.
 		std::vector<EvtRecTrack*> fKaonPos; //!< Vector that contains a selection of pointers to charged tracks identified as \f$K^+\f$.
 		std::vector<EvtRecTrack*> fPionPos; //!< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
-		std::vector<Event::McParticle*> fMcD0;      //!< Vector containing true \f$D^0\f$.
-		std::vector<Event::McParticle*> fMcPhi;     //!< Vector containing true \f$\phi\f$.
 		std::vector<Event::McParticle*> fMcKaonNeg; //!< Vector containing true \f$K^-\f$.
 		std::vector<Event::McParticle*> fMcKaonPos; //!< Vector containing true \f$K^+\f$.
 		std::vector<Event::McParticle*> fMcPionPos; //!< Vector containing true \f$\pi^+\f$.

@@ -162,56 +162,51 @@
 
 
 		/// <li> Make selection of MC truth particles by looping over the collection of MC particles created in `TrackSelector::execute()`. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.
-			if(fEventHeader->runNumber()<0) {
-				std::vector<Event::McParticle*>::iterator it;
-				for(it=fMcParticles.begin(); it!=fMcParticles.end(); ++it) {
-					switch((*it)->particleProperty()) {
-						case  421 : fMcD0     .push_back(*it); break;
-						case  333 : fMcPhi    .push_back(*it); break;
-						case -321 : fMcKaonNeg.push_back(*it); break;
-						case  321 : fMcKaonPos.push_back(*it); break;
-						case  211 : fMcPionPos.push_back(*it); break;
-						default :
-							fLog << MSG::DEBUG << "McParticle " << (*it)->particleProperty() << " not defined in switch" << endmsg;
-					}
+		if(fEventHeader->runNumber()<0 && fWrite_fit_mc) {
+			std::vector<Event::McParticle*>::iterator it;
+			fMcKaonNeg.clear();
+			fMcKaonPos.clear();
+			fMcPionPos.clear();
+			for(it=fMcParticles.begin(); it!=fMcParticles.end(); ++it) {
+				switch((*it)->particleProperty()) {
+					case -321 : fMcKaonNeg.push_back(*it); break;
+					case  321 : fMcKaonPos.push_back(*it); break;
+					case  211 : fMcPionPos.push_back(*it); break;
+					default : fLog << MSG::DEBUG << "No switch case defined for McParticle " << (*it)->particleProperty() << endmsg;
 				}
-			}
+			} // end of loop over MC particles
 
-
-		/// <li> Loop over MC truth of final decay products.
-			if(fWrite_fit_mc) {
-				for(fMcKaonNeg1Iter = fMcKaonNeg.begin(); fMcKaonNeg1Iter != fMcKaonNeg.end(); ++fMcKaonNeg1Iter)
-				for(fMcKaonNeg2Iter = fMcKaonNeg.begin(); fMcKaonNeg2Iter != fMcKaonNeg.end(); ++fMcKaonNeg2Iter)
-				for(fMcKaonPosIter  = fMcKaonPos.begin(); fMcKaonPosIter  != fMcKaonPos.end(); ++fMcKaonPosIter)
-				for(fMcPionPosIter  = fMcPionPos.begin(); fMcPionPosIter  != fMcPionPos.end(); ++fMcPionPosIter)
-				{
-					/// <ol>
-					/// <li> Only continue if the two kaons are different.
-						if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
-
-					/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
-						if((*fMcKaonNeg1Iter)->mother().particleProperty() != 333) continue; // mother phi
-						if((*fMcKaonNeg2Iter)->mother().particleProperty() != 421) continue; // mother D0
-						if((*fMcKaonPosIter) ->mother().particleProperty() != 333) continue; // mother phi
-						if((*fMcPionPosIter) ->mother().particleProperty() != 421) continue; // mother D0
-
-					/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
-						KKFitResult_D0phi_KpiKK fitresult(
-							*fMcKaonNeg1Iter,
-							*fMcKaonNeg2Iter,
-							*fMcKaonPosIter,
-							*fMcPionPosIter
-						);
-						WriteFitResults(fitresult, fMap_fit_mc, "fit_mc");
-					/// </ol>
-				} // end of loop over particle combinations
-			}
 
 
 		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
-			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
-			if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
-			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
+			if(fMcKaonNeg.size() == 2 && fMcKaonPos.size() == 1 && fMcPionPos.size() == 1)
+
+		/// <li> Loop over MC truth of final decay products.
+			for(fMcKaonNeg1Iter = fMcKaonNeg.begin(); fMcKaonNeg1Iter != fMcKaonNeg.end(); ++fMcKaonNeg1Iter)
+			for(fMcKaonNeg2Iter = fMcKaonNeg.begin(); fMcKaonNeg2Iter != fMcKaonNeg.end(); ++fMcKaonNeg2Iter)
+			for(fMcKaonPosIter  = fMcKaonPos.begin(); fMcKaonPosIter  != fMcKaonPos.end(); ++fMcKaonPosIter)
+			for(fMcPionPosIter  = fMcPionPos.begin(); fMcPionPosIter  != fMcPionPos.end(); ++fMcPionPosIter)
+			{
+				/// <ol>
+				/// <li> Only continue if the two kaons are different.
+					if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
+
+				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
+					if((!(*fMcKaonNeg1Iter)->primaryParticle()) && (*fMcKaonNeg1Iter)->mother().particleProperty() != 333) continue; // mother phi
+					if((!(*fMcKaonNeg2Iter)->primaryParticle()) && (*fMcKaonNeg2Iter)->mother().particleProperty() != 421) continue; // mother D0
+					if((!(*fMcKaonPosIter) ->primaryParticle()) && (*fMcKaonPosIter) ->mother().particleProperty() != 333) continue; // mother phi
+					if((!(*fMcPionPosIter) ->primaryParticle()) && (*fMcPionPosIter) ->mother().particleProperty() != 421) continue; // mother D0
+				/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
+					KKFitResult_D0phi_KpiKK fitresult(
+						*fMcKaonNeg1Iter,
+						*fMcKaonNeg2Iter,
+						*fMcKaonPosIter,
+						*fMcPionPosIter
+					);
+					WriteFitResults(fitresult, fMap_fit_mc, "fit_mc");
+				/// </ol>
+			} // end of loop over particle combinations
+		}
 
 
 		/// <li> <b>Write</b> \f$dE/dx\f$ PID information (`"dedx"` branch)

@@ -113,7 +113,7 @@
 					incPdcy = true;
 					rootIndex = (*it)->trackIndex();
 				}
-				/// <li> Skip if this particle is the initial cluster.
+				/// <li> Skip if this particle is the initial cluster itself.
 				if(!incPdcy ||
 					(*it)->particleProperty() == incPid1 ||
 					(*it)->particleProperty() == incPid2 ) continue;

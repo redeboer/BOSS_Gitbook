@@ -14,7 +14,7 @@ source CommonFunctions.sh
 
 # * Scripts parameters * #
 packageName="D0phi_KpiKK"
-nFilesPerJob=40
+nFilesPerJob=100
 nEventsPerJob=-1
 outputLevel=4
 identifier="besfs3_offline_data_703-1_jpsi_round02_dst" # DzeroPhi_mc

@@ -265,21 +265,21 @@
 				}
 
 				/// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data available in `McParticle`, see <a href="http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html">here</a>. Only add to `fMcParticles` if the `McParticle` satisfies:
-				bool jpsiDecay(false);
-				int rootIndex(-1);
+				bool doNotRecord(true);
 				for(Event::McParticleCol::iterator it = fMcParticleCol->begin(); it!=fMcParticleCol->end(); ++it) {
 					/// <ul>
-					/// <li> Do not add primary parties @todo Why?
+					/// <li> It is not a primary particle.
 					if( (*it)->primaryParticle()) continue;
 					/// <li> Only add if the decay has been generated. @todo Why? What does this mean precisely?
 					if(!(*it)->decayFromGenerator()) continue;
-					/// <li> Get root index @todo What is the root index and why is it related to \f$J/\psi\f$?
-					if( (*it)->particleProperty() == 443) {
-						jpsiDecay=true;
-						rootIndex=(*it)->trackIndex();
+					/// <li> Only start recording after we have passed the initial cluster (e.g. \f$J/\psi\f$). Note that `91` is the PDG code of cluster and `92` is the PDG code of string.
+					if(
+						(*it)->particleProperty() == 91 ||  /// <li> `91` is the PDG code of cluster.
+						(*it)->particleProperty() == 92 ) { /// <li> `92` is the PDG code of string.
+						doNotRecord = false;
 					}
-					/// <li> Do not add \f$J/\psi\f$ (PDG code 443).
-					if(!jpsiDecay) continue;
+					/// <li> Skip if this particle is the initial cluster itself.
+					if(doNotRecord) continue;
 					/// <li> Add the pointer to the `fMcParticles` vector.
 					fMcParticles.push_back(*it);
 					/// <li> <b>Write</b> MC truth initial 4-momentum info if required.
@@ -774,10 +774,9 @@
 
 
 
-// * =================================== * //
-// * -------- PROTECTED METHODS -------- * //
-// * =================================== * //
-
+// * ================================= * //
+// * -------- PRIVATE METHODS -------- * //
+// * ================================= * //
 
 	/**
 	 * @brief Compute a 'momentum' for a neutral track.
