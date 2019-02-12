@@ -70,6 +70,7 @@
 
 		/// @name Setters
 			///@{
+			void BookAddresses(bool print=false);
 			Int_t Add(const char* filename) { return fChain.Add(filename); }
 			///@}
 
@@ -107,7 +108,6 @@
 
 		/// @name Helper functions
 			///@{
-			void BookAddresses(bool print=false);
 			template<typename TYPE>
 			void SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map);
 			template<typename TYPE>
