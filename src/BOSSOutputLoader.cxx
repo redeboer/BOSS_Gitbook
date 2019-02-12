@@ -413,11 +413,11 @@
 					if(!(tree = dynamic_cast<TTree*>(key->ReadObj()))) continue;
 				/// <li> Create `ChainLoader` object (with underlying `TChain`) from the loaded `TTree`.
 					fChains.emplace(tree->GetName(), tree);
-					auto simptreePtr = &fChains.at(tree->GetName());
+					auto chain = &fChains.at(tree->GetName());
 				/// <li> Loop over file names and at them to the `ChainLoader` object.
-					for(auto filename : fFileNames) simptreePtr->Add(fDirectoryPath+"/"+filename);
+					for(auto filename : fFileNames) chain->Add(fDirectoryPath+"/"+filename);
 				/// <li> Book branches using `ChainLoader::BookAddresses`.
-					simptreePtr->BookAddresses(print);
+					chain->BookAddresses(print);
 				/// </ul>
 			}
 		/// -# Print terminal output

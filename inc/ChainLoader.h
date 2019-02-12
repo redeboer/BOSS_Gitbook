@@ -72,6 +72,7 @@
 			///@{
 			void BookAddresses(bool print=false);
 			Int_t Add(const char* filename) { return fChain.Add(filename); }
+			void BookAddresses(bool print=false);
 			///@}
 
 		/// @name Information functions
@@ -85,7 +86,7 @@
 			void DrawAndSaveAllMultiplicityBranches(const TString &logScale="", Option_t *option="E1");
 			///@}
 
-	private:
+	// private:
 		/// @name Data members
 			///@{
 			TChain fChain; //!< `TChain` object to which the `TFile`s are added.
