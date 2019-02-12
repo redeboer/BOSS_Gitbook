@@ -34,4 +34,3 @@ fi
 # * Copy example packages * #
 	AskToOverwrite "Analysis/Physics/PsiPrime"
 	AskToOverwrite "Analysis/Physics/RhopiAlg"
-	AskToOverwrite "TestRelease"

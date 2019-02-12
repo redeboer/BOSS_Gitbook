@@ -59,16 +59,16 @@ Rhopi::Rhopi(const std::string& name, ISvcLocator* pSvcLocator) :
   Algorithm(name, pSvcLocator) {
   
   //Declare the properties  
-  declareProperty("Vr0cut", fVr0cut=1.0);
-  declareProperty("Vz0cut", fVz0cut=5.0);
-  declareProperty("EnergyThreshold", fEnergyThreshold=0.04);
-  declareProperty("GammaPhiCut", fGammaPhiCut=20.0);
-  declareProperty("GammaThetaCut", fGammaThetaCut=20.0);
-  declareProperty("GammaAngleCut", fGammaAngleCut=20.0);
-  declareProperty("Test4C", fElectronst4C = 1);
-  declareProperty("Test5C", fElectronst5C = 1);
-  declareProperty("CheckDedx", fCheckDedx = 1);
-  declareProperty("CheckTof",  fCheckTof = 1);
+  declareProperty("Vr0cut", m_vr0cut=1.0);
+  declareProperty("Vz0cut", m_vz0cut=5.0);
+  declareProperty("EnergyThreshold", m_energyThreshold=0.04);
+  declareProperty("GammaPhiCut", m_gammaPhiCut=20.0);
+  declareProperty("GammaThetaCut", m_gammaThetaCut=20.0);
+  declareProperty("GammaAngleCut", m_gammaAngleCut=20.0);
+  declareProperty("Test4C", m_test4C = 1);
+  declareProperty("Test5C", m_test5C = 1);
+  declareProperty("CheckDedx", m_checkDedx = 1);
+  declareProperty("CheckTof",  m_checkTof = 1);
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
@@ -83,13 +83,13 @@ StatusCode Rhopi::initialize(){
   else {
     m_tuple1 = ntupleSvc()->book ("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
     if ( m_tuple1 )    {
-      status = m_tuple1->addItem ("vx0",   fVx0);
-      status = m_tuple1->addItem ("vy0",   fVy0);
-      status = m_tuple1->addItem ("vz0",   fVz0);
-      status = m_tuple1->addItem ("vr0",   fVr0);
-      status = m_tuple1->addItem ("rvxy0",  fRvxy0);
-      status = m_tuple1->addItem ("rvz0",   fRvz0);
-      status = m_tuple1->addItem ("rvphi0", fRvphi0);
+      status = m_tuple1->addItem ("vx0",   m_vx0);
+      status = m_tuple1->addItem ("vy0",   m_vy0);
+      status = m_tuple1->addItem ("vz0",   m_vz0);
+      status = m_tuple1->addItem ("vr0",   m_vr0);
+      status = m_tuple1->addItem ("rvxy0",  m_rvxy0);
+      status = m_tuple1->addItem ("rvz0",   m_rvz0);
+      status = m_tuple1->addItem ("rvphi0", m_rvphi0);
     }
     else    { 
       log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple1) << endmsg;
@@ -102,10 +102,10 @@ StatusCode Rhopi::initialize(){
   else {
     m_tuple2 = ntupleSvc()->book ("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
     if ( m_tuple2 )    {
-      status = m_tuple2->addItem ("dthe",   fDeltaTheta);
-      status = m_tuple2->addItem ("dphi",   fDeltaPhi);
-      status = m_tuple2->addItem ("dang",   fDeltaAngle);
-      status = m_tuple2->addItem ("eraw",   fEraw);
+      status = m_tuple2->addItem ("dthe",   m_dthe);
+      status = m_tuple2->addItem ("dphi",   m_dphi);
+      status = m_tuple2->addItem ("dang",   m_dang);
+      status = m_tuple2->addItem ("eraw",   m_eraw);
     }
     else    { 
       log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple2) << endmsg;
@@ -119,22 +119,22 @@ StatusCode Rhopi::initialize(){
   else {
     m_tuple3 = ntupleSvc()->book ("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
     if ( m_tuple3 )    {
-      status = m_tuple3->addItem ("m2gg",   fMtoGG);
-      status = m_tuple3->addItem ("etot",   fEtot);
+      status = m_tuple3->addItem ("m2gg",   m_m2gg);
+      status = m_tuple3->addItem ("etot",   m_etot);
     }
     else    { 
       log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple3) << endmsg;
       return StatusCode::FAILURE;
     }
   }
-  if(fElectronst4C==1) {
+  if(m_test4C==1) {
     NTuplePtr nt4(ntupleSvc(), "FILE1/fit4c");
     if ( nt4 ) m_tuple4 = nt4;
     else {
       m_tuple4 = ntupleSvc()->book ("FILE1/fit4c", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if ( m_tuple4 )    {
-	status = m_tuple4->addItem ("chi2",   fChi1);
-	status = m_tuple4->addItem ("mpi0",   fMpi0);
+	status = m_tuple4->addItem ("chi2",   m_chi1);
+	status = m_tuple4->addItem ("mpi0",   m_mpi0);
       }
       else    { 
 	log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple4) << endmsg;
@@ -144,16 +144,16 @@ StatusCode Rhopi::initialize(){
   } // test 4C
 
 
-  if(fElectronst5C==1) {
+  if(m_test5C==1) {
     NTuplePtr nt5(ntupleSvc(), "FILE1/fit5c");
     if ( nt5 ) m_tuple5 = nt5;
     else {
       m_tuple5 = ntupleSvc()->book ("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if ( m_tuple5 )    {
-	status = m_tuple5->addItem ("chi2",   fChi2);
-	status = m_tuple5->addItem ("mrh0",   fM_rh0);
-	status = m_tuple5->addItem ("mrhp",   fM_rhp);
-	status = m_tuple5->addItem ("mrhm",   fM_rhm);
+	status = m_tuple5->addItem ("chi2",   m_chi2);
+	status = m_tuple5->addItem ("mrh0",   m_mrh0);
+	status = m_tuple5->addItem ("mrhp",   m_mrhp);
+	status = m_tuple5->addItem ("mrhm",   m_mrhm);
       }
       else    { 
 	log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple5) << endmsg;
@@ -166,8 +166,8 @@ StatusCode Rhopi::initialize(){
     else {
       m_tuple6 = ntupleSvc()->book ("FILE1/geff", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if ( m_tuple6 )    {
-	status = m_tuple6->addItem ("fcos",   fFcos);
-	status = m_tuple6->addItem ("elow",   fElow);
+	status = m_tuple6->addItem ("fcos",   m_fcos);
+	status = m_tuple6->addItem ("elow",   m_elow);
       }
       else    { 
 	log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple6) << endmsg;
@@ -176,22 +176,22 @@ StatusCode Rhopi::initialize(){
     }
   } // test 5c
 
-  if(fCheckDedx == 1) {
+  if(m_checkDedx == 1) {
     NTuplePtr nt7(ntupleSvc(), "FILE1/dedx");
     if ( nt7 ) m_tuple7 = nt7;
     else {
       m_tuple7 = ntupleSvc()->book ("FILE1/dedx", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if ( m_tuple7 )    {
-	status = m_tuple7->addItem ("ptrk",   fPtrack);
-	status = m_tuple7->addItem ("chie",   fChi2e);
-	status = m_tuple7->addItem ("chimu",   fChi2mu);
-	status = m_tuple7->addItem ("chipi",   fChi2pi);
-	status = m_tuple7->addItem ("chik",   fChi2k);
-	status = m_tuple7->addItem ("chip",   fChi2p);
-	status = m_tuple7->addItem ("probPH",   fProbPH);
-	status = m_tuple7->addItem ("normPH",   fNormPH);
-	status = m_tuple7->addItem ("ghit",   fGhit);
-	status = m_tuple7->addItem ("thit",   fThit);
+	status = m_tuple7->addItem ("ptrk",   m_ptrk);
+	status = m_tuple7->addItem ("chie",   m_chie);
+	status = m_tuple7->addItem ("chimu",   m_chimu);
+	status = m_tuple7->addItem ("chipi",   m_chipi);
+	status = m_tuple7->addItem ("chik",   m_chik);
+	status = m_tuple7->addItem ("chip",   m_chip);
+	status = m_tuple7->addItem ("probPH",   m_probPH);
+	status = m_tuple7->addItem ("normPH",   m_normPH);
+	status = m_tuple7->addItem ("ghit",   m_ghit);
+	status = m_tuple7->addItem ("thit",   m_thit);
       }
       else    { 
 	log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple7) << endmsg;
@@ -200,22 +200,22 @@ StatusCode Rhopi::initialize(){
     }
   } // check dE/dx
 
-  if(fCheckTof == 1) {
+  if(m_checkTof == 1) {
     NTuplePtr nt8(ntupleSvc(), "FILE1/tofe");
     if ( nt8 ) m_tuple8 = nt8;
     else {
       m_tuple8 = ntupleSvc()->book ("FILE1/tofe",CLID_ColumnWiseTuple, "ks N-Tuple example");
       if ( m_tuple8 )    {
-	status = m_tuple8->addItem ("ptrk",   fPtotTofEC);
-	status = m_tuple8->addItem ("cntr",   fCntrTofEC);
-	status = m_tuple8->addItem ("ph",  fPhTofEC);
-	status = m_tuple8->addItem ("rhit", fRhitTofEC);
-	status = m_tuple8->addItem ("qual", fQualTofEC);
-	status = m_tuple8->addItem ("te",   fElectronTofEC);
-	status = m_tuple8->addItem ("tmu",   fMuonTofEC);
-	status = m_tuple8->addItem ("tpi",   fProtoniTofEC);
-	status = m_tuple8->addItem ("tk",   fKaonTofEC);
-	status = m_tuple8->addItem ("tp",   fProtonTofEC);
+	status = m_tuple8->addItem ("ptrk",   m_ptot_etof);
+	status = m_tuple8->addItem ("cntr",   m_cntr_etof);
+	status = m_tuple8->addItem ("ph",  m_ph_etof);
+	status = m_tuple8->addItem ("rhit", m_rhit_etof);
+	status = m_tuple8->addItem ("qual", m_qual_etof);
+	status = m_tuple8->addItem ("te",   m_te_etof);
+	status = m_tuple8->addItem ("tmu",   m_tmu_etof);
+	status = m_tuple8->addItem ("tpi",   m_tpi_etof);
+	status = m_tuple8->addItem ("tk",   m_tk_etof);
+	status = m_tuple8->addItem ("tp",   m_tp_etof);
       }
       else    { 
 	log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple8) << endmsg;
@@ -226,22 +226,22 @@ StatusCode Rhopi::initialize(){
 
 
 
-  if(fCheckTof == 1) {
+  if(m_checkTof == 1) {
     NTuplePtr nt9(ntupleSvc(), "FILE1/tof1");
     if ( nt9 ) m_tuple9 = nt9;
     else {
       m_tuple9 = ntupleSvc()->book ("FILE1/tof1", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if ( m_tuple9 )    {
-	status = m_tuple9->addItem ("ptrk",   fPtotTofIB);
-	status = m_tuple9->addItem ("cntr",   fCntrTofIB);
-	status = m_tuple9->addItem ("ph",  fPhTofIB);
-	status = m_tuple9->addItem ("zhit", fZhitTofIB);
-	status = m_tuple9->addItem ("qual", fQualTofIB);
-	status = m_tuple9->addItem ("te",   fElectronTofIB);
-	status = m_tuple9->addItem ("tmu",   fMuonTofIB);
-	status = m_tuple9->addItem ("tpi",   fProtoniTofIB);
-	status = m_tuple9->addItem ("tk",   fKaonTofIB);
-	status = m_tuple9->addItem ("tp",   fProtonTofIB);
+	status = m_tuple9->addItem ("ptrk",   m_ptot_btof1);
+	status = m_tuple9->addItem ("cntr",   m_cntr_btof1);
+	status = m_tuple9->addItem ("ph",  m_ph_btof1);
+	status = m_tuple9->addItem ("zhit", m_zhit_btof1);
+	status = m_tuple9->addItem ("qual", m_qual_btof1);
+	status = m_tuple9->addItem ("te",   m_te_btof1);
+	status = m_tuple9->addItem ("tmu",   m_tmu_btof1);
+	status = m_tuple9->addItem ("tpi",   m_tpi_btof1);
+	status = m_tuple9->addItem ("tk",   m_tk_btof1);
+	status = m_tuple9->addItem ("tp",   m_tp_btof1);
       }
       else    { 
 	log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple9) << endmsg;
@@ -251,22 +251,22 @@ StatusCode Rhopi::initialize(){
   } // check Tof:barrel inner Tof 
 
 
-  if(fCheckTof == 1) {
+  if(m_checkTof == 1) {
     NTuplePtr nt10(ntupleSvc(), "FILE1/tof2");
     if ( nt10 ) m_tuple10 = nt10;
     else {
       m_tuple10 = ntupleSvc()->book ("FILE1/tof2", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if ( m_tuple10 )    {
-	status = m_tuple10->addItem ("ptrk",   fPtotTofOB);
-	status = m_tuple10->addItem ("cntr",   fCntrTofOB);
-	status = m_tuple10->addItem ("ph",  fPhTofOB);
-	status = m_tuple10->addItem ("zhit", fZhitTofOB);
-	status = m_tuple10->addItem ("qual", fQualTofOB);
-	status = m_tuple10->addItem ("te",   fElectronTofOB);
-	status = m_tuple10->addItem ("tmu",   fMuonTofOB);
-	status = m_tuple10->addItem ("tpi",   fProtoniTofOB);
-	status = m_tuple10->addItem ("tk",   fKaonTofOB);
-	status = m_tuple10->addItem ("tp",   fProtonTofOB);
+	status = m_tuple10->addItem ("ptrk",   m_ptot_btof2);
+	status = m_tuple10->addItem ("cntr",   m_cntr_btof2);
+	status = m_tuple10->addItem ("ph",  m_ph_btof2);
+	status = m_tuple10->addItem ("zhit", m_zhit_btof2);
+	status = m_tuple10->addItem ("qual", m_qual_btof2);
+	status = m_tuple10->addItem ("te",   m_te_btof2);
+	status = m_tuple10->addItem ("tmu",   m_tmu_btof2);
+	status = m_tuple10->addItem ("tpi",   m_tpi_btof2);
+	status = m_tuple10->addItem ("tk",   m_tk_btof2);
+	status = m_tuple10->addItem ("tp",   m_tp_btof2);
       }
       else    { 
 	log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple10) << endmsg;
@@ -281,12 +281,12 @@ StatusCode Rhopi::initialize(){
   else {
     m_tuple11 = ntupleSvc()->book ("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
     if ( m_tuple11 )    {
-      status = m_tuple11->addItem ("ptrk",   fPtrackPID);
-      status = m_tuple11->addItem ("cost",   fCostPID);
-      status = m_tuple11->addItem ("dedx",   fDedxPID);
-      status = m_tuple11->addItem ("tof1",   fTof1PID);
-      status = m_tuple11->addItem ("tof2",   fTof2PID);
-      status = m_tuple11->addItem ("prob",   fProbPID);
+      status = m_tuple11->addItem ("ptrk",   m_ptrk_pid);
+      status = m_tuple11->addItem ("cost",   m_cost_pid);
+      status = m_tuple11->addItem ("dedx",   m_dedx_pid);
+      status = m_tuple11->addItem ("tof1",   m_tof1_pid);
+      status = m_tuple11->addItem ("tof2",   m_tof2_pid);
+      status = m_tuple11->addItem ("prob",   m_prob_pid);
     }
     else    { 
       log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple11) << endmsg;
@@ -345,14 +345,14 @@ StatusCode Rhopi::execute() {
 
   Hep3Vector xorigin(0,0,0);
   
-  //if (fReader.isRunNumberValid(runNo)) {
+  //if (m_reader.isRunNumberValid(runNo)) {
    IVertexDbSvc*  vtxsvc;
   Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
   if(vtxsvc->isVertexValid()){
   double* dbv = vtxsvc->PrimaryVertex(); 
   double*  vv = vtxsvc->SigmaPrimaryVertex();  
-//    HepVector dbv = fReader.PrimaryVertex(runNo);
-//    HepVector vv = fReader.SigmaPrimaryVertex(runNo);
+//    HepVector dbv = m_reader.PrimaryVertex(runNo);
+//    HepVector vv = m_reader.SigmaPrimaryVertex(runNo);
     xorigin.setX(dbv[0]);
     xorigin.setY(dbv[1]);
     xorigin.setZ(dbv[2]);
@@ -370,10 +370,10 @@ StatusCode Rhopi::execute() {
     double xv=xorigin.x();
     double yv=xorigin.y();
     double Rxy=(x0-xv)*cos(phi0)+(y0-yv)*sin(phi0);
-    fVx0 = x0;
-    fVy0 = y0;
-    fVz0 = z0;
-    fVr0 = Rxy;
+    m_vx0 = x0;
+    m_vy0 = y0;
+    m_vz0 = z0;
+    m_vr0 = Rxy;
 
     HepVector a = mdcTrk->helix();
     HepSymMatrix Ea = mdcTrk->err();
@@ -385,13 +385,13 @@ StatusCode Rhopi::execute() {
     double  Rvxy0=fabs(vecipa[0]);  //the nearest distance to IP in xy plane
     double  Rvz0=vecipa[3];         //the nearest distance to IP in z direction
     double  Rvphi0=vecipa[1];
-    fRvxy0=Rvxy0;
-    fRvz0=Rvz0;
-    fRvphi0=Rvphi0;
+    m_rvxy0=Rvxy0;
+    m_rvz0=Rvz0;
+    m_rvphi0=Rvphi0;
 
     m_tuple1->write();
-//    if(fabs(z0) >= fVz0cut) continue;
-//    if(fabs(Rxy) >= fVr0cut) continue;
+//    if(fabs(z0) >= m_vz0cut) continue;
+//    if(fabs(Rxy) >= m_vr0cut) continue;
     
     if(fabs(Rvz0) >= 10.0) continue;
     if(fabs(Rvxy0) >= 1.0) continue;
@@ -444,14 +444,14 @@ StatusCode Rhopi::execute() {
     dthe = dthe * 180 / (CLHEP::pi);
     dphi = dphi * 180 / (CLHEP::pi);
     dang = dang * 180 / (CLHEP::pi);
-    fDeltaTheta = dthe;
-    fDeltaPhi = dphi;
-    fDeltaAngle = dang;
-    fEraw = eraw;
+    m_dthe = dthe;
+    m_dphi = dphi;
+    m_dang = dang;
+    m_eraw = eraw;
     m_tuple2->write();
-    if(eraw < fEnergyThreshold) continue;
-//    if((fabs(dthe) < fGammaThetaCut) && (fabs(dphi)<fGammaPhiCut) ) continue;
-    if(fabs(dang) < fGammaAngleCut) continue;
+    if(eraw < m_energyThreshold) continue;
+//    if((fabs(dthe) < m_gammaThetaCut) && (fabs(dphi)<m_gammaPhiCut) ) continue;
+    if(fabs(dang) < m_gammaAngleCut) continue;
     //
     // good photon cut will be set here
     //
@@ -477,24 +477,24 @@ StatusCode Rhopi::execute() {
   //
   //
   
-  if(fCheckDedx == 1) {
+  if(m_checkDedx == 1) {
     for(int i = 0; i < nGood; i++) {
       EvtRecTrackIterator  itTrk = evtRecTrkCol->begin() + iGood[i];
       if(!(*itTrk)->isMdcTrackValid()) continue;
       if(!(*itTrk)->isMdcDedxValid())continue;
       RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
       RecMdcDedx* dedxTrk = (*itTrk)->mdcDedx();
-      fPtrack = mdcTrk->p();
+      m_ptrk = mdcTrk->p();
 
-      fChi2e = dedxTrk->chiE();
-      fChi2mu = dedxTrk->chiMu();
-      fChi2pi = dedxTrk->chiPi();
-      fChi2k = dedxTrk->chiK();
-      fChi2p = dedxTrk->chiP();
-      fGhit = dedxTrk->numGoodHits();
-      fThit = dedxTrk->numTotalHits();
-      fProbPH = dedxTrk->probPH();
-      fNormPH = dedxTrk->normPH();
+      m_chie = dedxTrk->chiE();
+      m_chimu = dedxTrk->chiMu();
+      m_chipi = dedxTrk->chiPi();
+      m_chik = dedxTrk->chiK();
+      m_chip = dedxTrk->chiP();
+      m_ghit = dedxTrk->numGoodHits();
+      m_thit = dedxTrk->numTotalHits();
+      m_probPH = dedxTrk->probPH();
+      m_normPH = dedxTrk->normPH();
       m_tuple7->write();
     }
   }
@@ -504,7 +504,7 @@ StatusCode Rhopi::execute() {
   //
 
 
-  if(fCheckTof == 1) {
+  if(m_checkTof == 1) {
     for(int i = 0; i < nGood; i++) {
       EvtRecTrackIterator  itTrk = evtRecTrkCol->begin() + iGood[i];
       if(!(*itTrk)->isMdcTrackValid()) continue;
@@ -534,16 +534,16 @@ StatusCode Rhopi::execute() {
             double beta = gb/sqrt(1+gb*gb);
             texp[j] = 10 * path /beta/velc;
           }
-          fCntrTofEC  = cntr;
-          fPtotTofEC = ptrk;
-          fPhTofEC   = ph;
-          fRhitTofEC  = rhit;
-          fQualTofEC  = qual;
-          fElectronTofEC    = tof - texp[0];
-          fMuonTofEC   = tof - texp[1];
-          fProtoniTofEC   = tof - texp[2];
-          fKaonTofEC    = tof - texp[3];
-          fProtonTofEC    = tof - texp[4];
+          m_cntr_etof  = cntr;
+          m_ptot_etof = ptrk;
+          m_ph_etof   = ph;
+          m_rhit_etof  = rhit;
+          m_qual_etof  = qual;
+          m_te_etof    = tof - texp[0];
+          m_tmu_etof   = tof - texp[1];
+          m_tpi_etof   = tof - texp[2];
+          m_tk_etof    = tof - texp[3];
+          m_tp_etof    = tof - texp[4];
           m_tuple8->write();
         }
         else {//barrel
@@ -562,16 +562,16 @@ StatusCode Rhopi::execute() {
               texp[j] = 10 * path /beta/velc;
             }
  
-            fCntrTofIB  = cntr;
-            fPtotTofIB = ptrk;
-            fPhTofIB   = ph;
-            fZhitTofIB  = rhit;
-            fQualTofIB  = qual;
-            fElectronTofIB    = tof - texp[0];
-            fMuonTofIB   = tof - texp[1];
-            fProtoniTofIB   = tof - texp[2];
-            fKaonTofIB    = tof - texp[3];
-            fProtonTofIB    = tof - texp[4];
+            m_cntr_btof1  = cntr;
+            m_ptot_btof1 = ptrk;
+            m_ph_btof1   = ph;
+            m_zhit_btof1  = rhit;
+            m_qual_btof1  = qual;
+            m_te_btof1    = tof - texp[0];
+            m_tmu_btof1   = tof - texp[1];
+            m_tpi_btof1   = tof - texp[2];
+            m_tk_btof1    = tof - texp[3];
+            m_tp_btof1    = tof - texp[4];
             m_tuple9->write();
           }
 
@@ -589,16 +589,16 @@ StatusCode Rhopi::execute() {
               texp[j] = 10 * path /beta/velc;
             }
  
-            fCntrTofOB  = cntr;
-            fPtotTofOB = ptrk;
-            fPhTofOB   = ph;
-            fZhitTofOB  = rhit;
-            fQualTofOB  = qual;
-            fElectronTofOB    = tof - texp[0];
-            fMuonTofOB   = tof - texp[1];
-            fProtoniTofOB   = tof - texp[2];
-            fKaonTofOB    = tof - texp[3];
-            fProtonTofOB    = tof - texp[4];
+            m_cntr_btof2  = cntr;
+            m_ptot_btof2 = ptrk;
+            m_ph_btof2   = ph;
+            m_zhit_btof2  = rhit;
+            m_qual_btof2  = qual;
+            m_te_btof2    = tof - texp[0];
+            m_tmu_btof2   = tof - texp[1];
+            m_tpi_btof2   = tof - texp[2];
+            m_tk_btof2    = tof - texp[3];
+            m_tp_btof2    = tof - texp[4];
             m_tuple10->write();
           } 
         }
@@ -652,12 +652,12 @@ StatusCode Rhopi::execute() {
     pid->calculate();
     if(!(pid->IsPidInfoValid())) continue;
     RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
-    fPtrackPID = mdcTrk->p();
-    fCostPID = cos(mdcTrk->theta());
-    fDedxPID = pid->chiDedx(2);
-    fTof1PID = pid->chiTof1(2);
-    fTof2PID = pid->chiTof2(2);
-    fProbPID = pid->probPion();
+    m_ptrk_pid = mdcTrk->p();
+    m_cost_pid = cos(mdcTrk->theta());
+    m_dedx_pid = pid->chiDedx(2);
+    m_tof1_pid = pid->chiTof1(2);
+    m_tof2_pid = pid->chiTof2(2);
+    m_prob_pid = pid->probPion();
     m_tuple11->write();
 
 //  if(pid->probPion() < 0.001 || (pid->probPion() < pid->probKaon())) continue;
@@ -737,8 +737,8 @@ StatusCode Rhopi::execute() {
       HepLorentzVector p2g = pGam[i] + pGam[j];
       pTot = ppip[0] + ppim[0];
       pTot += p2g;
-      fMtoGG = p2g.m();
-      fEtot = pTot.e();
+      m_m2gg = p2g.m();
+      m_etot = pTot.e();
       m_tuple3 -> write();
 
     }
@@ -793,7 +793,7 @@ StatusCode Rhopi::execute() {
   //  Apply Kinematic 4C fit
   // 
   cout<<"before 4c"<<endl;
-  if(fElectronst4C==1) {
+  if(m_test4C==1) {
 //    double ecms = 3.097;
     HepLorentzVector ecms(0.034,0,0,3.097);
 
@@ -835,8 +835,8 @@ StatusCode Rhopi::execute() {
       bool oksq = kmfit->Fit();
       if(oksq) {
 	HepLorentzVector ppi0 = kmfit->pfit(2) + kmfit->pfit(3);
-	fMpi0 = ppi0.m();
-	fChi1 = kmfit->chisq();
+	m_mpi0 = ppi0.m();
+	m_chi1 = kmfit->chisq();
 	m_tuple4->write();
         Ncut4++;
       }
@@ -848,7 +848,7 @@ StatusCode Rhopi::execute() {
   //
 
   // find the best combination over all possible pi+ pi- gamma gamma pair
-  if(fElectronst5C==1) {
+  if(m_test5C==1) {
 //    double ecms = 3.097;
     HepLorentzVector ecms(0.034,0,0,3.097);
     double chisq = 9999.;
@@ -900,10 +900,10 @@ StatusCode Rhopi::execute() {
 	HepLorentzVector prhop = ppi0 + kmfit->pfit(0);
 	HepLorentzVector prhom = ppi0 + kmfit->pfit(1);
 	
-	fChi2  = kmfit->chisq();
-	fM_rh0 = prho0.m();
-	fM_rhp = prhop.m();
-	fM_rhm = prhom.m();
+	m_chi2  = kmfit->chisq();
+	m_mrh0 = prho0.m();
+	m_mrhp = prhop.m();
+	m_mrhm = prhom.m();
 	double eg1 = (kmfit->pfit(2)).e();
 	double eg2 = (kmfit->pfit(3)).e();
 	double fcos = abs(eg1-eg2)/ppi0.rho();
@@ -915,8 +915,8 @@ StatusCode Rhopi::execute() {
 	//
 	if(fabs(prho0.m()-0.770)<0.150) {  
 	  if(fabs(fcos)<0.99) {
-	    fFcos = (eg1-eg2)/ppi0.rho();
-	    fElow =  (eg1 < eg2) ? eg1 : eg2;
+	    m_fcos = (eg1-eg2)/ppi0.rho();
+	    m_elow =  (eg1 < eg2) ? eg1 : eg2;
 	    m_tuple6->write();
             Ncut6++;
 	  }
