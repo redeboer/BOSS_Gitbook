@@ -56,7 +56,8 @@
 
 		/// @name Do-or-don't switches
 			///@{
-			ArgPair<bool> fPrint;     //!< Whether or not to print all branch names <b>and their averages</b>. Note that this could increase run time significantly in case of a large data set!
+			ArgPair<bool> fPrintBranches;     //!< Whether or not to print all branch names.
+			ArgPair<bool> fPrintAverages;     //!< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
 			ArgPair<bool> fFitplots;  //!< Whether or not to produce invariant mass fits.
 			ArgPair<bool> fPlotstats; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
 			///@}
@@ -118,7 +119,8 @@
 		fConfigPath(path),
 		// ! Set your argument names and default values here ! //
 		fInputFilename("Input file or directory", "NOFILE"),
-		fPrint        ("Print branches",          false),
+		fPrintBranches("Print branches",          false),
+		fPrintAverages("Print averages",          false),
 		fLogY         ("Use y log scale",         "y"),
 		fLogZ         ("Use z log scale",         "z"),
 		fSetranges    ("Set plot ranges",         true),

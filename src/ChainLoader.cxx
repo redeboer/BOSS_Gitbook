@@ -20,25 +20,26 @@
 	 * 
 	 * @param print Whether or not to print the `TChain` names and its branches+types. Use `true` for debugging purposes in particular.
 	 */
-	void ChainLoader::BookAddresses(bool print)
+	void ChainLoader::BookAddresses(bool print_branches, bool print_averages)
 	{
 		if(!fChain.GetNbranches()) return;
 		/// -# Get list of `TBranches`.
 			TIter next(fChain.GetListOfBranches());
 			TObject *obj  = nullptr;
-			if(print) {
+			if(print_branches) {
 				std::cout << "Tree \"" << fChain.GetName() << "\" (" << fChain.GetEntries() << " entries)" << std::endl;
 				std::cout << fChain.GetTitle() << std::endl;
-				std::cout << "   "
-					<< std::setw(18) << std::left  << "BRANCH NAME"
-					<< std::setw(12) << std::right << "MEAN" << std::endl;
+				std::cout << "   " << std::setw(18) << std::left  << "BRANCH NAME";
+				if(print_averages) std::cout << std::setw(12) << std::right << "MEAN" << std::endl;
 			}
 		/// -# Loop over list of `TBranches` and determine `typename` of the branch. The data type of a branch can be determined from the last character of its title. See <a href="https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7">`TTree`</a> for the labels of each type.
 			while((obj = next())) {
 				std::string type(obj->GetTitle());
-				if(print) std::cout << "   "
-					<< std::setw(18) << std::left  << type
-					<< std::setw(12) << std::right << ComputeMean(&fChain, obj->GetName()) << std::endl;
+				if(print_branches) {
+					std::cout << "   " << std::setw(18) << std::left << type;
+					if(print_averages) std::cout << std::setw(12) << std::right << ComputeMean(&fChain, obj->GetName());
+					std::cout << std::endl;
+				}
 				switch(type.back()) {
 					case 'B' : SetAddress(obj, fMap_B); break;
 					case 'b' : SetAddress(obj, fMap_b); break;
@@ -55,7 +56,7 @@
 						std::cout << "ERROR: Unable to book address for branch \"" << type << "\"" << std::endl;
 				}
 			}
-			if(print) std::cout << std::endl;
+			if(print_branches) std::cout << std::endl;
 	}
 
 

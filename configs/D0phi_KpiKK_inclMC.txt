@@ -6,7 +6,8 @@
 	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK/inclMC"
 
 // * TERMINAL OUTPUT * //
-	Print branches = false
+	Print branches = true
+	Print averages = false
 
 // * PLOT STYLE * //
 	Use y log scale = "y"

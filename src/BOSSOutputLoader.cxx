@@ -24,7 +24,7 @@
 	/**
 	 * @brief Constructor that opens a `TFile` and unordered_maps its contents.
 	 */
-	BOSSOutputLoader::BOSSOutputLoader(const char* path, bool print) :
+	BOSSOutputLoader::BOSSOutputLoader(const char* path, bool print_branches, bool print_averages) :
 		fDirectoryPath(path)
 	{
 		/// -# Make an inventory of ROOT files in input directory and add filenames to the `fFileNames` list.
@@ -72,7 +72,7 @@
 			/// </ul>
 		}
 		/// -# Execute `LoadChains` now that the `fFileNames` list has been loaded.
-			LoadChains(print);
+			LoadChains(print_branches, print_averages);
 	}
 
 
@@ -387,7 +387,7 @@
 	 * @brief Create a list of `TChain`s based on the files in the directory you are loading.
 	 * @brief If the ROOT `TFile` could be successfully loaded, this method will generate a `std::unordered_map` of pointers to all `TChain`s in the main folder of the ROOT file. The first file in the directory is used to make an inventory of all `TTree`s within the file.
 	 */
-	void BOSSOutputLoader::LoadChains(bool print)
+	void BOSSOutputLoader::LoadChains(bool print_branches, bool print_averages)
 	{
 		/// -# Check whether there are files in the `fFileNames` list.
 			if(!fFileNames.size()) {
@@ -417,7 +417,7 @@
 				/// <li> Loop over file names and at them to the `ChainLoader` object.
 					for(auto filename : fFileNames) chain->Add(fDirectoryPath+"/"+filename);
 				/// <li> Book branches using `ChainLoader::BookAddresses`.
-					chain->BookAddresses(print);
+					chain->BookAddresses(print_branches, print_averages);
 				/// </ul>
 			}
 		/// -# Print terminal output

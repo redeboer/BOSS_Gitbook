@@ -70,9 +70,8 @@
 
 		/// @name Setters
 			///@{
-			void BookAddresses(bool print=false);
 			Int_t Add(const char* filename) { return fChain.Add(filename); }
-			void BookAddresses(bool print=false);
+			void BookAddresses(bool print_branches=false, bool print_averages=false);
 			///@}
 
 		/// @name Information functions

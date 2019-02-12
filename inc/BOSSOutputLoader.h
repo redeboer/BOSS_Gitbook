@@ -33,7 +33,7 @@
 		/// @name Constructors
 			///@{
 			BOSSOutputLoader() {}
-			BOSSOutputLoader(const char* directoryPath, bool print = true);
+			BOSSOutputLoader(const char* directoryPath, bool print_branches = true, bool print_averages = false);
 			///@}
 
 		/// @name Information functions
@@ -71,7 +71,7 @@
 		/// @name Helper methods
 			///@{
 			std::list<ChainLoader*> CreateOrderedMap();
-			void LoadChains(bool print = true);
+			void LoadChains(bool print_branches=true, bool print_averages=false);
 			///@}
 
 	};
