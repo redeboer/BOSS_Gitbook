@@ -12,11 +12,11 @@ In papers from the BESIII Collaboration, you will usually encounter the followin
 * Distance of the vertex of the track from the interaction \(IP\) in $$xy$$ plane: $$\left|\text{d}r\right| < 1\text{ cm}$$.
 * Distance of the vertex of the track from the IP in $$z$$ plane: $$\left|\text{d}z\right| < 10\text{ cm}$$.
 * Polar angle: $$\left|\cos\theta\right| < 0.93$$.
-* PID: usually making use of [MDC](../../besiii-software-system/besiii.md#main-drift-chamber-mdc) and [TOF](../../besiii-software-system/besiii.md#time-of-flight-system-tof) and using a probability of at least $$0.001$$.
+* PID: usually making use of [MDC](../../boss/besiii.md#main-drift-chamber-mdc) and [TOF](../../boss/besiii.md#time-of-flight-system-tof) and using a probability of at least $$0.001$$.
 
 ## Neutral tracks
 
-Neutral tracks are reconstructed from electromagnetic showers in the [EMC](../../besiii-software-system/besiii.md#electromagnetic-calorimeter-emc), which consists of a barrel and an end cap.
+Neutral tracks are reconstructed from electromagnetic showers in the [EMC](../../boss/besiii.md#electromagnetic-calorimeter-emc), which consists of a barrel and an end cap.
 
 |  |  |  |  |  |
 | :--- | :--- | :--- | :--- | :--- |

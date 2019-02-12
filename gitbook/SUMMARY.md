@@ -5,20 +5,20 @@
 
 ## BESIII Software System
 
-* [Introduction to BESIII](besiii-software-system/besiii.md)
-* [Getting started with BOSS](besiii-software-system/getting-started/README.md)
-  * [Organisation of the IHEP server](besiii-software-system/getting-started/ihep-server.md)
-  * [The BOSS Analysis Framework](besiii-software-system/getting-started/intro.md)
-  * [Setup of your BOSS environment](besiii-software-system/getting-started/setup.md)
-  * [Set up a BOSS package](besiii-software-system/getting-started/setup-package.md)
-* [Running jobs](besiii-software-system/jobs/README.md)
-  * [Monte Carlo simulations](besiii-software-system/jobs/simulations.md)
-  * [Data analysis](besiii-software-system/jobs/data.md)
-* [BOSS Packages](besiii-software-system/packages/README.md)
-  * [RhopiAlg](besiii-software-system/packages/rhopi.md)
-  * [PiPiJpsiAlg](besiii-software-system/packages/pipijpsialg.md)
-  * [TopoAna](besiii-software-system/packages/topoana.md)
-  * [Other packages](besiii-software-system/packages/other.md)
+* [Introduction to BESIII](boss/besiii.md)
+* [Getting started with BOSS](boss/getting-started/README.md)
+  * [Organisation of the IHEP server](boss/getting-started/server.md)
+  * [The BOSS Analysis Framework](boss/getting-started/intro.md)
+  * [Setup of your BOSS environment](boss/getting-started/setup.md)
+  * [Set up a BOSS package](boss/getting-started/setup-package.md)
+* [Running jobs](boss/jobs/README.md)
+  * [Monte Carlo simulations](boss/jobs/simulations.md)
+  * [Data analysis](boss/jobs/data.md)
+* [BOSS Packages](boss/packages/README.md)
+  * [RhopiAlg](boss/packages/rhopi.md)
+  * [PiPiJpsiAlg](boss/packages/pipijpsi.md)
+  * [TopoAna](boss/packages/topoana.md)
+  * [Other packages](boss/packages/other.md)
 
 ## The BOSS Afterburner
 
