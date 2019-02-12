@@ -134,7 +134,7 @@
 		fDo_conv_s    ("Do single convolution",   false),
 		fDo_conv_d    ("Do double convolution",   false)
 	{
-
+		LoadConfiguration(path);
 	}
 
 
