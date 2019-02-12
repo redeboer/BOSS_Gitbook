@@ -4,7 +4,7 @@
 
 One of the basic analysis packages that is already provided in BOSS is the `RhopiAlg` package. Within BESIII, almost everyone knows it, because it is used as the starting point for developing your own packages. `RhopiAlg` is an illustration of a typical procedure in particle physics: reconstructing a decayed particle. For this, you will have to make apply cuts on measured parameters and this package is an illustration of this procedure.
 
-The `RhopiAlg` analyses the decay of the $$\rho(770) $$ meson. As you can see in the in the [PDG listing for this meson](http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf), the $$\rho(770)$$ meson predominantly decays through $$\rho\rightarrow\pi\pi$$ \(almost 100%\), whether it concerns a $$\rho^+$$ , $$\rho^0$$ , or $$\rho^-$$. This means that we can reconstruct this meson purely through this _2-particle decay mode_.
+The `RhopiAlg` analyses the decay of the $$\rho(770)$$ meson. As you can see in the in the [PDG listing for this meson](http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf), the $$\rho(770)$$ meson predominantly decays through $$\rho\rightarrow\pi\pi$$ \(almost 100%\), whether it concerns a $$\rho^+$$ , $$\rho^0$$ , or $$\rho^-$$. This means that we can reconstruct this meson purely through this _2-particle decay mode_.
 
 Additionally, when we consider the charged $$\rho^\pm$$ mesons, one of the decay products is the neutral pion: $$\rho^\pm \rightarrow \pi^\pm\pi^0$$. This meson is again neutral and cannot be detected, so has to be reconstructed. But here again, there is one dominant decay mode: $$\pi^0 \rightarrow \gamma\gamma$$ \($$98.823 \pm 0.034 \%$$, see [its PDG listing](http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf)\). This means that we can reconstruct the $$\rho^\pm$$ meson almost exclusively through its $$\rho^\pm \rightarrow \pi^\pm\pi^0 \rightarrow \pi^\pm\gamma\gamma$$ decay channel.
 
@@ -36,8 +36,8 @@ See [header `.h` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/
 
 ## Kalman kinematic $$n$$-constraints fit procedure
 
-* `fit4c` refers to the 4-constraints of the center-of-mass system, namely the 4-momentum of the system \(collision energy and total 3-momentum\). You can use this fit for the reconstruction of $$\pi^0 \rightarrow \gamma\gamma$$. **Note that the** $$\chi_\mathrm{red}^2$$ **of the fit is the same for any combination, as the four constraints are the same in each event.**
-* `fit5c` refers to the 5-constraint reconstruction of $$\rho^\pm \rightarrow \pi^\pm\pi^0 \rightarrow \pi^\pm\gamma\gamma$$.
+* `fit4c` refers to the 4-constraints coming from the original $$\pi^0 \rightarrow \gamma\gamma$$ meson \(or other mesons, depending on the collision energy\), namely, the 4-momentum of the system \(collision energy and sum of the 3-momenta\). Note that the $$\chi^2_\text{red}$$ of the fit is the same for any combination, as the for constraints are the same in each event.
+* `fit5c`  is used when an additional constraint is applied. In the `Rhopi` package, this fifth constraint refers to the constraint reconstruction of $$\rho^\pm \rightarrow \pi^\pm\pi^0 \rightarrow \pi^\pm\gamma\gamma$$, namely the mass of the pion.
 
 ## Cut flow
 
