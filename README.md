@@ -17,7 +17,7 @@ The source code for all of the above is [available on GitHub](https://github.com
 
 There are three channels through which you can access _The BOSS Afterburner_ online.
 
-1. **GitBook** \([besiii.gitbook.io/boss-gitbook](https://besiii.gitbook.io/boss)\), which provides an accessible graphical interface for the tutorial-like pages on using BOSS, on the initial event selection packages, and on the final event selection framework in this repository.
+1. **GitBook** \([besiii.gitbook.io/boss](https://besiii.gitbook.io/boss)\), which provides an accessible graphical interface for the tutorial-like pages on using BOSS, on the initial event selection packages, and on the final event selection framework in this repository.
 2. **GitPages** \([redeboer.github.io/BOSS\_Afterburner](https://redeboer.github.io/BOSS_Afterburner/)\), which contains class documentation for the initial and final event selection frameworks of _The BOSS Afterburner_. This platform can be consulted for more details about the design of these two frameworks.
 3. **GitHub** \([github.com/redeboer/BOSS\_Afterburner](https://github.com/redeboer/BOSS_Afterburner)\), which is the complete repository itself. It contains the source code \(Markdown, C++, HTML, bash, etc.\) for all components. Collaboration on all of the above is possible through this platform, using `git`.
 
