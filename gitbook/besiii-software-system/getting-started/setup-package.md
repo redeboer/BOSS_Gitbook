@@ -6,7 +6,7 @@ Now that you have configured your **BOSS** work area, you can start developing p
 
 ### Structure of a default CMT package   <a id="structure-of-a-default-cmt-package"></a>
 
-As explained in [The BOSS Analysis Framework](https://besiii.gitbook.io/boss/boss/getting-started/intro), BOSS is organised through packages. Packages are components of the entire BOSS framework on which individuals like you work independently. Each package on itself can have several versions that are maintained by you through CMT.
+As explained in [The BOSS Analysis Framework](https://besiii.gitbook.io/boss/besiii-software-system/getting-started/intro), BOSS is organised through packages. Packages are components of the entire BOSS framework on which individuals like you work independently. Each package on itself can have several versions that are maintained by you through CMT.
 
 To create an empty package \(with a default format\), use the following command:
 
