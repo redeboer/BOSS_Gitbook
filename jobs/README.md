@@ -7,4 +7,4 @@ In the case of Monte Carlo, you only have to specify the number of jobs, the num
 
 In the case of data analysis, you only have to specify either a path to a folder of DST files or a file containing a selection of such paths. You then specify which package you want to run and how many DST files you want to analyse per job. The file selection is then automatically split, so that you won't have one job file with an incredible amounts of DST files to be analysed.
 
-See see section [Running jobs](https://besiii.gitbook.io/boss-gitbook/working-with-boss/running-jobs) in the BOSS Gitbook for more information.
+See see section [Running jobs](https://besiii.gitbook.io/boss/working-with-boss/running-jobs) in the BOSS Gitbook for more information.

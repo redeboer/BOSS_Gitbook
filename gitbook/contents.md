@@ -1,6 +1,6 @@
 # Contents of the tutorial pages
 
-This [GitBook](https://besiii.gitbook.io/boss-gitbook) provides tutorials for using both the BOSS Analysis Framework used in the BESIII collaboration. Currently, the emphasis lies on \(light\) hadron analysis, but the tutorials can be useful for other forms of analysis as well. In addition, there are tutorials on the usage of some important BOSS packages. Towards the end of the tutorial, we will transition towards the usage of the tools provided by _The BOSS Afterburner_.
+This [GitBook](https://besiii.gitbook.io/boss) provides tutorials for using both the BOSS Analysis Framework used in the BESIII collaboration. Currently, the emphasis lies on \(light\) hadron analysis, but the tutorials can be useful for other forms of analysis as well. In addition, there are tutorials on the usage of some important BOSS packages. Towards the end of the tutorial, we will transition towards the usage of the tools provided by _The BOSS Afterburner_.
 
 Here are shortcuts that you might want to take:
 

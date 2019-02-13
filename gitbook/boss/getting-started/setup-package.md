@@ -6,7 +6,7 @@ Now that you have configured your **BOSS** work area, you can start developing p
 
 ### Structure of a default CMT package <a id="structure-of-a-default-cmt-package"></a>
 
-As explained in [The BOSS Analysis Framework](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4GgC5cleb1Fpaf0c/primary/docs-boss/intro), BOSS is organised through packages. Packages are components of the entire BOSS framework on which individuals like you work independently. Each package on itself can have several versions that are maintained by you through CMT.
+As explained in [The BOSS Analysis Framework](https://besiii.gitbook.io/boss/docs-boss/intro), BOSS is organised through packages. Packages are components of the entire BOSS framework on which individuals like you work independently. Each package on itself can have several versions that are maintained by you through CMT.
 
 To create an empty package \(with a default format\), use the following command:
 
@@ -80,7 +80,7 @@ First create some copy \(of course, you'll have to replace the names here\):
 cd MyFirstPackagecp -fR MyFirstPackage-00-00-01 MyFirstPackage-00-00-02
 ```
 
-Now, imagine you have modified the interface of the package in its header files. This, according to the [BOSS version naming convention](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4GgC5cleb1Fpaf0c/primary/docs-boss/setup-package#structure-of-a-default-cmt-package), requires you to modify the `major id`. So you will have to rename the folder of the package:
+Now, imagine you have modified the interface of the package in its header files. This, according to the [BOSS version naming convention](https://besiii.gitbook.io/boss/docs-boss/setup-package#structure-of-a-default-cmt-package), requires you to modify the `major id`. So you will have to rename the folder of the package:
 
 ```bash
 mv MyFirstPackage-00-00-02 MyFirstPackage-01-00-00
@@ -128,7 +128,7 @@ Congratulations, you have created an update of your package!
 
 #### Remark on `TestRelease` <a id="remark-on-testrelease"></a>
 
-As mentioned in [Step 3](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4GgC5cleb1Fpaf0c/primary/docs-boss/setup#step-3-modify-requirements), when we were modifying the `requirements` of the BOSS environment, CMT will use the first occurrence of a package in the `$CMTPATH`. That's why we used `path_prepend` to add your _BOSS workarea_ to the `$CMTPATH`: in case of a name conflict with a package in the `$BesArea` and one in your _workarea_, CMT will use the one in your _workarea_.
+As mentioned in [Step 3](https://besiii.gitbook.io/boss/docs-boss/setup#step-3-modify-requirements), when we were modifying the `requirements` of the BOSS environment, CMT will use the first occurrence of a package in the `$CMTPATH`. That's why we used `path_prepend` to add your _BOSS workarea_ to the `$CMTPATH`: in case of a name conflict with a package in the `$BesArea` and one in your _workarea_, CMT will use the one in your _workarea_.
 
 Just to be sure, while modifying and debugging your package, you can do the entire build-and-source procedure above in one go, using:
 
@@ -160,7 +160,7 @@ Within BOSS, there are already a few 'example' packages available. All of these 
 
 ### The `TestRelease` package <a id="the-testrelease-package"></a>
 
-The `TestRelease` package is used to run certain basic packages that are already available within BOSS. It is best if you copy `TestRelease` into your [your _workarea_](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4GgC5cleb1Fpaf0c/primary/#set-up-your-work-area), so you can play around with it. A slightly updated version of the `TestRelease` is already available in the BOSS Afterburner in the [`boss/workarea` folder](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea).
+The `TestRelease` package is used to run certain basic packages that are already available within BOSS. It is best if you copy `TestRelease` into your [your _workarea_](https://besiii.gitbook.io/boss/#set-up-your-work-area), so you can play around with it. A slightly updated version of the `TestRelease` is already available in the BOSS Afterburner in the [`boss/workarea` folder](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea).
 
 You can also choose to copy it from its location in BOSS:
 
@@ -168,7 +168,7 @@ You can also choose to copy it from its location in BOSS:
 /afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/TestRelease
 ```
 
-If you [set up your BOSS environment](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4GgC5cleb1Fpaf0c/primary/docs-boss/setup#2-set-up-your-boss-workarea) correctly, you can copy `TestRelease` to your _BOSS workarea_ as follows:
+If you [set up your BOSS environment](https://besiii.gitbook.io/boss/docs-boss/setup#2-set-up-your-boss-workarea) correctly, you can copy `TestRelease` to your _BOSS workarea_ as follows:
 
 ```bash
 cp –r "$BesArea/TestRelease" "$BOSSWORKAREA"cd "$BOSSWORKAREA/TestRelease/TestRelease-"*
@@ -200,7 +200,7 @@ cd ../runboss.exe jobOptions_sim.txt
 
 which, in this case, will run a Monte Carlo simulation.
 
-Note that in [Step 5 when we set up the work area](https://besiii.gitbook.io/boss-gitbook/~/drafts/-LTf4GgC5cleb1Fpaf0c/primary/docs-boss/setup#step-5-modify-your-bashrc) we added `source setup.sh` line to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
+Note that in [Step 5 when we set up the work area](https://besiii.gitbook.io/boss/docs-boss/setup#step-5-modify-your-bashrc) we added `source setup.sh` line to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
 
 #### A note on `TestRelease` versions in the _BOSS Afterburner_ <a id="a-note-on-testrelease-versions-in-the-boss-afterburner"></a>
 
