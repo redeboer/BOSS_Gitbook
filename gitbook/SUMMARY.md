@@ -29,6 +29,7 @@
   * [Base algorithm: the TrackSelector](the-boss-afterburner/initial/base.md)
   * [Derived algorithms](the-boss-afterburner/initial/derived/README.md)
     * [rhopi\_pipigg](the-boss-afterburner/initial/derived/rhopi_pipigg.md)
+    * [Jpsipipi\_dilepton](the-boss-afterburner/initial/derived/jpsipipi_dilepton.md)
     * [D0phi\_KpiKK](the-boss-afterburner/initial/derived/d0phi_kpikk.md)
     * [D0omega\_Kpipipipi](the-boss-afterburner/initial/derived/d0omega_kpipipipi.md)
 * [Final event selection](the-boss-afterburner/final/README.md)
