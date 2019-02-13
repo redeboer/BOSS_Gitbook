@@ -2,6 +2,7 @@ var hierarchy =
 [
     [ "Algorithm", null, [
       [ "MctruthForTopoAna", "classMctruthForTopoAna.html", null ],
+      [ "PipiJpsi", "classPipiJpsi.html", null ],
       [ "RhopiAlg", "classRhopiAlg.html", null ],
       [ "TrackSelector", "classTrackSelector.html", [
         [ "D0phi_KpiKK", "classD0phi__KpiKK.html", null ],
@@ -21,6 +22,7 @@ var hierarchy =
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", null ]
     ] ],
+    [ "m_trkInfo", "classm__trkInfo.html", null ],
     [ "Particle", "classParticle.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", null ]
     ] ],

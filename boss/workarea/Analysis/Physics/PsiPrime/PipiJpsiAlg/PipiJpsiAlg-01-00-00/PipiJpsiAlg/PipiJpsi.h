@@ -6,7 +6,7 @@
 
 /**
  * @brief    Modified header of the stock BOSS package `PipiJpsiAlg` (version `00-00-03`).
- * @details Analyse \f$ \psi' \rightarrow J/\psi \pi \pi \f$ and \f$ J/\psi \rightarrow \text{di-leptons} \f$ events. This example package also teaches the use of Monte Carlo truth.
+ * @details Analyse \f$ \psi' \rightarrow J/\psi \pi \pi \f$ and \f$ J/\psi \rightarrow \mathrm{di-leptons} \f$ events. This example package also teaches the use of Monte Carlo truth.
  *
  * @author   Kai Zhu (zhuk@ihep.ac.cn)
  * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)

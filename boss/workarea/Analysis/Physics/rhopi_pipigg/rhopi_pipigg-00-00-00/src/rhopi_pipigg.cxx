@@ -475,9 +475,9 @@
 		HepLorentzVector pgamma2 = kkmfit->pfit(3);
 		// * Primary candidates * //
 		HepLorentzVector ppi0  = pgamma1 + pgamma2; /// Invariant mass for \f$\pi^0 \rightarrow \gamma\gamma\f$ candidate.
-		HepLorentzVector prho0 = ppim + ppip;       /// Invariant mass for \f$rho^0 \rightarrow \pi^-\pi^+\f$ candidate.
-		HepLorentzVector prhom = ppi0 + ppim;       /// Invariant mass for \f$rho^- \rightarrow \pi^0\pi^-\f$ candidate.
-		HepLorentzVector prhop = ppi0 + ppip;       /// Invariant mass for \f$rho^+ \rightarrow \pi^0\pi^+\f$ candidate.
+		HepLorentzVector prho0 = ppim + ppip;       /// Invariant mass for \f$\rho^0 \rightarrow \pi^-\pi^+\f$ candidate.
+		HepLorentzVector prhom = ppi0 + ppim;       /// Invariant mass for \f$\rho^- \rightarrow \pi^0\pi^-\f$ candidate.
+		HepLorentzVector prhop = ppi0 + ppip;       /// Invariant mass for \f$\rho^+ \rightarrow \pi^0\pi^+\f$ candidate.
 		// * Three J/psi candidates * //
 		HepLorentzVector pJpsiRho0 = prho0 + ppi0; /// Invariant mass for \f$J/\psi \rightarrow \rho^0\pi^0\f$ candidate.
 		HepLorentzVector pJpsiRhom = prhom + ppip; /// Invariant mass for \f$J/\psi \rightarrow \rho^-\pi^+\f$ candidate.

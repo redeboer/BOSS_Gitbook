@@ -23,6 +23,8 @@ var files =
     [ "MctruthForTopoAna.h", "MctruthForTopoAna_8h.html", null ],
     [ "Particle.cxx", "Particle_8cxx.html", null ],
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],
+    [ "PipiJpsi.cxx", "PipiJpsi_8cxx.html", "PipiJpsi_8cxx" ],
+    [ "PipiJpsi.h", "PipiJpsi_8h.html", null ],
     [ "ReconstructedParticle.cxx", "ReconstructedParticle_8cxx.html", null ],
     [ "ReconstructedParticle.h", "ReconstructedParticle_8h.html", null ],
     [ "rhopi_pipigg.cxx", "rhopi__pipigg_8cxx.html", "rhopi__pipigg_8cxx" ],
@@ -33,5 +35,6 @@ var files =
       [ "topoana", "classtopoana.html", "classtopoana" ]
     ] ],
     [ "TrackSelector.cxx", "TrackSelector_8cxx.html", "TrackSelector_8cxx" ],
-    [ "TrackSelector.h", "TrackSelector_8h.html", "TrackSelector_8h" ]
+    [ "TrackSelector.h", "TrackSelector_8h.html", "TrackSelector_8h" ],
+    [ "trkInfo.h", "trkInfo_8h.html", "trkInfo_8h" ]
 ];
