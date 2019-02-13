@@ -96,9 +96,9 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Constructors</div></td></tr>
 <tr class="memitem:a10870242930d8d48ded8bde0575a2233"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a10870242930d8d48ded8bde0575a2233">BOSSOutputLoader</a> ()</td></tr>
 <tr class="separator:a10870242930d8d48ded8bde0575a2233"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72e3e535f28f63137071e24ae2cd2a71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a72e3e535f28f63137071e24ae2cd2a71">BOSSOutputLoader</a> (const char *directoryPath, bool print=true)</td></tr>
-<tr class="memdesc:a72e3e535f28f63137071e24ae2cd2a71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that opens a <code>TFile</code> and unordered_maps its contents.  <a href="#a72e3e535f28f63137071e24ae2cd2a71">More...</a><br /></td></tr>
-<tr class="separator:a72e3e535f28f63137071e24ae2cd2a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabbc22a805f63c7d3b4b2cd31b08b2c7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#aabbc22a805f63c7d3b4b2cd31b08b2c7">BOSSOutputLoader</a> (const char *directoryPath, bool print_branches=true, bool print_averages=false)</td></tr>
+<tr class="memdesc:aabbc22a805f63c7d3b4b2cd31b08b2c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that opens a <code>TFile</code> and unordered_maps its contents.  <a href="#aabbc22a805f63c7d3b4b2cd31b08b2c7">More...</a><br /></td></tr>
+<tr class="separator:aabbc22a805f63c7d3b4b2cd31b08b2c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Information functions</div></td></tr>
 <tr class="memitem:a34462102493e093373991de0c5926aaf"><td class="memItemLeft" align="right" valign="top">TH1F *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a34462102493e093373991de0c5926aaf">Draw</a> (const char *treeName, const char *branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option=&quot;&quot;, const TString &amp;logScale=&quot;&quot;, const char *cut=&quot;&quot;)</td></tr>
 <tr class="memdesc:a34462102493e093373991de0c5926aaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the distributions of all branches available in the ROOT file.  <a href="#a34462102493e093373991de0c5926aaf">More...</a><br /></td></tr>
@@ -153,9 +153,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ab6d81022b14f0de41438dcf699a5e01c"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classChainLoader.html">ChainLoader</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#ab6d81022b14f0de41438dcf699a5e01c">CreateOrderedMap</a> ()</td></tr>
 <tr class="memdesc:ab6d81022b14f0de41438dcf699a5e01c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <code>list</code> that is ordered by the number of entries in the <code>TChain</code>.  <a href="#ab6d81022b14f0de41438dcf699a5e01c">More...</a><br /></td></tr>
 <tr class="separator:ab6d81022b14f0de41438dcf699a5e01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2afea5ff1c5ea9999cc436befc24deea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a2afea5ff1c5ea9999cc436befc24deea">LoadChains</a> (bool print=true)</td></tr>
-<tr class="memdesc:a2afea5ff1c5ea9999cc436befc24deea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a list of <code>TChain</code>s based on the files in the directory you are loading.  <a href="#a2afea5ff1c5ea9999cc436befc24deea">More...</a><br /></td></tr>
-<tr class="separator:a2afea5ff1c5ea9999cc436befc24deea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e2e3f05b3ddb07c5f202f0c5cf97925"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a6e2e3f05b3ddb07c5f202f0c5cf97925">LoadChains</a> (bool print_branches=true, bool print_averages=false)</td></tr>
+<tr class="memdesc:a6e2e3f05b3ddb07c5f202f0c5cf97925"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a list of <code>TChain</code>s based on the files in the directory you are loading.  <a href="#a6e2e3f05b3ddb07c5f202f0c5cf97925">More...</a><br /></td></tr>
+<tr class="separator:a6e2e3f05b3ddb07c5f202f0c5cf97925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -174,7 +174,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>General container for BOSS analysis output. </p>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>October 24th, 2018</dd></dl>
-<p>The BOSSRootTree class can be used to create several trees from ROOT files generated by the <code>jopOptions_ana</code> (analysis) step of the BOSS framework in the most general way, that is, it only loads the ROOT files and creates an <code>unordered_map</code> of <code>TChain</code>s based on <em></em>(all) trees within those ROOT files. You can create a derived class which maps the map of <code>TChain</code>s to a structure with particular names that match the file with which you are working. </p>
+<p>This object only needs a path of a directory containin ROOT files from the initial analysis or of one such root file. All <code>TTree</code>s and the branches in these files will be loaded automatically, so you don't have to worry about names of those trees. This object also comes with several methods that faciliate e.g. plotting of the <code>TTree</code> contents. </p>
 
 <p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00030">30</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -205,8 +205,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a72e3e535f28f63137071e24ae2cd2a71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72e3e535f28f63137071e24ae2cd2a71">&#9670;&nbsp;</a></span>BOSSOutputLoader() <span class="overload">[2/2]</span></h2>
+<a id="aabbc22a805f63c7d3b4b2cd31b08b2c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabbc22a805f63c7d3b4b2cd31b08b2c7">&#9670;&nbsp;</a></span>BOSSOutputLoader() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,7 +221,13 @@ Protected Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>print</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>print_branches</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>print_averages</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -377,11 +383,11 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">treeName</td><td>Name of the <code>TChain</code> that you are looking for. </td></tr>
     <tr><td class="paramname">branchX</td><td>Branch that you want to plot. You may use a formula. </td></tr>
-    <tr><td class="paramname">nBinx</td><td>Number of bins to use on the <img class="formulaInl" alt="$x$" src="form_44.png"/>-axis. </td></tr>
-    <tr><td class="paramname">x1</td><td>Lower limit on the <img class="formulaInl" alt="$x$" src="form_44.png"/>-axis. </td></tr>
-    <tr><td class="paramname">x2</td><td>Upper limit on the <img class="formulaInl" alt="$x$" src="form_44.png"/>-axis.. </td></tr>
+    <tr><td class="paramname">nBinx</td><td>Number of bins to use on the <img class="formulaInl" alt="$x$" src="form_42.png"/>-axis. </td></tr>
+    <tr><td class="paramname">x1</td><td>Lower limit on the <img class="formulaInl" alt="$x$" src="form_42.png"/>-axis. </td></tr>
+    <tr><td class="paramname">x2</td><td>Upper limit on the <img class="formulaInl" alt="$x$" src="form_42.png"/>-axis.. </td></tr>
     <tr><td class="paramname">option</td><td>Draw options. </td></tr>
-    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_44.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
+    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_42.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
     <tr><td class="paramname">cut</td><td>Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>. </td></tr>
   </table>
   </dd>
@@ -481,16 +487,16 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">treeName</td><td>Name of the <code>TChain</code> that you are looking for. </td></tr>
-    <tr><td class="paramname">branchX</td><td>Branch that you want to plot on the <img class="formulaInl" alt="$x$" src="form_44.png"/>-axis. You may use a formula. </td></tr>
-    <tr><td class="paramname">branchY</td><td>Branch that you want to plot on the <img class="formulaInl" alt="$y$" src="form_45.png"/>-axis. You may use a formula. </td></tr>
-    <tr><td class="paramname">nBinx</td><td>Number of bins to use on the <img class="formulaInl" alt="$x$" src="form_44.png"/>-axis. </td></tr>
-    <tr><td class="paramname">x1</td><td>Lower limit on the <img class="formulaInl" alt="$x$" src="form_44.png"/>-axis. </td></tr>
-    <tr><td class="paramname">x2</td><td>Upper limit on the <img class="formulaInl" alt="$x$" src="form_44.png"/>-axis. </td></tr>
-    <tr><td class="paramname">nBiny</td><td>Number of bins to use on the <img class="formulaInl" alt="$y$" src="form_45.png"/>-axis. </td></tr>
-    <tr><td class="paramname">y1</td><td>Lower limit on the <img class="formulaInl" alt="$y$" src="form_45.png"/>-axis. </td></tr>
-    <tr><td class="paramname">y2</td><td>Upper limit on the <img class="formulaInl" alt="$y$" src="form_45.png"/>-axis. </td></tr>
+    <tr><td class="paramname">branchX</td><td>Branch that you want to plot on the <img class="formulaInl" alt="$x$" src="form_42.png"/>-axis. You may use a formula. </td></tr>
+    <tr><td class="paramname">branchY</td><td>Branch that you want to plot on the <img class="formulaInl" alt="$y$" src="form_43.png"/>-axis. You may use a formula. </td></tr>
+    <tr><td class="paramname">nBinx</td><td>Number of bins to use on the <img class="formulaInl" alt="$x$" src="form_42.png"/>-axis. </td></tr>
+    <tr><td class="paramname">x1</td><td>Lower limit on the <img class="formulaInl" alt="$x$" src="form_42.png"/>-axis. </td></tr>
+    <tr><td class="paramname">x2</td><td>Upper limit on the <img class="formulaInl" alt="$x$" src="form_42.png"/>-axis. </td></tr>
+    <tr><td class="paramname">nBiny</td><td>Number of bins to use on the <img class="formulaInl" alt="$y$" src="form_43.png"/>-axis. </td></tr>
+    <tr><td class="paramname">y1</td><td>Lower limit on the <img class="formulaInl" alt="$y$" src="form_43.png"/>-axis. </td></tr>
+    <tr><td class="paramname">y2</td><td>Upper limit on the <img class="formulaInl" alt="$y$" src="form_43.png"/>-axis. </td></tr>
     <tr><td class="paramname">option</td><td>Draw options. </td></tr>
-    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_44.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
+    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_42.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
     <tr><td class="paramname">cut</td><td>Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>. </td></tr>
   </table>
   </dd>
@@ -551,7 +557,7 @@ Protected Attributes</h2></td></tr>
     <tr><td class="paramname">branchNames</td><td>Name of the branch names that you want to plot. See <a href="https://root.cern.ch/doc/master/classTChain.html#a8a2b55624f48451d7ab0fc3c70bfe8d7">https://root.cern.ch/doc/master/classTChain.html#a8a2b55624f48451d7ab0fc3c70bfe8d7</a> for the syntax. </td></tr>
     <tr><td class="paramname">cut</td><td>Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>. </td></tr>
     <tr><td class="paramname">option</td><td>Draw options. </td></tr>
-    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_44.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
+    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_42.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
   </table>
   </dd>
 </dl>
@@ -597,7 +603,7 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">treeName</td><td>Name of the <code>TChain</code> that you are looking for. </td></tr>
     <tr><td class="paramname">option</td><td>Draw options. </td></tr>
-    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_44.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
+    <tr><td class="paramname">logScale</td><td>If this argument contains an <code>'x'</code>, the <img class="formulaInl" alt="$x$" src="form_42.png"/>-scale will be set to log scale (same for <code>'y'</code> and <code>'z'</code>). </td></tr>
   </table>
   </dd>
 </dl>
@@ -733,8 +739,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a2afea5ff1c5ea9999cc436befc24deea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2afea5ff1c5ea9999cc436befc24deea">&#9670;&nbsp;</a></span>LoadChains()</h2>
+<a id="a6e2e3f05b3ddb07c5f202f0c5cf97925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e2e3f05b3ddb07c5f202f0c5cf97925">&#9670;&nbsp;</a></span>LoadChains()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -746,8 +752,18 @@ Protected Attributes</h2></td></tr>
           <td class="memname">void BOSSOutputLoader::LoadChains </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>print</em> = <code>true</code></td><td>)</td>
+          <td class="paramname"><em>print_branches</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>print_averages</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -782,7 +798,7 @@ Protected Attributes</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Book branches using <code><a class="el" href="classChainLoader.html#a36fd2a8b0d442f1b014a60fa82e16187" title="Automatically book addresses for all branches of the underlying TChain. ">ChainLoader::BookAddresses</a></code>.</p>
+<p class="startli">Book branches using <code><a class="el" href="classChainLoader.html#ad93ba90c4a626e758b98a29f4729bf70">ChainLoader::BookAddresses</a></code>.</p>
 <p class="endli"></p>
 </li>
 </ul>

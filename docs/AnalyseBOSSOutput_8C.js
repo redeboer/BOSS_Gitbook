@@ -1,28 +1,5 @@
 var AnalyseBOSSOutput_8C =
 [
-    [ "AnalyseBOSSOutput", "group__BOSS__Afterburner__scripts.html#gae869f2174e88375000b3c9109065aa46", null ],
-    [ "DrawDifference", "group__BOSS__Afterburner__scripts.html#gabee3cd059976d9c8b0c2082ae1d3fbed", null ],
-    [ "GetParameterName", "group__BOSS__Afterburner__scripts.html#ga272a0b303a0709b326fd89835180dabe", null ],
-    [ "GetParameterValue", "group__BOSS__Afterburner__scripts.html#ga833ee0fdfa4feca5a2062a899d8f19d4", null ],
-    [ "LoadConfiguration", "group__BOSS__Afterburner__scripts.html#ga4b6d683c2253faf6854d6e8cd7cf819c", null ],
-    [ "main", "group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97", null ],
-    [ "RemoveLeading", "group__BOSS__Afterburner__scripts.html#ga66ff246add5fb65a582decc0c933a47a", null ],
-    [ "RemoveTrailing", "group__BOSS__Afterburner__scripts.html#ga2777c0336213ab9fc751177c10b3f07c", null ],
-    [ "Trim", "group__BOSS__Afterburner__scripts.html#gab29af1f9dbd355bdcf395f3c5bbaf1f1", null ],
-    [ "gDo_conv_d", "group__BOSS__Afterburner__scripts.html#gac4d79ab366e7011a6d7961d214cd1f8b", null ],
-    [ "gDo_conv_s", "group__BOSS__Afterburner__scripts.html#gaede6c088f8c87eff491f17c778b830a9", null ],
-    [ "gDo_gauss", "group__BOSS__Afterburner__scripts.html#gab231f074512fdca6caa52bcb8ac9e93e", null ],
-    [ "gDraw_fit", "group__BOSS__Afterburner__scripts.html#gacafe28372400965474c696882f8ca2d0", null ],
-    [ "gDraw_mctruth", "group__BOSS__Afterburner__scripts.html#ga89034a0776a50a720b3cecd5f6c7fae8", null ],
-    [ "gDraw_mult", "group__BOSS__Afterburner__scripts.html#gac6a1f0783f883f961da1704dc31d3364", null ],
-    [ "gDraw_tof", "group__BOSS__Afterburner__scripts.html#ga4207b345929532a39ca8801a6155252b", null ],
-    [ "gDraw_vertex", "group__BOSS__Afterburner__scripts.html#gabc727588fb7d19ca3da5dc7d22505a21", null ],
-    [ "gFilename", "group__BOSS__Afterburner__scripts.html#ga23636f4759ac48447dafee25ab31c4af", null ],
-    [ "gFitplots", "group__BOSS__Afterburner__scripts.html#ga1827bd3f0564f0233ec11fa4e85b29e9", null ],
-    [ "gLogY", "group__BOSS__Afterburner__scripts.html#ga67e3cc7f35b93bfe3745fe9db832357c", null ],
-    [ "gLogZ", "group__BOSS__Afterburner__scripts.html#gace0514f8d9b2f469e930e6ec10ad4225", null ],
-    [ "gPlotstats", "group__BOSS__Afterburner__scripts.html#gab0a71b90503aaf15bd393481cef03552", null ],
-    [ "gPrint", "group__BOSS__Afterburner__scripts.html#ga56ea38d6c3c3dc20803a9bb94b04faf0", null ],
-    [ "gPureplot", "group__BOSS__Afterburner__scripts.html#gace36d74e3ff06c0af48488f32863378a", null ],
-    [ "gSetranges", "group__BOSS__Afterburner__scripts.html#ga735228ae997a3dd3c1317e50c6d83043", null ]
+    [ "AnalyseBOSSOutput", "group__BOSS__Afterburner__scripts.html#ga086e25251157ff77e7388eea63cee17c", null ],
+    [ "main", "group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97", null ]
 ];

@@ -39,16 +39,18 @@
 	{
 		/// <ol>
 		/// <li> Abort if arguments are weird.
-		if(binWidth <= 0) return;
-		if(to <= from) return;
+			if(binWidth <= 0) return;
+			if(to <= from) return;
 
 		/// <li> <b>WARNING</b> Abort if number of bins is larger than 10.000!
-		fNumberOfBins = (fPlotTo - fPlotFrom) / fBinWidth;
-		if(fNumberOfBins >= 10000) return;
+			fNumberOfBins = (fPlotTo - fPlotFrom) / fBinWidth;
+			if(fNumberOfBins >= 10000) return;
 
 		/// <li> Import arguments from constructor parameters.
-		fCuts         = cut;
-		fDrawOption   = option;
-		fPlotFrom     = from;
-		fPlotTo       = to;
+			fCuts         = cut;
+			fDrawOption   = option;
+			fPlotFrom     = from;
+			fPlotTo       = to;
+
+		/// </ol>
 	}

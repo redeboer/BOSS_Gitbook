@@ -352,7 +352,7 @@ Private Attributes</h2></td></tr>
 <p>Constructor for the <code><a class="el" href="classRhopiAlg.html" title="Modified header of the stock BOSS package RhopiAlg (version 00-00-23). ">RhopiAlg</a></code> algorithm. </p>
 <p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classRhopiAlg.html" title="Modified header of the stock BOSS package RhopiAlg (version 00-00-23). ">RhopiAlg</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="RhopiAlg_8h.html">RhopiAlg/RhopiAlg.h</a>) and that you should assign the values in <code>share/jopOptions_RhopiAlg.txt</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00086">86</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00085">85</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>
@@ -374,10 +374,78 @@ Private Attributes</h2></td></tr>
 
 <p>Inherited <code>execute</code> method of the <code>Algorithm</code>. </p>
 <p>This function is called <em>for each event</em>. </p>
+<ol>
+<li>
+<p class="startli">Create log stream (<code>MsgStream</code> class)</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Load next event from DST file</p>
+<p><b> Uses <code>Ncut0</code> counter</b>: no cut applied yet.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Set vertex origin</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">LOOP OVER CHARGED TRACKS: select charged tracks (eventual pions)</p>
+<p><b> Uses <code>Ncut1</code> counter</b>: nGood has to be 2, mdcTrk-&gt;charge() has to be more than 0.</p>
 <p>&lt; Number of charged tracks as identified by the MDC.</p>
-<p>&lt; vector of integers that give the position of tracks in the <code>evtRecEvent</code> marked good. </p>
+<p>&lt; vector of integers that give the position of tracks in the <code>evtRecEvent</code> marked good.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">LOOP OVER NEUTRAL TRACKS: select photons</p>
+<p><b> Uses <code>Ncut2</code> counter</b>: number of good photons has to be 2 at least.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Check charged track dEdx PID information</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Check charged track ToF PID information</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Get 4-momentum for each photon</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Get 4-momentum for each charged track</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><a class="el" href="classRhopiAlg.html" title="Modified header of the stock BOSS package RhopiAlg (version 00-00-23). ">RhopiAlg</a> without PID</p>
+<p><b> Uses <code>Ncut3</code> counter</b>: ipip.size() * ipim.size() cannot be 1.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Loop over each gamma pair and store total energy</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Default is pion, for other particles:</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Test vertex fit</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Apply Kalman 4-constrain kinematic fit</p>
+<p><b> Uses <code>Ncut4</code> counter</b>: fit4c passed and ChiSq less than fMaxChiSq.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Apply Kalman kinematic fit</p>
+<p><b> Uses <code>Ncut5</code> counter</b>: Kalman kinematic fit 5c is successful. <b> Uses <code>Ncut6</code> counter</b>: <img class="formulaInl" alt="$J/\psi \rightarrow \rho^0\pi^0$" src="form_35.png"/> (cut on invariant mass window).</p>
+<p class="endli"></p>
+</li>
+</ol>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00368">368</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00393">393</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>
@@ -398,9 +466,9 @@ Private Attributes</h2></td></tr>
 
 <p>Inherited <code>finalize</code> method of <code>Algorithm</code>. </p>
 <p>This function is only called once, after running over all events.</p>
-<p>Prints the flow chart to the terminal, so make sure you save this output! </p>
+<p>Prints the flow chart to the terminal, so <b>make sure you save this output!</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l01020">1020</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l01048">1048</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>
@@ -421,7 +489,367 @@ Private Attributes</h2></td></tr>
 
 <p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
 <p>This function is called only once in the beginning.</p>
-<p>Define and load NTuples here. </p>
+<p>Define and load <code>NTuple</code>s here. </p>
+<ul>
+<li>
+<p class="startli"><b><code>NTuple "vxyz"</code></b>: Vertex position</p>
+<ul>
+<li>
+<p class="startli"><code>"vx0"</code>: primary <img class="formulaInl" alt="$x$" src="form_42.png"/>-vertex as determined by MDC</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"vy0"</code>: primary <img class="formulaInl" alt="$y$" src="form_43.png"/>-vertex as determined by MDC</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"vz0"</code>: primary <img class="formulaInl" alt="$z$" src="form_44.png"/>-vertex as determined by MDC</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"vr0"</code>: distance from origin in <img class="formulaInl" alt="$xy$" src="form_45.png"/>-plane</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"rvxy0"</code>: nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_45.png"/> plane</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"rvz0"</code>: nearest distance to IP in <img class="formulaInl" alt="$z$" src="form_44.png"/> direction</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"rvphi0"</code>: angle in the <img class="formulaInl" alt="$xy$" src="form_45.png"/>-plane (?)</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Check definition of <code>"rvphi0"</code> </dd></dl>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b><code>NTuple "photon"</code></b>: Photon kinematics</p>
+<ul>
+<li>
+<p class="startli"><code>"dthe"</code> branch: theta difference with nearest charged track ( <img class="formulaInl" alt="$^\circ$" src="form_46.png"/>)</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"dphi"</code> branch: phi difference with nearest charged track ( <img class="formulaInl" alt="$^\circ$" src="form_46.png"/>)</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"dang"</code> branch: angle difference with nearest charged track</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"eraw"</code> branch: energy of the photon</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b><code>NTuple "etot"</code></b>: Energy branch</p>
+<ul>
+<li>
+<p class="startli"><code>"m2gg"</code> branch: invariant mass of the two gammas</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"etot"</code> branch: total energy of <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>, <img class="formulaInl" alt="$\pi^-$" src="form_9.png"/> and the two gammas</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b><code>NTuple "fit4c"</code></b>: Neutral pion (pi0) fit branch</p>
+<ul>
+<li>
+<p class="startli"><code>"mpi0"</code> branch: invariant <img class="formulaInl" alt="$\pi^0$" src="form_47.png"/> mass according to Kalman kinematic fit</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"chi2"</code> branch: <img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b><code>NTuple "fit5c"</code></b>: Rho fit branch</p>
+<ul>
+<li>
+<p class="startli"><code>"chi2"</code> branch: <img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"mrho0"</code> branch: invariant mass for <img class="formulaInl" alt="$\pi^+\pi^-$" src="form_48.png"/> combination ( <img class="formulaInl" alt="$\rho^0$" src="form_49.png"/>)</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"mrhop"</code> branch: invariant mass for <img class="formulaInl" alt="$\pi^0\pi^+$" src="form_50.png"/> combination ( <img class="formulaInl" alt="$\rho^+$" src="form_51.png"/>)</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"mrhom"</code> branch: invariant mass for <img class="formulaInl" alt="$\pi^0\pi^-$" src="form_52.png"/> combination ( <img class="formulaInl" alt="$\rho^-$" src="form_53.png"/>)</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b><code>NTuple "geff"</code></b>: Photon detection efficiences</p>
+<ul>
+<li>
+<p class="startli"><code>"fcos"</code> branch: <img class="formulaInl" alt="$E/|\vec{p}|$" src="form_54.png"/> ratio for <img class="formulaInl" alt="$\pi^0$" src="form_47.png"/> candidate</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"elow"</code> branch: lowest energy of the two photons</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b><code>NTuple "dedx"</code></b>: Import dE/dx PID branch</p>
+<ul>
+<li>
+<p class="startli"><code>"ptrk"</code> branch: momentum of the track</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"chie"</code> branch: chi2 in case of electron</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"chimu"</code> branch: chi2 in case of muon</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"chipi"</code> branch: chi2 in case of pion</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"chik"</code> branch: chi2 in case of kaon</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"chip"</code> branch: chi2 in case of proton</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"probPH"</code> branch: most probable pulse height from truncated mean</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"normPH"</code> branch: normalized pulse height</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"ghit"</code> branch: number of good hits</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"thit"</code> branch: total number of hits</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b><code>NTuple "tofe"</code></b>: ToF endcap branch</p>
+<ul>
+<li>
+<p class="startli"><code>"ptrk"</code> branch: momentum of the track as reconstructed by MDC</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"path"</code> branch: path length</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tof"</code> branch: time of flight</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"cntr"</code> branch: ToF counter ID</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"ph"</code> branch: ToF pulse height</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"rhit"</code> branch: track extrapolate Z or R Hit position</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"qual"</code> branch: data quality of reconstruction</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"te"</code> branch: difference with ToF in electron hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tmu"</code> branch: difference with ToF in muon hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tpi"</code> branch: difference with ToF in charged pion hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tk"</code> branch: difference with ToF in charged kaon hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tp"</code> branch: difference with ToF in proton hypothesis</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b><code>NTuple "tof1"</code></b>: ToF <em>inner</em> barrel branch</p>
+<ul>
+<li>
+<p class="startli"><code>"ptrk"</code> branch: momentum of the track as reconstructed by MDC</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"path"</code> branch: path length</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tof"</code> branch: time of flight</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"cntr"</code> branch: ToF counter ID</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"ph"</code> branch: ToF pulse height</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"zhit"</code> branch: track extrapolate Z or R Hit position</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"qual"</code> branch: data quality of reconstruction</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"te"</code> branch: difference with ToF in electron hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tmu"</code> branch: difference with ToF in muon hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tpi"</code> branch: difference with ToF in charged pion hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tk"</code> branch: difference with ToF in charged kaon hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tp"</code> branch: difference with ToF in proton hypothesis</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b><code>NTuple "tof2"</code></b>: ToF <em>outer</em> barrel branch</p>
+<ul>
+<li>
+<p class="startli"><code>"ptrk"</code> branch: momentum of the track as reconstructed by MDC</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"path"</code> branch: path length</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tof"</code> branch: time of flight</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"cntr"</code> branch: ToF counter ID</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"ph"</code> branch: ToF pulse height</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"zhit"</code> branch: track extrapolate Z or R Hit position</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"qual"</code> branch: data quality of reconstruction</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"te"</code> branch: difference with ToF in electron hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tmu"</code> branch: difference with ToF in muon hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tpi"</code> branch: difference with ToF in charged pion hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tk"</code> branch: difference with ToF in charged kaon hypothesis</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tp"</code> branch: difference with ToF in proton hypothesis</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b><code>NTuple "pid"</code></b>: Track PID information</p>
+<ul>
+<li>
+<p class="startli"><code>"ptrk"</code> branch: momentum of the track</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"cost"</code> branch: theta angle of the track</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"dedx"</code> branch: Chi2 of the dedx of the track</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tof1"</code> branch: Chi2 of the inner barrel ToF of the track</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"tof2"</code> branch: Chi2 of the outer barrel ToF of the track</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><code>"prob"</code> branch: probability that it is a pion</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+</ul>
 
 <p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00124">124</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 

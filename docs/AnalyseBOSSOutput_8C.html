@@ -80,96 +80,28 @@ $(document).ready(function(){initNavTree('AnalyseBOSSOutput_8C.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">AnalyseBOSSOutput.C File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ArgPair_8h_source.html">ArgPair.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>&quot;</code><br />
 <code>#include &quot;TStyle.h&quot;</code><br />
-<code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
-<code>#include &lt;sstream&gt;</code><br />
-<code>#include &lt;list&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
 </div>
 <p><a href="AnalyseBOSSOutput_8C_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga4b6d683c2253faf6854d6e8cd7cf819c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga4b6d683c2253faf6854d6e8cd7cf819c">LoadConfiguration</a> (const char *filename)</td></tr>
-<tr class="separator:ga4b6d683c2253faf6854d6e8cd7cf819c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga272a0b303a0709b326fd89835180dabe"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga272a0b303a0709b326fd89835180dabe">GetParameterName</a> (string line)</td></tr>
-<tr class="separator:ga272a0b303a0709b326fd89835180dabe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga833ee0fdfa4feca5a2062a899d8f19d4"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga833ee0fdfa4feca5a2062a899d8f19d4">GetParameterValue</a> (string line)</td></tr>
-<tr class="separator:ga833ee0fdfa4feca5a2062a899d8f19d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabee3cd059976d9c8b0c2082ae1d3fbed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gabee3cd059976d9c8b0c2082ae1d3fbed">DrawDifference</a> (TH1 *histToDraw, TH1 *histToSubtract, Option_t *opt, const char *setLog)</td></tr>
-<tr class="memdesc:gabee3cd059976d9c8b0c2082ae1d3fbed"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>TEMPORARY</em> function that serves as a fix for the bug that causes the wrong best pair to be stored.  <a href="group__BOSS__Afterburner__scripts.html#gabee3cd059976d9c8b0c2082ae1d3fbed">More...</a><br /></td></tr>
-<tr class="separator:gabee3cd059976d9c8b0c2082ae1d3fbed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga66ff246add5fb65a582decc0c933a47a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga66ff246add5fb65a582decc0c933a47a">RemoveLeading</a> (string &amp;line, const char c=' ')</td></tr>
-<tr class="separator:ga66ff246add5fb65a582decc0c933a47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2777c0336213ab9fc751177c10b3f07c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga2777c0336213ab9fc751177c10b3f07c">RemoveTrailing</a> (string &amp;line, const char c=' ')</td></tr>
-<tr class="separator:ga2777c0336213ab9fc751177c10b3f07c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab29af1f9dbd355bdcf395f3c5bbaf1f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gab29af1f9dbd355bdcf395f3c5bbaf1f1">Trim</a> (string &amp;line, const char c=' ')</td></tr>
-<tr class="separator:gab29af1f9dbd355bdcf395f3c5bbaf1f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae869f2174e88375000b3c9109065aa46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gae869f2174e88375000b3c9109065aa46">AnalyseBOSSOutput</a> (TString configuration_file=&quot;configs/D0phi_KpiKK_quick.txt&quot;)</td></tr>
-<tr class="memdesc:gae869f2174e88375000b3c9109065aa46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function used when compiling and executing in <code>ROOT</code>.  <a href="group__BOSS__Afterburner__scripts.html#gae869f2174e88375000b3c9109065aa46">More...</a><br /></td></tr>
-<tr class="separator:gae869f2174e88375000b3c9109065aa46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga086e25251157ff77e7388eea63cee17c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga086e25251157ff77e7388eea63cee17c">AnalyseBOSSOutput</a> (const char *configuration_file=&quot;configs/D0phi_KpiKK_quick.txt&quot;)</td></tr>
+<tr class="memdesc:ga086e25251157ff77e7388eea63cee17c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function used when compiling and executing in <code>ROOT</code>.  <a href="group__BOSS__Afterburner__scripts.html#ga086e25251157ff77e7388eea63cee17c">More...</a><br /></td></tr>
+<tr class="separator:ga086e25251157ff77e7388eea63cee17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="memdesc:ga0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function that is called when executing the executable compiled using e.g.  <a href="group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
 <tr class="separator:ga0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ga23636f4759ac48447dafee25ab31c4af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga23636f4759ac48447dafee25ab31c4af">gFilename</a> { &quot;Input file or directory&quot;, &quot;NOFILE&quot; }</td></tr>
-<tr class="separator:ga23636f4759ac48447dafee25ab31c4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga56ea38d6c3c3dc20803a9bb94b04faf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga56ea38d6c3c3dc20803a9bb94b04faf0">gPrint</a> { &quot;Print branches&quot;, false }</td></tr>
-<tr class="separator:ga56ea38d6c3c3dc20803a9bb94b04faf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga67e3cc7f35b93bfe3745fe9db832357c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga67e3cc7f35b93bfe3745fe9db832357c">gLogY</a> { &quot;Use y log scale&quot;, &quot;y&quot; }</td></tr>
-<tr class="memdesc:ga67e3cc7f35b93bfe3745fe9db832357c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to draw the <img class="formulaInl" alt="$y$" src="form_45.png"/> axis of the <code>TH1F</code> in log scale.  <a href="group__BOSS__Afterburner__scripts.html#ga67e3cc7f35b93bfe3745fe9db832357c">More...</a><br /></td></tr>
-<tr class="separator:ga67e3cc7f35b93bfe3745fe9db832357c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gace0514f8d9b2f469e930e6ec10ad4225"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gace0514f8d9b2f469e930e6ec10ad4225">gLogZ</a> { &quot;Use z log scale&quot;, &quot;z&quot; }</td></tr>
-<tr class="memdesc:gace0514f8d9b2f469e930e6ec10ad4225"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to draw the <img class="formulaInl" alt="$z$" src="form_46.png"/> axis of the <code>TH2F</code> in log scale.  <a href="group__BOSS__Afterburner__scripts.html#gace0514f8d9b2f469e930e6ec10ad4225">More...</a><br /></td></tr>
-<tr class="separator:gace0514f8d9b2f469e930e6ec10ad4225"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga735228ae997a3dd3c1317e50c6d83043"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga735228ae997a3dd3c1317e50c6d83043">gSetranges</a> { &quot;Set plot ranges&quot;, true }</td></tr>
-<tr class="memdesc:ga735228ae997a3dd3c1317e50c6d83043"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to precisely set histogram ranges.  <a href="group__BOSS__Afterburner__scripts.html#ga735228ae997a3dd3c1317e50c6d83043">More...</a><br /></td></tr>
-<tr class="separator:ga735228ae997a3dd3c1317e50c6d83043"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab0a71b90503aaf15bd393481cef03552"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gab0a71b90503aaf15bd393481cef03552">gPlotstats</a> { &quot;Plot statistics&quot;, false }</td></tr>
-<tr class="memdesc:gab0a71b90503aaf15bd393481cef03552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the legend in the upper right corner with histogram statistics.  <a href="group__BOSS__Afterburner__scripts.html#gab0a71b90503aaf15bd393481cef03552">More...</a><br /></td></tr>
-<tr class="separator:gab0a71b90503aaf15bd393481cef03552"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gace36d74e3ff06c0af48488f32863378a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gace36d74e3ff06c0af48488f32863378a">gPureplot</a> { &quot;Plot raw data&quot;, true }</td></tr>
-<tr class="memdesc:gace36d74e3ff06c0af48488f32863378a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to plot histograms of branches <em>without fit</em>.  <a href="group__BOSS__Afterburner__scripts.html#gace36d74e3ff06c0af48488f32863378a">More...</a><br /></td></tr>
-<tr class="separator:gace36d74e3ff06c0af48488f32863378a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga89034a0776a50a720b3cecd5f6c7fae8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga89034a0776a50a720b3cecd5f6c7fae8">gDraw_mctruth</a> { &quot;Draw mctruth&quot;, false }</td></tr>
-<tr class="memdesc:ga89034a0776a50a720b3cecd5f6c7fae8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the MC truth parameters.  <a href="group__BOSS__Afterburner__scripts.html#ga89034a0776a50a720b3cecd5f6c7fae8">More...</a><br /></td></tr>
-<tr class="separator:ga89034a0776a50a720b3cecd5f6c7fae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac6a1f0783f883f961da1704dc31d3364"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gac6a1f0783f883f961da1704dc31d3364">gDraw_mult</a> { &quot;Draw multiplicites&quot;, false }</td></tr>
-<tr class="memdesc:gac6a1f0783f883f961da1704dc31d3364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the multiplicity branches.  <a href="group__BOSS__Afterburner__scripts.html#gac6a1f0783f883f961da1704dc31d3364">More...</a><br /></td></tr>
-<tr class="separator:gac6a1f0783f883f961da1704dc31d3364"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabc727588fb7d19ca3da5dc7d22505a21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gabc727588fb7d19ca3da5dc7d22505a21">gDraw_vertex</a> { &quot;Draw vertex&quot;, false }</td></tr>
-<tr class="memdesc:gabc727588fb7d19ca3da5dc7d22505a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"vertex"</code> branch.  <a href="group__BOSS__Afterburner__scripts.html#gabc727588fb7d19ca3da5dc7d22505a21">More...</a><br /></td></tr>
-<tr class="separator:gabc727588fb7d19ca3da5dc7d22505a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4207b345929532a39ca8801a6155252b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga4207b345929532a39ca8801a6155252b">gDraw_tof</a> { &quot;Draw ToF&quot;, false }</td></tr>
-<tr class="memdesc:ga4207b345929532a39ca8801a6155252b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"tof*"</code> branches.  <a href="group__BOSS__Afterburner__scripts.html#ga4207b345929532a39ca8801a6155252b">More...</a><br /></td></tr>
-<tr class="separator:ga4207b345929532a39ca8801a6155252b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacafe28372400965474c696882f8ca2d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gacafe28372400965474c696882f8ca2d0">gDraw_fit</a> { &quot;Draw fit branches&quot;, true }</td></tr>
-<tr class="memdesc:gacafe28372400965474c696882f8ca2d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"fit"</code> branches.  <a href="group__BOSS__Afterburner__scripts.html#gacafe28372400965474c696882f8ca2d0">More...</a><br /></td></tr>
-<tr class="separator:gacafe28372400965474c696882f8ca2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1827bd3f0564f0233ec11fa4e85b29e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga1827bd3f0564f0233ec11fa4e85b29e9">gFitplots</a> { &quot;Perform fits&quot;, false }</td></tr>
-<tr class="memdesc:ga1827bd3f0564f0233ec11fa4e85b29e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce invariant mass fits.  <a href="group__BOSS__Afterburner__scripts.html#ga1827bd3f0564f0233ec11fa4e85b29e9">More...</a><br /></td></tr>
-<tr class="separator:ga1827bd3f0564f0233ec11fa4e85b29e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab231f074512fdca6caa52bcb8ac9e93e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gab231f074512fdca6caa52bcb8ac9e93e">gDo_gauss</a> { &quot;Do Gaussian&quot;, true }</td></tr>
-<tr class="memdesc:gab231f074512fdca6caa52bcb8ac9e93e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a double Gaussian fit.  <a href="group__BOSS__Afterburner__scripts.html#gab231f074512fdca6caa52bcb8ac9e93e">More...</a><br /></td></tr>
-<tr class="separator:gab231f074512fdca6caa52bcb8ac9e93e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaede6c088f8c87eff491f17c778b830a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gaede6c088f8c87eff491f17c778b830a9">gDo_conv_s</a> { &quot;Do single convolution&quot;, false }</td></tr>
-<tr class="memdesc:gaede6c088f8c87eff491f17c778b830a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a Breit-Wigner convoluted with a <em>single</em> Gaussian.  <a href="group__BOSS__Afterburner__scripts.html#gaede6c088f8c87eff491f17c778b830a9">More...</a><br /></td></tr>
-<tr class="separator:gaede6c088f8c87eff491f17c778b830a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac4d79ab366e7011a6d7961d214cd1f8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#gac4d79ab366e7011a6d7961d214cd1f8b">gDo_conv_d</a> { &quot;Do double convolution&quot;, false }</td></tr>
-<tr class="memdesc:gac4d79ab366e7011a6d7961d214cd1f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a Breit-Wigner convoluted with a <em>double</em> Gaussian.  <a href="group__BOSS__Afterburner__scripts.html#gac4d79ab366e7011a6d7961d214cd1f8b">More...</a><br /></td></tr>
-<tr class="separator:gac4d79ab366e7011a6d7961d214cd1f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -36,7 +36,7 @@
 			///@}
 
 		/// @name Getters for configurations
-			/// @description <b>Interface is defined here!</b>
+			/// @details <b>Interface is defined here!</b>
 			///@{
 			const char* InputFilename() { return fInputFilename.value.data(); };
 			std::list<BranchPlotOptions>& BranchesToPlot();
@@ -186,6 +186,7 @@
 		/// -# Print loaded values in table form.
 		ArgPair_base::PrintAll();
 		/// @return Number of valid loaded arguments
+		return ArgPair_base::instances.size();
 	}
 
 	/**
@@ -251,6 +252,7 @@
 
 	/**
 	 * @brief Remove all leading characters if they are 'c'.
+	 * @param line String from which you want to remove the characters.
 	 * @param c Character that you want to trim.
 	 */
 	void ConfigLoader::RemoveLeading(std::string &line, const char c)
@@ -260,6 +262,7 @@
 
 	/**
 	 * @brief Remove all trailing characters if they are 'c'.
+	 * @param line String from which you want to remove the characters.
 	 * @param c Character that you want to trim.
 	 */
 	void ConfigLoader::RemoveTrailing(std::string &line, const char c)
@@ -269,6 +272,7 @@
 
 	/**
 	 * @brief Remove all leading and trailing characters if they are 'c'.
+	 * @param line String from which you want to remove the characters.
 	 * @param c Character that you want to trim.
 	 */
 	void ConfigLoader::Trim(std::string &line, const char c)

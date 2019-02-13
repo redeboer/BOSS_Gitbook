@@ -40,30 +40,38 @@
 \form#39:$rho^0 \rightarrow \pi^-\pi^+$
 \form#40:$rho^- \rightarrow \pi^0\pi^-$
 \form#41:$rho^+ \rightarrow \pi^0\pi^+$
-\form#42:$Z$
-\form#43:$e^+e^-$
-\form#44:$x$
-\form#45:$y$
-\form#46:$z$
-\form#47:$xy$
-\form#48:$p$
-\form#49:$|\vec{p}|$
-\form#50:$p_x$
-\form#51:$p_y$
-\form#52:$p_z$
-\form#53:$R$
-\form#54:$\rho^{0\pm}$
-\form#55:$\pi^0$
-\form#56:$\pi^\pm$
-\form#57:$K^\pm$
-\form#58:$r$
-\form#59:$\cos(\theta)$
-\form#60:$\chi_\mathrm{red}^2$
-\form#61:$ e^- $
-\form#62:$ \mu^- $
-\form#63:$ \pi^+ $
-\form#64:$ \pi^0 $
-\form#65:$ \rho^\pm $
-\form#66:$ \rho^0 $
-\form#67:$ K^\pm $
-\form#68:$ p $
+\form#42:$x$
+\form#43:$y$
+\form#44:$z$
+\form#45:$xy$
+\form#46:$^\circ$
+\form#47:$\pi^0$
+\form#48:$\pi^+\pi^-$
+\form#49:$\rho^0$
+\form#50:$\pi^0\pi^+$
+\form#51:$\rho^+$
+\form#52:$\pi^0\pi^-$
+\form#53:$\rho^-$
+\form#54:$E/|\vec{p}|$
+\form#55:$Z$
+\form#56:$e^+e^-$
+\form#57:$p$
+\form#58:$|\vec{p}|$
+\form#59:$p_x$
+\form#60:$p_y$
+\form#61:$p_z$
+\form#62:$R$
+\form#63:$\rho^{0\pm}$
+\form#64:$\pi^\pm$
+\form#65:$K^\pm$
+\form#66:$r$
+\form#67:$\cos(\theta)$
+\form#68:$\chi_\mathrm{red}^2$
+\form#69:$ e^- $
+\form#70:$ \mu^- $
+\form#71:$ \pi^+ $
+\form#72:$ \pi^0 $
+\form#73:$ \rho^\pm $
+\form#74:$ \rho^0 $
+\form#75:$ K^\pm $
+\form#76:$ p $

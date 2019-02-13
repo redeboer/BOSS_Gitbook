@@ -9,10 +9,14 @@ var hierarchy =
       ] ]
     ] ],
     [ "ArgPair_base", "classArgPair__base.html", [
-      [ "ArgPair< TYPE >", "classArgPair.html", null ]
+      [ "ArgPair< TYPE >", "classArgPair.html", null ],
+      [ "ArgPair< bool >", "classArgPair.html", null ],
+      [ "ArgPair< std::string >", "classArgPair.html", null ]
     ] ],
     [ "BOSSOutputLoader", "classBOSSOutputLoader.html", null ],
+    [ "BranchPlotOptions", "classBranchPlotOptions.html", null ],
     [ "ChainLoader", "classChainLoader.html", null ],
+    [ "ConfigLoader", "classConfigLoader.html", null ],
     [ "CutObject", "classCutObject.html", null ],
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", null ]
