@@ -19,7 +19,7 @@
 
 
 	/**
-	 * @brief    Modified header of the stock BOSS package `PipiJpsi` (version `00-00-03`). Analyse \f$ \psi' \rightarrow J/\psi \pi \pi \f$ and \f$ J/\psi \rightarrow \mathrm{di-leptons} \f$ events. This example package particularly teaches the use of Monte Carlo truth.
+	 * @brief    Modified header of the stock BOSS package `PipiJpsi` (version `00-00-03`). Analyse \f$ \psi' \rightarrow J/\psi \pi \pi \f$ and \f$ J/\psi \rightarrow \mathrm{di\-leptons} \f$ events. This example package particularly teaches the use of Monte Carlo truth.
 	 *
 	 * @author   Kai Zhu (zhuk@ihep.ac.cn)
 	 * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -66,8 +66,8 @@
 				bool m_subsample_flag;
 				bool m_trigger_flag;
 
-			// * Declare energy/moentum to distinguish e and muon *
-				double m_distin_emuon;
+			// * Distinguish electron versus muon *
+				double m_distin_emuon; //!< Value of \f$E/|\vec{p}|\f$ that is used to distinguish electron versus muon 
 
 			///@}
 
@@ -147,47 +147,47 @@
 
 			NTuple::Tuple* m_tuple8; //!< Information for method of momentum selection
 				// * Momenta * //
-					NTuple::Item<double> m_mom_lepm;  //!< 
-					NTuple::Item<double> m_mom_lepp;  //!< 
-					NTuple::Item<double> m_mom_pionp; //!< 
-					NTuple::Item<double> m_mom_pionm; //!< 
+					NTuple::Item<double> m_mom_lepm;  //!< 4-momentum of the identified negative lepton
+					NTuple::Item<double> m_mom_lepp;  //!< 4-momentum of the positive pion
+					NTuple::Item<double> m_mom_pionm; //!< 4-momentum of the identified negative lepton
+					NTuple::Item<double> m_mom_pionp; //!< 4-momentum of the positive pion
 				// * Geometry * //
-					NTuple::Item<double>   m_pipi_dang; //!< 
-					NTuple::Item<double>   m_cms_lepp;  //!< 
-					NTuple::Item<double>   m_cms_lepm;  //!< 
-					NTuple::Array<double>  m_cos_theta; //!< 
-					NTuple::Array<double>  m_phi;       //!< 
-					NTuple::Matrix<double> m_four_mom;  //!< 
+					NTuple::Item<double>   m_pipi_dang; //!< Angle between the two pions
+					NTuple::Item<double>   m_cms_lepp;  //!< Boosted \f$|\vec{p}|\f$ of the positive lepton
+					NTuple::Item<double>   m_cms_lepm;  //!< Boosted \f$|\vec{p}|\f$ of the negative lepton
+					NTuple::Array<double>  m_cos_theta; //!< \f$\cos(\theta)\f$ of the lorentz vector in the cylindrical coordinate system
+					NTuple::Array<double>  m_phi;       //!< \f$\phi\f$ angle of the lorentz vector in the cylindrical coordinate system
+					NTuple::Matrix<double> m_four_mom;  //!< \f$E\f$, \f$p_x\f$, \f$p_y\f$, and \f$p_z\f$ for each lepton/pion (hence a \f$4\times4\f$ matrix)
 				// * Invariant masses * //
-					NTuple::Item<double> m_mass_twopi;  //!< 
-					NTuple::Item<double> m_mass_jpsi;   //!< 
-					NTuple::Item<double> m_mass_recoil; //!< 
-					NTuple::Item<double> m_inv_mass;    //!< 
+					NTuple::Item<double> m_mass_twopi;  //!< Invariant mass of the two pions.
+					NTuple::Item<double> m_mass_jpsi;   //!< Invariant mass of the \f$J/\psi\f$ (sum of the two leptons)
+					NTuple::Item<double> m_mass_recoil; //!< Invariant mass of the lab 4-momentum minus the 4-momenta of the two pions
+					NTuple::Item<double> m_inv_mass;    //!< Invariant mass of the total system (\f$J/\psi\f$ plus the two pions)
 				// * Energies and momenta * //
-					NTuple::Item<double> m_tot_e;  //!< 
-					NTuple::Item<double> m_tot_px; //!< 
-					NTuple::Item<double> m_tot_py; //!< 
-					NTuple::Item<double> m_tot_pz; //!< 
+					NTuple::Item<double> m_tot_e;  //!< Total energy of the \f$J/\psi \pi\pi\f$ system
+					NTuple::Item<double> m_tot_px; //!< Total \f$p_x\f$ of the \f$J/\psi \pi\pi\f$ system
+					NTuple::Item<double> m_tot_py; //!< Total \f$p_y\f$ of the \f$J/\psi \pi\pi\f$ system
+					NTuple::Item<double> m_tot_pz; //!< Total \f$p_z\f$ of the \f$J/\psi \pi\pi\f$ system
 				// * Ratios * //
-					NTuple::Item<double> m_ep_ratio;   //!< 
-					NTuple::Item<long>   m_event_flag; //!< . 3 or 4 tracks, 4=>4 tracks, 0=> miss pi+, 1=> miss pi-, 2=> miss lepton+, 3=> miss lepton-
-					NTuple::Item<double> m_trans_ratio_lepm;  //!< 
-					NTuple::Item<double> m_trans_ratio_lepp;  //!< 
-					NTuple::Item<double> m_trans_ratio_pionp; //!< 
-					NTuple::Item<double> m_trans_ratio_pionm; //!< 
+					NTuple::Item<double> m_ep_ratio;          //!< Total energy of the EMC showers
+					NTuple::Item<long>   m_event_flag;        //!< Characterisation of the event: 3 or 4 tracks, 4=>4 tracks, 0=> miss pi+, 1=> miss pi-, 2=> miss lepton+, 3=> miss lepton-
+					NTuple::Item<double> m_trans_ratio_lepm;  //!< Ratio of the 4-momentum axial distance (\f$\rho\f$ in the cylindrical coordinate system) versus \f$|\vec{p}|\f$ for the negative lepton.
+					NTuple::Item<double> m_trans_ratio_lepp;  //!< Ratio of the 4-momentum axial distance (\f$\rho\f$ in the cylindrical coordinate system) versus \f$|\vec{p}|\f$ for the positive lepton.
+					NTuple::Item<double> m_trans_ratio_pionm; //!< Ratio of the 4-momentum axial distance (\f$\rho\f$ in the cylindrical coordinate system) versus \f$|\vec{p}|\f$ for the negative pion.
+					NTuple::Item<double> m_trans_ratio_pionp; //!< Ratio of the 4-momentum axial distance (\f$\rho\f$ in the cylindrical coordinate system) versus \f$|\vec{p}|\f$ for the positive pion.
 				// * Indices * //
-					NTuple::Item<long> m_run;   //!< 
-					NTuple::Item<long> m_event; //!< 
-					NTuple::Item<long> m_index; //!< 
+					NTuple::Item<long> m_run;   //!< Run number
+					NTuple::Item<long> m_event; //!< Event number
+					NTuple::Item<long> m_index; //!< For indexed item. Ranges from `0` to `3`: for \f$\pi^+\f$, \f$\pi^-\f$, \f$l^+\f$, and \f$l^-\f$
 				// * Matches * //
-					NTuple::Item<long> m_pion_matched; //!< . We don't need smear, actually, assume one track of pi pi is missing, the recoil mass is actually the invariant of pair-lepton
-					NTuple::Item<long> m_lep_matched;  //!< . We don't need smear, actually, assume one track of pi pi is missing, the recoil mass is actually the invariant of pair-lepton
+					NTuple::Item<long> m_pion_matched; //!< Number of identified pions. We don't need smear, actually, assume one track of pi pi is missing, the recoil mass is actually the invariant of pair-lepton.
+					NTuple::Item<long> m_lep_matched;  //!< Number of identified leptons (actually non-pions). We don't need smear, actually, assume one track of pi pi is missing, the recoil mass is actually the invariant of pair-lepton.
 				// * Monte Carlo truth * //
-					NTuple::Item<long>   m_idxmc; //!< 
-					NTuple::Array<long>  m_pdgid; //!< 
-					NTuple::Array<long>  m_motheridx;  //!< 
-					NTuple::Item<double> m_true_pionp; //!< 
-					NTuple::Item<double> m_true_pionm; //!< 
+					NTuple::Item<long>   m_idxmc;      //!< Total number of (useful) MC particles in this event (used for the arrays)
+					NTuple::Array<long>  m_pdgid;      //!< PDG code of the MC truth particle
+					NTuple::Array<long>  m_motheridx;  //!< PDG code of the mother of the MC particle
+					NTuple::Item<double> m_true_pionp; //!< True \f$|\vec{p}|\f$ of the positive pion
+					NTuple::Item<double> m_true_pionm; //!< True \f$|\vec{p}|\f$ of the negative pion
 
 			///@}
 

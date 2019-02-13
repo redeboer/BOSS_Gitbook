@@ -263,47 +263,47 @@
 				m_tuple8 = ntupleSvc()->book("FILE1/infmom", CLID_ColumnWiseTuple, "information with momentum method");
 				if(m_tuple8) {
 					// * Momenta * //
-						m_tuple8->addItem("momlepmm", m_mom_lepm);  ///<tr><td>`"momlepmm"`</td><td></td></tr>
-						m_tuple8->addItem("momlepp",  m_mom_lepp);  ///<tr><td>`"momlepp"` </td><td></td></tr>
-						m_tuple8->addItem("mompionm", m_mom_pionm); ///<tr><td>`"mompionm"`</td><td></td></tr>
-						m_tuple8->addItem("mompionp", m_mom_pionp); ///<tr><td>`"mompionp"`</td><td></td></tr>
+						m_tuple8->addItem("momlepmm", m_mom_lepm);  ///<tr><td>`"momlepmm"`</td><td>4-momentum of the identified negative lepton</td></tr>
+						m_tuple8->addItem("momlepp",  m_mom_lepp);  ///<tr><td>`"momlepp"` </td><td>4-momentum of the positive pion</td></tr>
+						m_tuple8->addItem("mompionm", m_mom_pionm); ///<tr><td>`"mompionm"`</td><td>4-momentum of the identified negative lepton</td></tr>
+						m_tuple8->addItem("mompionp", m_mom_pionp); ///<tr><td>`"mompionp"`</td><td>4-momentum of the positive pion</td></tr>
 					// * Geometry * //
-						m_tuple8->addItem("pipidang", m_pipi_dang); ///<tr><td>`"pipidang"`</td><td></td></tr>
-						m_tuple8->addItem("cmslepp",  m_cms_lepp);  ///<tr><td>`"cmslepp"` </td><td></td></tr>
-						m_tuple8->addItem("cmslepm",  m_cms_lepm);  ///<tr><td>`"cmslepm"` </td><td></td></tr>
-						m_tuple8->addIndexedItem("costhe",  m_index, m_cos_theta); ///<tr><td>`"costhe"` </td><td></td></tr>
-						m_tuple8->addIndexedItem("phi",     m_index, m_phi);       ///<tr><td>`"phi"`    </td><td></td></tr>
-						m_tuple8->addIndexedItem("fourmom", m_index, 4, m_four_mom); ///<tr><td>`"fourmom"`</td><td></td></tr>
+						m_tuple8->addItem("pipidang", m_pipi_dang); ///<tr><td>`"pipidang"`</td><td>Angle between the two pions</td></tr>
+						m_tuple8->addItem("cmslepp",  m_cms_lepp);  ///<tr><td>`"cmslepp"` </td><td>Boosted \f$|\vec{p}|\f$ of the positive lepton</td></tr>
+						m_tuple8->addItem("cmslepm",  m_cms_lepm);  ///<tr><td>`"cmslepm"` </td><td>Boosted \f$|\vec{p}|\f$ of the negative lepton</td></tr>
+						m_tuple8->addIndexedItem("costhe",  m_index, m_cos_theta); ///<tr><td>`"costhe"` </td><td>\f$\cos(\theta)\f$ of the lorentz vector in the cylindrical coordinate system</td></tr>
+						m_tuple8->addIndexedItem("phi",     m_index, m_phi);       ///<tr><td>`"phi"`    </td><td>\f$\phi\f$ angle of the lorentz vector in the cylindrical coordinate system</td></tr>
+						m_tuple8->addIndexedItem("fourmom", m_index, 4, m_four_mom); ///<tr><td>`"fourmom"`</td><td>\f$E\f$, \f$p_x\f$, \f$p_y\f$, and \f$p_z\f$ for each lepton/pion (hence a \f$4\times4\f$ matrix)</td></tr>
 					// * Invariant masses * //
-						m_tuple8->addItem("invtwopi", m_mass_twopi);  ///<tr><td>`"invtwopi"`</td><td></td></tr>
-						m_tuple8->addItem("invjpsi",  m_mass_jpsi);   ///<tr><td>`"invjpsi"` </td><td></td></tr>
-						m_tuple8->addItem("recoil",   m_mass_recoil); ///<tr><td>`"recoil"`  </td><td></td></tr>
-						m_tuple8->addItem("invmass",  m_inv_mass);    ///<tr><td>`"invmass"` </td><td></td></tr>
+						m_tuple8->addItem("invtwopi", m_mass_twopi);  ///<tr><td>`"invtwopi"`</td><td>Invariant mass of the two pions.</td></tr>
+						m_tuple8->addItem("invjpsi",  m_mass_jpsi);   ///<tr><td>`"invjpsi"` </td><td>Invariant mass of the \f$J/\psi\f$ (sum of the two leptons)</td></tr>
+						m_tuple8->addItem("recoil",   m_mass_recoil); ///<tr><td>`"recoil"`  </td><td>Invariant mass of the lab 4-momentum minus the 4-momenta of the two pions</td></tr>
+						m_tuple8->addItem("invmass",  m_inv_mass);    ///<tr><td>`"invmass"` </td><td>Invariant mass of the total system (\f$J/\psi\f$ plus the two pions)</td></tr>
 					// * Energies and momenta * //
-						m_tuple8->addItem("totene", m_tot_e);  ///<tr><td>`"totene"`</td><td></td></tr>
-						m_tuple8->addItem("totpx",  m_tot_px); ///<tr><td>`"totpx"` </td><td></td></tr>
-						m_tuple8->addItem("totpy",  m_tot_py); ///<tr><td>`"totpy"` </td><td></td></tr>
-						m_tuple8->addItem("totpz",  m_tot_pz); ///<tr><td>`"totpz"` </td><td></td></tr>
+						m_tuple8->addItem("totene", m_tot_e);  ///<tr><td>`"totene"`</td><td>Total energy of the \f$J/\psi \pi\pi\f$ system</td></tr>
+						m_tuple8->addItem("totpx",  m_tot_px); ///<tr><td>`"totpx"` </td><td>Total \f$p_x\f$ of the \f$J/\psi \pi\pi\f$ system</td></tr>
+						m_tuple8->addItem("totpy",  m_tot_py); ///<tr><td>`"totpy"` </td><td>Total \f$p_y\f$ of the \f$J/\psi \pi\pi\f$ system</td></tr>
+						m_tuple8->addItem("totpz",  m_tot_pz); ///<tr><td>`"totpz"` </td><td>Total \f$p_z\f$ of the \f$J/\psi \pi\pi\f$ system</td></tr>
 					// * Ratios * //
-						m_tuple8->addItem("epratio",      m_ep_ratio);          ///<tr><td>`"epratio"`</td><td></td></tr>
-						m_tuple8->addItem("eveflag",      m_event_flag);        ///<tr><td>`"eveflag"`</td><td></td></tr>
-						m_tuple8->addItem("tplepratiom",  m_trans_ratio_lepm);  ///<tr><td>`"tplepratiom"` </td><td></td></tr>
-						m_tuple8->addItem("tplepratiop",  m_trans_ratio_lepp);  ///<tr><td>`"tplepratiop" `</td><td></td></tr>
-						m_tuple8->addItem("tppionratiom", m_trans_ratio_pionm); ///<tr><td>`"tppionratiom"`</td><td></td></tr>
-						m_tuple8->addItem("tppionratiop", m_trans_ratio_pionp); ///<tr><td>`"tppionratiop"`</td><td></td></tr>
+						m_tuple8->addItem("epratio",      m_ep_ratio);          ///<tr><td>`"epratio"`     </td><td>Total energy of the EMC showers</td></tr>
+						m_tuple8->addItem("eveflag",      m_event_flag);        ///<tr><td>`"eveflag"`     </td><td>Characterisation of the event: 3 or 4 tracks, 4=>4 tracks, 0=> miss pi+, 1=> miss pi-, 2=> miss lepton+, 3=> miss lepton-</td></tr>
+						m_tuple8->addItem("tplepratiom",  m_trans_ratio_lepm);  ///<tr><td>`"tplepratiom"` </td><td>Ratio of the 4-momentum axial distance (\f$\rho\f$ in the cylindrical coordinate system) versus \f$|\vec{p}|\f$ for the negative lepton.</td></tr>
+						m_tuple8->addItem("tplepratiop",  m_trans_ratio_lepp);  ///<tr><td>`"tplepratiop" `</td><td>Ratio of the 4-momentum axial distance (\f$\rho\f$ in the cylindrical coordinate system) versus \f$|\vec{p}|\f$ for the positive lepton.</td></tr>
+						m_tuple8->addItem("tppionratiom", m_trans_ratio_pionm); ///<tr><td>`"tppionratiom"`</td><td>Ratio of the 4-momentum axial distance (\f$\rho\f$ in the cylindrical coordinate system) versus \f$|\vec{p}|\f$ for the negative pion.</td></tr>
+						m_tuple8->addItem("tppionratiop", m_trans_ratio_pionp); ///<tr><td>`"tppionratiop"`</td><td>Ratio of the 4-momentum axial distance (\f$\rho\f$ in the cylindrical coordinate system) versus \f$|\vec{p}|\f$ for the positive pion.</td></tr>
 					// * Indices * //
-						m_tuple8->addItem("run",    m_run);         ///<tr><td>`"run"`   </td><td></td></tr>
-						m_tuple8->addItem("event",  m_event);       ///<tr><td>`"event"` </td><td></td></tr>
-						m_tuple8->addItem("ntrack", m_index, 0, 4); ///<tr><td>`"ntrack"`</td><td></td></tr>
+						m_tuple8->addItem("run",    m_run);         ///<tr><td>`"run"`   </td><td>Run number</td></tr>
+						m_tuple8->addItem("event",  m_event);       ///<tr><td>`"event"` </td><td>Event number</td></tr>
+						m_tuple8->addItem("ntrack", m_index, 0, 4); ///<tr><td>`"ntrack"`</td><td>For indexed item. Ranges from `0` to `3`: for \f$\pi^+\f$, \f$\pi^-\f$, \f$l^+\f$, and \f$l^-\f$</td></tr>
 					// * Matches * //
-						m_tuple8->addItem("pionmat", m_pion_matched); ///<tr><td>`"pionmat"`</td><td></td></tr>
-						m_tuple8->addItem("lepmat",  m_lep_matched);  ///<tr><td>`"lepmat"` </td><td></td></tr>
+						m_tuple8->addItem("pionmat", m_pion_matched); ///<tr><td>`"pionmat"`</td><td>Number of identified pions</td></tr>
+						m_tuple8->addItem("lepmat",  m_lep_matched);  ///<tr><td>`"lepmat"` </td><td>Number of identified leptons (actually non-pions)</td></tr>
 					// * Monte Carlo truth * //
-						m_tuple8->addItem("indexmc", m_idxmc, 0, 100); ///<tr><td>`"indexmc"`</td><td></td></tr>
-						m_tuple8->addIndexedItem("pdgid",     m_idxmc, m_pdgid);     ///<tr><td>`"pdgid"`</td><td></td></tr>
-						m_tuple8->addIndexedItem("motheridx", m_idxmc, m_motheridx); ///<tr><td>`"motheridx"`</td><td></td></tr>
-						m_tuple8->addItem("truepp", m_true_pionp); ///<tr><td>`"truepp"`</td><td></td></tr>
-						m_tuple8->addItem("truepm", m_true_pionm); ///<tr><td>`"truepm"`</td><td></td></tr>
+						m_tuple8->addItem("indexmc", m_idxmc, 0, 100); ///<tr><td>`"indexmc"`</td><td>Total number of (useful) MC particles in this event (used for the arrays)</td></tr>
+						m_tuple8->addIndexedItem("pdgid",     m_idxmc, m_pdgid);     ///<tr><td>`"pdgid"`</td><td>PDG code of the MC truth particle</td></tr>
+						m_tuple8->addIndexedItem("motheridx", m_idxmc, m_motheridx); ///<tr><td>`"motheridx"`</td><td>PDG code of the mother of the MC particle</td></tr>
+						m_tuple8->addItem("truepp", m_true_pionp); ///<tr><td>`"truepp"`</td><td>True \f$|\vec{p}|\f$ of the positive pion</td></tr>
+						m_tuple8->addItem("truepm", m_true_pionm); ///<tr><td>`"truepm"`</td><td>True \f$|\vec{p}|\f$ of the negative pion</td></tr>
 				} else {
 					log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple8) << endmsg;
 					return StatusCode::FAILURE;
@@ -371,7 +371,7 @@
 				<< evtRecEvent->totalTracks() << endmsg;
 
 
-		/// <li> Print trigger information once:
+		/// <li> Print trigger information once
 			if(m_trigger_flag) {
 				SmartDataPtr<TrigData> trigData(eventSvc(),EventModel::Trig::TrigData);
 				if(!trigData) {
@@ -383,8 +383,10 @@
 				for(int i=0; i < 48; ++i) {
 					log << MSG::DEBUG << "i:" << i << "  name:" << trigData->getTrigCondName(i) << "  cond:" << trigData->getTrigCondition(i) << endmsg;
 				}
-				// test event rate
-				int m_trig_tot(0), m_trig_which(-1);
+
+				// * Test event rate *
+				int m_trig_tot(0);
+				int m_trig_which(-1);
 				if(m_eventrate) {
 					for(int j=0; j<16; j++) {
 						if(trigData->getTrigChannel(j)) {
@@ -398,14 +400,19 @@
 			}
 
 			++m_cout_col;
-			if(evtRecEvent->totalCharged()<3 || evtRecTrkCol->size()<3 || evtRecEvent->totalTracks()>99 || evtRecTrkCol->size()>99) return StatusCode::SUCCESS;
+			if(
+				evtRecEvent->totalCharged()<3 ||
+				evtRecTrkCol->size()<3 ||
+				evtRecEvent->totalTracks()>99 ||
+				evtRecTrkCol->size()>99) return StatusCode::SUCCESS;
 			++m_cout_charge;
 
 		/// <li> Asign four-momentum with KalmanTrack
 			/// <ul>
 			/// <li> Declare vectors etc.
 				Vint iGood;
-				int m_num[4] = {0,0,0,0}; /// Number of different particles: \f$\pi^+\f$, \f$\pi^-\f$, \f$l^+\f$, \f$l^-\f$
+				// Number of different particles: \f$\pi^+\f$, \f$\pi^-\f$, \f$l^+\f$, \f$l^-\f$
+				int m_num[4] = {0, 0, 0, 0};
 				int nCharge = 0;
 				m_pion_matched = 0;
 				m_lep_matched = 0;
@@ -419,108 +426,128 @@
 				HepLorentzVector m_lv_mup;
 
 			/// <li> Create selection of 'good' charged tracks
+				/// <ul>
 				for(int i = 0; i < evtRecEvent->totalCharged(); ++i) {
-					EvtRecTrackIterator itTrk=evtRecTrkCol->begin() + i;
-					if(!(*itTrk)->isMdcKalTrackValid()) continue;
-					RecMdcKalTrack* mdcTrk = (*itTrk)->mdcKalTrack();
+					/// <li> Get MDC Kalman track for this charged track
+						EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + i;
+						if(!(*itTrk)->isMdcKalTrackValid()) continue;
+						RecMdcKalTrack* mdcTrk = (*itTrk)->mdcKalTrack();
 
-					m_vx0 = mdcTrk->x();
-					m_vy0 = mdcTrk->y();
-					m_vz0 = mdcTrk->z();
-					m_vr0 = mdcTrk->r();
-					if(fabs(m_vz0) >= m_vz0cut) continue;
-					if(m_vr0 >= m_vr0cut) continue;
-					iGood.push_back(i);
-					nCharge += mdcTrk->charge();
-					if(mdcTrk->p()<1.0) { if((*itTrk)->isEmcShowerValid()) ++m_pion_matched; }
-					else{ if((*itTrk)->isEmcShowerValid()) ++m_lep_matched;  }
+					/// <li> Get \f$xyz\f$, \f$r\f$ geometry
+						m_vx0 = mdcTrk->x();
+						m_vy0 = mdcTrk->y();
+						m_vz0 = mdcTrk->z();
+						m_vr0 = mdcTrk->r();
 
-					if(mdcTrk->charge()>0) {
-						if(mdcTrk->p()<1.0) {
-							mdcTrk->setPidType(RecMdcKalTrack::pion);
-							// @warning For ones who do not modify the DstMdcKalTrack package, the following p4() function cannot be used, you should get momentum from MdcKalTrack, then calculate the energy by yourself
-							m_lv_pionp = mdcTrk->p4(xmass[2]);
-							++m_num[0];
-						} else {
-							mdcTrk->setPidType(RecMdcKalTrack::electron);
-							m_lv_pos = mdcTrk->p4(xmass[0]);
-							mdcTrk->setPidType(RecMdcKalTrack::muon);
-							m_lv_mup = mdcTrk->p4(xmass[1]);
-							++m_num[2];
+					/// <li> Apply vertex cuts
+						if(fabs(m_vz0) >= m_vz0cut) continue;
+						if(m_vr0 >= m_vr0cut) continue;
+
+					/// <li> <b>Store this track as 'good'</b>
+						iGood.push_back(i);
+						nCharge += mdcTrk->charge();
+
+					/// <li> Count if either pion or lepton. The track is considered to be pion if the <i>probability to be an electron</i> is less than 1.
+						if((*itTrk)->isEmcShowerValid()) {
+							if(mdcTrk->p()<1.) ++m_pion_matched;
+							else               ++m_lep_matched;
 						}
+
+					/// <li> Store 4-momenta of the four different cases (pion or lepton and negative or positive)
+						if(mdcTrk->charge() > 0) {
+							if(mdcTrk->p() < 1.0) { // pi+
+								mdcTrk->setPidType(RecMdcKalTrack::pion);
+								// @warning If you do not modify the `DstMdcKalTrack` package, the `RecMdcKalTrack::p4()` function cannot be used. You should get the momentum from `MdcKalTrack`, then calculate the energy by yourself.
+								m_lv_pionp = mdcTrk->p4(xmass[2]);
+								++m_num[0];
+							} else { // l+
+								mdcTrk->setPidType(RecMdcKalTrack::electron);
+								m_lv_pos = mdcTrk->p4(xmass[0]);
+								mdcTrk->setPidType(RecMdcKalTrack::muon);
+								m_lv_mup = mdcTrk->p4(xmass[1]);
+								++m_num[2];
+							}
+						} else {
+							if(mdcTrk->p() < 1.0) { // pi-
+								mdcTrk->setPidType(RecMdcKalTrack::pion);
+								m_lv_pionm = mdcTrk->p4(xmass[2]);
+								++m_num[1];
+							} else { // l-
+								mdcTrk->setPidType(RecMdcKalTrack::electron);
+								m_lv_ele = mdcTrk->p4(xmass[0]);
+								mdcTrk->setPidType(RecMdcKalTrack::muon);
+								m_lv_mum = mdcTrk->p4(xmass[1]);
+								++m_num[3];
+							}
+						}
+				}
+				/// </ul>
+
+			/// <li> Test selections (apply cuts)
+				/// <ul>
+				/// <li> Apply photon cut: only 3 or 4 photons
+					int nGood = iGood.size();
+					log << MSG::DEBUG << "With KalmanTrack, ngood, totcharge = " << nGood << " , " << nCharge << endmsg;
+					if(nGood<3 || nGood>4) return sc;
+					++m_cout_nGood;
+
+				/// <li> Compute total energy
+					m_ep_ratio = 0;
+					for(int i=0; i< evtRecEvent->totalTracks(); ++i) {
+						EvtRecTrackIterator itTrk=evtRecTrkCol->begin() + i;
+						if(!(*itTrk)->isEmcShowerValid()) continue;
+						RecEmcShower *emcTrk = (*itTrk)->emcShower();
+						m_ep_ratio += emcTrk->energy();
+					}
+
+				/// <li> Store vectors in either muon or electron case
+					if(m_ep_ratio > m_distin_emuon) { // if electron
+						m_lv_lepp = m_lv_pos;
+						m_lv_lepm = m_lv_ele;
+					} else { // if muon
+						m_lv_lepp = m_lv_mup;
+						m_lv_lepm = m_lv_mum;
+					}
+
+				/// <li> Apply \f$\cos(\theta)\f$ cuts
+					HepLorentzVector m_lv_lab(0.04, 0, 0, 3.686);
+					if(nGood==4) {
+						if(nCharge) return sc;
+						m_event_flag = 4;
 					} else {
-						if(mdcTrk->p()<1.0) {
-							mdcTrk->setPidType(RecMdcKalTrack::pion);
-							m_lv_pionm = mdcTrk->p4(xmass[2]);
-							++m_num[1];
-						} else {
-							mdcTrk->setPidType(RecMdcKalTrack::electron);
-							m_lv_ele = mdcTrk->p4(xmass[0]);
-							mdcTrk->setPidType(RecMdcKalTrack::muon);
-							m_lv_mum = mdcTrk->p4(xmass[1]);
-							++m_num[3];
+						if(m_num[0]>1 || m_num[1]>1 || m_num[2]>1 || m_num[3]>1) return sc;
+						if(m_num[0]==0) {
+							if(nCharge != -1) return StatusCode::SUCCESS;
+							m_lv_pionp = m_lv_lab - m_lv_pionm - m_lv_lepp - m_lv_lepm;
+							if(m_lv_pionp.vect().cosTheta()>m_cosThetaCut) return StatusCode::SUCCESS;
+							m_event_flag = 0;
+						}
+						if(m_num[1]==0) {
+							if(nCharge != 1) return StatusCode::SUCCESS;
+							m_lv_pionm = m_lv_lab - m_lv_pionp - m_lv_lepp - m_lv_lepm;
+							if(m_lv_pionm.vect().cosTheta()>m_cosThetaCut) return StatusCode::SUCCESS;
+							m_event_flag = 1;
+						}
+						if(m_num[2]==0) {
+							if(nCharge != -1) return StatusCode::SUCCESS;
+							m_lv_lepp = m_lv_lab - m_lv_pionp - m_lv_pionm - m_lv_lepm;
+							if(m_lv_lepp.vect().cosTheta()>m_cosThetaCut) return StatusCode::SUCCESS;
+							m_event_flag = 2;
+						}
+						if(m_num[3]==0) {
+							if(nCharge != 1) return StatusCode::SUCCESS;
+							m_lv_lepm = m_lv_lab - m_lv_pionp - m_lv_pionm - m_lv_lepp;
+							if(m_lv_lepm.vect().cosTheta()>m_cosThetaCut) return StatusCode::SUCCESS;
+							m_event_flag = 3;
 						}
 					}
-				}
-
-			/// <li> Test selections
-				int nGood = iGood.size();
-				log << MSG::DEBUG << "With KalmanTrack, ngood, totcharge = " << nGood << " , " << nCharge << endmsg;
-				if(nGood<3 || nGood>4) return sc;
-				++m_cout_nGood;
-
-				m_ep_ratio = 0;
-				for(int i=0; i< evtRecEvent->totalTracks(); ++i) {
-					EvtRecTrackIterator itTrk=evtRecTrkCol->begin() + i;
-					if(!(*itTrk)->isEmcShowerValid()) continue;
-					RecEmcShower *emcTrk = (*itTrk)->emcShower();
-					m_ep_ratio += emcTrk->energy();
-				}
-
-				if(m_ep_ratio > m_distin_emuon) {
-					m_lv_lepp = m_lv_pos;
-					m_lv_lepm = m_lv_ele;
-				} else {
-					m_lv_lepp = m_lv_mup;
-					m_lv_lepm = m_lv_mum;
-				}
-
-				HepLorentzVector m_lv_lab(0.04,0,0,3.686);
-				if(nGood==4) {
-					if(nCharge) return sc;
-					m_event_flag = 4;
-				} else {
-					if(m_num[0]>1 || m_num[1]>1 || m_num[2]>1 || m_num[3]>1) return sc;
-					if(m_num[0]==0) {
-						if(nCharge != -1) return StatusCode::SUCCESS;
-						m_lv_pionp = m_lv_lab - m_lv_pionm - m_lv_lepp - m_lv_lepm;
-						if(m_lv_pionp.vect().cosTheta()>m_cosThetaCut) return StatusCode::SUCCESS;
-						m_event_flag = 0;
-					}
-					if(m_num[1]==0) {
-						if(nCharge != 1) return StatusCode::SUCCESS;
-						m_lv_pionm = m_lv_lab - m_lv_pionp - m_lv_lepp - m_lv_lepm;
-						if(m_lv_pionm.vect().cosTheta()>m_cosThetaCut) return StatusCode::SUCCESS;
-						m_event_flag = 1;
-					}
-					if(m_num[2]==0) {
-						if(nCharge != -1) return StatusCode::SUCCESS;
-						m_lv_lepp = m_lv_lab - m_lv_pionp - m_lv_pionm - m_lv_lepm;
-						if(m_lv_lepp.vect().cosTheta()>m_cosThetaCut) return StatusCode::SUCCESS;
-						m_event_flag = 2;
-					}
-					if(m_num[3]==0) {
-						if(nCharge != 1) return StatusCode::SUCCESS;
-						m_lv_lepm = m_lv_lab - m_lv_pionp - m_lv_pionm - m_lv_lepp;
-						if(m_lv_lepm.vect().cosTheta()>m_cosThetaCut) return StatusCode::SUCCESS;
-						m_event_flag = 3;
-					}
-				}
-				++m_cout_mom;
+					++m_cout_mom;
+				/// </ul>
 			/// </ul>
 
 		/// <li> With momentum method calculate the invariant mass of Jpsi actually we use the recoil mass
-			HepLorentzVector m_lv_recoil, m_lv_jpsi;
+			HepLorentzVector m_lv_recoil;
+			HepLorentzVector m_lv_jpsi;
 			m_lv_recoil = m_lv_lab - m_lv_pionp - m_lv_pionm;
 			m_lv_jpsi = m_lv_lepp + m_lv_lepm;
 
@@ -548,10 +575,10 @@
 				m_mom_lepm  = m_lv_lepm .vect().mag();
 
 			/// <li> Compute ratios
-				m_trans_ratio_lepp  = m_lv_lepp.vect().perp()/m_lv_lepp.vect().mag();
-				m_trans_ratio_lepm  = m_lv_lepm.vect().perp()/m_lv_lepm.vect().mag();
-				m_trans_ratio_pionp = m_lv_pionp.vect().perp()/m_lv_pionp.vect().mag();
-				m_trans_ratio_pionm = m_lv_pionm.vect().perp()/m_lv_pionm.vect().mag();
+				m_trans_ratio_lepp  = m_lv_lepp .vect().perp() / m_lv_lepp.vect().mag();
+				m_trans_ratio_lepm  = m_lv_lepm .vect().perp() / m_lv_lepm.vect().mag();
+				m_trans_ratio_pionp = m_lv_pionp.vect().perp() / m_lv_pionp.vect().mag();
+				m_trans_ratio_pionm = m_lv_pionm.vect().perp() / m_lv_pionm.vect().mag();
 
 			/// <li> Apply boost
 				Hep3Vector m_boost_jpsi(m_lv_recoil.boostVector());
@@ -563,10 +590,10 @@
 
 			/// <li> Compute total masses, energies, and momenta
 				m_inv_mass = m_ttm.m();
-				m_tot_e = m_ttm.e();
-				m_tot_px = m_ttm.px();
-				m_tot_py = m_ttm.py();
-				m_tot_pz = m_ttm.pz();
+				m_tot_e    = m_ttm.e();
+				m_tot_px   = m_ttm.px();
+				m_tot_py   = m_ttm.py();
+				m_tot_pz   = m_ttm.pz();
 
 			/// <li> Store indices
 				m_run = run;
