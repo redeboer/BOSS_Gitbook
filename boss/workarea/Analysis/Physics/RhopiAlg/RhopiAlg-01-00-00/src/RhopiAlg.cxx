@@ -84,7 +84,8 @@
  */
 // Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 RhopiAlg::RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator) :
-	Algorithm(name, pSvcLocator) {
+	Algorithm(name, pSvcLocator)
+{
 
 	// * Define r0, z0 cut for charged tracks *
 	declareProperty("Vr0cut",    fVr0cut);
@@ -121,8 +122,8 @@ RhopiAlg::RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator) :
  * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
  * @details Define and load NTuples here.
  */
-StatusCode RhopiAlg::initialize(){
-
+StatusCode RhopiAlg::initialize()
+{
 	MsgStream log(msgSvc(), name());
 	log << MSG::INFO << "In initialize():" << endmsg;
 

@@ -1,0 +1,20 @@
+
+ApplicationMgr.DLLs += {"RootCnvSvc"};
+
+EventPersistencySvc.CnvServices += {"RootCnvSvc"};
+
+// items to be written out and configuration of OutStream
+
+ApplicationMgr.OutStream = {"RootWriter"};
+RootWriter.Output  = " TYP='ROOT'";
+
+RootWriter.ItemList = { "/Event/EventHeader#1",
+                        "/Event/Digi#99",
+                        "/Event/Recon#99",
+                        "/Event/EvtRec#99",
+                        "/Event/Trig/TrigData#1",
+			"/Event/Hlt#99"
+};
+
+
+
