@@ -103,12 +103,14 @@ Inheritance diagram for PipiJpsi:</div>
 Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Constructors</div></td></tr>
 <tr class="memitem:aee15e034e71dbbd94b837aeefefaa74e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e">PipiJpsi</a> (const std::string &amp;name, ISvcLocator *pSvcLocator)</td></tr>
+<tr class="memdesc:aee15e034e71dbbd94b837aeefefaa74e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classPipiJpsi.html" title="Modified header of the stock BOSS package PipiJpsi (version 00-00-03). ">PipiJpsi</a></code> algorithm.  <a href="#aee15e034e71dbbd94b837aeefefaa74e">More...</a><br /></td></tr>
 <tr class="separator:aee15e034e71dbbd94b837aeefefaa74e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Algorithm steps</div></td></tr>
 <tr class="memitem:af06ed1190f902b864bf60a254fc91b82"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#af06ed1190f902b864bf60a254fc91b82">initialize</a> ()</td></tr>
 <tr class="memdesc:af06ed1190f902b864bf60a254fc91b82"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>.  <a href="#af06ed1190f902b864bf60a254fc91b82">More...</a><br /></td></tr>
 <tr class="separator:af06ed1190f902b864bf60a254fc91b82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a1285b17bba7a49c43e073958c3fa36"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a5a1285b17bba7a49c43e073958c3fa36">execute</a> ()</td></tr>
+<tr class="memdesc:a5a1285b17bba7a49c43e073958c3fa36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code>.  <a href="#a5a1285b17bba7a49c43e073958c3fa36">More...</a><br /></td></tr>
 <tr class="separator:a5a1285b17bba7a49c43e073958c3fa36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b14fcbe763282795420a77a177e98fb"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a1b14fcbe763282795420a77a177e98fb">finalize</a> ()</td></tr>
 <tr class="memdesc:a1b14fcbe763282795420a77a177e98fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>finalize</code> method of <code>Algorithm</code>.  <a href="#a1b14fcbe763282795420a77a177e98fb">More...</a><br /></td></tr>
@@ -117,7 +119,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Cut parameters</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>Here, you can define data members that you use to define cuts. The values for these cuts should be set in the <code><a class="el" href="classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e">PipiJpsi::PipiJpsi</a></code> constructor (see <code>.cxx</code> file) </p>
+<tr><td colspan="2"><div class="groupText"><p>Here, you can define data members that you use to define cuts. The values for these cuts should be set in the <code><a class="el" href="classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e" title="Constructor for the PipiJpsi algorithm. ">PipiJpsi::PipiJpsi</a></code> constructor (see <code>.cxx</code> file) </p>
 </div></td></tr>
 <tr class="memitem:a4ec4f83ed9a5005d124110103f0c8ae5"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a4ec4f83ed9a5005d124110103f0c8ae5">m_vr0cut</a></td></tr>
 <tr class="separator:a4ec4f83ed9a5005d124110103f0c8ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,128 +147,190 @@ Private Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><code>NTuple</code>s are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling <code>NTuple::addItem</code>. Note that the NTuple::Items are added to the NTuple during the <code><a class="el" href="classPipiJpsi.html#af06ed1190f902b864bf60a254fc91b82" title="(Inherited) initialize step of Algorithm. ">PipiJpsi::initialize()</a></code> step. This is also the place where you name these variables, so make sure that the structure here is reflected there! </p>
 </div></td></tr>
 <tr class="memitem:aea688cdc23b70fb7df19e7b580bbe871"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aea688cdc23b70fb7df19e7b580bbe871">m_tuple1</a></td></tr>
+<tr class="memdesc:aea688cdc23b70fb7df19e7b580bbe871"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vertex information of the charged tracks.  <a href="#aea688cdc23b70fb7df19e7b580bbe871">More...</a><br /></td></tr>
 <tr class="separator:aea688cdc23b70fb7df19e7b580bbe871"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d6b105e12862e5e8c9128b18fc24853"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a7d6b105e12862e5e8c9128b18fc24853">m_vx0</a></td></tr>
+<tr class="memdesc:a7d6b105e12862e5e8c9128b18fc24853"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary <img class="formulaInl" alt="$x$" src="form_30.png"/>-vertex as determined by MDC.  <a href="#a7d6b105e12862e5e8c9128b18fc24853">More...</a><br /></td></tr>
 <tr class="separator:a7d6b105e12862e5e8c9128b18fc24853"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaa091c6d74d2dc9ed7bff1e1468dc28"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#acaa091c6d74d2dc9ed7bff1e1468dc28">m_vy0</a></td></tr>
+<tr class="memdesc:acaa091c6d74d2dc9ed7bff1e1468dc28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary <img class="formulaInl" alt="$y$" src="form_31.png"/>-vertex as determined by MDC.  <a href="#acaa091c6d74d2dc9ed7bff1e1468dc28">More...</a><br /></td></tr>
 <tr class="separator:acaa091c6d74d2dc9ed7bff1e1468dc28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa82f258882c10abfe738eb52c6d5da68"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aa82f258882c10abfe738eb52c6d5da68">m_vz0</a></td></tr>
+<tr class="memdesc:aa82f258882c10abfe738eb52c6d5da68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary <img class="formulaInl" alt="$z$" src="form_32.png"/>-vertex as determined by MDC.  <a href="#aa82f258882c10abfe738eb52c6d5da68">More...</a><br /></td></tr>
 <tr class="separator:aa82f258882c10abfe738eb52c6d5da68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00e9fcc41a00f2f9dbfcc0b8b3e33b37"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a00e9fcc41a00f2f9dbfcc0b8b3e33b37">m_vr0</a></td></tr>
+<tr class="memdesc:a00e9fcc41a00f2f9dbfcc0b8b3e33b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance from origin in <img class="formulaInl" alt="$xy$" src="form_33.png"/>-plane.  <a href="#a00e9fcc41a00f2f9dbfcc0b8b3e33b37">More...</a><br /></td></tr>
 <tr class="separator:a00e9fcc41a00f2f9dbfcc0b8b3e33b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb3015e685b659a4954cc4c5ba967f56"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#adb3015e685b659a4954cc4c5ba967f56">m_tuple2</a></td></tr>
+<tr class="memdesc:adb3015e685b659a4954cc4c5ba967f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">'Fake' photon (angles)  <a href="#adb3015e685b659a4954cc4c5ba967f56">More...</a><br /></td></tr>
 <tr class="separator:adb3015e685b659a4954cc4c5ba967f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a289571c0cf066fe7df3ff91647a796c8"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a289571c0cf066fe7df3ff91647a796c8">m_dthe</a></td></tr>
+<tr class="memdesc:a289571c0cf066fe7df3ff91647a796c8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\theta$" src="form_34.png"/> angle difference with nearest charged track (degrees)  <a href="#a289571c0cf066fe7df3ff91647a796c8">More...</a><br /></td></tr>
 <tr class="separator:a289571c0cf066fe7df3ff91647a796c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b0fb056e80be22163d2c8bb8114c5f7"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a1b0fb056e80be22163d2c8bb8114c5f7">m_dphi</a></td></tr>
+<tr class="memdesc:a1b0fb056e80be22163d2c8bb8114c5f7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle difference with nearest charged track (degrees)  <a href="#a1b0fb056e80be22163d2c8bb8114c5f7">More...</a><br /></td></tr>
 <tr class="separator:a1b0fb056e80be22163d2c8bb8114c5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ab8ab52d64ea4c5887af2deb99ae833"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a1ab8ab52d64ea4c5887af2deb99ae833">m_dang</a></td></tr>
+<tr class="memdesc:a1ab8ab52d64ea4c5887af2deb99ae833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Angle difference with nearest charged track.  <a href="#a1ab8ab52d64ea4c5887af2deb99ae833">More...</a><br /></td></tr>
 <tr class="separator:a1ab8ab52d64ea4c5887af2deb99ae833"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea9075d4c79b6864e83638335b5ac569"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aea9075d4c79b6864e83638335b5ac569">m_eraw</a></td></tr>
+<tr class="memdesc:aea9075d4c79b6864e83638335b5ac569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Energy of the photon.  <a href="#aea9075d4c79b6864e83638335b5ac569">More...</a><br /></td></tr>
 <tr class="separator:aea9075d4c79b6864e83638335b5ac569"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacf4d9dc7c1990cee3637734e1160d54"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aacf4d9dc7c1990cee3637734e1160d54">m_nGam</a></td></tr>
+<tr class="memdesc:aacf4d9dc7c1990cee3637734e1160d54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of photons.  <a href="#aacf4d9dc7c1990cee3637734e1160d54">More...</a><br /></td></tr>
 <tr class="separator:aacf4d9dc7c1990cee3637734e1160d54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4f17953cdafc076cd5b0fa2e119da13"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#af4f17953cdafc076cd5b0fa2e119da13">m_tuple3</a></td></tr>
+<tr class="memdesc:af4f17953cdafc076cd5b0fa2e119da13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Energy loss dE/dx info.  <a href="#af4f17953cdafc076cd5b0fa2e119da13">More...</a><br /></td></tr>
 <tr class="separator:af4f17953cdafc076cd5b0fa2e119da13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab69f5b37339560a86e5b72047d7a4e0e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ab69f5b37339560a86e5b72047d7a4e0e">m_ptrk</a></td></tr>
+<tr class="memdesc:ab69f5b37339560a86e5b72047d7a4e0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track.  <a href="#ab69f5b37339560a86e5b72047d7a4e0e">More...</a><br /></td></tr>
 <tr class="separator:ab69f5b37339560a86e5b72047d7a4e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4982e7075f973fe54957a867aefa8ab4"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a4982e7075f973fe54957a867aefa8ab4">m_chie</a></td></tr>
+<tr class="memdesc:a4982e7075f973fe54957a867aefa8ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of electron  <a href="#a4982e7075f973fe54957a867aefa8ab4">More...</a><br /></td></tr>
 <tr class="separator:a4982e7075f973fe54957a867aefa8ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af18b035e7fe5328c73a7dd7bd86d0bd7"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#af18b035e7fe5328c73a7dd7bd86d0bd7">m_chimu</a></td></tr>
+<tr class="memdesc:af18b035e7fe5328c73a7dd7bd86d0bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of muon  <a href="#af18b035e7fe5328c73a7dd7bd86d0bd7">More...</a><br /></td></tr>
 <tr class="separator:af18b035e7fe5328c73a7dd7bd86d0bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a244cf4d3da3e69225ace581feab3a8e9"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a244cf4d3da3e69225ace581feab3a8e9">m_chipi</a></td></tr>
+<tr class="memdesc:a244cf4d3da3e69225ace581feab3a8e9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of pion  <a href="#a244cf4d3da3e69225ace581feab3a8e9">More...</a><br /></td></tr>
 <tr class="separator:a244cf4d3da3e69225ace581feab3a8e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75e9e0a0364870b02e677b69e243d6e9"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a75e9e0a0364870b02e677b69e243d6e9">m_chik</a></td></tr>
+<tr class="memdesc:a75e9e0a0364870b02e677b69e243d6e9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of kaon  <a href="#a75e9e0a0364870b02e677b69e243d6e9">More...</a><br /></td></tr>
 <tr class="separator:a75e9e0a0364870b02e677b69e243d6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8447b4f6e3e73cdcfd6d692d2e09cbc"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ab8447b4f6e3e73cdcfd6d692d2e09cbc">m_chip</a></td></tr>
+<tr class="memdesc:ab8447b4f6e3e73cdcfd6d692d2e09cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of proton  <a href="#ab8447b4f6e3e73cdcfd6d692d2e09cbc">More...</a><br /></td></tr>
 <tr class="separator:ab8447b4f6e3e73cdcfd6d692d2e09cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a264ed6e4108dc95e2ab16c734c112f8a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a264ed6e4108dc95e2ab16c734c112f8a">m_probPH</a></td></tr>
+<tr class="memdesc:a264ed6e4108dc95e2ab16c734c112f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Most probable pulse height from truncated mean.  <a href="#a264ed6e4108dc95e2ab16c734c112f8a">More...</a><br /></td></tr>
 <tr class="separator:a264ed6e4108dc95e2ab16c734c112f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70d27e02b5e4780fed9cc43497d05d21"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a70d27e02b5e4780fed9cc43497d05d21">m_normPH</a></td></tr>
+<tr class="memdesc:a70d27e02b5e4780fed9cc43497d05d21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalized pulse height.  <a href="#a70d27e02b5e4780fed9cc43497d05d21">More...</a><br /></td></tr>
 <tr class="separator:a70d27e02b5e4780fed9cc43497d05d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf73147de710395ece8e8e33940c8b51"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#abf73147de710395ece8e8e33940c8b51">m_ghit</a></td></tr>
+<tr class="memdesc:abf73147de710395ece8e8e33940c8b51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of good hits.  <a href="#abf73147de710395ece8e8e33940c8b51">More...</a><br /></td></tr>
 <tr class="separator:abf73147de710395ece8e8e33940c8b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaeace44246b6c0d10012bf6f0bcba5f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#abaeace44246b6c0d10012bf6f0bcba5f">m_thit</a></td></tr>
+<tr class="memdesc:abaeace44246b6c0d10012bf6f0bcba5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of hits.  <a href="#abaeace44246b6c0d10012bf6f0bcba5f">More...</a><br /></td></tr>
 <tr class="separator:abaeace44246b6c0d10012bf6f0bcba5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2db03cd5a2b387df5b453af1a385746"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ab2db03cd5a2b387df5b453af1a385746">m_tuple4</a></td></tr>
+<tr class="memdesc:ab2db03cd5a2b387df5b453af1a385746"><td class="mdescLeft">&#160;</td><td class="mdescRight">Endcap ToF.  <a href="#ab2db03cd5a2b387df5b453af1a385746">More...</a><br /></td></tr>
 <tr class="separator:ab2db03cd5a2b387df5b453af1a385746"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d3e3876200c4e303f6d3a791e828350"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a0d3e3876200c4e303f6d3a791e828350">m_ptot_etof</a></td></tr>
+<tr class="memdesc:a0d3e3876200c4e303f6d3a791e828350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#a0d3e3876200c4e303f6d3a791e828350">More...</a><br /></td></tr>
 <tr class="separator:a0d3e3876200c4e303f6d3a791e828350"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c6467b8ec17bb0de178a0db39cc7279"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a0c6467b8ec17bb0de178a0db39cc7279">m_cntr_etof</a></td></tr>
-<tr class="separator:a0c6467b8ec17bb0de178a0db39cc7279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93ceba28f79cd67c886d04ee00d53ce8"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a93ceba28f79cd67c886d04ee00d53ce8">m_path_etof</a></td></tr>
+<tr class="memdesc:a93ceba28f79cd67c886d04ee00d53ce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#a93ceba28f79cd67c886d04ee00d53ce8">More...</a><br /></td></tr>
 <tr class="separator:a93ceba28f79cd67c886d04ee00d53ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51d82ccd9c3fa7bed41de9a1ea825bb7"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a51d82ccd9c3fa7bed41de9a1ea825bb7">m_tof_etof</a></td></tr>
+<tr class="memdesc:a51d82ccd9c3fa7bed41de9a1ea825bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time of flight.  <a href="#a51d82ccd9c3fa7bed41de9a1ea825bb7">More...</a><br /></td></tr>
 <tr class="separator:a51d82ccd9c3fa7bed41de9a1ea825bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e8f40d1e35d336ac99316d895485d43"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a8e8f40d1e35d336ac99316d895485d43">m_te_etof</a></td></tr>
-<tr class="separator:a8e8f40d1e35d336ac99316d895485d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe5ffd96d8b73964f5c7316b069b249c"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#abe5ffd96d8b73964f5c7316b069b249c">m_tmu_etof</a></td></tr>
-<tr class="separator:abe5ffd96d8b73964f5c7316b069b249c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20e90047481a0dd719e0884408c964bd"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a20e90047481a0dd719e0884408c964bd">m_tpi_etof</a></td></tr>
-<tr class="separator:a20e90047481a0dd719e0884408c964bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05afa3b621be10c69a55fcc6643fd7ca"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a05afa3b621be10c69a55fcc6643fd7ca">m_tk_etof</a></td></tr>
-<tr class="separator:a05afa3b621be10c69a55fcc6643fd7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2fc6d5e240499468b1f854c73daece9"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ae2fc6d5e240499468b1f854c73daece9">m_tp_etof</a></td></tr>
-<tr class="separator:ae2fc6d5e240499468b1f854c73daece9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c6467b8ec17bb0de178a0db39cc7279"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a0c6467b8ec17bb0de178a0db39cc7279">m_cntr_etof</a></td></tr>
+<tr class="memdesc:a0c6467b8ec17bb0de178a0db39cc7279"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#a0c6467b8ec17bb0de178a0db39cc7279">More...</a><br /></td></tr>
+<tr class="separator:a0c6467b8ec17bb0de178a0db39cc7279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbbf05665e4d8b651bf4c4baebb6ee75"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#acbbf05665e4d8b651bf4c4baebb6ee75">m_ph_etof</a></td></tr>
+<tr class="memdesc:acbbf05665e4d8b651bf4c4baebb6ee75"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#acbbf05665e4d8b651bf4c4baebb6ee75">More...</a><br /></td></tr>
 <tr class="separator:acbbf05665e4d8b651bf4c4baebb6ee75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab32ca270294a50a566e3fb2cfcbc3691"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ab32ca270294a50a566e3fb2cfcbc3691">m_rhit_etof</a></td></tr>
+<tr class="memdesc:ab32ca270294a50a566e3fb2cfcbc3691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate Z or R Hit position.  <a href="#ab32ca270294a50a566e3fb2cfcbc3691">More...</a><br /></td></tr>
 <tr class="separator:ab32ca270294a50a566e3fb2cfcbc3691"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80d6f6dca62731d310eccc47e3354d5a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a80d6f6dca62731d310eccc47e3354d5a">m_qual_etof</a></td></tr>
+<tr class="memdesc:a80d6f6dca62731d310eccc47e3354d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#a80d6f6dca62731d310eccc47e3354d5a">More...</a><br /></td></tr>
 <tr class="separator:a80d6f6dca62731d310eccc47e3354d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e8f40d1e35d336ac99316d895485d43"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a8e8f40d1e35d336ac99316d895485d43">m_te_etof</a></td></tr>
+<tr class="memdesc:a8e8f40d1e35d336ac99316d895485d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#a8e8f40d1e35d336ac99316d895485d43">More...</a><br /></td></tr>
+<tr class="separator:a8e8f40d1e35d336ac99316d895485d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe5ffd96d8b73964f5c7316b069b249c"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#abe5ffd96d8b73964f5c7316b069b249c">m_tmu_etof</a></td></tr>
+<tr class="memdesc:abe5ffd96d8b73964f5c7316b069b249c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#abe5ffd96d8b73964f5c7316b069b249c">More...</a><br /></td></tr>
+<tr class="separator:abe5ffd96d8b73964f5c7316b069b249c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20e90047481a0dd719e0884408c964bd"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a20e90047481a0dd719e0884408c964bd">m_tpi_etof</a></td></tr>
+<tr class="memdesc:a20e90047481a0dd719e0884408c964bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#a20e90047481a0dd719e0884408c964bd">More...</a><br /></td></tr>
+<tr class="separator:a20e90047481a0dd719e0884408c964bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05afa3b621be10c69a55fcc6643fd7ca"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a05afa3b621be10c69a55fcc6643fd7ca">m_tk_etof</a></td></tr>
+<tr class="memdesc:a05afa3b621be10c69a55fcc6643fd7ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#a05afa3b621be10c69a55fcc6643fd7ca">More...</a><br /></td></tr>
+<tr class="separator:a05afa3b621be10c69a55fcc6643fd7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2fc6d5e240499468b1f854c73daece9"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ae2fc6d5e240499468b1f854c73daece9">m_tp_etof</a></td></tr>
+<tr class="memdesc:ae2fc6d5e240499468b1f854c73daece9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#ae2fc6d5e240499468b1f854c73daece9">More...</a><br /></td></tr>
+<tr class="separator:ae2fc6d5e240499468b1f854c73daece9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49886c7fc5a4358a249329032dabf109"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a49886c7fc5a4358a249329032dabf109">m_tuple5</a></td></tr>
+<tr class="memdesc:a49886c7fc5a4358a249329032dabf109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barrel inner ToF.  <a href="#a49886c7fc5a4358a249329032dabf109">More...</a><br /></td></tr>
 <tr class="separator:a49886c7fc5a4358a249329032dabf109"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4aac7cc220e9278569323afb7164cd00"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a4aac7cc220e9278569323afb7164cd00">m_ptot_btof1</a></td></tr>
+<tr class="memdesc:a4aac7cc220e9278569323afb7164cd00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#a4aac7cc220e9278569323afb7164cd00">More...</a><br /></td></tr>
 <tr class="separator:a4aac7cc220e9278569323afb7164cd00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7eb11ea32e1a4f7c6473ad3fb897a62b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a7eb11ea32e1a4f7c6473ad3fb897a62b">m_cntr_btof1</a></td></tr>
-<tr class="separator:a7eb11ea32e1a4f7c6473ad3fb897a62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1e1ed38c0adfa5f2ecf40c1a48e5a72"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ae1e1ed38c0adfa5f2ecf40c1a48e5a72">m_path_btof1</a></td></tr>
+<tr class="memdesc:ae1e1ed38c0adfa5f2ecf40c1a48e5a72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#ae1e1ed38c0adfa5f2ecf40c1a48e5a72">More...</a><br /></td></tr>
 <tr class="separator:ae1e1ed38c0adfa5f2ecf40c1a48e5a72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a078ab117c0fb6718f04ad4eccf2ab73f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a078ab117c0fb6718f04ad4eccf2ab73f">m_tof_btof1</a></td></tr>
+<tr class="memdesc:a078ab117c0fb6718f04ad4eccf2ab73f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time of flight.  <a href="#a078ab117c0fb6718f04ad4eccf2ab73f">More...</a><br /></td></tr>
 <tr class="separator:a078ab117c0fb6718f04ad4eccf2ab73f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b27cd885fad3ca444f05dd2d2035e5e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a8b27cd885fad3ca444f05dd2d2035e5e">m_te_btof1</a></td></tr>
-<tr class="separator:a8b27cd885fad3ca444f05dd2d2035e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeee96fec834144b701b57fd8bf7b4635"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aeee96fec834144b701b57fd8bf7b4635">m_tmu_btof1</a></td></tr>
-<tr class="separator:aeee96fec834144b701b57fd8bf7b4635"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94cbe57737220bcb992d886899ee8508"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a94cbe57737220bcb992d886899ee8508">m_tpi_btof1</a></td></tr>
-<tr class="separator:a94cbe57737220bcb992d886899ee8508"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb313175618ac57d8dd531dc3e2e72bb"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#abb313175618ac57d8dd531dc3e2e72bb">m_tk_btof1</a></td></tr>
-<tr class="separator:abb313175618ac57d8dd531dc3e2e72bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3d560cbc70a555a604d60b27405312c"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aa3d560cbc70a555a604d60b27405312c">m_tp_btof1</a></td></tr>
-<tr class="separator:aa3d560cbc70a555a604d60b27405312c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eb11ea32e1a4f7c6473ad3fb897a62b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a7eb11ea32e1a4f7c6473ad3fb897a62b">m_cntr_btof1</a></td></tr>
+<tr class="memdesc:a7eb11ea32e1a4f7c6473ad3fb897a62b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#a7eb11ea32e1a4f7c6473ad3fb897a62b">More...</a><br /></td></tr>
+<tr class="separator:a7eb11ea32e1a4f7c6473ad3fb897a62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a557f3a19e53a600b118cbc38278fb49e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a557f3a19e53a600b118cbc38278fb49e">m_ph_btof1</a></td></tr>
+<tr class="memdesc:a557f3a19e53a600b118cbc38278fb49e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#a557f3a19e53a600b118cbc38278fb49e">More...</a><br /></td></tr>
 <tr class="separator:a557f3a19e53a600b118cbc38278fb49e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4815ea91b3e3dfad7071a5392c99a4ad"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a4815ea91b3e3dfad7071a5392c99a4ad">m_zhit_btof1</a></td></tr>
+<tr class="memdesc:a4815ea91b3e3dfad7071a5392c99a4ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate Z or R Hit position.  <a href="#a4815ea91b3e3dfad7071a5392c99a4ad">More...</a><br /></td></tr>
 <tr class="separator:a4815ea91b3e3dfad7071a5392c99a4ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af72663c60e81b3f78c5dd7dcb1e0e095"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#af72663c60e81b3f78c5dd7dcb1e0e095">m_qual_btof1</a></td></tr>
+<tr class="memdesc:af72663c60e81b3f78c5dd7dcb1e0e095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#af72663c60e81b3f78c5dd7dcb1e0e095">More...</a><br /></td></tr>
 <tr class="separator:af72663c60e81b3f78c5dd7dcb1e0e095"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b27cd885fad3ca444f05dd2d2035e5e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a8b27cd885fad3ca444f05dd2d2035e5e">m_te_btof1</a></td></tr>
+<tr class="memdesc:a8b27cd885fad3ca444f05dd2d2035e5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#a8b27cd885fad3ca444f05dd2d2035e5e">More...</a><br /></td></tr>
+<tr class="separator:a8b27cd885fad3ca444f05dd2d2035e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeee96fec834144b701b57fd8bf7b4635"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aeee96fec834144b701b57fd8bf7b4635">m_tmu_btof1</a></td></tr>
+<tr class="memdesc:aeee96fec834144b701b57fd8bf7b4635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#aeee96fec834144b701b57fd8bf7b4635">More...</a><br /></td></tr>
+<tr class="separator:aeee96fec834144b701b57fd8bf7b4635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94cbe57737220bcb992d886899ee8508"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a94cbe57737220bcb992d886899ee8508">m_tpi_btof1</a></td></tr>
+<tr class="memdesc:a94cbe57737220bcb992d886899ee8508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#a94cbe57737220bcb992d886899ee8508">More...</a><br /></td></tr>
+<tr class="separator:a94cbe57737220bcb992d886899ee8508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb313175618ac57d8dd531dc3e2e72bb"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#abb313175618ac57d8dd531dc3e2e72bb">m_tk_btof1</a></td></tr>
+<tr class="memdesc:abb313175618ac57d8dd531dc3e2e72bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#abb313175618ac57d8dd531dc3e2e72bb">More...</a><br /></td></tr>
+<tr class="separator:abb313175618ac57d8dd531dc3e2e72bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3d560cbc70a555a604d60b27405312c"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aa3d560cbc70a555a604d60b27405312c">m_tp_btof1</a></td></tr>
+<tr class="memdesc:aa3d560cbc70a555a604d60b27405312c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#aa3d560cbc70a555a604d60b27405312c">More...</a><br /></td></tr>
+<tr class="separator:aa3d560cbc70a555a604d60b27405312c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afadc0a6239385e62888c488ffea6491e"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#afadc0a6239385e62888c488ffea6491e">m_tuple6</a></td></tr>
+<tr class="memdesc:afadc0a6239385e62888c488ffea6491e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barrel outer ToF.  <a href="#afadc0a6239385e62888c488ffea6491e">More...</a><br /></td></tr>
 <tr class="separator:afadc0a6239385e62888c488ffea6491e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a267cce679efde4d7ccd4d7b1e7bc00eb"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a267cce679efde4d7ccd4d7b1e7bc00eb">m_ptot_btof2</a></td></tr>
+<tr class="memdesc:a267cce679efde4d7ccd4d7b1e7bc00eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#a267cce679efde4d7ccd4d7b1e7bc00eb">More...</a><br /></td></tr>
 <tr class="separator:a267cce679efde4d7ccd4d7b1e7bc00eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba3344a297c780db10999379adb7c782"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aba3344a297c780db10999379adb7c782">m_cntr_btof2</a></td></tr>
-<tr class="separator:aba3344a297c780db10999379adb7c782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c762ca06348aaad0896f90465f71964"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a5c762ca06348aaad0896f90465f71964">m_path_btof2</a></td></tr>
+<tr class="memdesc:a5c762ca06348aaad0896f90465f71964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#a5c762ca06348aaad0896f90465f71964">More...</a><br /></td></tr>
 <tr class="separator:a5c762ca06348aaad0896f90465f71964"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8721625892d9cbf693a12bc86b649b53"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a8721625892d9cbf693a12bc86b649b53">m_tof_btof2</a></td></tr>
+<tr class="memdesc:a8721625892d9cbf693a12bc86b649b53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time of flight.  <a href="#a8721625892d9cbf693a12bc86b649b53">More...</a><br /></td></tr>
 <tr class="separator:a8721625892d9cbf693a12bc86b649b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cb84cf81d7d872dcbabc41a430a5e23"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a7cb84cf81d7d872dcbabc41a430a5e23">m_te_btof2</a></td></tr>
-<tr class="separator:a7cb84cf81d7d872dcbabc41a430a5e23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad8ea7d61b143177e82a56e1789b629a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aad8ea7d61b143177e82a56e1789b629a">m_tmu_btof2</a></td></tr>
-<tr class="separator:aad8ea7d61b143177e82a56e1789b629a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cd1d57cf035babeb2b7fa3ef615b475"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a9cd1d57cf035babeb2b7fa3ef615b475">m_tpi_btof2</a></td></tr>
-<tr class="separator:a9cd1d57cf035babeb2b7fa3ef615b475"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf9d39deaf6e01f02144d17066b37248"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#adf9d39deaf6e01f02144d17066b37248">m_tk_btof2</a></td></tr>
-<tr class="separator:adf9d39deaf6e01f02144d17066b37248"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46114f89cc96d8b2ac413e66e80b3d28"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a46114f89cc96d8b2ac413e66e80b3d28">m_tp_btof2</a></td></tr>
-<tr class="separator:a46114f89cc96d8b2ac413e66e80b3d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba3344a297c780db10999379adb7c782"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aba3344a297c780db10999379adb7c782">m_cntr_btof2</a></td></tr>
+<tr class="memdesc:aba3344a297c780db10999379adb7c782"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#aba3344a297c780db10999379adb7c782">More...</a><br /></td></tr>
+<tr class="separator:aba3344a297c780db10999379adb7c782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a191ff9d461783b52579c6c49fc0c7adf"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a191ff9d461783b52579c6c49fc0c7adf">m_ph_btof2</a></td></tr>
+<tr class="memdesc:a191ff9d461783b52579c6c49fc0c7adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#a191ff9d461783b52579c6c49fc0c7adf">More...</a><br /></td></tr>
 <tr class="separator:a191ff9d461783b52579c6c49fc0c7adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3cf83392d6831700c8aae34602736d6"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ac3cf83392d6831700c8aae34602736d6">m_zhit_btof2</a></td></tr>
+<tr class="memdesc:ac3cf83392d6831700c8aae34602736d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate Z or R Hit position.  <a href="#ac3cf83392d6831700c8aae34602736d6">More...</a><br /></td></tr>
 <tr class="separator:ac3cf83392d6831700c8aae34602736d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acabf10556cba72b5bf5fe06b6751ef03"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#acabf10556cba72b5bf5fe06b6751ef03">m_qual_btof2</a></td></tr>
+<tr class="memdesc:acabf10556cba72b5bf5fe06b6751ef03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#acabf10556cba72b5bf5fe06b6751ef03">More...</a><br /></td></tr>
 <tr class="separator:acabf10556cba72b5bf5fe06b6751ef03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb84cf81d7d872dcbabc41a430a5e23"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a7cb84cf81d7d872dcbabc41a430a5e23">m_te_btof2</a></td></tr>
+<tr class="memdesc:a7cb84cf81d7d872dcbabc41a430a5e23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#a7cb84cf81d7d872dcbabc41a430a5e23">More...</a><br /></td></tr>
+<tr class="separator:a7cb84cf81d7d872dcbabc41a430a5e23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad8ea7d61b143177e82a56e1789b629a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aad8ea7d61b143177e82a56e1789b629a">m_tmu_btof2</a></td></tr>
+<tr class="memdesc:aad8ea7d61b143177e82a56e1789b629a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#aad8ea7d61b143177e82a56e1789b629a">More...</a><br /></td></tr>
+<tr class="separator:aad8ea7d61b143177e82a56e1789b629a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd1d57cf035babeb2b7fa3ef615b475"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a9cd1d57cf035babeb2b7fa3ef615b475">m_tpi_btof2</a></td></tr>
+<tr class="memdesc:a9cd1d57cf035babeb2b7fa3ef615b475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#a9cd1d57cf035babeb2b7fa3ef615b475">More...</a><br /></td></tr>
+<tr class="separator:a9cd1d57cf035babeb2b7fa3ef615b475"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf9d39deaf6e01f02144d17066b37248"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#adf9d39deaf6e01f02144d17066b37248">m_tk_btof2</a></td></tr>
+<tr class="memdesc:adf9d39deaf6e01f02144d17066b37248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#adf9d39deaf6e01f02144d17066b37248">More...</a><br /></td></tr>
+<tr class="separator:adf9d39deaf6e01f02144d17066b37248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46114f89cc96d8b2ac413e66e80b3d28"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a46114f89cc96d8b2ac413e66e80b3d28">m_tp_btof2</a></td></tr>
+<tr class="memdesc:a46114f89cc96d8b2ac413e66e80b3d28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#a46114f89cc96d8b2ac413e66e80b3d28">More...</a><br /></td></tr>
+<tr class="separator:a46114f89cc96d8b2ac413e66e80b3d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24f4b622fb921188de8edcea17163ad5"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a24f4b622fb921188de8edcea17163ad5">m_tuple8</a></td></tr>
+<tr class="memdesc:a24f4b622fb921188de8edcea17163ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information for method of momentum selection.  <a href="#a24f4b622fb921188de8edcea17163ad5">More...</a><br /></td></tr>
 <tr class="separator:a24f4b622fb921188de8edcea17163ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeabdec5d571fb1ee41084dbf0a41faa2"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aeabdec5d571fb1ee41084dbf0a41faa2">m_mom_lepm</a></td></tr>
 <tr class="separator:aeabdec5d571fb1ee41084dbf0a41faa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -282,6 +346,12 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a766019e0fd13f1710f7f367efb84aed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5c742e2eddaa6dae31c4be4f8d86c99"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ae5c742e2eddaa6dae31c4be4f8d86c99">m_cms_lepm</a></td></tr>
 <tr class="separator:ae5c742e2eddaa6dae31c4be4f8d86c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefa88809eb8e2978555034bce23610e9"><td class="memItemLeft" align="right" valign="top">NTuple::Array&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aefa88809eb8e2978555034bce23610e9">m_cos_theta</a></td></tr>
+<tr class="separator:aefa88809eb8e2978555034bce23610e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6488b7f50ce44fed7adc78cdb66f2a09"><td class="memItemLeft" align="right" valign="top">NTuple::Array&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a6488b7f50ce44fed7adc78cdb66f2a09">m_phi</a></td></tr>
+<tr class="separator:a6488b7f50ce44fed7adc78cdb66f2a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad776f9530b522e84d9de2fde058ddf61"><td class="memItemLeft" align="right" valign="top">NTuple::Matrix&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ad776f9530b522e84d9de2fde058ddf61">m_four_mom</a></td></tr>
+<tr class="separator:ad776f9530b522e84d9de2fde058ddf61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3e9d92556d3958d05d895a69111a6d6"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ac3e9d92556d3958d05d895a69111a6d6">m_mass_twopi</a></td></tr>
 <tr class="separator:ac3e9d92556d3958d05d895a69111a6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae8c7ab7d42e264b241d781ad5e2e899"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aae8c7ab7d42e264b241d781ad5e2e899">m_mass_jpsi</a></td></tr>
@@ -301,6 +371,7 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aafb25e647edac3f06ab25c598d4e1412"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aafb25e647edac3f06ab25c598d4e1412">m_ep_ratio</a></td></tr>
 <tr class="separator:aafb25e647edac3f06ab25c598d4e1412"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ff699c95bfde867ddd5df56a8461104"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a0ff699c95bfde867ddd5df56a8461104">m_event_flag</a></td></tr>
+<tr class="memdesc:a0ff699c95bfde867ddd5df56a8461104"><td class="mdescLeft">&#160;</td><td class="mdescRight">. 3 or 4 tracks, 4=&gt;4 tracks, 0=&gt; miss pi+, 1=&gt; miss pi-, 2=&gt; miss lepton+, 3=&gt; miss lepton-  <a href="#a0ff699c95bfde867ddd5df56a8461104">More...</a><br /></td></tr>
 <tr class="separator:a0ff699c95bfde867ddd5df56a8461104"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d3461ce1f394a73c41cfbba96e998b8"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a0d3461ce1f394a73c41cfbba96e998b8">m_trans_ratio_lepm</a></td></tr>
 <tr class="separator:a0d3461ce1f394a73c41cfbba96e998b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -316,15 +387,11 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a8b6115f235e1fed5540dd79ffbab026d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c4efde2bd7bac5c80784fb0fa017bce"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a4c4efde2bd7bac5c80784fb0fa017bce">m_index</a></td></tr>
 <tr class="separator:a4c4efde2bd7bac5c80784fb0fa017bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefa88809eb8e2978555034bce23610e9"><td class="memItemLeft" align="right" valign="top">NTuple::Array&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aefa88809eb8e2978555034bce23610e9">m_cos_theta</a></td></tr>
-<tr class="separator:aefa88809eb8e2978555034bce23610e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6488b7f50ce44fed7adc78cdb66f2a09"><td class="memItemLeft" align="right" valign="top">NTuple::Array&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a6488b7f50ce44fed7adc78cdb66f2a09">m_phi</a></td></tr>
-<tr class="separator:a6488b7f50ce44fed7adc78cdb66f2a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad776f9530b522e84d9de2fde058ddf61"><td class="memItemLeft" align="right" valign="top">NTuple::Matrix&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ad776f9530b522e84d9de2fde058ddf61">m_four_mom</a></td></tr>
-<tr class="separator:ad776f9530b522e84d9de2fde058ddf61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6f5aea971e694fae789b5467113bb14"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#ac6f5aea971e694fae789b5467113bb14">m_pion_matched</a></td></tr>
+<tr class="memdesc:ac6f5aea971e694fae789b5467113bb14"><td class="mdescLeft">&#160;</td><td class="mdescRight">. We don't need smear, actually, assume one track of pi pi is missing, the recoil mass is actually the invariant of pair-lepton  <a href="#ac6f5aea971e694fae789b5467113bb14">More...</a><br /></td></tr>
 <tr class="separator:ac6f5aea971e694fae789b5467113bb14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4c7170bffed3d44ba3fdff30468aea8"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#aa4c7170bffed3d44ba3fdff30468aea8">m_lep_matched</a></td></tr>
+<tr class="memdesc:aa4c7170bffed3d44ba3fdff30468aea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">. We don't need smear, actually, assume one track of pi pi is missing, the recoil mass is actually the invariant of pair-lepton  <a href="#aa4c7170bffed3d44ba3fdff30468aea8">More...</a><br /></td></tr>
 <tr class="separator:aa4c7170bffed3d44ba3fdff30468aea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3895b624e1a227cdd3d6dcd992e684cf"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a3895b624e1a227cdd3d6dcd992e684cf">m_idxmc</a></td></tr>
 <tr class="separator:a3895b624e1a227cdd3d6dcd992e684cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -339,13 +406,13 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Modified header of the stock BOSS package <code><a class="el" href="classPipiJpsi.html" title="Modified header of the stock BOSS package PipiJpsi (version 00-00-03). ">PipiJpsi</a></code> (version <code>00-00-03</code>). </p>
-<p>Analyse <img class="formulaInl" alt="$ \psi' \rightarrow J/\psi \pi \pi $" src="form_28.png"/> and <img class="formulaInl" alt="$ J/\psi \rightarrow \mathrm{di-leptons} $" src="form_29.png"/> events. This example package also teaches the use of Monte Carlo truth.</p>
+<p>Analyse <img class="formulaInl" alt="$ \psi' \rightarrow J/\psi \pi \pi $" src="form_28.png"/> and <img class="formulaInl" alt="$ J/\psi \rightarrow \mathrm{di-leptons} $" src="form_29.png"/> events. This example package particularly teaches the use of Monte Carlo truth.</p>
 <dl class="section author"><dt>Author</dt><dd>Kai Zhu (<a href="#" onclick="location.href='mai'+'lto:'+'zhu'+'k@'+'ihe'+'p.'+'ac.'+'cn'; return false;">zhuk@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd>
 <dd>
 Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 13th, 2019 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00029">29</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00028">28</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aee15e034e71dbbd94b837aeefefaa74e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aee15e034e71dbbd94b837aeefefaa74e">&#9670;&nbsp;</a></span>PipiJpsi()</h2>
@@ -373,7 +440,10 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00088">88</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
+<p>Constructor for the <code><a class="el" href="classPipiJpsi.html" title="Modified header of the stock BOSS package PipiJpsi (version 00-00-03). ">PipiJpsi</a></code> algorithm. </p>
+<p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="RhopiAlg_8h.html">RhopiAlg/RhopiAlg.h</a>) and that you should assign the values in <code>share/jopOptions_RhopiAlg.txt</code>. Algorithms should inherit from Gaudi's <code>Algorithm</code> class. See <a href="https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html">https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00089">89</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
 
 </div>
 </div>
@@ -392,9 +462,109 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Print trigger information once: </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00326">326</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
+<p>Inherited <code>execute</code> method of the <code>Algorithm</code>. </p>
+<p>This function is called <em>for each event</em>. </p>
+<ol>
+<li>
+<p class="startli">Log stream and status code</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Event counter and set new file</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Print trigger information once:</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Asign four-momentum with KalmanTrack</p>
+<ul>
+<li>
+<p class="startli">Declare vectors etc.</p>
+<p>Number of different particles: <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>, <img class="formulaInl" alt="$\pi^-$" src="form_9.png"/>, <img class="formulaInl" alt="$l^+$" src="form_35.png"/>, <img class="formulaInl" alt="$l^-$" src="form_36.png"/></p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Create selection of 'good' charged tracks</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Test selections</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">With momentum method calculate the invariant mass of Jpsi actually we use the recoil mass</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><img class="formulaInl" alt="$J/\psi$" src="form_7.png"/> mass cut</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Angle difference between pions, suppress gamma convertion. </p><dl class="section attention"><dt>Attention</dt><dd>This is an important part of the <code><a class="el" href="classPipiJpsi.html" title="Modified header of the stock BOSS package PipiJpsi (version 00-00-03). ">PipiJpsi</a></code> algorithm!</dd></dl>
+<ul>
+<li>
+<p class="startli">Compute angle between pions</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Magnitude of the 3-momenta</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Compute ratios</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Apply boost</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Compute total masses, energies, and momenta</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Store indices</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Store momenta in matrix when one track is assumed missing</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Set filter passed</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p class="endli"></p>
+</li>
+<li>
+Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>This is an important part of the <code><a class="el" href="classPipiJpsi.html" title="Modified header of the stock BOSS package PipiJpsi (version 00-00-03). ">PipiJpsi</a></code> algorithm!</dd></dl>
+</li>
+<li>
+<p class="startli">Next is good photon selection</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Finish Good Photon Selection</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Check dedx infomation</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Check TOF infomation</p>
+<p class="endli"></p>
+</li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00327">327</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
 
 </div>
 </div>
@@ -417,7 +587,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 <p>This function is only called once, after running over all events.</p>
 <p>Prints the flow chart to the terminal, so make sure you save this output! </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00807">807</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00845">845</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
 
 </div>
 </div>
@@ -437,8 +607,392 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </div><div class="memdoc">
 
 <p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
-<p>This function is called only once in the beginning.</p>
-<p>Define and load <code>NTuple</code>s here. </p>
+<p>This function is called only once in the beginning. <b>Define and load <code>NTuple</code>s here.</b> </p>
+<table class="doxtable">
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "vxyz"</code>: Vertex information of the charged tracks</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vx0"</code></td><td><p class="starttd">Primary <img class="formulaInl" alt="$x$" src="form_30.png"/>-vertex as determined by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vy0"</code></td><td><p class="starttd">Primary <img class="formulaInl" alt="$y$" src="form_31.png"/>-vertex as determined by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vz0"</code></td><td><p class="starttd">Primary <img class="formulaInl" alt="$z$" src="form_32.png"/>-vertex as determined by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vr0"</code></td><td><p class="starttd">Distance from origin in <img class="formulaInl" alt="$xy$" src="form_33.png"/>-plane</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "photon"</code>: 'Fake' photon (angles)</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dthe"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\theta$" src="form_34.png"/> angle difference with nearest charged track (degrees)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dphi"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle difference with nearest charged track (degrees)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dang"</code></td><td><p class="starttd">Angle difference with nearest charged track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"eraw"</code></td><td><p class="starttd">Energy of the photon</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"nGam"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "dedx"</code>: Energy loss dE/dx info</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code> </td><td><p class="starttd">Momentum of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chie"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of electron </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chimu"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of muon </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chipi"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of pion </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chik"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of kaon </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chip"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of proton </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"probPH"</code></td><td><p class="starttd">Most probable pulse height from truncated mean</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"normPH"</code></td><td><p class="starttd">Normalized pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ghit"</code> </td><td><p class="starttd">Number of good hits</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"thit"</code> </td><td><p class="starttd">Total number of hits</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "tofe"</code>: Endcap ToF</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"path"</code></td><td><p class="starttd">Path length</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"rhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "tof1"</code>: Barrel inner ToF</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"path"</code></td><td><p class="starttd">Path length</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"zhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "tof2"</code>: Barrel outer ToF</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"path"</code></td><td><p class="starttd">Path length</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"zhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><b><code>NTuple "infmom"</code>: Information with the method of momentum selection</b> <dl class="section attention"><dt>Attention</dt><dd>This is the important part of the <code><a class="el" href="classPipiJpsi.html" title="Modified header of the stock BOSS package PipiJpsi (version 00-00-03). ">PipiJpsi</a></code> algorithm!</dd></dl>
+</td></tr>
+<tr>
+<td><code>"momlepmm"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"momlepp"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"mompionm"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"mompionp"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"pipidang"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cmslepp"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cmslepm"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"costhe"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"phi"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"fourmom"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"invtwopi"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"invjpsi"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"recoil"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"invmass"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"totene"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"totpx"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"totpy"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"totpz"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"epratio"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"eveflag"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tplepratiom"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tplepratiop"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tppionratiom"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tppionratiop"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"run"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"event"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ntrack"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"pionmat"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"lepmat"</code> </td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"indexmc"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"pdgid"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"motheridx"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"truepp"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"truepm"</code></td><td><p class="starttd"></p>
+<p class="endtd"></p>
+</td></tr>
+</table>
 
 <p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00117">117</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
 
@@ -465,7 +1019,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00058">58</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00057">57</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -489,7 +1043,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00055">55</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00054">54</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -513,7 +1067,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00056">56</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00055">55</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -537,7 +1091,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00100">100</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of electron </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00096">96</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -561,7 +1117,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00103">103</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of kaon </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00099">99</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -585,7 +1143,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00101">101</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of muon </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00097">97</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -609,7 +1169,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00104">104</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of proton </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00100">100</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -633,7 +1195,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00102">102</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of pion </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00098">98</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -657,7 +1221,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00163">163</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00157">157</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -681,7 +1245,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00162">162</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00156">156</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -705,7 +1269,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00128">128</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>ToF counter ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00124">124</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -729,7 +1295,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00143">143</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>ToF counter ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00138">138</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -753,7 +1321,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00113">113</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>ToF counter ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00110">110</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -777,7 +1347,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00182">182</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00158">158</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -801,7 +1371,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00061">61</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00060">60</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -825,7 +1395,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00093">93</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Angle difference with nearest charged track. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00090">90</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -849,7 +1421,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00071">71</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00070">70</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -873,7 +1445,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00092">92</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p><img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle difference with nearest charged track (degrees) </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00089">89</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -897,7 +1471,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00091">91</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p><img class="formulaInl" alt="$\theta$" src="form_34.png"/> angle difference with nearest charged track (degrees) </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00088">88</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -945,7 +1521,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00094">94</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Energy of the photon. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00091">91</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -993,6 +1571,8 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
+<p>. 3 or 4 tracks, 4=&gt;4 tracks, 0=&gt; miss pi+, 1=&gt; miss pi-, 2=&gt; miss lepton+, 3=&gt; miss lepton- </p>
+
 <p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00173">173</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
@@ -1017,7 +1597,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00057">57</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00056">56</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1041,7 +1621,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00184">184</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00160">160</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1065,7 +1645,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00107">107</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Number of good hits. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00103">103</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1089,7 +1671,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00191">191</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00186">186</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1137,7 +1719,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00167">167</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00165">165</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1161,7 +1743,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00188">188</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>. We don't need smear, actually, assume one track of pi pi is missing, the recoil mass is actually the invariant of pair-lepton </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00184">184</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1185,7 +1769,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00165">165</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00163">163</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1209,7 +1793,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00166">166</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00164">164</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1233,7 +1817,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00164">164</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00162">162</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1257,7 +1841,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00157">157</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00150">150</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1281,7 +1865,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00158">158</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00151">151</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1305,7 +1889,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00160">160</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00153">153</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1329,7 +1913,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00159">159</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00152">152</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1353,7 +1937,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00193">193</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00188">188</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1377,7 +1961,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00095">95</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Number of photons. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00092">92</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1401,7 +1987,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00106">106</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Normalized pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00102">102</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1425,7 +2013,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00129">129</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Path length. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00122">122</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1449,7 +2039,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00144">144</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Path length. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00136">136</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1473,7 +2065,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00114">114</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Path length. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00108">108</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1497,7 +2091,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00192">192</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00187">187</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1521,7 +2115,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00136">136</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>ToF pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00125">125</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1545,7 +2141,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00151">151</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>ToF pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00139">139</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1569,7 +2167,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00121">121</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>ToF pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00111">111</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1593,7 +2193,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00183">183</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00159">159</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1617,7 +2217,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00187">187</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>. We don't need smear, actually, assume one track of pi pi is missing, the recoil mass is actually the invariant of pair-lepton </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00183">183</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1641,7 +2243,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00161">161</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00155">155</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1665,7 +2267,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00064">64</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00063">63</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1689,7 +2291,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00105">105</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Most probable pulse height from truncated mean. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00101">101</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1713,7 +2317,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00127">127</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Momentum of the track as reconstructed by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00121">121</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1737,7 +2343,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00142">142</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Momentum of the track as reconstructed by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00135">135</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1761,7 +2369,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00112">112</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Momentum of the track as reconstructed by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00107">107</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1785,7 +2395,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00099">99</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Momentum of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00095">95</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1809,7 +2421,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00138">138</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Data quality of reconstruction. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00127">127</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1833,7 +2447,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00153">153</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Data quality of reconstruction. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00141">141</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1857,7 +2473,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00123">123</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Data quality of reconstruction. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00113">113</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1881,7 +2499,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00122">122</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Track extrapolate Z or R Hit position. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00112">112</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1929,7 +2549,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00067">67</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00066">66</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1953,7 +2573,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00131">131</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in electron hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00128">128</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1977,7 +2599,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00146">146</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in electron hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00142">142</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2001,7 +2625,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00116">116</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in electron hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00114">114</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2025,7 +2651,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00108">108</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Total number of hits. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00104">104</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2049,7 +2677,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00134">134</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in charged kaon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00131">131</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2073,7 +2703,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00149">149</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in charged kaon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00145">145</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2097,7 +2729,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00119">119</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in charged kaon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00117">117</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2121,7 +2755,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00132">132</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in muon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00129">129</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2145,7 +2781,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00147">147</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in muon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00143">143</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2169,7 +2807,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00117">117</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in muon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00115">115</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2193,7 +2833,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00130">130</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Time of flight. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00123">123</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2217,7 +2859,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00145">145</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Time of flight. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00137">137</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2241,7 +2885,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00115">115</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Time of flight. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00109">109</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2265,7 +2911,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00168">168</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00167">167</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2289,7 +2935,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00169">169</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00168">168</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2313,7 +2959,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00170">170</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00169">169</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2337,7 +2983,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00171">171</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00170">170</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2361,7 +3007,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00135">135</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in proton hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00132">132</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2385,7 +3033,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00150">150</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in proton hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00146">146</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2409,7 +3059,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00120">120</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in proton hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00118">118</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2433,7 +3085,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00133">133</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in charged pion hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00130">130</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2457,7 +3111,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00148">148</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in charged pion hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00144">144</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2481,7 +3137,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00118">118</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Difference with ToF in charged pion hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00116">116</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2505,7 +3163,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00175">175</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00174">174</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2529,7 +3187,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00176">176</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00175">175</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2553,7 +3211,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00178">178</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00177">177</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2577,7 +3235,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00177">177</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00176">176</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2601,7 +3259,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00068">68</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00067">67</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2625,7 +3283,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00196">196</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00190">190</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2649,7 +3307,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00194">194</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00189">189</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2673,7 +3331,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00083">83</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Vertex information of the charged tracks. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00081">81</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2697,7 +3357,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00090">90</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>'Fake' photon (angles) </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00087">87</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2721,7 +3383,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00098">98</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Energy loss dE/dx info. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00094">94</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2745,7 +3409,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00111">111</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Endcap ToF. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00106">106</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2769,7 +3435,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00126">126</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Barrel inner ToF. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00120">120</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2793,7 +3461,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00141">141</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Barrel outer ToF. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00134">134</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2817,7 +3487,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00156">156</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Information for method of momentum selection. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00148">148</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2841,7 +3513,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00087">87</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Distance from origin in <img class="formulaInl" alt="$xy$" src="form_33.png"/>-plane. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00085">85</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2865,7 +3539,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00051">51</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00050">50</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2889,7 +3563,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00084">84</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Primary <img class="formulaInl" alt="$x$" src="form_30.png"/>-vertex as determined by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00082">82</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2913,7 +3589,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00085">85</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Primary <img class="formulaInl" alt="$y$" src="form_31.png"/>-vertex as determined by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00083">83</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2937,7 +3615,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00086">86</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Primary <img class="formulaInl" alt="$z$" src="form_32.png"/>-vertex as determined by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00084">84</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2961,7 +3641,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00052">52</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00051">51</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2985,7 +3665,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00137">137</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Track extrapolate Z or R Hit position. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00126">126</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3009,7 +3691,9 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00152">152</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p>Track extrapolate Z or R Hit position. </p>
+
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00140">140</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>

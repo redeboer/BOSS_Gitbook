@@ -18,10 +18,10 @@
 
 
 	/**
-	 * @brief    Container for particle data. In essence an container of `ROOT`'s `TParticlePDG`.
+	 * @brief    Extended data container of a reconstructed particle. In essence an container of `ROOT`'s `TParticlePDG`, but with extended functionality for particle reconstruction. It contains additional parameters that are relevant when reconstructing the particle, like fit range in the invariant mass plot. The idea is that you can use this object to generalise functions like fitting, where the mass range is particle-specific. It is then convenient to only have to feed the function this object.
+	 *
 	 * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	 * @date     October 25th, 2018
-	 * @details  This object is an extention of `Particle.h`. It contains additional parameters that are relevant when reconstructing the particle, like fit range in the invariant mass plot. The idea is that you can use this object to generalise functions like fitting, where the mass range is particle-specific. It is then convenient to only have to feed the function this object.
 	 */
 	class ReconstructedParticle : public Particle
 	{

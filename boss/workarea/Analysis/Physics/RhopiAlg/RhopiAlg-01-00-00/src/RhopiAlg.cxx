@@ -79,9 +79,8 @@
 // * =========================== * //
 	/**
 	 * @brief Constructor for the `RhopiAlg` algorithm.
-	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `RhopiAlg`), and if required a documentation string. Note that you should define the paramters themselves in the header (RhopiAlg/RhopiAlg.h) and that you should assign the values in `share/jopOptions_RhopiAlg.txt`.
+	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `RhopiAlg`), and if required a documentation string. Note that you should define the paramters themselves in the header (RhopiAlg/RhopiAlg.h) and that you should assign the values in `share/jopOptions_RhopiAlg.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 	 */
-	// Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 	RhopiAlg::RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator) :
 		Algorithm(name, pSvcLocator)
 	{
@@ -118,266 +117,237 @@
 // * ------- INITIALIZE ------- * //
 // * ========================== * //
 	/**
-	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
-	 * @details Define and load `NTuple`s here.
+	 * @brief (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning. <b>Define and load `NTuple`s here.</b>
 	 */
 	StatusCode RhopiAlg::initialize()
 	{
-		MsgStream log(msgSvc(), name());
-		log << MSG::INFO << "In initialize():" << endmsg;
-		/// <ul>
-		/// <li> <b>`NTuple "vxyz"`</b>:   Vertex position
-			/// <ul>
+		// * Log stream and status code * //
+			MsgStream log(msgSvc(), name());
+			log << MSG::INFO << "In initialize():" << endmsg;
+
+		/// <table>
+		/// <tr><td colspan="2"><b>`NTuple "vxyz"`:   Vertex information of the charged tracks</b></td></tr>
 			NTuplePtr nt1(ntupleSvc(), "FILE1/vxyz");
-			if ( nt1 ) fTupleVxyz = nt1;
+			if(nt1) fTupleVxyz = nt1;
 			else {
 				fTupleVxyz = ntupleSvc()->book("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
 				if(fTupleVxyz) {
-					fTupleVxyz->addItem("vx0",    fVx0);    /// <li> `"vx0"`:    primary \f$x\f$-vertex as determined by MDC
-					fTupleVxyz->addItem("vy0",    fVy0);    /// <li> `"vy0"`:    primary \f$y\f$-vertex as determined by MDC
-					fTupleVxyz->addItem("vz0",    fVz0);    /// <li> `"vz0"`:    primary \f$z\f$-vertex as determined by MDC
-					fTupleVxyz->addItem("vr0",    fVr0);    /// <li> `"vr0"`:    distance from origin in \f$xy\f$-plane
-					fTupleVxyz->addItem("rvxy0",  fRvxy0);  /// <li> `"rvxy0"`:  nearest distance to IP in \f$xy\f$ plane
-					fTupleVxyz->addItem("rvz0",   fRvz0);   /// <li> `"rvz0"`:   nearest distance to IP in \f$z\f$ direction
-					fTupleVxyz->addItem("rvphi0", fRvphi0); /// <li> `"rvphi0"`: angle in the \f$xy\f$-plane (?) @todo Check definition of `"rvphi0"`
-				}
-				else {
+					fTupleVxyz->addItem("vx0",    fVx0);    ///<tr><td>`"vx0"`   </td><td>Primary \f$x\f$-vertex as determined by MDC</td></tr>
+					fTupleVxyz->addItem("vy0",    fVy0);    ///<tr><td>`"vy0"`   </td><td>Primary \f$y\f$-vertex as determined by MDC</td></tr>
+					fTupleVxyz->addItem("vz0",    fVz0);    ///<tr><td>`"vz0"`   </td><td>Primary \f$z\f$-vertex as determined by MDC</td></tr>
+					fTupleVxyz->addItem("vr0",    fVr0);    ///<tr><td>`"vr0"`   </td><td>Distance from origin in \f$xy\f$-plane</td></tr>
+					fTupleVxyz->addItem("rvxy0",  fRvxy0);  ///<tr><td>`"rvxy0"` </td><td>Nearest distance to IP in \f$xy\f$ plane</td></tr>
+					fTupleVxyz->addItem("rvz0",   fRvz0);   ///<tr><td>`"rvz0"`  </td><td>Nearest distance to IP in \f$z\f$ direction</td></tr>
+					fTupleVxyz->addItem("rvphi0", fRvphi0); ///<tr><td>`"rvphi0"`</td><td>Angle in the \f$xy\f$-plane (?)</td></tr>
+				} else {
 					log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleVxyz) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
-			/// </ul>
 
-		/// <li> <b>`NTuple "photon"`</b>: Photon kinematics
-			/// <ul>
+		/// <tr><td colspan="2"><b>`NTuple "photon"`: Photon kinematics</b></td></tr>
 			NTuplePtr nt2(ntupleSvc(), "FILE1/photon");
-			if ( nt2 ) fTupleAngles = nt2;
+			if(nt2) fTupleAngles = nt2;
 			else {
 				fTupleAngles = ntupleSvc()->book("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
 				if(fTupleAngles) {
-					fTupleAngles->addItem("dthe", fDeltaTheta); /// <li> `"dthe"` branch: theta difference with nearest charged track (\f$^\circ\f$)
-					fTupleAngles->addItem("dphi", fDeltaPhi);   /// <li> `"dphi"` branch: phi difference with nearest charged track (\f$^\circ\f$)
-					fTupleAngles->addItem("dang", fDeltaAngle); /// <li> `"dang"` branch: angle difference with nearest charged track
-					fTupleAngles->addItem("eraw", fEraw);       /// <li> `"eraw"` branch: energy of the photon
+					fTupleAngles->addItem("dthe", fDeltaTheta); ///<tr><td>`"dthe"`</td><td>\f$\theta\f$ angle difference with nearest charged track (degrees)</td></tr>
+					fTupleAngles->addItem("dphi", fDeltaPhi);   ///<tr><td>`"dphi"`</td><td>\f$\phi\f$ angle difference with nearest charged track (degrees)</td></tr>
+					fTupleAngles->addItem("dang", fDeltaAngle); ///<tr><td>`"dang"`</td><td>Angle difference with nearest charged track</td></tr>
+					fTupleAngles->addItem("eraw", fEraw);       ///<tr><td>`"eraw"`</td><td>Energy of the photon</td></tr>
 				}
 				else {
 					log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleAngles) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
-			/// </ul>
 
-		/// <li> <b>`NTuple "etot"`</b>:   Energy branch
-			/// <ul>
+		/// <tr><td colspan="2"><b>`NTuple "etot"`:   Energy branch</b></td></tr>
 			NTuplePtr nt3(ntupleSvc(), "FILE1/etot");
-			if ( nt3 ) fTupleMgg = nt3;
+			if(nt3) fTupleMgg = nt3;
 			else {
 				fTupleMgg = ntupleSvc()->book("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
 				if(fTupleMgg) {
-					fTupleMgg->addItem("m2gg", fMtoGG); /// <li> `"m2gg"` branch: invariant mass of the two gammas
-					fTupleMgg->addItem("etot", fEtot);  /// <li> `"etot"` branch: total energy of \f$\pi^+\f$, \f$\pi^-\f$ and the two gammas
+					fTupleMgg->addItem("m2gg", fMtoGG); ///<tr><td>`"m2gg"`</td><td>Invariant mass of the two gammas</td></tr>
+					fTupleMgg->addItem("etot", fEtot);  ///<tr><td>`"etot"`</td><td>Total energy of \f$\pi^+\f$, \f$\pi^-\f$ and the two gammas</td></tr>
 				}
 				else {
 					log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleMgg) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
-			/// </ul>
 
-		/// <li> <b>`NTuple "fit4c"`</b>:  Neutral pion (pi0) fit branch
-			/// <ul>
+		/// <tr><td colspan="2"><b>`NTuple "fit4c"`:  Neutral pion (pi0) fit branch</b></td></tr>
 			if(fDo_fit4c) {
 				NTuplePtr nt4(ntupleSvc(), "FILE1/fit4c");
-				if ( nt4 ) fTupleFit4C = nt4;
+				if(nt4) fTupleFit4C = nt4;
 				else {
 					fTupleFit4C = ntupleSvc()->book("FILE1/fit4c", CLID_ColumnWiseTuple, "ks N-Tuple example");
-					if(fTupleFit4C ) {
-						fTupleFit4C->addItem("mpi0", fMpi0); /// <li> `"mpi0"` branch: invariant \f$\pi^0\f$ mass according to Kalman kinematic fit
-						fTupleFit4C->addItem("chi2", fChi1); /// <li> `"chi2"` branch: \f$\chi^2\f$ of the Kalman kinematic fit
-					}
-					else {
+					if(fTupleFit4C) {
+						fTupleFit4C->addItem("mpi0", fMpi0); ///<tr><td>`"mpi0"`</td><td>Invariant \f$\pi^0\f$ mass according to Kalman kinematic fit</td></tr>
+						fTupleFit4C->addItem("chi2", fChi1); ///<tr><td>`"chi2"`</td><td>\f$\chi^2\f$ of the Kalman kinematic fit</td></tr>
+					} else {
 						log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleFit4C) << endmsg;
 						return StatusCode::FAILURE;
 					}
 				}
 			}
-			/// </ul>
 
-		/// <li> <b>`NTuple "fit5c"`</b>:  Rho fit branch
-			/// <ul>
+		/// <tr><td colspan="2"><b>`NTuple "fit5c"`:  Rho fit branch</b></td></tr>
 			if(fDo_fit5c) {
 				NTuplePtr nt5(ntupleSvc(), "FILE1/fit5c");
-				if ( nt5 ) fTupleFit5C = nt5;
+				if(nt5) fTupleFit5C = nt5;
 				else {
 					fTupleFit5C = ntupleSvc()->book("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
 					if(fTupleFit5C) {
-						fTupleFit5C->addItem("chi2",  fChi2);  /// <li> `"chi2"` branch:  \f$\chi^2\f$ of the Kalman kinematic fit
-						fTupleFit5C->addItem("mrho0", fMrho0); /// <li> `"mrho0"` branch: invariant mass for \f$\pi^+\pi^-\f$ combination (\f$\rho^0\f$)
-						fTupleFit5C->addItem("mrhop", fMrhop); /// <li> `"mrhop"` branch: invariant mass for \f$\pi^0\pi^+\f$ combination (\f$\rho^+\f$)
-						fTupleFit5C->addItem("mrhom", fMrhom); /// <li> `"mrhom"` branch: invariant mass for \f$\pi^0\pi^-\f$ combination (\f$\rho^-\f$)
-					}
-					else {
+						fTupleFit5C->addItem("chi2",  fChi2);  ///<tr><td>`"chi2"` </td><td>\f$\chi^2\f$ of the Kalman kinematic fit</td></tr>
+						fTupleFit5C->addItem("mrho0", fMrho0); ///<tr><td>`"mrho0"`</td><td>Invariant mass for \f$\pi^+\pi^-\f$ combination (\f$\rho^0\f$)</td></tr>
+						fTupleFit5C->addItem("mrhop", fMrhop); ///<tr><td>`"mrhop"`</td><td>Invariant mass for \f$\pi^0\pi^+\f$ combination (\f$\rho^+\f$)</td></tr>
+						fTupleFit5C->addItem("mrhom", fMrhom); ///<tr><td>`"mrhom"`</td><td>Invariant mass for \f$\pi^0\pi^-\f$ combination (\f$\rho^-\f$)</td></tr>
+					} else {
 						log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleFit5C) << endmsg;
 						return StatusCode::FAILURE;
 					}
 				}
 			}
-			/// </ul>
 
-		/// <li> <b>`NTuple "geff"`</b>:   Photon detection efficiences
-			/// <ul>
+		/// <tr><td colspan="2"><b>`NTuple "geff"`:   Photon detection efficiences</b></td></tr>
 			if(fDo_fit5c) {
 				NTuplePtr nt6(ntupleSvc(), "FILE1/geff");
-				if ( nt6 ) fTuplePhoton = nt6;
+				if(nt6) fTuplePhoton = nt6;
 				else {
 					fTuplePhoton = ntupleSvc()->book("FILE1/geff", CLID_ColumnWiseTuple, "ks N-Tuple example");
 					if(fTuplePhoton) {
-						fTuplePhoton->addItem("fcos", fFcos); /// <li> `"fcos"` branch: \f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate
-						fTuplePhoton->addItem("elow", fElow); /// <li> `"elow"` branch: lowest energy of the two photons
-					}
-					else {
+						fTuplePhoton->addItem("fcos", fFcos); ///<tr><td>`"fcos"`</td><td>\f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate</td></tr>
+						fTuplePhoton->addItem("elow", fElow); ///<tr><td>`"elow"`</td><td>Lowest energy of the two photons</td></tr>
+					} else {
 						log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTuplePhoton) << endmsg;
 						return StatusCode::FAILURE;
 					}
 				}
 			}
-			/// </ul>
 
-		/// <li> <b>`NTuple "dedx"`</b>:   Import dE/dx PID branch
-			/// <ul>
+		/// <tr><td colspan="2"><b>`NTuple "dedx"`:   Import dE/dx PID branch</b></td></tr>
 			if(fCheckDedx) {
 				NTuplePtr nt7(ntupleSvc(), "FILE1/dedx");
-				if ( nt7 ) fTupleDedx = nt7;
+				if(nt7) fTupleDedx = nt7;
 				else {
 					fTupleDedx = ntupleSvc()->book("FILE1/dedx", CLID_ColumnWiseTuple, "ks N-Tuple example");
 					if(fTupleDedx) {
-						fTupleDedx->addItem("ptrk",   fPtrack); /// <li> `"ptrk"` branch:   momentum of the track
-						fTupleDedx->addItem("chie",   fChi2e);  /// <li> `"chie"` branch:   chi2 in case of electron
-						fTupleDedx->addItem("chimu",  fChi2mu); /// <li> `"chimu"` branch:  chi2 in case of muon
-						fTupleDedx->addItem("chipi",  fChi2pi); /// <li> `"chipi"` branch:  chi2 in case of pion
-						fTupleDedx->addItem("chik",   fChi2k);  /// <li> `"chik"` branch:   chi2 in case of kaon
-						fTupleDedx->addItem("chip",   fChi2p);  /// <li> `"chip"` branch:   chi2 in case of proton
-						fTupleDedx->addItem("probPH", fProbPH); /// <li> `"probPH"` branch: most probable pulse height from truncated mean
-						fTupleDedx->addItem("normPH", fNormPH); /// <li> `"normPH"` branch: normalized pulse height
-						fTupleDedx->addItem("ghit",   fGhit);   /// <li> `"ghit"` branch:   number of good hits
-						fTupleDedx->addItem("thit",   fThit);   /// <li> `"thit"` branch:   total number of hits
-					}
-					else {
+						fTupleDedx->addItem("ptrk",   fPtrack); ///<tr><td>`"ptrk"`  </td><td>Momentum of the track</td></tr>
+						fTupleDedx->addItem("chie",   fChi2e);  ///<tr><td>`"chie"`  </td><td>\f$\chi^2\f$ in case of electron</td></tr>
+						fTupleDedx->addItem("chimu",  fChi2mu); ///<tr><td>`"chimu"` </td><td>\f$\chi^2\f$ in case of muon</td></tr>
+						fTupleDedx->addItem("chipi",  fChi2pi); ///<tr><td>`"chipi"` </td><td>\f$\chi^2\f$ in case of pion</td></tr>
+						fTupleDedx->addItem("chik",   fChi2k);  ///<tr><td>`"chik"`  </td><td>\f$\chi^2\f$ in case of kaon</td></tr>
+						fTupleDedx->addItem("chip",   fChi2p);  ///<tr><td>`"chip"`  </td><td>\f$\chi^2\f$ in case of proton</td></tr>
+						fTupleDedx->addItem("probPH", fProbPH); ///<tr><td>`"probPH"`</td><td>Most probable pulse height from truncated mean</td></tr>
+						fTupleDedx->addItem("normPH", fNormPH); ///<tr><td>`"normPH"`</td><td>Normalized pulse height</td></tr>
+						fTupleDedx->addItem("ghit",   fGhit);   ///<tr><td>`"ghit"`  </td><td>Number of good hits</td></tr>
+						fTupleDedx->addItem("thit",   fThit);   ///<tr><td>`"thit"`  </td><td>Total number of hits</td></tr>
+					} else {
 						log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleDedx) << endmsg;
 						return StatusCode::FAILURE;
 					}
 				}
 			}
-			/// </ul>
 
-		/// <li> <b>`NTuple "tofe"`</b>:   ToF endcap branch
-			/// <ul>
+		/// <tr><td colspan="2"><b>`NTuple "tofe"`:   ToF endcap branch</b></td></tr>
 			if(fCheckTof) {
 				NTuplePtr nt8(ntupleSvc(), "FILE1/tofe");
-				if ( nt8 ) fTupleTofEC = nt8;
+				if(nt8) fTupleTofEC = nt8;
 				else {
 					fTupleTofEC = ntupleSvc()->book("FILE1/tofe",CLID_ColumnWiseTuple, "ks N-Tuple example");
 					if(fTupleTofEC) {
-						fTupleTofEC->addItem("ptrk", fPtotTofEC);     /// <li> `"ptrk"` branch: momentum of the track as reconstructed by MDC
-						fTupleTofEC->addItem("path", fPathTofEC);     /// <li> `"path"` branch: path length
-						fTupleTofEC->addItem("tof",  fTofEC);         /// <li> `"tof"` branch:  time of flight
-						fTupleTofEC->addItem("cntr", fCntrTofEC);     /// <li> `"cntr"` branch: ToF counter ID
-						fTupleTofEC->addItem("ph",   fPhTofEC);       /// <li> `"ph"` branch:   ToF pulse height
-						fTupleTofEC->addItem("rhit", fRhitTofEC);     /// <li> `"rhit"` branch: track extrapolate Z or R Hit position
-						fTupleTofEC->addItem("qual", fQualTofEC);     /// <li> `"qual"` branch: data quality of reconstruction
-						fTupleTofEC->addItem("te",   fElectronTofEC); /// <li> `"te"` branch:   difference with ToF in electron hypothesis
-						fTupleTofEC->addItem("tmu",  fMuonTofEC);     /// <li> `"tmu"` branch:  difference with ToF in muon hypothesis
-						fTupleTofEC->addItem("tpi",  fProtoniTofEC);  /// <li> `"tpi"` branch:  difference with ToF in charged pion hypothesis
-						fTupleTofEC->addItem("tk",   fKaonTofEC);     /// <li> `"tk"` branch:   difference with ToF in charged kaon hypothesis
-						fTupleTofEC->addItem("tp",   fProtonTofEC);   /// <li> `"tp"` branch:   difference with ToF in proton hypothesis
-					}
-					else {
+						fTupleTofEC->addItem("ptrk", fPtotTofEC);     ///<tr><td>`"ptrk"`</td><td>Momentum of the track as reconstructed by MDC</td></tr>
+						fTupleTofEC->addItem("path", fPathTofEC);     ///<tr><td>`"path"`</td><td>Path length</td></tr>
+						fTupleTofEC->addItem("tof",  fTofEC);         ///<tr><td>`"tof"` </td><td>Time of flight</td></tr>
+						fTupleTofEC->addItem("cntr", fCntrTofEC);     ///<tr><td>`"cntr"`</td><td>ToF counter ID</td></tr>
+						fTupleTofEC->addItem("ph",   fPhTofEC);       ///<tr><td>`"ph"`  </td><td>ToF pulse height</td></tr>
+						fTupleTofEC->addItem("rhit", fRhitTofEC);     ///<tr><td>`"rhit"`</td><td>Track extrapolate Z or R Hit position</td></tr>
+						fTupleTofEC->addItem("qual", fQualTofEC);     ///<tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
+						fTupleTofEC->addItem("te",   fElectronTofEC); ///<tr><td>`"te"`  </td><td>Difference with ToF in electron hypothesis</td></tr>
+						fTupleTofEC->addItem("tmu",  fMuonTofEC);     ///<tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
+						fTupleTofEC->addItem("tpi",  fProtoniTofEC);  ///<tr><td>`"tpi"` </td><td>Difference with ToF in charged pion hypothesis</td></tr>
+						fTupleTofEC->addItem("tk",   fKaonTofEC);     ///<tr><td>`"tk"`  </td><td>Difference with ToF in charged kaon hypothesis</td></tr>
+						fTupleTofEC->addItem("tp",   fProtonTofEC);   ///<tr><td>`"tp"`  </td><td>Difference with ToF in proton hypothesis</td></tr>
+					} else {
 						log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleTofEC) << endmsg;
 						return StatusCode::FAILURE;
 					}
 				}
 			}
-			/// </ul>
 
-		/// <li> <b>`NTuple "tof1"`</b>:   ToF <i>inner</i> barrel branch
-			/// <ul>
+		/// <tr><td colspan="2"><b>`NTuple "tof1"`:   ToF <i>inner</i> barrel branch</b></td></tr>
 			if(fCheckTof) {
 				NTuplePtr nt9(ntupleSvc(), "FILE1/tof1");
-				if ( nt9 ) TupleTofIB = nt9;
+				if(nt9) TupleTofIB = nt9;
 				else {
 					TupleTofIB = ntupleSvc()->book("FILE1/tof1", CLID_ColumnWiseTuple, "ks N-Tuple example");
 					if(TupleTofIB) {
-						TupleTofIB->addItem("ptrk", fPtotTofIB);     /// <li> `"ptrk"` branch: momentum of the track as reconstructed by MDC
-						TupleTofIB->addItem("path", fPathTofIB);     /// <li> `"path"` branch: path length
-						TupleTofIB->addItem("tof",  fTofIB);         /// <li> `"tof"` branch:  time of flight
-						TupleTofIB->addItem("cntr", fCntrTofIB);     /// <li> `"cntr"` branch: ToF counter ID
-						TupleTofIB->addItem("ph",   fPhTofIB);       /// <li> `"ph"` branch:   ToF pulse height
-						TupleTofIB->addItem("zhit", fZhitTofIB);     /// <li> `"zhit"` branch: track extrapolate Z or R Hit position
-						TupleTofIB->addItem("qual", fQualTofIB);     /// <li> `"qual"` branch: data quality of reconstruction
-						TupleTofIB->addItem("te",   fElectronTofIB); /// <li> `"te"` branch:   difference with ToF in electron hypothesis
-						TupleTofIB->addItem("tmu",  fMuonTofIB);     /// <li> `"tmu"` branch:  difference with ToF in muon hypothesis
-						TupleTofIB->addItem("tpi",  fProtoniTofIB);  /// <li> `"tpi"` branch:  difference with ToF in charged pion hypothesis
-						TupleTofIB->addItem("tk",   fKaonTofIB);     /// <li> `"tk"` branch:   difference with ToF in charged kaon hypothesis
-						TupleTofIB->addItem("tp",   fProtonTofIB);   /// <li> `"tp"` branch:   difference with ToF in proton hypothesis
-					}
-					else {
+						TupleTofIB->addItem("ptrk", fPtotTofIB);     ///<tr><td>`"ptrk"`</td><td>Momentum of the track as reconstructed by MDC</td></tr>
+						TupleTofIB->addItem("path", fPathTofIB);     ///<tr><td>`"path"`</td><td>Path length</td></tr>
+						TupleTofIB->addItem("tof",  fTofIB);         ///<tr><td>`"tof"` </td><td>Time of flight</td></tr>
+						TupleTofIB->addItem("cntr", fCntrTofIB);     ///<tr><td>`"cntr"`</td><td>ToF counter ID</td></tr>
+						TupleTofIB->addItem("ph",   fPhTofIB);       ///<tr><td>`"ph"`  </td><td>ToF pulse height</td></tr>
+						TupleTofIB->addItem("zhit", fZhitTofIB);     ///<tr><td>`"zhit"`</td><td>Track extrapolate Z or R Hit position</td></tr>
+						TupleTofIB->addItem("qual", fQualTofIB);     ///<tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
+						TupleTofIB->addItem("te",   fElectronTofIB); ///<tr><td>`"te"`  </td><td>Difference with ToF in electron hypothesis</td></tr>
+						TupleTofIB->addItem("tmu",  fMuonTofIB);     ///<tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
+						TupleTofIB->addItem("tpi",  fProtoniTofIB);  ///<tr><td>`"tpi"` </td><td>Difference with ToF in charged pion hypothesis</td></tr>
+						TupleTofIB->addItem("tk",   fKaonTofIB);     ///<tr><td>`"tk"`  </td><td>Difference with ToF in charged kaon hypothesis</td></tr>
+						TupleTofIB->addItem("tp",   fProtonTofIB);   ///<tr><td>`"tp"`  </td><td>Difference with ToF in proton hypothesis</td></tr>
+					} else {
 						log << MSG::ERROR << "    Cannot book N-tuple:" << long(TupleTofIB) << endmsg;
 						return StatusCode::FAILURE;
 					}
 				}
 			}
-			/// </ul>
 
-		/// <li> <b>`NTuple "tof2"`</b>:   ToF <i>outer</i> barrel branch
-			/// <ul>
+		/// <tr><td colspan="2"><b>`NTuple "tof2"`:   ToF <i>outer</i> barrel branch</b></td></tr>
 			if(fCheckTof) {
 				NTuplePtr nt10(ntupleSvc(), "FILE1/tof2");
-				if ( nt10 ) TupleTofOB = nt10;
+				if(nt10) TupleTofOB = nt10;
 				else {
 					TupleTofOB = ntupleSvc()->book("FILE1/tof2", CLID_ColumnWiseTuple, "ks N-Tuple example");
 					if(TupleTofOB) {
-						TupleTofOB->addItem("ptrk", fPtotTofOB);     /// <li> `"ptrk"` branch: momentum of the track as reconstructed by MDC
-						TupleTofOB->addItem("path", fPathTofOB);     /// <li> `"path"` branch: path length
-						TupleTofOB->addItem("tof",  fTofOB);         /// <li> `"tof"` branch:  time of flight
-						TupleTofOB->addItem("cntr", fCntrTofOB);     /// <li> `"cntr"` branch: ToF counter ID
-						TupleTofOB->addItem("ph",   fPhTofOB);       /// <li> `"ph"` branch:   ToF pulse height
-						TupleTofOB->addItem("zhit", fZhitTofOB);     /// <li> `"zhit"` branch: track extrapolate Z or R Hit position
-						TupleTofOB->addItem("qual", fQualTofOB);     /// <li> `"qual"` branch: data quality of reconstruction
-						TupleTofOB->addItem("te",   fElectronTofOB); /// <li> `"te"` branch:   difference with ToF in electron hypothesis
-						TupleTofOB->addItem("tmu",  fMuonTofOB);     /// <li> `"tmu"` branch:  difference with ToF in muon hypothesis
-						TupleTofOB->addItem("tpi",  fProtoniTofOB);  /// <li> `"tpi"` branch:  difference with ToF in charged pion hypothesis
-						TupleTofOB->addItem("tk",   fKaonTofOB);     /// <li> `"tk"` branch:   difference with ToF in charged kaon hypothesis
-						TupleTofOB->addItem("tp",   fProtonTofOB);   /// <li> `"tp"` branch:   difference with ToF in proton hypothesis
-					}
-					else {
+						TupleTofOB->addItem("ptrk", fPtotTofOB);     ///<tr><td>`"ptrk"`</td><td>Momentum of the track as reconstructed by MDC</td></tr>
+						TupleTofOB->addItem("path", fPathTofOB);     ///<tr><td>`"path"`</td><td>Path length</td></tr>
+						TupleTofOB->addItem("tof",  fTofOB);         ///<tr><td>`"tof"` </td><td>Time of flight</td></tr>
+						TupleTofOB->addItem("cntr", fCntrTofOB);     ///<tr><td>`"cntr"`</td><td>ToF counter ID</td></tr>
+						TupleTofOB->addItem("ph",   fPhTofOB);       ///<tr><td>`"ph"`  </td><td>ToF pulse height</td></tr>
+						TupleTofOB->addItem("zhit", fZhitTofOB);     ///<tr><td>`"zhit"`</td><td>Track extrapolate Z or R Hit position</td></tr>
+						TupleTofOB->addItem("qual", fQualTofOB);     ///<tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
+						TupleTofOB->addItem("te",   fElectronTofOB); ///<tr><td>`"te"`  </td><td>Difference with ToF in electron hypothesis</td></tr>
+						TupleTofOB->addItem("tmu",  fMuonTofOB);     ///<tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
+						TupleTofOB->addItem("tpi",  fProtoniTofOB);  ///<tr><td>`"tpi"` </td><td>Difference with ToF in charged pion hypothesis</td></tr>
+						TupleTofOB->addItem("tk",   fKaonTofOB);     ///<tr><td>`"tk"`  </td><td>Difference with ToF in charged kaon hypothesis</td></tr>
+						TupleTofOB->addItem("tp",   fProtonTofOB);   ///<tr><td>`"tp"`  </td><td>Difference with ToF in proton hypothesis</td></tr>
+					} else {
 						log << MSG::ERROR << "    Cannot book N-tuple:" << long(TupleTofOB) << endmsg;
 						return StatusCode::FAILURE;
 					}
 				}
 			}
-			/// </ul>
 
-		/// <li> <b>`NTuple "pid"`</b>:    Track PID information
-			/// <ul>
+		/// <tr><td colspan="2"><b>`NTuple "pid"`:    Track PID information</b></td></tr>
 			NTuplePtr nt11(ntupleSvc(), "FILE1/pid");
-			if ( nt11 ) fTuplePID = nt11;
+			if(nt11) fTuplePID = nt11;
 			else {
 				fTuplePID = ntupleSvc()->book("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
 				if(fTuplePID) {
-					fTuplePID->addItem("ptrk", fPtrackPID); /// <li> `"ptrk"` branch: momentum of the track
-					fTuplePID->addItem("cost", fCostPID);   /// <li> `"cost"` branch: theta angle of the track
-					fTuplePID->addItem("dedx", fDedxPID);   /// <li> `"dedx"` branch: Chi2 of the dedx of the track
-					fTuplePID->addItem("tof1", fTof1PID);   /// <li> `"tof1"` branch: Chi2 of the inner barrel ToF of the track
-					fTuplePID->addItem("tof2", fTof2PID);   /// <li> `"tof2"` branch: Chi2 of the outer barrel ToF of the track
-					fTuplePID->addItem("prob", fProbPID);   /// <li> `"prob"` branch: probability that it is a pion
+					fTuplePID->addItem("ptrk", fPtrackPID); ///<tr><td>`"ptrk"`</td><td>Momentum of the track</td></tr>
+					fTuplePID->addItem("cost", fCostPID);   ///<tr><td>`"cost"`</td><td>Theta angle of the track</td></tr>
+					fTuplePID->addItem("dedx", fDedxPID);   ///<tr><td>`"dedx"`</td><td>\f$\chi^2\f$ of the \f$dE/dx\f$ of the track</td></tr>
+					fTuplePID->addItem("tof1", fTof1PID);   ///<tr><td>`"tof1"`</td><td>\f$\chi^2\f$ of the inner barrel ToF of the track</td></tr>
+					fTuplePID->addItem("tof2", fTof2PID);   ///<tr><td>`"tof2"`</td><td>\f$\chi^2\f$ of the outer barrel ToF of the track</td></tr>
+					fTuplePID->addItem("prob", fProbPID);   ///<tr><td>`"prob"`</td><td>Probability that it is a pion</td></tr>
 				} else {
 					log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTuplePID) << endmsg;
 					return StatusCode::FAILURE;
 				}
 			}
-			/// </ul>
 
-		/// </ul>
+		/// </table>
 		log << MSG::INFO << "Successfully returned from initialize()" << endmsg;
 		return StatusCode::SUCCESS;
 	}
@@ -444,10 +414,8 @@
 		/// <li> LOOP OVER CHARGED TRACKS: select charged tracks (eventual pions)
 			/// <b> Uses `Ncut1` counter</b>: nGood has to be 2, mdcTrk->charge() has to be more than 0.
 			// The first part of the set of reconstructed tracks are the charged tracks
-			int nCharge = 0;
-				//!< Number of charged tracks as identified by the MDC.
-			Vint iGood;
-				//!< vector of integers that give the position of tracks in the `evtRecEvent` marked good.
+			int nCharge = 0; // Number of charged tracks as identified by the MDC.
+			Vint iGood; // Vector of integers that give the position of tracks in the `evtRecEvent` marked good.
 			for(int i = 0; i < evtRecEvent->totalCharged(); ++i) {
 
 				// * Get track: beginning of all tracks + event number
@@ -561,7 +529,7 @@
 
 				// * Apply photon cuts
 				if(eraw < fEnergyThreshold) continue;
-				if((fabs(dthe) < fGammaThetaCut) && (fabs(dphi) < fGammaPhiCut) ) continue;
+				if((fabs(dthe) < fGammaThetaCut) && (fabs(dphi) < fGammaPhiCut)) continue;
 				if(fabs(dang) < fGammaAngleCut) continue;
 
 				// * Add photon track to vector
@@ -590,12 +558,12 @@
 					RecMdcDedx* dedxTrk = (*itTrk)->mdcDedx();
 
 					// * WRITE energy loss PID info ("dedx" branch) *
-					fPtrack   = mdcTrk->p();             // momentum of the track
-					fChi2e   = dedxTrk->chiE();         // chi2 in case of electron
-					fChi2mu  = dedxTrk->chiMu();        // chi2 in case of muon
-					fChi2pi  = dedxTrk->chiPi();        // chi2 in case of pion
-					fChi2k   = dedxTrk->chiK();         // chi2 in case of kaon
-					fChi2p   = dedxTrk->chiP();         // chi2 in case of proton
+					fPtrack = mdcTrk->p();             // momentum of the track
+					fChi2e  = dedxTrk->chiE();         // chi2 in case of electron
+					fChi2mu = dedxTrk->chiMu();        // chi2 in case of muon
+					fChi2pi = dedxTrk->chiPi();        // chi2 in case of pion
+					fChi2k  = dedxTrk->chiK();         // chi2 in case of kaon
+					fChi2p  = dedxTrk->chiP();         // chi2 in case of proton
 					fProbPH = dedxTrk->probPH();       // most probable pulse height from truncated mean
 					fNormPH = dedxTrk->normPH();       // normalized pulse height
 					fGhit   = dedxTrk->numGoodHits();  // number of good hits
@@ -625,7 +593,7 @@
 						// * If end cap ToF detector: *
 						if(!(hitStatus.is_barrel())) {
 							// *  *
-							if( !(hitStatus.is_counter()) ) continue; // ?
+							if( !(hitStatus.is_counter())) continue; // ?
 							if(hitStatus.layer() != 0) continue; // abort if not end cap
 
 							// * Get ToF info *
@@ -645,17 +613,17 @@
 							}
 
 							// * WRITE ToF end cap info ("tofe" branch) *
-							fPtotTofEC = ptrk;          // momentum of the track as reconstructed by MDC
-							fPathTofEC = path;          // path length
-							fTofEC  = tof;           // time of flight
-							fCntrTofEC = cntr;          // ToF counter ID
-							fPhTofEC   = ph;            // ToF pulse height
-							fRhitTofEC = rhit;          // track extrapolate Z or R Hit position
-							fQualTofEC = qual;          // data quality of reconstruction
-							fElectronTofEC   = tof - texp[0]; // difference with ToF in electron hypothesis
-							fMuonTofEC  = tof - texp[1]; // difference with ToF in muon hypothesis
+							fPtotTofEC     = ptrk;          // momentum of the track as reconstructed by MDC
+							fPathTofEC     = path;          // path length
+							fTofEC         = tof;           // time of flight
+							fCntrTofEC     = cntr;          // ToF counter ID
+							fPhTofEC       = ph;            // ToF pulse height
+							fRhitTofEC     = rhit;          // track extrapolate Z or R Hit position
+							fQualTofEC     = qual;          // data quality of reconstruction
+							fElectronTofEC = tof - texp[0]; // difference with ToF in electron hypothesis
+							fMuonTofEC     = tof - texp[1]; // difference with ToF in muon hypothesis
 							fProtoniTofEC  = tof - texp[2]; // difference with ToF in charged pion hypothesis
-							fKaonTofEC   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
+							fKaonTofEC     = tof - texp[3]; // difference with ToF in charged kaon hypothesis
 							fProtonTofEC   = tof - texp[4]; // difference with ToF in proton hypothesis
 							fTupleTofEC->write(); // "tofe" branch
 						}
@@ -678,17 +646,17 @@
 								}
 
 								// * WRITE ToF inner barrel info ("tof1" branch) *
-								fPtotTofIB = ptrk;          // momentum of the track as reconstructed by MDC
-								fPathTofIB = path;          // path length
-								fTofIB  = tof;           // time of flight
-								fCntrTofIB = cntr;          // ToF counter ID
-								fPhTofIB   = ph;            // ToF pulse height
-								fZhitTofIB = rhit;          // track extrapolate Z or R Hit position
-								fQualTofIB = qual;          // data quality of reconstruction
-								fElectronTofIB   = tof - texp[0]; // difference with ToF in electron hypothesis
-								fMuonTofIB  = tof - texp[1]; // difference with ToF in muon hypothesis
+								fPtotTofIB     = ptrk;          // momentum of the track as reconstructed by MDC
+								fPathTofIB     = path;          // path length
+								fTofIB         = tof;           // time of flight
+								fCntrTofIB     = cntr;          // ToF counter ID
+								fPhTofIB       = ph;            // ToF pulse height
+								fZhitTofIB     = rhit;          // track extrapolate Z or R Hit position
+								fQualTofIB     = qual;          // data quality of reconstruction
+								fElectronTofIB = tof - texp[0]; // difference with ToF in electron hypothesis
+								fMuonTofIB     = tof - texp[1]; // difference with ToF in muon hypothesis
 								fProtoniTofIB  = tof - texp[2]; // difference with ToF in charged pion hypothesis
-								fKaonTofIB   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
+								fKaonTofIB     = tof - texp[3]; // difference with ToF in charged kaon hypothesis
 								fProtonTofIB   = tof - texp[4]; // difference with ToF in proton hypothesis
 								TupleTofIB->write(); // "tof1" branch
 							}
@@ -708,17 +676,17 @@
 								}
 
 								// * WRITE ToF outer barrel info ("tof2" branch) *
-								fPtotTofOB = ptrk;          // momentum of the track as reconstructed by MDC
-								fPathTofOB = path;          // path length
-								fTofOB  = tof;           // time of flight
-								fCntrTofOB = cntr;          // ToF counter ID
-								fPhTofOB   = ph;            // ToF pulse height
-								fZhitTofOB = rhit;          // track extrapolate Z or R Hit position
-								fQualTofOB = qual;          // data quality of reconstruction
-								fElectronTofOB   = tof - texp[0]; // difference with ToF in electron hypothesis
-								fMuonTofOB  = tof - texp[1]; // difference with ToF in muon hypothesis
+								fPtotTofOB     = ptrk;          // momentum of the track as reconstructed by MDC
+								fPathTofOB     = path;          // path length
+								fTofOB         = tof;           // time of flight
+								fCntrTofOB     = cntr;          // ToF counter ID
+								fPhTofOB       = ph;            // ToF pulse height
+								fZhitTofOB     = rhit;          // track extrapolate Z or R Hit position
+								fQualTofOB     = qual;          // data quality of reconstruction
+								fElectronTofOB = tof - texp[0]; // difference with ToF in electron hypothesis
+								fMuonTofOB     = tof - texp[1]; // difference with ToF in muon hypothesis
 								fProtoniTofOB  = tof - texp[2]; // difference with ToF in charged pion hypothesis
-								fKaonTofOB   = tof - texp[3]; // difference with ToF in charged kaon hypothesis
+								fKaonTofOB     = tof - texp[3]; // difference with ToF in charged kaon hypothesis
 								fProtonTofOB   = tof - texp[4]; // difference with ToF in proton hypothesis
 								TupleTofOB->write(); // "tof2" branch
 							}
@@ -769,7 +737,7 @@
 				RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
 
 				// * WRITE particle identification info ("pid" branch) *
-				fPtrackPID = mdcTrk->p();          // momentum of the track
+				fPtrackPID = mdcTrk->p();        // momentum of the track
 				fCostPID = cos(mdcTrk->theta()); // theta angle of the track
 				fDedxPID = pid->chiDedx(2);      // Chi squared of the dedx of the track
 				fTof1PID = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
@@ -808,7 +776,7 @@
 			}
 
 
-		/// <li> RhopiAlg without PID
+		/// <li> RhopiAlg without PID (<i>optional: needs to be uncommented</i>)
 			// for(int i = 0; i < nGood; ++i) { 
 				// EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
 				// RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
@@ -834,7 +802,7 @@
 			// } // without PID
 
 
-			/// <b> Uses `Ncut3` counter</b>: ipip.size() * ipim.size() cannot be 1.
+			/// <b> Uses `Ncut3` counter</b>: `ipip.size()` * `ipim.size()` cannot be `1`.
 			int npip = ipip.size();
 			int npim = ipim.size();
 			if(npip*npim != 1) return SUCCESS;
@@ -864,7 +832,7 @@
 			wvpimTrk = WTrackParameter(mpi0, pimTrk->getZHelix(), pimTrk->getZError());
 
 
-		/// <li> Default is pion, for other particles:
+		/// <li> Default is pion, for other particles (<i>optional: needs to be uncommented</i>)
 			// wvppTrk = WTrackParameter(mp, pipTrk->getZHelixP(), pipTrk->getZErrorP()); // proton
 			// wvmupTrk = WTrackParameter(mmu, pipTrk->getZHelixMu(), pipTrk->getZErrorMu()); // muon
 			// wvepTrk = WTrackParameter(me, pipTrk->getZHelixE(), pipTrk->getZErrorE()); // electron

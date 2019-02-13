@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('classRhopiAlg.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Modified header of the stock BOSS package <code><a class="el" href="classRhopiAlg.html" title="Modified header of the stock BOSS package RhopiAlg (version 00-00-23). ">RhopiAlg</a></code> (version <code>00-00-23</code>).  
+<p>Commented version of the <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> example BOSS package (version <code>00-00-23</code>).  
  <a href="classRhopiAlg.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>&gt;</code></p>
@@ -103,7 +103,7 @@ Inheritance diagram for RhopiAlg:</div>
 Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Constructors</div></td></tr>
 <tr class="memitem:a7f0176ebbd3cceef08cf5a8005ff2bdb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb">RhopiAlg</a> (const std::string &amp;name, ISvcLocator *pSvcLocator)</td></tr>
-<tr class="memdesc:a7f0176ebbd3cceef08cf5a8005ff2bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classRhopiAlg.html" title="Modified header of the stock BOSS package RhopiAlg (version 00-00-23). ">RhopiAlg</a></code> algorithm.  <a href="#a7f0176ebbd3cceef08cf5a8005ff2bdb">More...</a><br /></td></tr>
+<tr class="memdesc:a7f0176ebbd3cceef08cf5a8005ff2bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> algorithm.  <a href="#a7f0176ebbd3cceef08cf5a8005ff2bdb">More...</a><br /></td></tr>
 <tr class="separator:a7f0176ebbd3cceef08cf5a8005ff2bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Information functions</div></td></tr>
 <tr class="memitem:a42987b298b549df8af27578a7c8160f6"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a42987b298b549df8af27578a7c8160f6">initialize</a> ()</td></tr>
@@ -153,179 +153,263 @@ Private Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><code>NTuple</code>s are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling <code>NTuple::addItem</code>. Note that the NTuple::Items are added to the NTuple during the <code><a class="el" href="classRhopiAlg.html#a42987b298b549df8af27578a7c8160f6" title="(Inherited) initialize step of Algorithm. ">RhopiAlg::initialize()</a></code> step. This is also the place where you name these variables, so make sure that the structure here is reflected there! </p>
 </div></td></tr>
 <tr class="memitem:acb3f3e60fff80d1614bf8f074569cdd4"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#acb3f3e60fff80d1614bf8f074569cdd4">fTupleVxyz</a></td></tr>
+<tr class="memdesc:acb3f3e60fff80d1614bf8f074569cdd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vertex information of the charged tracks.  <a href="#acb3f3e60fff80d1614bf8f074569cdd4">More...</a><br /></td></tr>
 <tr class="separator:acb3f3e60fff80d1614bf8f074569cdd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a843b32c7856026e97d87b7566dcec4de"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a843b32c7856026e97d87b7566dcec4de">fVx0</a></td></tr>
+<tr class="memdesc:a843b32c7856026e97d87b7566dcec4de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary <img class="formulaInl" alt="$x$" src="form_30.png"/>-vertex as determined by MDC.  <a href="#a843b32c7856026e97d87b7566dcec4de">More...</a><br /></td></tr>
 <tr class="separator:a843b32c7856026e97d87b7566dcec4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24d545fdc4dcc0bd351ced7527104445"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a24d545fdc4dcc0bd351ced7527104445">fVy0</a></td></tr>
+<tr class="memdesc:a24d545fdc4dcc0bd351ced7527104445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary <img class="formulaInl" alt="$y$" src="form_31.png"/>-vertex as determined by MDC.  <a href="#a24d545fdc4dcc0bd351ced7527104445">More...</a><br /></td></tr>
 <tr class="separator:a24d545fdc4dcc0bd351ced7527104445"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cd6ce4caafc790e99087214fb6a4e08"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a2cd6ce4caafc790e99087214fb6a4e08">fVz0</a></td></tr>
+<tr class="memdesc:a2cd6ce4caafc790e99087214fb6a4e08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary <img class="formulaInl" alt="$z$" src="form_32.png"/>-vertex as determined by MDC.  <a href="#a2cd6ce4caafc790e99087214fb6a4e08">More...</a><br /></td></tr>
 <tr class="separator:a2cd6ce4caafc790e99087214fb6a4e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a476a80614bc98f956f3f4e85c09184e6"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a476a80614bc98f956f3f4e85c09184e6">fVr0</a></td></tr>
+<tr class="memdesc:a476a80614bc98f956f3f4e85c09184e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance from origin in <img class="formulaInl" alt="$xy$" src="form_33.png"/>-plane.  <a href="#a476a80614bc98f956f3f4e85c09184e6">More...</a><br /></td></tr>
 <tr class="separator:a476a80614bc98f956f3f4e85c09184e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a383964930e74fe9fc4f3bacde18b3423"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a383964930e74fe9fc4f3bacde18b3423">fRvxy0</a></td></tr>
+<tr class="memdesc:a383964930e74fe9fc4f3bacde18b3423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_33.png"/> plane.  <a href="#a383964930e74fe9fc4f3bacde18b3423">More...</a><br /></td></tr>
 <tr class="separator:a383964930e74fe9fc4f3bacde18b3423"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e349c1966478c78c8489c9d9e5a826b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a8e349c1966478c78c8489c9d9e5a826b">fRvz0</a></td></tr>
+<tr class="memdesc:a8e349c1966478c78c8489c9d9e5a826b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nearest distance to IP in <img class="formulaInl" alt="$z$" src="form_32.png"/> direction.  <a href="#a8e349c1966478c78c8489c9d9e5a826b">More...</a><br /></td></tr>
 <tr class="separator:a8e349c1966478c78c8489c9d9e5a826b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a104623b8329459f4a38b3d2b967f27c2"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a104623b8329459f4a38b3d2b967f27c2">fRvphi0</a></td></tr>
+<tr class="memdesc:a104623b8329459f4a38b3d2b967f27c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Angle in the <img class="formulaInl" alt="$xy$" src="form_33.png"/>-plane (?)  <a href="#a104623b8329459f4a38b3d2b967f27c2">More...</a><br /></td></tr>
 <tr class="separator:a104623b8329459f4a38b3d2b967f27c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a188bc0198dd44ae64e236099f2409c56"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a188bc0198dd44ae64e236099f2409c56">fTupleAngles</a></td></tr>
+<tr class="memdesc:a188bc0198dd44ae64e236099f2409c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Photon kinematics.  <a href="#a188bc0198dd44ae64e236099f2409c56">More...</a><br /></td></tr>
 <tr class="separator:a188bc0198dd44ae64e236099f2409c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a759992581423aee745872348f9733ccf"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a759992581423aee745872348f9733ccf">fDeltaTheta</a></td></tr>
+<tr class="memdesc:a759992581423aee745872348f9733ccf"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\theta$" src="form_34.png"/> angle difference with nearest charged track (degrees)  <a href="#a759992581423aee745872348f9733ccf">More...</a><br /></td></tr>
 <tr class="separator:a759992581423aee745872348f9733ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a377fb2c23a974a2bf751176e2a67ee38"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a377fb2c23a974a2bf751176e2a67ee38">fDeltaPhi</a></td></tr>
+<tr class="memdesc:a377fb2c23a974a2bf751176e2a67ee38"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle difference with nearest charged track (degrees)  <a href="#a377fb2c23a974a2bf751176e2a67ee38">More...</a><br /></td></tr>
 <tr class="separator:a377fb2c23a974a2bf751176e2a67ee38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a052ad1d216f1006d00a162f7a2548111"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a052ad1d216f1006d00a162f7a2548111">fDeltaAngle</a></td></tr>
+<tr class="memdesc:a052ad1d216f1006d00a162f7a2548111"><td class="mdescLeft">&#160;</td><td class="mdescRight">Angle difference with nearest charged track.  <a href="#a052ad1d216f1006d00a162f7a2548111">More...</a><br /></td></tr>
 <tr class="separator:a052ad1d216f1006d00a162f7a2548111"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ad054a1e60f0a8dc4ba3e5ab066b229"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a3ad054a1e60f0a8dc4ba3e5ab066b229">fEraw</a></td></tr>
+<tr class="memdesc:a3ad054a1e60f0a8dc4ba3e5ab066b229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Energy of the photon.  <a href="#a3ad054a1e60f0a8dc4ba3e5ab066b229">More...</a><br /></td></tr>
 <tr class="separator:a3ad054a1e60f0a8dc4ba3e5ab066b229"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a7475fe62353cd97e797b6ade82c53b"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a6a7475fe62353cd97e797b6ade82c53b">fTupleMgg</a></td></tr>
+<tr class="memdesc:a6a7475fe62353cd97e797b6ade82c53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw invariant mass of the two gammas and their total energy.  <a href="#a6a7475fe62353cd97e797b6ade82c53b">More...</a><br /></td></tr>
 <tr class="separator:a6a7475fe62353cd97e797b6ade82c53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d07c968212f4b83442f49e254dd2670"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a8d07c968212f4b83442f49e254dd2670">fMtoGG</a></td></tr>
+<tr class="memdesc:a8d07c968212f4b83442f49e254dd2670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invariant mass of the two gammas.  <a href="#a8d07c968212f4b83442f49e254dd2670">More...</a><br /></td></tr>
 <tr class="separator:a8d07c968212f4b83442f49e254dd2670"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d88c12fcd397ee20c4f49f5afc68c6d"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a1d88c12fcd397ee20c4f49f5afc68c6d">fEtot</a></td></tr>
+<tr class="memdesc:a1d88c12fcd397ee20c4f49f5afc68c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total energy of <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>, <img class="formulaInl" alt="$\pi^-$" src="form_9.png"/> and the two gammas.  <a href="#a1d88c12fcd397ee20c4f49f5afc68c6d">More...</a><br /></td></tr>
 <tr class="separator:a1d88c12fcd397ee20c4f49f5afc68c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9c83f29cbf8dcd882f21e0f41d72ee6"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ac9c83f29cbf8dcd882f21e0f41d72ee6">fTupleFit4C</a></td></tr>
+<tr class="memdesc:ac9c83f29cbf8dcd882f21e0f41d72ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">4-constraint (4C) fit information  <a href="#ac9c83f29cbf8dcd882f21e0f41d72ee6">More...</a><br /></td></tr>
 <tr class="separator:ac9c83f29cbf8dcd882f21e0f41d72ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a600c1aa0400ea9d9e5c7226a51978c94"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a600c1aa0400ea9d9e5c7226a51978c94">fChi1</a></td></tr>
-<tr class="separator:a600c1aa0400ea9d9e5c7226a51978c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae291cc82d5644cd4d7224c3fbce754b5"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ae291cc82d5644cd4d7224c3fbce754b5">fMpi0</a></td></tr>
+<tr class="memdesc:ae291cc82d5644cd4d7224c3fbce754b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invariant <img class="formulaInl" alt="$\pi^0$" src="form_47.png"/> mass according to Kalman kinematic fit.  <a href="#ae291cc82d5644cd4d7224c3fbce754b5">More...</a><br /></td></tr>
 <tr class="separator:ae291cc82d5644cd4d7224c3fbce754b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a600c1aa0400ea9d9e5c7226a51978c94"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a600c1aa0400ea9d9e5c7226a51978c94">fChi1</a></td></tr>
+<tr class="memdesc:a600c1aa0400ea9d9e5c7226a51978c94"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit  <a href="#a600c1aa0400ea9d9e5c7226a51978c94">More...</a><br /></td></tr>
+<tr class="separator:a600c1aa0400ea9d9e5c7226a51978c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f247d2dc0ce778e5986912139bd5ef5"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a6f247d2dc0ce778e5986912139bd5ef5">fTupleFit5C</a></td></tr>
+<tr class="memdesc:a6f247d2dc0ce778e5986912139bd5ef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">5-constraint (5C) fit information  <a href="#a6f247d2dc0ce778e5986912139bd5ef5">More...</a><br /></td></tr>
 <tr class="separator:a6f247d2dc0ce778e5986912139bd5ef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a866d950f28ee6301700e2cd323033ee3"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a866d950f28ee6301700e2cd323033ee3">fChi2</a></td></tr>
+<tr class="memdesc:a866d950f28ee6301700e2cd323033ee3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit  <a href="#a866d950f28ee6301700e2cd323033ee3">More...</a><br /></td></tr>
 <tr class="separator:a866d950f28ee6301700e2cd323033ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a260c4fad9f54ab4a7d326a8177696b99"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a260c4fad9f54ab4a7d326a8177696b99">fMrho0</a></td></tr>
+<tr class="memdesc:a260c4fad9f54ab4a7d326a8177696b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invariant mass for <img class="formulaInl" alt="$\pi^+\pi^-$" src="form_48.png"/> combination ( <img class="formulaInl" alt="$\rho^0$" src="form_49.png"/>)  <a href="#a260c4fad9f54ab4a7d326a8177696b99">More...</a><br /></td></tr>
 <tr class="separator:a260c4fad9f54ab4a7d326a8177696b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac54be27822ab83575a16ad4b796ad78"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aac54be27822ab83575a16ad4b796ad78">fMrhop</a></td></tr>
+<tr class="memdesc:aac54be27822ab83575a16ad4b796ad78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^+$" src="form_50.png"/> combination ( <img class="formulaInl" alt="$\rho^+$" src="form_51.png"/>)  <a href="#aac54be27822ab83575a16ad4b796ad78">More...</a><br /></td></tr>
 <tr class="separator:aac54be27822ab83575a16ad4b796ad78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a624b27fcf9cc3ec90cc6ddf7326f3dc6"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a624b27fcf9cc3ec90cc6ddf7326f3dc6">fMrhom</a></td></tr>
+<tr class="memdesc:a624b27fcf9cc3ec90cc6ddf7326f3dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^-$" src="form_52.png"/> combination ( <img class="formulaInl" alt="$\rho^-$" src="form_53.png"/>)  <a href="#a624b27fcf9cc3ec90cc6ddf7326f3dc6">More...</a><br /></td></tr>
 <tr class="separator:a624b27fcf9cc3ec90cc6ddf7326f3dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6449cfc87feeea89302fb1e8667c7ac"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ad6449cfc87feeea89302fb1e8667c7ac">fTuplePhoton</a></td></tr>
+<tr class="memdesc:ad6449cfc87feeea89302fb1e8667c7ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Photons.  <a href="#ad6449cfc87feeea89302fb1e8667c7ac">More...</a><br /></td></tr>
 <tr class="separator:ad6449cfc87feeea89302fb1e8667c7ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf3f9c4545d1737b04ef0ad329cb37bd"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aaf3f9c4545d1737b04ef0ad329cb37bd">fFcos</a></td></tr>
+<tr class="memdesc:aaf3f9c4545d1737b04ef0ad329cb37bd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$E/|\vec{p}|$" src="form_54.png"/> ratio for <img class="formulaInl" alt="$\pi^0$" src="form_47.png"/> candidate  <a href="#aaf3f9c4545d1737b04ef0ad329cb37bd">More...</a><br /></td></tr>
 <tr class="separator:aaf3f9c4545d1737b04ef0ad329cb37bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62aafbfcb46680e0ea0ed0ff3a5a2c84"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a62aafbfcb46680e0ea0ed0ff3a5a2c84">fElow</a></td></tr>
+<tr class="memdesc:a62aafbfcb46680e0ea0ed0ff3a5a2c84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lowest energy of the two photons.  <a href="#a62aafbfcb46680e0ea0ed0ff3a5a2c84">More...</a><br /></td></tr>
 <tr class="separator:a62aafbfcb46680e0ea0ed0ff3a5a2c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bc326b667210f3d1cde8f2b12889c6f"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a4bc326b667210f3d1cde8f2b12889c6f">fTupleDedx</a></td></tr>
+<tr class="memdesc:a4bc326b667210f3d1cde8f2b12889c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Energy loss dE/dx.  <a href="#a4bc326b667210f3d1cde8f2b12889c6f">More...</a><br /></td></tr>
 <tr class="separator:a4bc326b667210f3d1cde8f2b12889c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7318cf3dc4112c5ec68d1c8f963326db"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a7318cf3dc4112c5ec68d1c8f963326db">fPtrack</a></td></tr>
+<tr class="memdesc:a7318cf3dc4112c5ec68d1c8f963326db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track.  <a href="#a7318cf3dc4112c5ec68d1c8f963326db">More...</a><br /></td></tr>
 <tr class="separator:a7318cf3dc4112c5ec68d1c8f963326db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab7b47430f7eb3fcc1e74b0c8b6c4fcf"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aab7b47430f7eb3fcc1e74b0c8b6c4fcf">fChi2e</a></td></tr>
+<tr class="memdesc:aab7b47430f7eb3fcc1e74b0c8b6c4fcf"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of electron  <a href="#aab7b47430f7eb3fcc1e74b0c8b6c4fcf">More...</a><br /></td></tr>
 <tr class="separator:aab7b47430f7eb3fcc1e74b0c8b6c4fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64a48c1045ed925d010badcafc28ddfd"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a64a48c1045ed925d010badcafc28ddfd">fChi2mu</a></td></tr>
+<tr class="memdesc:a64a48c1045ed925d010badcafc28ddfd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of muon  <a href="#a64a48c1045ed925d010badcafc28ddfd">More...</a><br /></td></tr>
 <tr class="separator:a64a48c1045ed925d010badcafc28ddfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f698122f565c49a9c12934078eb1f64"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a4f698122f565c49a9c12934078eb1f64">fChi2pi</a></td></tr>
+<tr class="memdesc:a4f698122f565c49a9c12934078eb1f64"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of pion  <a href="#a4f698122f565c49a9c12934078eb1f64">More...</a><br /></td></tr>
 <tr class="separator:a4f698122f565c49a9c12934078eb1f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b65a274eaffc58ed048746eb3e446ff"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a1b65a274eaffc58ed048746eb3e446ff">fChi2k</a></td></tr>
+<tr class="memdesc:a1b65a274eaffc58ed048746eb3e446ff"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of kaon  <a href="#a1b65a274eaffc58ed048746eb3e446ff">More...</a><br /></td></tr>
 <tr class="separator:a1b65a274eaffc58ed048746eb3e446ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af36844ec30aa092b60451a65f2abbfc1"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#af36844ec30aa092b60451a65f2abbfc1">fChi2p</a></td></tr>
+<tr class="memdesc:af36844ec30aa092b60451a65f2abbfc1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of proton  <a href="#af36844ec30aa092b60451a65f2abbfc1">More...</a><br /></td></tr>
 <tr class="separator:af36844ec30aa092b60451a65f2abbfc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebb4764f43dc107037bbafc4cc5ba07f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aebb4764f43dc107037bbafc4cc5ba07f">fProbPH</a></td></tr>
+<tr class="memdesc:aebb4764f43dc107037bbafc4cc5ba07f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Most probable pulse height from truncated mean.  <a href="#aebb4764f43dc107037bbafc4cc5ba07f">More...</a><br /></td></tr>
 <tr class="separator:aebb4764f43dc107037bbafc4cc5ba07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2104747b628e5e2ca62eea29eab08257"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a2104747b628e5e2ca62eea29eab08257">fNormPH</a></td></tr>
+<tr class="memdesc:a2104747b628e5e2ca62eea29eab08257"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalized pulse height.  <a href="#a2104747b628e5e2ca62eea29eab08257">More...</a><br /></td></tr>
 <tr class="separator:a2104747b628e5e2ca62eea29eab08257"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33d8b54f4c89d710b9a3f3c9512c2cf2"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a33d8b54f4c89d710b9a3f3c9512c2cf2">fGhit</a></td></tr>
+<tr class="memdesc:a33d8b54f4c89d710b9a3f3c9512c2cf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of good hits.  <a href="#a33d8b54f4c89d710b9a3f3c9512c2cf2">More...</a><br /></td></tr>
 <tr class="separator:a33d8b54f4c89d710b9a3f3c9512c2cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab772140290960ca6c561b8f5efe3ac17"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ab772140290960ca6c561b8f5efe3ac17">fThit</a></td></tr>
+<tr class="memdesc:ab772140290960ca6c561b8f5efe3ac17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of hits.  <a href="#ab772140290960ca6c561b8f5efe3ac17">More...</a><br /></td></tr>
 <tr class="separator:ab772140290960ca6c561b8f5efe3ac17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedf990ba7ccef5dd9504a9f103c22937"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aedf990ba7ccef5dd9504a9f103c22937">fTupleTofEC</a></td></tr>
+<tr class="memdesc:aedf990ba7ccef5dd9504a9f103c22937"><td class="mdescLeft">&#160;</td><td class="mdescRight">End cap ToF decector.  <a href="#aedf990ba7ccef5dd9504a9f103c22937">More...</a><br /></td></tr>
 <tr class="separator:aedf990ba7ccef5dd9504a9f103c22937"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bff023a7ad0e81acf00eecf654b6680"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a6bff023a7ad0e81acf00eecf654b6680">fPtotTofEC</a></td></tr>
+<tr class="memdesc:a6bff023a7ad0e81acf00eecf654b6680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#a6bff023a7ad0e81acf00eecf654b6680">More...</a><br /></td></tr>
 <tr class="separator:a6bff023a7ad0e81acf00eecf654b6680"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94afbca13e4703e6e9633d338d126ff2"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a94afbca13e4703e6e9633d338d126ff2">fPathTofEC</a></td></tr>
+<tr class="memdesc:a94afbca13e4703e6e9633d338d126ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#a94afbca13e4703e6e9633d338d126ff2">More...</a><br /></td></tr>
 <tr class="separator:a94afbca13e4703e6e9633d338d126ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41ed043606bdc4cec9defedf436aa81b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a41ed043606bdc4cec9defedf436aa81b">fTofEC</a></td></tr>
+<tr class="memdesc:a41ed043606bdc4cec9defedf436aa81b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time of flight.  <a href="#a41ed043606bdc4cec9defedf436aa81b">More...</a><br /></td></tr>
 <tr class="separator:a41ed043606bdc4cec9defedf436aa81b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a354696ae96d092f8c3909d7f159f907b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a354696ae96d092f8c3909d7f159f907b">fCntrTofEC</a></td></tr>
+<tr class="memdesc:a354696ae96d092f8c3909d7f159f907b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#a354696ae96d092f8c3909d7f159f907b">More...</a><br /></td></tr>
 <tr class="separator:a354696ae96d092f8c3909d7f159f907b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa75fec796d7f94e51263bb8ccfb6e46d"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aa75fec796d7f94e51263bb8ccfb6e46d">fElectronTofEC</a></td></tr>
-<tr class="separator:aa75fec796d7f94e51263bb8ccfb6e46d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35a3bbf454e714b0b1fa8f289a75f4d5"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a35a3bbf454e714b0b1fa8f289a75f4d5">fMuonTofEC</a></td></tr>
-<tr class="separator:a35a3bbf454e714b0b1fa8f289a75f4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a883806ad7d0da9a3e35538c018b11f36"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a883806ad7d0da9a3e35538c018b11f36">fProtoniTofEC</a></td></tr>
-<tr class="separator:a883806ad7d0da9a3e35538c018b11f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a572a503c110e057b11839a9ea0bffd39"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a572a503c110e057b11839a9ea0bffd39">fKaonTofEC</a></td></tr>
-<tr class="separator:a572a503c110e057b11839a9ea0bffd39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2612daf3658e3fbab560a1e0358c63bb"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a2612daf3658e3fbab560a1e0358c63bb">fProtonTofEC</a></td></tr>
-<tr class="separator:a2612daf3658e3fbab560a1e0358c63bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85df4b2f0fdc23b823a4c31678d4d5c0"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a85df4b2f0fdc23b823a4c31678d4d5c0">fPhTofEC</a></td></tr>
+<tr class="memdesc:a85df4b2f0fdc23b823a4c31678d4d5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#a85df4b2f0fdc23b823a4c31678d4d5c0">More...</a><br /></td></tr>
 <tr class="separator:a85df4b2f0fdc23b823a4c31678d4d5c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f3708b502c4dd8befb59d03a2abe921"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a1f3708b502c4dd8befb59d03a2abe921">fRhitTofEC</a></td></tr>
+<tr class="memdesc:a1f3708b502c4dd8befb59d03a2abe921"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate Z or R Hit position.  <a href="#a1f3708b502c4dd8befb59d03a2abe921">More...</a><br /></td></tr>
 <tr class="separator:a1f3708b502c4dd8befb59d03a2abe921"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0b82adab74d48f63aa4c684f477fab9"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aa0b82adab74d48f63aa4c684f477fab9">fQualTofEC</a></td></tr>
+<tr class="memdesc:aa0b82adab74d48f63aa4c684f477fab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#aa0b82adab74d48f63aa4c684f477fab9">More...</a><br /></td></tr>
 <tr class="separator:aa0b82adab74d48f63aa4c684f477fab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa75fec796d7f94e51263bb8ccfb6e46d"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aa75fec796d7f94e51263bb8ccfb6e46d">fElectronTofEC</a></td></tr>
+<tr class="memdesc:aa75fec796d7f94e51263bb8ccfb6e46d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#aa75fec796d7f94e51263bb8ccfb6e46d">More...</a><br /></td></tr>
+<tr class="separator:aa75fec796d7f94e51263bb8ccfb6e46d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35a3bbf454e714b0b1fa8f289a75f4d5"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a35a3bbf454e714b0b1fa8f289a75f4d5">fMuonTofEC</a></td></tr>
+<tr class="memdesc:a35a3bbf454e714b0b1fa8f289a75f4d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#a35a3bbf454e714b0b1fa8f289a75f4d5">More...</a><br /></td></tr>
+<tr class="separator:a35a3bbf454e714b0b1fa8f289a75f4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a883806ad7d0da9a3e35538c018b11f36"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a883806ad7d0da9a3e35538c018b11f36">fProtoniTofEC</a></td></tr>
+<tr class="memdesc:a883806ad7d0da9a3e35538c018b11f36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#a883806ad7d0da9a3e35538c018b11f36">More...</a><br /></td></tr>
+<tr class="separator:a883806ad7d0da9a3e35538c018b11f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a572a503c110e057b11839a9ea0bffd39"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a572a503c110e057b11839a9ea0bffd39">fKaonTofEC</a></td></tr>
+<tr class="memdesc:a572a503c110e057b11839a9ea0bffd39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#a572a503c110e057b11839a9ea0bffd39">More...</a><br /></td></tr>
+<tr class="separator:a572a503c110e057b11839a9ea0bffd39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2612daf3658e3fbab560a1e0358c63bb"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a2612daf3658e3fbab560a1e0358c63bb">fProtonTofEC</a></td></tr>
+<tr class="memdesc:a2612daf3658e3fbab560a1e0358c63bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#a2612daf3658e3fbab560a1e0358c63bb">More...</a><br /></td></tr>
+<tr class="separator:a2612daf3658e3fbab560a1e0358c63bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ab8fcbab557d9bec8ab8852052277a7"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a4ab8fcbab557d9bec8ab8852052277a7">TupleTofIB</a></td></tr>
+<tr class="memdesc:a4ab8fcbab557d9bec8ab8852052277a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inner barrel ToF decector.  <a href="#a4ab8fcbab557d9bec8ab8852052277a7">More...</a><br /></td></tr>
 <tr class="separator:a4ab8fcbab557d9bec8ab8852052277a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a638cbad7bd516bac660cbf9098bfb0d5"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a638cbad7bd516bac660cbf9098bfb0d5">fPtotTofIB</a></td></tr>
+<tr class="memdesc:a638cbad7bd516bac660cbf9098bfb0d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#a638cbad7bd516bac660cbf9098bfb0d5">More...</a><br /></td></tr>
 <tr class="separator:a638cbad7bd516bac660cbf9098bfb0d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8df43bfaf8fa8fa52ff707ee185c42b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#af8df43bfaf8fa8fa52ff707ee185c42b">fPathTofIB</a></td></tr>
+<tr class="memdesc:af8df43bfaf8fa8fa52ff707ee185c42b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#af8df43bfaf8fa8fa52ff707ee185c42b">More...</a><br /></td></tr>
 <tr class="separator:af8df43bfaf8fa8fa52ff707ee185c42b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4070e381f84ed203745d46c27f7560df"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a4070e381f84ed203745d46c27f7560df">fTofIB</a></td></tr>
+<tr class="memdesc:a4070e381f84ed203745d46c27f7560df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time of flight.  <a href="#a4070e381f84ed203745d46c27f7560df">More...</a><br /></td></tr>
 <tr class="separator:a4070e381f84ed203745d46c27f7560df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a201daca75693f83f6bfc62aa657927be"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a201daca75693f83f6bfc62aa657927be">fCntrTofIB</a></td></tr>
+<tr class="memdesc:a201daca75693f83f6bfc62aa657927be"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#a201daca75693f83f6bfc62aa657927be">More...</a><br /></td></tr>
 <tr class="separator:a201daca75693f83f6bfc62aa657927be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6b1109e1db8ae5a1a61df5254f6d56d"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ad6b1109e1db8ae5a1a61df5254f6d56d">fElectronTofIB</a></td></tr>
-<tr class="separator:ad6b1109e1db8ae5a1a61df5254f6d56d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73632dd882bf7c5d743978fa4b940e33"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a73632dd882bf7c5d743978fa4b940e33">fMuonTofIB</a></td></tr>
-<tr class="separator:a73632dd882bf7c5d743978fa4b940e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6732e46d103fd424a74e25325c41302"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ab6732e46d103fd424a74e25325c41302">fProtoniTofIB</a></td></tr>
-<tr class="separator:ab6732e46d103fd424a74e25325c41302"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae70e62c6743a06c32a6229c09998674f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ae70e62c6743a06c32a6229c09998674f">fKaonTofIB</a></td></tr>
-<tr class="separator:ae70e62c6743a06c32a6229c09998674f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98145ec36df7b86c7bcfaf053e23d23b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a98145ec36df7b86c7bcfaf053e23d23b">fProtonTofIB</a></td></tr>
-<tr class="separator:a98145ec36df7b86c7bcfaf053e23d23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc0bf0b6203903892120e7987e64827b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#acc0bf0b6203903892120e7987e64827b">fPhTofIB</a></td></tr>
+<tr class="memdesc:acc0bf0b6203903892120e7987e64827b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#acc0bf0b6203903892120e7987e64827b">More...</a><br /></td></tr>
 <tr class="separator:acc0bf0b6203903892120e7987e64827b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b826bbc65599849e296f249c112a401"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a7b826bbc65599849e296f249c112a401">fZhitTofIB</a></td></tr>
+<tr class="memdesc:a7b826bbc65599849e296f249c112a401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate Z or R Hit position.  <a href="#a7b826bbc65599849e296f249c112a401">More...</a><br /></td></tr>
 <tr class="separator:a7b826bbc65599849e296f249c112a401"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ff889bcc8308d10ee9a8e94678e96ca"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a0ff889bcc8308d10ee9a8e94678e96ca">fQualTofIB</a></td></tr>
+<tr class="memdesc:a0ff889bcc8308d10ee9a8e94678e96ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#a0ff889bcc8308d10ee9a8e94678e96ca">More...</a><br /></td></tr>
 <tr class="separator:a0ff889bcc8308d10ee9a8e94678e96ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b1109e1db8ae5a1a61df5254f6d56d"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ad6b1109e1db8ae5a1a61df5254f6d56d">fElectronTofIB</a></td></tr>
+<tr class="memdesc:ad6b1109e1db8ae5a1a61df5254f6d56d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#ad6b1109e1db8ae5a1a61df5254f6d56d">More...</a><br /></td></tr>
+<tr class="separator:ad6b1109e1db8ae5a1a61df5254f6d56d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73632dd882bf7c5d743978fa4b940e33"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a73632dd882bf7c5d743978fa4b940e33">fMuonTofIB</a></td></tr>
+<tr class="memdesc:a73632dd882bf7c5d743978fa4b940e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#a73632dd882bf7c5d743978fa4b940e33">More...</a><br /></td></tr>
+<tr class="separator:a73632dd882bf7c5d743978fa4b940e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6732e46d103fd424a74e25325c41302"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ab6732e46d103fd424a74e25325c41302">fProtoniTofIB</a></td></tr>
+<tr class="memdesc:ab6732e46d103fd424a74e25325c41302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#ab6732e46d103fd424a74e25325c41302">More...</a><br /></td></tr>
+<tr class="separator:ab6732e46d103fd424a74e25325c41302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae70e62c6743a06c32a6229c09998674f"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ae70e62c6743a06c32a6229c09998674f">fKaonTofIB</a></td></tr>
+<tr class="memdesc:ae70e62c6743a06c32a6229c09998674f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#ae70e62c6743a06c32a6229c09998674f">More...</a><br /></td></tr>
+<tr class="separator:ae70e62c6743a06c32a6229c09998674f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98145ec36df7b86c7bcfaf053e23d23b"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a98145ec36df7b86c7bcfaf053e23d23b">fProtonTofIB</a></td></tr>
+<tr class="memdesc:a98145ec36df7b86c7bcfaf053e23d23b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#a98145ec36df7b86c7bcfaf053e23d23b">More...</a><br /></td></tr>
+<tr class="separator:a98145ec36df7b86c7bcfaf053e23d23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92e7f99a73482be4d206bd4dc86e83dc"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a92e7f99a73482be4d206bd4dc86e83dc">TupleTofOB</a></td></tr>
+<tr class="memdesc:a92e7f99a73482be4d206bd4dc86e83dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outer barrel ToF decector.  <a href="#a92e7f99a73482be4d206bd4dc86e83dc">More...</a><br /></td></tr>
 <tr class="separator:a92e7f99a73482be4d206bd4dc86e83dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ceff76f3adca90d18069131280ede62"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a3ceff76f3adca90d18069131280ede62">fPtotTofOB</a></td></tr>
+<tr class="memdesc:a3ceff76f3adca90d18069131280ede62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track as reconstructed by MDC.  <a href="#a3ceff76f3adca90d18069131280ede62">More...</a><br /></td></tr>
 <tr class="separator:a3ceff76f3adca90d18069131280ede62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa8aac036d2f231159785b3dd8963168"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#afa8aac036d2f231159785b3dd8963168">fPathTofOB</a></td></tr>
+<tr class="memdesc:afa8aac036d2f231159785b3dd8963168"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path length.  <a href="#afa8aac036d2f231159785b3dd8963168">More...</a><br /></td></tr>
 <tr class="separator:afa8aac036d2f231159785b3dd8963168"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12b17974c33cd8cab250fe957c3d1dae"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a12b17974c33cd8cab250fe957c3d1dae">fTofOB</a></td></tr>
+<tr class="memdesc:a12b17974c33cd8cab250fe957c3d1dae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time of flight.  <a href="#a12b17974c33cd8cab250fe957c3d1dae">More...</a><br /></td></tr>
 <tr class="separator:a12b17974c33cd8cab250fe957c3d1dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe7aadfeea34b2d602eac7d84c9a3e45"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#abe7aadfeea34b2d602eac7d84c9a3e45">fCntrTofOB</a></td></tr>
+<tr class="memdesc:abe7aadfeea34b2d602eac7d84c9a3e45"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF counter ID.  <a href="#abe7aadfeea34b2d602eac7d84c9a3e45">More...</a><br /></td></tr>
 <tr class="separator:abe7aadfeea34b2d602eac7d84c9a3e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa88b5abc128a1e4fa47849489a3825da"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aa88b5abc128a1e4fa47849489a3825da">fElectronTofOB</a></td></tr>
-<tr class="separator:aa88b5abc128a1e4fa47849489a3825da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ca2a92d0d8c010926b8e3eb7758f307"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a3ca2a92d0d8c010926b8e3eb7758f307">fMuonTofOB</a></td></tr>
-<tr class="separator:a3ca2a92d0d8c010926b8e3eb7758f307"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ca43015d229652bde1e02036409cb59"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a1ca43015d229652bde1e02036409cb59">fProtoniTofOB</a></td></tr>
-<tr class="separator:a1ca43015d229652bde1e02036409cb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fee8ed7e3d72239c3d288d58910b942"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a5fee8ed7e3d72239c3d288d58910b942">fKaonTofOB</a></td></tr>
-<tr class="separator:a5fee8ed7e3d72239c3d288d58910b942"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d203346092c499c4e75ec1d98635eb7"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a7d203346092c499c4e75ec1d98635eb7">fProtonTofOB</a></td></tr>
-<tr class="separator:a7d203346092c499c4e75ec1d98635eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50604008aeb7c1eddf622a0e0a535124"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a50604008aeb7c1eddf622a0e0a535124">fPhTofOB</a></td></tr>
+<tr class="memdesc:a50604008aeb7c1eddf622a0e0a535124"><td class="mdescLeft">&#160;</td><td class="mdescRight">ToF pulse height.  <a href="#a50604008aeb7c1eddf622a0e0a535124">More...</a><br /></td></tr>
 <tr class="separator:a50604008aeb7c1eddf622a0e0a535124"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ba7c0f8a9a7e2a3f5278ab81e9d7647"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a3ba7c0f8a9a7e2a3f5278ab81e9d7647">fZhitTofOB</a></td></tr>
+<tr class="memdesc:a3ba7c0f8a9a7e2a3f5278ab81e9d7647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track extrapolate Z or R Hit position.  <a href="#a3ba7c0f8a9a7e2a3f5278ab81e9d7647">More...</a><br /></td></tr>
 <tr class="separator:a3ba7c0f8a9a7e2a3f5278ab81e9d7647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc7aa7620209a9b2935d9bbd0dc2e6cc"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#afc7aa7620209a9b2935d9bbd0dc2e6cc">fQualTofOB</a></td></tr>
+<tr class="memdesc:afc7aa7620209a9b2935d9bbd0dc2e6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data quality of reconstruction.  <a href="#afc7aa7620209a9b2935d9bbd0dc2e6cc">More...</a><br /></td></tr>
 <tr class="separator:afc7aa7620209a9b2935d9bbd0dc2e6cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa88b5abc128a1e4fa47849489a3825da"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aa88b5abc128a1e4fa47849489a3825da">fElectronTofOB</a></td></tr>
+<tr class="memdesc:aa88b5abc128a1e4fa47849489a3825da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in electron hypothesis.  <a href="#aa88b5abc128a1e4fa47849489a3825da">More...</a><br /></td></tr>
+<tr class="separator:aa88b5abc128a1e4fa47849489a3825da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ca2a92d0d8c010926b8e3eb7758f307"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a3ca2a92d0d8c010926b8e3eb7758f307">fMuonTofOB</a></td></tr>
+<tr class="memdesc:a3ca2a92d0d8c010926b8e3eb7758f307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in muon hypothesis.  <a href="#a3ca2a92d0d8c010926b8e3eb7758f307">More...</a><br /></td></tr>
+<tr class="separator:a3ca2a92d0d8c010926b8e3eb7758f307"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ca43015d229652bde1e02036409cb59"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a1ca43015d229652bde1e02036409cb59">fProtoniTofOB</a></td></tr>
+<tr class="memdesc:a1ca43015d229652bde1e02036409cb59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged pion hypothesis.  <a href="#a1ca43015d229652bde1e02036409cb59">More...</a><br /></td></tr>
+<tr class="separator:a1ca43015d229652bde1e02036409cb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fee8ed7e3d72239c3d288d58910b942"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a5fee8ed7e3d72239c3d288d58910b942">fKaonTofOB</a></td></tr>
+<tr class="memdesc:a5fee8ed7e3d72239c3d288d58910b942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in charged kaon hypothesis.  <a href="#a5fee8ed7e3d72239c3d288d58910b942">More...</a><br /></td></tr>
+<tr class="separator:a5fee8ed7e3d72239c3d288d58910b942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d203346092c499c4e75ec1d98635eb7"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a7d203346092c499c4e75ec1d98635eb7">fProtonTofOB</a></td></tr>
+<tr class="memdesc:a7d203346092c499c4e75ec1d98635eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference with ToF in proton hypothesis.  <a href="#a7d203346092c499c4e75ec1d98635eb7">More...</a><br /></td></tr>
+<tr class="separator:a7d203346092c499c4e75ec1d98635eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0149d09da5a49a1be6eb6a9736db22a9"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a0149d09da5a49a1be6eb6a9736db22a9">fTuplePID</a></td></tr>
+<tr class="memdesc:a0149d09da5a49a1be6eb6a9736db22a9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classParticle.html" title="Container for particle data. ">Particle</a> ID info.  <a href="#a0149d09da5a49a1be6eb6a9736db22a9">More...</a><br /></td></tr>
 <tr class="separator:a0149d09da5a49a1be6eb6a9736db22a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae6e6a3b9ee4990b06b9707a381edc17"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aae6e6a3b9ee4990b06b9707a381edc17">fPtrackPID</a></td></tr>
+<tr class="memdesc:aae6e6a3b9ee4990b06b9707a381edc17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum of the track.  <a href="#aae6e6a3b9ee4990b06b9707a381edc17">More...</a><br /></td></tr>
 <tr class="separator:aae6e6a3b9ee4990b06b9707a381edc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9c7c0701477d8155871115a28b6a0ed"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#aa9c7c0701477d8155871115a28b6a0ed">fCostPID</a></td></tr>
+<tr class="memdesc:aa9c7c0701477d8155871115a28b6a0ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Theta angle of the track.  <a href="#aa9c7c0701477d8155871115a28b6a0ed">More...</a><br /></td></tr>
 <tr class="separator:aa9c7c0701477d8155871115a28b6a0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a624abc570b4263b26674f081b866b90c"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a624abc570b4263b26674f081b866b90c">fDedxPID</a></td></tr>
+<tr class="memdesc:a624abc570b4263b26674f081b866b90c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> of the track  <a href="#a624abc570b4263b26674f081b866b90c">More...</a><br /></td></tr>
 <tr class="separator:a624abc570b4263b26674f081b866b90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac860765c5d5011e18e96c88dbe1d8152"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ac860765c5d5011e18e96c88dbe1d8152">fTof1PID</a></td></tr>
+<tr class="memdesc:ac860765c5d5011e18e96c88dbe1d8152"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the inner barrel ToF of the track  <a href="#ac860765c5d5011e18e96c88dbe1d8152">More...</a><br /></td></tr>
 <tr class="separator:ac860765c5d5011e18e96c88dbe1d8152"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a951684079e1201c940c08406eff4460e"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a951684079e1201c940c08406eff4460e">fTof2PID</a></td></tr>
+<tr class="memdesc:a951684079e1201c940c08406eff4460e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the outer barrel ToF of the track  <a href="#a951684079e1201c940c08406eff4460e">More...</a><br /></td></tr>
 <tr class="separator:a951684079e1201c940c08406eff4460e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f8865d4c73800ce7e8df868aaf30ae9"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a6f8865d4c73800ce7e8df868aaf30ae9">fProbPID</a></td></tr>
+<tr class="memdesc:a6f8865d4c73800ce7e8df868aaf30ae9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probability that it is a pion.  <a href="#a6f8865d4c73800ce7e8df868aaf30ae9">More...</a><br /></td></tr>
 <tr class="separator:a6f8865d4c73800ce7e8df868aaf30ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Modified header of the stock BOSS package <code><a class="el" href="classRhopiAlg.html" title="Modified header of the stock BOSS package RhopiAlg (version 00-00-23). ">RhopiAlg</a></code> (version <code>00-00-23</code>). </p>
+<div class="textblock"><p>Commented version of the <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> example BOSS package (version <code>00-00-23</code>). </p>
+<p>The <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> example package particularly teaches the use of the Kalman kinematic fit procedure. </p><dl class="section remark"><dt>Remarks</dt><dd>In addition to the more extensive comments, some additional parameters, such as ToF without particle hypothesis, have been added.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>December 14th, 2018</dd></dl>
-<p>This version of the <code><a class="el" href="classRhopiAlg.html" title="Modified header of the stock BOSS package RhopiAlg (version 00-00-23). ">RhopiAlg</a></code> algorithm has more extensive comments. In addition, some additional parameters, such as ToF without particle hypothesis, have been added. </p>
+<dl class="section date"><dt>Date</dt><dd>December 14th, 2018 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00027">27</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -355,10 +439,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor for the <code><a class="el" href="classRhopiAlg.html" title="Modified header of the stock BOSS package RhopiAlg (version 00-00-23). ">RhopiAlg</a></code> algorithm. </p>
-<p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classRhopiAlg.html" title="Modified header of the stock BOSS package RhopiAlg (version 00-00-23). ">RhopiAlg</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="RhopiAlg_8h.html">RhopiAlg/RhopiAlg.h</a>) and that you should assign the values in <code>share/jopOptions_RhopiAlg.txt</code>. </p>
+<p>Constructor for the <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> algorithm. </p>
+<p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="RhopiAlg_8h.html">RhopiAlg/RhopiAlg.h</a>) and that you should assign the values in <code>share/jopOptions_RhopiAlg.txt</code>. Algorithms should inherit from Gaudi's <code>Algorithm</code> class. See <a href="https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html">https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00085">85</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00084">84</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>
@@ -397,8 +481,6 @@ Private Attributes</h2></td></tr>
 <li>
 <p class="startli">LOOP OVER CHARGED TRACKS: select charged tracks (eventual pions)</p>
 <p><b> Uses <code>Ncut1</code> counter</b>: nGood has to be 2, mdcTrk-&gt;charge() has to be more than 0.</p>
-<p>&lt; Number of charged tracks as identified by the MDC.</p>
-<p>&lt; vector of integers that give the position of tracks in the <code>evtRecEvent</code> marked good.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -423,8 +505,8 @@ Private Attributes</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><a class="el" href="classRhopiAlg.html" title="Modified header of the stock BOSS package RhopiAlg (version 00-00-23). ">RhopiAlg</a> without PID</p>
-<p><b> Uses <code>Ncut3</code> counter</b>: ipip.size() * ipim.size() cannot be 1.</p>
+<p class="startli"><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a> without PID (<em>optional: needs to be uncommented</em>)</p>
+<p><b> Uses <code>Ncut3</code> counter</b>: <code>ipip.size()</code> * <code>ipim.size()</code> cannot be <code>1</code>.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -432,7 +514,7 @@ Private Attributes</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Default is pion, for other particles:</p>
+<p class="startli">Default is pion, for other particles (<em>optional: needs to be uncommented</em>)</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -446,12 +528,12 @@ Private Attributes</h2></td></tr>
 </li>
 <li>
 <p class="startli">Apply Kalman kinematic fit</p>
-<p><b> Uses <code>Ncut5</code> counter</b>: Kalman kinematic fit 5c is successful. <b> Uses <code>Ncut6</code> counter</b>: <img class="formulaInl" alt="$J/\psi \rightarrow \rho^0\pi^0$" src="form_37.png"/> (cut on invariant mass window).</p>
+<p><b> Uses <code>Ncut5</code> counter</b>: Kalman kinematic fit 5c is successful. <b> Uses <code>Ncut6</code> counter</b>: <img class="formulaInl" alt="$J/\psi \rightarrow \rho^0\pi^0$" src="form_43.png"/> (cut on invariant mass window).</p>
 <p class="endli"></p>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00393">393</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00363">363</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>
@@ -474,7 +556,7 @@ Private Attributes</h2></td></tr>
 <p>This function is only called once, after running over all events.</p>
 <p>Prints the flow chart to the terminal, so <b>make sure you save this output!</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l01048">1048</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l01016">1016</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>
@@ -494,370 +576,347 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
-<p>This function is called only once in the beginning.</p>
-<p>Define and load <code>NTuple</code>s here. </p>
-<ul>
-<li>
-<p class="startli"><b><code>NTuple "vxyz"</code></b>: Vertex position</p>
-<ul>
-<li>
-<p class="startli"><code>"vx0"</code>: primary <img class="formulaInl" alt="$x$" src="form_41.png"/>-vertex as determined by MDC</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"vy0"</code>: primary <img class="formulaInl" alt="$y$" src="form_42.png"/>-vertex as determined by MDC</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"vz0"</code>: primary <img class="formulaInl" alt="$z$" src="form_43.png"/>-vertex as determined by MDC</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"vr0"</code>: distance from origin in <img class="formulaInl" alt="$xy$" src="form_44.png"/>-plane</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"rvxy0"</code>: nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_44.png"/> plane</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"rvz0"</code>: nearest distance to IP in <img class="formulaInl" alt="$z$" src="form_43.png"/> direction</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"rvphi0"</code>: angle in the <img class="formulaInl" alt="$xy$" src="form_44.png"/>-plane (?)</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Check definition of <code>"rvphi0"</code> </dd></dl>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b><code>NTuple "photon"</code></b>: Photon kinematics</p>
-<ul>
-<li>
-<p class="startli"><code>"dthe"</code> branch: theta difference with nearest charged track ( <img class="formulaInl" alt="$^\circ$" src="form_45.png"/>)</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"dphi"</code> branch: phi difference with nearest charged track ( <img class="formulaInl" alt="$^\circ$" src="form_45.png"/>)</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"dang"</code> branch: angle difference with nearest charged track</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"eraw"</code> branch: energy of the photon</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b><code>NTuple "etot"</code></b>: Energy branch</p>
-<ul>
-<li>
-<p class="startli"><code>"m2gg"</code> branch: invariant mass of the two gammas</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"etot"</code> branch: total energy of <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>, <img class="formulaInl" alt="$\pi^-$" src="form_9.png"/> and the two gammas</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b><code>NTuple "fit4c"</code></b>: Neutral pion (pi0) fit branch</p>
-<ul>
-<li>
-<p class="startli"><code>"mpi0"</code> branch: invariant <img class="formulaInl" alt="$\pi^0$" src="form_46.png"/> mass according to Kalman kinematic fit</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"chi2"</code> branch: <img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b><code>NTuple "fit5c"</code></b>: Rho fit branch</p>
-<ul>
-<li>
-<p class="startli"><code>"chi2"</code> branch: <img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"mrho0"</code> branch: invariant mass for <img class="formulaInl" alt="$\pi^+\pi^-$" src="form_47.png"/> combination ( <img class="formulaInl" alt="$\rho^0$" src="form_48.png"/>)</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"mrhop"</code> branch: invariant mass for <img class="formulaInl" alt="$\pi^0\pi^+$" src="form_49.png"/> combination ( <img class="formulaInl" alt="$\rho^+$" src="form_50.png"/>)</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"mrhom"</code> branch: invariant mass for <img class="formulaInl" alt="$\pi^0\pi^-$" src="form_51.png"/> combination ( <img class="formulaInl" alt="$\rho^-$" src="form_52.png"/>)</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b><code>NTuple "geff"</code></b>: Photon detection efficiences</p>
-<ul>
-<li>
-<p class="startli"><code>"fcos"</code> branch: <img class="formulaInl" alt="$E/|\vec{p}|$" src="form_53.png"/> ratio for <img class="formulaInl" alt="$\pi^0$" src="form_46.png"/> candidate</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"elow"</code> branch: lowest energy of the two photons</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b><code>NTuple "dedx"</code></b>: Import dE/dx PID branch</p>
-<ul>
-<li>
-<p class="startli"><code>"ptrk"</code> branch: momentum of the track</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"chie"</code> branch: chi2 in case of electron</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"chimu"</code> branch: chi2 in case of muon</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"chipi"</code> branch: chi2 in case of pion</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"chik"</code> branch: chi2 in case of kaon</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"chip"</code> branch: chi2 in case of proton</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"probPH"</code> branch: most probable pulse height from truncated mean</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"normPH"</code> branch: normalized pulse height</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"ghit"</code> branch: number of good hits</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"thit"</code> branch: total number of hits</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b><code>NTuple "tofe"</code></b>: ToF endcap branch</p>
-<ul>
-<li>
-<p class="startli"><code>"ptrk"</code> branch: momentum of the track as reconstructed by MDC</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"path"</code> branch: path length</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tof"</code> branch: time of flight</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"cntr"</code> branch: ToF counter ID</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"ph"</code> branch: ToF pulse height</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"rhit"</code> branch: track extrapolate Z or R Hit position</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"qual"</code> branch: data quality of reconstruction</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"te"</code> branch: difference with ToF in electron hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tmu"</code> branch: difference with ToF in muon hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tpi"</code> branch: difference with ToF in charged pion hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tk"</code> branch: difference with ToF in charged kaon hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tp"</code> branch: difference with ToF in proton hypothesis</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b><code>NTuple "tof1"</code></b>: ToF <em>inner</em> barrel branch</p>
-<ul>
-<li>
-<p class="startli"><code>"ptrk"</code> branch: momentum of the track as reconstructed by MDC</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"path"</code> branch: path length</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tof"</code> branch: time of flight</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"cntr"</code> branch: ToF counter ID</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"ph"</code> branch: ToF pulse height</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"zhit"</code> branch: track extrapolate Z or R Hit position</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"qual"</code> branch: data quality of reconstruction</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"te"</code> branch: difference with ToF in electron hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tmu"</code> branch: difference with ToF in muon hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tpi"</code> branch: difference with ToF in charged pion hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tk"</code> branch: difference with ToF in charged kaon hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tp"</code> branch: difference with ToF in proton hypothesis</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b><code>NTuple "tof2"</code></b>: ToF <em>outer</em> barrel branch</p>
-<ul>
-<li>
-<p class="startli"><code>"ptrk"</code> branch: momentum of the track as reconstructed by MDC</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"path"</code> branch: path length</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tof"</code> branch: time of flight</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"cntr"</code> branch: ToF counter ID</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"ph"</code> branch: ToF pulse height</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"zhit"</code> branch: track extrapolate Z or R Hit position</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"qual"</code> branch: data quality of reconstruction</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"te"</code> branch: difference with ToF in electron hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tmu"</code> branch: difference with ToF in muon hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tpi"</code> branch: difference with ToF in charged pion hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tk"</code> branch: difference with ToF in charged kaon hypothesis</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tp"</code> branch: difference with ToF in proton hypothesis</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b><code>NTuple "pid"</code></b>: Track PID information</p>
-<ul>
-<li>
-<p class="startli"><code>"ptrk"</code> branch: momentum of the track</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"cost"</code> branch: theta angle of the track</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"dedx"</code> branch: Chi2 of the dedx of the track</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tof1"</code> branch: Chi2 of the inner barrel ToF of the track</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"tof2"</code> branch: Chi2 of the outer barrel ToF of the track</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><code>"prob"</code> branch: probability that it is a pion</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p class="endli"></p>
-</li>
-</ul>
+<p>This function is called only once in the beginning. <b>Define and load <code>NTuple</code>s here.</b> </p>
+<table class="doxtable">
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "vxyz"</code>: Vertex information of the charged tracks</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vx0"</code> </td><td><p class="starttd">Primary <img class="formulaInl" alt="$x$" src="form_30.png"/>-vertex as determined by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vy0"</code> </td><td><p class="starttd">Primary <img class="formulaInl" alt="$y$" src="form_31.png"/>-vertex as determined by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vz0"</code> </td><td><p class="starttd">Primary <img class="formulaInl" alt="$z$" src="form_32.png"/>-vertex as determined by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vr0"</code> </td><td><p class="starttd">Distance from origin in <img class="formulaInl" alt="$xy$" src="form_33.png"/>-plane</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"rvxy0"</code> </td><td><p class="starttd">Nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_33.png"/> plane</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"rvz0"</code> </td><td><p class="starttd">Nearest distance to IP in <img class="formulaInl" alt="$z$" src="form_32.png"/> direction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"rvphi0"</code></td><td><p class="starttd">Angle in the <img class="formulaInl" alt="$xy$" src="form_33.png"/>-plane (?)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "photon"</code>: Photon kinematics</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dthe"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\theta$" src="form_34.png"/> angle difference with nearest charged track (degrees)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dphi"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle difference with nearest charged track (degrees)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dang"</code></td><td><p class="starttd">Angle difference with nearest charged track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"eraw"</code></td><td><p class="starttd">Energy of the photon</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "etot"</code>: Energy branch</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"m2gg"</code></td><td><p class="starttd">Invariant mass of the two gammas</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"etot"</code></td><td><p class="starttd">Total energy of <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>, <img class="formulaInl" alt="$\pi^-$" src="form_9.png"/> and the two gammas</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "fit4c"</code>: Neutral pion (pi0) fit branch</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"mpi0"</code></td><td><p class="starttd">Invariant <img class="formulaInl" alt="$\pi^0$" src="form_47.png"/> mass according to Kalman kinematic fit</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chi2"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "fit5c"</code>: Rho fit branch</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chi2"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"mrho0"</code></td><td><p class="starttd">Invariant mass for <img class="formulaInl" alt="$\pi^+\pi^-$" src="form_48.png"/> combination ( <img class="formulaInl" alt="$\rho^0$" src="form_49.png"/>)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"mrhop"</code></td><td><p class="starttd">Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^+$" src="form_50.png"/> combination ( <img class="formulaInl" alt="$\rho^+$" src="form_51.png"/>)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"mrhom"</code></td><td><p class="starttd">Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^-$" src="form_52.png"/> combination ( <img class="formulaInl" alt="$\rho^-$" src="form_53.png"/>)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "geff"</code>: Photon detection efficiences</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"fcos"</code></td><td><p class="starttd"><img class="formulaInl" alt="$E/|\vec{p}|$" src="form_54.png"/> ratio for <img class="formulaInl" alt="$\pi^0$" src="form_47.png"/> candidate</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"elow"</code></td><td><p class="starttd">Lowest energy of the two photons</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "dedx"</code>: Import dE/dx PID branch</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code> </td><td><p class="starttd">Momentum of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chie"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of electron</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chimu"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of muon</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chipi"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of pion</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chik"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of kaon</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chip"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of proton</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"probPH"</code></td><td><p class="starttd">Most probable pulse height from truncated mean</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"normPH"</code></td><td><p class="starttd">Normalized pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ghit"</code> </td><td><p class="starttd">Number of good hits</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"thit"</code> </td><td><p class="starttd">Total number of hits</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "tofe"</code>: ToF endcap branch</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"path"</code></td><td><p class="starttd">Path length</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"rhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "tof1"</code>: ToF <em>inner</em> barrel branch</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"path"</code></td><td><p class="starttd">Path length</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"zhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "tof2"</code>: ToF <em>outer</em> barrel branch</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"path"</code></td><td><p class="starttd">Path length</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"zhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td colspan="2"><p class="starttd"><b><code>NTuple "pid"</code>: Track PID information</b></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cost"</code></td><td><p class="starttd">Theta angle of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dedx"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof1"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the inner barrel ToF of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof2"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the outer barrel ToF of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"prob"</code></td><td><p class="starttd">Probability that it is a pion</p>
+<p class="endtd"></p>
+</td></tr>
+</table>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00124">124</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00122">122</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>
@@ -930,7 +989,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00106">106</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00103">103</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -954,7 +1015,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00111">111</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00106">106</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -978,7 +1041,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00124">124</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of electron </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00117">117</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1002,7 +1067,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00127">127</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of kaon </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00120">120</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1026,7 +1093,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00125">125</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of muon </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00118">118</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1050,7 +1119,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00128">128</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of proton </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00121">121</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1074,7 +1145,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00126">126</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of pion </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00119">119</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1098,7 +1171,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00139">139</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>ToF counter ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00131">131</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1122,7 +1197,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00154">154</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>ToF counter ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00145">145</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1146,7 +1223,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00169">169</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>ToF counter ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00159">159</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1170,7 +1249,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00182">182</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Theta angle of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00171">171</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1194,7 +1275,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00183">183</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> of the track </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00172">172</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1218,7 +1301,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00096">96</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Angle difference with nearest charged track. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00094">94</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1266,7 +1351,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00095">95</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle difference with nearest charged track (degrees) </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00093">93</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1290,7 +1377,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00094">94</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\theta$" src="form_34.png"/> angle difference with nearest charged track (degrees) </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00092">92</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1362,7 +1451,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00140">140</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in electron hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00135">135</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1386,7 +1477,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00155">155</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in electron hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00149">149</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1410,7 +1503,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00170">170</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in electron hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00163">163</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1434,7 +1529,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00119">119</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Lowest energy of the two photons. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00113">113</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1482,7 +1579,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00097">97</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Energy of the photon. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00095">95</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1506,7 +1605,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00102">102</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Total energy of <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>, <img class="formulaInl" alt="$\pi^-$" src="form_9.png"/> and the two gammas. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00099">99</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1530,7 +1631,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00118">118</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$E/|\vec{p}|$" src="form_54.png"/> ratio for <img class="formulaInl" alt="$\pi^0$" src="form_47.png"/> candidate </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00112">112</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1626,7 +1729,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00131">131</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Number of good hits. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00124">124</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1650,7 +1755,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00143">143</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in charged kaon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00138">138</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1674,7 +1781,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00158">158</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in charged kaon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00152">152</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1698,7 +1807,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00173">173</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in charged kaon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00166">166</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1746,7 +1857,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00107">107</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Invariant <img class="formulaInl" alt="$\pi^0$" src="form_47.png"/> mass according to Kalman kinematic fit. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00102">102</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1770,7 +1883,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00112">112</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Invariant mass for <img class="formulaInl" alt="$\pi^+\pi^-$" src="form_48.png"/> combination ( <img class="formulaInl" alt="$\rho^0$" src="form_49.png"/>) </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00107">107</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1794,7 +1909,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00114">114</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^-$" src="form_52.png"/> combination ( <img class="formulaInl" alt="$\rho^-$" src="form_53.png"/>) </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00109">109</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1818,7 +1935,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00113">113</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^+$" src="form_50.png"/> combination ( <img class="formulaInl" alt="$\rho^+$" src="form_51.png"/>) </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00108">108</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1842,7 +1961,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00101">101</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Invariant mass of the two gammas. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00098">98</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1866,7 +1987,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00141">141</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in muon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00136">136</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1890,7 +2013,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00156">156</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in muon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00150">150</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1914,7 +2039,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00171">171</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in muon hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00164">164</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1938,7 +2065,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00130">130</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Normalized pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00123">123</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1962,7 +2091,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00137">137</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Path length. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00129">129</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1986,7 +2117,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00152">152</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Path length. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00143">143</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2010,7 +2143,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00167">167</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Path length. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00157">157</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2034,7 +2169,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00145">145</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>ToF pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00132">132</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2058,7 +2195,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00160">160</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>ToF pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00146">146</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2082,7 +2221,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00175">175</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>ToF pulse height. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00160">160</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2106,7 +2247,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00129">129</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Most probable pulse height from truncated mean. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00122">122</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2130,7 +2273,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00186">186</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Probability that it is a pion. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00175">175</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2154,7 +2299,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00142">142</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in charged pion hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00137">137</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2178,7 +2325,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00157">157</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in charged pion hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00151">151</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2202,7 +2351,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00172">172</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in charged pion hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00165">165</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2226,7 +2377,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00144">144</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in proton hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00139">139</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2250,7 +2403,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00159">159</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in proton hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00153">153</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2274,7 +2429,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00174">174</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Difference with ToF in proton hypothesis. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00167">167</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2298,7 +2455,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00136">136</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Momentum of the track as reconstructed by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00128">128</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2322,7 +2481,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00151">151</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Momentum of the track as reconstructed by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00142">142</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2346,7 +2507,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00166">166</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Momentum of the track as reconstructed by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00156">156</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2370,7 +2533,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00123">123</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Momentum of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00116">116</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2394,7 +2559,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00181">181</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Momentum of the track. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00170">170</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2418,7 +2585,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00147">147</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Data quality of reconstruction. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00134">134</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2442,7 +2611,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00162">162</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Data quality of reconstruction. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00148">148</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2466,7 +2637,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00177">177</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Data quality of reconstruction. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00162">162</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2490,7 +2663,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00146">146</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Track extrapolate Z or R Hit position. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00133">133</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2514,7 +2689,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00090">90</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Angle in the <img class="formulaInl" alt="$xy$" src="form_33.png"/>-plane (?) </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00089">89</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2538,7 +2715,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00088">88</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_33.png"/> plane. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00087">87</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2586,7 +2765,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00089">89</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Nearest distance to IP in <img class="formulaInl" alt="$z$" src="form_32.png"/> direction. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00088">88</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2634,7 +2815,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00132">132</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Total number of hits. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00125">125</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2658,7 +2841,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00184">184</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the inner barrel ToF of the track </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00173">173</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2682,7 +2867,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00185">185</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the outer barrel ToF of the track </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00174">174</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2706,7 +2893,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00138">138</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Time of flight. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00130">130</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2730,7 +2919,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00153">153</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Time of flight. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00144">144</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2754,7 +2945,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00168">168</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Time of flight. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00158">158</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2778,7 +2971,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00093">93</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Photon kinematics. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00091">91</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2802,7 +2997,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00122">122</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Energy loss dE/dx. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00115">115</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2826,7 +3023,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00105">105</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>4-constraint (4C) fit information </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00101">101</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2850,7 +3049,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00110">110</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>5-constraint (5C) fit information </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00105">105</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2874,7 +3075,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00100">100</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Raw invariant mass of the two gammas and their total energy. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00097">97</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2898,7 +3101,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00117">117</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Photons. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00111">111</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2922,7 +3127,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00180">180</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p><a class="el" href="classParticle.html" title="Container for particle data. ">Particle</a> ID info. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00169">169</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2946,7 +3153,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00135">135</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>End cap ToF decector. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00127">127</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2970,7 +3179,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00083">83</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Vertex information of the charged tracks. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00082">82</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2994,7 +3205,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00087">87</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Distance from origin in <img class="formulaInl" alt="$xy$" src="form_33.png"/>-plane. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00086">86</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3042,7 +3255,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00084">84</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Primary <img class="formulaInl" alt="$x$" src="form_30.png"/>-vertex as determined by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00083">83</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3066,7 +3281,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00085">85</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Primary <img class="formulaInl" alt="$y$" src="form_31.png"/>-vertex as determined by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00084">84</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3090,7 +3307,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00086">86</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Primary <img class="formulaInl" alt="$z$" src="form_32.png"/>-vertex as determined by MDC. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00085">85</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3138,7 +3357,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00161">161</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Track extrapolate Z or R Hit position. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00147">147</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3162,7 +3383,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00176">176</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Track extrapolate Z or R Hit position. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00161">161</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3186,7 +3409,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00150">150</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Inner barrel ToF decector. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00141">141</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3210,7 +3435,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00165">165</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p>Outer barrel ToF decector. </p>
+
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00155">155</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>

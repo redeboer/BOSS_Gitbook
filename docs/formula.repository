@@ -28,49 +28,50 @@
 \form#27:$M_{K^-K^+} - m_{\phi}$
 \form#28:$ \psi' \rightarrow J/\psi \pi \pi $
 \form#29:$ J/\psi \rightarrow \mathrm{di-leptons} $
-\form#30:$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\gamma\gamma $
-\form#31:$\gamma$
-\form#32:$\theta$
-\form#33:$\pi^0 \rightarrow \gamma\gamma$
-\form#34:$\rho^0 \rightarrow \pi^-\pi^+$
-\form#35:$\rho^- \rightarrow \pi^0\pi^-$
-\form#36:$\rho^+ \rightarrow \pi^0\pi^+$
-\form#37:$J/\psi \rightarrow \rho^0\pi^0$
-\form#38:$J/\psi \rightarrow \rho^+\pi^-$
-\form#39:$J/\psi \rightarrow \rho^-\pi^+$
-\form#40:$\pm$
-\form#41:$x$
-\form#42:$y$
-\form#43:$z$
-\form#44:$xy$
-\form#45:$^\circ$
-\form#46:$\pi^0$
-\form#47:$\pi^+\pi^-$
-\form#48:$\rho^0$
-\form#49:$\pi^0\pi^+$
-\form#50:$\rho^+$
-\form#51:$\pi^0\pi^-$
-\form#52:$\rho^-$
-\form#53:$E/|\vec{p}|$
-\form#54:$Z$
-\form#55:$e^+e^-$
-\form#56:$p$
-\form#57:$|\vec{p}|$
-\form#58:$p_x$
-\form#59:$p_y$
-\form#60:$p_z$
-\form#61:$R$
-\form#62:$\rho^{0\pm}$
-\form#63:$\pi^\pm$
-\form#64:$K^\pm$
-\form#65:$r$
-\form#66:$\cos(\theta)$
-\form#67:$\chi_\mathrm{red}^2$
-\form#68:$ e^- $
-\form#69:$ \mu^- $
-\form#70:$ \pi^+ $
-\form#71:$ \pi^0 $
-\form#72:$ \rho^\pm $
-\form#73:$ \rho^0 $
-\form#74:$ K^\pm $
-\form#75:$ p $
+\form#30:$x$
+\form#31:$y$
+\form#32:$z$
+\form#33:$xy$
+\form#34:$\theta$
+\form#35:$l^+$
+\form#36:$l^-$
+\form#37:$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\gamma\gamma $
+\form#38:$\gamma$
+\form#39:$\pi^0 \rightarrow \gamma\gamma$
+\form#40:$\rho^0 \rightarrow \pi^-\pi^+$
+\form#41:$\rho^- \rightarrow \pi^0\pi^-$
+\form#42:$\rho^+ \rightarrow \pi^0\pi^+$
+\form#43:$J/\psi \rightarrow \rho^0\pi^0$
+\form#44:$J/\psi \rightarrow \rho^+\pi^-$
+\form#45:$J/\psi \rightarrow \rho^-\pi^+$
+\form#46:$\pm$
+\form#47:$\pi^0$
+\form#48:$\pi^+\pi^-$
+\form#49:$\rho^0$
+\form#50:$\pi^0\pi^+$
+\form#51:$\rho^+$
+\form#52:$\pi^0\pi^-$
+\form#53:$\rho^-$
+\form#54:$E/|\vec{p}|$
+\form#55:$Z$
+\form#56:$e^+e^-$
+\form#57:$p$
+\form#58:$|\vec{p}|$
+\form#59:$p_x$
+\form#60:$p_y$
+\form#61:$p_z$
+\form#62:$R$
+\form#63:$\rho^{0\pm}$
+\form#64:$\pi^\pm$
+\form#65:$K^\pm$
+\form#66:$r$
+\form#67:$\cos(\theta)$
+\form#68:$\chi_\mathrm{red}^2$
+\form#69:$ e^- $
+\form#70:$ \mu^- $
+\form#71:$ \pi^+ $
+\form#72:$ \pi^0 $
+\form#73:$ \rho^\pm $
+\form#74:$ \rho^0 $
+\form#75:$ K^\pm $
+\form#76:$ p $
