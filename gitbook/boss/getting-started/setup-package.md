@@ -6,7 +6,7 @@ Now that you have configured your **BOSS** work area, you can start developing p
 
 ### Structure of a default CMT package  <a id="structure-of-a-default-cmt-package"></a>
 
-As explained in [The BOSS Analysis Framework](https://besiii.gitbook.io/boss/docs-boss/intro), BOSS is organised through packages. Packages are components of the entire BOSS framework on which individuals like you work independently. Each package on itself can have several versions that are maintained by you through CMT.
+As explained in [The BOSS Analysis Framework](https://besiii.gitbook.io/boss/boss/getting-started/intro), BOSS is organised through packages. Packages are components of the entire BOSS framework on which individuals like you work independently. Each package on itself can have several versions that are maintained by you through CMT.
 
 To create an empty package \(with a default format\), use the following command:
 
@@ -80,7 +80,7 @@ First create some copy \(of course, you'll have to replace the names here\):
 cd MyFirstPackagecp -fR MyFirstPackage-00-00-01 MyFirstPackage-00-00-02
 ```
 
-Now, imagine you have modified the interface of the package in its header files. This, according to the [BOSS version naming convention](https://besiii.gitbook.io/boss/docs-boss/setup-package#structure-of-a-default-cmt-package), requires you to modify the `major id`. So you will have to rename the folder of the package:
+Now, imagine you have modified the interface of the package in its header files. This, according to the [BOSS version naming convention](boss/getting-started/setup-package#structure-of-a-default-cmt-package), requires you to modify the `major id`. So you will have to rename the folder of the package:
 
 ```bash
 mv MyFirstPackage-00-00-02 MyFirstPackage-01-00-00
