@@ -21,7 +21,7 @@ This is essentially it! Of course, for your own analysis, you will have to tweak
 
 In the following, we will go through some extra tricks that you will need to master in order to do computational intensive analyses using **BOSS**.
 
-## Submitting a job  <a id="submitting-a-job"></a>
+## Submitting a job   <a id="submitting-a-job"></a>
 
 The `TestRelease` package typically simulates, reconstructs, and analyses only 10 events. For serious work, you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queue'. For this, there are two options: either you submit them using the command `hep_sub` or using the command `boss.condor`. The latter is easiest: you can use it just like `boss.exe`.
 
@@ -49,7 +49,7 @@ hep_q -u $USER
 
 Note that `hep_q` would list all jobs from all users.
 
-## Splitting up jobs  <a id="splitting-up-jobs"></a>
+## Splitting up jobs   <a id="splitting-up-jobs"></a>
 
 Jobs that take a long time to be executed in the queue will be killed by the server. It is therefore recommended that you work with a maximum of **10,000 events** per job if you perform Monte Carlo simulations \(the `sim` step consumes much computer power\). Of course, you will be wanting to work with much larger data samples, sou you will have to submit parallel jobs. This can be done by writing different `jobOptions*.txt` files, where you modify the input/output files and random seed number.
 

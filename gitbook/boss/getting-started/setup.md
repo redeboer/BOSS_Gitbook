@@ -153,7 +153,7 @@ If everything went well, it should print something like:
 /besfs/users/$USER/BOSS_Afterburner/boss/workarea:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
 ```
 
-The paths listed here \(separated by `:` columns\) will be used to look for packages required by the `requirements` files of packages \(see [Set up a BOSS package](setup-package.md)\). The first of these paths points to your _BOSS workarea_, the second to the BOSS version you use \(also called **`$BesArea`**\), and the rest to libraries of for instance [Gaudi](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html).
+The paths listed here \(separated by `:` columns\) will be used to look for packages required by the `requirements` files of packages \(see [Set up a BOSS package]()\). The first of these paths points to your _BOSS workarea_, the second to the BOSS version you use \(also called **`$BesArea`**\), and the rest to libraries of for instance [Gaudi](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html).
 
 ### **Step 5: Modify your `bashrc`**
 
@@ -217,7 +217,7 @@ mkdir -p "$BOSSWORKAREA/workarea"
 
 The option `-p` is used to avoid error messages when making this directory: if you followed [Step \(A\)](setup.md#a-set-up-the-boss-afterburner), this folder already exists, because it is already available in the BOSS repository \(which you cloned in [the first part](setup.md#1-set-up-the-boss-afterburner)\).
 
-We'll get back to the `workarea` folder when we [set up a BOSS package](setup-package.md).
+We'll get back to the `workarea` folder when we [set up a BOSS package]().
 
 {% hint style="info" %}
 Your _BOSS workarea_ typically contains three folders \(see [an example here](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea)\):
