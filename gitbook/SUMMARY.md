@@ -17,7 +17,9 @@
 * [Important BOSS Packages](besiii-software-system/packages/README.md)
   * [RhopiAlg](besiii-software-system/packages/rhopi.md)
   * [PipiJpsiAlg](besiii-software-system/packages/pipijpsi.md)
-  * [TopoAna](besiii-software-system/packages/topoana.md)
+  * [TopoAna](besiii-software-system/packages/topoana/README.md)
+    * [Required fields](besiii-software-system/packages/topoana/required.md)
+    * [Optional fields](besiii-software-system/packages/topoana/optional.md)
   * [Other packages](besiii-software-system/packages/other.md)
 
 ## The BOSS Afterburner
