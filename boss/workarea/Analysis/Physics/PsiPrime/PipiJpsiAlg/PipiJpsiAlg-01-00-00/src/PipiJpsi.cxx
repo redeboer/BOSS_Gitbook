@@ -618,7 +618,7 @@
 				}
 
 			/// <li> Set filter passed
-				if(m_subsample_flag) setFilterPassed = true;
+				if(m_subsample_flag) setFilterPassed(true);
 				else if(
 					m_mass_recoil > 3.08 &&
 					m_mass_recoil < 3.12 &&
@@ -629,7 +629,7 @@
 					m_cms_lepm    < 1.7  &&
 					m_cms_lepm    > 1.4  &&
 					m_event_flag == 4 &&
-					m_pipi_dang < m_pipi_dang_cut) setFilterPassed = true;
+					m_pipi_dang < m_pipi_dang_cut) setFilterPassed(true);
 
 			/// </ul>
 
@@ -672,7 +672,7 @@
 			m_tuple1->write();
 			m_tuple8->write();
 
-		/// <li> Next is good photon selection
+		/// <li> Selection of 'good' photons. Note that these aren't really used, as the process \f$\psi' \rightarrow \pi\pi J/\psi \rightarrow \pi\pi ll\f$ doesn't involve photons.
 			Vint iGam;  iGam.clear();
 			for(int i = evtRecEvent->totalCharged(); i< evtRecEvent->totalTracks(); ++i) {
 				EvtRecTrackIterator itTrk=evtRecTrkCol->begin() + i;
@@ -699,6 +699,8 @@
 					if(fabs(phid) < fabs(dphi)) dphi = phid;
 					if(angd < dang) dang = angd;
 				}
+
+				// * Photon angle cut * //
 				if(dang>=200) continue;
 				double eraw = emcTrk->energy();
 				dthe = dthe * 180 / (CLHEP::pi);
@@ -708,34 +710,36 @@
 				m_dphi = dphi;
 				m_dang = dang;
 				m_eraw = eraw;
-				// good photon cut will be set here
+
+				// * Good photon cut set here * //
 				// if(eraw < m_energyThreshold) continue;
 				// if((fabs(dthe) < m_gammaThetaCut) && (fabs(dphi)<m_gammaPhiCut)) continue;
 				iGam.push_back((*itTrk)->trackId());
+
 			}
 
 		/// <li> Finish Good Photon Selection
 			m_nGam = iGam.size();
-			log << MSG::DEBUG << "num Good Photon " << m_nGam  << " , " <<evtRecEvent->totalNeutral()<< endmsg;
+			log << MSG::DEBUG << "num Good Photon " << m_nGam  << " , " << evtRecEvent->totalNeutral() << endmsg;
 			m_tuple2->write();
 
 		/// <li> Check dedx infomation
 			if(m_checkDedx) {
 				int m_dedx_cout(0);
 				for(int i = 0; i < nGood; ++i) {
-					EvtRecTrackIterator  itTrk = evtRecTrkCol->begin() + iGood[i];
+					EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
 					if(!(*itTrk)->isMdcDedxValid())continue;
 					RecMdcKalTrack *mdcTrk = (*itTrk)->mdcKalTrack();
 					RecMdcDedx *dedxTrk = (*itTrk)->mdcDedx();
 
-					m_ptrk = mdcTrk->p();
-					m_chie = dedxTrk->chiE();
-					m_chimu = dedxTrk->chiMu();
-					m_chipi = dedxTrk->chiPi();
-					m_chik = dedxTrk->chiK();
-					m_chip = dedxTrk->chiP();
-					m_ghit = dedxTrk->numGoodHits();
-					m_thit = dedxTrk->numTotalHits();
+					m_ptrk   = mdcTrk->p();
+					m_chie   = dedxTrk->chiE();
+					m_chimu  = dedxTrk->chiMu();
+					m_chipi  = dedxTrk->chiPi();
+					m_chik   = dedxTrk->chiK();
+					m_chip   = dedxTrk->chiP();
+					m_ghit   = dedxTrk->numGoodHits();
+					m_thit   = dedxTrk->numTotalHits();
 					m_probPH = dedxTrk->probPH();
 					m_normPH = dedxTrk->normPH();
 

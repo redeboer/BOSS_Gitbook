@@ -967,7 +967,7 @@
 					kkmfit->AddFourMomentum(1, ecms); // 4 constraints: CMS energy and momentum
 
 					// * Kalman kinematic fit5c * //
-					if(kkmfit->Fit()){
+					if(kkmfit->Fit()) {
 						HepLorentzVector ppi0  = kkmfit->pfit(2) + kkmfit->pfit(3); // inv. mass Gamma Gamma (pi^0)
 						HepLorentzVector prho0 = kkmfit->pfit(0) + kkmfit->pfit(1); // inv. mass pi^+ pi^- (rho^0)
 						HepLorentzVector prhop = ppi0 + kkmfit->pfit(0);            // inv. mass pi^0 pi^+ (rho^+)
