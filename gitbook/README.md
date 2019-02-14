@@ -1,9 +1,7 @@
 # Main page
 
 {% hint style="warning" %}
-**This repository is still under development!**
-
-Feedback is very welcome, see [About](appendices/about.md) for contact details.
+Feedback on these pages is very welcome! See [About](appendices/about.md) for contact details.
 {% endhint %}
 
 ## _The BOSS Afterburner_ repository
