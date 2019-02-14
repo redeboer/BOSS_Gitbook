@@ -28,7 +28,7 @@ ssh-keygen
 
 ### Compiling
 
-For compiling outside ROOT, you will need to use a compiler like `g++`. The compiler needs to be told where the libraries for included ROOT header files are located. You can do this using flags that ROOT set during its installation. In case of `g++`, use:
+For compiling outside ROOT \(that is, not using the ROOT interpreter\), you will need to use a compiler like `g++`. The compiler needs to be told where the libraries for included ROOT header files are located. You can do this using flags that ROOT set during its installation. In case of `g++`, use:
 
 ```text
 g++ YourCode.C -I$(root-config --incdir) $(root-config --libs --evelibs --glibs) -o YourBinaryOutput.o
