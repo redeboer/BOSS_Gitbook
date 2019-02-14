@@ -38,7 +38,15 @@ Speaks for itself :\) Do not use scientific notations like `1e5` for $$10^5$$, b
 
 ### `Suppress the first branches of decay trees in the output txt/tex/pdf files (Two options: Y and N. default: N)`
 
-### `Suppress the topology tags in the output tex/pdf files (Two options: Y and N. Default: N)`
+Initial decays \(e.g. $$e^+e^- \rightarrow J/\psi$$\) are not listed in the tables.
+
+### `Suppress the first branches of decay trees in the output txt/tex/pdf files (Two options: Y and N. Default: N)`
+
+The following columns are not written:
+
+* **Decay trees and their respective final states**: iDcyTr and iDcyFSt
+* **Table Signal particles**: iSigP
+* **Signal decay final states**: iSigDcyFSt2 and iDcyFSt
 
 ### `Ignore gISR photons (Two options: Y and N. Default: Y)`
 
