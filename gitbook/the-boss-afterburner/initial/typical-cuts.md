@@ -18,14 +18,14 @@ In papers from the BESIII Collaboration, you will usually encounter the followin
 
 Neutral tracks are reconstructed from electromagnetic showers in the [EMC](../../besiii-software-system/besiii.md#electromagnetic-calorimeter-emc), which consists of a barrel and an end cap.
 
-|  |  |  |  |  |
-| :--- | :--- | :--- | :--- | :--- |
-| Energy for **barrel** showers | $$\left | \cos\theta\right | &lt; 0.8$$ | $$E > 25\text{ MeV}$$ |
-| Energy for **end cap** showers | $$0.83 &lt; \left | \cos\theta\right | &lt; 0.93$$ | $$E > 50\text{ MeV}$$ |
+|  |  |  |
+| :--- | :---: | :---: |
+| Energy for **barrel** showers | $$\cos\theta < 0.8$$ | $$E > 25\text{ MeV}$$ |
+| Energy for **end cap** showers | $$0.8 < \cos\theta < 0.93$$ | $$E > 50\text{ MeV}$$ |
 
-If there are more than one charged tracks, there is a time requirement of $$0 \leq T \leq 14 (50\text{ ns})$$.
+If there are more than one charged tracks, there is a time requirement of $$0 \leq T \leq 14$$ \( $$50\text{ ns}$$ \).
 
 ## Kinematic fits
 
-* $$\chi^2$$ of the kinematic fit \(no matter how many constraints\): $$\chi^2 < 200$$ \(one may of course choose to divert from this\).
+* $$\chi^2$$ of the kinematic fit \(no matter how many constraints\): $$\chi^2 < 200$$. One may of course choose to divert from this.
 

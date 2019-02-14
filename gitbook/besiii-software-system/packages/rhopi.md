@@ -1,5 +1,32 @@
 # RhopiAlg
 
+See full [Doxygen documentation](https://redeboer.github.io/BOSS_Afterburner/classRhopiAlg.html) on GitPages.
+
+## What does this example package teach?
+
+The `RhopiAlg` is the starting point for beginners using BOSS. It teaches:
+
+* The usual Gaudi [`Algorithm`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html) structure of the [`initialize`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html#ab889608fa1b738d0dbfef7751e8598ae), [`execute`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classIAlgorithm.html#a751b04dd35a3877d8799fcd07d0a6892), and [`finalize`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html#a9ffbd123ceb6c35e7c0344428d911fdc) steps.
+* The use of logging using [`MsgStream`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classMsgStream.html).
+* Declaring and booking [`NTuple::Tuple`s](https://dayabay.bnl.gov/dox/GaudiKernel/html/classNTuple_1_1Tuple.html) \(the eventual `TTree`s\) and adding items \(the eventual branches\) using [`NTuple::Tuple::addItem`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classNTuple_1_1Tuple.html#a78033967fbd89f7f18e7d6d7d43f41ac).
+* Accessing data of charged tracks and neutral tracks in the using data from [`EvtRecEvent`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html) and [`EvtRecTrack`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecTrack.html) classes.
+* Identifying particles \(PID\) using the [ParticleID](http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html) class.
+* Making a selection of these tracks \(using iterators\) over which you loop again later.
+* Applying a Kalman kinematic fit with [constraints](http://bes3.to.infn.it/Boss/7.0.2/html/classTrackPool.html#5ecaf22a24d60b2979d0ccd3b0c1df10) and a [resonance](http://bes3.to.infn.it/Boss/7.0.2/html/classKalmanKinematicFit.html#1163bb8ab7e0ebc53c81b2a4d840ebb0) using [`KalmanKinematicFit`](http://bes3.to.infn.it/Boss/7.0.2/html/classKalmanKinematicFit.html).
+* Computing invariant masses using [`HepLorentzVector`](https://www-zeuthen.desy.de/geant4/clhep-2.0.4.3/classCLHEP_1_1HepLorentzVector.html) from the CLHEP library.
+* Computing the angle between a photon and a pion.
+* Reconstructed data from the detectors is accessed through the classes in the below table. This package only makes use of the MDC, EMC, and TOF detectors.
+
+| Detector |  | Class | Accessed through |
+| :--- | :--- | :--- | :--- |
+| **MDC** | **Main Drift Chamber** | **\`\`**[**`RecMdcTrack`**](http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcTrack.html)**\`\`** | **\`\`**[**`EvtRecTrack::mdcTrack`**](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecTrack.html#b20b980cd2f97e76870d85310f3701a9)**\`\`** |
+| **MDC** | \*\*\*\*$$dE/dx$$ **info** | **\`\`**[**`RecMdcDedx`**](http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html)**\`\`** | **\`\`**[**`EvtRecTrack::mdcDedx`**](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecTrack.html#946473c9e8d949a44e1254f70014ce6e)**\`\`** |
+| **MDC** | **Kalman track** | **\`\`**[**`RecMdcKalTrack`**](http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcKalTrack.html)**\`\`** | **\`\`**[**`EvtRecTrack::mdcKalTrack`**](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecTrack.html#b992dd00fcd938cf17b4a6090ca16a81)**\`\`** |
+| **TOF** | **Time-of-Flight** | **\`\`**[**`RecTofTrack`**](http://bes3.to.infn.it/Boss/7.0.2/html/classRecTofTrack.html)**\`\`** | **\`\`**[**`EvtRecTrack::tofTrack`**](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecTrack.html#2c997882dd8ad532f01f0a10f93de2a0)**\`\`** |
+| **EMC** | **EM-Calorimeter** | **\`\`**[**`RecEmcShower`**](http://bes3.to.infn.it/Boss/7.0.2/html/classRecEmcShower.html)**\`\`** | **\`\`**[**`EvtRecTrack::emcShower`**](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecTrack.html#ac7a7d3cc71a349c2e9de6cf19865ecf)**\`\`** |
+| MUC | Muon Chamber | \`\`[`RecMucTrack`](http://bes3.to.infn.it/Boss/7.0.2/html/classRecMucTrack.html)\`\` | \`\`[`EvtRecTrack::mucTrack`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecTrack.html#a3a8ae89c68adcec20ac3fb7248a1b31)\`\` |
+| \_\_ | _Extension through all_ | \`\`[`RecExtTrack`](http://bes3.to.infn.it/Boss/7.0.2/html/classRecExtTrack.html)\`\` | \`\`[`EvtRecTrack::extTrack`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecTrack.html#3fd94beab03bbde9f056f832b106868a)\`\` |
+
 ## Introduction
 
 One of the basic analysis packages that is already provided in BOSS is the `RhopiAlg` package. Within BESIII, almost everyone knows it, because it is used as the starting point for developing your own packages. `RhopiAlg` is an illustration of a typical procedure in particle physics: reconstructing a decayed particle. For this, you will have to make apply cuts on measured parameters and this package is an illustration of this procedure.
