@@ -1,6 +1,6 @@
 # Typical cuts
 
-In papers from the BESIII Collaboration, you will usually encounter the following cuts. As such, they have been implemented in the base algorithm \(see [next section](base.md)\).
+In papers from the BESIII Collaboration, you will usually encounter the following cuts. They have therefore been implemented in the base algorithm \(see [next section](base.md)\).
 
 ## Vertex geometry
 
