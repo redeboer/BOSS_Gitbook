@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name',['name',['../classCutObject.html#a4fc6cb50b136d08372ad886da2a39896',1,'CutObject::name()'],['../classArgPair__base.html#aea6f9099a0915d48fccb3a8ad5b0a633',1,'ArgPair_base::name()']]],
+  ['name',['name',['../classJobProperty.html#ad576b6c7249f320e7e2186493cec8110',1,'JobProperty::name()'],['../classArgPair__base.html#aea6f9099a0915d48fccb3a8ad5b0a633',1,'ArgPair_base::name()']]],
   ['ncut0',['Ncut0',['../RhopiAlg_8cxx.html#a83e267c1596c352aefaeb2c2551d637c',1,'RhopiAlg.cxx']]],
   ['ncut1',['Ncut1',['../RhopiAlg_8cxx.html#a4506054600e8230d869ac3c51e807f3a',1,'RhopiAlg.cxx']]],
   ['ncut2',['Ncut2',['../RhopiAlg_8cxx.html#a11b83c587312d370e5ce54dade6d117c',1,'RhopiAlg.cxx']]],

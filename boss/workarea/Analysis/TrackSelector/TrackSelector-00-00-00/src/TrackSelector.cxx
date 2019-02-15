@@ -54,13 +54,13 @@
 		fMcParticleCol(eventSvc(), "/Event/MC/McParticleCol"),
 		fEvtRecEvent  (eventSvc(), EventModel::EvtRec::EvtRecEvent),
 		fEvtRecTrkCol (eventSvc(), EventModel::EvtRec::EvtRecTrackCol),
-		/// * Counters for number of events and tracks.
+		/// * Construct counters for number of events and tracks (in essence a `CutObject` without cuts).
 		fCounter_Nevents  ("N_events"),
 		fCounter_Ntracks  ("N_tracks"),
 		fCounter_Ncharged ("N_charged"),
 		fCounter_Nneutral ("N_neutral"),
 		fCounter_Nmdcvalid("N_MDCvalid"),
-		/// * The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
+		/// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
 		fCut_Vxy         ("vertex_xy"),
 		fCut_Vz          ("vertex_z"),
 		fCut_Rxy         ("declen_xy"),
@@ -68,30 +68,28 @@
 		fCut_CosTheta    ("costheta"),
 		fCut_PhotonEnergy("PhotonEnergy"),
 		fCut_PIDChiSq    ("PIDChiSq"),
-		fCut_PIDProb     ("PIDProb")
+		fCut_PIDProb     ("PIDProb"),
+		/// * Declare 'do or don't' `JobSwitch` properties. The `"do_<treename>"` properties determine whether or not to make a selection of 'good' neutral and/or charged tracks.
+		fDo_charged("do_charged"),
+		fDo_neutral("do_neutral"),
+		/// * Declare 'write' `JobSwitch` properties. The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled.
+		fWrite_mult       ("write_mult"),
+		fWrite_vertex     ("write_vertex"),
+		fWrite_charged    ("write_charged"),
+		fWrite_neutral    ("write_neutral"),
+		fWrite_mctruth    ("write_mctruth"),
+		fWrite_dedx       ("write_dedx"),
+		fWrite_ToFEC      ("write_ToFEC"),
+		fWrite_ToFIB      ("write_ToFIB"),
+		fWrite_ToFOB      ("write_ToFOB"),
+		fWrite_PID        ("write_PID"),
+		fWrite_mult_select("write_mult_select")
 	{
 		fLog << MSG::DEBUG << "===>> TrackSelector::TrackSelector() <<===" << endmsg;
 
-		/// * The `"do_<treename>"` properties determine whether or not to make a selection of 'good' neutral and/or charged tracks.
-		declareProperty("do_charged", fDo_charged = false);
-		declareProperty("do_neutral", fDo_neutral = false);
-
-		/// * The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
-		declareProperty("write_mult",        fWrite_mult        = false);
-		declareProperty("write_vertex",      fWrite_vertex      = false);
-		declareProperty("write_charged",     fWrite_charged     = false);
-		declareProperty("write_neutral",     fWrite_neutral     = false);
-		declareProperty("write_mctruth",     fWrite_mctruth     = false);
-		declareProperty("write_dedx",        fWrite_dedx        = false);
-		declareProperty("write_ToFEC",       fWrite_ToFEC       = false);
-		declareProperty("write_ToFIB",       fWrite_ToFIB       = false);
-		declareProperty("write_ToFOB",       fWrite_ToFOB       = false);
-		declareProperty("write_PID",         fWrite_PID         = false);
-		declareProperty("write_mult_select", fWrite_mult_select = false);
-
-		/// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
+		/// @todo Check if `DeclareCuts` should be moved to `TrackSelector::initialize` in order to also declare the cuts that are defined in the derived algorithm. This depends on whether the constructor of the base or of the derived class is called first.
+		DeclareSwitches();
 		DeclareCuts();
-
 	}
 
 
@@ -784,10 +782,10 @@
 	 */
 	HepLorentzVector TrackSelector::ComputeMomentum(EvtRecTrack *track)
 	{
-		RecEmcShower *emcTrk = track->emcShower();
-		double eraw = emcTrk->energy();
-		double phi  = emcTrk->phi();
-		double the  = emcTrk->theta();
+		fTrackEMC = track->emcShower();
+		double eraw = fTrackEMC->energy();
+		double phi  = fTrackEMC->phi();
+		double the  = fTrackEMC->theta();
 		HepLorentzVector ptrk(
 			eraw * sin(the) * cos(phi), // px
 			eraw * sin(the) * sin(phi), // py
@@ -820,15 +818,28 @@
 
 
 	/**
-	 * @brief Declare properties for each `CutObject`. Each `CutObject` has two properties: a `min` and a `max`.
+	 * @brief Declare properties for each `CutObject`. Each `CutObject` has two properties: a `min` and a `max`. This method has been added to the `TrackSelector`, and not to the `CutObject` class, because it requires the `Algorithm::decalareProperty` method.
 	 */
 	void TrackSelector::DeclareCuts()
 	{
-		std::list<CutObject*>::iterator cut = CutObject::instances.begin();
-		for(; cut != CutObject::instances.end(); ++cut) {
+		std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
+		for(; cut != CutObject::gCutObjects.end(); ++cut) {
 			declareProperty((*cut)->NameMin(), (*cut)->min);
 			declareProperty((*cut)->NameMax(), (*cut)->max);
 			fLog << MSG::INFO << "  added cut \"" << (*cut)->name << "\"" << endmsg;
+		}
+	}
+
+
+	/**
+	 * @brief Declare properties for each `JobSwitch`. This method has been added to the `TrackSelector`, and not to the `JobSwitch` class, because it requires the `Algorithm::decalareProperty` method.
+	 */
+	void TrackSelector::DeclareSwitches()
+	{
+		std::list<JobSwitch*>::iterator it = JobSwitch::gJobSwitches.begin();
+		for(; it != JobSwitch::gJobSwitches.end(); ++it) {
+			declareProperty((*it)->name, (*it)->value);
+			fLog << MSG::INFO << "  added property \"" << (*it)->name << "\"" << endmsg;
 		}
 	}
 
@@ -840,23 +851,23 @@
 	{
 		/// -# For each cut name, create an `NTuple::Item<double>` in the map `fMap_cuts`.
 		std::list<CutObject*>::iterator cut;
-		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+		for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut) {
 			fMap_cuts[(*cut)->name];
 		}
 		/// -# Add the `NTuple::Item`s of `fMap_cuts` to an `NTuple` called `"_cutvalues"`.
 		AddItemsToNTuples("_cutvalues", fMap_cuts, "1st entry: min value, 2nd entry: max value, 3rd entry: number passed");
 		/// -# Write `min` values to the first entry of `"_cutvalues"`.
-		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+		for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut) {
 			fMap_cuts[(*cut)->name] = (*cut)->min;
 		}
 		fNTupleMap.at("_cutvalues")->write();
 		/// -# Write `max` values to the second entry of `"_cutvalues"`.
-		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+		for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut) {
 			fMap_cuts[(*cut)->name] = (*cut)->max;
 		}
 		fNTupleMap.at("_cutvalues")->write();
 		/// -# Write the `counter` values to the third entry of `"_cutvalues"`.
-		for(cut = CutObject::instances.begin(); cut != CutObject::instances.end(); ++cut) {
+		for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut) {
 			fMap_cuts[(*cut)->name] = (*cut)->counter;
 		}
 		fNTupleMap.at("_cutvalues")->write();

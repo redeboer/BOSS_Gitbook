@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_7ecutobject',['~CutObject',['../classCutObject.html#a93d3f2fb2b98fb2013b9aea2f908abe1',1,'CutObject']]],
-  ['_7etopoana',['~topoana',['../classtopoana.html#a69c57ee39643392dccae7b60ca61520c',1,'topoana']]]
+  ['xmass',['xmass',['../PipiJpsi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a',1,'xmass():&#160;PipiJpsi.cxx'],['../RhopiAlg_8cxx.html#a850891ce5a4a85d92f96c37288dc134a',1,'xmass():&#160;RhopiAlg.cxx']]]
 ];

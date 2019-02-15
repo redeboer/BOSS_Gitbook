@@ -105,7 +105,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7f0176ebbd3cceef08cf5a8005ff2bdb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb">RhopiAlg</a> (const std::string &amp;name, ISvcLocator *pSvcLocator)</td></tr>
 <tr class="memdesc:a7f0176ebbd3cceef08cf5a8005ff2bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> algorithm.  <a href="#a7f0176ebbd3cceef08cf5a8005ff2bdb">More...</a><br /></td></tr>
 <tr class="separator:a7f0176ebbd3cceef08cf5a8005ff2bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Gaudi `Algorithm` steps</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Gaudi Algorithm steps</div></td></tr>
 <tr class="memitem:a42987b298b549df8af27578a7c8160f6"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a42987b298b549df8af27578a7c8160f6">initialize</a> ()</td></tr>
 <tr class="memdesc:a42987b298b549df8af27578a7c8160f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>.  <a href="#a42987b298b549df8af27578a7c8160f6">More...</a><br /></td></tr>
 <tr class="separator:a42987b298b549df8af27578a7c8160f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,9 +118,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Cut parameters</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>Here, you can define data members that you use to define cuts. The values for these cuts should be set in the <code><a class="el" href="classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb" title="Constructor for the RhopiAlg algorithm. ">RhopiAlg::RhopiAlg</a></code> constructor (see <code>.cxx</code> file). </p>
-</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Cut parameters. Here, you can define data members that you use to define cuts. The values for these cuts should be set in the RhopiAlg::RhopiAlg constructor (see cxx file).</div></td></tr>
 <tr class="memitem:a1dae4ef59a4492c62a8255a169251e3c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a1dae4ef59a4492c62a8255a169251e3c">fVr0cut</a></td></tr>
 <tr class="separator:a1dae4ef59a4492c62a8255a169251e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaa4db6028d5fcada93dc8070152c1ed"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#adaa4db6028d5fcada93dc8070152c1ed">fVz0cut</a></td></tr>
@@ -149,9 +147,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a611af9831ff29dd16b8d255bbab8268b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67fee3f1672e9ae8754235e4d67bcf9a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a67fee3f1672e9ae8754235e4d67bcf9a">fCheckTof</a></td></tr>
 <tr class="separator:a67fee3f1672e9ae8754235e4d67bcf9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">`NTuple`s (eventual `TTree`s and their branches)</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p><code>NTuple</code>s are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling <code>NTuple::addItem</code>. Note that the NTuple::Items are added to the NTuple during the <code><a class="el" href="classRhopiAlg.html#a42987b298b549df8af27578a7c8160f6" title="(Inherited) initialize step of Algorithm. ">RhopiAlg::initialize()</a></code> step. This is also the place where you name these variables, so make sure that the structure here is reflected there! </p>
-</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">NTuples (eventual TTrees and their branches). NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem. Note that the NTuple::Items are added to the NTuple during the RhopiAlg::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!</div></td></tr>
 <tr class="memitem:acb3f3e60fff80d1614bf8f074569cdd4"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#acb3f3e60fff80d1614bf8f074569cdd4">fTupleVxyz</a></td></tr>
 <tr class="memdesc:acb3f3e60fff80d1614bf8f074569cdd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vertex information of the charged tracks.  <a href="#acb3f3e60fff80d1614bf8f074569cdd4">More...</a><br /></td></tr>
 <tr class="separator:acb3f3e60fff80d1614bf8f074569cdd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -941,7 +937,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00071">71</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00070">70</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -965,7 +961,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00072">72</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00071">71</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -991,7 +987,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00104">104</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00102">102</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1017,7 +1013,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00107">107</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00105">105</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1043,7 +1039,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of electron </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00118">118</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00116">116</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1069,7 +1065,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of kaon </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00121">121</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00119">119</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1095,7 +1091,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of muon </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00119">119</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00117">117</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1121,7 +1117,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of proton </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00122">122</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00120">120</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1147,7 +1143,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of pion </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00120">120</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00118">118</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1173,7 +1169,7 @@ Private Attributes</h2></td></tr>
 
 <p>ToF counter ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00132">132</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00130">130</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1199,7 +1195,7 @@ Private Attributes</h2></td></tr>
 
 <p>ToF counter ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00146">146</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00144">144</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1225,7 +1221,7 @@ Private Attributes</h2></td></tr>
 
 <p>ToF counter ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00160">160</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00158">158</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1251,7 +1247,7 @@ Private Attributes</h2></td></tr>
 
 <p>Theta angle of the track. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00172">172</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00170">170</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1277,7 +1273,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> of the track </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00173">173</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00171">171</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1303,7 +1299,7 @@ Private Attributes</h2></td></tr>
 
 <p>Angle difference with nearest charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00095">95</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00093">93</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1327,7 +1323,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00063">63</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00062">62</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1353,7 +1349,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle difference with nearest charged track (degrees) </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00094">94</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00092">92</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1379,7 +1375,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\theta$" src="form_35.png"/> angle difference with nearest charged track (degrees) </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00093">93</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00091">91</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1403,7 +1399,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00066">66</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00065">65</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1427,7 +1423,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00067">67</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00066">66</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1453,7 +1449,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in electron hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00136">136</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00134">134</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1479,7 +1475,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in electron hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00150">150</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00148">148</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1505,7 +1501,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in electron hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00164">164</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00162">162</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1531,7 +1527,7 @@ Private Attributes</h2></td></tr>
 
 <p>Lowest energy of the two photons. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00114">114</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00112">112</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1555,7 +1551,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00057">57</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00056">56</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1581,7 +1577,7 @@ Private Attributes</h2></td></tr>
 
 <p>Energy of the photon. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00096">96</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00094">94</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1607,7 +1603,7 @@ Private Attributes</h2></td></tr>
 
 <p>Total energy of <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>, <img class="formulaInl" alt="$\pi^-$" src="form_9.png"/> and the two gammas. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00100">100</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00098">98</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1633,7 +1629,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$E/|\vec{p}|$" src="form_30.png"/> ratio for <img class="formulaInl" alt="$\pi^0$" src="form_60.png"/> candidate </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00113">113</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00111">111</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1657,7 +1653,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00060">60</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00059">59</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1681,7 +1677,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00058">58</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00057">57</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1705,7 +1701,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00059">59</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00058">58</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1731,7 +1727,7 @@ Private Attributes</h2></td></tr>
 
 <p>Number of good hits. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00125">125</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00123">123</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1757,7 +1753,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in charged kaon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00139">139</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00137">137</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1783,7 +1779,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in charged kaon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00153">153</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00151">151</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1809,7 +1805,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in charged kaon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00167">167</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00165">165</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1833,7 +1829,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00068">68</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00067">67</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1859,7 +1855,7 @@ Private Attributes</h2></td></tr>
 
 <p>Invariant <img class="formulaInl" alt="$\pi^0$" src="form_60.png"/> mass according to Kalman kinematic fit. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00103">103</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00101">101</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1885,7 +1881,7 @@ Private Attributes</h2></td></tr>
 
 <p>Invariant mass for <img class="formulaInl" alt="$\pi^+\pi^-$" src="form_61.png"/> combination ( <img class="formulaInl" alt="$\rho^0$" src="form_62.png"/>) </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00108">108</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00106">106</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1911,7 +1907,7 @@ Private Attributes</h2></td></tr>
 
 <p>Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^-$" src="form_65.png"/> combination ( <img class="formulaInl" alt="$\rho^-$" src="form_66.png"/>) </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00110">110</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00108">108</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1937,7 +1933,7 @@ Private Attributes</h2></td></tr>
 
 <p>Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^+$" src="form_63.png"/> combination ( <img class="formulaInl" alt="$\rho^+$" src="form_64.png"/>) </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00109">109</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00107">107</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1963,7 +1959,7 @@ Private Attributes</h2></td></tr>
 
 <p>Invariant mass of the two gammas. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00099">99</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00097">97</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -1989,7 +1985,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in muon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00137">137</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00135">135</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2015,7 +2011,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in muon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00151">151</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00149">149</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2041,7 +2037,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in muon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00165">165</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00163">163</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2067,7 +2063,7 @@ Private Attributes</h2></td></tr>
 
 <p>Normalized pulse height. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00124">124</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00122">122</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2093,7 +2089,7 @@ Private Attributes</h2></td></tr>
 
 <p>Path length. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00130">130</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00128">128</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2119,7 +2115,7 @@ Private Attributes</h2></td></tr>
 
 <p>Path length. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00144">144</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00142">142</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2145,7 +2141,7 @@ Private Attributes</h2></td></tr>
 
 <p>Path length. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00158">158</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00156">156</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2171,7 +2167,7 @@ Private Attributes</h2></td></tr>
 
 <p>ToF pulse height. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00133">133</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00131">131</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2197,7 +2193,7 @@ Private Attributes</h2></td></tr>
 
 <p>ToF pulse height. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00147">147</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00145">145</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2223,7 +2219,7 @@ Private Attributes</h2></td></tr>
 
 <p>ToF pulse height. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00161">161</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00159">159</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2249,7 +2245,7 @@ Private Attributes</h2></td></tr>
 
 <p>Most probable pulse height from truncated mean. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00123">123</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00121">121</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2275,7 +2271,7 @@ Private Attributes</h2></td></tr>
 
 <p>Probability that it is a pion. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00176">176</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00174">174</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2301,7 +2297,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in charged pion hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00138">138</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00136">136</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2327,7 +2323,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in charged pion hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00152">152</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00150">150</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2353,7 +2349,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in charged pion hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00166">166</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00164">164</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2379,7 +2375,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in proton hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00140">140</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00138">138</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2405,7 +2401,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in proton hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00154">154</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00152">152</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2431,7 +2427,7 @@ Private Attributes</h2></td></tr>
 
 <p>Difference with ToF in proton hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00168">168</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00166">166</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2457,7 +2453,7 @@ Private Attributes</h2></td></tr>
 
 <p>Momentum of the track as reconstructed by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00129">129</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00127">127</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2483,7 +2479,7 @@ Private Attributes</h2></td></tr>
 
 <p>Momentum of the track as reconstructed by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00143">143</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00141">141</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2509,7 +2505,7 @@ Private Attributes</h2></td></tr>
 
 <p>Momentum of the track as reconstructed by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00157">157</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00155">155</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2535,7 +2531,7 @@ Private Attributes</h2></td></tr>
 
 <p>Momentum of the track. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00117">117</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00115">115</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2561,7 +2557,7 @@ Private Attributes</h2></td></tr>
 
 <p>Momentum of the track. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00171">171</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00169">169</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2587,7 +2583,7 @@ Private Attributes</h2></td></tr>
 
 <p>Data quality of reconstruction. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00135">135</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00133">133</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2613,7 +2609,7 @@ Private Attributes</h2></td></tr>
 
 <p>Data quality of reconstruction. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00149">149</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00147">147</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2639,7 +2635,7 @@ Private Attributes</h2></td></tr>
 
 <p>Data quality of reconstruction. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00163">163</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00161">161</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2665,7 +2661,7 @@ Private Attributes</h2></td></tr>
 
 <p>Track extrapolate Z or R Hit position. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00134">134</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00132">132</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2691,7 +2687,7 @@ Private Attributes</h2></td></tr>
 
 <p>Angle in the <img class="formulaInl" alt="$xy$" src="form_34.png"/>-plane (?) </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00090">90</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00088">88</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2717,7 +2713,7 @@ Private Attributes</h2></td></tr>
 
 <p>Nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_34.png"/> plane. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00088">88</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00086">86</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2741,7 +2737,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00054">54</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00053">53</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2767,7 +2763,7 @@ Private Attributes</h2></td></tr>
 
 <p>Nearest distance to IP in <img class="formulaInl" alt="$z$" src="form_33.png"/> direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00089">89</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00087">87</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2791,7 +2787,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00053">53</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00052">52</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2817,7 +2813,7 @@ Private Attributes</h2></td></tr>
 
 <p>Total number of hits. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00126">126</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00124">124</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2843,7 +2839,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the inner barrel ToF of the track </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00174">174</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00172">172</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2869,7 +2865,7 @@ Private Attributes</h2></td></tr>
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the outer barrel ToF of the track </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00175">175</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00173">173</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2895,7 +2891,7 @@ Private Attributes</h2></td></tr>
 
 <p>Time of flight. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00131">131</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00129">129</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2921,7 +2917,7 @@ Private Attributes</h2></td></tr>
 
 <p>Time of flight. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00145">145</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00143">143</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2947,7 +2943,7 @@ Private Attributes</h2></td></tr>
 
 <p>Time of flight. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00159">159</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00157">157</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2973,7 +2969,7 @@ Private Attributes</h2></td></tr>
 
 <p>Photon kinematics. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00092">92</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00090">90</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -2999,7 +2995,7 @@ Private Attributes</h2></td></tr>
 
 <p>Energy loss dE/dx. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00116">116</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00114">114</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3025,7 +3021,7 @@ Private Attributes</h2></td></tr>
 
 <p>4-constraint (4C) fit information </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00102">102</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00100">100</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3051,7 +3047,7 @@ Private Attributes</h2></td></tr>
 
 <p>5-constraint (5C) fit information </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00106">106</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00104">104</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3077,7 +3073,7 @@ Private Attributes</h2></td></tr>
 
 <p>Raw invariant mass of the two gammas and their total energy. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00098">98</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00096">96</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3103,7 +3099,7 @@ Private Attributes</h2></td></tr>
 
 <p>Photons. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00112">112</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00110">110</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3129,7 +3125,7 @@ Private Attributes</h2></td></tr>
 
 <p><a class="el" href="classParticle.html" title="Container for particle data. ">Particle</a> ID info. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00170">170</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00168">168</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3155,7 +3151,7 @@ Private Attributes</h2></td></tr>
 
 <p>End cap ToF decector. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00128">128</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00126">126</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3181,7 +3177,7 @@ Private Attributes</h2></td></tr>
 
 <p>Vertex information of the charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00083">83</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00081">81</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3207,7 +3203,7 @@ Private Attributes</h2></td></tr>
 
 <p>Distance from origin in <img class="formulaInl" alt="$xy$" src="form_34.png"/>-plane. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00087">87</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00085">85</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3231,7 +3227,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00051">51</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00050">50</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3257,7 +3253,7 @@ Private Attributes</h2></td></tr>
 
 <p>Primary <img class="formulaInl" alt="$x$" src="form_31.png"/>-vertex as determined by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00084">84</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00082">82</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3283,7 +3279,7 @@ Private Attributes</h2></td></tr>
 
 <p>Primary <img class="formulaInl" alt="$y$" src="form_32.png"/>-vertex as determined by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00085">85</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00083">83</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3309,7 +3305,7 @@ Private Attributes</h2></td></tr>
 
 <p>Primary <img class="formulaInl" alt="$z$" src="form_33.png"/>-vertex as determined by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00086">86</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00084">84</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3333,7 +3329,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00052">52</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00051">51</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3359,7 +3355,7 @@ Private Attributes</h2></td></tr>
 
 <p>Track extrapolate Z or R Hit position. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00148">148</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00146">146</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3385,7 +3381,7 @@ Private Attributes</h2></td></tr>
 
 <p>Track extrapolate Z or R Hit position. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00162">162</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00160">160</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3411,7 +3407,7 @@ Private Attributes</h2></td></tr>
 
 <p>Inner barrel ToF decector. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00142">142</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00140">140</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>
@@ -3437,7 +3433,7 @@ Private Attributes</h2></td></tr>
 
 <p>Outer barrel ToF decector. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00156">156</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8h_source.html#l00154">154</a> of file <a class="el" href="RhopiAlg_8h_source.html">RhopiAlg.h</a>.</p>
 
 </div>
 </div>

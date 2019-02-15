@@ -52,6 +52,7 @@
 	#include "THStack.h"
 	#include "TofRecEvent/RecTofTrack.h"
 	#include "TrackSelector/CutObject.h"
+	#include "TrackSelector/JobSwitch.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this requires a newer version of `gcc`.
 	#include <string>
@@ -106,7 +107,7 @@
 			TrackSelector(const std::string &name, ISvcLocator* pSvcLocator);
 			///@}
 
-		/// @name Gaudi `Algorithm` steps
+		/// @name Gaudi Algorithm steps
 			///@{
 			StatusCode initialize();
 			StatusCode execute();
@@ -115,17 +116,16 @@
 
 
 	protected:
-
-		/// @name Derived `Algorithm` steps
-			/// @details These steps are `virtual`, because they have to be defined in the derived algorithms.
+		/// @name Derived Algorithm steps. These steps are `virtual`, because they have to be defined in the derived algorithms.
 			///@{
 			virtual StatusCode initialize_rest() = 0; //!< This function is executed at the end of `initialize`. It should be further defined in derived subalgorithms.
 			virtual StatusCode execute_rest()    = 0; //!< This function is executed at the end of `execute`. It should be further defined in derived subalgorithms.
 			virtual StatusCode finalize_rest()   = 0; //!< This function is executed at the end of `finalize`. It should be further defined in derived subalgorithms.
+			MsgStream fLog; //!< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
 			///@}
 
 
-		/// @name `NTuple` methods
+		/// @name NTuple methods
 			///@{
 			void AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="ks N-Tuple example");
 			void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<double> > &map);
@@ -175,30 +175,28 @@
 			///@}
 
 
-		/// @name Control switches
-			/// @details These `bool`eans are used to switch certain features of the `TrackSelector` on or of. For instance, if you do not analyse photons, you should switch of the `fDo_neutral` member. This is done through the declaration of the corresponding property in the constructor and by defining the value in the job options under `share`.
+		/// @name Control switches. These booleans are used to switch certain features of the TrackSelector on or of. For instance, if you do not analyse photons, you should switch of the fDo_neutral member. This is done through the declaration of the corresponding property in the constructor and by defining the value in the job options under share.
 			///@{
-			bool fDo_charged; //!< Package property that determines whether or not to make a selection of 'good' charged tracks.
-			bool fDo_neutral; //!< Package property that determines whether or not to make a selection of 'good' neutral tracks.
-			bool fWrite_mctruth; //!< Package property that determines whether or not to record initial momentum informtation of MC truth.
-			bool fWrite_PID;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
-			bool fWrite_ToFEC;   //!< Package property that determines whether or not to record data from the Time-of-Flight end cap detector.
-			bool fWrite_ToFIB;   //!< Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector.
-			bool fWrite_ToFOB;   //!< Package property that determines whether or not to record data from the Time-of-Flight outer barrel detector.
-			bool fWrite_charged; //!< Package property that determines whether or not to record charged track vertex info.
-			bool fWrite_dedx;    //!< Package property that determines whether or not to record energy loss (\f$dE/dx\f$).
-			bool fWrite_mult;    //!< Package property that determines whether or not to record multiplicities.
-			bool fWrite_mult_select; //!< Package property that determines whether or not to write the multiplicities <i>of the selected particles</i>.
-			bool fWrite_neutral; //!< Package property that determines whether or not to record neutral track info.
-			bool fWrite_vertex;  //!< Package property that determines whether or not to record primary vertex info.
+			JobSwitch fDo_charged; //!< Package property that determines whether or not to make a selection of 'good' charged tracks.
+			JobSwitch fDo_neutral; //!< Package property that determines whether or not to make a selection of 'good' neutral tracks.
+			JobSwitch fWrite_mctruth; //!< Package property that determines whether or not to record initial momentum informtation of MC truth.
+			JobSwitch fWrite_PID;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
+			JobSwitch fWrite_ToFEC;   //!< Package property that determines whether or not to record data from the Time-of-Flight end cap detector.
+			JobSwitch fWrite_ToFIB;   //!< Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector.
+			JobSwitch fWrite_ToFOB;   //!< Package property that determines whether or not to record data from the Time-of-Flight outer barrel detector.
+			JobSwitch fWrite_charged; //!< Package property that determines whether or not to record charged track vertex info.
+			JobSwitch fWrite_dedx;    //!< Package property that determines whether or not to record energy loss (\f$dE/dx\f$).
+			JobSwitch fWrite_mult;    //!< Package property that determines whether or not to record multiplicities.
+			JobSwitch fWrite_mult_select; //!< Package property that determines whether or not to write the multiplicities <i>of the selected particles</i>.
+			JobSwitch fWrite_neutral; //!< Package property that determines whether or not to record neutral track info.
+			JobSwitch fWrite_vertex;  //!< Package property that determines whether or not to record primary vertex info.
 			///@}
 
 
 		// ! NTuple data members ! //
-		/// @name `NTuple`s
-			/// @details `NTuple`s are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each `NTuple::Item` represents its leaves. The name of the leaves is determined when calling `NTuple::addItem`.
-			/// @warning Note that the `NTuple::Items` have to be added to the NTuple during the `TrackSelector::initialize()` step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
+		/// @name Maps of NTuples. NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem. Note that the NTuple::Items have to be added to the NTuple during the TrackSelector::initialize() step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
 			///@{
+			std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
 			std::map<std::string, NTuple::Item<double> > fMap_cuts;    //!< Container for the cut parameters.
 			std::map<std::string, NTuple::Item<double> > fMap_PID;     //!< Container for the general PID information (TOF, \f$dE/dx\f$, etc) branch. <b>Needs to be filled in the derived class!</b>
 			std::map<std::string, NTuple::Item<double> > fMap_TofEC;   //!< Container for the data from the Time-of-Flight end cap detector branch.
@@ -214,8 +212,7 @@
 			///@}
 
 
-		/// @name Counters and `CutObject`s
-			/// The private data members are used to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see corresponding `.cxx` file).
+		/// @name Counters and cut objects. The private data members are used to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see corresponding `.cxx` file).
 			///@{
 			NTuple::Tuple* fCutTuples;
 			CutObject fCounter_Nevents;   //!< Eventual total number of events.
@@ -234,17 +231,23 @@
 			///@}
 
 
-		// * Remaining members and methods * //
+		/// @name Particle Identification
+			///@{
 			ParticleID* InitializePID(const int method, const int pidsys, const int pidcase, const double chimin=4.);
-			MsgStream fLog; //!< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
 			ParticleID *fPIDInstance; //!< Pointer to instance of particle identification (PID). Only used in <i>derived subalgorithms</i>.
-			std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
+			///@}
+
+
+		/// @name Other stored values
+			///@{
 			HepPoint3D fVertexPoint; //!< Coordinates of the interaction point (primary vertex). Set in each event in `TrackSelector::execute`.
 			Int_t fNChargesMDC; //!< Number of charges detected in the MDC.
+			///@}
 
 
 	private:
 		void DeclareCuts();
+		void DeclareSwitches();
 		void WriteCuts();
 		HepLorentzVector ComputeMomentum(EvtRecTrack *track);
 		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle="ks N-Tuple example");

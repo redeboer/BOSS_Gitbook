@@ -14,12 +14,8 @@ var classCutObject =
     [ "operator>", "classCutObject.html#a7f8394198213950c839cb939e155c8c0", null ],
     [ "Print", "classCutObject.html#ad4f31cc8a1ff92a1200bfd25f6031234", null ],
     [ "PrintAll", "classCutObject.html#a40f977450f860f158a94705a9c7380e0", null ],
-    [ "SetDescription", "classCutObject.html#a0391e2b3004fc6618c70beb2d25e1cd1", null ],
-    [ "SetName", "classCutObject.html#acba7e5ee97db3844ad3fa5ea25e3bdfe", null ],
     [ "counter", "classCutObject.html#a5afff2440844cf84b2c5cc7e789a1556", null ],
-    [ "description", "classCutObject.html#a25ed2d3ed4273e19602c42c80d3388e8", null ],
-    [ "instances", "classCutObject.html#ad50f58557312310425a372b50166e08a", null ],
+    [ "gCutObjects", "classCutObject.html#a457c6dc4078222cd1f654c49752370d0", null ],
     [ "max", "classCutObject.html#ad3e3069201e74f477a8f4ac206b206a2", null ],
-    [ "min", "classCutObject.html#a7025d070037c80b7e71669ec81c9706f", null ],
-    [ "name", "classCutObject.html#a4fc6cb50b136d08372ad886da2a39896", null ]
+    [ "min", "classCutObject.html#a7025d070037c80b7e71669ec81c9706f", null ]
 ];
