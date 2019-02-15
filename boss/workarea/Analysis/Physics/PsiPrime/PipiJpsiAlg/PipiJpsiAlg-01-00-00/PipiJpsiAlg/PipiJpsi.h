@@ -1,6 +1,7 @@
 #ifndef Physics_Analysis_PipiJpsi_H
 #define Physics_Analysis_PipiJpsi_H
 
+
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
@@ -32,7 +33,7 @@
 			PipiJpsi(const std::string& name, ISvcLocator* pSvcLocator);
 			///@}
 
-		/// @name Algorithm steps
+		/// @name Gaudi `Algorithm` steps
 			///@{
 			StatusCode initialize();
 			StatusCode execute();
