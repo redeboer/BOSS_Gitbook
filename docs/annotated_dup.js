@@ -10,6 +10,8 @@ var annotated_dup =
     [ "ConfigLoader", "classConfigLoader.html", "classConfigLoader" ],
     [ "CutObject", "classCutObject.html", "classCutObject" ],
     [ "D0phi_KpiKK", "classD0phi__KpiKK.html", "classD0phi__KpiKK" ],
+    [ "JobProperty", "classJobProperty.html", "classJobProperty" ],
+    [ "JobSwitch", "classJobSwitch.html", "classJobSwitch" ],
     [ "KKFitResult", "classKKFitResult.html", "classKKFitResult" ],
     [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", "classKKFitResult__D0phi__KpiKK" ],
     [ "m_trkInfo", "classm__trkInfo.html", "classm__trkInfo" ],

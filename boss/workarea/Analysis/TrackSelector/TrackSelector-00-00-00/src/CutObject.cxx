@@ -13,17 +13,46 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	CutObject::CutObject(const std::string &cutname, const std::string &cutdescription) :
-		name(cutname),
-		description(cutdescription),
+	CutObject::CutObject(const std::string &name, const std::string &description) :
+		JobProperty(name, description),
 		min(-DBL_MAX),
 		max( DBL_MAX),
 		counter(0)
 	{
-		instances.push_back(this);
+		gCutObjects.push_back(this);
 	}
+
 	CutObject::~CutObject() {
-		instances.remove(this);
+		gCutObjects.remove(this);
+	}
+
+	std::list<CutObject*> CutObject::gCutObjects;
+
+
+
+// * =========================== * //
+// * ------- CUT METHODS ------- * //
+// * =========================== * //
+
+	bool CutObject::FailsCut(const double &value)
+	{
+		if(value>=max || value<=min) return true;
+		++counter;
+		return false;
+	}
+
+	bool CutObject::FailsMax(const double &value)
+	{
+		if(value>=max) return true;
+		++counter;
+		return false;
+	}
+
+	bool CutObject::FailsMin(const double &value)
+	{
+		if(value<=min) return true;
+		++counter;
+		return false;
 	}
 
 
@@ -83,15 +112,13 @@
 // * ------- STATIC MEMBERS ------- * //
 // * ============================== * //
 
-	std::list<CutObject*> CutObject::instances;
-
 	/**
 	 * @brief Print a table of cut names and their min/max and counter values.
 	 */
 	void CutObject::PrintAll()
 	{
 		/// -# Check if any instances of `CutObject` have been loaded.
-		if(!CutObject::instances.size()) {
+		if(!CutObject::gCutObjects.size()) {
 			std::cout << std::endl << "WARNING: no cuts defined" << std::endl << std::endl;
 			return;
 		}
@@ -103,8 +130,8 @@
 			<< std::setw(10) << std::right << "COUNT"
 			<< std::endl;
 		/// -# Print one row for each cut using `CutObject::Print`.
-		std::list<CutObject*>::iterator cut = CutObject::instances.begin();
-		for(; cut != CutObject::instances.end(); ++cut) {
+		std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
+		for(; cut != CutObject::gCutObjects.end(); ++cut) {
 			(*cut)->Print(12, 10, 10, 10);
 		}
 		/// -# Skip one line.

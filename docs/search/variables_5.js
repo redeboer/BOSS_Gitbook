@@ -1,9 +1,11 @@
 var searchData=
 [
   ['gconfigs',['gConfigs',['../namespaceSettings_1_1File.html#a890b21da3444e2402f9fa92a3879b297',1,'Settings::File']]],
+  ['gcutobjects',['gCutObjects',['../classCutObject.html#a457c6dc4078222cd1f654c49752370d0',1,'CutObject']]],
   ['gecms',['gEcms',['../namespaceTSGlobals.html#a7627214df596524af6630d00620e99c7',1,'TSGlobals']]],
   ['generatejpsi',['GenerateJPsi',['../simulation_8txt.html#a4ed12cc59fe19170c9a4c26c96a0681e',1,'simulation.txt']]],
   ['gextension',['gExtension',['../namespaceSettings_1_1File.html#a7175930b2173ec145ea7aeff45b48063',1,'Settings::File']]],
+  ['gjobswitches',['gJobSwitches',['../classJobSwitch.html#a8c92206543b7dcc0289d2809b6eca1ca',1,'JobSwitch']]],
   ['gm_5fd0',['gM_D0',['../namespaceTSGlobals.html#a2a9b392d7ba7887fbea1cfe5b0b936c3',1,'TSGlobals']]],
   ['gm_5fjpsi',['gM_Jpsi',['../namespaceTSGlobals.html#aa28898a97d6edd6e532f0e7ffc612cee',1,'TSGlobals']]],
   ['gm_5fk',['gM_K',['../namespaceTSGlobals.html#a6331f215e01f26c9e2606f3cfdad160e',1,'TSGlobals']]],

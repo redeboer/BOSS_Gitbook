@@ -1,6 +1,7 @@
 #ifndef Physics_Analysis_RhopiAlg_H
 #define Physics_Analysis_RhopiAlg_H
 
+
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
@@ -32,7 +33,7 @@
 			RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator);
 			///@}
 
-		/// @name Information functions
+		/// @name Gaudi Algorithm steps
 			///@{
 			StatusCode initialize();
 			StatusCode execute();
@@ -43,8 +44,7 @@
 	// ! ================================= ! //
 	// ! ------- DECLARE CUTS HERE ------- ! //
 	// ! ================================= ! //
-		/// @name Cut parameters
-		/// @details Here, you can define data members that you use to define cuts. The values for these cuts should be set in the `RhopiAlg::RhopiAlg` constructor (see `.cxx` file).
+		/// @name Cut parameters. Here, you can define data members that you use to define cuts. The values for these cuts should be set in the RhopiAlg::RhopiAlg constructor (see cxx file).
 			///@{
 			// * Declare r0, z0 cut for charged tracks
 				double fVr0cut;
@@ -76,8 +76,7 @@
 	// ! ==================================== ! //
 	// ! ------- DECLARE NTUPLES HERE ------- ! //
 	// ! ==================================== ! //
-		/// @name `NTuple`s (eventual `TTree`s and their branches)
-		/// @details `NTuple`s are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling `NTuple::addItem`. Note that the NTuple::Items are added to the NTuple during the `RhopiAlg::initialize()` step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
+		/// @name NTuples (eventual TTrees and their branches). NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem. Note that the NTuple::Items are added to the NTuple during the RhopiAlg::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
 			///@{
 			NTuple::Tuple* fTupleVxyz;   //!< Vertex information of the charged tracks
 				NTuple::Item<double> fVx0;    //!< Primary \f$x\f$-vertex as determined by MDC

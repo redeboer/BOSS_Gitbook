@@ -33,6 +33,10 @@
 	 */
 	rhopi_pipigg::rhopi_pipigg(const std::string &name, ISvcLocator* pSvcLocator) :
 		TrackSelector(name, pSvcLocator)
+		/// * The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
+		fCut_GammaPhi  ("gamma_phi"),
+		fCut_GammaTheta("gamma_theta"),
+		fCut_GammaAngle("gamma_angle"),
 	{
 		fLog << MSG::DEBUG << "===>> rhopi_pipigg::rhopi_pipigg() <<===" << endmsg;
 
@@ -41,11 +45,6 @@
 		declareProperty("write_fit4c_best", fWrite_fit4c_best = false);
 		declareProperty("write_fit5c_all",  fWrite_fit5c_all  = false);
 		declareProperty("write_fit5c_best", fWrite_fit5c_best = false);
-
-		/// * The `"cut_<parameter>"` properties determine cuts on certain parameters.
-		declareProperty("cut_MaxGammaPhi",   fCut_MaxGammaPhi   =  20.0);
-		declareProperty("cut_MaxGammaTheta", fCut_MaxGammaTheta =  20.0);
-		declareProperty("cut_MaxGammaAngle", fCut_MaxGammaAngle = 200.0);
 
 	}
 
@@ -142,11 +141,11 @@
 					if(fWrite_PID) WritePIDInformation();
 
 				/// <li> Identify type of charged particle and add to related vector: (this package: only pions).
-					RecMdcKalTrack* mdcKalTrk = (*fTrackIterator)->mdcKalTrack(); /// `RecMdcKalTrack` (Kalman) is used, but this can be substituted by `RecMdcTrack`.
+					fTrackKal = (*fTrackIterator)->mdcKalTrack();
 					if(fPIDInstance->probPion() < fCut_MinPIDProb) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_MinPIDProb` (see eventual settings in `rhopi_pipigg.txt`).
 					if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon)) continue; /// If, according to the likelihood method, the particle is still more likely to be a kaon than a pion, the track is rejected.
 					RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
-					if(mdcKalTrk->charge() > 0) fPionPos.push_back(*fTrackIterator); /// and the pions (\f$\pm\f$) are added to the respective vector of pions.
+					if(fTrackKal->charge() > 0) fPionPos.push_back(*fTrackIterator); /// and the pions (\f$\pm\f$) are added to the respective vector of pions.
 					else                        fPionNeg.push_back(*fTrackIterator);
 
 				/// </ol>
@@ -175,7 +174,7 @@
 					SetSmallestAngles(fPionPosIter, fPionPos, emcpos); // check all differences with the pions
 
 				/// <li> Apply angle cut
-					if(fSmallestAngle >= fCut_MaxGammaAngle) continue;
+					if(fSmallestAngle >= fCut_GammaAngle) continue;
 					fSmallestTheta = fSmallestTheta * 180 / (CLHEP::pi);
 					fSmallestPhi   = fSmallestPhi   * 180 / (CLHEP::pi);
 					fSmallestAngle = fSmallestAngle * 180 / (CLHEP::pi);
@@ -191,9 +190,9 @@
 
 				/// <li> Apply photon cuts (energy cut has already been applied in TrackSelector)
 					if(
-						(fabs(fSmallestTheta) < fCut_MaxGammaTheta) &&
-						(fabs(fSmallestPhi)   < fCut_MaxGammaPhi)) continue;
-					if(fabs(fSmallestAngle) < fCut_MaxGammaAngle) continue;
+						(fabs(fSmallestTheta) < fCut_GammaTheta) &&
+						(fabs(fSmallestPhi)   < fCut_GammaPhi)) continue;
+					if(fabs(fSmallestAngle) < fCut_GammaAngle) continue;
 
 				/// <li> Add photon track to vector for gammas
 					fGamma.push_back(*fTrackIterator);
@@ -405,7 +404,7 @@
 	 */
 	HepLorentzVector rhopi_pipigg::ComputeGammaVector(EvtRecTrack* track)
 	{
-		RecEmcShower* emcTrk = track->emcShower();
+		fTrackEMC = track->emcShower();
 		double eraw  = emcTrk->energy();
 		double phi   = emcTrk->phi();
 		double theta = emcTrk->theta();
@@ -505,7 +504,7 @@
 		for(iter = vec.begin(); iter != vec.end(); ++iter) {
 			// * Get the extension object from MDC to EMC
 			if(!(*iter)->isExtTrackValid()) continue;
-			RecExtTrack *extTrk = (*iter)->extTrack();
+			fTrackExt = (*iter)->extTrack();
 			if(extTrk->emcVolumeNumber() == -1) continue;
 			Hep3Vector extpos(extTrk->emcPosition());
 

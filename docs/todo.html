@@ -95,27 +95,30 @@ $(document).ready(function(){initNavTree('todo.html','');});
 <dd>Add log output to <code>finalize</code> step.  </dd>
 <dt><a class="anchor" id="_todo000001"></a>Member <a class="el" href="classD0phi__KpiKK.html#afd19015366820f50472c723e6610e53e">D0phi_KpiKK::fKaonNeg</a>  </dt>
 <dd>Decide if this can be formulated in terms of some <code>fEvtRecTrackMap</code>.  </dd>
-<dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>  </dt>
+<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>  </dt>
 <dd>It would be more efficient to use <code>unordered_map</code>, but this requires a newer version of <code>gcc</code>.  </dd>
 <dt><a class="anchor" id="_todo000016"></a>Member <a class="el" href="classParticle.html#ae97e941db471dbe130c5aa7277d8c224">Particle::DetermineNameLaTeX</a>  ()</dt>
 <dd>Expand the switch statement here if you miss any particles. See e.g. <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html,">http://home.fnal.gov/~mrenna/lutp0613man2/node44.html,</a> or use the <code>TDatabasePDG</code> in <code>ROOT</code>.  </dd>
 <dt><a class="anchor" id="_todo000015"></a>Namespace <a class="el" href="namespacestd__fix.html">std_fix</a>  </dt>
 <dd>This version of the header contains the definitions as well (as <code>inline</code>) to avoid multiple definitions. But it should be possible to use the old version (<code>.old</code> and <code>.cpp</code>), which use <code>extern</code> and <code>inline</code>, without running into multiple definition problems.  </dd>
-<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0">TrackSelector::ComputeMomentum</a>  (EvtRecTrack *track)</dt>
-<dd>Decide whether these methods should be <code>private</code> or <code>protected</code>.  </dd>
-<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb">TrackSelector::execute</a>  ()</dt>
+<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb">TrackSelector::execute</a>  ()</dt>
 <dd><p class="startdd">Might have to make this aborting behaviour less strict. </p>
+<p>Why? What does this mean precisely? </p>
+<p>Check if <code>helixip.pivot(fVertexPoint)</code> doesn't affect <code>fVertexPoint</code>. </p>
 <p>Why? What does this mean precisely? </p>
 <p class="enddd">Check if <code>helixip.pivot(fVertexPoint)</code> doesn't affect <code>fVertexPoint</code>.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017">TrackSelector::fMcParticles</a>  </dt>
+<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017">TrackSelector::fMcParticles</a>  </dt>
 <dd>Consider defining a <code>map&lt;int, vector&lt;Event::McParticle*&gt; &gt;</code>, where the <code>int</code> key will be the PDG code. This mapping is to define a subset of the list of <code>McParticles</code>.  </dd>
-<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">TrackSelector::initialize</a>  ()</dt>
+<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">TrackSelector::initialize</a>  ()</dt>
 <dd><p class="startdd">Get explanation of geometry (angle) definitions in an event. </p>
+<p>Investigate what this parameter precisely means. </p>
 <p class="enddd">Investigate what this parameter precisely means.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000008"></a>Member <a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">TrackSelector::InitializePID</a>  (const int method, const int pidsys, const int pidcase, const double chimin=4.)</dt>
-<dd>Since BOSS 7.0.4, <code>ParticleID::useTofCorr()</code> should be used for ToF instead of e.g. <code>useTof1</code>. See talk by Liu Huanhuan on 2019/01/10.</dd>
+<dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">TrackSelector::InitializePID</a>  (const int method, const int pidsys, const int pidcase, const double chimin=4.)</dt>
+<dd>Since BOSS 7.0.4, <code>ParticleID::useTofCorr()</code> should be used for ToF instead of e.g. <code>useTof1</code>. See talk by Liu Huanhuan on 2019/01/10. </dd>
+<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">TrackSelector::TrackSelector</a>  (const std::string &amp;name, ISvcLocator *pSvcLocator)</dt>
+<dd>Check if <code>DeclareCuts</code> should be moved to <code><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4" title="(Inherited) initialize step of Algorithm. ">TrackSelector::initialize</a></code> in order to also declare the cuts that are defined in the derived algorithm. This depends on whether the constructor of the base or of the derived class is called first. </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->

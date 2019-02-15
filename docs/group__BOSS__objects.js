@@ -30,14 +30,25 @@ var group__BOSS__objects =
       [ "operator>", "classCutObject.html#a7f8394198213950c839cb939e155c8c0", null ],
       [ "Print", "classCutObject.html#ad4f31cc8a1ff92a1200bfd25f6031234", null ],
       [ "PrintAll", "classCutObject.html#a40f977450f860f158a94705a9c7380e0", null ],
-      [ "SetDescription", "classCutObject.html#a0391e2b3004fc6618c70beb2d25e1cd1", null ],
-      [ "SetName", "classCutObject.html#acba7e5ee97db3844ad3fa5ea25e3bdfe", null ],
       [ "counter", "classCutObject.html#a5afff2440844cf84b2c5cc7e789a1556", null ],
-      [ "description", "classCutObject.html#a25ed2d3ed4273e19602c42c80d3388e8", null ],
-      [ "instances", "classCutObject.html#ad50f58557312310425a372b50166e08a", null ],
+      [ "gCutObjects", "classCutObject.html#a457c6dc4078222cd1f654c49752370d0", null ],
       [ "max", "classCutObject.html#ad3e3069201e74f477a8f4ac206b206a2", null ],
-      [ "min", "classCutObject.html#a7025d070037c80b7e71669ec81c9706f", null ],
-      [ "name", "classCutObject.html#a4fc6cb50b136d08372ad886da2a39896", null ]
+      [ "min", "classCutObject.html#a7025d070037c80b7e71669ec81c9706f", null ]
+    ] ],
+    [ "JobProperty", "classJobProperty.html", [
+      [ "JobProperty", "classJobProperty.html#aadb23f9b391be128f1f5250e75b4c91d", null ],
+      [ "~JobProperty", "classJobProperty.html#a684604b638018ff682ac5ff9fda7defe", null ],
+      [ "SetDescription", "classJobProperty.html#ad2e46b50b83cab80a107db35df32f02c", null ],
+      [ "SetName", "classJobProperty.html#aa1679003bf8796ce3b2db560e5117a10", null ],
+      [ "description", "classJobProperty.html#affe8405deee2d5e71d792e36fd9fba13", null ],
+      [ "name", "classJobProperty.html#ad576b6c7249f320e7e2186493cec8110", null ]
+    ] ],
+    [ "JobSwitch", "classJobSwitch.html", [
+      [ "JobSwitch", "classJobSwitch.html#a1af50815914b08444c1e4db445449dd9", null ],
+      [ "~JobSwitch", "classJobSwitch.html#a6edd98f42da2f1f82142044f5d06d209", null ],
+      [ "operator bool", "classJobSwitch.html#af847ea807bccf3111a16c7773da0b092", null ],
+      [ "gJobSwitches", "classJobSwitch.html#a8c92206543b7dcc0289d2809b6eca1ca", null ],
+      [ "value", "classJobSwitch.html#aebc0d486c48dd7d850ce61f20c6a4995", null ]
     ] ],
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult", "classKKFitResult.html#ac70733af97eb1c5214ae57ccffe88cdf", null ],
