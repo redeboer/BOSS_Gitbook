@@ -4,7 +4,7 @@
 
 % Names of input root files
 {
-  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/inclMC/D0phi_KpiKK_*.root
+  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/inclMC/D0phi_KpiKK_10*.root
 }
 
 % Tree name
@@ -48,7 +48,11 @@
 % Signal particles
 {
   D0
+  D*0
+  anti-D0
+  anti-D*0
   phi
+  omega
 }
 
 % Signal decay final states
@@ -57,12 +61,27 @@
   1	  pi+
   2	  K-
   3	  K+
+
+  0	  K-
+  1	  pi+
+  2	  pi-
+  3	  pi+
+  4	  pi0
+
+  0	  K-
+  1	  pi+
+  2	  pi-
+  3	  pi+
 }
 
 % Perform the topology analysis of the decay branches begun with the following particles
 {
+  D*0
   D0
-  phi 100
+  anti-D*0
+  anti-D0
+  omega 30
+  phi   30
 }
 
 % Perform the topology analysis of the exclusive decay branches matched with the following inclusive decay branches
@@ -70,9 +89,20 @@
   0	  J/psi
   1	  D0
   2   phi
+
+  0	  J/psi
+  1	  D*0
+  2   phi
+
+  0	  J/psi
+  1	  D0
+  2   omega
   
   0	  J/psi
   1	  D0
+  
+  0	  J/psi
+  1	  D*0
   
   0	  J/psi
   1	  phi
