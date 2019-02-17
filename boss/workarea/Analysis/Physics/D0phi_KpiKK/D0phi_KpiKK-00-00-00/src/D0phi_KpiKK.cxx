@@ -132,13 +132,13 @@
 						// if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon)) continue; /// If, according to the likelihood method, the particle is still more likely to be a kaon than a pion, the track is rejected.
 						if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `D0phi_KpiKK.txt`).
 						RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
-						if(mdcKalTrk->charge() > 0) fPionPos.push_back(*fTrackIterator); /// and the (positive) pion is added to the vector of pions.
+						if(fTrackKal->charge() > 0) fPionPos.push_back(*fTrackIterator); /// and the (positive) pion is added to the vector of pions.
 					}
 					else {
 						// if(fPIDInstance->pdf(RecMdcKalTrack::kaon) < fPIDInstance->pdf(RecMdcKalTrack::pion)) continue;
 						if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) continue;
 						RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-						if(mdcKalTrk->charge() < 0) fKaonNeg.push_back(*fTrackIterator);
+						if(fTrackKal->charge() < 0) fKaonNeg.push_back(*fTrackIterator);
 						else                        fKaonPos.push_back(*fTrackIterator);
 					}
 

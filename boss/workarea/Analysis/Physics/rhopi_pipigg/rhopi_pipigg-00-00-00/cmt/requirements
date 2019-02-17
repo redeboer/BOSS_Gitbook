@@ -13,7 +13,10 @@ use ParticleID   ParticleID-*  Analysis
 
 use BesROOT      BesROOT-00-*     External
 
+use TrackSelector TrackSelector-* Analysis 
+
 apply_pattern component_library 
-library TrackSelector  *.cxx  components/*.cxx
+library rhopi_pipigg TrackSelector  *.cxx  components/*.cxx
+macro TrackSelector_linkopts " -lTrackSelector "
 
 apply_pattern declare_runtime files=*.txt
