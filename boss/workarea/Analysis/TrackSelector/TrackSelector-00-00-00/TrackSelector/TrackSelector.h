@@ -53,6 +53,7 @@
 	#include "TofRecEvent/RecTofTrack.h"
 	#include "TrackSelector/CutObject.h"
 	#include "TrackSelector/JobSwitch.h"
+	#include "TrackSelector/NTupleTopoAna.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this requires a newer version of `gcc`.
 	#include <string>
@@ -95,6 +96,7 @@
 
 	/**
 	 * @brief    <b>Base algorithm</b> that creates a selection of charged and/or neutral tracks. Your analysis has to be defined in <i>derived</i> algorithms, making use of the vectors that are filled in this algorithm. See the <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial">tutorial pages</a> for more information.
+	 * @todo The design of using `map`s of `NTuple::Items`s is not ideal, as it does not (yet) allow enough flexibility.
 	 *
 	 * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	 * @date     December 14th, 2018
@@ -129,7 +131,8 @@
 			///@{
 			void AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="ks N-Tuple example");
 			void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<double> > &map);
-			void BookNtupleItems_McTruth(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="Monte Carlo truth");
+			void BookNtupleItems_McTruth(NTupleTopoAna &ntuple, const char* tupleName="MctruthForTopoAna", const char* tupleTitle="Monte Carlo truth for TopoAna");
+			void BookNtupleItems_McTruth();
 			void BookNtupleItems_Dedx   (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="dE/dx info");
 			void BookNtupleItems_Tof    (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="Time-of-Flight info");
 			///@}
@@ -137,7 +140,6 @@
 
 		/// @name Write methods
 			///@{
-			void WriteMcTruth(Event::McParticle* mcTruth, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 			void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 			void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
 			void WritePIDInformation();
@@ -209,6 +211,7 @@
 			std::map<std::string, NTuple::Item<double> > fMap_mult_select; //!< Container for the `"mult_select"` branch.
 			std::map<std::string, NTuple::Item<double> > fMap_neutral; //!< Container for the neutral track info neutral track info branch.
 			std::map<std::string, NTuple::Item<double> > fMap_vertex;  //!< Container for the primary vertex info vertex branch.
+			NTupleTopoAna fMcTruth; //!< `NTuple` `struct` object for Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be encapsulated in a `struct` instead of simply making use of the `NTuple` map.
 			///@}
 
 

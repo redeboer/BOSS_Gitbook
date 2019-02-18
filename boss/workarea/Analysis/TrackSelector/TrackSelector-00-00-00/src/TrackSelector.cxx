@@ -162,10 +162,8 @@
 			}
 			/// </ol>
 
-		/// <li> `"mctruth"`: Initial momentum information of Monte Carlo truth.
-			if(fWrite_mctruth) {
-				BookNtupleItems_McTruth("mctruth", fMap_mctruth, "MC truth of all tracks");
-			}
+		/// <li> `"mctruth"`: `TTree`/`NTuple` necessary for the `topoana` package
+			if(fWrite_mctruth) BookNtupleItems_McTruth();
 
 		/// <li> `"dedx"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItems_Dedx` for more info.
 			if(fWrite_dedx) {
@@ -280,8 +278,6 @@
 					if(doNotRecord) continue;
 					/// <li> Add the pointer to the `fMcParticles` vector.
 					fMcParticles.push_back(*it);
-					/// <li> <b>Write</b> MC truth initial 4-momentum info if required.
-					if(fWrite_mctruth) WriteMcTruth(*it, "mctruth", fMap_mctruth);
 					/// </ul>
 				} // end of for loop
 				/// </ol>
@@ -557,20 +553,28 @@
 
 
 	/**
-	 * @brief This function encapsulates the `addItem` procedure for the MC truth branches (`"mctruth*"`).
+	 * @brief This function encapsulates the `addItem` procedure for the MC truth branches (`"mctruth*"`). It has to make use of the `NTupleTopoAna` struct, and cannot make use of the `NTuple` maps, because it contains indexed items.
 	 */
-	void TrackSelector::BookNtupleItems_McTruth(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	void TrackSelector::BookNtupleItems_McTruth(NTupleTopoAna &ntuple, const char* tupleName, const char* tupleTitle)
 	{
 		/// <ol>
-		map["particle"];  /// <li> `"particle"`: PDG code of the particle
-		map["mother"]; /// <li> `"mother"`:   PDG code of the mother
-		map["E"];  /// <li> `"E"`:  True initial energy of the track.
-		map["p"];  /// <li> `"p"`:  True initial \f$|\vec{p}|\f$ 3-momentum of the track.
-		map["px"]; /// <li> `"px"`: True initial \f$p_x\f$ momentum of the track.
-		map["py"]; /// <li> `"py"`: True initial \f$p_y\f$ momentum of the track.
-		map["pz"]; /// <li> `"pz"`: True initial \f$p_z\f$ momentum of the track.
-		AddItemsToNTuples(tupleName, map, tupleTitle);
+		// ntuple.tuple->addItem("iEvt",   ntuple.iEvt);  /// <li> `"iEvt"`: <b>Counter</b> for number of events (not the ID!) @todo Check event counter if required for `topoana`
+		ntuple.tuple->addItem("runID",  ntuple.runID); /// <li> `"runID"`: Run number ID.
+		ntuple.tuple->addItem("evtID",  ntuple.evtID); /// <li> `"evtID"`: Rvent number ID.
+		ntuple.tuple->addItem("nItems", ntuple.nItems, 0, 100); /// <li> `"nItems"`: Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
+		ntuple.tuple->addIndexedItem("particle", ntuple.nItems, ntuple.particle); /// <li> `"particle"`: PDG code for the particle in this array.
+		ntuple.tuple->addIndexedItem("mother",   ntuple.nItems, ntuple.mother);   /// <li> `"mother"`: Track index of the mother particle.
+		fLog << MSG::INFO << "  total: 6 items in \"mctruth\" branch" << endmsg;
 		/// </ol>
+	}
+
+
+	/**
+	 * @brief Default overload using `fMcTruth`.
+	 */
+	void TrackSelector::BookNtupleItems_McTruth()
+	{
+		BookNtupleItems_McTruth(fMcTruth);
 	}
 
 
@@ -658,38 +662,6 @@
 		map.at("normPH")     = fTrackDedx->normPH();
 		map.at("p")          = fTrackMDC->p();
 		map.at("probPH")     = fTrackDedx->probPH();
-		fNTupleMap.at(tupleName)->write();
-
-	}
-
-
-	/**
-	 * @brief Encapsulates of the writing procedure for \f$dE/dx\f$ energy loss information <i>for one track</i>.
-	 * @details Here, you should use `map::at` to access the `NTuple::Item`s and `NTuplePtr`, because you want your package to throw an exception if the element does not exist. See http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115 for available data members of `RecMdcDedx`]
-	 * 
-	 * @param mcTruth Pointer to the `McParticle` object of which you want to write 4-momentum info.
-	 * @param tupleName The name of the tuple to which you want to write the information.
-	 * @param map The `map` from which you want to get the `NTuple::Item`s.
-	 */
-	void TrackSelector::WriteMcTruth(Event::McParticle* mcTruth, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map)
-	{
-		/// -# Abort if `mcTruth` is `nullptr`.
-		if(!mcTruth) return;
-
-		/// -# Obtain relevant info.
-		HepLorentzVector vec(mcTruth->initialFourMomentum());
-
-		/// -# <b>Write</b> initial momentum info of MC truth.
-		map.at("mother")   = mcTruth->mother().particleProperty();
-		map.at("particle") = mcTruth->particleProperty();	
-		map.at("E") = vec.e();
-		map.at("p") = std::sqrt(
-			vec.px()*vec.px() +
-			vec.py()*vec.py() +
-			vec.pz()*vec.pz());
-		map.at("px") = vec.px();
-		map.at("py") = vec.py();
-		map.at("pz") = vec.pz();
 		fNTupleMap.at(tupleName)->write();
 
 	}

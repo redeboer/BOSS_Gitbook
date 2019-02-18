@@ -26,6 +26,7 @@ var hierarchy =
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", null ]
     ] ],
     [ "m_trkInfo", "classm__trkInfo.html", null ],
+    [ "NTupleTopoAna", "structNTupleTopoAna.html", null ],
     [ "Particle", "classParticle.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", null ]
     ] ],

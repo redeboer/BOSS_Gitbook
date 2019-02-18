@@ -16,6 +16,7 @@ var annotated_dup =
     [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", "classKKFitResult__D0phi__KpiKK" ],
     [ "m_trkInfo", "classm__trkInfo.html", "classm__trkInfo" ],
     [ "MctruthForTopoAna", "classMctruthForTopoAna.html", "classMctruthForTopoAna" ],
+    [ "NTupleTopoAna", "structNTupleTopoAna.html", "structNTupleTopoAna" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "PipiJpsi", "classPipiJpsi.html", "classPipiJpsi" ],
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],

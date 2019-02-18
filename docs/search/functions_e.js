@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['operator_20bool',['operator bool',['../classJobSwitch.html#af847ea807bccf3111a16c7773da0b092',1,'JobSwitch']]],
+  ['operator_20bool',['operator bool',['../classJobSwitch.html#af847ea807bccf3111a16c7773da0b092',1,'JobSwitch::operator bool()'],['../structNTupleTopoAna.html#a14d4abc54d1d58b9ba357ad77d4b3999',1,'NTupleTopoAna::operator bool()']]],
   ['operator_21_3d',['operator!=',['../classArgPair.html#afe1bd547188e687f91c94944161ce89c',1,'ArgPair']]],
   ['operator_2b_2b',['operator++',['../classCutObject.html#afd8a71305dfc11c83e35579619fdf668',1,'CutObject']]],
   ['operator_2b_3d',['operator+=',['../classCutObject.html#a56ea49c06134a77b2deeaf4233742814',1,'CutObject']]],
