@@ -4,3 +4,27 @@
 **This part of the tutorial is not yet finished.**
 {% endhint %}
 
+The base algorithm `TrackSelector` encapsulates the procedures that are shared by other analysis. The procedures are shared in two ways:
+
+1. **Default procedure in algorithm steps** The `TrackSelector` base algorithm always performs the `initialize`, `execute`, and `finalize` algorithm steps, so any derived algorithm will do the same. For example, `TrackSelector::execute` stores a vector of pointers to tracks, because you have to do this for your analysis anyway. You can use that result for your own analysis in the continuation `execute_rest` step of your derived algorithm.
+2. **Modulation** If you develop some procedure for your own _derived_ algorithm and you think that that procedure could be useful for other types of analyses as well, you can modulate this procedure into a class method \(function\). This method can then be added to the `TrackSelector` base algorithm, so that it is available to others as well.
+
+## Major components
+
+### Collection of charged and neutral tracks
+
+### Write general event info
+
+The `TrackSelector`also allows you to write info for _all_ events, that is, _without cuts_.
+
+* Multiplicities
+* Vertex info
+* Neutral and charged track info
+
+### Monte Carlo truth for `topoana`
+
+Helper methods that can be used by derived classes _after_ initial selection. Components taken from [`MctruthForTopoAnaAlg`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-00) package.
+
+### Helper functions that can be used by derived classes
+
+* 
