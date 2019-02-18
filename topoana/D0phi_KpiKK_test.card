@@ -116,10 +116,10 @@
   2	  pi+
 }
 
-% Skip the topology analysis of decay trees and decay final states (Two options: Y and N. Default: N)
-{
-  Y
-}
+# % Skip the topology analysis of decay trees and decay final states (Two options: Y and N. Default: N)
+# {
+#   Y
+# }
 
 # % Suppress the first branches of decay trees in the output txt/tex/pdf files (Two options: Y and N. Default: N)
 # {

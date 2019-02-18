@@ -1,0 +1,25 @@
+//input ROOT MC data
+#include "$ROOTIOROOT/share/jobOptions_ReadRoot.txt"
+#include "$MAGNETICFIELDROOT/share/MagneticField.txt"
+
+#include "$DTAGALGROOT/share/jobOptions_dTag.txt"
+
+//output ROOT REC data
+#include "$DTAGALGROOT/share/jobOptions_Dst2Root.txt"
+
+//configure of calibration constants for MC
+#include "$CALIBSVCROOT/share/calibConfig_rec_mc.txt"
+
+
+//Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel = 6; 
+
+//ROOT input data file
+EventCnvSvc.digiRootInputFile = {"d0-kpi-norm.rec"};
+
+//ROOT output data file
+EventCnvSvc.digiRootOutputFile ="d0-kpi.anadtag.rec.dst";
+
+//Number of events to be processed (default is 10)
+ApplicationMgr.EvtMax = 50;
+

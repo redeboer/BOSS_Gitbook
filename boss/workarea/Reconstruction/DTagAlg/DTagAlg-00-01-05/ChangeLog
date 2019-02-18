@@ -1,0 +1,199 @@
+2016-12-01 Lu Yu <luy@ihep.ac.cn>
+  *  Use pid->useTofCorr() instead of (pid->useTof1() | pid->useTof2() |
+		  pid->useTof()) for charged Kaon and Pion PID.
+
+2014-12-30 Jake Bennett <jvbennett@cmu.edu>
+  *  Corrected a few bugs in the mode numbers.
+
+2014-12-25 Jake Bennett <jvbennett@cmu.edu>
+  *  Included a few missing files.
+
+2014-12-24 Onur Albayrak <albayrak@phys.cmu.edu>, Jake Bennett <jvbennett@cmu.edu>
+  *  New Ds modes added with new eta and etap decays
+  *  New LocalSelectors for the eta to pipipi0 decay, and etap to pi pi eta (3pi)
+  *  Change of variable names for LocalSelectors, users can now set different mass cuts for different resonance decays
+  *  Modified LocalKsSelector to include secondary vertex fit if flag is set, cuts are applied to chi^2 and flight significance
+  *  Modified reconstruction code (utility and *Reconstruction.cxx) to perform and save secondary vertex fit information - saved in EvtRecDTag
+
+
+2014-04-29
+  *  Roll back to ver-51, along with a vertex fit bug fix.
+
+2014-04-11 Onur, Tian Ma
+  *  fix a bug in vertex fit
+
+2014-03-19 Guang Zhao <zhaog@ihep.ac.cn>
+  *  The default tight cuts are rolled back to DTagAlg-00-00-51, except for eta/eta'/rho mass window cuts.
+  *  Redundant codes which contain VeeVertexFit/Pi0EtatoGGAlg are removed
+  *  Enable to run DTagAlg on D-skim dst files
+
+2014-03-10 Guang Zhao <zhaog@ihep.ac.cn>
+  *  not use VeeVertexFit/Pi0EtatoGGRecAlg to reconstruct Ks/pi0/eta
+  *  add a selector for pions from Ks->pi pi
+  *  add dang = 10 deg cut in photon selector
+  *  use reconstruction info to identify photons from barrel/endcap
+  *  remove 1st vertex chisq cut and add 2nd vertex in Ks reconstructon
+  *  change mass windows for eta/eta'
+  *  fix boost angle to (-0.011, 0, 0) in D(s) reconstruction
+
+2013-12-12 Chunlei Liu <chl56@cmu.edu>
+  *  add option to use different PID packages;
+  *  add a new dtag mode
+  *  add option to do vertex constrain fit	
+	
+2012-11-19 Chunlei Liu <chl56@cmu.edu>
+  * convert negative run number to be positive when reading beam energy from database
+	
+2012-04-17 Chunlei Liu <chl56@cmu.edu>
+  * read run by run beam crossing angle for data
+  * read run by run beam energy for MC	
+
+2011-11-26 Chunlei Liu <chl56@cmu.edu>
+  * adapt updated BesDChain to to tag particle list with tightness
+  * update ks and pi0 loost and tight cuts  
+  * use beta from DB to boost particle
+
+2011-09-26 Chunlei Liu <chl56@cmu.edu>
+  * change the calibrated beam energy unit to be GeV
+
+2011-09-22 Chunlei Liu <chl56@cmu.edu>
+  * add option to read calibrated beam energy from database
+
+2011-06-27 Chunlei Liu <chl56@cmu.edu>
+  * minor bug fixed: some charmless D0 modes might get assigned wrong charm
+  * database reading problem fixed	
+
+2011-05-10 Chunlei Liu <chl56@cmu.edu>
+  * kaon selector was using pion helix hypotheis, changed to kaon hypothesis
+  * use databasesvc packakge to get beamE instead of accessing database directly
+  * switch to simplepidsvc for PID	
+
+2010-11-26 Chunlei Liu <chl56@cmu.edu>
+  * modified bug: ks dauthers should not apply PID cuts
+	
+2010-11-04 Chunlei Liu <chl56@cmu.edu>
+  * modified bug: channels with only kaon/pion daughters didn't have pid tag
+
+2010-08-12 Chunlei Liu <chl56@cmu.edu>
+  * get beam energy from database for data by default
+  * events are reconstructed without PID by default now, but type() serves as the PID tag	
+	
+2010-07-16 Chunlei Liu <chl56@cmu.edu>
+  * modify kaon/pion selecor to be PID free by default
+	 
+2010-05-13 Zou Jiaheng <zoujh@ihep.ac.cn>
+  * delta T cut to pure neutral events in LocalPhotonSelector
+  * configurable chisq cut in LocalEtatoGGSelector
+  * remove N(pi0) limit in NeutralDReconstruction
+
+2010-04-05 Peter ZWEBER  <petez@physics.umn.edu>
+  * Modified share/jobOptions_dTag.txt to apply TOF energy corrections 
+    to neutral tracks via Analysis/PhotonCor/AbsCor.  
+    Modified DTag, pi0, eta, and RecEmcShower results are stored in output.
+    Must be used with AbsCor-00-00-25 or later.
+
+2010-03-17 Zou Jiaheng <zoujh@ihep.ac.cn>
+  * Add a maximum number limit to pi0s for the mode D02Pi0Pi0Pi0
+
+2010-03-15 Chunlei Liu <chl56@cmu.edu>
+  * Updated localphotonselector with tight cuts	 
+
+2010-02-22 Peter ZWEBER  <petez@physics.umn.edu>
+  * Modified jobOptions_dst_dst.txt and jobOptions_dst_dst.txt to use 
+    TOF corrections with Analysis/PhotonCor/AbsCor.  Note that, 
+    at this time, TOF corrections cannot be added at reconstruction time, 
+    so jobOptions_dst.txt does not include TOF corrections.
+  * Modified jobOptions_dTag.txt to reject pi0 candidates if both photon 
+    children are in the endcaps.
+  * Note that Pi0EtaToGGRecAlg/Pi0EtaToGGRecAlg-00-00-05 and later versions 
+    do not apply EMCTime cuts to events with no charged tracks.
+
+2010-01-27 Peter ZWEBER  <petez@physics.umn.edu>
+  * Changed pi0 mass range to (107,163) MeV in LocalPi0Selector
+  * Changed Ks mass range to (471,524) MeV in LocalKsSelector
+
+2010-01-14 Chunlei Liu <chl56@cmu.edu>
+  * go back to "kill job " option when dtaglist exists
+  * for kaon and pion selectors, now use distance of closest approach to the IP
+	
+2010-01-11 Peter ZWEBER  <petez@physics.umn.edu>
+  * Modified DTag.cxx to report a message if someone tries to run on a file 
+    which already contains a DTagList.
+	
+2010-01-11 Chunlei Liu  <chl56@cmu.edu>
+  * add an option of runing dst data with dtaglist exsited, but the default one is killing it.
+
+2010-01-06 Chunlei Liu  <chl56@cmu.edu>
+  * don't replace existed dtag list with new one, if there is old one, job will be crashed
+
+
+2010-01-05 Chunlei Liu  <chl56@cmu.edu>
+  * users now can change default beam energy in jobOption_dTag.txt 
+  * add a protection of dtaglist reconstuciton, if dtaglist exists, program will be ended.
+
+2009-12-22 Chunlei Liu  <chl56@cmu.edu>
+  * fixed one bug for beam energy of data
+  * update the method of getting beam E from database
+
+2009-12-09 Peter ZWEBER  <petez@physics.umn.edu>
+  * Updated share/jobOptions_sim.txt to use KKMC-00-00-16
+  * Added RunEventNumberAlg to other jobOptions files in share/	
+	
+2009-12-03 Peter ZWEBER  <petez@physics.umn.edu>
+  * added photon cuts for Pi0EtaToGGRecAlg to share/jobOptions_dTag.txt
+  * changed m(gg) window to 400-700 MeV in src/LocalEtaToGGSelector.cxx
+	
+2009-11-10 Chunlei Liu <chl56@cmu.edu>
+  * add mass cuts for pi0/eta, rhotopipi, and etaprime
+  * move pi0/eta and kshort reconstruciton file to standard DTag jobOption file
+
+2009-11-05 Chunlei Liu <chl56@cmu.edu>
+  * changes for using new pi0 and eta reconstruction package
+  * update some jobOption files	
+
+
+2009-09-17 Peter ZWEBER <petez@physics.umn.edu>
+  * fixed minDeltaMass typos in DSelectors
+  * modified calculation of mBC in DSelectors
+  * modified cuts used in jobOptions_dTag.txt
+
+2009-09-15 Chunlei Liu <chl56@cmu.edu>
+  * remove old D selectors since new ones (different name) are created
+	
+2009-09-14 Peter ZWEBER <petez@physics.umn.edu>
+  * modified LocalKsSelector.cxx
+  * Added protection against callign db for beam energy
+  * Created NeutralDSelector to apply cuts on mbc, deltaE, inv mass diff
+  * Created ChargedDSelector to apply cuts on mbc, deltaE, inv mass diff
+  * Created DsSelector to apply cuts on mbc, deltaE, inv mass diff
+  * Modified how mbc and deltaE are calculated in saveDInfo 
+  * Moved jobOptions files for creating DTagLists from BesExamples/DDecayAlg
+
+2009-09-08 Chunlei Liu <chl56@cmu.edu>
+  * change D reconstruction calss name
+  * change particle lists order when reconstruct D candidates
+  * add new rho selectors	  
+	
+2009-07-05 Chunlei Liu <chl56@andrew.cmu.edu>
+  * use kalTrack variables for kaon and pion selectors
+	
+2009-06-23 Chunlei Liu <chl56@andrew.cmu.edu>
+  * add all the Ds modes
+	
+2009-06-18 Chunlei Liu <chl56@andrew.cmu.edu>
+  * Code is optimized
+  * almost all D0 and Dplus modes are reconstructed
+  * will get run by run beam energy from database if it's available
+	
+2009-05-1 Chunlei Liu <chl56@andrew.cmu.edu>
+  * add several D+ modes, in a separate file 
+
+2009-04-08 Chunlei Liu <chl56@andrew.cmu.edu>
+  * Local particle selectors are updated (photon is added) 
+
+2009-03-09 Chunlei Liu <chl56@andrew.cmu.edu>
+  * DTagAlg is checked into CVS
+
+
+
+	

@@ -32,5 +32,6 @@ fi
 	}
 
 # * Copy example packages * #
-	AskToOverwrite "Analysis/Physics/PsiPrime"
-	AskToOverwrite "Analysis/Physics/RhopiAlg"
+	# AskToOverwrite "Analysis/Physics/PsiPrime"
+	# AskToOverwrite "Analysis/Physics/RhopiAlg"
+	AskToOverwrite "Reconstruction/DTagAlg"

@@ -1,0 +1,38 @@
+ DstoKsK 
+ DstoKKPi
+ DstoKsKPi0
+ DstoKsKsPi
+ DstoKKPiPi0
+ DstoKsKplusPiPi
+ DstoKsKminusPiPi
+ DstoKKPiPiPi
+
+ DstoPiPi0
+ DstoPiPiPi
+ DstoPiPiPiPi0
+ DstoPiPiPiPiPi
+ DstoPiPiPiPiPiPi0
+ DstoPiPiPiPi0Pi0
+ 
+ DstoPiEta
+ DstoPiPi0Eta
+ DstoPiPiPiEta
+
+ DstoPiEtaPiPiPi0
+ DstoPiPi0EtaPiPiPi0
+ DstoPiPiPiEtaPiPiPi0
+ 
+ DstoPiEPPiPiEta
+ DstoPiPi0EPPiPiEta
+
+ DstoPiEPPiPiEtaPiPiPi0
+ DstoPiPi0EPPiPiEtaPiPiPi0
+ 
+ DstoPiEPRhoGam
+ DstoPiPi0EPRhoGam
+ 
+ DstoKsPi
+ DstoKsPiPi0
+ DstoKPiPi
+ DstoKPiPiPi0
+ DstoKKK
