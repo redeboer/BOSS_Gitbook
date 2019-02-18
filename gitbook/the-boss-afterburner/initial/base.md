@@ -4,9 +4,9 @@
 **This part of the tutorial is not yet finished.**
 {% endhint %}
 
-The base algorithm `TrackSelector` encapsulates the procedures that are shared by other analysis. The procedures are shared in two ways:
+The base algorithm [`TrackSelector`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html) encapsulates the procedures that are shared by other analysis. The procedures are shared in two ways:
 
-1. **Default procedure in algorithm steps** The `TrackSelector` base algorithm always performs the `initialize`, `execute`, and `finalize` algorithm steps, so any derived algorithm will do the same. For example, `TrackSelector::execute` stores a vector of pointers to tracks, because you have to do this for your analysis anyway. You can use that result for your own analysis in the continuation `execute_rest` step of your derived algorithm.
+1. **Default procedure in algorithm steps** The `TrackSelector` base algorithm always performs the [`initialize`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4), [`execute`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb), and [`finalize`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#ac12f71603152e155a688861d11c51c46) algorithm steps, so any derived algorithm will do the same. For example, `TrackSelector::execute` stores a vector of pointers to tracks, because you have to do this for your analysis anyway. You can use that result for your own analysis in the continuation `execute_rest` step of your derived algorithm.
 2. **Modulation** If you develop some procedure for your own _derived_ algorithm and you think that that procedure could be useful for other types of analyses as well, you can modulate this procedure into a class method \(function\). This method can then be added to the `TrackSelector` base algorithm, so that it is available to others as well.
 
 ## Major components
