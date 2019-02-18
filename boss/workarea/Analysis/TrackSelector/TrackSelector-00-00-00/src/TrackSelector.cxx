@@ -72,12 +72,12 @@
 		/// * Declare 'do or don't' `JobSwitch` properties. The `"do_<treename>"` properties determine whether or not to make a selection of 'good' neutral and/or charged tracks.
 		fDo_charged("do_charged"),
 		fDo_neutral("do_neutral"),
+		fDo_mctruth("do_mctruth"),
 		/// * Declare 'write' `JobSwitch` properties. The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled.
 		fWrite_mult       ("write_mult"),
 		fWrite_vertex     ("write_vertex"),
 		fWrite_charged    ("write_charged"),
 		fWrite_neutral    ("write_neutral"),
-		fWrite_mctruth    ("write_mctruth"),
 		fWrite_dedx       ("write_dedx"),
 		fWrite_ToFEC      ("write_ToFEC"),
 		fWrite_ToFIB      ("write_ToFIB"),
@@ -163,7 +163,7 @@
 			/// </ol>
 
 		/// <li> `"mctruth"`: `TTree`/`NTuple` necessary for the `topoana` package
-			if(fWrite_mctruth) BookNtupleItems_McTruth();
+			if(fDo_mctruth) BookNtupleItems_McTruth();
 
 		/// <li> `"dedx"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItems_Dedx` for more info.
 			if(fWrite_dedx) {
@@ -248,7 +248,7 @@
 				}
 
 		/// <li> Get Monte Carlo truth if available (that is, if the run number is negative).
-			if(fEventHeader->runNumber()<0) {
+			if(fDo_mctruth && fEventHeader->runNumber()<0) {
 				/// <ol>
 				/// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `FILE1`.
 				fMcParticleCol = SmartDataPtr<Event::McParticleCol>(eventSvc(), "/Event/MC/McParticleCol");

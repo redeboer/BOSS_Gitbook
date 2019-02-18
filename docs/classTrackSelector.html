@@ -170,7 +170,7 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a918337343c0640834a5e552fae23fac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Track collections and iterators</div></td></tr>
 <tr class="memitem:a60eeedf6b57d012332e51d0a7099f017"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Event::McParticle * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017">fMcParticles</a></td></tr>
-<tr class="memdesc:a60eeedf6b57d012332e51d0a7099f017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest.  <a href="#a60eeedf6b57d012332e51d0a7099f017">More...</a><br /></td></tr>
+<tr class="memdesc:a60eeedf6b57d012332e51d0a7099f017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the <code>fMcTruth</code> member and calling its <code><a class="el" href="structNTupleTopoAna.html#a904ff3dd4a372bb0934baf2618924f0a">NTupleTopoAna::Write</a></code> method, otherwise it is useless.  <a href="#a60eeedf6b57d012332e51d0a7099f017">More...</a><br /></td></tr>
 <tr class="separator:a60eeedf6b57d012332e51d0a7099f017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d146b4022233ef370931942f342ef41"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7d146b4022233ef370931942f342ef41">fGoodChargedTracks</a></td></tr>
 <tr class="memdesc:a7d146b4022233ef370931942f342ef41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.  <a href="#a7d146b4022233ef370931942f342ef41">More...</a><br /></td></tr>
@@ -210,9 +210,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a9d828cbb628a56cc5c1d1ee4c642788b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJobSwitch.html">JobSwitch</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9d828cbb628a56cc5c1d1ee4c642788b">fDo_neutral</a></td></tr>
 <tr class="memdesc:a9d828cbb628a56cc5c1d1ee4c642788b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to make a selection of 'good' neutral tracks.  <a href="#a9d828cbb628a56cc5c1d1ee4c642788b">More...</a><br /></td></tr>
 <tr class="separator:a9d828cbb628a56cc5c1d1ee4c642788b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a0ef530129bfddc60618c615eb3c2f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJobSwitch.html">JobSwitch</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6a0ef530129bfddc60618c615eb3c2f2">fWrite_mctruth</a></td></tr>
-<tr class="memdesc:a6a0ef530129bfddc60618c615eb3c2f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record initial momentum informtation of MC truth.  <a href="#a6a0ef530129bfddc60618c615eb3c2f2">More...</a><br /></td></tr>
-<tr class="separator:a6a0ef530129bfddc60618c615eb3c2f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c872e1023a3b752e05374ff587ed98f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJobSwitch.html">JobSwitch</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8c872e1023a3b752e05374ff587ed98f">fDo_mctruth</a></td></tr>
+<tr class="memdesc:a8c872e1023a3b752e05374ff587ed98f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record MC truth. See the `<code>fMap_mctruth</code> map and <code>fMcTruth</code>.  <a href="#a8c872e1023a3b752e05374ff587ed98f">More...</a><br /></td></tr>
+<tr class="separator:a8c872e1023a3b752e05374ff587ed98f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57c9adcd5307502b48a54611a31e8e7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJobSwitch.html">JobSwitch</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a57c9adcd5307502b48a54611a31e8e7f">fWrite_PID</a></td></tr>
 <tr class="memdesc:a57c9adcd5307502b48a54611a31e8e7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Package property that determines whether or not to record general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/>, etc).  <a href="#a57c9adcd5307502b48a54611a31e8e7f">More...</a><br /></td></tr>
 <tr class="separator:a57c9adcd5307502b48a54611a31e8e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -269,7 +269,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:ad336f14b9c8fb4919991b284af51aaf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/>) branch.  <a href="#ad336f14b9c8fb4919991b284af51aaf3">More...</a><br /></td></tr>
 <tr class="separator:ad336f14b9c8fb4919991b284af51aaf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ebfe799708f4658c6961af65ebf3535"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8ebfe799708f4658c6961af65ebf3535">fMap_mctruth</a></td></tr>
-<tr class="memdesc:a8ebfe799708f4658c6961af65ebf3535"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for MC truth info.  <a href="#a8ebfe799708f4658c6961af65ebf3535">More...</a><br /></td></tr>
+<tr class="memdesc:a8ebfe799708f4658c6961af65ebf3535"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for MC truth required for the <code>topoana</code> package.  <a href="#a8ebfe799708f4658c6961af65ebf3535">More...</a><br /></td></tr>
 <tr class="separator:a8ebfe799708f4658c6961af65ebf3535"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5fd02e78941091412181bed4af630f4"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab5fd02e78941091412181bed4af630f4">fMap_mult</a></td></tr>
 <tr class="memdesc:ab5fd02e78941091412181bed4af630f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for the multiplicities branch.  <a href="#ab5fd02e78941091412181bed4af630f4">More...</a><br /></td></tr>
@@ -2117,6 +2117,32 @@ Particle Identification</h2></td></tr>
 
 </div>
 </div>
+<a id="a8c872e1023a3b752e05374ff587ed98f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c872e1023a3b752e05374ff587ed98f">&#9670;&nbsp;</a></span>fDo_mctruth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJobSwitch.html">JobSwitch</a> TrackSelector::fDo_mctruth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Package property that determines whether or not to record MC truth. See the `<code>fMap_mctruth</code> map and <code>fMcTruth</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00184">184</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
 <a id="a9d828cbb628a56cc5c1d1ee4c642788b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9d828cbb628a56cc5c1d1ee4c642788b">&#9670;&nbsp;</a></span>fDo_neutral</h2>
 
@@ -2397,7 +2423,7 @@ Particle Identification</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Container for MC truth info. </p>
+<p>Container for MC truth required for the <code>topoana</code> package. </p>
 
 <p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00209">209</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
@@ -2657,8 +2683,7 @@ Particle Identification</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Consider defining a <code>map&lt;int, vector&lt;Event::McParticle*&gt; &gt;</code>, where the <code>int</code> key will be the PDG code. This mapping is to define a subset of the list of <code>McParticles</code>. </dd></dl>
+<p>Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the <code>fMcTruth</code> member and calling its <code><a class="el" href="structNTupleTopoAna.html#a904ff3dd4a372bb0934baf2618924f0a">NTupleTopoAna::Write</a></code> method, otherwise it is useless. </p>
 
 <p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00161">161</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
@@ -3051,32 +3076,6 @@ Particle Identification</h2></td></tr>
 <p>Package property that determines whether or not to record energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/>). </p>
 
 <p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00190">190</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
-
-</div>
-</div>
-<a id="a6a0ef530129bfddc60618c615eb3c2f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a0ef530129bfddc60618c615eb3c2f2">&#9670;&nbsp;</a></span>fWrite_mctruth</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classJobSwitch.html">JobSwitch</a> TrackSelector::fWrite_mctruth</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Package property that determines whether or not to record initial momentum informtation of MC truth. </p>
-
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00184">184</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>

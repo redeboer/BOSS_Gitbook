@@ -158,7 +158,7 @@
 
 		/// @name Track collections and iterators
 			///@{
-			std::vector<Event::McParticle*> fMcParticles; //!< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. @todo Consider defining a `map<int, vector<Event::McParticle*> >`, where the `int` key will be the PDG code. This mapping is to define a subset of the list of `McParticles`.
+			std::vector<Event::McParticle*> fMcParticles; //!< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the `fMcTruth` member and calling its `NTupleTopoAna::Write` method, otherwise it is useless.
 			std::vector<EvtRecTrack*> fGoodChargedTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.
 			std::vector<EvtRecTrack*> fGoodNeutralTracks; //!< Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons).
 			std::vector<EvtRecTrack*>::iterator fTrackIterator; //!< Iterator for looping over the collection of charged and neutral tracks (`EvtRecTrackCol`).
@@ -181,7 +181,7 @@
 			///@{
 			JobSwitch fDo_charged; //!< Package property that determines whether or not to make a selection of 'good' charged tracks.
 			JobSwitch fDo_neutral; //!< Package property that determines whether or not to make a selection of 'good' neutral tracks.
-			JobSwitch fWrite_mctruth; //!< Package property that determines whether or not to record initial momentum informtation of MC truth.
+			JobSwitch fDo_mctruth; //!< Package property that determines whether or not to record MC truth. See the ``fMap_mctruth` map and `fMcTruth`.
 			JobSwitch fWrite_PID;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
 			JobSwitch fWrite_ToFEC;   //!< Package property that determines whether or not to record data from the Time-of-Flight end cap detector.
 			JobSwitch fWrite_ToFIB;   //!< Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector.
@@ -206,7 +206,7 @@
 			std::map<std::string, NTuple::Item<double> > fMap_TofOB;   //!< Container for the data from the Time-of-Flight outer barrel detector branch.
 			std::map<std::string, NTuple::Item<double> > fMap_charged; //!< Container for the charged track vertex info charged track vertex branch.
 			std::map<std::string, NTuple::Item<double> > fMap_dedx;    //!< Container for the energy loss (\f$dE/dx\f$) branch.
-			std::map<std::string, NTuple::Item<double> > fMap_mctruth; //!< Container for MC truth info.
+			std::map<std::string, NTuple::Item<double> > fMap_mctruth; //!< Container for MC truth required for the `topoana` package.
 			std::map<std::string, NTuple::Item<double> > fMap_mult;    //!< Container for the multiplicities branch.
 			std::map<std::string, NTuple::Item<double> > fMap_mult_select; //!< Container for the `"mult_select"` branch.
 			std::map<std::string, NTuple::Item<double> > fMap_neutral; //!< Container for the neutral track info neutral track info branch.
