@@ -313,6 +313,27 @@
 // * ------- PRIVATE METHODS ------- * //
 // * =============================== * //
 
+
+	/**
+	 * @brief Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
+	 */
+	void D0phi_KpiKK::WriteFitResults(KKFitResult_D0phi_KpiKK &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName)
+	{
+		if(!fitresult.HasFit()) {
+			fLog << MSG::DEBUG << "KalmanKinematicFit for \"" << tupleName << "\" is empty" << endmsg;
+			return;
+		}
+		fLog << MSG::DEBUG << "Writing fit results \"" << tupleName << "\"" << endmsg;
+		map.at("mD0")   = fitresult.fM_D0;
+		map.at("mJpsi") = fitresult.fM_Jpsi;
+		map.at("mphi")  = fitresult.fM_phi;
+		map.at("pD0")   = fitresult.fP_D0;
+		map.at("pphi")  = fitresult.fP_phi;
+		map.at("chisq") = fitresult.fChiSquared;
+		fNTupleMap.at(tupleName)->write();
+	}
+
+
 	/**
 	 * @brief This function encapsulates the `addItem` procedure for the fit branches.
 	 */ 
