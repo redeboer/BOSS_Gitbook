@@ -274,13 +274,13 @@
 						kkmfit->AddTrack(3, 0.0, g2Trk); // gamma (2nd occurence)
 						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and momentum
 						if(kkmfit->Fit()) {
-							/// Apply max. \f$\chi^2\f$ cut (determined by `fCut_MaxPIDChiSq`).
-							if(kkmfit->chisq() > fCut_MaxPIDChiSq) continue;
-							/// Compute the measure for the best Kalman kinematic fit and keep a pointer to this result if better than previous.
-							ComputeInvariantMasses(kkmfit);
-							CompareWithBestFit(MeasureForBestFit5c(), bestFitMeasure, kkmfit, bestKalmanFit);
-							/// <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
-							if(fWrite_fit4c_all) WriteFitResults(kkmfit, fMap_fit4c_all, "fit4c_all");
+							/// <ol>
+							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
+							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
+							/// <li> <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
+							KKFitResult_rhopi_pipigg fitresult(kkmfit);
+							if(fWrite_fit4c_all) WriteFitResults(fitresult, fMap_fit4c_all, "fit4c_all");
+							/// </ol>
 						}
 
 				}
@@ -527,16 +527,44 @@
 	/**
 	 * @brief Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
 	 */
-	void rhopi_pipigg::WriteFitResults(KalmanKinematicFit *kkmfit, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName)
+	void rhopi_pipigg::WriteFitResults(KKFitResult_rhopi_pipigg &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName)
 	{
+		if(!fitresult.HasFit()) {
+			fLog << MSG::DEBUG << "KalmanKinematicFit for \"" << tupleName << "\" is empty" << endmsg;
+			return;
+		}
 		fLog << MSG::DEBUG << "Writing fit results \"" << tupleName << "\"" << endmsg;
-		map.at("mpi0")       = fM_pi0;
-		map.at("mrho0")      = fM_rho0;
-		map.at("mrho-")      = fM_rhom;
-		map.at("mrho+")      = fM_rhop;
-		map.at("mJpsi_rho0") = fM_JpsiRho0;
-		map.at("mJpsi_rho-") = fM_JpsiRhom;
-		map.at("mJpsi_rho+") = fM_JpsiRhop;
-		map.at("chisq")      = kkmfit->chisq();
+		map.at("mpi0")       = fitresult.fM_pi0;
+		map.at("mrho0")      = fitresult.fM_rho0;
+		map.at("mrho-")      = fitresult.fM_rhom;
+		map.at("mrho+")      = fitresult.fM_rhop;
+		map.at("mJpsi_rho0") = fitresult.fM_JpsiRho0;
+		map.at("mJpsi_rho-") = fitresult.fM_JpsiRhom;
+		map.at("mJpsi_rho+") = fitresult.fM_JpsiRhop;
+		map.at("chisq")      = fitresult.fChiSquared;
 		fNTupleMap.at(tupleName)->write();
+	}
+
+
+
+// * =============================== * //
+// * ------- PRIVATE METHODS ------- * //
+// * =============================== * //
+
+	/**
+	 * @brief This function encapsulates the `addItem` procedure for the fit branches.
+	 */ 
+	void D0phi_KpiKK::BookNtupleItems_Fit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	{
+		/// <ol>
+		map["mpi0"];       /// <li> `"mpi0"`:       Invariant mass for \f$\pi^0 \rightarrow \gamma\gamma\f$ candidate.
+		map["mrho0"];      /// <li> `"mrho0"`:      Invariant mass for \f$\rho^0 \rightarrow \pi^-\pi^+\f$ candidate.
+		map["mrho"];       /// <li> `"mrho"`:       Invariant mass for \f$\rho^- \rightarrow \pi^0\pi^-\f$ candidate.
+		map["mrho"];       /// <li> `"mrho"`:       Invariant mass for \f$\rho^+ \rightarrow \pi^0\pi^+\f$ candidate.
+		map["mJpsi_rho0"]; /// <li> `"mJpsi_rho0"`: Invariant mass for \f$J/\psi \rightarrow \rho^0\pi^0\f$ candidate.
+		map["mJpsi_rho"];  /// <li> `"mJpsi_rho"`:  Invariant mass for \f$J/\psi \rightarrow \rho^-\pi^+\f$ candidate.
+		map["mJpsi_rho"];  /// <li> `"mJpsi_rho"`:  Invariant mass for \f$J/\psi \rightarrow \rho^+\pi^-\f$ candidate.
+		map["chisq"];      /// <li> `"chisq"`:      \f$\chi^2\f$ of the Kalman kinematic fit.
+		AddItemsToNTuples(tupleName, map, tupleTitle);
+		/// </ol>
 	}

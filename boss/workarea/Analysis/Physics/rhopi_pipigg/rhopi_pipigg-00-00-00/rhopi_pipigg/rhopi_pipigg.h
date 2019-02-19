@@ -74,9 +74,9 @@
 
 		/// @name Counters and cut objects
 			///@{
-			double fCut_GammaPhi;   //!< Cut on \f$\phi\f$ angle between the photon and the nearest charged track <i>in radians</i>.
-			double fCut_GammaTheta; //!< Cut on \f$\theta\f$ angle between the photon and the nearest charged track <i>in radians</i>.
-			double fCut_GammaAngle; //!< Cut on angle between the photon and the nearest charged track <i>in degrees</i>.
+			CutObject fCut_GammaPhi;   //!< Cut on \f$\phi\f$ angle between the photon and the nearest charged track <i>in radians</i>.
+			CutObject fCut_GammaTheta; //!< Cut on \f$\theta\f$ angle between the photon and the nearest charged track <i>in radians</i>.
+			CutObject fCut_GammaAngle; //!< Cut on angle between the photon and the nearest charged track <i>in degrees</i>.
 			///@}
 
 	private:
