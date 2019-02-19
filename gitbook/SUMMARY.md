@@ -14,7 +14,7 @@
 * [Running jobs](besiii-software-system/jobs/README.md)
   * [Monte Carlo simulations](besiii-software-system/jobs/simulations.md)
   * [Data analysis](besiii-software-system/jobs/data.md)
-* [Important BOSS Packages](besiii-software-system/packages/README.md)
+* [BOSS Packages](besiii-software-system/packages/README.md)
   * [RhopiAlg](besiii-software-system/packages/rhopi.md)
   * [PipiJpsiAlg](besiii-software-system/packages/pipijpsi.md)
   * [TopoAna](besiii-software-system/packages/topoana/README.md)

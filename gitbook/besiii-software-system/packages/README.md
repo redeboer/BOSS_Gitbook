@@ -1,2 +1,2 @@
-# Important BOSS Packages
+# BOSS Packages
 
