@@ -32,32 +32,62 @@
 	class NTupleContainer : public Container_base
 	{
 	public:
-		// * Constructors and destructors * //
+		/// @name Constructors and destructors
+			///@{
 			NTupleContainer(const std::string &name, const std::string &description="");
 			~NTupleContainer();
+			///@}
 
-		// * Instance handlers * //
+
+		/// @name Instance handlers
+			///@{
 			static std::map<std::string, NTupleContainer*> instances;
 			static NTupleContainer& Get(const std::string &tuple_name) { return *instances.at(tuple_name); }
+			///@}
 
-		// * Getters * //
+
+		// @name Setters
+			///@{
+			void SetTuplePtr(NTuplePtr& data) { fTuple = data.ptr(); }
+			///@}
+
+
+		// @name Getters
+			///@{
 			NTuple::Item<double>& operator[] (const std::string &key) { return items[key]; }
 			NTuple::Item<double>& at(const std::string &key) { return items.at(key); }
+			///@}
 
-		// * NTuple handlers and members * //
+
+		// @name NTuple handlers and members
+			///@{
 			void AddItem(const std::string &item_name);
 			void Write() const;
-			NTuple::Tuple *tuple;
+			///@}
 
-		// * JobSwitch handlers * //
+
+		// @name JobSwitch handlers
+			///@{
 			explicit operator bool() const { return (bool)perform; }
 			bool operator! () const { return !perform; }
-			JobSwitch perform; //!< Boolean job property that can be used as a switch for performing a loop to fill this `NTuple` (property name starts with `"do"` by default).
-			JobSwitch write; //!< Boolean job property that determines whether or not to write data stored to this `NTuple` to a `TTree` (property name starts with `"write_"` by default).
+			bool DoWrite() const { return (bool)write; }
+			///@}
+
 
 	private:
-		std::map<std::string, NTuple::Item<double> > items;
-		void SetSwitch(JobSwitch &obj, const std::string &prepend);
+		// @name Setters
+			///@{
+			void SetSwitch(JobSwitch &obj, const std::string &prepend);
+			///@}
+
+
+		// @name Data members
+			///@{
+			JobSwitch perform; //!< Boolean job property that can be used as a switch for performing a loop to fill this `NTuple` (property name starts with `"do"` by default).
+			JobSwitch write;   //!< Boolean job property that determines whether or not to write data stored to this `NTuple` to a `TTree` (property name starts with `"write_"` by default).
+			NTuple::Tuple *fTuple; //!< Pointer to the encapsulated `NTuple::Tuple`.
+			std::map<std::string, NTuple::Item<double> > items; //!< Inventory of added items.
+			///@}
 	};
 
 

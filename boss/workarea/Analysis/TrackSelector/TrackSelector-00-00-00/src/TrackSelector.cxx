@@ -102,8 +102,7 @@
 
 
 	/**
-	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called once in the beginning <i>of each run</i>.
-	 * @details Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
+	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called once in the beginning <i>of each run</i>. Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
 	 */
 	StatusCode TrackSelector::initialize()
 	{
@@ -189,7 +188,7 @@
 
 
 	/**
-	 * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
+	 * @brief Inherited `execute` method of the `Algorithm` which is called *for each event*.
 	 */
 	StatusCode TrackSelector::execute()
 	{
@@ -325,7 +324,7 @@
 						fNChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
 
 					/// <li> <b>Write</b> charged track vertex position info ("charged" branch)
-						if(fNTuple_charged.write) {
+						if(fNTuple_charged.DoWrite()) {
 							fNTuple_charged.at("vx")    = fTrackMDC->x();
 							fNTuple_charged.at("vy")    = fTrackMDC->y();
 							fNTuple_charged.at("vz")    = fTrackMDC->z();
@@ -335,14 +334,14 @@
 							fNTuple_charged.at("rvphi") = rvphi;
 							fNTuple_charged.at("phi")   = phi;
 							fNTuple_charged.at("p")     = fTrackMDC->p();
-							NTupleContainer::Get("charged").Write();
+							fNTuple_charged.Write();
 						}
 
 					/// <li> <b>Write</b> dE/dx PID information ("dedx" branch)
-						if(fNTuple_dedx.write) WriteDedxInfo(fNTuple_dedx);
+						WriteDedxInfo(*fTrackIterator, fNTuple_dedx);
 
 					/// <li> <b>Write</b> Time-of-Flight PID information ("tof*" branch)
-						if(fNTuple_ToFEC:write || fNTuple_ToFIB:write || fNTuple_ToFOB:write) {
+						if(fNTuple_TofEC.DoWrite() || fNTuple_TofIB.DoWrite() || fNTuple_TofOB.DoWrite()) {
 
 							// * Check if MDC and TOF info for track are valid *
 							if(!(*fTrackIterator)->isMdcTrackValid()) continue;
@@ -360,16 +359,16 @@
 								if(!hitStatus.is_counter()) continue;
 								if(hitStatus.is_barrel()) {
 									if(hitStatus.layer() == 1) { // inner barrel
-										if(fNTuple_ToFIB.write) WriteTofInformation(iter_tof, ptrk, "ToFIB", fNTuple_TofIB);
+										if(fNTuple_TofIB.DoWrite()) WriteTofInformation(iter_tof, ptrk, fNTuple_TofIB);
 									} else if(hitStatus.layer() == 2) { // outer barrel
-										if(fNTuple_ToFOB.write) WriteTofInformation(iter_tof, ptrk, "ToFOB", fNTuple_TofOB);
+										if(fNTuple_TofOB.DoWrite()) WriteTofInformation(iter_tof, ptrk, fNTuple_TofOB);
 									}
 								}
-								else if(fNTuple_ToFEC.write && hitStatus.layer() == 0) // end cap
-									WriteTofInformation(iter_tof, ptrk, "ToFEC", fNTuple_TofEC);
+								else if(fNTuple_TofEC.DoWrite() && hitStatus.layer() == 0) // end cap
+									WriteTofInformation(iter_tof, ptrk, fNTuple_TofEC);
 							}
 
-						} // if(fNTuple_tofec.write || fNTuple_tofib.write || fNTuple_tofob.write)
+						} // if(fNTuple_tofec.DoWrite() || fNTuple_tofib.DoWrite() || fNTuple_tofob.DoWrite())
 
 					/// </ol>
 				}
@@ -403,7 +402,7 @@
 						if(fCut_PhotonEnergy.FailsMin(fTrackEMC->energy())) continue;
 
 					/// <li> <b>Write</b> neutral track information (if `write_neutral` is set to `true`).
-						if(fNTuple_neutral.write) {
+						if(fNTuple_neutral.DoWrite()) {
 							fNTuple_neutral.at("E")     = fTrackEMC->energy();
 							fNTuple_neutral.at("x")     = fTrackEMC->x();
 							fNTuple_neutral.at("y")     = fTrackEMC->y();
@@ -426,7 +425,7 @@
 
 
 		/// <li> <b>Write</b> event info (`"mult"` branch)
-			if(fNTuple_mult.write) {
+			if(fNTuple_mult.DoWrite()) {
 				fNTuple_mult.at("Ntotal")       = fEvtRecEvent->totalTracks();
 				fNTuple_mult.at("Ncharge")      = fEvtRecEvent->totalCharged();
 				fNTuple_mult.at("Nneutral")     = fEvtRecEvent->totalNeutral();
@@ -439,7 +438,7 @@
 			}
 
 		/// <li> <b>Write</b> event info (`"vertex"` branch)
-			if(fNTuple_vertex.write) {
+			if(fNTuple_vertex.DoWrite()) {
 				fNTuple_vertex.at("vx0") = fVertexPoint.x();
 				fNTuple_vertex.at("vy0") = fVertexPoint.y();
 				fNTuple_vertex.at("vz0") = fVertexPoint.z();
@@ -544,27 +543,23 @@
 
 
 	/**
-	 * @brief   Helper function that allows you to create pair of a string with a `NTuplePtr`.
-	 * @details This function first attempts to see if there is already an `NTuple` in the output file. If not, it will book an `NTuple` of 
-	 *
-	 * @param tupleName This will not only be the name of your `NTuple`, but also the name of the `TTree` in the output ROOT file when you use `NTuple::write()`. The name used here is also used as identifier in `NTuplePtr` map `NTupleContainer::instances`. In other words, you can get any of the `NTuplePtr`s in this map by using `NTupleContainer::instances[<tuple name>]`. If there is no `NTuple` of this name, it will return a `nullptr`.
-	 * @param tupleTitle Description of the `NTuple`. Has a default value if you don't want to think about this.
+	 * @brief Helper function that allows you to relate the `NTupleContainer` argument `tuple` to the output file (i.e. to 'book' it).
 	 */
 	void TrackSelector::BookNTuple(NTupleContainer &tuple)
 	{
 		/// <ol>
 		/// <li> Form a string for booking in the file. Typically: `"FILE1/<tree name>"`.
-		const char* bookName = Form("FILE1/%s", tuple::name);
+		const char* bookName = Form("FILE1/%s", tuple.Name());
 		/// <li> Attempt to get this `NTuple::Tuple` from file the file.
 		NTuplePtr nt(ntupleSvc(), bookName);
 		/// <li> If not available in file, book a new one.
 		if(!nt) {
-			fLog << MSG::INFO << "Booked NTuple \"" << tuple::name << "\"" << endmsg;
-			nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, tupleTitle);
-			if(!nt) fLog << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << " (" << tuple::name << ")" << endmsg;
+			fLog << MSG::INFO << "Booked NTuple \"" << tuple.Name() << "\"" << endmsg;
+			nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, tuple.Description());
+			if(!nt) fLog << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << " (" << tuple.Name() << ")" << endmsg;
 		}
 		/// <li> Add the booked `NTuple::Tuple` to the `NTuple` mapping (`NTupleContainer::instances`). <b> Note</b>: Use `map::operator[]` if you want to book an `NTuple::Item` and use `map::at` if you want to access the `NTuple` by key value. This ensures that the programme throws an exception if you ask for the wrong key later.
-		NTupleContainer::instances[tuple::name] = nt.ptr();
+		tuple.SetTuplePtr(nt);
 		/// </ol>
 	}
 
@@ -575,7 +570,7 @@
 	void TrackSelector::BookNTuples()
 	{
 		std::map<std::string, NTupleContainer*>::iterator it = NTupleContainer::instances.begin();
-		for(it; it != NTupleContainer::instances.end(); ++it) BookNTuple(it->second);
+		for(it; it != NTupleContainer::instances.end(); ++it) BookNTuple(*it->second);
 	}
 
 
@@ -586,8 +581,8 @@
 	{
 		std::list<JobSwitch*>::iterator it = JobSwitch::gJobSwitches.begin();
 		for(; it != JobSwitch::gJobSwitches.end(); ++it) {
-			declareProperty((*it)->name, (*it)->value);
-			fLog << MSG::INFO << "  added property \"" << (*it)->name << "\"" << endmsg;
+			declareProperty((*it)->Name(), (*it)->value);
+			fLog << MSG::INFO << "  added property \"" << (*it)->Name() << "\"" << endmsg;
 		}
 	}
 
@@ -601,37 +596,41 @@
 	/**
 	 * @brief Encapsulates of the writing procedure for \f$dE/dx\f$ energy loss information <i>for one track</i>.
 	 * @details Here, you should use `map::at` to access the `NTuple::Item`s and `NTuplePtr`, because you want your package to throw an exception if the element does not exist. See http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115 for available data members of `RecMdcDedx`
+	 *
 	 * @param evtRecTrack Pointer to the reconstructed track of which you want to write the \f$dE/dx\f$ data.
-	 * @param tupleName The name of the tuple to which you want to write the information.
-	 * @param map The `map` from which you want to get the `NTuple::Item`s.
+	 * @param tuple `NTupleContainer` to which you want to write the \f$dE/dx\f$ data.
 	 */
 	void TrackSelector::WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer &tuple)
 	{
+		/// -# Abort if the 'write `JobSwitch`' has been set to `false`.
+			if(!tuple.DoWrite()) return;
 
-		/// -# Check if dE/dx and MDC info exists *
-		if(!evtRecTrack->isMdcTrackValid()) return;
-		if(!evtRecTrack->isMdcDedxValid())  return;
-		fTrackMDC  = evtRecTrack->mdcTrack();
-		fTrackDedx = evtRecTrack->mdcDedx();
+		/// -# Abort if \f$dE/dx\f$ and MDC info does not exist
+			if(!evtRecTrack->isMdcTrackValid()) return;
+			if(!evtRecTrack->isMdcDedxValid())  return;
+			fTrackMDC  = evtRecTrack->mdcTrack();
+			fTrackDedx = evtRecTrack->mdcDedx();
 
-		/// -# <b>write</b> energy loss PID info ("dedx" branch)
-		// tuple.at("dedx_K")     = fTrackDedx->getDedxExpect(3);
-		// tuple.at("dedx_P")     = fTrackDedx->getDedxExpect(4);
-		// tuple.at("dedx_e")     = fTrackDedx->getDedxExpect(0);
-		// tuple.at("dedx_mom")   = fTrackDedx->getDedxMoment();
-		// tuple.at("dedx_mu")    = fTrackDedx->getDedxExpect(1);
-		// tuple.at("dedx_pi")    = fTrackDedx->getDedxExpect(2);
-		tuple.at("Ngoodhits")  = fTrackDedx->numGoodHits();
-		tuple.at("Ntotalhits") = fTrackDedx->numTotalHits();
-		tuple.at("chie")       = fTrackDedx->chiE();
-		tuple.at("chik")       = fTrackDedx->chiK();
-		tuple.at("chimu")      = fTrackDedx->chiMu();
-		tuple.at("chip")       = fTrackDedx->chiP();
-		tuple.at("chipi")      = fTrackDedx->chiPi();
-		tuple.at("normPH")     = fTrackDedx->normPH();
-		tuple.at("p")          = fTrackMDC->p();
-		tuple.at("probPH")     = fTrackDedx->probPH();
-		tuple.Write();
+		/// -# Set \f$dE/dx\f$ info and set the `NTuple::Item`s.
+			// tuple.at("dedx_K")     = fTrackDedx->getDedxExpect(3);
+			// tuple.at("dedx_P")     = fTrackDedx->getDedxExpect(4);
+			// tuple.at("dedx_e")     = fTrackDedx->getDedxExpect(0);
+			// tuple.at("dedx_mom")   = fTrackDedx->getDedxMoment();
+			// tuple.at("dedx_mu")    = fTrackDedx->getDedxExpect(1);
+			// tuple.at("dedx_pi")    = fTrackDedx->getDedxExpect(2);
+			tuple.at("Ngoodhits")  = fTrackDedx->numGoodHits();
+			tuple.at("Ntotalhits") = fTrackDedx->numTotalHits();
+			tuple.at("chie")       = fTrackDedx->chiE();
+			tuple.at("chik")       = fTrackDedx->chiK();
+			tuple.at("chimu")      = fTrackDedx->chiMu();
+			tuple.at("chip")       = fTrackDedx->chiP();
+			tuple.at("chipi")      = fTrackDedx->chiPi();
+			tuple.at("normPH")     = fTrackDedx->normPH();
+			tuple.at("p")          = fTrackMDC->p();
+			tuple.at("probPH")     = fTrackDedx->probPH();
+		
+		/// -# <b>Write</b> \f$dE/dx\f$ info.
+			tuple.Write();
 
 	}
 
@@ -653,56 +652,68 @@
 	 */
 	void TrackSelector::WritePIDInformation()
 	{
-		if(!fNTuple_PID.write) return;
-		if(!fPIDInstance) return;
-		fLog << MSG::DEBUG << "Writing PID information" << endmsg;
-		fTrackMDC = (*fTrackIterator)->mdcTrack();
-		if(fTrackMDC) {
-			fNTuple_PID.at("p")    = fTrackMDC->p();
-			fNTuple_PID.at("cost") = cos(fTrackMDC->theta());
-		}
-		fNTuple_PID.at("chiToFEC") = fPIDInstance->chiTofE(2);
-		fNTuple_PID.at("chiToFIB") = fPIDInstance->chiTof1(2);
-		fNTuple_PID.at("chiToFOB") = fPIDInstance->chiTof2(2);
-		fNTuple_PID.at("chidEdx")  = fPIDInstance->chiDedx(2);
-		fNTuple_PID.at("prob_K")   = fPIDInstance->probKaon();
-		fNTuple_PID.at("prob_e")   = fPIDInstance->probElectron();
-		fNTuple_PID.at("prob_mu")  = fPIDInstance->probMuon();
-		fNTuple_PID.at("prob_p")   = fPIDInstance->probProton();
-		fNTuple_PID.at("prob_pi")  = fPIDInstance->probPion();
-		fNTuple_PID.Write();
+		/// -# Abort if the 'write `JobSwitch`' has been set to `false`.
+			if(!fNTuple_PID.DoWrite()) return;
+
+		/// -# Abort if there is no PID instance.
+			if(!fPIDInstance) return;
+
+		/// -# Get PID info and set the `NTuple::Item`s.
+			fLog << MSG::DEBUG << "Writing PID information" << endmsg;
+			fTrackMDC = (*fTrackIterator)->mdcTrack();
+			if(fTrackMDC) {
+				fNTuple_PID.at("p")    = fTrackMDC->p();
+				fNTuple_PID.at("cost") = cos(fTrackMDC->theta());
+			}
+			fNTuple_PID.at("chiToFEC") = fPIDInstance->chiTofE(2);
+			fNTuple_PID.at("chiToFIB") = fPIDInstance->chiTof1(2);
+			fNTuple_PID.at("chiToFOB") = fPIDInstance->chiTof2(2);
+			fNTuple_PID.at("chidEdx")  = fPIDInstance->chiDedx(2);
+			fNTuple_PID.at("prob_K")   = fPIDInstance->probKaon();
+			fNTuple_PID.at("prob_e")   = fPIDInstance->probElectron();
+			fNTuple_PID.at("prob_mu")  = fPIDInstance->probMuon();
+			fNTuple_PID.at("prob_p")   = fPIDInstance->probProton();
+			fNTuple_PID.at("prob_pi")  = fPIDInstance->probPion();
+
+		/// -# <b>Write</b> PID info.
+			fNTuple_PID.Write();
+
 	}
 
 
 	/**
-	 * @brief
+	 * @brief Helper method for writing Time-of-Flight information. This function has be created to enable you to write TOF information for different collections of tracks.
 	 */
 	void TrackSelector::WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, NTupleContainer &tuple)
 	{
+		/// -# Abort if the 'write `JobSwitch`' has been set to `false`.
+			if(!tuple.DoWrite()) return;
 
-		// * Get ToF for each particle hypothesis
-		double path = (*iter_tof)->path();
-		std::vector<double> texp(gNMasses);
-		for(size_t j = 0; j < texp.size(); ++j) {
-			double gb = ptrk/gMasses[j]; // v = p/m (non-relativistic velocity)
-			double beta = gb/sqrt(1+gb*gb);
-			texp[j] = 10 * path /beta/gSpeedOfLight; // hypothesis ToF
-		}
+		/// -# Compute ToF for each particle hypothesis
+			double path = (*iter_tof)->path();
+			std::vector<double> texp(gNMasses);
+			for(size_t j = 0; j < texp.size(); ++j) {
+				double gb = ptrk/gMasses[j]; // v = p/m (non-relativistic velocity)
+				double beta = gb/sqrt(1+gb*gb);
+				texp[j] = 10 * path /beta/gSpeedOfLight; // hypothesis ToF
+			}
 
-		// * <b>write</b> ToF info
-		map.at("p")     = ptrk;
-		map.at("tof")   = (*iter_tof)->tof();
-		map.at("path")  = path;
-		map.at("cntr")  = (*iter_tof)->tofID();
-		map.at("ph")    = (*iter_tof)->ph();
-		map.at("zrhit") = (*iter_tof)->zrhit();
-		map.at("qual")  = (*iter_tof)->quality();
-		map.at("tof_e")    = path - texp[0];
-		map.at("tof_mu")   = path - texp[1];
-		map.at("tof_pi")   = path - texp[2];
-		map.at("tof_K")    = path - texp[3];
-		map.at("tof_p")    = path - texp[4];
-		tuple.Write();
+		/// -# Set the `NTuple::Item`s.
+			tuple.at("p")      = ptrk;
+			tuple.at("tof")    = (*iter_tof)->tof();
+			tuple.at("path")   = path;
+			tuple.at("cntr")   = (*iter_tof)->tofID();
+			tuple.at("ph")     = (*iter_tof)->ph();
+			tuple.at("zrhit")  = (*iter_tof)->zrhit();
+			tuple.at("qual")   = (*iter_tof)->quality();
+			tuple.at("tof_e")  = path - texp[0];
+			tuple.at("tof_mu") = path - texp[1];
+			tuple.at("tof_pi") = path - texp[2];
+			tuple.at("tof_K")  = path - texp[3];
+			tuple.at("tof_p")  = path - texp[4];
+
+		/// -# <b>Write</b> ToF info
+			tuple.Write();
 
 	}
 
@@ -752,11 +763,11 @@
 	 * @brief Helper function for `WriteCuts` that allows you to write one entry (usually: `min`, `max`, `counter`).
 	 */
 	template<typename TYPE>
-	void TrackSelector::WriteCuts_entry(const std::string &name, TYPE &value)
+	void TrackSelector::WriteCuts_entry(const TYPE &value)
 	{
 		for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
 			fNTuple_cuts[(*cut)->name] = value;
-		NTupleContainer::Get("_cutvalues").Write();
+		fNTuple_cuts.Write();
 	}
 
 
@@ -782,13 +793,13 @@
 		/// -# For each cut name, create an `NTuple::Item<double>` in the map `fNTuple_cuts`.
 		std::list<CutObject*>::iterator cut;
 		for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut) {
-			fNTuple_cuts.AddItem((*cut)->name);
+			fNTuple_cuts.AddItem((*cut)->Name());
 		}
-		/// -# Write `min` values to the first entry of `"_cutvalues"`.
+		/// -# Write `min` values to the first entry.
 		WriteCuts_entry((*cut)->min);
-		/// -# Write `max` values to the second entry of `"_cutvalues"`.
+		/// -# Write `max` values to the second entry.
 		WriteCuts_entry((*cut)->max);
-		/// -# Write the `counter` values to the third entry of `"_cutvalues"`.
+		/// -# Write the `counter` values to the third entry.
 		WriteCuts_entry((*cut)->counter);
 	}
 

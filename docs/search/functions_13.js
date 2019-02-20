@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['topoana',['topoana',['../classtopoana.html#af139b4dd8a5013093a463fe192c668dd',1,'topoana']]],
-  ['trackselector',['TrackSelector',['../classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1',1,'TrackSelector']]],
-  ['trim',['Trim',['../classConfigLoader.html#a3b55bf87c0d21dbec82d7cf5076f47c4',1,'ConfigLoader::Trim()'],['../classtopoana.html#a583ae5bddb14229629baa4b1dcac1f7a',1,'topoana::trim()']]]
+  ['write',['Write',['../classNTupleContainer.html#aa31b7842b3b6cfa5fec22eae71163d03',1,'NTupleContainer::Write()'],['../structNTupleTopoAna.html#a904ff3dd4a372bb0934baf2618924f0a',1,'NTupleTopoAna::Write()']]],
+  ['writecuts',['WriteCuts',['../classTrackSelector.html#aefb3066d29d1839c5427e2f0f8c0fa22',1,'TrackSelector']]],
+  ['writecuts_5fentry',['WriteCuts_entry',['../classTrackSelector.html#a3c3b85ecbeed4c988aeb0a05c0f0bb90',1,'TrackSelector']]],
+  ['writededxinfo',['WriteDedxInfo',['../classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b',1,'TrackSelector']]],
+  ['writededxinfoforvector',['WriteDedxInfoForVector',['../classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508',1,'TrackSelector']]],
+  ['writefitresults',['WriteFitResults',['../classD0phi__KpiKK.html#a87c24f57886b36058d58ab5580628229',1,'D0phi_KpiKK::WriteFitResults()'],['../classrhopi__pipigg.html#abe0a725e30c17ad2b082c3c8c9c7208d',1,'rhopi_pipigg::WriteFitResults()']]],
+  ['writepidinformation',['WritePIDInformation',['../classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf',1,'TrackSelector']]],
+  ['writetofinformation',['WriteTofInformation',['../classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae',1,'TrackSelector']]]
 ];

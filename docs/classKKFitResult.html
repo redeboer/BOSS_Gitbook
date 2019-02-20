@@ -102,6 +102,7 @@ Inheritance diagram for KKFitResult:</div>
   <img src="classKKFitResult.png" usemap="#KKFitResult_map" alt=""/>
   <map id="KKFitResult_map" name="KKFitResult_map">
 <area href="classKKFitResult__D0phi__KpiKK.html" title="Derived class for a container that contains important fit results of the KalmanKinematicFit, including masses. " alt="KKFitResult_D0phi_KpiKK" shape="rect" coords="0,56,157,80"/>
+<area href="classKKFitResult__rhopi__pipigg.html" title="Derived class for a container that contains important fit results of the KalmanKinematicFit, including masses. " alt="KKFitResult_rhopi_pipigg" shape="rect" coords="167,56,324,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -111,8 +112,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac70733af97eb1c5214ae57ccffe88cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d9c2f00419e514a5f8cdd4ab180ceef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#a5d9c2f00419e514a5f8cdd4ab180ceef">KKFitResult</a> (KalmanKinematicFit *kkmfit)</td></tr>
 <tr class="separator:a5d9c2f00419e514a5f8cdd4ab180ceef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc4f946d8e902b15aadaba7e65b24c23"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#abc4f946d8e902b15aadaba7e65b24c23">HasFit</a> ()</td></tr>
-<tr class="separator:abc4f946d8e902b15aadaba7e65b24c23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2e2ee5c9f82ea348e46372fac624065"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#ae2e2ee5c9f82ea348e46372fac624065">operator bool</a> () const</td></tr>
+<tr class="separator:ae2e2ee5c9f82ea348e46372fac624065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab032e506a0ffee8489c86d1b4b534aec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#ab032e506a0ffee8489c86d1b4b534aec">operator!</a> () const</td></tr>
+<tr class="separator:ab032e506a0ffee8489c86d1b4b534aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae099966c518c51c5620025350f1bbb3e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#ae099966c518c51c5620025350f1bbb3e">IsBetter</a> () const =0</td></tr>
 <tr class="separator:ae099966c518c51c5620025350f1bbb3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -197,33 +200,6 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="abc4f946d8e902b15aadaba7e65b24c23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc4f946d8e902b15aadaba7e65b24c23">&#9670;&nbsp;</a></span>HasFit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool KKFitResult::HasFit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="KKFitResult_8h_source.html#l00035">35</a> of file <a class="el" href="KKFitResult_8h_source.html">KKFitResult.h</a>.</p>
-
-</div>
-</div>
 <a id="ae099966c518c51c5620025350f1bbb3e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae099966c518c51c5620025350f1bbb3e">&#9670;&nbsp;</a></span>IsBetter() <span class="overload">[1/2]</span></h2>
 
@@ -247,7 +223,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classKKFitResult__D0phi__KpiKK.html#af2a47b6a47ae6061cd53f1220426c06e">KKFitResult_D0phi_KpiKK</a>.</p>
+<p>Implemented in <a class="el" href="classKKFitResult__D0phi__KpiKK.html#af2a47b6a47ae6061cd53f1220426c06e">KKFitResult_D0phi_KpiKK</a>, and <a class="el" href="classKKFitResult__rhopi__pipigg.html#a73caa48c589700b291ee423603ef8eff">KKFitResult_rhopi_pipigg</a>.</p>
 
 </div>
 </div>
@@ -293,6 +269,60 @@ Protected Attributes</h2></td></tr>
 </ol>
 
 <p class="definition">Definition at line <a class="el" href="KKFitResult_8cxx_source.html#l00046">46</a> of file <a class="el" href="KKFitResult_8cxx_source.html">KKFitResult.cxx</a>.</p>
+
+</div>
+</div>
+<a id="ae2e2ee5c9f82ea348e46372fac624065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2e2ee5c9f82ea348e46372fac624065">&#9670;&nbsp;</a></span>operator bool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">KKFitResult::operator bool </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="KKFitResult_8h_source.html#l00035">35</a> of file <a class="el" href="KKFitResult_8h_source.html">KKFitResult.h</a>.</p>
+
+</div>
+</div>
+<a id="ab032e506a0ffee8489c86d1b4b534aec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab032e506a0ffee8489c86d1b4b534aec">&#9670;&nbsp;</a></span>operator!()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool KKFitResult::operator! </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="KKFitResult_8h_source.html#l00036">36</a> of file <a class="el" href="KKFitResult_8h_source.html">KKFitResult.h</a>.</p>
 
 </div>
 </div>
@@ -349,7 +379,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Current best value for the comparison. Note that it is automatically reset to the value set here when all (derived) instances of <code><a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a></code> are destroyed. </p>
 
-<p class="definition">Definition at line <a class="el" href="KKFitResult_8h_source.html#l00042">42</a> of file <a class="el" href="KKFitResult_8h_source.html">KKFitResult.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KKFitResult_8h_source.html#l00043">43</a> of file <a class="el" href="KKFitResult_8h_source.html">KKFitResult.h</a>.</p>
 
 </div>
 </div>
@@ -365,7 +395,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KKFitResult_8h_source.html#l00039">39</a> of file <a class="el" href="KKFitResult_8h_source.html">KKFitResult.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KKFitResult_8h_source.html#l00040">40</a> of file <a class="el" href="KKFitResult_8h_source.html">KKFitResult.h</a>.</p>
 
 </div>
 </div>
@@ -389,7 +419,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KKFitResult_8h_source.html#l00050">50</a> of file <a class="el" href="KKFitResult_8h_source.html">KKFitResult.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KKFitResult_8h_source.html#l00051">51</a> of file <a class="el" href="KKFitResult_8h_source.html">KKFitResult.h</a>.</p>
 
 </div>
 </div>

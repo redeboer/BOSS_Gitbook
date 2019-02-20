@@ -1,17 +1,19 @@
 var searchData=
 [
-  ['read1stlineorclosecurly',['read1stLineOrCloseCurly',['../classtopoana.html#ad22376fe02bc4758f731ca67558d4450',1,'topoana']]],
-  ['readcard',['readCard',['../classtopoana.html#a659292fd464c41793c16e9cb6b037537',1,'topoana']]],
-  ['readclosecurly',['readCloseCurly',['../classtopoana.html#af3996abb087071e6893ff4ffb3658c9e',1,'topoana']]],
-  ['readextralinesorclosecurly',['readExtraLinesOrCloseCurly',['../classtopoana.html#ad18c6af9879a5ad75912e25c53dc5cf3',1,'topoana']]],
-  ['readopencurly',['readOpenCurly',['../classtopoana.html#ad4ba5ea384be3a5bf811c32bdb7c5058',1,'topoana']]],
-  ['reconstructedparticle',['ReconstructedParticle',['../classReconstructedParticle.html#a92d433507c9aaa350dd5999eff1c5cab',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode)'],['../classReconstructedParticle.html#a4d4ac611435e63765574304852ec23e6',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode)'],['../classReconstructedParticle.html#a38b19a3d3f5b338ac7e5e553cc925442',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode, const char *daughters)'],['../classReconstructedParticle.html#a95cf3aff593e7dbbb86849109cadc894',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode, const char *daughters)']]],
-  ['recurhigherhierexchord',['recurHigherHierExchOrd',['../classtopoana.html#a9643448aab7ed52cb0159ed9ba0c989e',1,'topoana']]],
-  ['recurhighhierexchord',['recurHighHierExchOrd',['../classtopoana.html#a99a9290b63284f0516214a643a649cdd',1,'topoana']]],
-  ['removeleading',['RemoveLeading',['../classConfigLoader.html#a547e7300a3f5100cf5d8484392a9a4d3',1,'ConfigLoader']]],
-  ['removetrailing',['RemoveTrailing',['../classConfigLoader.html#a621262f4fd263be406c5fc35bd93eb39',1,'ConfigLoader']]],
-  ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#a5a404d3db862276fa70b85a353496d4e',1,'Settings::Particles']]],
-  ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],
-  ['rhopi_5fpipigg',['rhopi_pipigg',['../classrhopi__pipigg.html#a6a2dce6146cebb243245965e9d9d3a85',1,'rhopi_pipigg']]],
-  ['rhopialg',['RhopiAlg',['../classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb',1,'RhopiAlg']]]
+  ['savecanvas',['SaveCanvas',['../namespaceCommonFunctions_1_1Draw.html#a36f64ebbbd69516c8d22dec07fc3037e',1,'CommonFunctions::Draw']]],
+  ['setaddress',['SetAddress',['../classChainLoader.html#a26f9c3528dea8c6de42a9605ec67d741',1,'ChainLoader']]],
+  ['setaddresssafe',['SetAddressSafe',['../classChainLoader.html#ac172510bab0e3ed52e23e92558351f6a',1,'ChainLoader']]],
+  ['setaxistitles',['SetAxisTitles',['../namespaceCommonFunctions_1_1Hist.html#a1fc2ea57d25a75da6bcdd3b83c063b6f',1,'CommonFunctions::Hist']]],
+  ['setdaughterlabel',['SetDaughterLabel',['../classReconstructedParticle.html#a07eb465bf055a192e36f364dfb4ae7ef',1,'ReconstructedParticle']]],
+  ['setdescription',['SetDescription',['../classContainer__base.html#a308f1d5576bb84f72ccb057dc4d7ef53',1,'Container_base']]],
+  ['setlogscale',['SetLogScale',['../namespaceCommonFunctions_1_1Draw.html#a909c1fc4f2ff18ee7626a4188795d4d2',1,'CommonFunctions::Draw']]],
+  ['setname',['SetName',['../classContainer__base.html#a1e9e09bb2b32e89bc8dc05984494c76b',1,'Container_base::SetName(const std::string &amp;new_name)'],['../classContainer__base.html#a35f610266590dd6151eee1509db7eb02',1,'Container_base::SetName(const std::string &amp;new_name, const std::string &amp;new_desc)'],['../classContainer__indexed.html#a1e1ce1b750ba1ad8da3840b1b4577835',1,'Container_indexed::SetName(const std::string &amp;name)'],['../classContainer__indexed.html#a4505ef6a3725865fb3a1584d279f5d3f',1,'Container_indexed::SetName(const std::string &amp;name, const std::string &amp;desc)']]],
+  ['setoutputfilename',['SetOutputFilename',['../namespaceCommonFunctions_1_1File.html#a59d365fb3792eaa3bab6d275a1a2d9ba',1,'CommonFunctions::File']]],
+  ['setparameter',['SetParameter',['../classArgPair__base.html#a28e0a1e88d671ee6400bfa111308a053',1,'ArgPair_base::SetParameter()'],['../classArgPair.html#aec1fe37fc0376b3ac49d1b946d7bd444',1,'ArgPair::SetParameter()']]],
+  ['setparameters',['SetParameters',['../classArgPair__base.html#ab3c42f3279af1179c104b85396c645d4',1,'ArgPair_base']]],
+  ['setsmallestangles',['SetSmallestAngles',['../classrhopi__pipigg.html#a7b6e6252d16466e637ecc28a82c5df8d',1,'rhopi_pipigg']]],
+  ['setswitch',['SetSwitch',['../classNTupleContainer.html#a3641332269883bdc92800d94382ffd03',1,'NTupleContainer']]],
+  ['settupleptr',['SetTuplePtr',['../classNTupleContainer.html#af4ddf1d8a971e9100130daddb99f56ff',1,'NTupleContainer']]],
+  ['setvalue',['SetValue',['../classArgPair.html#ab51e8d3e57fd6305a7ff5070d37317cf',1,'ArgPair']]],
+  ['setvalues',['SetValues',['../classKKFitResult__D0phi__KpiKK.html#a78ab66239f9af5cc4a81c23cee333d8f',1,'KKFitResult_D0phi_KpiKK::SetValues(KalmanKinematicFit *kkmfit)'],['../classKKFitResult__D0phi__KpiKK.html#a14148e5ecdd29b6f0fd9bd6cc1ee40d2',1,'KKFitResult_D0phi_KpiKK::SetValues(const HepLorentzVector &amp;pKaonNeg1, const HepLorentzVector &amp;pKaonNeg2, const HepLorentzVector &amp;pKaonPos, const HepLorentzVector &amp;pPionPos)'],['../classKKFitResult__D0phi__KpiKK.html#a967fa57dec90b34e3eb8af2560ab2ca1',1,'KKFitResult_D0phi_KpiKK::SetValues(Event::McParticle *kaonNeg1, Event::McParticle *kaonNeg2, Event::McParticle *kaonPos, Event::McParticle *pionPos)'],['../classKKFitResult__rhopi__pipigg.html#a6be76191e1a07cca588408115545002a',1,'KKFitResult_rhopi_pipigg::SetValues(KalmanKinematicFit *kkmfit)'],['../classKKFitResult__rhopi__pipigg.html#a31d0ef88dcad4ad18022ff97d29b2141',1,'KKFitResult_rhopi_pipigg::SetValues(const HepLorentzVector &amp;pKaonNeg1, const HepLorentzVector &amp;pKaonNeg2, const HepLorentzVector &amp;pKaonPos, const HepLorentzVector &amp;pPionPos)'],['../classKKFitResult__rhopi__pipigg.html#a2db157e5a26b5dbd0b088ea3cd349a17',1,'KKFitResult_rhopi_pipigg::SetValues(Event::McParticle *kaonNeg1, Event::McParticle *kaonNeg2, Event::McParticle *kaonPos, Event::McParticle *pionPos)'],['../classKKFitResult.html#add33917bee1940892f0b180d5f6cf6ea',1,'KKFitResult::SetValues()']]]
 ];

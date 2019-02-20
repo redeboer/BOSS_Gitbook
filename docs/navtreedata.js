@@ -38,10 +38,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AnalyseBOSSOutput_8C.html",
-"classChainLoader.html#aa9e4ee8ca9c46aeecb7f394c006f3da1",
-"classPipiJpsi.html#ae8259dfa2b04caa6b455ac3466cd5eff",
-"classm__trkInfo.html#af8a60e4ede5d5ae9be9bb3884e7a533b",
-"classtopoana.html#af2fa067551213a5366374f51910616df"
+"classChainLoader.html#a6635ef6d5998d30e8fa11f0ebe26bb1a",
+"classPipiJpsi.html#a4c4efde2bd7bac5c80784fb0fa017bce",
+"classTrackSelector.html#a80e9293aeca2c5b955eb3ed393c908f6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

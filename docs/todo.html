@@ -84,40 +84,50 @@ $(document).ready(function(){initNavTree('todo.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000014"></a>Member <a class="el" href="namespaceCommonFunctions_1_1Draw.html#a6b0e72f8ca1433e3a776b30c55834bb6">CommonFunctions::Draw::DrawAndSave</a>  (const char *saveas, Option_t *opt, const char *logScale, ARGS... args)</dt>
+<dt><a class="anchor" id="_todo000018"></a>Member <a class="el" href="namespaceCommonFunctions_1_1Draw.html#a6b0e72f8ca1433e3a776b30c55834bb6">CommonFunctions::Draw::DrawAndSave</a>  (const char *saveas, Option_t *opt, const char *logScale, ARGS... args)</dt>
 <dd><p class="startdd">Impossible to compile in <code>make</code> framework? </p>
 <p>Should ideally be <code>TObject</code>s. </p>
 <p class="enddd">Should ideally be <code>TObject</code>s.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="namespaceCommonFunctions_1_1Draw.html#ae2f83fb2d8bfb27ebab8274c541309df">CommonFunctions::Draw::DrawAndSaveRecursion</a>  (Option_t *opt, TYPE first, ARGS... args)</dt>
+<dt><a class="anchor" id="_todo000016"></a>Member <a class="el" href="namespaceCommonFunctions_1_1Draw.html#ae2f83fb2d8bfb27ebab8274c541309df">CommonFunctions::Draw::DrawAndSaveRecursion</a>  (Option_t *opt, TYPE first, ARGS... args)</dt>
 <dd>Should ideally be <code>TObject</code>s.  </dd>
+<dt><a class="anchor" id="_todo000011"></a>Class <a class="el" href="classContainer__base.html">Container_base</a>  </dt>
+<dd>Encapsulate in <code>namespace</code> structure. </dd>
+<dt><a class="anchor" id="_todo000012"></a>Class <a class="el" href="classContainer__indexed.html">Container_indexed</a>  </dt>
+<dd>See if static <code>instances</code> member is shared in derived classes or whether they are independent. </dd>
+<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classContainer__indexed.html#a7f20601b36da5a8c273354c73627b087">Container_indexed::KeyExists</a>  (const std::map&lt; std::string, TYPE *&gt; mapping, const std::string &amp;key) const</dt>
+<dd>Use error handling for existing keys, not <code>terminate</code>.  </dd>
 <dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752">D0phi_KpiKK::finalize_rest</a>  ()</dt>
 <dd>Add log output to <code>finalize</code> step.  </dd>
 <dt><a class="anchor" id="_todo000001"></a>Member <a class="el" href="classD0phi__KpiKK.html#afd19015366820f50472c723e6610e53e">D0phi_KpiKK::fKaonNeg</a>  </dt>
 <dd>Decide if this can be formulated in terms of some <code>fEvtRecTrackMap</code>.  </dd>
-<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>  </dt>
+<dt><a class="anchor" id="_todo000014"></a>Member <a class="el" href="TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>  </dt>
 <dd>It would be more efficient to use <code>unordered_map</code>, but this requires a newer version of <code>gcc</code>.  </dd>
-<dt><a class="anchor" id="_todo000016"></a>Member <a class="el" href="classParticle.html#ae97e941db471dbe130c5aa7277d8c224">Particle::DetermineNameLaTeX</a>  ()</dt>
+<dt><a class="anchor" id="_todo000013"></a>Class <a class="el" href="classNTupleContainer.html">NTupleContainer</a>  </dt>
+<dd><p class="startdd">Upgrade using templates. Currently only accepts <code>double</code>s! </p>
+<p class="enddd">Think about a solution for indexed items. </p>
+</dd>
+<dt><a class="anchor" id="_todo000020"></a>Member <a class="el" href="classParticle.html#ae97e941db471dbe130c5aa7277d8c224">Particle::DetermineNameLaTeX</a>  ()</dt>
 <dd>Expand the switch statement here if you miss any particles. See e.g. <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html,">http://home.fnal.gov/~mrenna/lutp0613man2/node44.html,</a> or use the <code>TDatabasePDG</code> in <code>ROOT</code>.  </dd>
-<dt><a class="anchor" id="_todo000015"></a>Namespace <a class="el" href="namespacestd__fix.html">std_fix</a>  </dt>
+<dt><a class="anchor" id="_todo000019"></a>Namespace <a class="el" href="namespacestd__fix.html">std_fix</a>  </dt>
 <dd>This version of the header contains the definitions as well (as <code>inline</code>) to avoid multiple definitions. But it should be possible to use the old version (<code>.old</code> and <code>.cpp</code>), which use <code>extern</code> and <code>inline</code>, without running into multiple definition problems.  </dd>
-<dt><a class="anchor" id="_todo000011"></a>Class <a class="el" href="classTrackSelector.html">TrackSelector</a>  </dt>
+<dt><a class="anchor" id="_todo000015"></a>Class <a class="el" href="classTrackSelector.html">TrackSelector</a>  </dt>
 <dd>The design of using <code>map</code>s of <code>NTuple::Items</code>s is not ideal, as it does not (yet) allow enough flexibility. </dd>
-<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb">TrackSelector::execute</a>  ()</dt>
+<dt><a class="anchor" id="_todo000007"></a>Member <a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb">TrackSelector::execute</a>  ()</dt>
 <dd><p class="startdd">Might have to make this aborting behaviour less strict. </p>
 <p>Why? What does this mean precisely? </p>
 <p>Check if <code>helixip.pivot(fVertexPoint)</code> doesn't affect <code>fVertexPoint</code>. </p>
 <p>Why? What does this mean precisely? </p>
 <p class="enddd">Check if <code>helixip.pivot(fVertexPoint)</code> doesn't affect <code>fVertexPoint</code>.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">TrackSelector::initialize</a>  ()</dt>
+<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">TrackSelector::initialize</a>  ()</dt>
 <dd><p class="startdd">Get explanation of geometry (angle) definitions in an event. </p>
 <p>Investigate what this parameter precisely means. </p>
 <p class="enddd">Investigate what this parameter precisely means.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">TrackSelector::InitializePID</a>  (const int method, const int pidsys, const int pidcase, const double chimin=4.)</dt>
+<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">TrackSelector::InitializePID</a>  (const int method, const int pidsys, const int pidcase, const double chimin=4.)</dt>
 <dd>Since BOSS 7.0.4, <code>ParticleID::useTofCorr()</code> should be used for ToF instead of e.g. <code>useTof1</code>. See talk by Liu Huanhuan on 2019/01/10. </dd>
-<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">TrackSelector::TrackSelector</a>  (const std::string &amp;name, ISvcLocator *pSvcLocator)</dt>
+<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">TrackSelector::TrackSelector</a>  (const std::string &amp;name, ISvcLocator *pSvcLocator)</dt>
 <dd>Check if <code>DeclareCuts</code> should be moved to <code><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4" title="(Inherited) initialize step of Algorithm. ">TrackSelector::initialize</a></code> in order to also declare the cuts that are defined in the derived algorithm. This depends on whether the constructor of the base or of the derived class is called first. </dd>
 </dl>
 </div></div><!-- contents -->

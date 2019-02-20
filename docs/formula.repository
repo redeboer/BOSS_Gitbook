@@ -48,23 +48,23 @@
 \form#47:$xyz$
 \form#48:$r$
 \form#49:$\psi' \rightarrow \pi\pi J/\psi \rightarrow \pi\pi ll$
-\form#50:$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\gamma\gamma $
-\form#51:$\gamma$
-\form#52:$\pi^0 \rightarrow \gamma\gamma$
-\form#53:$\rho^0 \rightarrow \pi^-\pi^+$
-\form#54:$\rho^- \rightarrow \pi^0\pi^-$
-\form#55:$\rho^+ \rightarrow \pi^0\pi^+$
-\form#56:$J/\psi \rightarrow \rho^0\pi^0$
-\form#57:$J/\psi \rightarrow \rho^+\pi^-$
-\form#58:$J/\psi \rightarrow \rho^-\pi^+$
-\form#59:$\pm$
-\form#60:$\pi^0$
-\form#61:$\pi^+\pi^-$
-\form#62:$\rho^0$
-\form#63:$\pi^0\pi^+$
-\form#64:$\rho^+$
-\form#65:$\pi^0\pi^-$
-\form#66:$\rho^-$
+\form#50:$\pi^0$
+\form#51:$\rho^0$
+\form#52:$\rho^-$
+\form#53:$\rho^+$
+\form#54:$J/\psi \rightarrow \rho^0\pi^0$
+\form#55:$J/\psi \rightarrow \rho^-\pi^+$
+\form#56:$J/\psi \rightarrow \rho^+\pi^-$
+\form#57:$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\gamma\gamma $
+\form#58:$\gamma$
+\form#59:$\pi^0 \rightarrow \gamma\gamma$
+\form#60:$\rho^0 \rightarrow \pi^-\pi^+$
+\form#61:$\rho^- \rightarrow \pi^0\pi^-$
+\form#62:$\rho^+ \rightarrow \pi^0\pi^+$
+\form#63:$\pm$
+\form#64:$\pi^+\pi^-$
+\form#65:$\pi^0\pi^+$
+\form#66:$\pi^0\pi^-$
 \form#67:$Z$
 \form#68:$e^+e^-$
 \form#69:$p$

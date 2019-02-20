@@ -1,7 +1,6 @@
 var functions_vars =
 [
     [ "c", "functions_vars.html", null ],
-    [ "d", "functions_vars_d.html", null ],
     [ "e", "functions_vars_e.html", null ],
     [ "f", "functions_vars_f.html", null ],
     [ "g", "functions_vars_g.html", null ],
@@ -11,5 +10,6 @@ var functions_vars =
     [ "p", "functions_vars_p.html", null ],
     [ "r", "functions_vars_r.html", null ],
     [ "t", "functions_vars_t.html", null ],
-    [ "v", "functions_vars_v.html", null ]
+    [ "v", "functions_vars_v.html", null ],
+    [ "w", "functions_vars_w.html", null ]
 ];

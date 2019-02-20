@@ -56,8 +56,8 @@
 
 	void NTupleContainer::Write() const
 	{
-		if(!tuple || !write) return;
-		tuple->write();
+		if(!fTuple || !write) return;
+		fTuple->write();
 	}
 
 
@@ -72,8 +72,8 @@
 	void NTupleContainer::AddItem(const std::string &item_name)
 	{
 		/// <ol>
-		/// <li> <b>Abort</b> if `tuple` has not been booked.
-		if(!tuple) {
+		/// <li> <b>Abort</b> if `fTuple` has not been booked.
+		if(!fTuple) {
 			std::cout << "WARNING: NTuple \"" << Name() << "\" has not been booked, so cannot add item \"" << item_name << "\"" << std::endl;
 			return;
 		}
@@ -81,7 +81,7 @@
 		if(!perform) return;
 		/// <li> Create an `NTuple::Item` using the `items` mapping.
 		items[item_name];
-		/// <li> Create an `NTuple::Item` using the `items` mapping to the `tuple` and to the map of `items`, if allowed by the `perform` job switch.
-		tuple->addItem(item_name, items.at(item_name));
-		/// <ol>
+		/// <li> Create an `NTuple::Item` using the `items` mapping to the `fTuple` and to the map of `items`, if allowed by the `perform` job switch.
+		fTuple->addItem(item_name, items.at(item_name));
+		/// </ol>
 	}

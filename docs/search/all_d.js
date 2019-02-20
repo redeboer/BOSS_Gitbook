@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name',['name',['../classJobProperty.html#ad576b6c7249f320e7e2186493cec8110',1,'JobProperty::name()'],['../classArgPair__base.html#aea6f9099a0915d48fccb3a8ad5b0a633',1,'ArgPair_base::name()']]],
+  ['name',['Name',['../classContainer__base.html#a88829ee27117b28cb88e44afd1f22319',1,'Container_base::Name()'],['../classArgPair__base.html#aea6f9099a0915d48fccb3a8ad5b0a633',1,'ArgPair_base::name()']]],
   ['namemax',['NameMax',['../classCutObject.html#ad851a4dfec1c85774988c83e7186675c',1,'CutObject']]],
   ['namemin',['NameMin',['../classCutObject.html#aef1906b4d6f9b928abf78f382512840e',1,'CutObject']]],
   ['ncut0',['Ncut0',['../RhopiAlg_8cxx.html#a83e267c1596c352aefaeb2c2551d637c',1,'RhopiAlg.cxx']]],
@@ -11,6 +11,9 @@ var searchData=
   ['ncut5',['Ncut5',['../RhopiAlg_8cxx.html#a87a44bb9989e7d593d89d0b2b7aa553d',1,'RhopiAlg.cxx']]],
   ['ncut6',['Ncut6',['../RhopiAlg_8cxx.html#af1d2be22861b1e83a550b9ca430b58cf',1,'RhopiAlg.cxx']]],
   ['nitems',['nItems',['../structNTupleTopoAna.html#a9a231e825e3892f9e69d7247992de84c',1,'NTupleTopoAna']]],
+  ['ntuplecontainer',['NTupleContainer',['../classNTupleContainer.html',1,'NTupleContainer'],['../classNTupleContainer.html#ae504b28f8b5ecf0e6dbd31226d2f9f1a',1,'NTupleContainer::NTupleContainer()']]],
+  ['ntuplecontainer_2ecxx',['NTupleContainer.cxx',['../NTupleContainer_8cxx.html',1,'']]],
+  ['ntuplecontainer_2eh',['NTupleContainer.h',['../NTupleContainer_8h.html',1,'']]],
   ['ntupletopoana',['NTupleTopoAna',['../structNTupleTopoAna.html',1,'']]],
   ['ntupletopoana_2eh',['NTupleTopoAna.h',['../NTupleTopoAna_8h.html',1,'']]],
   ['numberofeventprinted',['NumberOfEventPrinted',['../simulation_8txt.html#a2de7f398b6bc94d1bff9b158a6f06631',1,'simulation.txt']]]

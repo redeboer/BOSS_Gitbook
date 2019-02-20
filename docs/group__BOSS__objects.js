@@ -15,6 +15,44 @@ var group__BOSS__objects =
       [ "fP_D0", "classKKFitResult__D0phi__KpiKK.html#a24e1401dcfa14adf4474424ca7fea97d", null ],
       [ "fP_phi", "classKKFitResult__D0phi__KpiKK.html#a9e7bbf143178726c625711ca91749321", null ]
     ] ],
+    [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html", [
+      [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html#a06271022a9198f1626a207ac0119f34c", null ],
+      [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html#ae765ea4d433a91516a469af6578e0f70", null ],
+      [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html#afa3ffa66ec311cc66222c55062d7c748", null ],
+      [ "IsBetter", "classKKFitResult__rhopi__pipigg.html#a73caa48c589700b291ee423603ef8eff", null ],
+      [ "SetValues", "classKKFitResult__rhopi__pipigg.html#a6be76191e1a07cca588408115545002a", null ],
+      [ "SetValues", "classKKFitResult__rhopi__pipigg.html#a31d0ef88dcad4ad18022ff97d29b2141", null ],
+      [ "SetValues", "classKKFitResult__rhopi__pipigg.html#a2db157e5a26b5dbd0b088ea3cd349a17", null ],
+      [ "fFitMeasure", "classKKFitResult__rhopi__pipigg.html#ac687ae5d4a7706f9f2991197e4dae174", null ],
+      [ "fM_JpsiRho0", "classKKFitResult__rhopi__pipigg.html#ad408b6a47a07d4ef9a433977772e5870", null ],
+      [ "fM_JpsiRhom", "classKKFitResult__rhopi__pipigg.html#a575fa42aac6450fbbe6eb9dcedbead6c", null ],
+      [ "fM_JpsiRhop", "classKKFitResult__rhopi__pipigg.html#af85208602875a184c17712a880f516f3", null ],
+      [ "fM_pi0", "classKKFitResult__rhopi__pipigg.html#a7941c5415a1e920bc2886f754ac9bb5f", null ],
+      [ "fM_rho0", "classKKFitResult__rhopi__pipigg.html#a7eb4d80c2cebeb32429118ab6553a5ae", null ],
+      [ "fM_rhom", "classKKFitResult__rhopi__pipigg.html#ad917d79895c4a4ad47d860a9948cccaf", null ],
+      [ "fM_rhop", "classKKFitResult__rhopi__pipigg.html#a81d1dd0d216d4ba05a6c61ed1ed44512", null ]
+    ] ],
+    [ "Container_base", "classContainer__base.html", [
+      [ "Container_base", "classContainer__base.html#a2af220593035686ec437c716c58e781e", null ],
+      [ "Description", "classContainer__base.html#a1b186d63092515eb02195919ffa03075", null ],
+      [ "Name", "classContainer__base.html#a88829ee27117b28cb88e44afd1f22319", null ],
+      [ "SetDescription", "classContainer__base.html#a308f1d5576bb84f72ccb057dc4d7ef53", null ],
+      [ "SetName", "classContainer__base.html#a1e9e09bb2b32e89bc8dc05984494c76b", null ],
+      [ "SetName", "classContainer__base.html#a35f610266590dd6151eee1509db7eb02", null ],
+      [ "fDescription", "classContainer__base.html#a218005412ad10c6343abee0ebb2f6529", null ],
+      [ "fName", "classContainer__base.html#acbad734f416195c1141acb0850d98863", null ]
+    ] ],
+    [ "Container_indexed", "classContainer__indexed.html", [
+      [ "Container_indexed", "classContainer__indexed.html#a7fbbd1d3252b268fe5edf41a459a8c8d", null ],
+      [ "~Container_indexed", "classContainer__indexed.html#ad597183952e6a9724b19e99b20d04ff0", null ],
+      [ "Insert", "classContainer__indexed.html#a275afe85962101560cb9eeb168a9b13f", null ],
+      [ "Insert", "classContainer__indexed.html#af7737fdfdcf92a8473bd50f252a0c000", null ],
+      [ "KeyExists", "classContainer__indexed.html#a7f20601b36da5a8c273354c73627b087", null ],
+      [ "KeyExists", "classContainer__indexed.html#aab4c2e12876d522b062fa3ed25a6c423", null ],
+      [ "SetName", "classContainer__indexed.html#a1e1ce1b750ba1ad8da3840b1b4577835", null ],
+      [ "SetName", "classContainer__indexed.html#a4505ef6a3725865fb3a1584d279f5d3f", null ],
+      [ "instances", "classContainer__indexed.html#ae8f9535cabbfa955c6a759c86de53b34", null ]
+    ] ],
     [ "CutObject", "classCutObject.html", [
       [ "CutObject", "classCutObject.html#a529ad466034cc01f983c57a03949331d", null ],
       [ "~CutObject", "classCutObject.html#a93d3f2fb2b98fb2013b9aea2f908abe1", null ],
@@ -35,14 +73,6 @@ var group__BOSS__objects =
       [ "max", "classCutObject.html#ad3e3069201e74f477a8f4ac206b206a2", null ],
       [ "min", "classCutObject.html#a7025d070037c80b7e71669ec81c9706f", null ]
     ] ],
-    [ "JobProperty", "classJobProperty.html", [
-      [ "JobProperty", "classJobProperty.html#aadb23f9b391be128f1f5250e75b4c91d", null ],
-      [ "~JobProperty", "classJobProperty.html#a684604b638018ff682ac5ff9fda7defe", null ],
-      [ "SetDescription", "classJobProperty.html#ad2e46b50b83cab80a107db35df32f02c", null ],
-      [ "SetName", "classJobProperty.html#aa1679003bf8796ce3b2db560e5117a10", null ],
-      [ "description", "classJobProperty.html#affe8405deee2d5e71d792e36fd9fba13", null ],
-      [ "name", "classJobProperty.html#ad576b6c7249f320e7e2186493cec8110", null ]
-    ] ],
     [ "JobSwitch", "classJobSwitch.html", [
       [ "JobSwitch", "classJobSwitch.html#a1af50815914b08444c1e4db445449dd9", null ],
       [ "~JobSwitch", "classJobSwitch.html#a6edd98f42da2f1f82142044f5d06d209", null ],
@@ -50,12 +80,32 @@ var group__BOSS__objects =
       [ "gJobSwitches", "classJobSwitch.html#a8c92206543b7dcc0289d2809b6eca1ca", null ],
       [ "value", "classJobSwitch.html#aebc0d486c48dd7d850ce61f20c6a4995", null ]
     ] ],
+    [ "NTupleContainer", "classNTupleContainer.html", [
+      [ "NTupleContainer", "classNTupleContainer.html#ae504b28f8b5ecf0e6dbd31226d2f9f1a", null ],
+      [ "~NTupleContainer", "classNTupleContainer.html#ac3a8e746abd9be026bf04ccac612a6d7", null ],
+      [ "AddItem", "classNTupleContainer.html#a916d53be38e6b54ef59169eeba1fc71c", null ],
+      [ "at", "classNTupleContainer.html#afb29ca6b6a5aa31ddafb47c699cf49dc", null ],
+      [ "DoWrite", "classNTupleContainer.html#a66c4cb75b6930fc53ebb355246bc43d3", null ],
+      [ "Get", "classNTupleContainer.html#af0c4aa7181f78a6f428e3e17f3837d38", null ],
+      [ "operator bool", "classNTupleContainer.html#aa7f6a5529a50285686de4df013984de3", null ],
+      [ "operator!", "classNTupleContainer.html#a15e9be4287296f26ad6cc6dc1095fda2", null ],
+      [ "operator[]", "classNTupleContainer.html#ae15933fd53dfead8150d7ebe9ae01c37", null ],
+      [ "SetSwitch", "classNTupleContainer.html#a3641332269883bdc92800d94382ffd03", null ],
+      [ "SetTuplePtr", "classNTupleContainer.html#af4ddf1d8a971e9100130daddb99f56ff", null ],
+      [ "Write", "classNTupleContainer.html#aa31b7842b3b6cfa5fec22eae71163d03", null ],
+      [ "fTuple", "classNTupleContainer.html#a56eb7e36d6668780752ee22802d52b56", null ],
+      [ "instances", "classNTupleContainer.html#a7fb80270daa97703a4d60b16e716ed49", null ],
+      [ "items", "classNTupleContainer.html#af98281e8fd1fa0f0d8f7fbd32949c368", null ],
+      [ "perform", "classNTupleContainer.html#abc6b2e821ab1af4cc27e3efdb75a0b9e", null ],
+      [ "write", "classNTupleContainer.html#a016fd04b54afe635a6f63b9bd3378ef0", null ]
+    ] ],
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult", "classKKFitResult.html#ac70733af97eb1c5214ae57ccffe88cdf", null ],
       [ "KKFitResult", "classKKFitResult.html#a5d9c2f00419e514a5f8cdd4ab180ceef", null ],
-      [ "HasFit", "classKKFitResult.html#abc4f946d8e902b15aadaba7e65b24c23", null ],
       [ "IsBetter", "classKKFitResult.html#ae099966c518c51c5620025350f1bbb3e", null ],
       [ "IsBetter", "classKKFitResult.html#a0c87b8ff75e72f27f68bc5814a42c5a3", null ],
+      [ "operator bool", "classKKFitResult.html#ae2e2ee5c9f82ea348e46372fac624065", null ],
+      [ "operator!", "classKKFitResult.html#ab032e506a0ffee8489c86d1b4b534aec", null ],
       [ "SetValues", "classKKFitResult.html#add33917bee1940892f0b180d5f6cf6ea", null ],
       [ "fBestCompareValue", "classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0", null ],
       [ "fChiSquared", "classKKFitResult.html#ab998d45583725a8561225c1ac7a36a46", null ],

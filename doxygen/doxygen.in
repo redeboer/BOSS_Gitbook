@@ -312,6 +312,7 @@ EXCLUDE                = .bashrc
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/PsiPrime/PipiJpsiAlg/PipiJpsiAlg-00-00-*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-*
 EXCLUDE_PATTERNS += */boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-02-*
+EXCLUDE_PATTERNS += */boss/workarea/Analysis/TopoAna/v*
 EXCLUDE_PATTERNS += */boss/workarea/Reconstruction/DTagAlg/*
 EXCLUDE_PATTERNS += */scripts/Analyse_*.C
 EXCLUDE_PATTERNS += *_entries.cxx

@@ -96,7 +96,7 @@
 /// @{
 
 	/**
-	 * @brief    <b>Base algorithm</b> that creates a selection of charged and/or neutral tracks. Your analysis has to be defined in <i>derived</i> algorithms, making use of the vectors that are filled in this algorithm. See the <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial">tutorial pages</a> for more information.
+	 * @brief <b>Base algorithm</b> that creates a selection of charged and/or neutral tracks. Your analysis has to be defined in <i>derived</i> algorithms, making use of the vectors that are filled in this algorithm. See the <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial">tutorial pages</a> for more information.
 	 * @todo The design of using `map`s of `NTuple::Items`s is not ideal, as it does not (yet) allow enough flexibility.
 	 *
 	 * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -236,7 +236,7 @@
 
 		/// @name Cut handlers
 			///@{
-			template<typename TYPE> void WriteCuts_entry(const std::string &name, TYPE &value);
+			template<typename TYPE> void WriteCuts_entry(const TYPE &value);
 			void DeclareCuts();
 			void WriteCuts();
 			///@}
