@@ -51,10 +51,10 @@
 	#include "TH1D.h"
 	#include "THStack.h"
 	#include "TofRecEvent/RecTofTrack.h"
-	#include "TrackSelector/CutObject.h"
-	#include "TrackSelector/JobSwitch.h"
-	#include "TrackSelector/NTupleContainer.h"
-	#include "TrackSelector/NTupleTopoAna.h"
+	#include "TrackSelector/Containers/CutObject.h"
+	#include "TrackSelector/Containers/JobSwitch.h"
+	#include "TrackSelector/Containers/NTupleContainer.h"
+	#include "TrackSelector/Containers/NTupleTopoAna.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this requires a newer version of `gcc`.
 	#include <string>

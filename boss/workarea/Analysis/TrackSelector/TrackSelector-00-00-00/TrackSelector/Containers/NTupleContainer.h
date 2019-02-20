@@ -7,8 +7,8 @@
 // * ========================= * //
 
 	#include "GaudiKernel/NTuple.h"
-	#include "TrackSelector/Container_base.h"
-	#include "TrackSelector/JobSwitch.h"
+	#include "TrackSelector/Containers/Container_base.h"
+	#include "TrackSelector/Containers/JobSwitch.h"
 	#include <map>
 	#include <string>
 
