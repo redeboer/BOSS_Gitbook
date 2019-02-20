@@ -1,6 +1,12 @@
 # Initial event selection
 
-{% hint style="danger" %}
-**This part of the tutorial is not yet finished.**
+## 
+
+## Base-derived algorithm structure
+
+## Generic event selection packages
+
+{% hint style="warning" %}
+**@todo** Describe `FSFilter` by BESIII.
 {% endhint %}
 

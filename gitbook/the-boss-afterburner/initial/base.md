@@ -1,7 +1,9 @@
 # Base algorithm
 
 {% hint style="danger" %}
-**This part of the tutorial is not yet finished.**
+**The `TrackSelector` package and derived packages are still being developed and tested.**
+
+Tutorial pages are therefore not yet complete. You can meanwhile have a look at the current design of the class structure [here](https://redeboer.github.io/BOSS_Afterburner/modules.html).
 {% endhint %}
 
 The base algorithm [`TrackSelector`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html) encapsulates the procedures that are shared by other analysis. The procedures are shared in two ways:

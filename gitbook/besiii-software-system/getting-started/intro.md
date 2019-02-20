@@ -23,11 +23,15 @@ See for more information:
 
 ## Concurrent Versions System \(CVS\)
 
-Packages and source code of BOSS are monitored and maintained by CVS. This is a somewhat outdated revision control system comparable to Subversion and Git.
+Packages and source code of BOSS are monitored and maintained by CVS. This is a revision control system comparable to Subversion and Git.
 
 More information:
 
 * [An accessible introduction to CVS](http://polywww.in2p3.fr/activites/physique/glast/workbook/pages/softwareOverview/cvsBasics.htm)
 * [Commonly used CVS commands](http://polywww.in2p3.fr/activites/physique/glast/workbook/pages/softwareOverview/commonCVScommands.htm)
 * [Wikipedia on CVS](https://en.wikipedia.org/wiki/Concurrent_Versions_System)
+
+{% hint style="info" %}
+CVS can be used as a tool for collaboration, but is somewhat outdated. This is [one of the motivations]() for designing the BOSS Afterburner framework.
+{% endhint %}
 

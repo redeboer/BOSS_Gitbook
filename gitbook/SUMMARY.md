@@ -26,7 +26,6 @@
 
 * [Introduction](the-boss-afterburner/intro.md)
 * [Initial event selection](the-boss-afterburner/initial/README.md)
-  * [Motivation](the-boss-afterburner/initial/motivation.md)
   * [Typical cuts](the-boss-afterburner/initial/typical-cuts.md)
   * [Base algorithm](the-boss-afterburner/initial/base.md)
   * [Derived algorithms](the-boss-afterburner/initial/derived/README.md)
