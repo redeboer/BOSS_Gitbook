@@ -32,7 +32,8 @@ public:
 		KKFitResult(KalmanKinematicFit* kkmfit);
 
 	// * INFORMATION * //
-		bool HasFit() { return fFit; }
+		explicit operator bool() const { return fFit; }
+		bool operator!() const { return !fFit; }
 		virtual bool IsBetter() const = 0;
 
 	// * PUBLIC DATA MEMBERS * //

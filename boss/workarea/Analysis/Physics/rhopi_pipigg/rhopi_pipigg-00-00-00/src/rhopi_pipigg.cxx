@@ -529,7 +529,7 @@
 	 */
 	void rhopi_pipigg::WriteFitResults(KKFitResult_rhopi_pipigg &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName)
 	{
-		if(!fitresult.HasFit()) {
+		if(!fitresult) {
 			fLog << MSG::DEBUG << "KalmanKinematicFit for \"" << tupleName << "\" is empty" << endmsg;
 			return;
 		}

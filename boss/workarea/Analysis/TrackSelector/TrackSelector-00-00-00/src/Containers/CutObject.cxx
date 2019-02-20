@@ -2,7 +2,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "TrackSelector/CutObject.h"
+	#include "TrackSelector/Containers/CutObject.h"
 	#include <float.h>
 	#include <iostream>
 	#include <iomanip>
@@ -14,7 +14,7 @@
 // * =========================== * //
 
 	CutObject::CutObject(const std::string &name, const std::string &description) :
-		JobProperty(name, description),
+		Container_base(name, description),
 		min(-DBL_MAX),
 		max( DBL_MAX),
 		counter(0)
@@ -62,9 +62,9 @@
 // * =========================== * //
 
 	/**
-	 * @brief Print the `name`, `min` value, `max` value, and `counter` value of the cut object. If all arguments are set, the output will be print in table format.
+	 * @brief Print the cut name, `min` value, `max` value, and `counter` value of the cut object. If all arguments are set, the output will be print in table format.
 	 * 
-	 * @param wname    With of the `name` column
+	 * @param wname    With of the cut name column
 	 * @param wmin     With of the `min` column.
 	 * @param wmax     With of the `max` column.
 	 * @param wcounter With of the `counter` column.
@@ -75,7 +75,7 @@
 		if(wname && wmin && wmax && wcounter) {
 			/// <ol>
 			/// <li> Print cut name.
-			std::cout << "  " << std::setw(wname) << std::left  << name;
+			std::cout << "  " << std::setw(wname) << std::left  << Name();
 			std::cout << " | ";
 			/// <li> Print minimum if available.
 			std::cout << std::setw(wmin) << std::right;
@@ -93,16 +93,16 @@
 		} else {
 			// if only a min value
 			if((min > -DBL_MAX) && (max ==  DBL_MAX)) {
-				std::cout << name << " > " << min << "    " << counter << std::endl;
+				std::cout << Name() << " > " << min << "    " << counter << std::endl;
 				return;
 			}
 			// if only a max value
 			if((max <  DBL_MAX) && (min == -DBL_MAX)) {
-				std::cout << name << " < " << max << "    " << counter << std::endl;
+				std::cout << Name() << " < " << max << "    " << counter << std::endl;
 				return;
 			}
 			// if both min and max value
-			std::cout << min << " < " << name << " < " << max << "    " << counter << std::endl;
+			std::cout << min << " < " << Name() << " < " << max << "    " << counter << std::endl;
 		}
 	}
 

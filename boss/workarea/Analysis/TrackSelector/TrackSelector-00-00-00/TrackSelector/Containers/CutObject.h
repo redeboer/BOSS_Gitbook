@@ -6,7 +6,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "TrackSelector/JobProperty.h"
+	#include "TrackSelector/Containers/Container_base.h"
 	#include "TString.h"
 	#include <list>
 	#include <string>
@@ -26,7 +26,7 @@
 	 * @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	 * @date   January 3rd, 2019
 	 */
-	class CutObject : public JobProperty
+	class CutObject : public Container_base
 	{
 	public:
 		CutObject(const std::string &name, const std::string &description="");
@@ -40,8 +40,8 @@
 		bool operator> (const double &value) const { return value>min; }
 		void operator++() { ++counter; }
 		template<typename T> void operator+=(T incr) { counter += incr; }
-		const char* NameMax() { return Form("cut_%s_max", name.data()); }
-		const char* NameMin() { return Form("cut_%s_min", name.data()); }
+		const char* NameMax() { return Form("cut_%s_max", Name().data()); }
+		const char* NameMin() { return Form("cut_%s_min", Name().data()); }
 		void Print(const int wname=0, const int wmin=0, const int wmax=0, const int wcounter=0) const;
 		double max;
 		double min;

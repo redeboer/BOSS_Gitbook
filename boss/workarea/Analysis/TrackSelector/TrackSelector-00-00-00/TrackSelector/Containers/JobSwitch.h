@@ -6,7 +6,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "TrackSelector/JobProperty.h"
+	#include "TrackSelector/Containers/Container_base.h"
 	#include "TString.h"
 	#include <list>
 	#include <string>
@@ -27,7 +27,7 @@
 	 * @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	 * @date   January 3rd, 2019
 	 */
-	class JobSwitch : public JobProperty
+	class JobSwitch : public Container_base
 	{
 	public:
 		JobSwitch(const std::string &name, const std::string &description="", const bool val=false);

@@ -319,7 +319,7 @@
 	 */
 	void D0phi_KpiKK::WriteFitResults(KKFitResult_D0phi_KpiKK &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName)
 	{
-		if(!fitresult.HasFit()) {
+		if(!fitresult) {
 			fLog << MSG::DEBUG << "KalmanKinematicFit for \"" << tupleName << "\" is empty" << endmsg;
 			return;
 		}

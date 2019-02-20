@@ -51,9 +51,10 @@
 	#include "TH1D.h"
 	#include "THStack.h"
 	#include "TofRecEvent/RecTofTrack.h"
-	#include "TrackSelector/CutObject.h"
-	#include "TrackSelector/JobSwitch.h"
-	#include "TrackSelector/NTupleTopoAna.h"
+	#include "TrackSelector/Containers/CutObject.h"
+	#include "TrackSelector/Containers/JobSwitch.h"
+	#include "TrackSelector/Containers/NTupleContainer.h"
+	#include "TrackSelector/Containers/NTupleTopoAna.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this requires a newer version of `gcc`.
 	#include <string>
@@ -118,7 +119,7 @@
 
 
 	protected:
-		/// @name Derived Algorithm steps. These steps are `virtual`, because they have to be defined in the derived algorithms.
+		/// @name Derived Algorithm steps
 			///@{
 			virtual StatusCode initialize_rest() = 0; //!< This function is executed at the end of `initialize`. It should be further defined in derived subalgorithms.
 			virtual StatusCode execute_rest()    = 0; //!< This function is executed at the end of `execute`. It should be further defined in derived subalgorithms.
@@ -129,21 +130,18 @@
 
 		/// @name NTuple methods
 			///@{
-			void AddItemsToNTuples(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="ks N-Tuple example");
-			void AddItemsToNTuples(NTuplePtr nt, std::map<std::string, NTuple::Item<double> > &map);
-			void BookNtupleItems_McTruth(NTupleTopoAna &ntuple, const char* tupleName="MctruthForTopoAna", const char* tupleTitle="Monte Carlo truth for TopoAna");
 			void BookNtupleItems_McTruth();
-			void BookNtupleItems_Dedx   (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="dE/dx info");
-			void BookNtupleItems_Tof    (const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle="Time-of-Flight info");
+			void BookNtupleItems_Dedx(NTupleContainer &tuple);
+			void BookNtupleItems_Tof (NTupleContainer &tuple);
 			///@}
 
 
 		/// @name Write methods
 			///@{
-			void WriteDedxInfo(EvtRecTrack* evtRecTrack, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
-			void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
+			void WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer &tuple);
+			void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, NTupleContainer &tuple);
 			void WritePIDInformation();
-			void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, const char* tupleName, std::map<std::string, NTuple::Item<double> > &map);
+			void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, NTupleContainer &tuple);
 			///@}
 
 
@@ -177,45 +175,24 @@
 			///@}
 
 
-		/// @name Control switches. These booleans are used to switch certain features of the TrackSelector on or of. For instance, if you do not analyse photons, you should switch of the fDo_neutral member. This is done through the declaration of the corresponding property in the constructor and by defining the value in the job options under share.
+		/// @name NTuples (eventual TTrees)
 			///@{
-			JobSwitch fDo_charged; //!< Package property that determines whether or not to make a selection of 'good' charged tracks.
-			JobSwitch fDo_neutral; //!< Package property that determines whether or not to make a selection of 'good' neutral tracks.
-			JobSwitch fDo_mctruth; //!< Package property that determines whether or not to record MC truth. See the ``fMap_mctruth` map and `fMcTruth`.
-			JobSwitch fWrite_PID;     //!< Package property that determines whether or not to record general PID information (TOF, \f$dE/dx\f$, etc).
-			JobSwitch fWrite_ToFEC;   //!< Package property that determines whether or not to record data from the Time-of-Flight end cap detector.
-			JobSwitch fWrite_ToFIB;   //!< Package property that determines whether or not to record data from the Time-of-Flight inner barrel detector.
-			JobSwitch fWrite_ToFOB;   //!< Package property that determines whether or not to record data from the Time-of-Flight outer barrel detector.
-			JobSwitch fWrite_charged; //!< Package property that determines whether or not to record charged track vertex info.
-			JobSwitch fWrite_dedx;    //!< Package property that determines whether or not to record energy loss (\f$dE/dx\f$).
-			JobSwitch fWrite_mult;    //!< Package property that determines whether or not to record multiplicities.
-			JobSwitch fWrite_mult_select; //!< Package property that determines whether or not to write the multiplicities <i>of the selected particles</i>.
-			JobSwitch fWrite_neutral; //!< Package property that determines whether or not to record neutral track info.
-			JobSwitch fWrite_vertex;  //!< Package property that determines whether or not to record primary vertex info.
-			///@}
-
-
-		// ! NTuple data members ! //
-		/// @name Maps of NTuples. NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem. Note that the NTuple::Items have to be added to the NTuple during the TrackSelector::initialize() step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
-			///@{
-			std::map<std::string, NTuple::Tuple*> fNTupleMap; //!< Map for `NTuple::Tuple*`s. The string identifier should be the name of the `NTuple` and of the eventual `TTree`.
-			std::map<std::string, NTuple::Item<double> > fMap_cuts;    //!< Container for the cut parameters.
-			std::map<std::string, NTuple::Item<double> > fMap_PID;     //!< Container for the general PID information (TOF, \f$dE/dx\f$, etc) branch. <b>Needs to be filled in the derived class!</b>
-			std::map<std::string, NTuple::Item<double> > fMap_TofEC;   //!< Container for the data from the Time-of-Flight end cap detector branch.
-			std::map<std::string, NTuple::Item<double> > fMap_TofIB;   //!< Container for the data from the Time-of-Flight inner barrel detector branch.
-			std::map<std::string, NTuple::Item<double> > fMap_TofOB;   //!< Container for the data from the Time-of-Flight outer barrel detector branch.
-			std::map<std::string, NTuple::Item<double> > fMap_charged; //!< Container for the charged track vertex info charged track vertex branch.
-			std::map<std::string, NTuple::Item<double> > fMap_dedx;    //!< Container for the energy loss (\f$dE/dx\f$) branch.
-			std::map<std::string, NTuple::Item<double> > fMap_mctruth; //!< Container for MC truth required for the `topoana` package.
-			std::map<std::string, NTuple::Item<double> > fMap_mult;    //!< Container for the multiplicities branch.
-			std::map<std::string, NTuple::Item<double> > fMap_mult_select; //!< Container for the `"mult_select"` branch.
-			std::map<std::string, NTuple::Item<double> > fMap_neutral; //!< Container for the neutral track info neutral track info branch.
-			std::map<std::string, NTuple::Item<double> > fMap_vertex;  //!< Container for the primary vertex info vertex branch.
+			NTupleContainer fNTuple_cuts;    //!< `NTuple::Tuple` container for the cut parameters.
+			NTupleContainer fNTuple_PID;     //!< `NTuple::Tuple` container for the general PID information (TOF, \f$dE/dx\f$, etc) branch. <b>Needs to be filled in the derived class!</b>
+			NTupleContainer fNTuple_TofEC;   //!< `NTuple::Tuple` container for the data from the Time-of-Flight end cap detector branch.
+			NTupleContainer fNTuple_TofIB;   //!< `NTuple::Tuple` container for the data from the Time-of-Flight inner barrel detector branch.
+			NTupleContainer fNTuple_TofOB;   //!< `NTuple::Tuple` container for the data from the Time-of-Flight outer barrel detector branch.
+			NTupleContainer fNTuple_charged; //!< `NTuple::Tuple` container for the charged track vertex info charged track vertex branch.
+			NTupleContainer fNTuple_dedx;    //!< `NTuple::Tuple` container for the energy loss (\f$dE/dx\f$) branch.
+			NTupleContainer fNTuple_mult;    //!< `NTuple::Tuple` container for the multiplicities branch.
+			NTupleContainer fNTuple_mult_select; //!< `NTuple::Tuple` container for the `"mult_select"` branch.
+			NTupleContainer fNTuple_neutral; //!< `NTuple::Tuple` container for the neutral track info neutral track info branch.
+			NTupleContainer fNTuple_vertex;  //!< `NTuple::Tuple` container for the primary vertex info vertex branch.
 			NTupleTopoAna fMcTruth; //!< `NTuple` `struct` object for Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be encapsulated in a `struct` instead of simply making use of the `NTuple` map.
 			///@}
 
 
-		/// @name Counters and cut objects. The private data members are used to define cuts. The values for these cuts should be set in the `TrackSelector::TrackSelector` constructor (see corresponding `.cxx` file).
+		/// @name Counters and cut objects
 			///@{
 			NTuple::Tuple* fCutTuples;
 			CutObject fCounter_Nevents;   //!< Eventual total number of events.
@@ -249,11 +226,26 @@
 
 
 	private:
-		void DeclareCuts();
-		void DeclareSwitches();
-		void WriteCuts();
-		HepLorentzVector ComputeMomentum(EvtRecTrack *track);
-		NTuplePtr BookNTuple(const char* tupleName, const char* tupleTitle="ks N-Tuple example");
+		/// @name NTuple methods
+			///@{
+			void BookNTuple(NTupleContainer &tuple);
+			void BookNTuples();
+			void DeclareSwitches();
+			///@}
+
+
+		/// @name Cut handlers
+			///@{
+			template<typename TYPE> void WriteCuts_entry(const std::string &name, TYPE &value);
+			void DeclareCuts();
+			void WriteCuts();
+			///@}
+
+
+		/// @name Computational
+			///@{
+			HepLorentzVector ComputeMomentum(EvtRecTrack *track);
+			///@}
 
 	};
 

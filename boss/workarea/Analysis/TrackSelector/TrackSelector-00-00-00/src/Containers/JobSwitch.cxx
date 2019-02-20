@@ -2,7 +2,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "TrackSelector/JobSwitch.h"
+	#include "TrackSelector/Containers/JobSwitch.h"
 
 
 
@@ -11,7 +11,7 @@
 // * =========================== * //
 
 	JobSwitch::JobSwitch(const std::string &name, const std::string &description, const bool val) :
-		JobProperty(name, description),
+		Container_base(name, description),
 		value(val)
 	{
 		gJobSwitches.push_back(this);
