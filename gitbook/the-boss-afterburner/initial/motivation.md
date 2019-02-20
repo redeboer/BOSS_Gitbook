@@ -48,5 +48,28 @@ A problem remains the correspondence between names of the properties and `NTuple
 
 {% hint style="warning" %}
 **@todo** Improve and describe solution in `TrackSelector`.
+
+## Design sketch
+
+* **Base class `Container_base`**
+  * Constructor requiring name and description
+  * **`name`**
+  * **`description`**
+* **Derived class `Container_NTuple`**
+  * Methods:
+    * Constructor requiring a name and description
+    * **`AddItem`**, which has to be called when using 
+  * Data members:
+    * **`tuple`**, a `NTuple::Tuple` pointer
+    * `instances`, which is an `map` inventory of all instances
+    * `items`
+    * \`\`
+* **Derived class `Container_NTupleItem`**
+  * Methods:
+    * Constructor needing `NTuple::Tuple` pointer
+    * 
+  * Data members:
+    * **`tuple`** Pointer to corresponding `NTuple::Tuple`
+* **Derived class `Container_Property`** 
 {% endhint %}
 
