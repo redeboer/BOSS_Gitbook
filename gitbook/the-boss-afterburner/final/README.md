@@ -11,5 +11,5 @@ See [Modules](https://redeboer.github.io/BOSS_Afterburner/group__BOSS__Afterburn
   * [Cutting](cutting.md)
   * [Drawing](drawing.md)
   * [Fitting](fitting.md)
-* Facilitate collaboration on final selection analysis code \(see [Contributing](../contributing.md)\).
+* Facilitate collaboration on final selection analysis code \(see [Contributing]()\).
 

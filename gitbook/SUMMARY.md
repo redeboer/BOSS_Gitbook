@@ -34,12 +34,12 @@
     * [Jpsipipi\_pipill](the-boss-afterburner/initial/derived/jpsipipi_pipill.md)
     * [D0phi\_KpiKK](the-boss-afterburner/initial/derived/d0phi_kpikk.md)
     * [D0omega\_Kpipipipi](the-boss-afterburner/initial/derived/d0omega_kpipipipi.md)
+    * [D0phi\_KenuKK](the-boss-afterburner/initial/derived/d0phi_kenukk.md)
 * [Final event selection](the-boss-afterburner/final/README.md)
   * [Loading](the-boss-afterburner/final/loading.md)
   * [Cutting](the-boss-afterburner/final/cutting.md)
   * [Drawing](the-boss-afterburner/final/drawing.md)
   * [Fitting](the-boss-afterburner/final/fitting.md)
-* [Contributing to The BOSS Afterburner](the-boss-afterburner/contributing.md)
 
 ## Appendices
 
