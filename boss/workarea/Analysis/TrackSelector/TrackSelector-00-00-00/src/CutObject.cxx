@@ -2,7 +2,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "TrackSelector/Containers/CutObject.h"
+	#include "TrackSelector/CutObject.h"
 	#include <float.h>
 	#include <iostream>
 	#include <iomanip>

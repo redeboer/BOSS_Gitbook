@@ -6,7 +6,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "TrackSelector/Containers/Container_base.h"
+	#include "TrackSelector/Container_base.h"
 	#include "TString.h"
 	#include <list>
 	#include <string>
@@ -40,8 +40,8 @@
 		bool operator> (const double &value) const { return value>min; }
 		void operator++() { ++counter; }
 		template<typename T> void operator+=(T incr) { counter += incr; }
-		const char* NameMax() { return Form("cut_%s_max", Name().data()); }
-		const char* NameMin() { return Form("cut_%s_min", Name().data()); }
+		const char* NameMax() { return Form("cut_%s_max", Name()); }
+		const char* NameMin() { return Form("cut_%s_min", Name()); }
 		void Print(const int wname=0, const int wmin=0, const int wmax=0, const int wcounter=0) const;
 		double max;
 		double min;

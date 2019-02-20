@@ -2,7 +2,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "TrackSelector/Containers/Container_indexed.h"
+	#include "TrackSelector/Container_indexed.h"
 	#include <iostream>
 	#include <utility> // for make_pair
 

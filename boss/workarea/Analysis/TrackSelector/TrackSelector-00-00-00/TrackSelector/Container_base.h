@@ -30,8 +30,8 @@
 		void SetName(const std::string &new_name);
 		void SetName(const std::string &new_name, const std::string &new_desc);
 		void SetDescription(const std::string &new_desc);
-		const std::string Name() const { return fName; };
-		const std::string Description() const { return fDescription; };
+		const char* Name() const { return fName.c_str(); };
+		const char* Description() const { return fDescription.c_str(); };
 	private:
 		std::string fDescription; //!< Title or description of the container object.
 		std::string fName; //!< Name/identifier of the container object.

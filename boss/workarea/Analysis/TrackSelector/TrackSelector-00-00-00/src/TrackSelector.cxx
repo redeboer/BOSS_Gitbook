@@ -765,8 +765,9 @@
 	template<typename TYPE>
 	void TrackSelector::WriteCuts_entry(const TYPE &value)
 	{
-		for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
-			fNTuple_cuts[(*cut)->name] = value;
+		std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
+		for(cut; cut != CutObject::gCutObjects.end(); ++cut)
+			fNTuple_cuts[(*cut)->Name()] = value;
 		fNTuple_cuts.Write();
 	}
 
@@ -780,7 +781,7 @@
 		for(; cut != CutObject::gCutObjects.end(); ++cut) {
 			declareProperty((*cut)->NameMin(), (*cut)->min);
 			declareProperty((*cut)->NameMax(), (*cut)->max);
-			fLog << MSG::INFO << "  added cut \"" << (*cut)->name << "\"" << endmsg;
+			fLog << MSG::INFO << "  added cut \"" << (*cut)->Name() << "\"" << endmsg;
 		}
 	}
 
