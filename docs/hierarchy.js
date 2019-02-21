@@ -22,14 +22,15 @@ var hierarchy =
       [ "Container_indexed", "classContainer__indexed.html", null ],
       [ "CutObject", "classCutObject.html", null ],
       [ "JobSwitch", "classJobSwitch.html", null ],
-      [ "NTupleContainer", "classNTupleContainer.html", null ]
+      [ "NTupleContainer", "classNTupleContainer.html", [
+        [ "NTupleTopoAna", "classNTupleTopoAna.html", null ]
+      ] ]
     ] ],
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", null ],
       [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html", null ]
     ] ],
     [ "m_trkInfo", "classm__trkInfo.html", null ],
-    [ "NTupleTopoAna", "structNTupleTopoAna.html", null ],
     [ "Particle", "classParticle.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", null ]
     ] ]

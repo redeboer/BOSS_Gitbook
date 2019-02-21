@@ -29,7 +29,7 @@
 		/// </ol>
 	}
 
-	/// Constructor that opens a `TFile` and unordered_maps its contents (using bin <b>width</b>).
+	/// Constructor that opens a `TFile` and unordered_maps its contents (using bin @b width).
 	BranchPlotOptions::BranchPlotOptions(const char* branchName, const double binWidth, const double from, const double to, const char* option, const char* cut) :
 		fBranchName(branchName)
 	{
@@ -38,7 +38,7 @@
 			if(binWidth <= 0) return;
 			if(to <= from) return;
 
-		/// <li> <b>WARNING</b> Abort if number of bins is larger than 10.000!
+		/// <li> @b WARNING Abort if number of bins is larger than 10.000!
 			fNumberOfBins = (fPlotTo - fPlotFrom) / fBinWidth;
 			if(fNumberOfBins >= 10000) return;
 

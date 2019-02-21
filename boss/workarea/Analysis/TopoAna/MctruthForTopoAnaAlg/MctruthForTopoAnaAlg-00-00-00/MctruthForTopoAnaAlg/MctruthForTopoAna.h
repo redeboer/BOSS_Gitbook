@@ -30,7 +30,7 @@
 		StatusCode finalize();
 	private:
 		NTuple::Tuple *m_tuple;     ///< `NTuple` that will be the eventual `"MctruthForTopoAna"` tree.
-		NTuple::Item<int>  m_ievt;  ///< <b>Counter</b> for number of events (not the ID!)
+		NTuple::Item<int>  m_ievt;  ///< @b Counter for number of events (not the ID!)
 		NTuple::Item<int>  m_runid; ///< Run number ID.
 		NTuple::Item<int>  m_evtid; ///< Rvent number ID.
 		NTuple::Item<int>  m_nmcps; ///< Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.

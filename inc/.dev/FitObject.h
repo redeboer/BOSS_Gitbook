@@ -56,8 +56,8 @@
 		std::unique_ptr<RooGaussian>   fGaussian1; ///< Narrow Gaussian.
 		std::unique_ptr<RooGaussian>   fGaussian2; ///< Wide Gaussian.
 		std::unique_ptr<RooPolynomial> fPolBackground;
-		std::unique_ptr<RooRealVar>    fMean; ///< Mean of the <b>two</b> Gaussians when centered around the mass
-		std::unique_ptr<RooRealVar>    fMean0; ///< Mean of the <b>two</b> Gaussians when centered around \f$ M_{\mathrm{inv}} = 0 \f$. This is useful in a convolution.
+		std::unique_ptr<RooRealVar>    fMean; ///< Mean of the @b two Gaussians when centered around the mass
+		std::unique_ptr<RooRealVar>    fMean0; ///< Mean of the @b two Gaussians when centered around \f$ M_{\mathrm{inv}} = 0 \f$. This is useful in a convolution.
 		std::unique_ptr<RooRealVar>    fNGauss1;
 		std::unique_ptr<RooRealVar>    fNGauss2;
 		std::unique_ptr<RooRealVar>    fSigToBckRatio;

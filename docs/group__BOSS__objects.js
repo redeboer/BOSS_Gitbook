@@ -111,6 +111,5 @@ var group__BOSS__objects =
       [ "fBestCompareValue", "classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0", null ],
       [ "fChiSquared", "classKKFitResult.html#ab998d45583725a8561225c1ac7a36a46", null ],
       [ "fFit", "classKKFitResult.html#ad7499ab02d1777dde3ca506cd35f81b1", null ]
-    ] ],
-    [ "loop", "group__BOSS__objects.html#gaee0532eca71c89aa78b606f22bef353d", null ]
+    ] ]
 ];

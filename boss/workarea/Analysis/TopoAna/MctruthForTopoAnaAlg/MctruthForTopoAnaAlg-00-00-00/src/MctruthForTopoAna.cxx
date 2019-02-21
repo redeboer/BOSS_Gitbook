@@ -38,7 +38,7 @@
 				m_tuple=ntupleSvc()->book("FILE1/MctruthForTopoAna",CLID_ColumnWiseTuple,"Mctruth For Topology Analysis");
 				if(m_tuple) {
 				/// <ul>
-					m_tuple->addItem("Ievt",  m_ievt);  /// <li> `"Ievt"`: <b>counter</b> for number of events (not the ID!).
+					m_tuple->addItem("Ievt",  m_ievt);  /// <li> `"Ievt"`: @b counter for number of events (not the ID!).
 					m_tuple->addItem("Runid", m_runid); /// <li> `"Runid"`: run number ID.
 					m_tuple->addItem("Evtid", m_evtid); /// <li> `"Evtid"`: event number ID.
 					m_tuple->addItem("Nmcps", m_nmcps, 0, 100); /// <li> `"Nmcps"`: number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
@@ -122,7 +122,7 @@
 			}
 			/// </ul>
 
-		/// <li> <b>Write</b> info stored in the loop to the `"MctruthForTopoAna"` `TTree`.
+		/// <li> @b Write info stored in the loop to the `"MctruthForTopoAna"` `TTree`.
 			m_tuple->write();
 
 		/// </ol>

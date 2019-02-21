@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['operator_20bool',['operator bool',['../classJobSwitch.html#af847ea807bccf3111a16c7773da0b092',1,'JobSwitch::operator bool()'],['../classNTupleContainer.html#aa7f6a5529a50285686de4df013984de3',1,'NTupleContainer::operator bool()'],['../structNTupleTopoAna.html#a14d4abc54d1d58b9ba357ad77d4b3999',1,'NTupleTopoAna::operator bool()'],['../classKKFitResult.html#ae2e2ee5c9f82ea348e46372fac624065',1,'KKFitResult::operator bool()']]],
+  ['operator_20bool',['operator bool',['../classJobSwitch.html#af847ea807bccf3111a16c7773da0b092',1,'JobSwitch::operator bool()'],['../classNTupleContainer.html#aa7f6a5529a50285686de4df013984de3',1,'NTupleContainer::operator bool()'],['../classKKFitResult.html#ae2e2ee5c9f82ea348e46372fac624065',1,'KKFitResult::operator bool()']]],
   ['operator_21',['operator!',['../classNTupleContainer.html#a15e9be4287296f26ad6cc6dc1095fda2',1,'NTupleContainer::operator!()'],['../classKKFitResult.html#ab032e506a0ffee8489c86d1b4b534aec',1,'KKFitResult::operator!()']]],
   ['operator_21_3d',['operator!=',['../classArgPair.html#afe1bd547188e687f91c94944161ce89c',1,'ArgPair']]],
   ['operator_2b_2b',['operator++',['../classCutObject.html#afd8a71305dfc11c83e35579619fdf668',1,'CutObject']]],

@@ -3,7 +3,6 @@
 // * ========================= * //
 
 	#include "TrackSelector/Containers/NTupleContainer.h"
-	#include "TString.h" // for Form
 	#include <iostream>
 	#include <utility> // for make_pair
 
@@ -66,12 +65,12 @@
 	void NTupleContainer::AddItem(const std::string &item_name)
 	{
 		/// <ol>
-		/// <li> <b>Abort</b> if `fTuple` has not been booked.
+		/// <li> @b Abort if `fTuple` has not been booked.
 		if(!fTuple) {
 			std::cout << "WARNING: NTuple \"" << Name() << "\" has not been booked, so cannot add item \"" << item_name << "\"" << std::endl;
 			return;
 		}
-		/// <li> <b>Abort</b> if the `perform` job switch property has been set to `false`.
+		/// <li> @b Abort if the `perform` job switch property has been set to `false`.
 		if(!perform) return;
 		/// <li> Create an `NTuple::Item` using the `items` mapping.
 		items[item_name];

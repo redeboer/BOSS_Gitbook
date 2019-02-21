@@ -6,6 +6,7 @@ var searchData=
   ['setaxistitles',['SetAxisTitles',['../namespaceCommonFunctions_1_1Hist.html#a1fc2ea57d25a75da6bcdd3b83c063b6f',1,'CommonFunctions::Hist']]],
   ['setdaughterlabel',['SetDaughterLabel',['../classReconstructedParticle.html#a07eb465bf055a192e36f364dfb4ae7ef',1,'ReconstructedParticle']]],
   ['setdescription',['SetDescription',['../classContainer__base.html#a25f2f3ab9b15ec3ded108ade80382c9f',1,'Container_base']]],
+  ['setfitntuple',['SetFitNTuple',['../classD0phi__KpiKK.html#a8963d8f75eb7bdaa03a393dd164b7122',1,'D0phi_KpiKK::SetFitNTuple()'],['../classTrackSelector.html#ac29ffb6542a27402d12c001d1a2d5809',1,'TrackSelector::SetFitNTuple()']]],
   ['setlogscale',['SetLogScale',['../namespaceCommonFunctions_1_1Draw.html#a909c1fc4f2ff18ee7626a4188795d4d2',1,'CommonFunctions::Draw']]],
   ['setname',['SetName',['../classContainer__base.html#a8b58704f557852e75906e4ae2601987a',1,'Container_base::SetName(const std::string &amp;name)'],['../classContainer__base.html#a815f2a7d603ad8937b72606753e17a44',1,'Container_base::SetName(const std::string &amp;name, const std::string &amp;desc)'],['../classContainer__indexed.html#a1e1ce1b750ba1ad8da3840b1b4577835',1,'Container_indexed::SetName(const std::string &amp;name)'],['../classContainer__indexed.html#a4505ef6a3725865fb3a1584d279f5d3f',1,'Container_indexed::SetName(const std::string &amp;name, const std::string &amp;desc)']]],
   ['setoutputfilename',['SetOutputFilename',['../namespaceCommonFunctions_1_1File.html#a59d365fb3792eaa3bab6d275a1a2d9ba',1,'CommonFunctions::File']]],

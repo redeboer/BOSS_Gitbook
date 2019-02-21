@@ -94,7 +94,7 @@
 			void Trim(std::string &line, const char c=' ');
 			///@}
 
-		/// @name <b>TEMPORARY</b>
+		/// @name @b TEMPORARY
 			///@{
 			void DrawDifference(TH1 *histToDraw, TH1 *histToSubtract, Option_t* opt="E1", const char* setLog="");
 			///@}
@@ -184,7 +184,7 @@
 		return ArgPair_base::instances.size();
 	}
 
-	/// Attempt to get a parameter <b>name</b> from a line.
+	/// Attempt to get a parameter @b name from a line.
 	std::string ConfigLoader::GetParameterName(std::string line)
 	{
 		/// -# If `line` contains an equal sign, remove everything after it.
@@ -198,7 +198,7 @@
 		return line;
 	}
 
-	/// Attempt to get a parameter <b>value</b> from a line.
+	/// Attempt to get a parameter @b value from a line.
 	std::string ConfigLoader::GetParameterValue(std::string line)
 	{
 		/// -# If `line` contains equal sign, get everything before it.

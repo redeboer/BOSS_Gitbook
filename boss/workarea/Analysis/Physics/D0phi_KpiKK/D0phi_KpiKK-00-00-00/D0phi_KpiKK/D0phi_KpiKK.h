@@ -23,17 +23,23 @@
 	class D0phi_KpiKK : public TrackSelector
 	{
 	public:
-		// * Constructor and destructors *
-		D0phi_KpiKK(const std::string &name, ISvcLocator* pSvcLocator);
+		/// @name Constructor and destructors
+			///@{
+			D0phi_KpiKK(const std::string &name, ISvcLocator* pSvcLocator);
+			///@}
 
-		// * Algorithm steps *
-		StatusCode initialize_rest();
-		StatusCode execute_rest();
-		StatusCode finalize_rest();
+
+		/// @name Derived Algorithm steps
+			///@{
+			StatusCode initialize_rest();
+			StatusCode execute_rest();
+			StatusCode finalize_rest();
+			///@}
 
 
 	protected:
-		// * Maps, vectors, and iterators * //
+		/// @name Track collections and iterators
+			///@{
 			std::vector<EvtRecTrack*> fKaonNeg; ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$. @todo Decide if this can be formulated in terms of some `fEvtRecTrackMap`.
 			std::vector<EvtRecTrack*> fKaonPos; ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^+\f$.
 			std::vector<EvtRecTrack*> fPionPos; ///< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
@@ -48,23 +54,31 @@
 			std::vector<Event::McParticle*>::iterator fMcKaonNeg2Iter; ///< Iterator for looping over the MC collection of negative kaons (2st occurence).
 			std::vector<Event::McParticle*>::iterator fMcKaonPosIter;  ///< Iterator for looping over the MC collection of positive kaons.
 			std::vector<Event::McParticle*>::iterator fMcPionPosIter;  ///< Iterator for looping over the MC collection of positive pions.
+			///@}
 
-		// * Maps of Ntuples *
-			/// `NTuple`s are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each `NTuple::Item` represents its leaves. The name of the leaves is determined when calling `NTuple::addItem`.
-			/// Note that the `NTuple::Items` have to be added to the NTuple during the `TrackSelector::initialize()` step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there!
-			bool fWrite_fit_mc;     ///< Package property that determines whether or not to write particles reconstructed from MC truth.
-			bool fWrite_fit4c_all;  ///< Package property that determines whether or not to write results of the `4C` fit <i>for all combinations</i>.
-			bool fWrite_fit4c_best; ///< Package property that determines whether or not to write results of the `4C` fit for the combination closest to <i>both</i> \f$m_{D^0}\f$ and \f$m_\phi\f$.
-			std::map<std::string, NTuple::Item<double> > fMap_dedx_K;     ///< Container for the `"dedx_k"` branch.
-			std::map<std::string, NTuple::Item<double> > fMap_dedx_pi;    ///< Container for the `"dedx_pi"` branch.
-			std::map<std::string, NTuple::Item<double> > fMap_fit4c_all;  ///< Container for the `"fit4c_all"` branch.
-			std::map<std::string, NTuple::Item<double> > fMap_fit4c_best; ///< Container for the `"fit4c_best"` branch.
-			std::map<std::string, NTuple::Item<double> > fMap_fit_mc;     ///< Container for the `"fit_mc"` branch.
+
+		/// @name NTuples (eventual TTrees)
+			///@{
+			NTupleContainer fNTuple_dedx_K;     ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of kaons.
+			NTupleContainer fNTuple_dedx_pi;    ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of pions.
+			NTupleContainer fNTuple_fit4c_all;  ///< `NTuple::Tuple` container for the 4-constraint fit branch containing <i>all</i> combinations.
+			NTupleContainer fNTuple_fit4c_best; ///< `NTuple::Tuple` container for the 5-constraint fit branch containing only the <i>best</i> combination.
+			NTupleContainer fNTuple_fit_mc;     ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
+			///@}
+
 
 	private:
-		// * Private methods
-		void BookNtupleItems_Fit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle);
-		void WriteFitResults(KKFitResult_D0phi_KpiKK &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName);
+		/// @name NTuple methods
+			///@{
+			void AddNTupleItems_Fit(NTupleContainer &tuple);
+			///@}
+
+
+		/// @name Write methods
+			///@{
+			void SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple);
+			///@}
+
 
 	};
 

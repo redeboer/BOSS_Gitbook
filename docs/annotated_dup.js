@@ -19,7 +19,7 @@ var annotated_dup =
     [ "m_trkInfo", "classm__trkInfo.html", "classm__trkInfo" ],
     [ "MctruthForTopoAna", "classMctruthForTopoAna.html", "classMctruthForTopoAna" ],
     [ "NTupleContainer", "classNTupleContainer.html", "classNTupleContainer" ],
-    [ "NTupleTopoAna", "structNTupleTopoAna.html", "structNTupleTopoAna" ],
+    [ "NTupleTopoAna", "classNTupleTopoAna.html", "classNTupleTopoAna" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "PipiJpsi", "classPipiJpsi.html", "classPipiJpsi" ],
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],

@@ -89,6 +89,9 @@ $(document).ready(function(){initNavTree('classJobSwitch.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>This simple object encapsulates a <code>bool</code>ean job option.  
+ <a href="classJobSwitch.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for JobSwitch:</div>
@@ -139,8 +142,13 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a8c92206543b7dcc0289d2809b6eca1ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<div class="textblock"><p>This simple object encapsulates a <code>bool</code>ean job option. </p>
+<p>Options like these are usually used as switches in your algorithm that can be set to <code>true</code> or <code>false</code> in the job options. The constructor only needs a name for this switch. It is convention to start this name with:</p><ul>
+<li><code>"do_"</code> if this is to determine whether or not to perform a certain loop;</li>
+<li><code>"write_"</code> if this determines whether or not to write a certain <code>TTree</code>/<code>NTuple</code>. <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>January 3rd, 2019 </dd></dl>
+</li>
+</ul>
 
 <p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00027">27</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>

@@ -20,7 +20,9 @@
 /// @addtogroup BOSS_objects
 /// @{
 
-	/// Container object that is to facilitate the booking procedure for `NTuple::Tuple`s and their `NTuple::Item`s. See <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures">this page</a> for the motivation. This function also automatically declares a corresponding `JobSwitch` property.
+	/// Container object that is to facilitate the booking procedure for `NTuple::Tuple`s and their `NTuple::Item`s.
+	/// See <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures">this page</a> for the motivation. This function also automatically declares a corresponding `JobSwitch` property.
+	/// @remark This object can only be used within a derived class off the Gaudi `Algorithm` class because its `fTuple` requires to be booked by it (using e.g. `TrackSelector::BookNTuples`).
 	/// @todo Upgrade using templates. Currently only accepts `double`s!
 	/// @todo Think about a solution for indexed items.
 	/// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -55,7 +57,7 @@
 			///@}
 
 
-		// @name NTuple handlers and members
+		/// @name NTuple handlers and members
 			///@{
 			void AddItem(const std::string &item_name);
 			void Write() const;
@@ -64,13 +66,13 @@
 
 		// @name JobSwitch handlers
 			///@{
-			explicit operator bool() const { return (bool)perform; }
+			explicit operator bool() const { return (fTuple && perform); }
 			bool operator! () const { return !perform; }
 			bool DoWrite() const { return (bool)write; }
 			///@}
 
 
-	private:
+	protected:
 		// @name Setters
 			///@{
 			void SetSwitch(JobSwitch &obj, const std::string &prepend);

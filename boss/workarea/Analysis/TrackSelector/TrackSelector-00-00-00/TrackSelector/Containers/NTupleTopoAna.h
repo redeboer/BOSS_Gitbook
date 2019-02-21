@@ -6,6 +6,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
+	#include "TrackSelector/Containers/NTupleContainer.h"
 	#include "GaudiKernel/NTuple.h"
 
 
@@ -16,20 +17,33 @@
 /// @addtogroup BOSS_packages
 /// @{
 
-	/// Struct object that represents the `NTuple` containing MC truth necessary for the `topoana` package.
-	/// @remark February 18th, 2019
+	/// Extension of `NTupleContainer` that represents the `NTuple` containing MC truth necessary for the `topoana` package.
 	/// @author Remco de Boer 雷穆克
-	struct NTupleTopoAna
+	/// @date February 18th, 2019
+	class NTupleTopoAna : public NTupleContainer
 	{
-		NTuple::Tuple *tuple;      ///< `NTuple` that will be the eventual `"MctruthForTopoAna"` tree.
-		// NTuple::Item<int>  iEvt;   ///< <b>Counter</b> for number of events (not the ID!)
-		NTuple::Item<int>  runID;  ///< Run number ID.
-		NTuple::Item<int>  evtID;  ///< Rvent number ID.
-		NTuple::Item<int>  nItems; ///< Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
-		NTuple::Array<int> particle; ///< PDG code for the particle in this array.
-		NTuple::Array<int> mother; ///< Track index of the mother particle.
-		explicit operator bool() const { return tuple; }
-		void Write() { if(tuple) tuple->write(); }
+	public:
+		/// @name Constructors and destructors
+			///@{
+			NTupleTopoAna(const std::string &name, const std::string &desc) : NTupleContainer(name, desc) {} /// @remark Here you can define the name and title of the branch for the TopoAna pacakge!
+			///@}
+
+
+		/// @name NTuple handlers and members
+			///@{
+			NTuple::Tuple* GetNTuple() { return fTuple; } ///< Access to `fNTuple` (as opposed to `NTupleContainer`). @todo Develop template `NTupleContainer::AddItem` and `AddIndexedItem` procedure that removes the need to access `fTuple`.
+			///@}
+
+
+		/// @name Specific NTuple::Items and NTuple::Arrays
+			///@{
+			// NTuple::Item<int>  iEvt;     ///< @b Counter for number of events (not the ID!)
+			NTuple::Item<int>  runID;    ///< Run number ID.
+			NTuple::Item<int>  evtID;    ///< Rvent number ID.
+			NTuple::Item<int>  nItems;   ///< Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
+			NTuple::Array<int> particle; ///< PDG code for the particle in this array.
+			NTuple::Array<int> mother;   ///< Track index of the mother particle.
+			///@}
 	};
 
 /// @}

@@ -2,82 +2,80 @@
 \form#1:$K^-$
 \form#2:$K^+$
 \form#3:$\pi^+$
-\form#4:$m_{D^0}$
-\form#5:$m_\phi$
-\form#6:$D^0$
-\form#7:$J/\psi$
-\form#8:$\phi$
-\form#9:$\pi^-$
-\form#10:$dE/dx$
-\form#11:$\chi^2 > 4.0$
-\form#12:$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+$
-\form#13:$m_{K^-K^+}-m_{\phi}$
-\form#14:$K^-\pi^+$
-\form#15:$\chi^2$
-\form#16:$K^- \pi^+$
-\form#17:$K^+ K^+ $
-\form#18:$D^0 \phi $
-\form#19:$D^0 \rightarrow K^-\pi^+$
-\form#20:$\phi \rightarrow K^-K^+$
-\form#21:$J/\psi \rightarrow D^0\phi$
-\form#22:$M_{K^-\pi^+}$
-\form#23:$M_{K^-K^+}$
-\form#24:$M_{D^0\phi}$
-\form#25:$|\vec{p}_{K^-\pi^+}|$
-\form#26:$|\vec{p}_{K^-K^+}|$
-\form#27:$M_{K^-K^+} - m_{\phi}$
-\form#28:$ \psi' \rightarrow J/\psi \pi \pi $
-\form#29:$ J/\psi \rightarrow \mathrm{di\-leptons} $
-\form#30:$E/|\vec{p}|$
-\form#31:$x$
-\form#32:$y$
-\form#33:$z$
-\form#34:$xy$
-\form#35:$\theta$
-\form#36:$|\vec{p}|$
-\form#37:$\cos(\theta)$
-\form#38:$E$
-\form#39:$p_x$
-\form#40:$p_y$
-\form#41:$p_z$
-\form#42:$4\times4$
-\form#43:$J/\psi \pi\pi$
-\form#44:$\rho$
-\form#45:$l^+$
-\form#46:$l^-$
-\form#47:$xyz$
-\form#48:$r$
-\form#49:$\psi' \rightarrow \pi\pi J/\psi \rightarrow \pi\pi ll$
-\form#50:$\pi^0$
-\form#51:$\rho^0$
-\form#52:$\rho^-$
-\form#53:$\rho^+$
-\form#54:$J/\psi \rightarrow \rho^0\pi^0$
-\form#55:$J/\psi \rightarrow \rho^-\pi^+$
-\form#56:$J/\psi \rightarrow \rho^+\pi^-$
-\form#57:$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\gamma\gamma $
-\form#58:$\gamma$
-\form#59:$\pi^0 \rightarrow \gamma\gamma$
-\form#60:$\rho^0 \rightarrow \pi^-\pi^+$
-\form#61:$\rho^- \rightarrow \pi^0\pi^-$
-\form#62:$\rho^+ \rightarrow \pi^0\pi^+$
-\form#63:$\pm$
-\form#64:$\pi^+\pi^-$
-\form#65:$\pi^0\pi^+$
-\form#66:$\pi^0\pi^-$
-\form#67:$Z$
-\form#68:$e^+e^-$
-\form#69:$p$
-\form#70:$R$
-\form#71:$\rho^{0\pm}$
-\form#72:$\pi^\pm$
-\form#73:$K^\pm$
-\form#74:$\chi_\mathrm{red}^2$
-\form#75:$ e^- $
-\form#76:$ \mu^- $
-\form#77:$ \pi^+ $
-\form#78:$ \pi^0 $
-\form#79:$ \rho^\pm $
-\form#80:$ \rho^0 $
-\form#81:$ K^\pm $
-\form#82:$ p $
+\form#4:$dE/dx$
+\form#5:$D^0$
+\form#6:$J/\psi$
+\form#7:$\phi$
+\form#8:$\pi^-$
+\form#9:$\chi^2 > 4.0$
+\form#10:$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+$
+\form#11:$m_{K^-K^+}-m_{\phi}$
+\form#12:$K^-\pi^+$
+\form#13:$\chi^2$
+\form#14:$K^- \pi^+$
+\form#15:$K^+ K^+ $
+\form#16:$D^0 \phi $
+\form#17:$D^0 \rightarrow K^-\pi^+$
+\form#18:$\phi \rightarrow K^-K^+$
+\form#19:$J/\psi \rightarrow D^0\phi$
+\form#20:$M_{K^-\pi^+}$
+\form#21:$M_{K^-K^+}$
+\form#22:$M_{D^0\phi}$
+\form#23:$|\vec{p}_{K^-\pi^+}|$
+\form#24:$|\vec{p}_{K^-K^+}|$
+\form#25:$M_{K^-K^+} - m_{\phi}$
+\form#26:$ \psi' \rightarrow J/\psi \pi \pi $
+\form#27:$ J/\psi \rightarrow \mathrm{di\-leptons} $
+\form#28:$E/|\vec{p}|$
+\form#29:$x$
+\form#30:$y$
+\form#31:$z$
+\form#32:$xy$
+\form#33:$\theta$
+\form#34:$|\vec{p}|$
+\form#35:$\cos(\theta)$
+\form#36:$E$
+\form#37:$p_x$
+\form#38:$p_y$
+\form#39:$p_z$
+\form#40:$4\times4$
+\form#41:$J/\psi \pi\pi$
+\form#42:$\rho$
+\form#43:$l^+$
+\form#44:$l^-$
+\form#45:$xyz$
+\form#46:$r$
+\form#47:$\psi' \rightarrow \pi\pi J/\psi \rightarrow \pi\pi ll$
+\form#48:$\pi^0$
+\form#49:$\rho^0$
+\form#50:$\rho^-$
+\form#51:$\rho^+$
+\form#52:$J/\psi \rightarrow \rho^0\pi^0$
+\form#53:$J/\psi \rightarrow \rho^-\pi^+$
+\form#54:$J/\psi \rightarrow \rho^+\pi^-$
+\form#55:$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\gamma\gamma $
+\form#56:$\gamma$
+\form#57:$\pi^0 \rightarrow \gamma\gamma$
+\form#58:$\rho^0 \rightarrow \pi^-\pi^+$
+\form#59:$\rho^- \rightarrow \pi^0\pi^-$
+\form#60:$\rho^+ \rightarrow \pi^0\pi^+$
+\form#61:$\pm$
+\form#62:$\pi^+\pi^-$
+\form#63:$\pi^0\pi^+$
+\form#64:$\pi^0\pi^-$
+\form#65:$Z$
+\form#66:$e^+e^-$
+\form#67:$p$
+\form#68:$R$
+\form#69:$\rho^{0\pm}$
+\form#70:$\pi^\pm$
+\form#71:$K^\pm$
+\form#72:$\chi_\mathrm{red}^2$
+\form#73:$ e^- $
+\form#74:$ \mu^- $
+\form#75:$ \pi^+ $
+\form#76:$ \pi^0 $
+\form#77:$ \rho^\pm $
+\form#78:$ \rho^0 $
+\form#79:$ K^\pm $
+\form#80:$ p $

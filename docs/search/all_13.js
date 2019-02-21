@@ -10,7 +10,6 @@ var searchData=
   ['trk',['trk',['../classm__trkInfo.html#a6e5bbba5265629bc17c709dacea7c05d',1,'m_trkInfo']]],
   ['trkinfo_2eh',['trkInfo.h',['../trkInfo_8h.html',1,'']]],
   ['tsglobals',['TSGlobals',['../namespaceTSGlobals.html',1,'']]],
-  ['tuple',['tuple',['../structNTupleTopoAna.html#ae0c6ba6adec4344740391890d62457c3',1,'NTupleTopoAna']]],
   ['tupletofib',['TupleTofIB',['../classRhopiAlg.html#a4ab8fcbab557d9bec8ab8852052277a7',1,'RhopiAlg']]],
   ['tupletofob',['TupleTofOB',['../classRhopiAlg.html#a92e7f99a73482be4d206bd4dc86e83dc',1,'RhopiAlg']]]
 ];

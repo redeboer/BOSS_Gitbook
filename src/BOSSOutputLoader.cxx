@@ -260,7 +260,7 @@
 				cuts[it.first].push_back(it.second);
 				if(it.first.length() > length) length = it.first.length();
 			}
-		/// <li> If `"_cutvalues"` contains only 1 entry, <b>only</b> print a list of cut paramters and their values. Entry 0 of the `"_cutvalues"` tree is considered to be that value. (This is for backward compatibility with output of the older versions of `TrackSelector`.)
+		/// <li> If `"_cutvalues"` contains only 1 entry, @b only print a list of cut paramters and their values. Entry 0 of the `"_cutvalues"` tree is considered to be that value. (This is for backward compatibility with output of the older versions of `TrackSelector`.)
 			if(key->second.GetEntries()==1) {
 				std::cout << "CUT PARAMTERS" << std::endl;
 				for(auto it : cuts) {
@@ -295,17 +295,17 @@
 			for(auto it : cuts) {
 				/// <li> Column 1: <b>cut name</b>.
 				std::cout << "  " << std::setw(length) << std::left << it.first << " | ";
-				/// <li> Column 2: <b>minimum</b>, if available.
+				/// <li> Column 2: @b minimum, if available.
 				std::cout << std::setw(10) << std::right;
 				if(it.second[0] > -DBL_MAX) std::cout << it.second[0];
 				else std::cout << "";
 				std::cout << " | ";
-				/// <li> Column 3: <b>maximum</b>, if available.
+				/// <li> Column 3: @b maximum, if available.
 				std::cout << std::setw(10) << std::right;
 				if(it.second[1] < DBL_MAX) std::cout << it.second[1];
 				else std::cout << "";
 				std::cout << " | ";
-				/// <li> Column 4: <b>counter</b>, if available.
+				/// <li> Column 4: @b counter, if available.
 				std::cout << std::setw(10) << std::right << it.second[2] << std::endl;
 				/// </ol>
 			}

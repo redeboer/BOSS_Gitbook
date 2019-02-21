@@ -131,7 +131,7 @@
 					)) continue;
 					/// </ul>
 
-				/// <li> <b>Write</b> Particle Identification information of all tracks
+				/// <li> @b Write Particle Identification information of all tracks
 					if(fWrite_PID) WritePIDInformation();
 
 				/// <li> Identify type of charged particle and add to related vector: (this package: only pions).
@@ -173,7 +173,7 @@
 					fSmallestPhi   = fSmallestPhi   * 180 / (CLHEP::pi);
 					fSmallestAngle = fSmallestAngle * 180 / (CLHEP::pi);
 
-				/// <li> <b>Write</b> photon info (`"photon"` branch)
+				/// <li> @b Write photon info (`"photon"` branch)
 					if(fWrite_photon) {
 						fMap_photon.at("E")     = fTrackEMC->energy();
 						fMap_photon.at("phi")   = fSmallestTheta;
@@ -204,7 +204,7 @@
 			if(fGamma.size() < 2) return StatusCode::SUCCESS;
 
 
-		/// <li> <b>Write</b> \f$dE/dx\f$ PID information (`"dedx_pi"` branch)
+		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_pi"` branch)
 			if(fWrite_dedx) {
 				WriteDedxInfoForVector(fPionNeg, "dedx_pi", fMap_dedx_pi);
 				WriteDedxInfoForVector(fPionPos, "dedx_pi", fMap_dedx_pi);
@@ -271,7 +271,7 @@
 							/// <ol>
 							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
 							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
-							/// <li> <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
+							/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
 							KKFitResult_rhopi_pipigg fitresult(kkmfit);
 							if(fWrite_fit4c_all) WriteFitResults(fitresult, fMap_fit4c_all, "fit4c_all");
 							/// </ol>
@@ -279,7 +279,7 @@
 
 				}
 
-				/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branch)
+				/// <li> @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branch)
 				if(fWrite_fit4c_best && bestKalmanFit) {
 					ComputeInvariantMasses(bestKalmanFit);
 					WriteFitResults(bestKalmanFit, fMap_fit4c_best, "fit4c_best");
@@ -358,13 +358,13 @@
 							/// Compute the measure for the best Kalman kinematic fit and keep a pointer to this result if better than previous.
 							ComputeInvariantMasses(kkmfit);
 							CompareWithBestFit(MeasureForBestFit5c(), bestFitMeasure, kkmfit, bestKalmanFit);
-							/// <b>Write</b> results of the Kalman kinematic fit (all combinations, `"fit5c_all"`).
+							/// @b Write results of the Kalman kinematic fit (all combinations, `"fit5c_all"`).
 							if(fWrite_fit5c_all) WriteFitResults(kkmfit, fMap_fit5c_all, "fit5c_all");
 						}
 
 				} // end of loop over particle combinations
 
-				/// <li> <b>Write</b> results of the Kalman kitematic fit <i>of the best combination</i> (`"fit5c_best"` branch)
+				/// <li> @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit5c_best"` branch)
 				if(fWrite_fit5c_best && bestKalmanFit) {
 					ComputeInvariantMasses(bestKalmanFit);
 					WriteFitResults(bestKalmanFit, fMap_fit5c_best, "fit5c_best");
@@ -530,7 +530,7 @@
 // * =============================== * //
 
 	/// This function encapsulates the `addItem` procedure for the fit branches.
-	void D0phi_KpiKK::BookNtupleItems_Fit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	void D0phi_KpiKK::AddNTupleItems_Fit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		/// <ol>
 		map["mpi0"];       /// <li> `"mpi0"`:       Invariant mass for \f$\pi^0 \rightarrow \gamma\gamma\f$ candidate.

@@ -47,8 +47,9 @@
 	#include "TrackSelector/Containers/JobSwitch.h"
 	#include "TrackSelector/Containers/NTupleContainer.h"
 	#include "TrackSelector/Containers/NTupleTopoAna.h"
+	#include "TrackSelector/KKFitResult.h"
 	#include "VertexFit/KalmanKinematicFit.h"
-	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this requires a newer version of `gcc`.
+	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
 	#include <string>
 	#include <vector>
 
@@ -117,9 +118,9 @@
 
 		/// @name NTuple methods
 			///@{
-			void BookNtupleItems_McTruth();
-			void BookNtupleItems_Dedx(NTupleContainer &tuple);
-			void BookNtupleItems_Tof (NTupleContainer &tuple);
+			void AddNTupleItems_McTruth();
+			void AddNTupleItems_Dedx(NTupleContainer &tuple);
+			void AddNTupleItems_Tof (NTupleContainer &tuple);
 			///@}
 
 
@@ -129,6 +130,8 @@
 			void WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, NTupleContainer &tuple);
 			void WritePIDInformation();
 			void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, NTupleContainer &tuple);
+			void WriteFitResults(KKFitResult *fitresult, NTupleContainer &tuple);
+			virtual void SetFitNTuple(KKFitResult *fitresult, NTupleContainer &tuple) = 0; ///< Virtual method that is executed in `WriteFitResults` and should be further specified in the derived classes. @param fitresult This parameter is a pointer to allow for `dynamic_cast` in the derived specification of this `virtual` function. @param tuple The `NTuple` to which you eventually want to write the results.
 			///@}
 
 
@@ -143,7 +146,7 @@
 
 		/// @name Track collections and iterators
 			///@{
-			std::vector<Event::McParticle*> fMcParticles; ///< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the `fMcTruth` member and calling its `NTupleTopoAna::Write` method, otherwise it is useless.
+			std::vector<Event::McParticle*> fMcParticles; ///< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the `fNTuple_mctruth` member and calling its `NTupleTopoAna::Write` method, otherwise it is useless.
 			std::vector<EvtRecTrack*> fGoodChargedTracks; ///< Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.
 			std::vector<EvtRecTrack*> fGoodNeutralTracks; ///< Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons).
 			std::vector<EvtRecTrack*>::iterator fTrackIterator; ///< Iterator for looping over the collection of charged and neutral tracks (`EvtRecTrackCol`).
@@ -164,18 +167,18 @@
 
 		/// @name NTuples (eventual TTrees)
 			///@{
-			NTupleContainer fNTuple_cuts;    ///< `NTuple::Tuple` container for the cut parameters.
-			NTupleContainer fNTuple_PID;     ///< `NTuple::Tuple` container for the general PID information (TOF, \f$dE/dx\f$, etc) branch. <b>Needs to be filled in the derived class!</b>
-			NTupleContainer fNTuple_TofEC;   ///< `NTuple::Tuple` container for the data from the Time-of-Flight end cap detector branch.
-			NTupleContainer fNTuple_TofIB;   ///< `NTuple::Tuple` container for the data from the Time-of-Flight inner barrel detector branch.
-			NTupleContainer fNTuple_TofOB;   ///< `NTuple::Tuple` container for the data from the Time-of-Flight outer barrel detector branch.
-			NTupleContainer fNTuple_charged; ///< `NTuple::Tuple` container for the charged track vertex info charged track vertex branch.
-			NTupleContainer fNTuple_dedx;    ///< `NTuple::Tuple` container for the energy loss (\f$dE/dx\f$) branch.
-			NTupleContainer fNTuple_mult;    ///< `NTuple::Tuple` container for the multiplicities branch.
-			NTupleContainer fNTuple_mult_select; ///< `NTuple::Tuple` container for the `"mult_select"` branch.
-			NTupleContainer fNTuple_neutral; ///< `NTuple::Tuple` container for the neutral track info neutral track info branch.
-			NTupleContainer fNTuple_vertex;  ///< `NTuple::Tuple` container for the primary vertex info vertex branch.
-			NTupleTopoAna fMcTruth; ///< `NTuple` `struct` object for Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be encapsulated in a `struct` instead of simply making use of the `NTuple` map.
+			NTupleContainer fNTuple_cuts;     ///< `NTuple::Tuple` container for the cut parameters.
+			NTupleContainer fNTuple_PID;      ///< `NTuple::Tuple` container for the general PID information (TOF, \f$dE/dx\f$, etc) branch. <b>Needs to be filled in the derived class!</b>
+			NTupleContainer fNTuple_TofEC;    ///< `NTuple::Tuple` container for the data from the Time-of-Flight end cap detector branch.
+			NTupleContainer fNTuple_TofIB;    ///< `NTuple::Tuple` container for the data from the Time-of-Flight inner barrel detector branch.
+			NTupleContainer fNTuple_TofOB;    ///< `NTuple::Tuple` container for the data from the Time-of-Flight outer barrel detector branch.
+			NTupleContainer fNTuple_charged;  ///< `NTuple::Tuple` container for the charged track vertex info charged track vertex branch.
+			NTupleContainer fNTuple_dedx;     ///< `NTuple::Tuple` container for the energy loss (\f$dE/dx\f$) branch. 
+			NTupleContainer fNTuple_mult;     ///< `NTuple::Tuple` container for the multiplicities branch.
+			NTupleContainer fNTuple_mult_sel; ///< `NTuple::Tuple` container for the `"mult_select"` branch.
+			NTupleContainer fNTuple_neutral;  ///< `NTuple::Tuple` container for the neutral track info neutral track info branch.
+			NTupleContainer fNTuple_vertex;   ///< `NTuple::Tuple` container for the primary vertex info vertex branch.
+			NTupleTopoAna   fNTuple_mctruth;  ///< `NTuple::Tuple` container for Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be further specified in `NTupleTopoAna`, a derived class of `NTupleContainer`.
 			///@}
 
 
@@ -233,6 +236,7 @@
 			///@{
 			HepLorentzVector ComputeMomentum(EvtRecTrack *track);
 			///@}
+
 
 	};
 
