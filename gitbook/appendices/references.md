@@ -36,16 +36,16 @@
 * On GaudiKernel:
   * [Class documentation](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html) \(Doxygen\)
 
-> ## Tools <a id="tools"></a>
->
-> * ​[Doxygen manual](http://www.doxygen.nl/manual/index.html)​
-> * ​[Visual Studio Code](https://code.visualstudio.com/), and some useful extensions:
->   * ​[SSH FS](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs) This is essential for using VSCode on the IHEP server!
->   * ​[GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)​
->   * ​[LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)​
->   * ​[Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)​
->   * ​[Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)​
->   * ​[Alignment](https://marketplace.visualstudio.com/items?itemName=annsk.alignment)​
->   * ​[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)​
->   * ​[Trailing Spaces](https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces)​
+## Tools
+
+* ​[Doxygen manual](http://www.doxygen.nl/manual/index.html)​
+* [Visual Studio Code](https://code.visualstudio.com/), and some useful extensions:
+  * ​[SSH FS](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs) This is essential for using VSCode on the IHEP server!
+  * ​[GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)​
+  * ​[LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)​
+  * ​[Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)​
+  * ​[Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)​
+  * ​[Alignment](https://marketplace.visualstudio.com/items?itemName=annsk.alignment)​
+  * ​[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)​
+  * ​[Trailing Spaces](https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces)​
 
