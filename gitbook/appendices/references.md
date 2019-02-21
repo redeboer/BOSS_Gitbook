@@ -25,12 +25,16 @@
   * [http://bes3.to.infn.it/Boss/7.0.2/html/classes.html](http://bes3.to.infn.it/Boss/7.0.2/html/classes.html) \(external\)
   * [https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html](https://boss.ihep.ac.cn/~offlinesoftware/MdcPatRecDoc04/classes.html) \(`MdcPatRec` Class Index\)
 * Some introductions to BOSS:
-  * Official website: [http://www.cmtsite.net/](http://www.cmtsite.net/)
-  * LHCb on CMT: [https://lhcb-comp.web.cern.ch/lhcb-comp/support/CMT/cmt.htm](https://lhcb-comp.web.cern.ch/lhcb-comp/support/CMT/cmt.htm)
-  * [http://www.hep.umn.edu/bes3/MN\_BES3\_files/BESIII\_intro\_shencp.pdf](http://www.hep.umn.edu/bes3/MN_BES3_files/BESIII_intro_shencp.pdf)
-  * [BES environment installation unofficial paper](https://www.phys.hawaii.edu/~besdata/paper/BESinstall.pdf)
-* [http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome](http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome) \(TWiki\)
-* On GaudiKernel: [https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html)
+  * [The BESIII website on Offline Software](http://english.ihep.cas.cn/bes/doc/2247.html) Short introductory note on BOSS and notes on the conveners sof the software subgroups.
+  * [Offline Software Group website](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Main_Page) This is the official and most elaborate source on BOSS currently available. It can be somewhat outdated and concise, but it does provide some overview of the packages and functionality that BOSS offers.
+  * [BESIII TWiki](http://twiki.ihep.ac.cn/twiki/view/BES/BOSS/WebHome) \(seems outdated\)
+  * [A tutorial of BESIII Physics Analysis](http://www.hep.umn.edu/bes3/MN_BES3_files/BESIII_intro_shencp.pdf), presentation by Shen Chengping Somewhat outdated, but introduces some key vocabulary.
+  * [BES environment installation](https://www.phys.hawaii.edu/~besdata/paper/BESinstall.pdf) \(unofficial paper\)
+* On CMT:
+  * [Official website](http://www.cmtsite.net/)
+  * [LHCb on CMT](https://lhcb-comp.web.cern.ch/lhcb-comp/support/CMT/cmt.htm)
+* On GaudiKernel:
+  * [Class documentation](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html) \(Doxygen\)
 
 > ## Tools <a id="tools"></a>
 >
