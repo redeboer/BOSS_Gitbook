@@ -26,15 +26,15 @@
 	class Container_base
 	{
 	public:
-		Container_base(const std::string &obj_name, const std::string &obj_desc="") : fName(obj_name), fDescription(obj_desc) {}
-		virtual void SetName(const std::string &new_name);
-		virtual void SetName(const std::string &new_name, const std::string &new_desc);
-		virtual void SetDescription(const std::string &new_desc);
-		const char* Name() const { return fName.c_str(); };
-		const char* Description() const { return fDescription.c_str(); };
+		Container_base(const std::string &name, const std::string &desc="") : fName(name), fDescription(desc) {} ///< Only construct the name and description strings
+		virtual void SetName(const std::string &name);
+		virtual void SetName(const std::string &name, const std::string &desc);
+		virtual void SetDescription(const std::string &desc);
+		const char* Name() const { return fName.c_str(); } ///< Get a pointer to the `C` string (!) of the name.
+		const char* Description() const { return fDescription.c_str(); } ///< Get a pointer to the `C` string (!) of the description.
 	private:
-		std::string fDescription; //!< Title or description of the container object.
 		std::string fName; //!< Name/identifier of the container object.
+		std::string fDescription; //!< Title or description of the container object.
 	};
 
 

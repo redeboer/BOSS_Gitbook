@@ -32,7 +32,7 @@
 			new_name.insert(0, "do_");
 			perform.SetName(new_name, description);
 		/// <li> Set name for corresponding "write" `JobSwitch`.
-			std::string new_name(name);
+			new_name = name;
 			new_name.insert(0, "write_");
 			write.SetName(new_name, description);
 		/// </ol>

@@ -10,27 +10,24 @@
 // * ------- SETTERS ------- * //
 // * ======================= * //
 
-	/**
-	 * @brief Rename the object. Gives controlled access to the `private` `fName` member.
-	 */
-	void Container_base::SetName(const std::string &new_name)
+	void Container_base::SetName(const std::string &name)
+		/// Rename the object.
+		/// Gives controlled access to the `private` `fName` member.
 	{
-		fName = new_name;
+		fName = name;
 	}
 
-	/**
-	 * @brief Give a new description to the object. Gives controlled access to the `private` `fDescription` member.
-	 */
-	void Container_base::SetName(const std::string &new_desc)
+	void Container_base::SetName(const std::string &name, const std::string &description)
+		/// Rename the object and give it a new description.
+		/// Gives controlled access to the `private` `fName` and `fDescription` members.
 	{
-		fDescription = new_desc;
+		SetName(name);
+		SetDescription(description);
 	}
 
-	/**
-	 * @brief Rename the object and give it a new description. Gives controlled access to the `private` `fName` and `fDescription` members.
-	 */
-	void Container_base::SetName(const std::string &new_name, const std::string &new_desc)
+	void Container_base::SetDescription(const std::string &desc)
+		/// Give a new description to the object.
+		/// Gives controlled access to the `private` `fDescription` member.
 	{
-		SetName(new_name);
-		SetDescription(new_desc);
+		fDescription = desc;
 	}
