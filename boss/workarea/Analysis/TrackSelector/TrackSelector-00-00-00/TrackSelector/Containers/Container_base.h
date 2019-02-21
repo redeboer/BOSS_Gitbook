@@ -27,9 +27,9 @@
 	{
 	public:
 		Container_base(const std::string &obj_name, const std::string &obj_desc="") : fName(obj_name), fDescription(obj_desc) {}
-		void SetName(const std::string &new_name);
-		void SetName(const std::string &new_name, const std::string &new_desc);
-		void SetDescription(const std::string &new_desc);
+		virtual void SetName(const std::string &new_name);
+		virtual void SetName(const std::string &new_name, const std::string &new_desc);
+		virtual void SetDescription(const std::string &new_desc);
 		const char* Name() const { return fName.c_str(); };
 		const char* Description() const { return fDescription.c_str(); };
 	private:
