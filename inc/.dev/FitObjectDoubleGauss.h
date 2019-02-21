@@ -1,21 +1,11 @@
 #ifndef BOSS_Afterburner_FitObjectDoubleGauss_H
 #define BOSS_Afterburner_FitObjectDoubleGauss_H
 
-/// @addtogroup BOSS_Afterburner
-/// @{
-
-/**
- * @brief    Container for objects necessary for fitting invariant mass spectra.
- * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
- * @date     November 26th, 2018
- * @details  This object only needs an invariant mass spectrum and a `TReconstructedParticle` object of the particle that you want to reconstruct. `RooFit` objects will then be automatically loaded in the constructor.
- * @remark   @b DEVELOPMENTAL
- */
-
 
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+
 	#include "TString.h"
 	#include "FitObject.h"
 	#include "RooGaussian.h"
@@ -24,46 +14,56 @@
 	#include <iostream>
 
 
+
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
-class FitObjectDoubleGauss : public FitObject
-{
-public:
-	// * Constructor and destructors *
-	FitObjectDoubleGauss(TH1D& hist, const ReconstructedParticle& particle);
+/// @addtogroup BOSS_Afterburner
+/// @{
 
-	// * Setters *
+	/// Container for objects necessary for fitting invariant mass spectra.
+	/// This object only needs an invariant mass spectrum and a `TReconstructedParticle` object of the particle that you want to reconstruct. `RooFit` objects will then be automatically loaded in the constructor.
+	///
+	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+	/// @date     November 26th, 2018
+	/// @remark   @b DEVELOPMENTAL
+	class FitObjectDoubleGauss : public FitObject
+	{
+	public:
+		// * Constructor and destructors *
+		FitObjectDoubleGauss(TH1D& hist, const ReconstructedParticle& particle);
 
-	// * Getters *
+		// * Setters *
 
-protected:
-	// * Data members *
-	std::unique_ptr<RooRealVar> fMean; //!< Mean of the <b>two</b> Gaussians when centered around the mass
-	std::unique_ptr<RooRealVar> fMean0; //!< Mean of the <b>two</b> Gaussians when centered around \f$ M_{\mathrm{inv}} = 0 \f$. This is useful in a convolution.
-	std::unique_ptr<RooRealVar> fSigma1; //!< Width of the (prferably) narrow Gaussian of the two.
-	std::unique_ptr<RooRealVar> fSigma2; //!< Width of the (prferably) wide Gaussian of the two.
-	std::unique_ptr<RooGaussian> fGaussian1; //!< Narrow Gaussian.
-	std::unique_ptr<RooGaussian> fGaussian2; //!< Wide Gaussian.
+		// * Getters *
 
-	// * Private methods *
-	std::unique_ptr<RooRealVar> BuildSigmaVariable(const UChar_t number, const double& width);
-	std::unique_ptr<RooGaussian> BuildGaussianFunction(const bool wide, const bool mean0 = false);
-	void Initialize();
-	void SetMassParameter();
-	void SetMassParameterAroundZero();
-	void SetSignalArguments();
+	protected:
+		// * Data members *
+		std::unique_ptr<RooRealVar> fMean; ///< Mean of the <b>two</b> Gaussians when centered around the mass
+		std::unique_ptr<RooRealVar> fMean0; ///< Mean of the <b>two</b> Gaussians when centered around \f$ M_{\mathrm{inv}} = 0 \f$. This is useful in a convolution.
+		std::unique_ptr<RooRealVar> fSigma1; ///< Width of the (prferably) narrow Gaussian of the two.
+		std::unique_ptr<RooRealVar> fSigma2; ///< Width of the (prferably) wide Gaussian of the two.
+		std::unique_ptr<RooGaussian> fGaussian1; ///< Narrow Gaussian.
+		std::unique_ptr<RooGaussian> fGaussian2; ///< Wide Gaussian.
 
-};
+		// * Private methods *
+		std::unique_ptr<RooRealVar> BuildSigmaVariable(const UChar_t number, const double& width);
+		std::unique_ptr<RooGaussian> BuildGaussianFunction(const bool wide, const bool mean0 = false);
+		void Initialize();
+		void SetMassParameter();
+		void SetMassParameterAroundZero();
+		void SetSignalArguments();
+
+	};
+
 
 
 // * =========================================== * //
 // * ------- CONSTRUCTORS AND DESTRUCTORS ------ * //
 // * =========================================== * //
 
-	/**
-	 * @brief Construct particle based on its code in the PDG.
-	 */
+
+	/// Construct particle based on its code in the PDG.
 	FitObjectDoubleGauss::FitObjectDoubleGauss(TH1D& hist, const ReconstructedParticle& particle) :
 		FitObject(hist, particle)
 	{
@@ -71,27 +71,13 @@ protected:
 	}
 
 
-// * ======================= * //
-// * ------- SETTERS ------- * //
-// * ======================= * //
-
-
-
-
-// * ======================= * //
-// * ------- GETTERS ------- * //
-// * ======================= * //
-
-
-
 
 // * =============================== * //
 // * ------- PRIVATE METHODS ------- * //
 // * =============================== * //
 
-	/**
-	 * @brief Build a `RooRealVar` object that resembles a sigma of a Gaussian shape (i.e. has the proper name, title, and boundaries).
-	 */
+
+	/// Build a `RooRealVar` object that resembles a sigma of a Gaussian shape (i.e. has the proper name, title, and boundaries).
 	std::unique_ptr<RooRealVar> FitObjectDoubleGauss::BuildSigmaVariable(const UChar_t num, const double& width)
 	{
 		return std_fix::make_unique<RooRealVar>(
@@ -135,9 +121,7 @@ protected:
 			fRooRealVar, *mean, *sigma);
 	}
 
-	/**
-	 * @brief Encapsulation of what any constructor for this object needs to do.
-	 */
+	/// Encapsulation of what any constructor for this object needs to do.
 	void FitObjectDoubleGauss::Initialize()
 	{
 		SetMassParameter();
@@ -208,7 +192,6 @@ protected:
 			c.SaveAs(Form("%s/DoubleGauss_%s.%s", outputDir.Data(), particle.GetName(), Settings::File::gExtension));
 			c.Close();
 
-	}
 
 /// @}
 

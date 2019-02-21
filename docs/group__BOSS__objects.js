@@ -33,25 +33,26 @@ var group__BOSS__objects =
       [ "fM_rhop", "classKKFitResult__rhopi__pipigg.html#a81d1dd0d216d4ba05a6c61ed1ed44512", null ]
     ] ],
     [ "Container_base", "classContainer__base.html", [
-      [ "Container_base", "classContainer__base.html#a2af220593035686ec437c716c58e781e", null ],
-      [ "Description", "classContainer__base.html#a1b186d63092515eb02195919ffa03075", null ],
-      [ "Name", "classContainer__base.html#a88829ee27117b28cb88e44afd1f22319", null ],
-      [ "SetDescription", "classContainer__base.html#a308f1d5576bb84f72ccb057dc4d7ef53", null ],
-      [ "SetName", "classContainer__base.html#a1e9e09bb2b32e89bc8dc05984494c76b", null ],
-      [ "SetName", "classContainer__base.html#a35f610266590dd6151eee1509db7eb02", null ],
+      [ "Container_base", "classContainer__base.html#aad55908948c253a06e95291c7d330b87", null ],
+      [ "Description", "classContainer__base.html#a78bdd498def449c3415eccfb252fa1f8", null ],
+      [ "Name", "classContainer__base.html#aab3523d77ea3653124698172993025f3", null ],
+      [ "SetDescription", "classContainer__base.html#a25f2f3ab9b15ec3ded108ade80382c9f", null ],
+      [ "SetName", "classContainer__base.html#a8b58704f557852e75906e4ae2601987a", null ],
+      [ "SetName", "classContainer__base.html#a815f2a7d603ad8937b72606753e17a44", null ],
       [ "fDescription", "classContainer__base.html#a218005412ad10c6343abee0ebb2f6529", null ],
       [ "fName", "classContainer__base.html#acbad734f416195c1141acb0850d98863", null ]
     ] ],
     [ "Container_indexed", "classContainer__indexed.html", [
       [ "Container_indexed", "classContainer__indexed.html#a7fbbd1d3252b268fe5edf41a459a8c8d", null ],
       [ "~Container_indexed", "classContainer__indexed.html#ad597183952e6a9724b19e99b20d04ff0", null ],
-      [ "Insert", "classContainer__indexed.html#a275afe85962101560cb9eeb168a9b13f", null ],
+      [ "Insert", "classContainer__indexed.html#a4e6d1fa25fc9f96b4318be2691aabde6", null ],
       [ "Insert", "classContainer__indexed.html#af7737fdfdcf92a8473bd50f252a0c000", null ],
+      [ "Instances", "classContainer__indexed.html#a23c5f8ebfe876a33392fc4fb5dedcc50", null ],
       [ "KeyExists", "classContainer__indexed.html#a7f20601b36da5a8c273354c73627b087", null ],
       [ "KeyExists", "classContainer__indexed.html#aab4c2e12876d522b062fa3ed25a6c423", null ],
       [ "SetName", "classContainer__indexed.html#a1e1ce1b750ba1ad8da3840b1b4577835", null ],
       [ "SetName", "classContainer__indexed.html#a4505ef6a3725865fb3a1584d279f5d3f", null ],
-      [ "instances", "classContainer__indexed.html#ae8f9535cabbfa955c6a759c86de53b34", null ]
+      [ "fInstances", "classContainer__indexed.html#a15eb1e24a3061b0dd5185d6a869d3040", null ]
     ] ],
     [ "CutObject", "classCutObject.html", [
       [ "CutObject", "classCutObject.html#a529ad466034cc01f983c57a03949331d", null ],
@@ -110,5 +111,6 @@ var group__BOSS__objects =
       [ "fBestCompareValue", "classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0", null ],
       [ "fChiSquared", "classKKFitResult.html#ab998d45583725a8561225c1ac7a36a46", null ],
       [ "fFit", "classKKFitResult.html#ad7499ab02d1777dde3ca506cd35f81b1", null ]
-    ] ]
+    ] ],
+    [ "loop", "group__BOSS__objects.html#gaee0532eca71c89aa78b606f22bef353d", null ]
 ];

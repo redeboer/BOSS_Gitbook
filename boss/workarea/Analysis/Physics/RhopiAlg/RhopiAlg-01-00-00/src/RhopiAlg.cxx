@@ -77,10 +77,8 @@
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
-	/**
-	 * @brief Constructor for the `RhopiAlg` algorithm.
-	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `RhopiAlg`), and if required a documentation string. Note that you should define the paramters themselves in the header (RhopiAlg/RhopiAlg.h) and that you should assign the values in `share/jopOptions_RhopiAlg.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
-	 */
+	/// Constructor for the `RhopiAlg` algorithm.
+	/// Here, you should declare properties: give them a name, assign a parameter (data member of `RhopiAlg`), and if required a documentation string. Note that you should define the paramters themselves in the header (RhopiAlg/RhopiAlg.h) and that you should assign the values in `share/jopOptions_RhopiAlg.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 	RhopiAlg::RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator) :
 		Algorithm(name, pSvcLocator)
 	{
@@ -116,9 +114,7 @@
 // * ========================== * //
 // * ------- INITIALIZE ------- * //
 // * ========================== * //
-	/**
-	 * @brief (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning. <b>Define and load `NTuple`s here.</b>
-	 */
+	/// (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning. <b>Define and load `NTuple`s here.</b>
 	StatusCode RhopiAlg::initialize()
 	{
 		// * Log stream and status code * //
@@ -357,9 +353,7 @@
 // * ========================= * //
 // * -------- EXECUTE -------- * //
 // * ========================= * //
-	/**
-	 * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
-	 */
+	/// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 	StatusCode RhopiAlg::execute()
 	{
 		/// <ol>
@@ -1009,10 +1003,8 @@
 // * ========================== * //
 // * -------- FINALIZE -------- * //
 // * ========================== * //
-	/**
-	 * @brief Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events.
-	 * @details Prints the flow chart to the terminal, so <b>make sure you save this output!</b>
-	 */
+	/// Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events.
+	/// Prints the flow chart to the terminal, so <b>make sure you save this output!</b>
 	StatusCode RhopiAlg::finalize()
 	{
 		MsgStream log(msgSvc(), name());

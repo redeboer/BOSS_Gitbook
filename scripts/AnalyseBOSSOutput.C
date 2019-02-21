@@ -2,9 +2,9 @@
 /// @{
 	
 /**
- * @brief    Simple script that allows to quickly investigate the contents of a ROOT file that has been produced with BOSS.
- * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
- * @date     November 5th, 2018
+/// Simple script that allows to quickly investigate the contents of a ROOT file that has been produced with BOSS.
+/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+/// @date     November 5th, 2018
  */
 
 
@@ -32,9 +32,7 @@
 // * ============================= * //
 
 
-	/**
-	 * @brief Main function used when compiling and executing in `ROOT`.
-	 */
+	/// Main function used when compiling and executing in `ROOT`.
 	void AnalyseBOSSOutput(const char* configuration_file="configs/D0phi_KpiKK_quick.txt")
 	{
 
@@ -175,9 +173,7 @@
 	}
 
 
-	/**
-	 * @brief Main function that is called when executing the executable compiled using e.g. `g++`.
-	 */
+	/// Main function that is called when executing the executable compiled using e.g. `g++`.
 	int main(int argc, char *argv[])
 	{
 		if(argc > 2) {

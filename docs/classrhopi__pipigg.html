@@ -112,7 +112,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a694556f849ed68fba28b46d108e3b5ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>.  <a href="#a694556f849ed68fba28b46d108e3b5ed">More...</a><br /></td></tr>
 <tr class="separator:a694556f849ed68fba28b46d108e3b5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a908148b72ca5e83416bbc0f9ec7193"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#a0a908148b72ca5e83416bbc0f9ec7193">execute_rest</a> ()</td></tr>
-<tr class="memdesc:a0a908148b72ca5e83416bbc0f9ec7193"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code>.  <a href="#a0a908148b72ca5e83416bbc0f9ec7193">More...</a><br /></td></tr>
+<tr class="memdesc:a0a908148b72ca5e83416bbc0f9ec7193"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code>. This function is called <em>for each event</em>.  <a href="#a0a908148b72ca5e83416bbc0f9ec7193">More...</a><br /></td></tr>
 <tr class="separator:a0a908148b72ca5e83416bbc0f9ec7193"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67dc70e428dac62c286d8d41dce4e9b1"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#a67dc70e428dac62c286d8d41dce4e9b1">finalize_rest</a> ()</td></tr>
 <tr class="memdesc:a67dc70e428dac62c286d8d41dce4e9b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>finalize</code> method of <code>Algorithm</code>.  <a href="#a67dc70e428dac62c286d8d41dce4e9b1">More...</a><br /></td></tr>
@@ -122,13 +122,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> algorithm.  <a href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">More...</a><br /></td></tr>
 <tr class="separator:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">initialize</a> ()</td></tr>
-<tr class="memdesc:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>.  <a href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">More...</a><br /></td></tr>
+<tr class="memdesc:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>. This function is called once in the beginning <em>of each run</em>. Define and load NTuples here. The <code>NTuples</code> will become the <code>TTree</code>s in the eventual ROOT file, the added <code>NTuple::Item</code>s will be the branches of those trees.  <a href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">More...</a><br /></td></tr>
 <tr class="separator:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6866699cb5218a5c8dc313f5ff5910cb inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb">execute</a> ()</td></tr>
 <tr class="memdesc:a6866699cb5218a5c8dc313f5ff5910cb inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code> which is called <em>for each event</em>.  <a href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb">More...</a><br /></td></tr>
 <tr class="separator:a6866699cb5218a5c8dc313f5ff5910cb inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46">finalize</a> ()</td></tr>
-<tr class="memdesc:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is called at the end <em>of the entire process</em>.  <a href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46">More...</a><br /></td></tr>
+<tr class="memdesc:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is called at the end <em>of the entire process</em>. Writes total cut flow to terminal and to the output file.  <a href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46">More...</a><br /></td></tr>
 <tr class="separator:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -417,22 +417,22 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:ac5d2cc51628faafc21bd4fa6b4489508 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss information.  <a href="classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508">More...</a><br /></td></tr>
 <tr class="separator:ac5d2cc51628faafc21bd4fa6b4489508 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">WritePIDInformation</a> ()</td></tr>
-<tr class="memdesc:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the proces of writing PID info.  <a href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">More...</a><br /></td></tr>
+<tr class="memdesc:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the proces of writing PID info. This allows you to write the PID information after the particle selection as well.  <a href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">More...</a><br /></td></tr>
 <tr class="separator:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae">WriteTofInformation</a> (SmartRefVector&lt; RecTofTrack &gt;::iterator iter_tof, double ptrk, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method for writing Time-of-Flight information.  <a href="classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae">More...</a><br /></td></tr>
+<tr class="memdesc:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method for writing Time-of-Flight information. This function has be created to enable you to write TOF information for different collections of tracks.  <a href="classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae">More...</a><br /></td></tr>
 <tr class="separator:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">ParticleID *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">InitializePID</a> (const int method, const int pidsys, const int pidcase, const double chimin=4.)</td></tr>
 <tr class="memdesc:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that standardizes the initialisation of the particle identification system.  <a href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">More...</a><br /></td></tr>
 <tr class="separator:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23937fcfb8b32816f0c2cd73ae55040c inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a23937fcfb8b32816f0c2cd73ae55040c">BookNtupleItems_McTruth</a> ()</td></tr>
-<tr class="memdesc:a23937fcfb8b32816f0c2cd73ae55040c inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the MC truth branches (<code>"mctruth*"</code>).  <a href="classTrackSelector.html#a23937fcfb8b32816f0c2cd73ae55040c">More...</a><br /></td></tr>
+<tr class="memdesc:a23937fcfb8b32816f0c2cd73ae55040c inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the MC truth branches (<code>"mctruth*"</code>). It has to make use of the <code><a class="el" href="structNTupleTopoAna.html" title="Struct object that represents the NTuple containing MC truth necessary for the topoana package...">NTupleTopoAna</a></code> struct, and cannot make use of the <code>NTuple</code> maps, because it contains indexed items.  <a href="classTrackSelector.html#a23937fcfb8b32816f0c2cd73ae55040c">More...</a><br /></td></tr>
 <tr class="separator:a23937fcfb8b32816f0c2cd73ae55040c inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73cc91aae5af92535ee7614d80e6cd61 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a73cc91aae5af92535ee7614d80e6cd61">BookNtupleItems_Dedx</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:a73cc91aae5af92535ee7614d80e6cd61 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss branch (<code>"dedx"</code>).  <a href="classTrackSelector.html#a73cc91aae5af92535ee7614d80e6cd61">More...</a><br /></td></tr>
+<tr class="memdesc:a73cc91aae5af92535ee7614d80e6cd61 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss branch (<code>"dedx"</code>). This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).  <a href="classTrackSelector.html#a73cc91aae5af92535ee7614d80e6cd61">More...</a><br /></td></tr>
 <tr class="separator:a73cc91aae5af92535ee7614d80e6cd61 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebdcb906b866ca3549e0c9cc2aeab327 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aebdcb906b866ca3549e0c9cc2aeab327">BookNtupleItems_Tof</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:aebdcb906b866ca3549e0c9cc2aeab327 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="classTrackSelector.html#aebdcb906b866ca3549e0c9cc2aeab327">More...</a><br /></td></tr>
+<tr class="memdesc:aebdcb906b866ca3549e0c9cc2aeab327 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.  <a href="classTrackSelector.html#aebdcb906b866ca3549e0c9cc2aeab327">More...</a><br /></td></tr>
 <tr class="separator:aebdcb906b866ca3549e0c9cc2aeab327 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -440,7 +440,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Based on the original <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> package, but now making use of the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> base algorithm. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>December 27th, 2018 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00024">24</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00022">22</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6a2dce6146cebb243245965e9d9d3a85"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a2dce6146cebb243245965e9d9d3a85">&#9670;&nbsp;</a></span>rhopi_pipigg()</h2>
@@ -474,7 +474,7 @@ Additional Inherited Members</h2></td></tr>
 <li>The <code>"write_&lt;treename&gt;"</code> properties determine whether or not the corresponding <code>TTree</code>/<code>NTuple</code> will be filled. Default values are set in the constructor as well. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00034">34</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00032">32</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -567,7 +567,7 @@ Additional Inherited Members</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00446">446</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00430">430</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -597,7 +597,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains). </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00405">405</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00395">395</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -634,7 +634,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Invariant mass for <img class="formulaInl" alt="$J/\psi \rightarrow \rho^-\pi^+$" src="form_55.png"/> candidate.</p>
 <p>Invariant mass for <img class="formulaInl" alt="$J/\psi \rightarrow \rho^+\pi^-$" src="form_56.png"/> candidate. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00468">468</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00450">450</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -661,8 +661,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Inherited <code>execute</code> method of the <code>Algorithm</code>. </p>
-<p>This function is called <em>for each event</em>. </p>
+<p>Inherited <code>execute</code> method of the <code>Algorithm</code>. This function is called <em>for each event</em>. </p>
 <ol type="A">
 <li>
 <p class="startli">Create selection charged tracks</p>
@@ -779,7 +778,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a421380908922f9d240213014c2508360">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00108">108</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00102">102</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -807,12 +806,11 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inherited <code>finalize</code> method of <code>Algorithm</code>. </p>
-<p>This function is only called once, after running over all events.</p>
-<p>Prints the flow chart to the terminal, so make sure you save this output! </p>
+<p>This function is only called once, after running over all events. Prints the flow chart to the terminal, so make sure you save this output! </p>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a96c7c12f231c8cd622d7e5a6742d80a0">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00391">391</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00383">383</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -840,8 +838,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
-<p>This function is called only once in the beginning.</p>
-<p>Define and load NTuples here. </p>
+<p>This function is called only once in the beginning. Define and load NTuples here. </p>
 <ol type="A">
 <li>
 <p class="startli"><code>"mult_select"</code>: Multiplicities of selected particles</p>
@@ -895,7 +892,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a80e9293aeca2c5b955eb3ed393c908f6">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00061">61</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00057">57</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -925,7 +922,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Method that provides a measure for the best Kalman kinematic fit4c. </p>
 <p>The closer this value to zero, the better the result. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00425">425</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00413">413</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -955,7 +952,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Method that provides a measure for the best Kalman kinematic fit5c. </p>
 <p>The closer this value to zero, the better the result. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00434">434</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00420">420</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -1001,7 +998,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Helper function that encapsulates the proces of finding the angle between some photon `. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00502">502</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00482">482</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -1047,7 +1044,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains). </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00530">530</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00508">508</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -1074,7 +1071,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Cosine of the angle between the two photons. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00098">98</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00096">96</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1100,7 +1097,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Cut on angle between the photon and the nearest charged track <em>in degrees</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00079">79</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00077">77</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1126,7 +1123,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Cut on <img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00077">77</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00075">75</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1152,7 +1149,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Cut on <img class="formulaInl" alt="$\theta$" src="form_35.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00078">78</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00076">76</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1178,7 +1175,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Energy of the first photon. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00096">96</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00094">94</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1204,7 +1201,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Energy of the second photon. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00097">97</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00095">95</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1230,7 +1227,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector that contains a selection of pointers to neutral tracks identified as <img class="formulaInl" alt="$\gamma$" src="form_58.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00043">43</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00041">41</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1256,7 +1253,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of gamma's (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00046">46</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00044">44</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1282,7 +1279,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of gamma's (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00047">47</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00045">45</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1308,7 +1305,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$J/\psi \rightarrow \rho^0\pi^0$" src="form_54.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00089">89</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00087">87</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1334,7 +1331,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$J/\psi \rightarrow \rho^+\pi^-$" src="form_56.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00090">90</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00088">88</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1360,7 +1357,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$J/\psi \rightarrow \rho^-\pi^+$" src="form_55.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00091">91</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00089">89</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1386,7 +1383,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$\pi^0 \rightarrow \gamma\gamma$" src="form_59.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00085">85</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00083">83</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1412,7 +1409,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$\rho^0 \rightarrow \pi^-\pi^+$" src="form_60.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00086">86</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00084">84</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1438,7 +1435,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$\rho^- \rightarrow \pi^0\pi^-$" src="form_61.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00087">87</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00085">85</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1464,7 +1461,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$\rho^+ \rightarrow \pi^0\pi^+$" src="form_62.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00088">88</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00086">86</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1490,7 +1487,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"dedx_pi"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00068">68</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00066">66</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1516,7 +1513,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"fit4c_all"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00069">69</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00067">67</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1542,7 +1539,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"fit4c_best"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00070">70</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00068">68</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1568,7 +1565,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"fit5c_all"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00071">71</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00069">69</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1594,7 +1591,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"fit5c_best"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00072">72</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00070">70</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1620,7 +1617,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"gamma"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00067">67</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00065">65</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1646,7 +1643,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^-$" src="form_9.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00044">44</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00042">42</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1672,7 +1669,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of negative pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00048">48</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00046">46</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1698,7 +1695,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00045">45</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00043">43</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1724,7 +1721,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of positive pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00049">49</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00047">47</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1750,7 +1747,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Current smallest angle between the photons and the charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00099">99</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00097">97</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1776,7 +1773,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Current smallest <img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle between the photons and the charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00100">100</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00098">98</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1802,7 +1799,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Current smallest <img class="formulaInl" alt="$\theta$" src="form_35.png"/> angle between the photons and the charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00101">101</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00099">99</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1828,7 +1825,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Package property that determines whether or not to write results of the <code>4C</code> fit <em>for all combinations</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00057">57</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00055">55</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1854,7 +1851,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Package property that determines whether or not to write results of the <code>4C</code> fit for the combination closest to the expected masses. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00058">58</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00056">56</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1880,7 +1877,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Package property that determines whether or not to write results of the <code>5C</code> fit <em>for all combinations</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00059">59</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00057">57</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1906,7 +1903,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Package property that determines whether or not to write results of the <code>5C</code> fit for the combination closest to the expected masses. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00060">60</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00058">58</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1932,7 +1929,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Package property that determines whether or not to write the multiplicities <em>of the selected particles</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00055">55</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00053">53</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1958,7 +1955,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Package property that determines whether or not to write angle info from the photons. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00056">56</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00054">54</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>

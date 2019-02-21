@@ -13,9 +13,7 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	/**
-	 * @brief Constructor for this class is emptry, but needs to be defined, because it inherits from `Algorithm`.
-	 */
+	/// Constructor for this class is emptry, but needs to be defined, because it inherits from `Algorithm`.
 	MctruthForTopoAna::MctruthForTopoAna(const std::string & name,ISvcLocator * pSvcLocator): Algorithm(name,pSvcLocator) {}
 
 
@@ -25,10 +23,8 @@
 // * =============================== * //
 
 
-	/**
-	 * @brief Book `NTuple` for MC truth.
-	 * @details The contents of this `NTuple` are required for the `topoana` package to function properly.
-	 */
+	/// Book `NTuple` for MC truth.
+	/// The contents of this `NTuple` are required for the `topoana` package to function properly.
 	StatusCode MctruthForTopoAna::initialize()
 	{
 		/// <ol>
@@ -62,9 +58,7 @@
 	}
 
 
-	/**
-	 * @brief Write MC truth properties <i>for each event</i>.
-	 */
+	/// Write MC truth properties <i>for each event</i>.
 	int ievt=0;
 	StatusCode MctruthForTopoAna::execute() 
 	{
@@ -136,9 +130,7 @@
 	}
 
 
-	/**
-	 * @brief Print number of events.
-	 */
+	/// Print number of events.
 	StatusCode MctruthForTopoAna::finalize()
 	{
 		MsgStream log(msgSvc(), name());

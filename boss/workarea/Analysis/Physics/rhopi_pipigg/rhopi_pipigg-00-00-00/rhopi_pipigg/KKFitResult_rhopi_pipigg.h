@@ -5,9 +5,9 @@
 /// @{
 
 /**
- * @brief    Derived class for a container that contains important fit results of the `KalmanKinematicFit`, including masses.
- * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
- * @date     December 14th, 2018
+/// Derived class for a container that contains important fit results of the `KalmanKinematicFit`, including masses.
+/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+/// @date     December 14th, 2018
  */
 
 
@@ -37,13 +37,13 @@ public:
 		bool IsBetter() const;
 
 	// * PUBLIC DATA MEMBERS * //
-		double fM_pi0;      //!< Current computed mass of the \f$\pi^0\f$ candidate.
-		double fM_rho0;     //!< Current computed mass of the \f$\rho^0\f$ candidate.
-		double fM_rhom;     //!< Current computed mass of the \f$\rho^-\f$ candidate.
-		double fM_rhop;     //!< Current computed mass of the \f$\rho^+\f$ candidate.
-		double fM_JpsiRho0; //!< Current computed mass of the \f$J/\psi \rightarrow \rho^0\pi^0\f$ candidate.
-		double fM_JpsiRhom; //!< Current computed mass of the \f$J/\psi \rightarrow \rho^-\pi^+\f$ candidate.
-		double fM_JpsiRhop; //!< Current computed mass of the \f$J/\psi \rightarrow \rho^+\pi^-\f$ candidate.
+		double fM_pi0;      ///< Current computed mass of the \f$\pi^0\f$ candidate.
+		double fM_rho0;     ///< Current computed mass of the \f$\rho^0\f$ candidate.
+		double fM_rhom;     ///< Current computed mass of the \f$\rho^-\f$ candidate.
+		double fM_rhop;     ///< Current computed mass of the \f$\rho^+\f$ candidate.
+		double fM_JpsiRho0; ///< Current computed mass of the \f$J/\psi \rightarrow \rho^0\pi^0\f$ candidate.
+		double fM_JpsiRhom; ///< Current computed mass of the \f$J/\psi \rightarrow \rho^-\pi^+\f$ candidate.
+		double fM_JpsiRhop; ///< Current computed mass of the \f$J/\psi \rightarrow \rho^+\pi^-\f$ candidate.
 		double fFitMeasure;
 
 private:

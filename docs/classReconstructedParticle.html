@@ -113,11 +113,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a38b19a3d3f5b338ac7e5e553cc925442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct particle based on its code in the PDG.  <a href="#a38b19a3d3f5b338ac7e5e553cc925442">More...</a><br /></td></tr>
 <tr class="separator:a38b19a3d3f5b338ac7e5e553cc925442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95cf3aff593e7dbbb86849109cadc894"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReconstructedParticle.html#a95cf3aff593e7dbbb86849109cadc894">ReconstructedParticle</a> (const char *pdgCode, const char *daughters)</td></tr>
-<tr class="memdesc:a95cf3aff593e7dbbb86849109cadc894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct particle based on its code in the PDG.  <a href="#a95cf3aff593e7dbbb86849109cadc894">More...</a><br /></td></tr>
+<tr class="memdesc:a95cf3aff593e7dbbb86849109cadc894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct particle based on its code in the PDG. This constructor also sets the daughters.  <a href="#a95cf3aff593e7dbbb86849109cadc894">More...</a><br /></td></tr>
 <tr class="separator:a95cf3aff593e7dbbb86849109cadc894"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Setters</div></td></tr>
 <tr class="memitem:a07eb465bf055a192e36f364dfb4ae7ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReconstructedParticle.html#a07eb465bf055a192e36f364dfb4ae7ef">SetDaughterLabel</a> (const char *daughters)</td></tr>
-<tr class="memdesc:a07eb465bf055a192e36f364dfb4ae7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a LaTeX label for the daughters.  <a href="#a07eb465bf055a192e36f364dfb4ae7ef">More...</a><br /></td></tr>
+<tr class="memdesc:a07eb465bf055a192e36f364dfb4ae7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a LaTeX label for the daughters. This method is public as to allow you to modify it later. Construction cannot be automised, as it is up to you to decide which decay channel you want to analyse.  <a href="#a07eb465bf055a192e36f364dfb4ae7ef">More...</a><br /></td></tr>
 <tr class="separator:a07eb465bf055a192e36f364dfb4ae7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Getters</div></td></tr>
 <tr class="memitem:a46c86512fc4b653a7dab11c90e1766d3"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReconstructedParticle.html#a46c86512fc4b653a7dab11c90e1766d3">GetDaughterLabel</a> () const</td></tr>
@@ -142,16 +142,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1ab06406414402dd711144353c03d5ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the estimate for the width of the wider Gaussian function.  <a href="#a1ab06406414402dd711144353c03d5ad">More...</a><br /></td></tr>
 <tr class="separator:a1ab06406414402dd711144353c03d5ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b421a272556f4fe7bc59e0b6a7fce3d"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReconstructedParticle.html#a5b421a272556f4fe7bc59e0b6a7fce3d">GetLowerMass</a> () const</td></tr>
-<tr class="memdesc:a5b421a272556f4fe7bc59e0b6a7fce3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get (compute) the lower mass boundary.  <a href="#a5b421a272556f4fe7bc59e0b6a7fce3d">More...</a><br /></td></tr>
+<tr class="memdesc:a5b421a272556f4fe7bc59e0b6a7fce3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get (compute) the lower mass boundary. Useful for fitting parameters.  <a href="#a5b421a272556f4fe7bc59e0b6a7fce3d">More...</a><br /></td></tr>
 <tr class="separator:a5b421a272556f4fe7bc59e0b6a7fce3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a130e103764c1162501de2c1f023c30b5"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReconstructedParticle.html#a130e103764c1162501de2c1f023c30b5">GetMassOffsetPercentage</a> () const</td></tr>
-<tr class="memdesc:a130e103764c1162501de2c1f023c30b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get offset mass percentage.  <a href="#a130e103764c1162501de2c1f023c30b5">More...</a><br /></td></tr>
+<tr class="memdesc:a130e103764c1162501de2c1f023c30b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get offset mass percentage. Useful for fitting parameters.  <a href="#a130e103764c1162501de2c1f023c30b5">More...</a><br /></td></tr>
 <tr class="separator:a130e103764c1162501de2c1f023c30b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8944e483c1d550ce861712db203db913"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReconstructedParticle.html#a8944e483c1d550ce861712db203db913">GetSingleGaussianWidth</a> () const</td></tr>
 <tr class="memdesc:a8944e483c1d550ce861712db203db913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get estimate for the width of the Breit-Wigner function when the BW is convoluted with a Double gaussian.  <a href="#a8944e483c1d550ce861712db203db913">More...</a><br /></td></tr>
 <tr class="separator:a8944e483c1d550ce861712db203db913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add109d84e447cce041b5c0289ba4526e"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReconstructedParticle.html#add109d84e447cce041b5c0289ba4526e">GetUpperMass</a> () const</td></tr>
-<tr class="memdesc:add109d84e447cce041b5c0289ba4526e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get (compute) the upper mass boundary.  <a href="#add109d84e447cce041b5c0289ba4526e">More...</a><br /></td></tr>
+<tr class="memdesc:add109d84e447cce041b5c0289ba4526e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get (compute) the upper mass boundary. Useful for fitting parameters.  <a href="#add109d84e447cce041b5c0289ba4526e">More...</a><br /></td></tr>
 <tr class="separator:add109d84e447cce041b5c0289ba4526e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5dfb6fe049949fe4ce0c843656855ce8"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReconstructedParticle.html#a5dfb6fe049949fe4ce0c843656855ce8">PlotFrom</a> () const</td></tr>
 <tr class="memdesc:a5dfb6fe049949fe4ce0c843656855ce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the left boundary of the plotting range.  <a href="#a5dfb6fe049949fe4ce0c843656855ce8">More...</a><br /></td></tr>
@@ -203,7 +203,7 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Helper methods</div></td></tr>
 <tr class="memitem:a606b46b3150f197eaa289912f1c5e7a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReconstructedParticle.html#a606b46b3150f197eaa289912f1c5e7a3">DetermineReconstructionParameters</a> ()</td></tr>
-<tr class="memdesc:a606b46b3150f197eaa289912f1c5e7a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine the wide and small sigma estimates for the double Gaussian fit.  <a href="#a606b46b3150f197eaa289912f1c5e7a3">More...</a><br /></td></tr>
+<tr class="memdesc:a606b46b3150f197eaa289912f1c5e7a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine the wide and small sigma estimates for the double Gaussian fit. These are supposed to characterise the resolution of the deterctor.  <a href="#a606b46b3150f197eaa289912f1c5e7a3">More...</a><br /></td></tr>
 <tr class="separator:a606b46b3150f197eaa289912f1c5e7a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03c956b9a28c14587c8bf9bc5a90d32d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReconstructedParticle.html#a03c956b9a28c14587c8bf9bc5a90d32d">Initialize</a> ()</td></tr>
 <tr class="memdesc:a03c956b9a28c14587c8bf9bc5a90d32d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulation of what any constructor for this object needs to do.  <a href="#a03c956b9a28c14587c8bf9bc5a90d32d">More...</a><br /></td></tr>
@@ -253,11 +253,10 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Extended data container of a reconstructed particle. </p>
-<p>In essence an container of <code>ROOT</code>'s <code>TParticlePDG</code>, but with extended functionality for particle reconstruction. It contains additional parameters that are relevant when reconstructing the particle, like fit range in the invariant mass plot. The idea is that you can use this object to generalise functions like fitting, where the mass range is particle-specific. It is then convenient to only have to feed the function this object.</p>
-<dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<p>In essence an container of <code>ROOT</code>'s <code>TParticlePDG</code>, but with extended functionality for particle reconstruction. It contains additional parameters that are relevant when reconstructing the particle, like fit range in the invariant mass plot. The idea is that you can use this object to generalise functions like fitting, where the mass range is particle-specific. It is then convenient to only have to feed the function this object. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>October 25th, 2018 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00026">26</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00023">23</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a92d433507c9aaa350dd5999eff1c5cab"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a92d433507c9aaa350dd5999eff1c5cab">&#9670;&nbsp;</a></span>ReconstructedParticle() <span class="overload">[1/4]</span></h2>
@@ -277,7 +276,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Construct particle based on its code in the PDG. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00017">17</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00015">15</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -299,7 +298,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Construct particle based on its code in the PDG. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00026">26</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00022">22</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -331,7 +330,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Construct particle based on its code in the PDG. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00035">35</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00029">29</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -345,7 +344,7 @@ Protected Attributes</h2></td></tr>
           <td class="memname">ReconstructedParticle::ReconstructedParticle </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>particleName</em>, </td>
+          <td class="paramname"><em>pdgCode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -361,10 +360,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construct particle based on its code in the PDG. </p>
-<p>This constructor also sets the daughters. </p>
+<p>Construct particle based on its code in the PDG. This constructor also sets the daughters. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00045">45</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00037">37</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -392,14 +390,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Determine the wide and small sigma estimates for the double Gaussian fit. </p>
-<p>These are supposed to characterise the resolution of the deterctor. </p>
+<p>Determine the wide and small sigma estimates for the double Gaussian fit. These are supposed to characterise the resolution of the deterctor. </p>
 <p>not yet optimised</p>
 <p>not yet optimised</p>
 <p>not yet optimised</p>
 <p>not yet optimised </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00268">268</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00216">216</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -420,7 +417,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the left boundary of the plotting range. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00159">159</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00129">129</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -441,7 +438,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the right boundary of the plotting range. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00168">168</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00136">136</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -462,7 +459,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get estimate for the width of the Breit-Wigner function when the BW is convoluted with a Double gaussian. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00123">123</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00101">101</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -483,7 +480,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get estimate for the width of the Breit-Wigner function when fitting a pure BW only. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00114">114</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00094">94</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -504,7 +501,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the LaTeX label for the daughters. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00252">252</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00202">202</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -542,7 +539,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get plot range through a <code>return</code> statement. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00195">195</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00157">157</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -574,7 +571,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the plot range through reference. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00222">222</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00178">178</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -595,7 +592,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get fit range through a <code>return</code> statement. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00204">204</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00164">164</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -627,7 +624,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the plot range through reference. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00232">232</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00186">186</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -648,7 +645,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the estimate for the width of the smaller Gaussian function. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00141">141</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00115">115</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -669,7 +666,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the estimate for the width of the wider Gaussian function. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00150">150</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00122">122</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -688,10 +685,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get (compute) the lower mass boundary. </p>
-<p>Useful for fitting parameters. </p>
+<p>Get (compute) the lower mass boundary. Useful for fitting parameters. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00085">85</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00071">71</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -710,10 +706,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get offset mass percentage. </p>
-<p>Useful for fitting parameters. </p>
+<p>Get offset mass percentage. Useful for fitting parameters. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00105">105</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00087">87</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -734,7 +729,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get plot range through a <code>return</code> statement. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00213">213</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00171">171</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -766,7 +761,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the plot range through reference. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00242">242</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00194">194</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -787,7 +782,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get estimate for the width of the Breit-Wigner function when the BW is convoluted with a Double gaussian. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00132">132</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00108">108</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -806,10 +801,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get (compute) the upper mass boundary. </p>
-<p>Useful for fitting parameters. </p>
+<p>Get (compute) the upper mass boundary. Useful for fitting parameters. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00095">95</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00079">79</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -838,7 +832,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Encapsulation of what any constructor for this object needs to do. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00055">55</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00045">45</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -859,7 +853,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the left boundary of the plotting range. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00177">177</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00143">143</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -880,7 +874,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the right boundary of the plotting range. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00186">186</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00150">150</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -900,10 +894,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Set a LaTeX label for the daughters. </p>
-<p>This method is public as to allow you to modify it later. Construction cannot be automised, as it is up to you to decide which decay channel you want to analyse. </p>
+<p>Set a LaTeX label for the daughters. This method is public as to allow you to modify it later. Construction cannot be automised, as it is up to you to decide which decay channel you want to analyse. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00070">70</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8cxx_source.html#l00058">58</a> of file <a class="el" href="ReconstructedParticle_8cxx_source.html">ReconstructedParticle.cxx</a>.</p>
 
 </div>
 </div>
@@ -930,7 +923,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Estimate for the width of the Breit-Wigner function when convoluted with a double Gaussian. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00070">70</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00067">67</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
 
 </div>
 </div>
@@ -956,7 +949,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Estimate for the width of the Breit-Wigner function when fitting BW only. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00071">71</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00068">68</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
 
 </div>
 </div>
@@ -982,7 +975,7 @@ Protected Attributes</h2></td></tr>
 
 <p>LaTeX formatted string for decay particles. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00069">69</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00066">66</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
 
 </div>
 </div>
@@ -1008,7 +1001,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Pair of two sigma values. You can use that as estimates of the widths for the double gaussian that you plan to fit. These sigmas are supposed to characterise the resolution of the detector. For consistency in naming, the first one should be smaller than the second. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00074">74</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00071">71</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
 
 </div>
 </div>
@@ -1034,7 +1027,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Invariant mass range over which you fit a function (double Gaussian, Crystal ball, Breit-Wigner, etc.). </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00075">75</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00072">72</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
 
 </div>
 </div>
@@ -1060,7 +1053,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Percentage (divided by 100) that the mean (namely, the mass) may vary. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00072">72</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00069">69</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
 
 </div>
 </div>
@@ -1086,7 +1079,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Invariant mass range that you plot. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00076">76</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00073">73</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
 
 </div>
 </div>
@@ -1112,7 +1105,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Estimate for the width of one Gaussian function. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00073">73</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReconstructedParticle_8h_source.html#l00070">70</a> of file <a class="el" href="ReconstructedParticle_8h_source.html">ReconstructedParticle.h</a>.</p>
 
 </div>
 </div>

@@ -1,9 +1,11 @@
 #ifndef BOSS_Afterburner_ConfigLoader_H
 #define BOSS_Afterburner_ConfigLoader_H
 
+
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+
 	#include "ArgPair.h"
 	#include "BranchPlotOptions.h"
 	#include "CommonFunctions.h"
@@ -20,13 +22,10 @@
 /// @{
 
 
-	/**
-	 * @brief    Container object for a <i>BOSS Afterburner</i> analysis configuration file.
-	 * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	 * @date     January 24th, 2018
-	 *
-	 * @details  Give this object a path to the configuration text file for the analysis you want to perform, and all settings will be automatically loaded from this file. The syntax for this file is of course determined by this object.
-	 */
+	/// Container object for a <i>BOSS Afterburner</i> analysis configuration file.
+	/// Give this object a path to the configuration text file for the analysis you want to perform, and all settings will be automatically loaded from this file. The syntax for this file is of course determined by this object.
+	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+	/// @date     January 24th, 2018
 	class ConfigLoader
 	{
 	public:
@@ -36,7 +35,7 @@
 			///@}
 
 		/// @name Getters for configurations
-			/// @details <b>Interface is defined here!</b>
+			/// <b>Interface is defined here!</b>
 			///@{
 			const char* InputFilename() { return fInputFilename.value.data(); };
 			std::list<BranchPlotOptions>& BranchesToPlot();
@@ -56,30 +55,30 @@
 
 		/// @name Do-or-don't switches
 			///@{
-			ArgPair<bool> fPrintBranches;     //!< Whether or not to print all branch names.
-			ArgPair<bool> fPrintAverages;     //!< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
-			ArgPair<bool> fFitplots;  //!< Whether or not to produce invariant mass fits.
-			ArgPair<bool> fPlotstats; //!< Whether or not to draw the legend in the upper right corner with histogram statistics.
+			ArgPair<bool> fPrintBranches;     ///< Whether or not to print all branch names.
+			ArgPair<bool> fPrintAverages;     ///< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
+			ArgPair<bool> fFitplots;  ///< Whether or not to produce invariant mass fits.
+			ArgPair<bool> fPlotstats; ///< Whether or not to draw the legend in the upper right corner with histogram statistics.
 			///@}
 
 		/// @name Draw options
 			///@{
-			ArgPair<bool> fDraw_mctruth; //!< Whether or not to draw the MC truth parameters.
-			ArgPair<bool> fDraw_mult; //!< Whether or not to draw the multiplicity branches.
-			ArgPair<bool> fDraw_tof; //!< Whether or not to draw the `"tof*"` branches.
-			ArgPair<bool> fDraw_vertex; //!< Whether or not to draw the `"vertex"` branch.
-			ArgPair<bool> fPureplot; //!< Whether or not to plot histograms of branches <i>without fit</i>.
-			ArgPair<bool> fSetranges; //!< Whether or not to precisely set histogram ranges.
-			ArgPair<std::string> fLogY; //!< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
-			ArgPair<std::string> fLogZ; //!< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
+			ArgPair<bool> fDraw_mctruth; ///< Whether or not to draw the MC truth parameters.
+			ArgPair<bool> fDraw_mult; ///< Whether or not to draw the multiplicity branches.
+			ArgPair<bool> fDraw_tof; ///< Whether or not to draw the `"tof*"` branches.
+			ArgPair<bool> fDraw_vertex; ///< Whether or not to draw the `"vertex"` branch.
+			ArgPair<bool> fPureplot; ///< Whether or not to plot histograms of branches <i>without fit</i>.
+			ArgPair<bool> fSetranges; ///< Whether or not to precisely set histogram ranges.
+			ArgPair<std::string> fLogY; ///< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
+			ArgPair<std::string> fLogZ; ///< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
 			///@}
 
 		/// @name Fit options
 			///@{
-			ArgPair<bool> fDraw_fit;  //!< Whether or not to draw the `"fit"` branches.
-			ArgPair<bool> fDo_conv_d; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
-			ArgPair<bool> fDo_conv_s; //!< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
-			ArgPair<bool> fDo_gauss;  //!< Whether or not to produce perform a double Gaussian fit.
+			ArgPair<bool> fDraw_fit;  ///< Whether or not to draw the `"fit"` branches.
+			ArgPair<bool> fDo_conv_d; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
+			ArgPair<bool> fDo_conv_s; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
+			ArgPair<bool> fDo_gauss;  ///< Whether or not to produce perform a double Gaussian fit.
 			///@}
 
 		/// @name Helpers for configuration loading
@@ -111,10 +110,8 @@
 // * ------- CONSTRUCTORS ------ * //
 // * =========================== * //
 
-	/**
-	 * @brief Constructor that opens a `TFile` and unordered_maps its contents.
-	 * @remark <b>You have to set the <i>names</i> and <i>default values</i> of the `ArgPair`s here!</b>
-	 */
+	/// Constructor that opens a `TFile` and unordered_maps its contents.
+	/// @remark <b>You have to set the <i>names</i> and <i>default values</i> of the `ArgPair`s here!</b>
 	ConfigLoader::ConfigLoader(const char* path) :
 		fConfigPath(path),
 		// ! Set your argument names and default values here ! //
@@ -145,9 +142,7 @@
 // * ------- SETTERS ------ * //
 // * ====================== * //
 
-	/**
-	 * @brief Load a configuration for analysis from a <i>BOSS Afterburner</i> configuration file.
-	 */
+	/// Load a configuration for analysis from a <i>BOSS Afterburner</i> configuration file.
 	int ConfigLoader::LoadConfiguration(const char* filename)
 	{
 		/// -# Create file stream (`std::ifstream`) of config `txt` file.
@@ -189,9 +184,7 @@
 		return ArgPair_base::instances.size();
 	}
 
-	/**
-	 * @brief Attempt to get a parameter <b>name</b> from a line.
-	 */
+	/// Attempt to get a parameter <b>name</b> from a line.
 	std::string ConfigLoader::GetParameterName(std::string line)
 	{
 		/// -# If `line` contains an equal sign, remove everything after it.
@@ -205,9 +198,7 @@
 		return line;
 	}
 
-	/**
-	 * @brief Attempt to get a parameter <b>value</b> from a line.
-	 */
+	/// Attempt to get a parameter <b>value</b> from a line.
 	std::string ConfigLoader::GetParameterValue(std::string line)
 	{
 		/// -# If `line` contains equal sign, get everything before it.
@@ -224,9 +215,7 @@
 		return line;
 	}
 
-	/**
-	 * @brief *TEMPORARY* function that serves as a fix for the bug that causes the wrong best pair to be stored.
-	 */
+	/// *TEMPORARY* function that serves as a fix for the bug that causes the wrong best pair to be stored.
 	void ConfigLoader::DrawDifference(TH1 *histToDraw, TH1 *histToSubtract, Option_t* opt, const char* setLog)
 	{
 		if(!gPad) return;
@@ -250,31 +239,25 @@
 // * ------- SETTERS ------ * //
 // * ====================== * //
 
-	/**
-	 * @brief Remove all leading characters if they are 'c'.
-	 * @param line String from which you want to remove the characters.
-	 * @param c Character that you want to trim.
-	 */
+	/// Remove all leading characters if they are 'c'.
+	/// @param line String from which you want to remove the characters.
+	/// @param c Character that you want to trim.
 	void ConfigLoader::RemoveLeading(std::string &line, const char c)
 	{
 		if(line.front() == c) line = line.substr(line.find_first_not_of(c));
 	}
 
-	/**
-	 * @brief Remove all trailing characters if they are 'c'.
-	 * @param line String from which you want to remove the characters.
-	 * @param c Character that you want to trim.
-	 */
+	/// Remove all trailing characters if they are 'c'.
+	/// @param line String from which you want to remove the characters.
+	/// @param c Character that you want to trim.
 	void ConfigLoader::RemoveTrailing(std::string &line, const char c)
 	{
 		if(line.back() == c) line.resize(line.find_last_not_of(c)+1);
 	}
 
-	/**
-	 * @brief Remove all leading and trailing characters if they are 'c'.
-	 * @param line String from which you want to remove the characters.
-	 * @param c Character that you want to trim.
-	 */
+	/// Remove all leading and trailing characters if they are 'c'.
+	/// @param line String from which you want to remove the characters.
+	/// @param c Character that you want to trim.
 	void ConfigLoader::Trim(std::string &line, const char c)
 	{
 		RemoveLeading (line, c);

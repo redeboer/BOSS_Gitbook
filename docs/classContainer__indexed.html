@@ -81,9 +81,10 @@ $(document).ready(function(){initNavTree('classContainer__indexed.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classContainer__indexed-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Container_indexed Class Reference<div class="ingroups"><a class="el" href="group__BOSS.html">BOSS</a> &raquo; <a class="el" href="group__BOSS__objects.html">Helper objects</a></div></div>  </div>
@@ -107,66 +108,69 @@ Inheritance diagram for Container_indexed:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7fbbd1d3252b268fe5edf41a459a8c8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#a7fbbd1d3252b268fe5edf41a459a8c8d">Container_indexed</a> (const std::string &amp;name, const std::string &amp;desccription=&quot;&quot;)</td></tr>
-<tr class="memdesc:a7fbbd1d3252b268fe5edf41a459a8c8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor, in addition to setting the name and description, attempts to add <code>Insert</code> an instance of itself to the <code>instances</code> mapping.  <a href="#a7fbbd1d3252b268fe5edf41a459a8c8d">More...</a><br /></td></tr>
+<tr class="memdesc:a7fbbd1d3252b268fe5edf41a459a8c8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor, in addition to setting the name and description, attempts to add <code>Insert</code> an instance of itself to the <code>fInstances</code> mapping.  <a href="#a7fbbd1d3252b268fe5edf41a459a8c8d">More...</a><br /></td></tr>
 <tr class="separator:a7fbbd1d3252b268fe5edf41a459a8c8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad597183952e6a9724b19e99b20d04ff0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#ad597183952e6a9724b19e99b20d04ff0">~Container_indexed</a> ()</td></tr>
-<tr class="memdesc:ad597183952e6a9724b19e99b20d04ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor removes this instances from the <code>instances</code> mapping.  <a href="#ad597183952e6a9724b19e99b20d04ff0">More...</a><br /></td></tr>
+<tr class="memdesc:ad597183952e6a9724b19e99b20d04ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor removes this fInstances from the <code>fInstances</code> mapping.  <a href="#ad597183952e6a9724b19e99b20d04ff0">More...</a><br /></td></tr>
 <tr class="separator:ad597183952e6a9724b19e99b20d04ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e1ce1b750ba1ad8da3840b1b4577835"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#a1e1ce1b750ba1ad8da3840b1b4577835">SetName</a> (const std::string &amp;name)</td></tr>
-<tr class="memdesc:a1e1ce1b750ba1ad8da3840b1b4577835"><td class="mdescLeft">&#160;</td><td class="mdescRight">A overload of <code><a class="el" href="classContainer__base.html#a1e9e09bb2b32e89bc8dc05984494c76b" title="Rename the object. ">Container_base::SetName</a></code> that in addition to setting the name, safely redefines its corresponding key in <code>instances</code>.  <a href="#a1e1ce1b750ba1ad8da3840b1b4577835">More...</a><br /></td></tr>
+<tr class="memdesc:a1e1ce1b750ba1ad8da3840b1b4577835"><td class="mdescLeft">&#160;</td><td class="mdescRight">A overload of <code><a class="el" href="classContainer__base.html#a8b58704f557852e75906e4ae2601987a" title="Rename the object. ">Container_base::SetName</a></code> that in addition to setting the name, safely redefines its corresponding key in <code>fInstances</code>.  <a href="#a1e1ce1b750ba1ad8da3840b1b4577835">More...</a><br /></td></tr>
 <tr class="separator:a1e1ce1b750ba1ad8da3840b1b4577835"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4505ef6a3725865fb3a1584d279f5d3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#a4505ef6a3725865fb3a1584d279f5d3f">SetName</a> (const std::string &amp;name, const std::string &amp;desc)</td></tr>
 <tr class="memdesc:a4505ef6a3725865fb3a1584d279f5d3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extension of <code>SetName</code> where you can also set the description.  <a href="#a4505ef6a3725865fb3a1584d279f5d3f">More...</a><br /></td></tr>
 <tr class="separator:a4505ef6a3725865fb3a1584d279f5d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classContainer__base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classContainer__base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classContainer__base.html">Container_base</a></td></tr>
-<tr class="memitem:a2af220593035686ec437c716c58e781e inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a2af220593035686ec437c716c58e781e">Container_base</a> (const std::string &amp;obj_name, const std::string &amp;obj_desc=&quot;&quot;)</td></tr>
-<tr class="separator:a2af220593035686ec437c716c58e781e inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e9e09bb2b32e89bc8dc05984494c76b inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a1e9e09bb2b32e89bc8dc05984494c76b">SetName</a> (const std::string &amp;new_name)</td></tr>
-<tr class="memdesc:a1e9e09bb2b32e89bc8dc05984494c76b inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rename the object.  <a href="classContainer__base.html#a1e9e09bb2b32e89bc8dc05984494c76b">More...</a><br /></td></tr>
-<tr class="separator:a1e9e09bb2b32e89bc8dc05984494c76b inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35f610266590dd6151eee1509db7eb02 inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a35f610266590dd6151eee1509db7eb02">SetName</a> (const std::string &amp;new_name, const std::string &amp;new_desc)</td></tr>
-<tr class="memdesc:a35f610266590dd6151eee1509db7eb02 inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rename the object and give it a new description.  <a href="classContainer__base.html#a35f610266590dd6151eee1509db7eb02">More...</a><br /></td></tr>
-<tr class="separator:a35f610266590dd6151eee1509db7eb02 inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a308f1d5576bb84f72ccb057dc4d7ef53 inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a308f1d5576bb84f72ccb057dc4d7ef53">SetDescription</a> (const std::string &amp;new_desc)</td></tr>
-<tr class="separator:a308f1d5576bb84f72ccb057dc4d7ef53 inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88829ee27117b28cb88e44afd1f22319 inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a88829ee27117b28cb88e44afd1f22319">Name</a> () const</td></tr>
-<tr class="separator:a88829ee27117b28cb88e44afd1f22319 inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b186d63092515eb02195919ffa03075 inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a1b186d63092515eb02195919ffa03075">Description</a> () const</td></tr>
-<tr class="separator:a1b186d63092515eb02195919ffa03075 inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad55908948c253a06e95291c7d330b87 inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#aad55908948c253a06e95291c7d330b87">Container_base</a> (const std::string &amp;name, const std::string &amp;desc=&quot;&quot;)</td></tr>
+<tr class="memdesc:aad55908948c253a06e95291c7d330b87 inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only construct the name and description strings.  <a href="classContainer__base.html#aad55908948c253a06e95291c7d330b87">More...</a><br /></td></tr>
+<tr class="separator:aad55908948c253a06e95291c7d330b87 inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25f2f3ab9b15ec3ded108ade80382c9f inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a25f2f3ab9b15ec3ded108ade80382c9f">SetDescription</a> (const std::string &amp;desc)</td></tr>
+<tr class="memdesc:a25f2f3ab9b15ec3ded108ade80382c9f inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Give a new description to the object.  <a href="classContainer__base.html#a25f2f3ab9b15ec3ded108ade80382c9f">More...</a><br /></td></tr>
+<tr class="separator:a25f2f3ab9b15ec3ded108ade80382c9f inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab3523d77ea3653124698172993025f3 inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#aab3523d77ea3653124698172993025f3">Name</a> () const</td></tr>
+<tr class="memdesc:aab3523d77ea3653124698172993025f3 inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the name.  <a href="classContainer__base.html#aab3523d77ea3653124698172993025f3">More...</a><br /></td></tr>
+<tr class="separator:aab3523d77ea3653124698172993025f3 inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78bdd498def449c3415eccfb252fa1f8 inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a78bdd498def449c3415eccfb252fa1f8">Description</a> () const</td></tr>
+<tr class="memdesc:a78bdd498def449c3415eccfb252fa1f8 inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the description.  <a href="classContainer__base.html#a78bdd498def449c3415eccfb252fa1f8">More...</a><br /></td></tr>
+<tr class="separator:a78bdd498def449c3415eccfb252fa1f8 inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:ae8f9535cabbfa955c6a759c86de53b34"><td class="memItemLeft" align="right" valign="top">static std::map&lt; std::string, <a class="el" href="classContainer__indexed.html">Container_indexed</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#ae8f9535cabbfa955c6a759c86de53b34">instances</a></td></tr>
-<tr class="memdesc:ae8f9535cabbfa955c6a759c86de53b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapping of instances of this oject.  <a href="#ae8f9535cabbfa955c6a759c86de53b34">More...</a><br /></td></tr>
-<tr class="separator:ae8f9535cabbfa955c6a759c86de53b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a23c5f8ebfe876a33392fc4fb5dedcc50"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; std::string, <a class="el" href="classContainer__indexed.html">Container_indexed</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#a23c5f8ebfe876a33392fc4fb5dedcc50">Instances</a> ()</td></tr>
+<tr class="separator:a23c5f8ebfe876a33392fc4fb5dedcc50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a7f20601b36da5a8c273354c73627b087"><td class="memTemplParams" colspan="2">template&lt;class TYPE &gt; </td></tr>
 <tr class="memitem:a7f20601b36da5a8c273354c73627b087"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#a7f20601b36da5a8c273354c73627b087">KeyExists</a> (const std::map&lt; std::string, TYPE *&gt; mapping, const std::string &amp;key) const</td></tr>
-<tr class="memdesc:a7f20601b36da5a8c273354c73627b087"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method that allows you to to check whether a key already exists in .  <a href="#a7f20601b36da5a8c273354c73627b087">More...</a><br /></td></tr>
+<tr class="memdesc:a7f20601b36da5a8c273354c73627b087"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read access to <code>fInstances</code> mapping.  <a href="#a7f20601b36da5a8c273354c73627b087">More...</a><br /></td></tr>
 <tr class="separator:a7f20601b36da5a8c273354c73627b087"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a275afe85962101560cb9eeb168a9b13f"><td class="memTemplParams" colspan="2">template&lt;class TYPE &gt; </td></tr>
-<tr class="memitem:a275afe85962101560cb9eeb168a9b13f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#a275afe85962101560cb9eeb168a9b13f">Insert</a> (const std::map&lt; std::string, TYPE *&gt; mapping, const std::string &amp;key, TYPE *value)</td></tr>
-<tr class="memdesc:a275afe85962101560cb9eeb168a9b13f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into a <code>mapping</code>.  <a href="#a275afe85962101560cb9eeb168a9b13f">More...</a><br /></td></tr>
-<tr class="separator:a275afe85962101560cb9eeb168a9b13f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e6d1fa25fc9f96b4318be2691aabde6"><td class="memTemplParams" colspan="2">template&lt;class TYPE &gt; </td></tr>
+<tr class="memitem:a4e6d1fa25fc9f96b4318be2691aabde6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#a4e6d1fa25fc9f96b4318be2691aabde6">Insert</a> (std::map&lt; std::string, TYPE *&gt; &amp;mapping, const std::string &amp;key, TYPE *value)</td></tr>
+<tr class="memdesc:a4e6d1fa25fc9f96b4318be2691aabde6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into a <code>mapping</code>. This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes.  <a href="#a4e6d1fa25fc9f96b4318be2691aabde6">More...</a><br /></td></tr>
+<tr class="separator:a4e6d1fa25fc9f96b4318be2691aabde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:af7737fdfdcf92a8473bd50f252a0c000"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#af7737fdfdcf92a8473bd50f252a0c000">Insert</a> (const std::string &amp;key)</td></tr>
-<tr class="memdesc:af7737fdfdcf92a8473bd50f252a0c000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into the <code>instances</code> mapping.  <a href="#af7737fdfdcf92a8473bd50f252a0c000">More...</a><br /></td></tr>
+<tr class="memdesc:af7737fdfdcf92a8473bd50f252a0c000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into the <code>fInstances</code> mapping.  <a href="#af7737fdfdcf92a8473bd50f252a0c000">More...</a><br /></td></tr>
 <tr class="separator:af7737fdfdcf92a8473bd50f252a0c000"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab4c2e12876d522b062fa3ed25a6c423"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#aab4c2e12876d522b062fa3ed25a6c423">KeyExists</a> (const std::string &amp;key) const</td></tr>
-<tr class="memdesc:aab4c2e12876d522b062fa3ed25a6c423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method that allows you to to check whether a key already exists in <code>instances</code> mapping.  <a href="#aab4c2e12876d522b062fa3ed25a6c423">More...</a><br /></td></tr>
+<tr class="memdesc:aab4c2e12876d522b062fa3ed25a6c423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method that allows you to to check whether a key already exists in <code>fInstances</code> mapping.  <a href="#aab4c2e12876d522b062fa3ed25a6c423">More...</a><br /></td></tr>
 <tr class="separator:aab4c2e12876d522b062fa3ed25a6c423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a15eb1e24a3061b0dd5185d6a869d3040"><td class="memItemLeft" align="right" valign="top">static std::map&lt; std::string, <a class="el" href="classContainer__indexed.html">Container_indexed</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#a15eb1e24a3061b0dd5185d6a869d3040">fInstances</a></td></tr>
+<tr class="memdesc:a15eb1e24a3061b0dd5185d6a869d3040"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapping of instances of this oject.  <a href="#a15eb1e24a3061b0dd5185d6a869d3040">More...</a><br /></td></tr>
+<tr class="separator:a15eb1e24a3061b0dd5185d6a869d3040"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an extension of the <code><a class="el" href="classContainer__base.html" title="This class is the base class for objects requiring a name and a description. ">Container_base</a></code> base class that in addition keeps track of all instanecs in a static mapping of all its instances. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>See if static <code>instances</code> member is shared in derived classes or whether they are independent.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>Consider implementing <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">Curiously Recurring Template Pattern</a> for independent objects of <code>fInstances</code> in derived classes.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 20th, 2019 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00029">29</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00028">28</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7fbbd1d3252b268fe5edf41a459a8c8d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7fbbd1d3252b268fe5edf41a459a8c8d">&#9670;&nbsp;</a></span>Container_indexed()</h2>
@@ -194,9 +198,9 @@ Private Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The constructor, in addition to setting the name and description, attempts to add <code>Insert</code> an instance of itself to the <code>instances</code> mapping. </p>
+<p>The constructor, in addition to setting the name and description, attempts to add <code>Insert</code> an instance of itself to the <code>fInstances</code> mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00018">18</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00014">14</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
@@ -215,15 +219,15 @@ Private Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The destructor removes this instances from the <code>instances</code> mapping. </p>
+<p>The destructor removes this fInstances from the <code>fInstances</code> mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00027">27</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00021">21</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a275afe85962101560cb9eeb168a9b13f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a275afe85962101560cb9eeb168a9b13f">&#9670;&nbsp;</a></span>Insert() <span class="overload">[1/2]</span></h2>
+<a id="a4e6d1fa25fc9f96b4318be2691aabde6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e6d1fa25fc9f96b4318be2691aabde6">&#9670;&nbsp;</a></span>Insert() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,7 +240,7 @@ template&lt;class TYPE &gt; </div>
         <tr>
           <td class="memname">void Container_indexed::Insert </td>
           <td>(</td>
-          <td class="paramtype">const std::map&lt; std::string, TYPE *&gt;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, TYPE *&gt; &amp;&#160;</td>
           <td class="paramname"><em>mapping</em>, </td>
         </tr>
         <tr>
@@ -259,15 +263,14 @@ template&lt;class TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into a <code>mapping</code>. </p>
-<p>This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p>
+<p>Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into a <code>mapping</code>. This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00083">83</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00071">71</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
 
 </div>
 </div>
@@ -295,9 +298,36 @@ template&lt;class TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into the <code>instances</code> mapping. </p>
+<p>Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into the <code>fInstances</code> mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00106">106</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00061">61</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a23c5f8ebfe876a33392fc4fb5dedcc50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23c5f8ebfe876a33392fc4fb5dedcc50">&#9670;&nbsp;</a></span>Instances()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const std::map&lt;std::string, <a class="el" href="classContainer__indexed.html">Container_indexed</a>*&gt;&amp; Container_indexed::Instances </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00035">35</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
 
 </div>
 </div>
@@ -332,17 +362,19 @@ template&lt;class TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Helper method that allows you to to check whether a key already exists in . </p>
-<p>This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Use error handling for existing keys, not <code>terminate</code>. </dd></dl>
+<p>Read access to <code>fInstances</code> mapping. </p>
+<p>Helper method that allows you to to check whether a key already exists in .</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd><code>Instances</code> function necessary? </dd></dl>
+<p>This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Use error handling for existing keys, not <code>terminate</code>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Currently redudant, because of the <code>terminate</code>, but returns <code>false</code> at the end. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Contains fatal <code>terminate</code> statement when double booking! Consider turning into a <code>return</code> statement. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00070">70</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00060">60</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
 
 </div>
 </div>
@@ -370,9 +402,9 @@ template&lt;class TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Helper method that allows you to to check whether a key already exists in <code>instances</code> mapping. </p>
+<p>Helper method that allows you to to check whether a key already exists in <code>fInstances</code> mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00098">98</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00055">55</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
@@ -381,6 +413,9 @@ template&lt;class TYPE &gt; </div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Container_indexed::SetName </td>
@@ -390,11 +425,18 @@ template&lt;class TYPE &gt; </div>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>A overload of <code><a class="el" href="classContainer__base.html#a1e9e09bb2b32e89bc8dc05984494c76b" title="Rename the object. ">Container_base::SetName</a></code> that in addition to setting the name, safely redefines its corresponding key in <code>instances</code>. </p>
+<p>A overload of <code><a class="el" href="classContainer__base.html#a8b58704f557852e75906e4ae2601987a" title="Rename the object. ">Container_base::SetName</a></code> that in addition to setting the name, safely redefines its corresponding key in <code>fInstances</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00043">43</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p>Reimplemented from <a class="el" href="classContainer__base.html#a8b58704f557852e75906e4ae2601987a">Container_base</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00035">35</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
@@ -403,6 +445,9 @@ template&lt;class TYPE &gt; </div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Container_indexed::SetName </td>
@@ -422,17 +467,24 @@ template&lt;class TYPE &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Extension of <code>SetName</code> where you can also set the description. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00052">52</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p>Reimplemented from <a class="el" href="classContainer__base.html#a815f2a7d603ad8937b72606753e17a44">Container_base</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00042">42</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ae8f9535cabbfa955c6a759c86de53b34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8f9535cabbfa955c6a759c86de53b34">&#9670;&nbsp;</a></span>instances</h2>
+<a id="a15eb1e24a3061b0dd5185d6a869d3040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15eb1e24a3061b0dd5185d6a869d3040">&#9670;&nbsp;</a></span>fInstances</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -441,19 +493,19 @@ template&lt;class TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt; std::string, <a class="el" href="classContainer__indexed.html">Container_indexed</a> * &gt; Container_indexed::instances</td>
+          <td class="memname">std::map&lt; std::string, <a class="el" href="classContainer__indexed.html">Container_indexed</a> * &gt; Container_indexed::fInstances</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Mapping of instances of this oject. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00034">34</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00044">44</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
 
 </div>
 </div>

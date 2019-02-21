@@ -1,5 +1,5 @@
 /**
- * @brief Analysis configuration file for analysing MC output of the `D0phi_KpiKK_data` package.
+/// Analysis configuration file for analysing MC output of the `D0phi_KpiKK_data` package.
  */
 
 // * FILE NAME * //

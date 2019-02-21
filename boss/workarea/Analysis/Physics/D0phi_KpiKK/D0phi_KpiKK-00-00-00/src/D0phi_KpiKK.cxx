@@ -27,10 +27,8 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	/**
-	 * @brief Constructor for the `D0phi_KpiKK` algorithm.
-	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `D0phi_KpiKK`), and if required a documentation string. Note that you should define the paramters themselves in the header (D0phi_KpiKK/D0phi_KpiKK.h) and that you should assign the values in `share/D0phi_KpiKK.txt`.
-	 */
+	/// Constructor for the `D0phi_KpiKK` algorithm.
+	/// Here, you should declare properties: give them a name, assign a parameter (data member of `D0phi_KpiKK`), and if required a documentation string. Note that you should define the paramters themselves in the header (D0phi_KpiKK/D0phi_KpiKK.h) and that you should assign the values in `share/D0phi_KpiKK.txt`.
 	D0phi_KpiKK::D0phi_KpiKK(const std::string &name, ISvcLocator* pSvcLocator) :
 		TrackSelector(name, pSvcLocator)
 	{
@@ -49,10 +47,8 @@
 // * ------- ALGORITHM STEPS ------- * //
 // * =============================== * //
 
-	/**
-	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once, when the algorithm is initialised.
-	 * @details Define and load `NTuple`s here. Other `NTuple`s have already been defined in the `TrackSelector::initilize` step prior to this this method.
-	 */
+	/// (Inherited) `initialize` step of `Algorithm`. This function is called only once, when the algorithm is initialised.
+	/// Define and load `NTuple`s here. Other `NTuple`s have already been defined in the `TrackSelector::initilize` step prior to this this method.
 	StatusCode D0phi_KpiKK::initialize_rest()
 	{
 		fLog << MSG::INFO << "===>> D0phi_KpiKK::initialize_rest() <<===" << endmsg;
@@ -85,9 +81,7 @@
 	}
 
 
-	/**
-	 * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
-	 */
+	/// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 	StatusCode D0phi_KpiKK::execute_rest()
 	{
 		fLog << MSG::DEBUG << "===>> D0phi_KpiKK::execute_rest() <<===" << endmsg;
@@ -296,10 +290,8 @@
 	}
 
 
-	/**
-	 * @brief Currently does nothing. Cut flow could be printed in this step.
-	 * @todo Add log output to `finalize` step.
-	 */
+	/// Currently does nothing. Cut flow could be printed in this step.
+	/// @todo Add log output to `finalize` step.
 	StatusCode D0phi_KpiKK::finalize_rest()
 	{
 		fLog << MSG::INFO << "===>> D0phi_KpiKK::finalize_rest() <<===" << endmsg;
@@ -314,9 +306,7 @@
 // * =============================== * //
 
 
-	/**
-	 * @brief Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
-	 */
+	/// Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
 	void D0phi_KpiKK::WriteFitResults(KKFitResult_D0phi_KpiKK &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName)
 	{
 		if(!fitresult) {
@@ -334,9 +324,7 @@
 	}
 
 
-	/**
-	 * @brief This function encapsulates the `addItem` procedure for the fit branches.
-	 */ 
+	/// This function encapsulates the `addItem` procedure for the fit branches.
 	void D0phi_KpiKK::BookNtupleItems_Fit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		/// <ol>

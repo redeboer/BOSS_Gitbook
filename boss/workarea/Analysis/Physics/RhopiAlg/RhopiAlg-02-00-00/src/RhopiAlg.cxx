@@ -39,10 +39,8 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	/**
-	 * @brief Constructor for the `RhopiAlg` algorithm.
-	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `RhopiAlg`), and if required a documentation string. Note that you should define the paramters themselves in the header (RhopiAlg/RhopiAlg.h) and that you should assign the values in `share/jopOptions_RhopiAlg.txt`.
-	 */
+	/// Constructor for the `RhopiAlg` algorithm.
+	/// Here, you should declare properties: give them a name, assign a parameter (data member of `RhopiAlg`), and if required a documentation string. Note that you should define the paramters themselves in the header (RhopiAlg/RhopiAlg.h) and that you should assign the values in `share/jopOptions_RhopiAlg.txt`.
 	RhopiAlg::RhopiAlg(const std::string &name, ISvcLocator* pSvcLocator) :
 		TrackSelector(name, pSvcLocator)
 	{
@@ -65,10 +63,8 @@
 // * ------- ALGORITHM STEPS ------- * //
 // * =============================== * //
 
-	/**
-	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
-	 * @details Define and load NTuples here.
-	 */
+	/// (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
+	/// Define and load NTuples here.
 	StatusCode RhopiAlg::initialize_rest()
 	{
 
@@ -101,9 +97,7 @@
 	}
 
 
-	/**
-	 * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
-	 */
+	/// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 	StatusCode RhopiAlg::execute_rest()
 	{
 
@@ -349,10 +343,8 @@
 	}
 
 
-	/**
-	 * @brief Currently does nothing. Cut flow could be printed in this step.
-	 * @todo Add log output to `finalize` step.
-	 */
+	/// Currently does nothing. Cut flow could be printed in this step.
+	/// @todo Add log output to `finalize` step.
 	StatusCode RhopiAlg::finalize_rest()
 	{
 		return StatusCode::SUCCESS;

@@ -39,8 +39,8 @@ var NAVTREEINDEX =
 [
 "AnalyseBOSSOutput_8C.html",
 "classChainLoader.html#a6635ef6d5998d30e8fa11f0ebe26bb1a",
-"classPipiJpsi.html#a4c4efde2bd7bac5c80784fb0fa017bce",
-"classTrackSelector.html#a80e9293aeca2c5b955eb3ed393c908f6"
+"classPipiJpsi.html#a4aac7cc220e9278569323afb7164cd00",
+"classTrackSelector.html#a7d146b4022233ef370931942f342ef41"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

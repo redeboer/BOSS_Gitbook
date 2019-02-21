@@ -22,11 +22,9 @@
 /// @{
 
 
-	/**
-	 * @brief    A container class for a `TChain` that allows easy access to its branches. Addresses are set automatically upon construction.
-	 * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	 * @date     December 21st, 2018
-	 */
+	/// A container class for a `TChain` that allows easy access to its branches. Addresses are set automatically upon construction.
+	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+	/// @date     December 21st, 2018
 	class ChainLoader
 	{
 	public:
@@ -88,22 +86,22 @@
 	// private:
 		/// @name Data members
 			///@{
-			TChain fChain; //!< `TChain` object to which the `TFile`s are added.
+			TChain fChain; ///< `TChain` object to which the `TFile`s are added.
 			///@}
 
 		/// @name Data members: Maps for branch addresses
 			///@{
-			std::unordered_map<std::string, Char_t>    fMap_B; //!< Map of addresses for Char_t (8 bit signed integer).
-			std::unordered_map<std::string, UChar_t>   fMap_b; //!< Map of addresses for UChar_t (8 bit unsigned integer).
-			std::unordered_map<std::string, Short_t>   fMap_S; //!< Map of addresses for Short_t (16 bit signed integer).
-			std::unordered_map<std::string, UShort_t>  fMap_s; //!< Map of addresses for UShort_t (16 bit unsigned integer).
-			std::unordered_map<std::string, Int_t>     fMap_I; //!< Map of addresses for Int_t (32 bit signed integer).
-			std::unordered_map<std::string, UInt_t>    fMap_i; //!< Map of addresses for UInt_t (32 bit unsigned integer).
-			std::unordered_map<std::string, Float_t>   fMap_F; //!< Map of addresses for Float_t (32 bit floating point).
-			std::unordered_map<std::string, Double_t>  fMap_D; //!< Map of addresses for Double_t (64 bit floating point).
-			std::unordered_map<std::string, Long64_t>  fMap_L; //!< Map of addresses for Long64_t (64 bit signed integer).
-			std::unordered_map<std::string, ULong64_t> fMap_l; //!< Map of addresses for ULong64_t (64 bit unsigned integer).
-			std::unordered_map<std::string, Bool_t>    fMap_O; //!< Map of addresses for Bool_t (boolean).
+			std::unordered_map<std::string, Char_t>    fMap_B; ///< Map of addresses for Char_t (8 bit signed integer).
+			std::unordered_map<std::string, UChar_t>   fMap_b; ///< Map of addresses for UChar_t (8 bit unsigned integer).
+			std::unordered_map<std::string, Short_t>   fMap_S; ///< Map of addresses for Short_t (16 bit signed integer).
+			std::unordered_map<std::string, UShort_t>  fMap_s; ///< Map of addresses for UShort_t (16 bit unsigned integer).
+			std::unordered_map<std::string, Int_t>     fMap_I; ///< Map of addresses for Int_t (32 bit signed integer).
+			std::unordered_map<std::string, UInt_t>    fMap_i; ///< Map of addresses for UInt_t (32 bit unsigned integer).
+			std::unordered_map<std::string, Float_t>   fMap_F; ///< Map of addresses for Float_t (32 bit floating point).
+			std::unordered_map<std::string, Double_t>  fMap_D; ///< Map of addresses for Double_t (64 bit floating point).
+			std::unordered_map<std::string, Long64_t>  fMap_L; ///< Map of addresses for Long64_t (64 bit signed integer).
+			std::unordered_map<std::string, ULong64_t> fMap_l; ///< Map of addresses for ULong64_t (64 bit unsigned integer).
+			std::unordered_map<std::string, Bool_t>    fMap_O; ///< Map of addresses for Bool_t (boolean).
 			///@}
 
 		/// @name Helper functions

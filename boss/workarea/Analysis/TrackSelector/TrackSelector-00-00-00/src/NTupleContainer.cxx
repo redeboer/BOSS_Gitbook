@@ -13,9 +13,7 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	/**
-	 * @brief The constructor attempts to add the `NTuple::Tuple` to the `instances` mapping.
-	 */
+	/// The constructor attempts to add the `NTuple::Tuple` to the `instances` mapping.
 	NTupleContainer::NTupleContainer(const std::string &name, const std::string &description) :
 		Container_base(name, description), perform(name), write(name)
 	{
@@ -38,9 +36,7 @@
 		/// </ol>
 	}
 
-	/**
-	 * @brief The destructor removes this instances from the `instances` inventory.
-	 */
+	/// The destructor removes this instances from the `instances` inventory.
 	NTupleContainer::~NTupleContainer()
 	{
 		instances.erase(Name());
@@ -66,9 +62,7 @@
 // * ------- BOOKING PROCEDURES ------- * //
 // * ================================== * //
 
-	/**
-	 * @brief Easier and expanded version of `NTuple::Tuple::addItem`.
-	 */
+	/// Easier and expanded version of `NTuple::Tuple::addItem`.
 	void NTupleContainer::AddItem(const std::string &item_name)
 	{
 		/// <ol>

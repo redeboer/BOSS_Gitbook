@@ -14,9 +14,7 @@
 
 	double KKFitResult::fBestCompareValue = 1e9;
 
-	/**
-	 * @brief
-	 */
+	/// 
 	KKFitResult::KKFitResult(KalmanKinematicFit* kkmfit) :
 		fChiSquared(1e9),
 		fFit(kkmfit)
@@ -30,9 +28,7 @@
 // * -------- PROTECTED METHODS -------- * //
 // * =================================== * //
 
-	/**
-	 * @brief Constructof for the `KKFitResult` base class.
-	 */
+	/// Constructof for the `KKFitResult` base class.
 	void KKFitResult::SetValues(KalmanKinematicFit* kkmfit)
 	{
 		if(!kkmfit) return;
@@ -40,9 +36,7 @@
 	}
 
 
-	/**
-	 * @brief Comparison method.
-	 */
+	/// Comparison method.
 	bool KKFitResult::IsBetter(const double &value, double &bestvalue) const
 	{
 		/// -# Returns `false` if the object does not contain a `KalmanKinematicFit`.

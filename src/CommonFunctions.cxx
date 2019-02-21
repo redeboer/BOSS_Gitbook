@@ -22,14 +22,11 @@
 // * ================================== * //
 
 
-	/**
-	 * @brief Auxiliary function that is used by the more specific `DrawAndSave` functions for `TH1D` and `TH2D`.
-	 * 
-	 * @param hist Histogram that you want to draw and save.
-	 * @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
-	 * @param opt Draw options.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
+	/// Auxiliary function that is used by the more specific `DrawAndSave` functions for `TH1D` and `TH2D`.
+	/// @param hist Histogram that you want to draw and save.
+	/// @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
+	/// @param opt Draw options.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void CommonFunctions::Draw::DrawAndSave(TH1 &hist, const char* saveas, Option_t* opt, TString logScale)
 	{
 		hist.Draw(opt);
@@ -37,41 +34,32 @@
 	}
 
 
-	/**
-	 * @brief Draw and save a 1D distribution (output folder is determined from `FrameworkSettings.h`).
-	 * 
-	 * @param hist One-dimenational histogram that you would like to draw and save.
-	 * @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
+	/// Draw and save a 1D distribution (output folder is determined from `FrameworkSettings.h`).
+	/// @param hist One-dimenational histogram that you would like to draw and save.
+	/// @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void CommonFunctions::Draw::DrawAndSave(TH1D &hist, const char* saveas, TString logScale)
 	{
 		DrawAndSave(hist, saveas, "ep", logScale);
 	}
 
 
-	/**
-	 * @brief Draw and save a 2D distribution (output folder is determined from `FrameworkSettings.h`).
-	 * 
-	 * @param hist Two-dimenational histogram that you would like to draw and save.
-	 * @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
+	/// Draw and save a 2D distribution (output folder is determined from `FrameworkSettings.h`).
+	/// @param hist Two-dimenational histogram that you would like to draw and save.
+	/// @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void CommonFunctions::Draw::DrawAndSave(TH2D &hist, const char* saveas, TString logScale)
 	{
 		DrawAndSave(hist, saveas, "colz", logScale);
 	}
 
 
-	/**
-	 * @brief Function that allows you to create and save a quick sketch of a `TTree` branch.
-	 * 
-	 * @param tree The `TTree` of which you want to draw and save a branch.
-	 * @param varexp The branches that you want to plot should be in this parameter. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
-	 * @param selection Cuts on the branch. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
-	 * @param opt Draw options.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
+	/// Function that allows you to create and save a quick sketch of a `TTree` branch.
+	/// @param tree The `TTree` of which you want to draw and save a branch.
+	/// @param varexp The branches that you want to plot should be in this parameter. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
+	/// @param selection Cuts on the branch. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
+	/// @param opt Draw options.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void CommonFunctions::Draw::DrawAndSave(TTree* tree, const char* varexp, const char* selection, Option_t* opt, TString logScale)
 	{
 		tree->Draw(varexp, selection, opt);
@@ -79,12 +67,10 @@
 	}
 
 
-	/**
-	 * @brief Helper function that allows you to save a `TPad` or `TCanvas`.
-	 * @param pad Pointer to the `TPad` that you want to save. <b>Can also be a `TCanvas`.</b>
-	 * @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
+	/// Helper function that allows you to save a `TPad` or `TCanvas`.
+	/// @param pad Pointer to the `TPad` that you want to save. <b>Can also be a `TCanvas`.</b>
+	/// @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void CommonFunctions::Draw::SaveCanvas(const char *saveas, TVirtualPad *pad, TString logScale)
 	{
 		if(CommonFunctions::Error::IsEmptyPtr(pad)) return;
@@ -93,11 +79,9 @@
 	}
 
 
-	/**
-	 * @brief Helper function that allows you to set the log scale of a `TPad` or `TCanvas`.
-	 * @param logScale Which axes do you want to set? Just mention e.g. `"xy"` if you want to have the x and y axes in logaritmic scale. This opt is not capital sensitive.
-	 * @param pad Pointer to the `TPad` of which you want to set the log scale. <b>Can also be a `TCanvas`.</b>
-	 */
+	/// Helper function that allows you to set the log scale of a `TPad` or `TCanvas`.
+	/// @param logScale Which axes do you want to set? Just mention e.g. `"xy"` if you want to have the x and y axes in logaritmic scale. This opt is not capital sensitive.
+	/// @param pad Pointer to the `TPad` of which you want to set the log scale. <b>Can also be a `TCanvas`.</b>
 	void CommonFunctions::Draw::SetLogScale(TString logScale, TVirtualPad *pad)
 	{
 		// * Check arguments * //
@@ -118,10 +102,8 @@
 // * =================================== * //
 
 
-	/**
-	 * @brief Auxiliary function that you can used in other functions to check if a pointer that you fed it is a nullpointer.
-	 * @details It is useful to use this function if you want to print output when you are incidentally using an empty pointer.
-	 */
+	/// Auxiliary function that you can used in other functions to check if a pointer that you fed it is a nullpointer.
+	/// It is useful to use this function if you want to print output when you are incidentally using an empty pointer.
 	bool CommonFunctions::Error::IsEmptyPtr(void* ptr)
 	{
 		if(!ptr) {
@@ -138,25 +120,19 @@
 // * ================================== * //
 
 
-	/**
-	 * @brief This function creates a default output file name according to the `FrameworkSettings`. The file name consists of the plots output director, with the extension as subfolder and then the filename you want.
-	 * 
-	 * @param filenameWithoutExt Output file name to which `gPlotOutputDir` in `FrameworkSettings.h` will be prepended and <b>`gExtension` will be appended</b>.
-	 * @return Full path of the resulting output file name.
-	 */
+	/// This function creates a default output file name according to the `FrameworkSettings`. The file name consists of the plots output director, with the extension as subfolder and then the filename you want.
+	/// @param filenameWithoutExt Output file name to which `gPlotOutputDir` in `FrameworkSettings.h` will be prepended and <b>`gExtension` will be appended</b>.
+	/// @return Full path of the resulting output file name.
 	const char* CommonFunctions::File::GetOutputFilename(const char* filenameWithoutExt)
 	{
 		return Form("%s/%s/%s.%s", Settings::File::gPlotOutputDir, Settings::File::gExtension, filenameWithoutExt, Settings::File::gExtension);
 	}
 
 
-	/**
-	 * @brief This function creates a file name from the settings in `FrameworkSettings.h` and from the file name (without extension) that you feed it.
-	 * @details You don't have to worry about creating the output directory, as it is created automatically from the slashes `/` in the resulting file name
-	 * 
-	 * @param filenameWithoutExt Output file name to which `gPlotOutputDir` in `FrameworkSettings.h` will be prepended and `gExtension` will be appended.
-	 * @return Full path of the resulting output file name.
-	 */
+	/// This function creates a file name from the settings in `FrameworkSettings.h` and from the file name (without extension) that you feed it.
+	/// You don't have to worry about creating the output directory, as it is created automatically from the slashes `/` in the resulting file name
+	/// @param filenameWithoutExt Output file name to which `gPlotOutputDir` in `FrameworkSettings.h` will be prepended and `gExtension` will be appended.
+	/// @return Full path of the resulting output file name.
 	const char* CommonFunctions::File::SetOutputFilename(const char* filenameWithoutExt)
 	{
 		// * Create full path * //
@@ -180,9 +156,7 @@
 // * ================================= * //
 
 
-	/**
-	 * @brief Create a `RooDataHist` specifically for resonstructing a certain particle (`ReconstructedParticle`).
-	 */
+	/// Create a `RooDataHist` specifically for resonstructing a certain particle (`ReconstructedParticle`).
 	RooDataHist CommonFunctions::Fit::CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var, const ReconstructedParticle& particle) {
 		RooDataHist distr(
 			Form("%scandidate_RooDataHist", particle.GetName()),
@@ -191,9 +165,7 @@
 	}
 
 
-	/**
-	 * @brief Create a `RooRealVar` specifically for resonstructing a certain particle (`ReconstructedParticle`).
-	 */
+	/// Create a `RooRealVar` specifically for resonstructing a certain particle (`ReconstructedParticle`).
 	RooRealVar CommonFunctions::Fit::CreateRooFitInvMassVar(const ReconstructedParticle& particle)
 	{
 		RooRealVar var(
@@ -206,15 +178,13 @@
 	}
 
 
-	/**
-	 * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
-	 * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
-	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
-	 * @param hist Invariant mass histogram that you would like to fit.
-	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-	 * @param numPolynomials The degree of the polynomial that describes the background.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
+	/// Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
+	/// For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
+	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
+	/// @param hist Invariant mass histogram that you would like to fit.
+	/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	/// @param numPolynomials The degree of the polynomial that describes the background.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void CommonFunctions::Fit::FitBWGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials, TString logScale)
 	{
 
@@ -297,15 +267,13 @@
 	}
 
 
-	/**
-	 * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
-	 * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
-	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
-	 * @param hist Invariant mass histogram that you would like to fit
-	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-	 * @param numPolynomials The degree of the polynomial that describes the background.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
+	/// Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
+	/// For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
+	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
+	/// @param hist Invariant mass histogram that you would like to fit
+	/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	/// @param numPolynomials The degree of the polynomial that describes the background.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void CommonFunctions::Fit::FitBWDoubleGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials, TString logScale)
 	{
 
@@ -398,15 +366,12 @@
 	}
 
 
-	/**
-	 * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
-	 * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
-	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
-	 * 
-	 * @param hist Invariant mass histogram that you would like to fit
-	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-	 * @param numPolynomials The degree of the polynomial that describes the background.
-	 */
+	/// Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
+	/// For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
+	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
+	/// @param hist Invariant mass histogram that you would like to fit
+	/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	/// @param numPolynomials The degree of the polynomial that describes the background.
 	void CommonFunctions::Fit::FitBreitWigner(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials)
 	{
 
@@ -476,16 +441,13 @@
 	}
 
 
-	/**
-	 * @brief Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
-	 * @brief For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
-	 * @details See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
-	 * 
-	 * @param hist Invariant mass histogram that you would like to fit
-	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-	 * @param numPolynomials The degree of the polynomial that describes the background.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
+	/// Fit the sum of two Gaussian functions on a invariant mass distrubution. The mean of the two Gaussian is in both cases taken to be the mass of the particle to be reconstructed.
+	/// For a pure particle signal, that is, without backround <b>and</b> without a physical particle width, the width of the two Gaussians characterises the resolution of the detector.
+	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
+	/// @param hist Invariant mass histogram that you would like to fit
+	/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	/// @param numPolynomials The degree of the polynomial that describes the background.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void CommonFunctions::Fit::FitDoubleGaussian(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials, TString logScale)
 	{
 		if(CommonFunctions::Error::IsEmptyPtr(hist)) return;
@@ -596,13 +558,10 @@
 // * ------- SUB-NAMESPACE HIST ------- * //
 // * ================================== * //
 
-	/**
-	 * @brief Create a histogram object especially for invariant mass analysis.
-	 * 
-	 * @param particle Axis titles, histogram title, and histogram ranges are determined from this object.
-	 * @param nBins Number of bins on the \f$x\f$-axis.
-	 * @return A new, <i>empty</i> `TH1D` histogram, ready to be filled from a branch from a `TTree`.
-	 */
+	/// Create a histogram object especially for invariant mass analysis.
+	/// @param particle Axis titles, histogram title, and histogram ranges are determined from this object.
+	/// @param nBins Number of bins on the \f$x\f$-axis.
+	/// @return A new, <i>empty</i> `TH1D` histogram, ready to be filled from a branch from a `TTree`.
 	TH1D CommonFunctions::Hist::CreateInvariantMassHistogram(const ReconstructedParticle& particle, const int nBins)
 	{
 		return TH1D(
@@ -612,15 +571,12 @@
 			nBins, particle.PlotFrom(), particle.PlotUntil());
 	}
 
-	/**
-	 * @brief Set the axis titles of a histogram
-	 * 
-	 * @param hist Pointer to the histogram of which you want to change the axis titles.
-	 * @param xAxis Title of the \f$x\f$-axis.
-	 * @param yAxis Title of the \f$y\f$-axis. Can be left empty.
-	 * @param zAxis Title of the \f$z\f$-axis. Can be left empty.
-	 * @param update Whether or not to update the `gPad`. Not that this only makes sense if this particular histogram has been recently drawn.
-	 */
+	/// Set the axis titles of a histogram
+	/// @param hist Pointer to the histogram of which you want to change the axis titles.
+	/// @param xAxis Title of the \f$x\f$-axis.
+	/// @param yAxis Title of the \f$y\f$-axis. Can be left empty.
+	/// @param zAxis Title of the \f$z\f$-axis. Can be left empty.
+	/// @param update Whether or not to update the `gPad`. Not that this only makes sense if this particular histogram has been recently drawn.
 	void CommonFunctions::Hist::SetAxisTitles(TH1* hist, const char* xAxis, const char* yAxis, const char* zAxis, bool update)
 	{
 		if(CommonFunctions::Error::IsEmptyPtr(hist)) return;

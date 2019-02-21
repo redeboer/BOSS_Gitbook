@@ -19,14 +19,11 @@
 /// @addtogroup BOSS_objects
 /// @{
 
-	/**
-	 * @brief This simple object encapsulates a `bool`ean job option. Options like these are usually used as switches in your algorithm that can be set to `true` or `false` in the job options. The constructor only needs a name for this switch. It is convention to start this name with:
+	/// This simple object encapsulates a `bool`ean job option. Options like these are usually used as switches in your algorithm that can be set to `true` or `false` in the job options. The constructor only needs a name for this switch. It is convention to start this name with:
 	 * * `"do_"` if this is to determine whether or not to perform a certain loop;
 	 * * `"write_"` if this determines whether or not to write a certain `TTree`/`NTuple`.
-	 *
-	 * @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	 * @date   January 3rd, 2019
-	 */
+	/// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+	/// @date   January 3rd, 2019
 	class JobSwitch : public Container_base
 	{
 	public:

@@ -61,14 +61,11 @@
 // * ------- INFORMATION ------- * //
 // * =========================== * //
 
-	/**
-	 * @brief Print the cut name, `min` value, `max` value, and `counter` value of the cut object. If all arguments are set, the output will be print in table format.
-	 * 
-	 * @param wname    With of the cut name column
-	 * @param wmin     With of the `min` column.
-	 * @param wmax     With of the `max` column.
-	 * @param wcounter With of the `counter` column.
-	 */
+	/// Print the cut name, `min` value, `max` value, and `counter` value of the cut object. If all arguments are set, the output will be print in table format.
+	/// @param wname    With of the cut name column
+	/// @param wmin     With of the `min` column.
+	/// @param wmax     With of the `max` column.
+	/// @param wcounter With of the `counter` column.
 	void CutObject::Print(const int wname, const int wmin, const int wmax, const int wcounter) const
 	{
 		/// -# Print a table line if required by `print`.
@@ -112,9 +109,7 @@
 // * ------- STATIC MEMBERS ------- * //
 // * ============================== * //
 
-	/**
-	 * @brief Print a table of cut names and their min/max and counter values.
-	 */
+	/// Print a table of cut names and their min/max and counter values.
 	void CutObject::PrintAll()
 	{
 		/// -# Check if any instances of `CutObject` have been loaded.

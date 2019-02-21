@@ -1,7 +1,7 @@
 /**
- * @brief Template for creating `jobOptions_ana_<packagename>.txt` files for the analysis step in the BOSS framework.
- * @date December 28th, 2018
- * @author Remco DE BOER <remco.de.boer@ihep.ac.cn> or <r.e.deboer@students.uu.nl>
+/// Template for creating `jobOptions_ana_<packagename>.txt` files for the analysis step in the BOSS framework.
+/// @date December 28th, 2018
+/// @author Remco DE BOER <remco.de.boer@ihep.ac.cn> or <r.e.deboer@students.uu.nl>
  */
 
 // * ------- INCLUDES ------- * //

@@ -107,10 +107,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aee15e034e71dbbd94b837aeefefaa74e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Gaudi Algorithm steps</div></td></tr>
 <tr class="memitem:af06ed1190f902b864bf60a254fc91b82"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#af06ed1190f902b864bf60a254fc91b82">initialize</a> ()</td></tr>
-<tr class="memdesc:af06ed1190f902b864bf60a254fc91b82"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>.  <a href="#af06ed1190f902b864bf60a254fc91b82">More...</a><br /></td></tr>
+<tr class="memdesc:af06ed1190f902b864bf60a254fc91b82"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>. This function is called only once in the beginning. <b>Define and load <code>NTuple</code>s here.</b>  <a href="#af06ed1190f902b864bf60a254fc91b82">More...</a><br /></td></tr>
 <tr class="separator:af06ed1190f902b864bf60a254fc91b82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a1285b17bba7a49c43e073958c3fa36"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a5a1285b17bba7a49c43e073958c3fa36">execute</a> ()</td></tr>
-<tr class="memdesc:a5a1285b17bba7a49c43e073958c3fa36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code>.  <a href="#a5a1285b17bba7a49c43e073958c3fa36">More...</a><br /></td></tr>
+<tr class="memdesc:a5a1285b17bba7a49c43e073958c3fa36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code>. This function is called <em>for each event</em>.  <a href="#a5a1285b17bba7a49c43e073958c3fa36">More...</a><br /></td></tr>
 <tr class="separator:a5a1285b17bba7a49c43e073958c3fa36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b14fcbe763282795420a77a177e98fb"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPipiJpsi.html#a1b14fcbe763282795420a77a177e98fb">finalize</a> ()</td></tr>
 <tr class="memdesc:a1b14fcbe763282795420a77a177e98fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>finalize</code> method of <code>Algorithm</code>.  <a href="#a1b14fcbe763282795420a77a177e98fb">More...</a><br /></td></tr>
@@ -434,13 +434,12 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Modified header of the stock BOSS package <code><a class="el" href="classPipiJpsi.html" title="Modified header of the stock BOSS package PipiJpsi (version 00-00-03). ">PipiJpsi</a></code> (version <code>00-00-03</code>). </p>
-<p>Analyse <img class="formulaInl" alt="$ \psi' \rightarrow J/\psi \pi \pi $" src="form_28.png"/> and <img class="formulaInl" alt="$ J/\psi \rightarrow \mathrm{di\-leptons} $" src="form_29.png"/> events. This example package particularly teaches the use of Monte Carlo truth.</p>
-<dl class="section author"><dt>Author</dt><dd>Kai Zhu (<a href="#" onclick="location.href='mai'+'lto:'+'zhu'+'k@'+'ihe'+'p.'+'ac.'+'cn'; return false;">zhuk@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd>
+<p>Analyse <img class="formulaInl" alt="$ \psi' \rightarrow J/\psi \pi \pi $" src="form_28.png"/> and <img class="formulaInl" alt="$ J/\psi \rightarrow \mathrm{di\-leptons} $" src="form_29.png"/> events. This example package particularly teaches the use of Monte Carlo truth. </p><dl class="section author"><dt>Author</dt><dd>Kai Zhu (<a href="#" onclick="location.href='mai'+'lto:'+'zhu'+'k@'+'ihe'+'p.'+'ac.'+'cn'; return false;">zhuk@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd>
 <dd>
 Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 13th, 2019 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00029">29</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00026">26</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aee15e034e71dbbd94b837aeefefaa74e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aee15e034e71dbbd94b837aeefefaa74e">&#9670;&nbsp;</a></span>PipiJpsi()</h2>
@@ -471,7 +470,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
 <p>Constructor for the <code><a class="el" href="classPipiJpsi.html" title="Modified header of the stock BOSS package PipiJpsi (version 00-00-03). ">PipiJpsi</a></code> algorithm. </p>
 <p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="RhopiAlg_8h.html">RhopiAlg/RhopiAlg.h</a>) and that you should assign the values in <code>share/jopOptions_RhopiAlg.txt</code>. Algorithms should inherit from Gaudi's <code>Algorithm</code> class. See <a href="https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html">https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00089">89</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00087">87</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
 
 </div>
 </div>
@@ -491,8 +490,7 @@ Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'
       </table>
 </div><div class="memdoc">
 
-<p>Inherited <code>execute</code> method of the <code>Algorithm</code>. </p>
-<p>This function is called <em>for each event</em>. </p>
+<p>Inherited <code>execute</code> method of the <code>Algorithm</code>. This function is called <em>for each event</em>. </p>
 <ol>
 <li>
 <p class="startli">Log stream and status code</p>
@@ -635,7 +633,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00327">327</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00321">321</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
 
 </div>
 </div>
@@ -655,10 +653,9 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </div><div class="memdoc">
 
 <p>Inherited <code>finalize</code> method of <code>Algorithm</code>. </p>
-<p>This function is only called once, after running over all events.</p>
-<p>Prints the flow chart to the terminal, so make sure you save this output! </p>
+<p>This function is only called once, after running over all events. Prints the flow chart to the terminal, so make sure you save this output! </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00876">876</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00868">868</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
 
 </div>
 </div>
@@ -677,8 +674,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
       </table>
 </div><div class="memdoc">
 
-<p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
-<p>This function is called only once in the beginning. <b>Define and load <code>NTuple</code>s here.</b> </p>
+<p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. This function is called only once in the beginning. <b>Define and load <code>NTuple</code>s here.</b> </p>
 <table class="doxtable">
 <tr>
 <td colspan="2"><p class="starttd"><b><code>NTuple "vxyz"</code>: Vertex information of the charged tracks</b></p>
@@ -1065,7 +1061,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00117">117</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8cxx_source.html#l00113">113</a> of file <a class="el" href="PipiJpsi_8cxx_source.html">PipiJpsi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1090,7 +1086,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00057">57</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00054">54</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1114,7 +1110,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00054">54</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00051">51</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1138,7 +1134,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00055">55</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00052">52</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1164,7 +1160,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of electron </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00095">95</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00092">92</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1190,7 +1186,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of kaon </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00098">98</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00095">95</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1216,7 +1212,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of muon </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00096">96</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00093">93</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1242,7 +1238,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of proton </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00099">99</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00096">96</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1268,7 +1264,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of pion </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00097">97</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00094">94</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1294,7 +1290,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Boosted <img class="formulaInl" alt="$|\vec{p}|$" src="form_36.png"/> of the negative lepton. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00156">156</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00153">153</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1320,7 +1316,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Boosted <img class="formulaInl" alt="$|\vec{p}|$" src="form_36.png"/> of the positive lepton. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00155">155</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00152">152</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1346,7 +1342,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>ToF counter ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00123">123</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00120">120</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1372,7 +1368,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>ToF counter ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00137">137</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00134">134</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1398,7 +1394,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>ToF counter ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00109">109</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00106">106</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1424,7 +1420,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p><img class="formulaInl" alt="$\cos(\theta)$" src="form_37.png"/> of the lorentz vector in the cylindrical coordinate system </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00157">157</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00154">154</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1448,7 +1444,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00060">60</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00057">57</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1474,7 +1470,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Angle difference with nearest charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00089">89</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00086">86</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1500,7 +1496,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Value of <img class="formulaInl" alt="$E/|\vec{p}|$" src="form_30.png"/> that is used to distinguish electron versus muon. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00070">70</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00067">67</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1526,7 +1522,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p><img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle difference with nearest charged track (degrees) </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00088">88</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00085">85</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1552,7 +1548,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p><img class="formulaInl" alt="$\theta$" src="form_35.png"/> angle difference with nearest charged track (degrees) </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00087">87</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00084">84</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1578,7 +1574,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Total energy of the EMC showers. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00171">171</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00168">168</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1604,7 +1600,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Energy of the photon. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00090">90</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00087">87</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1630,7 +1626,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Event number. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00179">179</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00176">176</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1656,7 +1652,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Characterisation of the event: 3 or 4 tracks, 4=&gt;4 tracks, 0=&gt; miss pi+, 1=&gt; miss pi-, 2=&gt; miss lepton+, 3=&gt; miss lepton-. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00172">172</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00169">169</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1680,7 +1676,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00056">56</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00053">53</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1706,7 +1702,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p><img class="formulaInl" alt="$E$" src="form_38.png"/>, <img class="formulaInl" alt="$p_x$" src="form_39.png"/>, <img class="formulaInl" alt="$p_y$" src="form_40.png"/>, and <img class="formulaInl" alt="$p_z$" src="form_41.png"/> for each lepton/pion (hence a <img class="formulaInl" alt="$4\times4$" src="form_42.png"/> matrix) </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00159">159</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00156">156</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1732,7 +1728,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Number of good hits. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00102">102</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00099">99</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1758,7 +1754,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Total number of (useful) MC particles in this event (used for the arrays) </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00185">185</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00182">182</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1784,7 +1780,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>For indexed item. Ranges from <code>0</code> to <code>3</code>: for <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>, <img class="formulaInl" alt="$\pi^-$" src="form_9.png"/>, <img class="formulaInl" alt="$l^+$" src="form_45.png"/>, and <img class="formulaInl" alt="$l^-$" src="form_46.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00180">180</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00177">177</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1810,7 +1806,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Invariant mass of the total system ( <img class="formulaInl" alt="$J/\psi$" src="form_7.png"/> plus the two pions) </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00164">164</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00161">161</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1836,7 +1832,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Number of identified leptons (actually non-pions). We don't need smear, actually, assume one track of pi pi is missing, the recoil mass is actually the invariant of pair-lepton. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00183">183</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00180">180</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1862,7 +1858,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Invariant mass of the <img class="formulaInl" alt="$J/\psi$" src="form_7.png"/> (sum of the two leptons) </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00162">162</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00159">159</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1888,7 +1884,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Invariant mass of the lab 4-momentum minus the 4-momenta of the two pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00163">163</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00160">160</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1914,7 +1910,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Invariant mass of the two pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00161">161</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00158">158</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1940,7 +1936,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>4-momentum of the identified negative lepton </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00149">149</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00146">146</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1966,7 +1962,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>4-momentum of the positive pion </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00150">150</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00147">147</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -1992,7 +1988,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>4-momentum of the identified negative lepton </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00151">151</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00148">148</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2018,7 +2014,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>4-momentum of the positive pion </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00152">152</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00149">149</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2044,7 +2040,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>PDG code of the mother of the MC particle. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00187">187</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00184">184</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2070,7 +2066,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Number of photons. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00091">91</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00088">88</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2096,7 +2092,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Normalized pulse height. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00101">101</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00098">98</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2122,7 +2118,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Path length. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00121">121</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00118">118</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2148,7 +2144,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Path length. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00135">135</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00132">132</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2174,7 +2170,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Path length. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00107">107</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00104">104</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2200,7 +2196,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>PDG code of the MC truth particle. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00186">186</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00183">183</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2226,7 +2222,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>ToF pulse height. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00124">124</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00121">121</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2252,7 +2248,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>ToF pulse height. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00138">138</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00135">135</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2278,7 +2274,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>ToF pulse height. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00110">110</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00107">107</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2304,7 +2300,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p><img class="formulaInl" alt="$\phi$" src="form_8.png"/> angle of the lorentz vector in the cylindrical coordinate system </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00158">158</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00155">155</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2330,7 +2326,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Number of identified pions. We don't need smear, actually, assume one track of pi pi is missing, the recoil mass is actually the invariant of pair-lepton. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00182">182</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00179">179</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2356,7 +2352,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Angle between the two pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00154">154</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00151">151</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2380,7 +2376,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00063">63</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00060">60</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2406,7 +2402,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Most probable pulse height from truncated mean. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00100">100</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00097">97</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2432,7 +2428,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Momentum of the track as reconstructed by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00120">120</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00117">117</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2458,7 +2454,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Momentum of the track as reconstructed by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00134">134</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00131">131</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2484,7 +2480,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Momentum of the track as reconstructed by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00106">106</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00103">103</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2510,7 +2506,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Momentum of the track. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00094">94</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00091">91</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2536,7 +2532,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Data quality of reconstruction. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00126">126</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00123">123</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2562,7 +2558,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Data quality of reconstruction. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00140">140</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00137">137</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2588,7 +2584,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Data quality of reconstruction. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00112">112</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00109">109</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2614,7 +2610,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Track extrapolate Z or R Hit position. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00111">111</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00108">108</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2640,7 +2636,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Run number. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00178">178</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00175">175</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2664,7 +2660,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00066">66</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00063">63</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2690,7 +2686,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in electron hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00127">127</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00124">124</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2716,7 +2712,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in electron hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00141">141</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00138">138</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2742,7 +2738,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in electron hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00113">113</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00110">110</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2768,7 +2764,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Total number of hits. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00103">103</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00100">100</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2794,7 +2790,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in charged kaon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00130">130</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00127">127</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2820,7 +2816,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in charged kaon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00144">144</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00141">141</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2846,7 +2842,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in charged kaon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00116">116</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00113">113</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2872,7 +2868,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in muon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00128">128</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00125">125</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2898,7 +2894,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in muon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00142">142</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00139">139</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2924,7 +2920,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in muon hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00114">114</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00111">111</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2950,7 +2946,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Time of flight. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00122">122</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00119">119</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -2976,7 +2972,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Time of flight. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00136">136</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00133">133</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3002,7 +2998,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Time of flight. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00108">108</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00105">105</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3028,7 +3024,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Total energy of the <img class="formulaInl" alt="$J/\psi \pi\pi$" src="form_43.png"/> system. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00166">166</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00163">163</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3054,7 +3050,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Total <img class="formulaInl" alt="$p_x$" src="form_39.png"/> of the <img class="formulaInl" alt="$J/\psi \pi\pi$" src="form_43.png"/> system. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00167">167</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00164">164</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3080,7 +3076,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Total <img class="formulaInl" alt="$p_y$" src="form_40.png"/> of the <img class="formulaInl" alt="$J/\psi \pi\pi$" src="form_43.png"/> system. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00168">168</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00165">165</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3106,7 +3102,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Total <img class="formulaInl" alt="$p_z$" src="form_41.png"/> of the <img class="formulaInl" alt="$J/\psi \pi\pi$" src="form_43.png"/> system. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00169">169</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00166">166</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3132,7 +3128,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in proton hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00131">131</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00128">128</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3158,7 +3154,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in proton hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00145">145</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00142">142</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3184,7 +3180,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in proton hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00117">117</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00114">114</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3210,7 +3206,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in charged pion hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00129">129</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00126">126</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3236,7 +3232,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in charged pion hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00143">143</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00140">140</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3262,7 +3258,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Difference with ToF in charged pion hypothesis. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00115">115</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00112">112</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3288,7 +3284,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Ratio of the 4-momentum axial distance ( <img class="formulaInl" alt="$\rho$" src="form_44.png"/> in the cylindrical coordinate system) versus <img class="formulaInl" alt="$|\vec{p}|$" src="form_36.png"/> for the negative lepton. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00173">173</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00170">170</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3314,7 +3310,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Ratio of the 4-momentum axial distance ( <img class="formulaInl" alt="$\rho$" src="form_44.png"/> in the cylindrical coordinate system) versus <img class="formulaInl" alt="$|\vec{p}|$" src="form_36.png"/> for the positive lepton. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00174">174</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00171">171</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3340,7 +3336,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Ratio of the 4-momentum axial distance ( <img class="formulaInl" alt="$\rho$" src="form_44.png"/> in the cylindrical coordinate system) versus <img class="formulaInl" alt="$|\vec{p}|$" src="form_36.png"/> for the negative pion. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00175">175</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00172">172</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3366,7 +3362,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Ratio of the 4-momentum axial distance ( <img class="formulaInl" alt="$\rho$" src="form_44.png"/> in the cylindrical coordinate system) versus <img class="formulaInl" alt="$|\vec{p}|$" src="form_36.png"/> for the positive pion. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00176">176</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00173">173</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3390,7 +3386,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00067">67</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00064">64</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3416,7 +3412,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>True <img class="formulaInl" alt="$|\vec{p}|$" src="form_36.png"/> of the negative pion. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00189">189</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00186">186</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3442,7 +3438,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>True <img class="formulaInl" alt="$|\vec{p}|$" src="form_36.png"/> of the positive pion. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00188">188</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00185">185</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3468,7 +3464,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Vertex information of the charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00080">80</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00077">77</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3494,7 +3490,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>'Fake' photon (angles) </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00086">86</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00083">83</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3520,7 +3516,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Energy loss dE/dx info. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00093">93</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00090">90</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3546,7 +3542,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Endcap ToF. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00105">105</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00102">102</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3572,7 +3568,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Barrel inner ToF. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00119">119</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00116">116</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3598,7 +3594,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Barrel outer ToF. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00133">133</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00130">130</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3624,7 +3620,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Information for method of momentum selection. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00147">147</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00144">144</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3650,7 +3646,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Distance from origin in <img class="formulaInl" alt="$xy$" src="form_34.png"/>-plane. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00084">84</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00081">81</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3674,7 +3670,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00050">50</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00047">47</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3700,7 +3696,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Primary <img class="formulaInl" alt="$x$" src="form_31.png"/>-vertex as determined by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00081">81</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00078">78</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3726,7 +3722,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Primary <img class="formulaInl" alt="$y$" src="form_32.png"/>-vertex as determined by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00082">82</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00079">79</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3752,7 +3748,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Primary <img class="formulaInl" alt="$z$" src="form_33.png"/>-vertex as determined by MDC. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00083">83</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00080">80</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3776,7 +3772,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00051">51</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00048">48</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3802,7 +3798,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Track extrapolate Z or R Hit position. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00125">125</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00122">122</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>
@@ -3828,7 +3824,7 @@ Monte Carlo information. <dl class="section attention"><dt>Attention</dt><dd>Thi
 
 <p>Track extrapolate Z or R Hit position. </p>
 
-<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00139">139</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PipiJpsi_8h_source.html#l00136">136</a> of file <a class="el" href="PipiJpsi_8h_source.html">PipiJpsi.h</a>.</p>
 
 </div>
 </div>

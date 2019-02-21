@@ -9,9 +9,7 @@
 // * ------- CONSTRUCTORS ------ * //
 // * =========================== * //
 
-	/**
-	 * @brief Constructor that opens a `TFile` and unordered_maps its contents (using <b>number of bins</b>).
-	 */
+	/// Constructor that opens a `TFile` and unordered_maps its contents (using <b>number of bins</b>).
 	BranchPlotOptions::BranchPlotOptions(const char* branchName, const int nBins, const double from, const double to, const char* option, const char* cut) :
 		fBranchName(branchName)
 	{
@@ -31,9 +29,7 @@
 		/// </ol>
 	}
 
-	/**
-	 * @brief Constructor that opens a `TFile` and unordered_maps its contents (using bin <b>width</b>).
-	 */
+	/// Constructor that opens a `TFile` and unordered_maps its contents (using bin <b>width</b>).
 	BranchPlotOptions::BranchPlotOptions(const char* branchName, const double binWidth, const double from, const double to, const char* option, const char* cut) :
 		fBranchName(branchName)
 	{

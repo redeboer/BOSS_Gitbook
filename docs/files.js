@@ -20,7 +20,7 @@ var files =
     [ "D0phi_KpiKK.h", "D0phi__KpiKK_8h.html", null ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
     [ "JobSwitch.cxx", "JobSwitch_8cxx.html", null ],
-    [ "JobSwitch.h", "JobSwitch_8h.html", null ],
+    [ "JobSwitch.h", "JobSwitch_8h.html", "JobSwitch_8h" ],
     [ "KKFitResult.cxx", "KKFitResult_8cxx.html", null ],
     [ "KKFitResult.h", "KKFitResult_8h.html", null ],
     [ "KKFitResult_D0phi_KpiKK.cxx", "KKFitResult__D0phi__KpiKK_8cxx.html", null ],

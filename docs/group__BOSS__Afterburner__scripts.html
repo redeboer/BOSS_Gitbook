@@ -95,7 +95,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga086e25251157ff77e7388eea63cee17c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function used when compiling and executing in <code>ROOT</code>.  <a href="#ga086e25251157ff77e7388eea63cee17c">More...</a><br /></td></tr>
 <tr class="separator:ga086e25251157ff77e7388eea63cee17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
-<tr class="memdesc:ga0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function that is called when executing the executable compiled using e.g.  <a href="#ga0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
+<tr class="memdesc:ga0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function that is called when executing the executable compiled using e.g. <code>g++</code>.  <a href="#ga0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
 <tr class="separator:ga0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -119,7 +119,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Main function used when compiling and executing in <code>ROOT</code>. </p>
-<p>To investigate the contents of the ROOT file, you first need to know which <code>TTree</code>s and branches it contains. If you simply construct the <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output. ">BOSSOutputLoader</a></code> by giving it a file name, all <code>TTree</code>s will be loaded automatically as well as addresses for each of their branches. Five the constructer <code>true</code> as its second argument, and the names of these <code>TTree</code>s, their branches, and the types of these branches (behind the slash <code>/</code> after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b></p>
+<p>To investigate the contents of the ROOT file, you first need to know which <code>TTree</code>s and branches it contains. If you simply construct the <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output This object only needs a path of a directory containin ROO...">BOSSOutputLoader</a></code> by giving it a file name, all <code>TTree</code>s will be loaded automatically as well as addresses for each of their branches. Five the constructer <code>true</code> as its second argument, and the names of these <code>TTree</code>s, their branches, and the types of these branches (behind the slash <code>/</code> after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b></p>
 <ol type="1">
 <li>Draw main invariant mass distributions</li>
 <li>Draw invariant mass distributions with cuts applied on the other candidate</li>
@@ -131,7 +131,7 @@ Functions</h2></td></tr>
 <li>Draw invariant mass versus 3-momentum </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00038">38</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00036">36</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
 
 </div>
 </div>
@@ -161,10 +161,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Main function that is called when executing the executable compiled using e.g. </p>
-<p><code>g++</code>. </p>
+<p>Main function that is called when executing the executable compiled using e.g. <code>g++</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00181">181</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00177">177</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
 
 </div>
 </div>

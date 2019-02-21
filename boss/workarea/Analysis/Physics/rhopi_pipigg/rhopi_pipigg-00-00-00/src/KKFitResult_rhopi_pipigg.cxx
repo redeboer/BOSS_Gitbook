@@ -16,9 +16,7 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	/**
-	 * @brief Construct a `KKFitResult_rhopi_pipigg` object based on a pointer to a `KalmanKinematicFit` object.
-	 */
+	/// Construct a `KKFitResult_rhopi_pipigg` object based on a pointer to a `KalmanKinematicFit` object.
 	KKFitResult_rhopi_pipigg::KKFitResult_rhopi_pipigg(KalmanKinematicFit* kkmfit) :
 		fFitMeasure(1e9),
 		KKFitResult(kkmfit)
@@ -26,9 +24,7 @@
 		SetValues(fFit);
 	}
 
-	/**
-	 * @brief Construct a `KKFitResult_rhopi_pipigg` object based on a pointer to a `KalmanKinematicFit` object.
-	 */
+	/// Construct a `KKFitResult_rhopi_pipigg` object based on a pointer to a `KalmanKinematicFit` object.
 	KKFitResult_rhopi_pipigg::KKFitResult_rhopi_pipigg(Event::McParticle* kaonNeg1, Event::McParticle* kaonNeg2, Event::McParticle* kaonPos, Event::McParticle* pionPos)
 	{
 		SetValues(kaonNeg1, kaonNeg2, kaonPos, pionPos);
@@ -40,9 +36,7 @@
 // * ------- KKFITRESULTS ------- * //
 // * ============================ * //
 
-	/**
-	 * @brief Helper function for the constructor (hence `private` method).
-	 */
+	/// Helper function for the constructor (hence `private` method).
 	void KKFitResult_rhopi_pipigg::SetValues(KalmanKinematicFit* kkmfit)
 	{
 		/// <ol>
@@ -58,9 +52,7 @@
 		/// </ol>
 	}
 
-	/**
-	 * @brief Helper function for the constructor (hence `private` method).
-	 */
+	/// Helper function for the constructor (hence `private` method).
 	void KKFitResult_rhopi_pipigg::SetValues(
 		Event::McParticle *kaonNeg1, 
 		Event::McParticle *kaonNeg2, 
@@ -82,9 +74,7 @@
 		/// </ol>
 	}
 
-	/**
-	 * @brief Helper function for the constructor (hence `private` method).
-	 */
+	/// Helper function for the constructor (hence `private` method).
 	void KKFitResult_rhopi_pipigg::SetValues(
 		const HepLorentzVector &pKaonNeg1, 
 		const HepLorentzVector &pKaonNeg2, 

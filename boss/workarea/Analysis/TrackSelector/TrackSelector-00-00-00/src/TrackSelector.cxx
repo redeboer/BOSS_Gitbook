@@ -45,10 +45,8 @@
 // * =========================== * //
 
 
-	/**
-	 * @brief Constructor for the `TrackSelector` algorithm.
-	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `TrackSelector`), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in `share/jopOptions_TrackSelector.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html for more details.
-	 */
+	/// Constructor for the `TrackSelector` algorithm.
+	/// Here, you should declare properties: give them a name, assign a parameter (data member of `TrackSelector`), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in `share/jopOptions_TrackSelector.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html for more details.
 	TrackSelector::TrackSelector(const std::string &name, ISvcLocator* pSvcLocator) :
 		/// * Gaudi `Algorithm` constructors.
 			Algorithm(name, pSvcLocator),
@@ -101,9 +99,7 @@
 // * =============================== * //
 
 
-	/**
-	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called once in the beginning <i>of each run</i>. Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
-	 */
+	/// (Inherited) `initialize` step of `Algorithm`. This function is called once in the beginning <i>of each run</i>. Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
 	StatusCode TrackSelector::initialize()
 	{
 		fLog << MSG::INFO << "===>> TrackSelector::initialize() <<===" << endmsg;
@@ -187,9 +183,7 @@
 	}
 
 
-	/**
-	 * @brief Inherited `execute` method of the `Algorithm` which is called *for each event*.
-	 */
+	/// Inherited `execute` method of the `Algorithm` which is called *for each event*.
 	StatusCode TrackSelector::execute()
 	{
 		fLog << MSG::DEBUG << "===>> TrackSelector::execute() <<===" << endmsg;
@@ -424,7 +418,7 @@
 			}
 
 
-		/// <li> <b>Write</b> event info (`"mult"` branch)
+		/// <li> @b Write event info (`"mult"` branch)
 			if(fNTuple_mult.DoWrite()) {
 				fNTuple_mult.at("Ntotal")       = fEvtRecEvent->totalTracks();
 				fNTuple_mult.at("Ncharge")      = fEvtRecEvent->totalCharged();
@@ -437,7 +431,7 @@
 				NTupleContainer::Get("mult").Write();
 			}
 
-		/// <li> <b>Write</b> event info (`"vertex"` branch)
+		/// <li> @b Write event info (`"vertex"` branch)
 			if(fNTuple_vertex.DoWrite()) {
 				fNTuple_vertex.at("vx0") = fVertexPoint.x();
 				fNTuple_vertex.at("vy0") = fVertexPoint.y();
@@ -454,9 +448,7 @@
 	}
 
 
-	/**
-	 * @brief Is called at the end <i>of the entire process</i>. Writes total cut flow to terminal and to the output file.
-	 */
+	/// Is called at the end <i>of the entire process</i>. Writes total cut flow to terminal and to the output file.
 	StatusCode TrackSelector::finalize()
 	{
 		fLog << MSG::INFO << "===>> TrackSelector::finalize() <<===" << endmsg;
@@ -477,9 +469,7 @@
 // * ================================ * //
 
 
-	/**
-	 * @brief This function encapsulates the `addItem` procedure for the MC truth branches (`"mctruth*"`). It has to make use of the `NTupleTopoAna` struct, and cannot make use of the `NTuple` maps, because it contains indexed items.
-	 */
+	/// This function encapsulates the `addItem` procedure for the MC truth branches (`"mctruth*"`). It has to make use of the `NTupleTopoAna` struct, and cannot make use of the `NTuple` maps, because it contains indexed items.
 	void TrackSelector::BookNtupleItems_McTruth()
 	{
 		/// <ol>
@@ -494,9 +484,7 @@
 	}
 
 
-	/**
-	 * @brief This function encapsulates the `addItem` procedure for the \f$dE/dx\f$ energy loss branch (`"dedx"`). This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
-	 */
+	/// This function encapsulates the `addItem` procedure for the \f$dE/dx\f$ energy loss branch (`"dedx"`). This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
 	void TrackSelector::BookNtupleItems_Dedx(NTupleContainer &tuple)
 	{
 		/// <ol>
@@ -520,9 +508,7 @@
 	}
 
 
-	/**
-	 * @brief This function encapsulates the `addItem` procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.
-	 */ 
+	/// This function encapsulates the `addItem` procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.
 	void TrackSelector::BookNtupleItems_Tof(NTupleContainer &tuple)
 	{
 		/// <ol>
@@ -542,9 +528,7 @@
 	}
 
 
-	/**
-	 * @brief Helper function that allows you to relate the `NTupleContainer` argument `tuple` to the output file (i.e. to 'book' it).
-	 */
+	/// Helper function that allows you to relate the `NTupleContainer` argument `tuple` to the output file (i.e. to 'book' it).
 	void TrackSelector::BookNTuple(NTupleContainer &tuple)
 	{
 		/// <ol>
@@ -564,9 +548,7 @@
 	}
 
 
-	/**
-	 * @brief Go over all instances of `NTupleContainer` and book them using `BookNTuple`.
-	 */
+	/// Go over all instances of `NTupleContainer` and book them using `BookNTuple`.
 	void TrackSelector::BookNTuples()
 	{
 		std::map<std::string, NTupleContainer*>::iterator it = NTupleContainer::instances.begin();
@@ -574,9 +556,7 @@
 	}
 
 
-	/**
-	 * @brief Declare properties for each `JobSwitch`. This method has been added to the `TrackSelector`, and not to the `JobSwitch` class, because it requires the `Algorithm::decalareProperty` method.
-	 */
+	/// Declare properties for each `JobSwitch`. This method has been added to the `TrackSelector`, and not to the `JobSwitch` class, because it requires the `Algorithm::decalareProperty` method.
 	void TrackSelector::DeclareSwitches()
 	{
 		std::list<JobSwitch*>::iterator it = JobSwitch::gJobSwitches.begin();
@@ -593,13 +573,10 @@
 // * =============================== * //
 
 
-	/**
-	 * @brief Encapsulates of the writing procedure for \f$dE/dx\f$ energy loss information <i>for one track</i>.
-	 * @details Here, you should use `map::at` to access the `NTuple::Item`s and `NTuplePtr`, because you want your package to throw an exception if the element does not exist. See http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115 for available data members of `RecMdcDedx`
-	 *
-	 * @param evtRecTrack Pointer to the reconstructed track of which you want to write the \f$dE/dx\f$ data.
-	 * @param tuple `NTupleContainer` to which you want to write the \f$dE/dx\f$ data.
-	 */
+	/// Encapsulates of the writing procedure for \f$dE/dx\f$ energy loss information <i>for one track</i>.
+	/// Here, you should use `map::at` to access the `NTuple::Item`s and `NTuplePtr`, because you want your package to throw an exception if the element does not exist. See http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115 for available data members of `RecMdcDedx`
+	/// @param evtRecTrack Pointer to the reconstructed track of which you want to write the \f$dE/dx\f$ data.
+	/// @param tuple `NTupleContainer` to which you want to write the \f$dE/dx\f$ data.
 	void TrackSelector::WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer &tuple)
 	{
 		/// -# Abort if the 'write `JobSwitch`' has been set to `false`.
@@ -635,10 +612,8 @@
 	}
 
 
-	/**
-	 * @brief Encapsulates a `for` loop of the writing procedure for \f$dE/dx\f$ energy loss information.
-	 * @details This method allows you to write \f$dE/dx\f$ information for any selection of charged tracks. Just feed it a vector that contains such a collection of `EvtRecTrack` pointers.
-	 */
+	/// Encapsulates a `for` loop of the writing procedure for \f$dE/dx\f$ energy loss information.
+	/// This method allows you to write \f$dE/dx\f$ information for any selection of charged tracks. Just feed it a vector that contains such a collection of `EvtRecTrack` pointers.
 	void TrackSelector::WriteDedxInfoForVector(std::vector<EvtRecTrack*> &vector, NTupleContainer &tuple)
 	{
 		fLog << MSG::DEBUG << "Writing \"" << tuple.Name() << "\" info" << endmsg;
@@ -647,9 +622,7 @@
 	}
 
 
-	/**
-	 * @brief Encapsulates the proces of writing PID info. This allows you to write the PID information after the particle selection as well.
-	 */
+	/// Encapsulates the proces of writing PID info. This allows you to write the PID information after the particle selection as well.
 	void TrackSelector::WritePIDInformation()
 	{
 		/// -# Abort if the 'write `JobSwitch`' has been set to `false`.
@@ -681,9 +654,7 @@
 	}
 
 
-	/**
-	 * @brief Helper method for writing Time-of-Flight information. This function has be created to enable you to write TOF information for different collections of tracks.
-	 */
+	/// Helper method for writing Time-of-Flight information. This function has be created to enable you to write TOF information for different collections of tracks.
 	void TrackSelector::WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, NTupleContainer &tuple)
 	{
 		/// -# Abort if the 'write `JobSwitch`' has been set to `false`.
@@ -724,16 +695,13 @@
 // * ========================================= * //
 
 
-	/**
-	 * @brief Method that standardizes the initialisation of the particle identification system. Define here <i>as general as possible</i>, but use in the derived subalgorithms.
-	 * @details See http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
-	 * @todo Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`. See talk by Liu Huanhuan on 2019/01/10.
-	 * 
-	 * @param method Which method to use: probability, likelihood, or neuron network (see `TSGlobals::PIDMethod`). You can also combine using e.g. `pid->methodLikelihood() | pid->methodProbability()`.
-	 * @param pidsys PID systems you want to call. Can combined using bit seperators (`|`), e.g. `pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE()` for \f$dE/dx\f$ plus all ToF detectors.
-	 * @param pidcase Which particles to identify. For instance, `pid->onlyPion() | pid->onlyKaon()` in the case of pions and kaons.
-	 * @param chimin Minimal \f$\chi^2\f$ of the resulting particle identification.
-	 */
+	/// Method that standardizes the initialisation of the particle identification system. Define here <i>as general as possible</i>, but use in the derived subalgorithms.
+	/// See http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
+	/// @todo Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`. See talk by Liu Huanhuan on 2019/01/10.
+	/// @param method Which method to use: probability, likelihood, or neuron network (see `TSGlobals::PIDMethod`). You can also combine using e.g. `pid->methodLikelihood() | pid->methodProbability()`.
+	/// @param pidsys PID systems you want to call. Can combined using bit seperators (`|`), e.g. `pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE()` for \f$dE/dx\f$ plus all ToF detectors.
+	/// @param pidcase Which particles to identify. For instance, `pid->onlyPion() | pid->onlyKaon()` in the case of pions and kaons.
+	/// @param chimin Minimal \f$\chi^2\f$ of the resulting particle identification.
 	ParticleID* TrackSelector::InitializePID(const int method, const int pidsys, const int pidcase, const double chimin)
 	{
 
@@ -759,9 +727,7 @@
 // * -------- CUT METHODS -------- * //
 // * ============================= * //
 
-	/**
-	 * @brief Helper function for `WriteCuts` that allows you to write one entry (usually: `min`, `max`, `counter`).
-	 */
+	/// Helper function for `WriteCuts` that allows you to write one entry (usually: `min`, `max`, `counter`).
 	template<typename TYPE>
 	void TrackSelector::WriteCuts_entry(const TYPE &value)
 	{
@@ -772,9 +738,7 @@
 	}
 
 
-	/**
-	 * @brief Declare properties for each `CutObject`. Each `CutObject` has two properties: a `min` and a `max`. This method has been added to the `TrackSelector`, and not to the `CutObject` class, because it requires the `Algorithm::decalareProperty` method.
-	 */
+	/// Declare properties for each `CutObject`. Each `CutObject` has two properties: a `min` and a `max`. This method has been added to the `TrackSelector`, and not to the `CutObject` class, because it requires the `Algorithm::decalareProperty` method.
 	void TrackSelector::DeclareCuts()
 	{
 		std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
@@ -786,9 +750,7 @@
 	}
 
 
-	/**
-	 * @brief Write all cuts (`name`, `value`, and `count` of accepted) to a branch called "_cutvalues".
-	 */
+	/// Write all cuts (`name`, `value`, and `count` of accepted) to a branch called "_cutvalues".
 	void TrackSelector::WriteCuts()
 	{
 		/// -# For each cut name, create an `NTuple::Item<double>` in the map `fNTuple_cuts`.
@@ -811,10 +773,8 @@
 // * ======================================= * //
 
 
-	/**
-	 * @brief Compute a 'momentum' for a neutral track.
-	 * @details The momentum is computed from the neutral track (photon) energy and from the location (angles) where it was detected in the EMC.
-	 */
+	/// Compute a 'momentum' for a neutral track.
+	/// The momentum is computed from the neutral track (photon) energy and from the location (angles) where it was detected in the EMC.
 	HepLorentzVector TrackSelector::ComputeMomentum(EvtRecTrack *track)
 	{
 		fTrackEMC = track->emcShower();

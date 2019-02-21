@@ -41,7 +41,7 @@
 	private:
 		void Insert(const std::string &key);
 		bool KeyExists(const std::string &key) const;
-		static std::map<std::string, Container_indexed*> fInstances; //!< Mapping of instances of this oject.
+		static std::map<std::string, Container_indexed*> fInstances; ///< Mapping of instances of this oject.
 	};
 
 
@@ -53,11 +53,9 @@
 // * ------- PROTECTED METHODS ------- * //
 // * ================================= * //
 
-	/**
-	 * @brief Helper method that allows you to to check whether a key already exists in . This method uses a `template` and has been made `protected` as to share its functionality for derived classes.
-	 * @todo Use error handling for existing keys, not `terminate`.
-	 * @return Currently redudant, because of the `terminate`, but returns `false` at the end.
-	 */
+	/// Helper method that allows you to to check whether a key already exists in . This method uses a `template` and has been made `protected` as to share its functionality for derived classes.
+	/// @todo Use error handling for existing keys, not `terminate`.
+	/// @return Currently redudant, because of the `terminate`, but returns `false` at the end.
 	template<class TYPE> inline
 	bool Container_indexed::KeyExists(const std::map<std::string, TYPE*> mapping, const std::string &key) const
 	{
@@ -68,9 +66,7 @@
 		return false;
 	}
 
-	/**
-	 * @brief Helper method that allows you to safely (using `KeyExists`) insert a `key` with corresponding `value` into a `mapping`. This method uses a `template` and has been made `protected` as to share its functionality for derived classes.
-	 */
+	/// Helper method that allows you to safely (using `KeyExists`) insert a `key` with corresponding `value` into a `mapping`. This method uses a `template` and has been made `protected` as to share its functionality for derived classes.
 	template<class TYPE> inline
 	void Container_indexed::Insert(std::map<std::string, TYPE*> &mapping, const std::string &key, TYPE *value)
 	{

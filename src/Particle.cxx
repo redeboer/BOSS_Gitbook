@@ -11,9 +11,7 @@
 // * =========================================== * //
 
 
-	/**
-	 * @brief Construct particle based on its code in the PDG.
-	 */
+	/// Construct particle based on its code in the PDG.
 	Particle::Particle(int pdgCode)
 	{
 		fParticlePDG = gPDG.GetParticle(pdgCode);
@@ -21,9 +19,7 @@
 	}
 
 
-	/**
-	 * @brief Construct particle based on its code in the PDG.
-	 */
+	/// Construct particle based on its code in the PDG.
 	Particle::Particle(const char* particleName)
 	{
 		fParticlePDG = gPDG.GetParticle(particleName);
@@ -31,10 +27,8 @@
 	}
 
 
-	/**
-	 * @brief Helper function for constructors.
-	 * @details Sets remaining members based on `TParticlePDG` object that was set previously.
-	 */
+	/// Helper function for constructors.
+	/// Sets remaining members based on `TParticlePDG` object that was set previously.
 	void Particle::Initialize()
 	{
 		if(!fParticlePDG) {
@@ -51,18 +45,14 @@
 // * ======================= * //
 
 
-	/**
-	 * @return TParticlePDG* Pointer to the `TParticlePDG` in the `TDatabasePDG` (located in `FrameworkSettings.h`). Is a `nullptr` if particle was not properly loaded.
-	 */
+	/// @return TParticlePDG* Pointer to the `TParticlePDG` in the `TDatabasePDG` (located in `FrameworkSettings.h`). Is a `nullptr` if particle was not properly loaded.
 	TParticlePDG* Particle::GetParticlePDG() const
 	{
 		return fParticlePDG;
 	}
 
 
-	/**
-	 * @return double Mass of the particle according to the PDG. Returns 0 if particle was not loaded.
-	 */
+	/// @return double Mass of the particle according to the PDG. Returns 0 if particle was not loaded.
 	double Particle::GetMass() const
 	{
 		if(fParticlePDG) return fParticlePDG->Mass();
@@ -70,9 +60,7 @@
 	}
 
 
-	/**
-	 * @return const char* Name of the particle in LaTeX `ROOT` format.
-	 */
+	/// @return const char* Name of the particle in LaTeX `ROOT` format.
 	const char* Particle::GetNameLaTeX() const
 	{
 		if(fParticlePDG) return fParticleNameLaTeX;
@@ -80,9 +68,7 @@
 	}
 
 
-	/**
-	 * @return const char* Name of the particle as registered in the `TDatabasePDG`.
-	 */
+	/// @return const char* Name of the particle as registered in the `TDatabasePDG`.
 	const char* Particle::GetName() const
 	{
 		if(fParticlePDG) return fParticlePDG->GetName();
@@ -90,9 +76,7 @@
 	}
 
 
-	/**
-	 * @return int PDG code, and 0 if particle was not loaded.
-	 */
+	/// @return int PDG code, and 0 if particle was not loaded.
 	int Particle::GetPDGCode() const
 	{
 		if(fParticlePDG) return fParticlePDG->PdgCode();
@@ -118,11 +102,9 @@
 // * =============================== * //
 
 
-	/**
-	 * @brief Determines a LaTeX string in `ROOT` format from the PDG code of the particle that was loaded.
-	 * @details See instructions here: https://root.cern.ch/doc/master/classTLatex.html.
-	 * @todo Expand the switch statement here if you miss any particles. See e.g. http://home.fnal.gov/~mrenna/lutp0613man2/node44.html, or use the `TDatabasePDG` in `ROOT`.
-	 */
+	/// Determines a LaTeX string in `ROOT` format from the PDG code of the particle that was loaded.
+	/// See instructions here: https://root.cern.ch/doc/master/classTLatex.html.
+	/// @todo Expand the switch statement here if you miss any particles. See e.g. http://home.fnal.gov/~mrenna/lutp0613man2/node44.html, or use the `TDatabasePDG` in `ROOT`.
 	TString& Particle::DetermineNameLaTeX()
 	{
 		if(!fParticlePDG) fParticleNameLaTeX = "";

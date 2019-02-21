@@ -112,7 +112,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a72e81af7a2e5613c50f149200c8e0518"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>.  <a href="#a72e81af7a2e5613c50f149200c8e0518">More...</a><br /></td></tr>
 <tr class="separator:a72e81af7a2e5613c50f149200c8e0518"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0be43dabc8154883ec2f0bf20cab38b4"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a0be43dabc8154883ec2f0bf20cab38b4">execute_rest</a> ()</td></tr>
-<tr class="memdesc:a0be43dabc8154883ec2f0bf20cab38b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code>.  <a href="#a0be43dabc8154883ec2f0bf20cab38b4">More...</a><br /></td></tr>
+<tr class="memdesc:a0be43dabc8154883ec2f0bf20cab38b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code>. This function is called <em>for each event</em>.  <a href="#a0be43dabc8154883ec2f0bf20cab38b4">More...</a><br /></td></tr>
 <tr class="separator:a0be43dabc8154883ec2f0bf20cab38b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a337a27a8e41b2767aefc07a84e0b9752"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752">finalize_rest</a> ()</td></tr>
 <tr class="memdesc:a337a27a8e41b2767aefc07a84e0b9752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently does nothing.  <a href="#a337a27a8e41b2767aefc07a84e0b9752">More...</a><br /></td></tr>
@@ -122,13 +122,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> algorithm.  <a href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">More...</a><br /></td></tr>
 <tr class="separator:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">initialize</a> ()</td></tr>
-<tr class="memdesc:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>.  <a href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">More...</a><br /></td></tr>
+<tr class="memdesc:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>. This function is called once in the beginning <em>of each run</em>. Define and load NTuples here. The <code>NTuples</code> will become the <code>TTree</code>s in the eventual ROOT file, the added <code>NTuple::Item</code>s will be the branches of those trees.  <a href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">More...</a><br /></td></tr>
 <tr class="separator:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6866699cb5218a5c8dc313f5ff5910cb inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb">execute</a> ()</td></tr>
 <tr class="memdesc:a6866699cb5218a5c8dc313f5ff5910cb inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code> which is called <em>for each event</em>.  <a href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb">More...</a><br /></td></tr>
 <tr class="separator:a6866699cb5218a5c8dc313f5ff5910cb inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46">finalize</a> ()</td></tr>
-<tr class="memdesc:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is called at the end <em>of the entire process</em>.  <a href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46">More...</a><br /></td></tr>
+<tr class="memdesc:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is called at the end <em>of the entire process</em>. Writes total cut flow to terminal and to the output file.  <a href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46">More...</a><br /></td></tr>
 <tr class="separator:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -354,22 +354,22 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:ac5d2cc51628faafc21bd4fa6b4489508 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss information.  <a href="classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508">More...</a><br /></td></tr>
 <tr class="separator:ac5d2cc51628faafc21bd4fa6b4489508 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">WritePIDInformation</a> ()</td></tr>
-<tr class="memdesc:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the proces of writing PID info.  <a href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">More...</a><br /></td></tr>
+<tr class="memdesc:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the proces of writing PID info. This allows you to write the PID information after the particle selection as well.  <a href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">More...</a><br /></td></tr>
 <tr class="separator:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae">WriteTofInformation</a> (SmartRefVector&lt; RecTofTrack &gt;::iterator iter_tof, double ptrk, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method for writing Time-of-Flight information.  <a href="classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae">More...</a><br /></td></tr>
+<tr class="memdesc:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method for writing Time-of-Flight information. This function has be created to enable you to write TOF information for different collections of tracks.  <a href="classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae">More...</a><br /></td></tr>
 <tr class="separator:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">ParticleID *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">InitializePID</a> (const int method, const int pidsys, const int pidcase, const double chimin=4.)</td></tr>
 <tr class="memdesc:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that standardizes the initialisation of the particle identification system.  <a href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">More...</a><br /></td></tr>
 <tr class="separator:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23937fcfb8b32816f0c2cd73ae55040c inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a23937fcfb8b32816f0c2cd73ae55040c">BookNtupleItems_McTruth</a> ()</td></tr>
-<tr class="memdesc:a23937fcfb8b32816f0c2cd73ae55040c inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the MC truth branches (<code>"mctruth*"</code>).  <a href="classTrackSelector.html#a23937fcfb8b32816f0c2cd73ae55040c">More...</a><br /></td></tr>
+<tr class="memdesc:a23937fcfb8b32816f0c2cd73ae55040c inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the MC truth branches (<code>"mctruth*"</code>). It has to make use of the <code><a class="el" href="structNTupleTopoAna.html" title="Struct object that represents the NTuple containing MC truth necessary for the topoana package...">NTupleTopoAna</a></code> struct, and cannot make use of the <code>NTuple</code> maps, because it contains indexed items.  <a href="classTrackSelector.html#a23937fcfb8b32816f0c2cd73ae55040c">More...</a><br /></td></tr>
 <tr class="separator:a23937fcfb8b32816f0c2cd73ae55040c inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73cc91aae5af92535ee7614d80e6cd61 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a73cc91aae5af92535ee7614d80e6cd61">BookNtupleItems_Dedx</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:a73cc91aae5af92535ee7614d80e6cd61 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss branch (<code>"dedx"</code>).  <a href="classTrackSelector.html#a73cc91aae5af92535ee7614d80e6cd61">More...</a><br /></td></tr>
+<tr class="memdesc:a73cc91aae5af92535ee7614d80e6cd61 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> energy loss branch (<code>"dedx"</code>). This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).  <a href="classTrackSelector.html#a73cc91aae5af92535ee7614d80e6cd61">More...</a><br /></td></tr>
 <tr class="separator:a73cc91aae5af92535ee7614d80e6cd61 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebdcb906b866ca3549e0c9cc2aeab327 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aebdcb906b866ca3549e0c9cc2aeab327">BookNtupleItems_Tof</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:aebdcb906b866ca3549e0c9cc2aeab327 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="classTrackSelector.html#aebdcb906b866ca3549e0c9cc2aeab327">More...</a><br /></td></tr>
+<tr class="memdesc:aebdcb906b866ca3549e0c9cc2aeab327 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.  <a href="classTrackSelector.html#aebdcb906b866ca3549e0c9cc2aeab327">More...</a><br /></td></tr>
 <tr class="separator:aebdcb906b866ca3549e0c9cc2aeab327 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -377,7 +377,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>December 14th, 2018 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00025">25</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00023">23</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8bd58f92dd541a395caadb7a879fe55a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8bd58f92dd541a395caadb7a879fe55a">&#9670;&nbsp;</a></span>D0phi_KpiKK()</h2>
@@ -411,7 +411,7 @@ Additional Inherited Members</h2></td></tr>
 <li>The <code>"write_&lt;treename&gt;"</code> properties determine whether or not the corresponding <code>TTree</code>/<code>NTuple</code> will be filled. Default values are set in the constructor as well. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00034">34</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00032">32</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -484,7 +484,7 @@ Additional Inherited Members</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00340">340</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00328">328</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -511,8 +511,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Inherited <code>execute</code> method of the <code>Algorithm</code>. </p>
-<p>This function is called <em>for each event</em>. </p>
+<p>Inherited <code>execute</code> method of the <code>Algorithm</code>. This function is called <em>for each event</em>. </p>
 <ol type="A">
 <li>
 <p class="startli">Create selection charged tracks</p>
@@ -614,7 +613,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a421380908922f9d240213014c2508360">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00091">91</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00085">85</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -646,7 +645,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a96c7c12f231c8cd622d7e5a6742d80a0">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00303">303</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00295">295</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -674,8 +673,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
-<p>This function is called only once, when the algorithm is initialised.</p>
-<p>Define and load <code>NTuple</code>s here. Other <code>NTuple</code>s have already been defined in the <code>TrackSelector::initilize</code> step prior to this this method. </p>
+<p>This function is called only once, when the algorithm is initialised. Define and load <code>NTuple</code>s here. Other <code>NTuple</code>s have already been defined in the <code>TrackSelector::initilize</code> step prior to this this method. </p>
 <ol type="A">
 <li>
 <p class="startli"><code>"mult_select"</code>: Multiplicities of selected particles</p>
@@ -696,7 +694,7 @@ Additional Inherited Members</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"dedx_K"</code> and <code>"dedx_pi"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#a73cc91aae5af92535ee7614d80e6cd61" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). ">TrackSelector::BookNtupleItems_Dedx</a></code> for more info.</p>
+<p class="startli"><code>"dedx_K"</code> and <code>"dedx_pi"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_10.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#a73cc91aae5af92535ee7614d80e6cd61" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). This method allows you to perform the same booking method for different types of charged particles (for instance &#39;all charged particles&#39;, kaons, and pions). ">TrackSelector::BookNtupleItems_Dedx</a></code> for more info.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -707,7 +705,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a80e9293aeca2c5b955eb3ed393c908f6">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00056">56</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00052">52</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -753,7 +751,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00320">320</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00310">310</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -781,7 +779,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^-$" src="form_1.png"/>. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Decide if this can be formulated in terms of some <code>fEvtRecTrackMap</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00039">39</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00037">37</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -807,7 +805,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of negative kaons (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00045">45</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00043">43</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -833,7 +831,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of negative kaons (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00046">46</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00044">44</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -859,7 +857,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^+$" src="form_2.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00040">40</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00038">38</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -885,7 +883,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of positive kaons. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00047">47</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00045">45</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -911,7 +909,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"dedx_k"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00060">60</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00058">58</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -937,7 +935,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"dedx_pi"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00061">61</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00059">59</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -963,7 +961,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"fit4c_all"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00062">62</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00060">60</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -989,7 +987,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"fit4c_best"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00063">63</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00061">61</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1015,7 +1013,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Container for the <code>"fit_mc"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00064">64</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00062">62</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1041,7 +1039,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector containing true <img class="formulaInl" alt="$K^-$" src="form_1.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00042">42</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00040">40</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1067,7 +1065,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of negative kaons (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00049">49</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00047">47</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1093,7 +1091,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of negative kaons (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00050">50</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00048">48</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1119,7 +1117,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector containing true <img class="formulaInl" alt="$K^+$" src="form_2.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00043">43</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00041">41</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1145,7 +1143,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of positive kaons. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00051">51</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00049">49</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1171,7 +1169,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector containing true <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00044">44</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00042">42</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1197,7 +1195,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of positive pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00052">52</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00050">50</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1223,7 +1221,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00041">41</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00039">39</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1249,7 +1247,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of positive pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00048">48</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00046">46</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1275,7 +1273,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Package property that determines whether or not to write results of the <code>4C</code> fit <em>for all combinations</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00058">58</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00056">56</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1301,7 +1299,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Package property that determines whether or not to write results of the <code>4C</code> fit for the combination closest to <em>both</em> <img class="formulaInl" alt="$m_{D^0}$" src="form_4.png"/> and <img class="formulaInl" alt="$m_\phi$" src="form_5.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00059">59</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00057">57</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1326,9 +1324,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p><code>NTuple</code>s are like vectors, but its members do not necessarily have to be of the same type. </p>
-<p>In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each <code>NTuple::Item</code> represents its leaves. The name of the leaves is determined when calling <code>NTuple::addItem</code>. Note that the <code>NTuple::Items</code> have to be added to the NTuple during the <code><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4" title="(Inherited) initialize step of Algorithm. ">TrackSelector::initialize()</a></code> step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there! Package property that determines whether or not to write particles reconstructed from MC truth. </p>
+<p>In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each <code>NTuple::Item</code> represents its leaves. The name of the leaves is determined when calling <code>NTuple::addItem</code>. Note that the <code>NTuple::Items</code> have to be added to the NTuple during the <code><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4" title="(Inherited) initialize step of Algorithm. This function is called once in the beginning of each run...">TrackSelector::initialize()</a></code> step, otherwise they cannot be used as values! This is also the place where you name these variables, so make sure that the structure here is reflected there! Package property that determines whether or not to write particles reconstructed from MC truth. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00057">57</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00055">55</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>

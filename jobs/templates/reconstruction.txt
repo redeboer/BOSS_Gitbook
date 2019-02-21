@@ -1,7 +1,7 @@
 /**
- * @brief Template for creating `jobOptions_rec_<packagename>.txt` files for the reconstruction step in the BOSS framework.
- * @date October 23rd, 2018
- * @author Remco DE BOER <remco.de.boer@ihep.ac.cn> or <r.e.deboer@students.uu.nl>
+/// Template for creating `jobOptions_rec_<packagename>.txt` files for the reconstruction step in the BOSS framework.
+/// @date October 23rd, 2018
+/// @author Remco DE BOER <remco.de.boer@ihep.ac.cn> or <r.e.deboer@students.uu.nl>
  */
 
 // * ------- Input ROOT MC data ------- * //

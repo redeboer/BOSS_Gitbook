@@ -16,13 +16,10 @@
 /// @{
 
 
-	/**
-	 * @brief    Container object for a <i>BOSS Afterburner</i> analysis config file.
-	 * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	 * @date     January 24th, 2018
-	 *
-	 * @details  Give this object a path to the configuration text file for the analysis you want to perform, and all settings will be automatically loaded from this file. The syntax for this file is of course determined by this object.
-	 */
+	/// Container object for a <i>BOSS Afterburner</i> analysis config file.
+	/// Give this object a path to the configuration text file for the analysis you want to perform, and all settings will be automatically loaded from this file. The syntax for this file is of course determined by this object.
+	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+	/// @date     January 24th, 2018
 	class BranchPlotOptions
 	{
 	public:

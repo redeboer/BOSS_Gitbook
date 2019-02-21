@@ -27,10 +27,8 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	/**
-	 * @brief Constructor for the `rhopi_pipigg` algorithm.
-	 * @details Here, you should declare properties: give them a name, assign a parameter (data member of `rhopi_pipigg`), and if required a documentation string. Note that you should define the paramters themselves in the header (rhopi_pipigg/rhopi_pipigg.h) and that you should assign the values in `share/jopOptions_rhopi_pipigg.txt`.
-	 */
+	/// Constructor for the `rhopi_pipigg` algorithm.
+	/// Here, you should declare properties: give them a name, assign a parameter (data member of `rhopi_pipigg`), and if required a documentation string. Note that you should define the paramters themselves in the header (rhopi_pipigg/rhopi_pipigg.h) and that you should assign the values in `share/jopOptions_rhopi_pipigg.txt`.
 	rhopi_pipigg::rhopi_pipigg(const std::string &name, ISvcLocator* pSvcLocator) :
 		TrackSelector(name, pSvcLocator)
 		/// * The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
@@ -54,10 +52,8 @@
 // * ------- ALGORITHM STEPS ------- * //
 // * =============================== * //
 
-	/**
-	 * @brief   (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
-	 * @details Define and load NTuples here.
-	 */
+	/// (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
+	/// Define and load NTuples here.
 	StatusCode rhopi_pipigg::initialize_rest()
 	{
 		fLog << MSG::INFO << "===>> rhopi_pipigg::initialize_rest() <<===" << endmsg;
@@ -102,9 +98,7 @@
 	}
 
 
-	/**
-	 * @brief Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
-	 */
+	/// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 	StatusCode rhopi_pipigg::execute_rest()
 	{
 		fLog << MSG::DEBUG << "===>> rhopi_pipigg::execute_rest() <<===" << endmsg;
@@ -384,10 +378,8 @@
 	}
 
 
-	/**
-	 * @brief Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events.
-	 * @details Prints the flow chart to the terminal, so make sure you save this output!
-	 */
+	/// Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events.
+	/// Prints the flow chart to the terminal, so make sure you save this output!
 	StatusCode rhopi_pipigg::finalize_rest()
 	{
 		return StatusCode::SUCCESS;
@@ -399,9 +391,7 @@
 // * ------- PRIVATE METHODS ------- * //
 // * =============================== * //
 
-	/**
-	 * @brief Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
-	 */
+	/// Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
 	HepLorentzVector rhopi_pipigg::ComputeGammaVector(EvtRecTrack* track)
 	{
 		fTrackEMC = track->emcShower();
@@ -418,19 +408,15 @@
 	}
 
 
-	/**
-	 * @brief Method that provides a measure for the best Kalman kinematic fit4c.
-	 * @details The closer this value to zero, the better the result.
-	 */
+	/// Method that provides a measure for the best Kalman kinematic fit4c.
+	/// The closer this value to zero, the better the result.
 	double rhopi_pipigg::MeasureForBestFit4c()
 	{
 		return (fM_pi0-gM_pi0)/gM_pi0;
 	}
 
-	/**
-	 * @brief Method that provides a measure for the best Kalman kinematic fit5c.
-	 * @details The closer this value to zero, the better the result.
-	 */
+	/// Method that provides a measure for the best Kalman kinematic fit5c.
+	/// The closer this value to zero, the better the result.
 	double rhopi_pipigg::MeasureForBestFit5c()
 	{
 		return
@@ -440,9 +426,7 @@
 	}
 
 
-	/**
-	 * @brief This function encapsulates the `addItem` procedure for the fit branches.
-	 */ 
+	/// This function encapsulates the `addItem` procedure for the fit branches.
 	void rhopi_pipigg::BookNtupleItemsFit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		/// <ol>
@@ -462,9 +446,7 @@
 	}
 
 
-	/**
-	 * @brief Encapsulation of the procedure to compute invariant masses of the reconstructed particles.
-	 */
+	/// Encapsulation of the procedure to compute invariant masses of the reconstructed particles.
 	void rhopi_pipigg::ComputeInvariantMasses(KalmanKinematicFit *kkmfit)
 	{
 		// * Get vectors * //
@@ -496,9 +478,7 @@
 	}
 
 
-	/**
-	 * @brief Helper function that encapsulates the proces of finding the angle between some photon `
-	 */
+	/// Helper function that encapsulates the proces of finding the angle between some photon `
 	void rhopi_pipigg::SetSmallestAngles(std::vector<EvtRecTrack*>::iterator &iter, std::vector<EvtRecTrack*> &vec, Hep3Vector &emcpos)
 	{
 		for(iter = vec.begin(); iter != vec.end(); ++iter) {
@@ -524,9 +504,7 @@
 	}
 
 
-	/**
-	 * @brief Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
-	 */
+	/// Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
 	void rhopi_pipigg::WriteFitResults(KKFitResult_rhopi_pipigg &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName)
 	{
 		if(!fitresult) {
@@ -551,9 +529,7 @@
 // * ------- PRIVATE METHODS ------- * //
 // * =============================== * //
 
-	/**
-	 * @brief This function encapsulates the `addItem` procedure for the fit branches.
-	 */ 
+	/// This function encapsulates the `addItem` procedure for the fit branches.
 	void D0phi_KpiKK::BookNtupleItems_Fit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
 	{
 		/// <ol>

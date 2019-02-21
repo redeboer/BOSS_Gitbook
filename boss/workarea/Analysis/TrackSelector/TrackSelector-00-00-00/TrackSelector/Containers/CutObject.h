@@ -19,13 +19,10 @@
 /// @addtogroup BOSS_objects
 /// @{
 
-	/**
-	 * @brief This object contains all information and tools for a cut you want to apply.
-	 * @details It contains `min` and `max` value of the cut parameter, a counter for the number of events or tracks that passed this cut test, as well as a name and description for the cut.
-	 *
-	 * @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	 * @date   January 3rd, 2019
-	 */
+	/// This object contains all information and tools for a cut you want to apply.
+	/// It contains `min` and `max` value of the cut parameter, a counter for the number of events or tracks that passed this cut test, as well as a name and description for the cut.
+	/// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+	/// @date   January 3rd, 2019
 	class CutObject : public Container_base
 	{
 	public:

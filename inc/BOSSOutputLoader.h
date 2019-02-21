@@ -20,13 +20,10 @@
 /// @{
 
 
-	/**
-	 * @brief    General container for BOSS analysis output
-	 * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	 * @date     October 24th, 2018
-	 *
-	 * @details  This object only needs a path of a directory containin ROOT files from the initial analysis or of one such root file. All `TTree`s and the branches in these files will be loaded automatically, so you don't have to worry about names of those trees. This object also comes with several methods that faciliate e.g. plotting of the `TTree` contents.
-	 */
+	/// General container for BOSS analysis output
+	/// This object only needs a path of a directory containin ROOT files from the initial analysis or of one such root file. All `TTree`s and the branches in these files will be loaded automatically, so you don't have to worry about names of those trees. This object also comes with several methods that faciliate e.g. plotting of the `TTree` contents.
+	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+	/// @date     October 24th, 2018
 	class BOSSOutputLoader
 	{
 	public:
@@ -63,9 +60,9 @@
 	protected:
 		/// @name Data members
 			///@{
-			TString fDirectoryPath; //!< The path of the directory that was was used to load the ROOT files and generate the `TChain`s in this object.
-			std::list<TString> fFileNames; //!< List of filenames that were loaded from the directory.
-			std::unordered_map<std::string, ChainLoader> fChains; //!< Map of `TChain`s of the loaded ROOT files (contained withing `ChainLoader`).
+			TString fDirectoryPath; ///< The path of the directory that was was used to load the ROOT files and generate the `TChain`s in this object.
+			std::list<TString> fFileNames; ///< List of filenames that were loaded from the directory.
+			std::unordered_map<std::string, ChainLoader> fChains; ///< Map of `TChain`s of the loaded ROOT files (contained withing `ChainLoader`).
 			///@}
 
 		/// @name Helper methods

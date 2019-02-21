@@ -5,9 +5,9 @@
 /// @{
 
 /**
- * @brief    Derived class for a container that contains important fit results of the `KalmanKinematicFit`, including masses.
- * @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
- * @date     December 14th, 2018
+/// Derived class for a container that contains important fit results of the `KalmanKinematicFit`, including masses.
+/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+/// @date     December 14th, 2018
  */
 
 
@@ -37,11 +37,11 @@ public:
 		bool IsBetter() const;
 
 	// * PUBLIC DATA MEMBERS * //
-		double fM_D0;   //!< Current computed mass of the \f$D^0\f$ candidate.
-		double fM_Jpsi; //!< Current computed mass of the \f$J/\psi\f$ candidate.
-		double fM_phi;  //!< Current computed mass of the \f$\phi\f$ candidate.
-		double fP_D0;   //!< Current computed 3-momentum of \f$D^0\f$ candidate.
-		double fP_phi;  //!< Current computed 3-momentum of \f$D^0\f$ candidate.
+		double fM_D0;   ///< Current computed mass of the \f$D^0\f$ candidate.
+		double fM_Jpsi; ///< Current computed mass of the \f$J/\psi\f$ candidate.
+		double fM_phi;  ///< Current computed mass of the \f$\phi\f$ candidate.
+		double fP_D0;   ///< Current computed 3-momentum of \f$D^0\f$ candidate.
+		double fP_phi;  ///< Current computed 3-momentum of \f$D^0\f$ candidate.
 		double fFitMeasure;
 
 private:
