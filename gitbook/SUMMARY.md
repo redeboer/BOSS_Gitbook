@@ -39,6 +39,7 @@
   * [Cutting](the-boss-afterburner/final/cutting.md)
   * [Drawing](the-boss-afterburner/final/drawing.md)
   * [Fitting](the-boss-afterburner/final/fitting.md)
+* [Finalising your analyse](the-boss-afterburner/finalising-your-analyse.md)
 
 ## Appendices
 
