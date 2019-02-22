@@ -86,11 +86,17 @@
 			fCut_PIDChiSq    ("PIDChiSq"),
 			fCut_PIDProb     ("PIDProb")
 	{
-		fLog << MSG::DEBUG << "===>> TrackSelector::TrackSelector() <<===" << endmsg;
+		PrintFunctionName("TrackSelector", __func__);
+	}
 
-		/// @todo Check if `DeclareCuts` should be moved to `TrackSelector::initialize` in order to also declare the cuts that are defined in the derived algorithm. This depends on whether the constructor of the base or of the derived class is called first.
+
+	/// Rather dubious, but required method that <b>has to be called at the end of each derived constructor</b>.
+	/// The reason for that this method is necessary is that a Gaudi `Algorithm` requires properties to have been declared by the time the `Algorithm` has been constructed.
+	void TrackSelector::PostConstructor()
+	{
 		DeclareSwitches();
 		DeclareCuts();
+		fPostConstructed = true;
 	}
 
 
@@ -102,11 +108,16 @@
 
 	/// (Inherited) `initialize` step of `Algorithm`. This function is called once in the beginning <i>of each run</i>. Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
 	StatusCode TrackSelector::initialize()
-	{
-		fLog << MSG::INFO << "===>> TrackSelector::initialize() <<===" << endmsg;
+	{ PrintFunctionName("TrackSelector", __func__);
+
+		// * Call to methods that have to be called before anything can be done * //
+			BookNTuples();
+			if(!fPostConstructed) {
+				std::cout << "FATAL ERROR: PostConstructor has not been called in constructor of derived class of TrackSelector" << std::endl;
+				std::terminate();
+			}
 
 		/// <ol type="A">
-		BookNTuples();
 		/// <li> `"mult"`: Multiplicities of the total event
 			/// <ol>
 			fNTuple_mult.AddItem("Ntotal");       /// <li> `"Ntotal"`:       Total number of events per track.
@@ -179,16 +190,14 @@
 
 		initialize_rest();
 		// BookNTupleForCuts();
-		fLog << MSG::INFO << "Successfully returned from TrackSelector::initialize()" << endmsg;
+		fLog << MSG::INFO << "Successfully returned from TrackSelector::" << __func__ << endmsg;
 		return StatusCode::SUCCESS;
 	}
 
 
 	/// This method is called <b>for each event</b>.
 	StatusCode TrackSelector::execute()
-	{
-		fLog << MSG::DEBUG << "===>> TrackSelector::execute() <<===" << endmsg;
-
+	{ PrintFunctionName("TrackSelector", __func__);
 		/// <ol type="A">
 		/// <li> Load next event from DST file. For more info see:
 			/// <ul>
@@ -283,7 +292,7 @@
 
 						// * Get track info from Main Drift Chamber
 						fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endmsg;
-						fTrackIterator = fEvtRecTrkCol->begin() + i; 
+						fTrackIterator = fEvtRecTrkCol->begin() + i;
 						if(!(*fTrackIterator)->isMdcTrackValid()) continue;
 						++fCounter_Nmdcvalid;
 						fTrackMDC = (*fTrackIterator)->mdcTrack();
@@ -451,16 +460,24 @@
 
 	/// Is called at the end <i>of the entire process</i>. Writes total cut flow to terminal and to the output file.
 	StatusCode TrackSelector::finalize()
-	{
-		fLog << MSG::INFO << "===>> TrackSelector::finalize() <<===" << endmsg;
+	{ PrintFunctionName("TrackSelector", __func__);
 
 		finalize_rest();
-
+std::cout << "WriteCuts();" << std::endl;
 		WriteCuts();
+std::cout << "CutObject::PrintAll();" << std::endl;
 		CutObject::PrintAll();
 
-		fLog << MSG::INFO << "Successfully returned from TrackSelector::finalize()" << endmsg;
+		fLog << MSG::INFO << "Successfully returned from TrackSelector::" << __func__ << "" << endmsg;
 		return StatusCode::SUCCESS;
+	}
+
+
+	/// Print function for debugging purposes.
+	/// This function has been implemented in the base class to standardise terminal output.
+	/// @remark In the derived classes, place this function at the beginning of each algorithm step for debugging purposes, using the format `PrintFunctionName("<class name>", __func__)`.
+	void TrackSelector::PrintFunctionName(const char* class_name, const char* function_name)
+	{ PrintFunctionName("TrackSelector", __func__);
 	}
 
 
@@ -752,16 +769,6 @@
 // * -------- CUT METHODS -------- * //
 // * ============================= * //
 
-	/// Helper function for `WriteCuts` that allows you to write one entry (usually: `min`, `max`, `counter`).
-	template<typename TYPE>
-	void TrackSelector::WriteCuts_entry(const TYPE &value)
-	{
-		std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
-		for(cut; cut != CutObject::gCutObjects.end(); ++cut)
-			fNTuple_cuts[(*cut)->Name()] = value;
-		fNTuple_cuts.Write();
-	}
-
 
 	/// Declare properties for each `CutObject`. Each `CutObject` has two properties: a `min` and a `max`. This method has been added to the `TrackSelector`, and not to the `CutObject` class, because it requires the `Algorithm::decalareProperty` method.
 	void TrackSelector::DeclareCuts()
@@ -772,6 +779,17 @@
 			declareProperty((*cut)->NameMax(), (*cut)->max);
 			fLog << MSG::INFO << "  added cut \"" << (*cut)->Name() << "\"" << endmsg;
 		}
+	}
+
+
+	/// Helper function for `WriteCuts` that allows you to write one entry (usually: `min`, `max`, `counter`).
+	template<typename TYPE>
+	void TrackSelector::WriteCuts_entry(const TYPE &value)
+	{
+		std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
+		for(cut; cut != CutObject::gCutObjects.end(); ++cut)
+			fNTuple_cuts[(*cut)->Name()] = value;
+		fNTuple_cuts.Write();
 	}
 
 

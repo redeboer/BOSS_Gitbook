@@ -1,8 +1,6 @@
-/**
 /// Template for creating `jobOptions_sim_<packagename>.txt` files for the Monte Carlo simulation step in the BOSS framework.
 /// @date October 23rd, 2018
 /// @author Remco DE BOER <remco.de.boer@ihep.ac.cn> or <r.e.deboer@students.uu.nl>
- */
 
 #include "$OFFLINEEVENTLOOPMGRROOT/share/OfflineEventLoopMgr_Option.txt"
 

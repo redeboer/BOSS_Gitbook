@@ -1,4 +1,4 @@
-/// Template for creating `jobOptions_ana_<packagename>.txt` files for the analysis step in the BOSS framework.
+/// @brief Template for creating `jobOptions_ana_<packagename>.txt` files for the analysis step in the BOSS framework.
 /// @date December 28th, 2018
 /// @author Remco DE BOER <remco.de.boer@ihep.ac.cn> or <r.e.deboer@students.uu.nl>
 
@@ -6,21 +6,22 @@
 #include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
 #include "$MAGNETICFIELDROOT/share/MagneticField.txt"
 #include "$ABSCORROOT/share/jobOptions_AbsCor.txt"
-#include "$__PACKAGENAME_CAP__ROOT/share/__PACKAGENAME__.txt"
+#include "$D0PHI_KPIKKROOT/share/D0phi_KpiKK.txt"
 
 // * ------- ROOT input data file (rec or dst) ------- * //
-EventCnvSvc.digiRootInputFile = {__INPUTFILES__
+EventCnvSvc.digiRootInputFile = {
+	"/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst/jpsi2009_stream001_run9952_file1.dst"
 };
 
 // * ------- OUTPUT PRINTOUT LEVEL ------- * //
 /// Set output level threshold: 2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL
-MessageSvc.OutputLevel = __OUTPUTLEVEL__;
+MessageSvc.OutputLevel = 2;
 MessageSvc.useColors   = true;
 
 // * ------- Number of events ------- * //
 /// Number of events to be processed (-1 stands for all events)
-ApplicationMgr.EvtMax = __NEVENTS__;
+ApplicationMgr.EvtMax = 1;
 
 // * ------- ROOT output data file (root) ------- * //
 ApplicationMgr.HistogramPersistency = "ROOT";
-NTupleSvc.Output = { "FILE1 DATAFILE='__OUTPUTPATH__/__OUTPUTFILE__' OPT='NEW' TYP='ROOT'"};
+NTupleSvc.Output = { "FILE1 DATAFILE='/scratchfs/bes/deboer/data/root/debug_output.root' OPT='NEW' TYP='ROOT'"};

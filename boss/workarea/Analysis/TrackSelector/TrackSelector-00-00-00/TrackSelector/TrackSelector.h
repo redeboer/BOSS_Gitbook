@@ -96,6 +96,7 @@
 		/// @name Constructors
 			///@{
 			TrackSelector(const std::string &name, ISvcLocator* pSvcLocator);
+			void PostConstructor();
 			///@}
 
 		/// @name Gaudi Algorithm steps
@@ -112,6 +113,7 @@
 			virtual StatusCode initialize_rest() = 0; ///< This function is executed at the end of `initialize`. It should be further defined in derived subalgorithms.
 			virtual StatusCode execute_rest()    = 0; ///< This function is executed at the end of `execute`. It should be further defined in derived subalgorithms.
 			virtual StatusCode finalize_rest()   = 0; ///< This function is executed at the end of `finalize`. It should be further defined in derived subalgorithms.
+			void PrintFunctionName(const char* class_name, const char* function_name);
 			MsgStream fLog; ///< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
 			///@}
 
@@ -172,7 +174,7 @@
 			NTupleContainer fNTuple_TofEC;    ///< `NTuple::Tuple` container for the data from the Time-of-Flight end cap detector branch.
 			NTupleContainer fNTuple_TofIB;    ///< `NTuple::Tuple` container for the data from the Time-of-Flight inner barrel detector branch.
 			NTupleContainer fNTuple_TofOB;    ///< `NTuple::Tuple` container for the data from the Time-of-Flight outer barrel detector branch.
-			NTupleContainer fNTuple_charged;  ///< `NTuple::Tuple` container for the charged track vertex info charged track vertex branch.
+			NTupleContainer fNTuple_charged;  ///< `NTuple::Tuple` container for the charged track vertex branch.
 			NTupleContainer fNTuple_dedx;     ///< `NTuple::Tuple` container for the energy loss (\f$dE/dx\f$) branch. 
 			NTupleContainer fNTuple_mult;     ///< `NTuple::Tuple` container for the multiplicities branch.
 			NTupleContainer fNTuple_mult_sel; ///< `NTuple::Tuple` container for the `"mult_select"` branch.
@@ -226,8 +228,9 @@
 
 		/// @name Cut handlers
 			///@{
-			template<typename TYPE> void WriteCuts_entry(const TYPE &value);
 			void DeclareCuts();
+			template<typename TYPE>
+			void WriteCuts_entry(const TYPE &value);
 			void WriteCuts();
 			///@}
 
@@ -235,6 +238,12 @@
 		/// @name Computational
 			///@{
 			HepLorentzVector ComputeMomentum(EvtRecTrack *track);
+			///@}
+
+
+		/// @name Constructors
+			///@{
+			bool fPostConstructed; ///< Boolean that keeps track of whether the `PostConstructor has actually been called. Yes, it's a crappy solution... see `PostConstructor`.
 			///@}
 
 

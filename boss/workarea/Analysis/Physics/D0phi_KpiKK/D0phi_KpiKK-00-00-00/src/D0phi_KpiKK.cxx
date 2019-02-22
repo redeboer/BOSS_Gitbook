@@ -38,8 +38,7 @@
 			fNTuple_fit4c_all ("fit4c_all",  "4-constraint fit information (CMS 4-momentum)"),
 			fNTuple_fit4c_best("fit4c_best", "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
 			fNTuple_fit_mc    ("fit_mc",     "Fake fit information according to MC truth")
-	{
-		fLog << MSG::DEBUG << "===>> D0phi_KpiKK::D0phi_KpiKK() <<===" << endmsg;
+	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
 	}
 
 
@@ -51,8 +50,7 @@
 	/// (Inherited) `initialize` step of `Algorithm`. This function is called only once, when the algorithm is initialised.
 	/// Define and load `NTuple`s here. Other `NTuple`s have already been defined in the `TrackSelector::initilize` step prior to this this method.
 	StatusCode D0phi_KpiKK::initialize_rest()
-	{
-		fLog << MSG::INFO << "===>> D0phi_KpiKK::initialize_rest() <<===" << endmsg;
+	{ PrintFunctionName("D0phi_KpiKK", __func__);
 
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
@@ -81,8 +79,7 @@
 
 	/// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 	StatusCode D0phi_KpiKK::execute_rest()
-	{
-		fLog << MSG::DEBUG << "===>> D0phi_KpiKK::execute_rest() <<===" << endmsg;
+	{ PrintFunctionName("D0phi_KpiKK", __func__);
 
 		/// <ol type="A">
 		/// <li> Create selection charged tracks
@@ -291,8 +288,7 @@
 	/// Currently does nothing. Cut flow could be printed in this step.
 	/// @todo Add log output to `finalize` step.
 	StatusCode D0phi_KpiKK::finalize_rest()
-	{
-		fLog << MSG::INFO << "===>> D0phi_KpiKK::finalize_rest() <<===" << endmsg;
+	{ PrintFunctionName("D0phi_KpiKK", __func__);
 
 		return StatusCode::SUCCESS;
 	}
