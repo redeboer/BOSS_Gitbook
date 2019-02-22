@@ -3,7 +3,6 @@ var searchData=
   ['beamenergyspread',['BeamEnergySpread',['../simulation_8txt.html#a13543242e0e1d83854948d751e8c91f6',1,'simulation.txt']]],
   ['bookaddresses',['BookAddresses',['../classChainLoader.html#ad93ba90c4a626e758b98a29f4729bf70',1,'ChainLoader']]],
   ['bookntuple',['BookNTuple',['../classTrackSelector.html#ae1960294cbc18ddc33805037390ce8e7',1,'TrackSelector']]],
-  ['bookntupleitemsfit',['BookNtupleItemsFit',['../classrhopi__pipigg.html#a57476c12d2e478409f0a37535f289900',1,'rhopi_pipigg']]],
   ['bookntuples',['BookNTuples',['../classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92',1,'TrackSelector']]],
   ['boss',['BOSS',['../group__BOSS.html',1,'']]],
   ['boss_20afterburner',['BOSS Afterburner',['../group__BOSS__Afterburner.html',1,'']]],

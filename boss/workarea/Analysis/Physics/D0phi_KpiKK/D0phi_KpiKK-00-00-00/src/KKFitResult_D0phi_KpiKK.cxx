@@ -18,7 +18,6 @@
 
 	/// Construct a `KKFitResult_D0phi_KpiKK` object based on a pointer to a `KalmanKinematicFit` object.
 	KKFitResult_D0phi_KpiKK::KKFitResult_D0phi_KpiKK(KalmanKinematicFit* kkmfit) :
-		fFitMeasure(1e9),
 		KKFitResult(kkmfit)
 	{
 		SetValues(fFit);
@@ -41,14 +40,16 @@
 	{
 		/// <ol>
 		/// <li> Test whether `KalmanKinematicFit` pointer exists.
-		if(!fFit) return;
+			if(!fFit) return;
 		/// <li> Get Lorentz vectors of the decay products using `KalmanKinematicFit::pfit`:
+			/// <ol>
 			SetValues(
 				fFit->pfit(0), /// <li> \f$K^-\f$ (first occurrence)
 				fFit->pfit(1), /// <li> \f$K^-\f$ (second occurrence)
 				fFit->pfit(2), /// <li> \f$K^+\f$
 				fFit->pfit(3)  /// <li> \f$\pi^+\f$
 			);
+			/// </ol>
 		/// </ol>
 	}
 
@@ -99,10 +100,4 @@
 		/// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{K^-K^+} - m_{\phi}\f$
 		fFitMeasure = std::abs(fM_phi - gM_phi);
 		/// </ol>
-	}
-
-
-	bool KKFitResult_D0phi_KpiKK::IsBetter() const
-	{
-		return KKFitResult::IsBetter(fFitMeasure, fBestCompareValue);
 	}

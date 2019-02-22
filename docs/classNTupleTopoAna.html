@@ -105,7 +105,6 @@ Inheritance diagram for NTupleTopoAna:</div>
 Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Constructors and destructors</div></td></tr>
 <tr class="memitem:af162e16e823b754c52e72829daa7b750"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#af162e16e823b754c52e72829daa7b750">NTupleTopoAna</a> (const std::string &amp;name, const std::string &amp;desc)</td></tr>
-<tr class="memdesc:af162e16e823b754c52e72829daa7b750"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor attempts to add the <code>NTuple::Tuple</code> to the <code>instances</code> mapping.  <a href="#af162e16e823b754c52e72829daa7b750">More...</a><br /></td></tr>
 <tr class="separator:af162e16e823b754c52e72829daa7b750"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">NTuple handlers and members</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><dl class="section remark"><dt>Remarks</dt><dd>Here you can define the name and title of the branch for the TopoAna pacakge! </dd></dl>
@@ -242,26 +241,6 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The constructor attempts to add the <code>NTuple::Tuple</code> to the <code>instances</code> mapping. </p>
-<ol>
-<li>
-<p class="startli">Abort if this <code>NTuple</code> key name already exists in the <code>instances</code> mapping.</p>
-<dl class="section warning"><dt>Warning</dt><dd>Contains fatal <code>terminate</code> statement when double booking! Consider turning into a <code>return</code> statement.</dd></dl>
-</li>
-<li>
-<p class="startli">Insert a key to the <code>instances</code> mapping.</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli">Set name for corresponding "do" <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code>.</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli">Set name for corresponding "write" <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code>.</p>
-<p class="endli"></p>
-</li>
-</ol>
-
 <p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00028">28</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
 </div>
@@ -291,7 +270,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Access to <code>fNTuple</code> (as opposed to <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code>). </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>Develop template <code><a class="el" href="classNTupleContainer.html#a916d53be38e6b54ef59169eeba1fc71c" title="Easier and expanded version of NTuple::Tuple::addItem. ">NTupleContainer::AddItem</a></code> and <code>AddIndexedItem</code> procedure that removes the need to access <code>fTuple</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>Develop template <code><a class="el" href="classNTupleContainer.html#a916d53be38e6b54ef59169eeba1fc71c" title="Easier and expanded version of NTuple::Tuple::addItem. ">NTupleContainer::AddItem</a></code> and <code>AddIndexedItem</code> procedure that removes the need to access <code>fTuple</code>. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00034">34</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
@@ -388,9 +367,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a></li>
-<li><a class="el" href="NTupleTopoAna_8cxx_source.html">NTupleTopoAna.cxx</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

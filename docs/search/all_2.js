@@ -9,7 +9,6 @@ var searchData=
   ['commonfunctions_2ecxx',['CommonFunctions.cxx',['../CommonFunctions_8cxx.html',1,'']]],
   ['commonfunctions_2eh',['CommonFunctions.h',['../CommonFunctions_8h.html',1,'']]],
   ['computegammavector',['ComputeGammaVector',['../classrhopi__pipigg.html#aecd04c4b5ddb174bfa9309a28168e11a',1,'rhopi_pipigg']]],
-  ['computeinvariantmasses',['ComputeInvariantMasses',['../classrhopi__pipigg.html#a9c140207943a83c61bf48db893c7dad1',1,'rhopi_pipigg']]],
   ['computemean',['ComputeMean',['../classChainLoader.html#a58451645958f14410eff8e2b201047ac',1,'ChainLoader']]],
   ['computemomentum',['ComputeMomentum',['../classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0',1,'TrackSelector']]],
   ['configloader',['ConfigLoader',['../classConfigLoader.html',1,'ConfigLoader'],['../classConfigLoader.html#a70bd800418fdb287a7a1877f5a34989f',1,'ConfigLoader::ConfigLoader()']]],

@@ -2,7 +2,6 @@ var searchData=
 [
   ['bookaddresses',['BookAddresses',['../classChainLoader.html#ad93ba90c4a626e758b98a29f4729bf70',1,'ChainLoader']]],
   ['bookntuple',['BookNTuple',['../classTrackSelector.html#ae1960294cbc18ddc33805037390ce8e7',1,'TrackSelector']]],
-  ['bookntupleitemsfit',['BookNtupleItemsFit',['../classrhopi__pipigg.html#a57476c12d2e478409f0a37535f289900',1,'rhopi_pipigg']]],
   ['bookntuples',['BookNTuples',['../classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92',1,'TrackSelector']]],
   ['bossoutputloader',['BOSSOutputLoader',['../classBOSSOutputLoader.html#a10870242930d8d48ded8bde0575a2233',1,'BOSSOutputLoader::BOSSOutputLoader()'],['../classBOSSOutputLoader.html#aabbc22a805f63c7d3b4b2cd31b08b2c7',1,'BOSSOutputLoader::BOSSOutputLoader(const char *directoryPath, bool print_branches=true, bool print_averages=false)']]],
   ['branchestoplot',['BranchesToPlot',['../classConfigLoader.html#afa561f11f47cb152275123f367b90bde',1,'ConfigLoader']]],

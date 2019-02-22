@@ -27,23 +27,22 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	/// Constructor for the `rhopi_pipigg` algorithm.
+	/// Constructor for the `rhopi_pipigg` algorithm, derived from `TrackSelector`.
 	/// Here, you should declare properties: give them a name, assign a parameter (data member of `rhopi_pipigg`), and if required a documentation string. Note that you should define the paramters themselves in the header (rhopi_pipigg/rhopi_pipigg.h) and that you should assign the values in `share/jopOptions_rhopi_pipigg.txt`.
 	rhopi_pipigg::rhopi_pipigg(const std::string &name, ISvcLocator* pSvcLocator) :
-		TrackSelector(name, pSvcLocator)
-		/// * The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
-		fCut_GammaPhi  ("gamma_phi"),
-		fCut_GammaTheta("gamma_theta"),
-		fCut_GammaAngle("gamma_angle"),
-	{
-		fLog << MSG::DEBUG << "===>> rhopi_pipigg::rhopi_pipigg() <<===" << endmsg;
-
-		/// * The `"write_<treename>"` properties determine whether or not the corresponding `TTree`/`NTuple` will be filled. Default values are set in the constructor as well.
-		declareProperty("write_fit4c_all",  fWrite_fit4c_all  = false);
-		declareProperty("write_fit4c_best", fWrite_fit4c_best = false);
-		declareProperty("write_fit5c_all",  fWrite_fit5c_all  = false);
-		declareProperty("write_fit5c_best", fWrite_fit5c_best = false);
-
+		/// * Construct base algorithm `TrackSelector`.
+			TrackSelector(name, pSvcLocator),
+		/// * Construct `NTuple::Tuple` containers used in derived classes.
+			fNTuple_dedx_pi("dedx_pi", "dE/dx of the pions"),
+			fNTuple_fit4c  ("fit4c",   "4-constraint fit information (CMS 4-momentum)"),
+			fNTuple_fit5c  ("fit5c",   "5-constraint fit information (CMS 4-momentum + pi0 resonance)"),
+			fNTuple_fit_mc ("fit_mc",  "Fake fit information according to MC truth"),
+			fNTuple_photon ("photon",  "Kinematics of selected photons"),
+		/// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
+			fCut_GammaPhi  ("gamma_phi"),
+			fCut_GammaTheta("gamma_theta"),
+			fCut_GammaAngle("gamma_angle")
+	{ PrintFunctionName("rhopi_pipigg", __func__); PostConstructor();
 	}
 
 
@@ -52,47 +51,40 @@
 // * ------- ALGORITHM STEPS ------- * //
 // * =============================== * //
 
+
 	/// (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
 	/// Define and load NTuples here.
 	StatusCode rhopi_pipigg::initialize_rest()
-	{
-		fLog << MSG::INFO << "===>> rhopi_pipigg::initialize_rest() <<===" << endmsg;
-
+	{ PrintFunctionName("rhopi_pipigg", __func__);
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
-			if(fWrite_mult_select) {
-				fMap_mult_select["NPhotons"]; /// <li> `"NPhotons"`: Number of \f$\gamma\f$s.
-				fMap_mult_select["NPionNeg"]; /// <li> `"NPionNeg"`: Number of \f$\pi^-\f$s.
-				fMap_mult_select["NPionPos"]; /// <li> `"NPionPos"`: Number of \f$\pi^+\f$s.
-				AddItemsToNTuples("mult_select", fMap_mult_select, "Multipliciies of selected particles");
+			if(fNTuple_mult_sel.DoWrite()) {
+				fNTuple_mult_sel["NPhotons"]; /// <li> `"NPhotons"`: Number of \f$\gamma\f$'s.
+				fNTuple_mult_sel["NPionNeg"]; /// <li> `"NPionNeg"`: Number of \f$\pi^-\f$.
+				fNTuple_mult_sel["NPionPos"]; /// <li> `"NPionPos"`: Number of \f$\pi^+\f$.
 			}
 			/// </ol>
 
-		/// <li> `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::BookNtupleItemsDedx` for more info.
-			if(fWrite_dedx) {
-				BookNtupleItemsDedx("dedx_pi", fMap_dedx_pi);
-			}
+		/// <li> `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_Dedx` for more info.
+			AddNTupleItems_Dedx(fNTuple_dedx_pi);
 
-		/// <li> `"fit4c_all"`, `"fit4c_best"`, `"fit5c_all"`, and `"fit5c_best"`: results of the Kalman kinematic fit results. See `TrackSelector::BookNtupleItemsDedx` for more info.
-			if(fWrite_fit4c_all)  BookNtupleItemsFit("fit4c_all", fMap_fit4c_all, "4-constraint fit information (CMS 4-momentum)");
-			if(fWrite_fit4c_best) BookNtupleItemsFit("fit4c_best", fMap_fit4c_best, "4-constraint fit information of the invariant masses closest to the reconstructed particles");
-			if(fWrite_fit5c_all)  BookNtupleItemsFit("fit5c_all", fMap_fit5c_all, "5-constraint fit information (CMS 4-momentum)");
-			if(fWrite_fit5c_best) BookNtupleItemsFit("fit5c_best", fMap_fit5c_best, "5-constraint fit information of the invariant masses closest to the reconstructed particles");
+		/// <li> `"fit4c"` and `"fit5c"`: results of the Kalman kinematic fit results. See `TrackSelector::AddNTupleItems_Fit` for more info.
+			AddNTupleItems_Fit(fNTuple_fit4c);
+			AddNTupleItems_Fit(fNTuple_fit5c);
 
 		/// <li> `"photon"`: information of the selected photons
+
 			/// <ol>
-			if(fWrite_photon) {
-				fMap_photon["E"];     /// <li> Energy of the photon.
-				fMap_photon["phi"];   /// <li> Smallest angle between the photon and the nearest charged pion.
-				fMap_photon["theta"]; /// <li> Smallest angle between the photon and the nearest charged pion.
-				fMap_photon["angle"]; /// <li> Smallest angle between the photon and the nearest charged pion.
-				AddItemsToNTuples("photon", fMap_photon);
+			if(fNTuple_photon.DoWrite()) {
+				fNTuple_photon.AddItem("E");     /// <li> `"E"`:     Energy of the photon.
+				fNTuple_photon.AddItem("phi");   /// <li> `"phi"`:   Smallest angle between the photon and the nearest charged pion.
+				fNTuple_photon.AddItem("theta"); /// <li> `"theta"`: Smallest angle between the photon and the nearest charged pion.
+				fNTuple_photon.AddItem("angle"); /// <li> `"angle"`: Smallest angle between the photon and the nearest charged pion.
 			}
 			/// </ol>
 
 		/// </ol>
-
 		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
 		return StatusCode::SUCCESS;
 	}
@@ -100,9 +92,7 @@
 
 	/// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 	StatusCode rhopi_pipigg::execute_rest()
-	{
-		fLog << MSG::DEBUG << "===>> rhopi_pipigg::execute_rest() <<===" << endmsg;
-
+	{ PrintFunctionName("rhopi_pipigg", __func__);
 		/// <ol type="A">
 		/// <li> Create selection charged tracks
 
@@ -120,27 +110,27 @@
 				/// <li> Initialise PID and skip if it fails:
 					/// <ul>
 					if(!InitializePID(
+						/// <li> use <b>probability method</b>
 						fPIDInstance->methodProbability(),
-							/// <li> use <b>probability method</b>
-						fPIDInstance->useDedx() | fPIDInstance->useTof1() | fPIDInstance->useTof2() | fPIDInstance->useTofE(),
-							/// <li> use \f$dE/dx\f$ and the three ToF detectors
+						/// <li> use \f$dE/dx\f$ and the three ToF detectors. Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
+						fPIDInstance->useDedx() |
+						fPIDInstance->useTofCorr(),
+						/// <li> identify only pions
 						fPIDInstance->onlyPion(),
-							/// <li> identify only pions
+						/// <li> use \f$\chi^2 > 4.0\f$
 						4.0
-							/// <li> use \f$\chi^2 > 4.0\f$
 					)) continue;
 					/// </ul>
 
 				/// <li> @b Write Particle Identification information of all tracks
-					if(fWrite_PID) WritePIDInformation();
+					WritePIDInformation();
 
 				/// <li> Identify type of charged particle and add to related vector: (this package: only pions).
 					fTrackKal = (*fTrackIterator)->mdcKalTrack();
-					if(fPIDInstance->probPion() < fCut_MinPIDProb) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_MinPIDProb` (see eventual settings in `rhopi_pipigg.txt`).
-					if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon)) continue; /// If, according to the likelihood method, the particle is still more likely to be a kaon than a pion, the track is rejected.
+					if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `rhopi_pipigg.txt`).
 					RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
-					if(fTrackKal->charge() > 0) fPionPos.push_back(*fTrackIterator); /// and the pions (\f$\pm\f$) are added to the respective vector of pions.
-					else                        fPionNeg.push_back(*fTrackIterator);
+					if(fTrackKal->charge()>0) fPionPos.push_back(*fTrackIterator); /// and the pions (\f$\pm\f$) are added to the respective vector of pions.
+					else                      fPionNeg.push_back(*fTrackIterator);
 
 				/// </ol>
 			}
@@ -152,7 +142,7 @@
 			fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
 
 			// * Loop over charged tracks *
-			fGamma.clear();
+			fPhotons.clear();
 			for(fTrackIterator = fGoodNeutralTracks.begin(); fTrackIterator != fGoodNeutralTracks.end(); ++fTrackIterator) {
 
 				/// <ol>
@@ -168,143 +158,114 @@
 					SetSmallestAngles(fPionPosIter, fPionPos, emcpos); // check all differences with the pions
 
 				/// <li> Apply angle cut
-					if(fSmallestAngle >= fCut_GammaAngle) continue;
 					fSmallestTheta = fSmallestTheta * 180 / (CLHEP::pi);
 					fSmallestPhi   = fSmallestPhi   * 180 / (CLHEP::pi);
 					fSmallestAngle = fSmallestAngle * 180 / (CLHEP::pi);
 
 				/// <li> @b Write photon info (`"photon"` branch)
-					if(fWrite_photon) {
-						fMap_photon.at("E")     = fTrackEMC->energy();
-						fMap_photon.at("phi")   = fSmallestTheta;
-						fMap_photon.at("theta") = fSmallestPhi;
-						fMap_photon.at("angle") = fSmallestAngle;
-						fNTupleMap.at("photon")->write();
+					if(fNTuple_photon.DoWrite()) {
+						fNTuple_photon.at("E")     = fTrackEMC->energy();
+						fNTuple_photon.at("phi")   = fSmallestTheta;
+						fNTuple_photon.at("theta") = fSmallestPhi;
+						fNTuple_photon.at("angle") = fSmallestAngle;
+						fNTuple_photon.Write();
 					}
 
 				/// <li> Apply photon cuts (energy cut has already been applied in TrackSelector)
 					if(
-						(fabs(fSmallestTheta) < fCut_GammaTheta) &&
-						(fabs(fSmallestPhi)   < fCut_GammaPhi)) continue;
-					if(fabs(fSmallestAngle) < fCut_GammaAngle) continue;
+						fCut_GammaTheta.FailsMax(fabs(fSmallestTheta)) &&
+						fCut_GammaPhi  .FailsMax(fabs(fSmallestPhi))) continue;
+					if(fCut_GammaAngle.FailsMax(fabs(fSmallestAngle))) continue;
 
 				/// <li> Add photon track to vector for gammas
-					fGamma.push_back(*fTrackIterator);
+					fPhotons.push_back(*fTrackIterator);
 
 				/// </ol>
 			}
 
-			// * Finish good particle selection *
-			fLog << MSG::DEBUG << "Number of photons: " << fGamma.size() << endmsg;
-			fLog << MSG::DEBUG << "Number of pi+:     " << fPionPos.size() << endmsg;
-			fLog << MSG::DEBUG << "Number of pi+:     " << fPionPos.size() << endmsg;
 
-		/// <li> Apply a cut on the number of particles: <i>only events with more than 2 photons</i>
-			fLog << MSG::DEBUG << "Number of good photons: " << fGamma.size() << endmsg;
-			if(fGamma.size() < 2) return StatusCode::SUCCESS;
-
-
-		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_pi"` branch)
-			if(fWrite_dedx) {
-				WriteDedxInfoForVector(fPionNeg, "dedx_pi", fMap_dedx_pi);
-				WriteDedxInfoForVector(fPionPos, "dedx_pi", fMap_dedx_pi);
+		/// <li> Create selection of MC truth particles by looping over the collection of MC particles created in `TrackSelector::execute()`. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.
+			if(fEventHeader->runNumber()<0 && fNTuple_fit_mc.DoWrite()) {
+				fMcPhotons.clear();
+				fMcPionNeg.clear();
+				fMcPionPos.clear();
+				std::vector<Event::McParticle*>::iterator it;
+				for(it=fMcParticles.begin(); it!=fMcParticles.end(); ++it) {
+					switch((*it)->particleProperty()) {
+						case   22 : fMcPhotons.push_back(*it); break;
+						case -211 : fMcPionNeg.push_back(*it); break;
+						case  211 : fMcPionPos.push_back(*it); break;
+						default : fLog << MSG::DEBUG << "No switch case defined for McParticle " << (*it)->particleProperty() << endmsg;
+					}
+				}
 			}
 
 
-		/// <li> Perform Kalman 4-constraint Kalman kinematic fit for all combinations
-			if(fWrite_fit4c_all || fWrite_fit4c_best) {
-				double bestFitMeasure = 1e5;
-				KalmanKinematicFit *bestKalmanFit = nullptr;
-				for(fGamma1Iter  = fGamma.begin();   fGamma1Iter  != fGamma.end();   ++fGamma1Iter)
-				for(fGamma2Iter  = fGamma1Iter+1;    fGamma2Iter  != fGamma.end();   ++fGamma2Iter)
-				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
-				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
-				{
-
-					// * Get Kalman tracks
-						RecMdcKalTrack *pimTrk = (*fPionNegIter)->mdcKalTrack();
-						RecMdcKalTrack *pipTrk = (*fPionPosIter)->mdcKalTrack();
-
-					// * Get W-tracks
-						WTrackParameter wvpimTrk(gM_pi, pimTrk->getZHelix(), pimTrk->getZError());
-						WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
-
-					// * Test vertex fit * //
-						HepPoint3D vx(0., 0., 0.);
-						HepSymMatrix Evx(3, 0);
-						double bx = 1E+6;
-						double by = 1E+6;
-						double bz = 1E+6;
-						Evx[0][0] = bx*bx;
-						Evx[1][1] = by*by;
-						Evx[2][2] = bz*bz;
-
-						VertexParameter vxpar;
-						vxpar.setVx(vx);
-						vxpar.setEvx(Evx);
-
-						VertexFit* vtxfit = VertexFit::instance();
-						vtxfit->init();
-						vtxfit->AddTrack(0, wvpimTrk);
-						vtxfit->AddTrack(1, wvpipTrk);
-						vtxfit->AddVertex(0, vxpar, 0, 1);
-						if(!vtxfit->Fit(0)) continue;
-						vtxfit->Swim(0);
-
-						WTrackParameter wpim = vtxfit->wtrk(0);
-						WTrackParameter wpip = vtxfit->wtrk(1);
-
-					// * Get EMC showers
-						RecEmcShower *g1Trk = (*fGamma1Iter)->emcShower();
-						RecEmcShower *g2Trk = (*fGamma2Iter)->emcShower();
-
-					// * Get Kalman kinematic fit for this combination and store if better than previous one
-						double chisq = 1e6;
-						KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
-						kkmfit->init();
-						kkmfit->AddTrack(0, wpim);       // pi-
-						kkmfit->AddTrack(1, wpip);       // pi+
-						kkmfit->AddTrack(2, 0.0, g1Trk); // gamma (1st occurrence)
-						kkmfit->AddTrack(3, 0.0, g2Trk); // gamma (2nd occurence)
-						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and momentum
-						if(kkmfit->Fit()) {
-							/// <ol>
-							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
-							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
-							/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
-							KKFitResult_rhopi_pipigg fitresult(kkmfit);
-							if(fWrite_fit4c_all) WriteFitResults(fitresult, fMap_fit4c_all, "fit4c_all");
-							/// </ol>
-						}
-
-				}
-
-				/// <li> @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branch)
-				if(fWrite_fit4c_best && bestKalmanFit) {
-					ComputeInvariantMasses(bestKalmanFit);
-					WriteFitResults(bestKalmanFit, fMap_fit4c_best, "fit4c_best");
-				}
-
-			} // end of fWrite_fit4c_all || fWrite_fit4c_best
+		/// <li> @b Write the multiplicities of the selected particles.
+			fLog << MSG::DEBUG
+				<< "N_\gamma = "  << fPhotons.size() << ", "
+				<< "N_{\pi^-} = " << fPionNeg.size() << ", "
+				<< "N_{\pi^+} = " << fPionPos.size() << endmsg;
+			if(fNTuple_mult_sel.DoWrite()) {
+				fNTuple_mult_sel.at("NPhotons") = fPhotons.size();
+				fNTuple_mult_sel.at("NPionNeg") = fPionNeg.size();
+				fNTuple_mult_sel.at("NPionPos") = fPionPos.size();
+				fNTuple_mult_sel.Write();
+			}
 
 
-		/// <li> Apply a cut on the number of particles: <i>only events with one \f$\pi^-\f$ and one \f$\pi^+\f$</i>
+		/// <li> Apply a cut on the number of particles: <i>only events with one \f$\pi^-\f$, one \f$\pi^+\f$, and at least 2 photons</i>
+			if(fPhotons.size()  < 2) return StatusCode::SUCCESS;
 			if(fPionNeg.size() != 1) return StatusCode::SUCCESS;
 			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
 
 
-		/// <li> Perform Kalman 5-constraint Kalman kinematic fit for all combinations
-			if(fWrite_fit5c_all || fWrite_fit5c_best) {
+		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
+			if(fNTuple_dedx.DoWrite()) {
+				WriteDedxInfoForVector(fPionNeg, fNTuple_dedx_pi);
+				WriteDedxInfoForVector(fPionPos, fNTuple_dedx_pi);
+			}
+
+
+		/// <li> Loop over MC truth of final decay products.
+			for(fMcPhoton1Iter = fMcPhotons.begin(); fMcPhoton1Iter != fMcPhotons.end(); ++fMcPhoton1Iter)
+			for(fMcPhoton2Iter = fMcPhotons.begin(); fMcPhoton2Iter != fMcPhotons.end(); ++fMcPhoton2Iter)
+			for(fMcPionNegIter = fMcPionNeg.begin(); fMcPionNegIter != fMcPionNeg.end(); ++fMcPionNegIter)
+			for(fMcPionPosIter = fMcPionPos.begin(); fMcPionPosIter != fMcPionPos.end(); ++fMcPionPosIter)
+			{
+				/// <ol>
+				/// <li> Only continue if the two photons are different.
+					if(fMcPhoton1Iter == fMcPhoton2Iter) continue;
+
+				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
+					if((!(*fMcPhoton1Iter)->primaryParticle()) && (*fMcPhoton1Iter)->mother().particleProperty() != 333) continue; // photon 1
+					if((!(*fMcPhoton2Iter)->primaryParticle()) && (*fMcPhoton2Iter)->mother().particleProperty() != 421) continue; // photon 2
+					if((!(*fMcPionNegIter)->primaryParticle()) && (*fMcPionNegIter)->mother().particleProperty() != 333) continue; // negative pion
+					if((!(*fMcPionPosIter)->primaryParticle()) && (*fMcPionPosIter)->mother().particleProperty() != 421) continue; // positive pion
+
+				/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
+					KKFitResult_rhopi_pipigg fitresult(
+						*fMcPhoton1Iter,
+						*fMcPhoton2Iter,
+						*fMcPionNegIter,
+						*fMcPionPosIter
+					);
+					WriteFitResults(&fitresult, fNTuple_fit_mc);
+				/// </ol>
+			}
+
+
+		/// <li> Perform Kalman 4-constraint Kalman kinematic fit for all combinations
+			if(fNTuple_fit4c.DoWrite()) {
 				// * Reset best fit parameters * //
-				double bestFitMeasure = 1e5;
-				KalmanKinematicFit *bestKalmanFit = nullptr;
-				// * Loop over all combinations of pi-, pi+, and gamma * //
-				for(fGamma1Iter  = fGamma.begin();   fGamma1Iter  != fGamma.end();   ++fGamma1Iter)
-				for(fGamma2Iter  = fGamma1Iter+1;    fGamma2Iter  != fGamma.end();   ++fGamma2Iter)
+				KKFitResult_rhopi_pipigg bestKalmanFit;
+				bestKalmanFit.fBestCompareValue = 1e9;
+				// * Loop over all combinations * //
+				for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
+				for(fPhoton2Iter = fPhoton1Iter+1;   fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
 				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
 				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
 				{
-
 					// * Get Kalman tracks
 						RecMdcKalTrack *pimTrk = (*fPionNegIter)->mdcKalTrack();
 						RecMdcKalTrack *pipTrk = (*fPionPosIter)->mdcKalTrack();
@@ -313,7 +274,7 @@
 						WTrackParameter wvpimTrk(gM_pi, pimTrk->getZHelix(), pimTrk->getZError());
 						WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
 
-					// * Test vertex fit * //
+					// * Initiate vertex fit * //
 						HepPoint3D vx(0., 0., 0.);
 						HepSymMatrix Evx(3, 0);
 						double bx = 1E+6;
@@ -322,11 +283,11 @@
 						Evx[0][0] = bx*bx;
 						Evx[1][1] = by*by;
 						Evx[2][2] = bz*bz;
-
 						VertexParameter vxpar;
 						vxpar.setVx(vx);
 						vxpar.setEvx(Evx);
 
+					// * Test vertex fit * //
 						VertexFit* vtxfit = VertexFit::instance();
 						vtxfit->init();
 						vtxfit->AddTrack(0, wvpimTrk);
@@ -335,42 +296,90 @@
 						if(!vtxfit->Fit(0)) continue;
 						vtxfit->Swim(0);
 
-						WTrackParameter wpim = vtxfit->wtrk(0);
-						WTrackParameter wpip = vtxfit->wtrk(1);
-
-					// * Get EMC showers
-						RecEmcShower *g1Trk = (*fGamma1Iter)->emcShower();
-						RecEmcShower *g2Trk = (*fGamma2Iter)->emcShower();
-
 					// * Get Kalman kinematic fit for this combination and store if better than previous one
-						double chisq = 1e6;
 						KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
 						kkmfit->init();
-						kkmfit->AddTrack(0, wpim);       // pi-
-						kkmfit->AddTrack(1, wpip);       // pi+
-						kkmfit->AddTrack(2, 0.0, g1Trk); // gamma (1st occurrence)
-						kkmfit->AddTrack(3, 0.0, g2Trk); // gamma (2nd occurence)
-						kkmfit->AddResonance(0, gM_pi0, 2, 3); // 5th constraint: pi0 resonance
+						kkmfit->AddTrack(0, vtxfit->wtrk(0)); // pi-
+						kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi+
+						kkmfit->AddTrack(2, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
+						kkmfit->AddTrack(3, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
+						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
+						if(kkmfit->Fit()) {
+							/// <ol>
+							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
+							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
+							/// <li> Construct fit result object for this combintation.
+							KKFitResult_rhopi_pipigg fitresult(kkmfit);
+							/// <li> @b Write results of the Kalman kinematic fit.
+							WriteFitResults(&fitresult, fNTuple_fit4c);
+							/// </ol>
+						}
+				}
+			}
+
+
+		/// <li> Perform Kalman 5-constraint Kalman kinematic fit for all combinations.
+			if(fNTuple_fit5c.DoWrite()) {
+				// * Reset best fit parameters * //
+				double bestFitMeasure = 1e5;
+				KalmanKinematicFit *bestKalmanFit = nullptr;
+				// * Loop over all combinations of pi-, pi+, and gamma * //
+				for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
+				for(fPhoton2Iter = fPhoton1Iter+1;   fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
+				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
+				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
+				{
+					// * Get Kalman tracks
+						RecMdcKalTrack *pimTrk = (*fPionNegIter)->mdcKalTrack();
+						RecMdcKalTrack *pipTrk = (*fPionPosIter)->mdcKalTrack();
+
+					// * Get W-tracks
+						WTrackParameter wvpimTrk(gM_pi, pimTrk->getZHelix(), pimTrk->getZError());
+						WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
+
+					// * Initiate vertex fit * //
+						HepPoint3D vx(0., 0., 0.);
+						HepSymMatrix Evx(3, 0);
+						double bx = 1E+6;
+						double by = 1E+6;
+						double bz = 1E+6;
+						Evx[0][0] = bx*bx;
+						Evx[1][1] = by*by;
+						Evx[2][2] = bz*bz;
+						VertexParameter vxpar;
+						vxpar.setVx(vx);
+						vxpar.setEvx(Evx);
+
+					// * Test vertex fit * //
+						VertexFit* vtxfit = VertexFit::instance();
+						vtxfit->init();
+						vtxfit->AddTrack(0, wvpimTrk);
+						vtxfit->AddTrack(1, wvpipTrk);
+						vtxfit->AddVertex(0, vxpar, 0, 1);
+						if(!vtxfit->Fit(0)) continue;
+						vtxfit->Swim(0);
+
+					// * Get Kalman kinematic fit for this combination and store if better than previous one
+						KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
+						kkmfit->init();
+						kkmfit->AddTrack(0, vtxfit->wtrk(0)); // pi-
+						kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi+
+						kkmfit->AddTrack(2, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
+						kkmfit->AddTrack(3, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
+						kkmfit->AddResonance(0, gM_pi0, 2, 3); /// @remark 5th constraint: \f$\pi^0\f$ resonance
 						kkmfit->AddFourMomentum(1, gEcmsVec); // 4 constraints: CMS energy and momentum
 						if(kkmfit->Fit()) {
-							/// Apply max. \f$\chi^2\f$ cut (determined by `fCut_MaxPIDChiSq`).
-							if(kkmfit->chisq() > fCut_MaxPIDChiSq) continue;
-							/// Compute the measure for the best Kalman kinematic fit and keep a pointer to this result if better than previous.
-							ComputeInvariantMasses(kkmfit);
-							CompareWithBestFit(MeasureForBestFit5c(), bestFitMeasure, kkmfit, bestKalmanFit);
-							/// @b Write results of the Kalman kinematic fit (all combinations, `"fit5c_all"`).
-							if(fWrite_fit5c_all) WriteFitResults(kkmfit, fMap_fit5c_all, "fit5c_all");
+							/// <ol>
+							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
+							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
+							/// <li> Construct fit result object for this combintation.
+							KKFitResult_rhopi_pipigg fitresult(kkmfit);
+							/// <li> @b Write results of the Kalman kinematic fit.
+							WriteFitResults(&fitresult, fNTuple_fit5c);
+							/// </ol>
 						}
-
-				} // end of loop over particle combinations
-
-				/// <li> @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit5c_best"` branch)
-				if(fWrite_fit5c_best && bestKalmanFit) {
-					ComputeInvariantMasses(bestKalmanFit);
-					WriteFitResults(bestKalmanFit, fMap_fit5c_best, "fit5c_best");
 				}
-
-			} // end of fWrite_fit5c_all || fWrite_fit5c_best
+			}
 
 
 		/// </ol>
@@ -378,10 +387,9 @@
 	}
 
 
-	/// Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events.
-	/// Prints the flow chart to the terminal, so make sure you save this output!
+	/// Currently does nothing. See `TrackSelector::finalize` for what else is done when finalising.
 	StatusCode rhopi_pipigg::finalize_rest()
-	{
+	{ PrintFunctionName("rhopi_pipigg", __func__);
 		return StatusCode::SUCCESS;
 	}
 
@@ -391,104 +399,68 @@
 // * ------- PRIVATE METHODS ------- * //
 // * =============================== * //
 
-	/// Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
-	HepLorentzVector rhopi_pipigg::ComputeGammaVector(EvtRecTrack* track)
-	{
-		fTrackEMC = track->emcShower();
-		double eraw  = emcTrk->energy();
-		double phi   = emcTrk->phi();
-		double theta = emcTrk->theta();
-		HepLorentzVector ptrk(
-			eraw * sin(theta) * cos(phi),
-			eraw * sin(theta) * sin(phi),
-			eraw * cos(theta),
-			eraw);
-		// ptrk = ptrk.boost(-0.011, 0, 0); /// Perform a boost to the CMS
-		return ptrk;
-	}
 
-
-	/// Method that provides a measure for the best Kalman kinematic fit4c.
-	/// The closer this value to zero, the better the result.
-	double rhopi_pipigg::MeasureForBestFit4c()
+	/// Specification of what should be written to the fit `NTuple`. This function is called in `TrackSelector::WriteFitResults`.
+	void rhopi_pipigg::SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple)
 	{
-		return (fM_pi0-gM_pi0)/gM_pi0;
-	}
+		/// -# Convert to the derived object of `KKFitResult` designed for this package. @remark This cast is required and cannot be solved using virtual methods, because of the specific structure of each analysis.
+			KKFitResult_rhopi_pipigg* fit = dynamic_cast<KKFitResult_rhopi_pipigg*>(fitresults);
 
-	/// Method that provides a measure for the best Kalman kinematic fit5c.
-	/// The closer this value to zero, the better the result.
-	double rhopi_pipigg::MeasureForBestFit5c()
-	{
-		return
-			((fM_JpsiRho0-gM_Jpsi)/gM_Jpsi) *
-			((fM_JpsiRhom-gM_Jpsi)/gM_Jpsi) *
-			((fM_JpsiRhop-gM_Jpsi)/gM_Jpsi);
+		/// -# Set the `NTuple::Item`s.
+			tuple.at("mpi0")       = fit->fM_pi0;
+			tuple.at("mrho0")      = fit->fM_rho0;
+			tuple.at("mrho-")      = fit->fM_rhom;
+			tuple.at("mrho+")      = fit->fM_rhop;
+			tuple.at("mJpsi_rho0") = fit->fM_JpsiRho0;
+			tuple.at("mJpsi_rho-") = fit->fM_JpsiRhom;
+			tuple.at("mJpsi_rho+") = fit->fM_JpsiRhop;
+			tuple.at("chisq")      = fit->fChiSquared;
 	}
 
 
 	/// This function encapsulates the `addItem` procedure for the fit branches.
-	void rhopi_pipigg::BookNtupleItemsFit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
+	void rhopi_pipigg::AddNTupleItems_Fit(NTupleContainer &tuple)
 	{
-		/// <ol>
-		map["Egamma1"];    /// <li> Energy of the first photon.
-		map["Egamma2"];    /// <li> Energy of the second photon.
-		map["cosAngle"];   /// <li> Cosine of the angle between the two photons.
-		map["mpi0"];       /// <li> Invariant mass for \f$\pi^0 \rightarrow \gamma\gamma\f$ candidate.
-		map["mrho0"];      /// <li> Invariant mass for \f$\rho^0 \rightarrow \pi^-\pi^+\f$ candidate.
-		map["mrho-"];      /// <li> Invariant mass for \f$\rho^- \rightarrow \pi^0\pi^-\f$ candidate.
-		map["mrho+"];      /// <li> Invariant mass for \f$\rho^+ \rightarrow \pi^0\pi^+\f$ candidate.
-		map["mJpsi_rho0"]; /// <li> Invariant mass for \f$J/\psi \rightarrow \rho^0\pi^0\f$ candidate.
-		map["mJpsi_rho-"]; /// <li> Invariant mass for \f$J/\psi \rightarrow \rho^-\pi^+\f$ candidate.
-		map["mJpsi_rho+"]; /// <li> Invariant mass for \f$J/\psi \rightarrow \rho^+\pi^-\f$ candidate.
-		map["chisq"];      /// <li> \f$\chi^2\f$ of the Kalman kinematic fit.
-		AddItemsToNTuples(tupleName, map, tupleTitle);
-		/// </ol>
+		if(!tuple) return;
+		tuple.AddItem("mpi0");       /// * `"mpi0"`:       Invariant mass for \f$\pi^0 \rightarrow \gamma\gamma\f$ candidate.
+		tuple.AddItem("mrho0");      /// * `"mrho0"`:      Invariant mass for \f$\rho^0 \rightarrow \pi^-\pi^+\f$ candidate.
+		tuple.AddItem("mrho-");      /// * `"mrho-`":      Invariant mass for \f$\rho^- \rightarrow \pi^0\pi^-\f$ candidate.
+		tuple.AddItem("mrho+");      /// * `"mrho+`":      Invariant mass for \f$\rho^+ \rightarrow \pi^0\pi^+\f$ candidate.
+		tuple.AddItem("mJpsi_rho0"); /// * `"mJpsi_rho0"`: Invariant mass for \f$J/\psi \rightarrow \rho^0\pi^0\f$ candidate.
+		tuple.AddItem("mJpsi_rho-"); /// * `"mJpsi_rho-`": Invariant mass for \f$J/\psi \rightarrow \rho^-\pi^+\f$ candidate.
+		tuple.AddItem("mJpsi_rho+"); /// * `"mJpsi_rho+`": Invariant mass for \f$J/\psi \rightarrow \rho^+\pi^-\f$ candidate.
+		tuple.AddItem("chisq");      /// * `"chisq"`:      \f$\chi^2\f$ of the Kalman kinematic fit.
 	}
 
 
-	/// Encapsulation of the procedure to compute invariant masses of the reconstructed particles.
-	void rhopi_pipigg::ComputeInvariantMasses(KalmanKinematicFit *kkmfit)
+	/// Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
+	HepLorentzVector rhopi_pipigg::ComputeGammaVector(EvtRecTrack* track)
 	{
-		// * Get vectors * //
-		HepLorentzVector ppim    = kkmfit->pfit(0);
-		HepLorentzVector ppip    = kkmfit->pfit(1);
-		HepLorentzVector pgamma1 = kkmfit->pfit(2);
-		HepLorentzVector pgamma2 = kkmfit->pfit(3);
-		// * Primary candidates * //
-		HepLorentzVector ppi0  = pgamma1 + pgamma2; /// Invariant mass for \f$\pi^0 \rightarrow \gamma\gamma\f$ candidate.
-		HepLorentzVector prho0 = ppim + ppip;       /// Invariant mass for \f$\rho^0 \rightarrow \pi^-\pi^+\f$ candidate.
-		HepLorentzVector prhom = ppi0 + ppim;       /// Invariant mass for \f$\rho^- \rightarrow \pi^0\pi^-\f$ candidate.
-		HepLorentzVector prhop = ppi0 + ppip;       /// Invariant mass for \f$\rho^+ \rightarrow \pi^0\pi^+\f$ candidate.
-		// * Three J/psi candidates * //
-		HepLorentzVector pJpsiRho0 = prho0 + ppi0; /// Invariant mass for \f$J/\psi \rightarrow \rho^0\pi^0\f$ candidate.
-		HepLorentzVector pJpsiRhom = prhom + ppip; /// Invariant mass for \f$J/\psi \rightarrow \rho^-\pi^+\f$ candidate.
-		HepLorentzVector pJpsiRhop = prhop + ppim; /// Invariant mass for \f$J/\psi \rightarrow \rho^+\pi^-\f$ candidate.
-		// * Compute gamma energies and angle between the two photons * //
-		fE_gamma1 = pgamma1.e();
-		fE_gamma2 = pgamma2.e();
-		fCosGamma = abs(fE_gamma1-fE_gamma2) / ppi0.rho();
-		// * Compute invariant masses * //
-		fM_pi0      = ppi0.m();
-		fM_rho0     = prho0.m();
-		fM_rhom     = prhom.m();
-		fM_rhop     = prhop.m();
-		fM_JpsiRho0 = pJpsiRho0.m();
-		fM_JpsiRhom = pJpsiRhom.m();
-		fM_JpsiRhop = pJpsiRhop.m();
+		fTrackEMC = track->emcShower();
+		double eraw  = fTrackEMC->energy();
+		double phi   = fTrackEMC->phi();
+		double theta = fTrackEMC->theta();
+		HepLorentzVector four_mom(
+			eraw * sin(theta) * cos(phi),
+			eraw * sin(theta) * sin(phi),
+			eraw * cos(theta),
+			eraw);
+		// four_mom = four_mom.boost(-0.011, 0, 0); /// If necessary: Perform a boost to the CMS
+		return four_mom;
 	}
 
 
-	/// Helper function that encapsulates the proces of finding the angle between some photon `
+	/// Helper function that encapsulates the proces of finding the angle between some photon and the pions.
 	void rhopi_pipigg::SetSmallestAngles(std::vector<EvtRecTrack*>::iterator &iter, std::vector<EvtRecTrack*> &vec, Hep3Vector &emcpos)
 	{
 		for(iter = vec.begin(); iter != vec.end(); ++iter) {
-			// * Get the extension object from MDC to EMC
+			/// * Get the extension object from MDC to EMC
 			if(!(*iter)->isExtTrackValid()) continue;
 			fTrackExt = (*iter)->extTrack();
-			if(extTrk->emcVolumeNumber() == -1) continue;
-			Hep3Vector extpos(extTrk->emcPosition());
+			if(fTrackExt->emcVolumeNumber() == -1) continue;
+			Hep3Vector extpos(fTrackExt->emcPosition());
 
-			// * Get angles
+			/// * Get angles
 			// double cosTheta = extpos.cosTheta(emcpos);
 			double angle  = extpos.angle(emcpos);
 			double dTheta = extpos.theta() - emcpos.theta();
@@ -501,46 +473,4 @@
 				fSmallestPhi   = dPhi;
 			}
 		}
-	}
-
-
-	/// Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
-	void rhopi_pipigg::WriteFitResults(KKFitResult_rhopi_pipigg &fitresult, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName)
-	{
-		if(!fitresult) {
-			fLog << MSG::DEBUG << "KalmanKinematicFit for \"" << tupleName << "\" is empty" << endmsg;
-			return;
-		}
-		fLog << MSG::DEBUG << "Writing fit results \"" << tupleName << "\"" << endmsg;
-		map.at("mpi0")       = fitresult.fM_pi0;
-		map.at("mrho0")      = fitresult.fM_rho0;
-		map.at("mrho-")      = fitresult.fM_rhom;
-		map.at("mrho+")      = fitresult.fM_rhop;
-		map.at("mJpsi_rho0") = fitresult.fM_JpsiRho0;
-		map.at("mJpsi_rho-") = fitresult.fM_JpsiRhom;
-		map.at("mJpsi_rho+") = fitresult.fM_JpsiRhop;
-		map.at("chisq")      = fitresult.fChiSquared;
-		fNTupleMap.at(tupleName)->write();
-	}
-
-
-
-// * =============================== * //
-// * ------- PRIVATE METHODS ------- * //
-// * =============================== * //
-
-	/// This function encapsulates the `addItem` procedure for the fit branches.
-	void D0phi_KpiKK::AddNTupleItems_Fit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle)
-	{
-		/// <ol>
-		map["mpi0"];       /// <li> `"mpi0"`:       Invariant mass for \f$\pi^0 \rightarrow \gamma\gamma\f$ candidate.
-		map["mrho0"];      /// <li> `"mrho0"`:      Invariant mass for \f$\rho^0 \rightarrow \pi^-\pi^+\f$ candidate.
-		map["mrho"];       /// <li> `"mrho"`:       Invariant mass for \f$\rho^- \rightarrow \pi^0\pi^-\f$ candidate.
-		map["mrho"];       /// <li> `"mrho"`:       Invariant mass for \f$\rho^+ \rightarrow \pi^0\pi^+\f$ candidate.
-		map["mJpsi_rho0"]; /// <li> `"mJpsi_rho0"`: Invariant mass for \f$J/\psi \rightarrow \rho^0\pi^0\f$ candidate.
-		map["mJpsi_rho"];  /// <li> `"mJpsi_rho"`:  Invariant mass for \f$J/\psi \rightarrow \rho^-\pi^+\f$ candidate.
-		map["mJpsi_rho"];  /// <li> `"mJpsi_rho"`:  Invariant mass for \f$J/\psi \rightarrow \rho^+\pi^-\f$ candidate.
-		map["chisq"];      /// <li> `"chisq"`:      \f$\chi^2\f$ of the Kalman kinematic fit.
-		AddItemsToNTuples(tupleName, map, tupleTitle);
-		/// </ol>
 	}

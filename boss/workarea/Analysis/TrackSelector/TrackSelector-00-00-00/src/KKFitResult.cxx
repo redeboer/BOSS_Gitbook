@@ -14,12 +14,12 @@
 
 	double KKFitResult::fBestCompareValue = 1e9;
 
-	/// 
+	/// Constructor that immediately instantiates all its members from a `KalmanKinematic` fit result.
 	KKFitResult::KKFitResult(KalmanKinematicFit* kkmfit) :
 		fChiSquared(1e9),
 		fFit(kkmfit)
 	{
-		SetValues(fFit);
+		SetValues();
 	}
 
 
@@ -29,9 +29,9 @@
 // * =================================== * //
 
 	/// Constructof for the `KKFitResult` base class.
-	void KKFitResult::SetValues(KalmanKinematicFit* kkmfit)
+	void KKFitResult::SetValues()
 	{
-		if(!kkmfit) return;
+		if(!fFit) return;
 		fChiSquared = fFit->chisq();
 	}
 
@@ -46,4 +46,12 @@
 		/// -# If not, update `fBestCompareValue`.
 		bestvalue = value;
 		return true;
+	}
+
+
+	/// Default function of `KKFitResult::IsBetter(const double &value, double &bestvalue)`.
+	/// Overwrite with your own implementation if necessary.
+	bool KKFitResult::IsBetter() const
+	{
+		return KKFitResult::IsBetter(fFitMeasure, fBestCompareValue);
 	}

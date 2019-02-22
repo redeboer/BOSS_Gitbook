@@ -23,7 +23,7 @@
 	class D0phi_KpiKK : public TrackSelector
 	{
 	public:
-		/// @name Constructor and destructors
+		/// @name Constructors
 			///@{
 			D0phi_KpiKK(const std::string &name, ISvcLocator* pSvcLocator);
 			///@}
@@ -40,20 +40,20 @@
 	protected:
 		/// @name Track collections and iterators
 			///@{
-			std::vector<EvtRecTrack*> fKaonNeg; ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$. @todo Decide if this can be formulated in terms of some `fEvtRecTrackMap`.
-			std::vector<EvtRecTrack*> fKaonPos; ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^+\f$.
-			std::vector<EvtRecTrack*> fPionPos; ///< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
 			std::vector<Event::McParticle*> fMcKaonNeg; ///< Vector containing true \f$K^-\f$.
 			std::vector<Event::McParticle*> fMcKaonPos; ///< Vector containing true \f$K^+\f$.
 			std::vector<Event::McParticle*> fMcPionPos; ///< Vector containing true \f$\pi^+\f$.
-			std::vector<EvtRecTrack*>::iterator fKaonNeg1Iter; ///< Iterator for looping over the collection of negative kaons (1st occurence).
-			std::vector<EvtRecTrack*>::iterator fKaonNeg2Iter; ///< Iterator for looping over the collection of negative kaons (2st occurence).
-			std::vector<EvtRecTrack*>::iterator fKaonPosIter;  ///< Iterator for looping over the collection of positive kaons.
-			std::vector<EvtRecTrack*>::iterator fPionPosIter;  ///< Iterator for looping over the collection of positive pions.
 			std::vector<Event::McParticle*>::iterator fMcKaonNeg1Iter; ///< Iterator for looping over the MC collection of negative kaons (1st occurence).
 			std::vector<Event::McParticle*>::iterator fMcKaonNeg2Iter; ///< Iterator for looping over the MC collection of negative kaons (2st occurence).
 			std::vector<Event::McParticle*>::iterator fMcKaonPosIter;  ///< Iterator for looping over the MC collection of positive kaons.
 			std::vector<Event::McParticle*>::iterator fMcPionPosIter;  ///< Iterator for looping over the MC collection of positive pions.
+			std::vector<EvtRecTrack*> fKaonNeg; ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$. @todo Decide if this can be formulated in terms of some `fEvtRecTrackMap`.
+			std::vector<EvtRecTrack*> fKaonPos; ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^+\f$.
+			std::vector<EvtRecTrack*> fPionPos; ///< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
+			std::vector<EvtRecTrack*>::iterator fKaonNeg1Iter; ///< Iterator for looping over the collection of negative kaons (1st occurence).
+			std::vector<EvtRecTrack*>::iterator fKaonNeg2Iter; ///< Iterator for looping over the collection of negative kaons (2st occurence).
+			std::vector<EvtRecTrack*>::iterator fKaonPosIter;  ///< Iterator for looping over the collection of positive kaons.
+			std::vector<EvtRecTrack*>::iterator fPionPosIter;  ///< Iterator for looping over the collection of positive pions.
 			///@}
 
 
@@ -62,7 +62,7 @@
 			NTupleContainer fNTuple_dedx_K;     ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of kaons.
 			NTupleContainer fNTuple_dedx_pi;    ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of pions.
 			NTupleContainer fNTuple_fit4c_all;  ///< `NTuple::Tuple` container for the 4-constraint fit branch containing <i>all</i> combinations.
-			NTupleContainer fNTuple_fit4c_best; ///< `NTuple::Tuple` container for the 5-constraint fit branch containing only the <i>best</i> combination.
+			NTupleContainer fNTuple_fit4c_best; ///< `NTuple::Tuple` container for the 4-constraint fit branch containing only the <i>best</i> combination.
 			NTupleContainer fNTuple_fit_mc;     ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
 			///@}
 
@@ -71,11 +71,6 @@
 		/// @name NTuple methods
 			///@{
 			void AddNTupleItems_Fit(NTupleContainer &tuple);
-			///@}
-
-
-		/// @name Write methods
-			///@{
 			void SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple);
 			///@}
 

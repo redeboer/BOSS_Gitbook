@@ -27,12 +27,12 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	/// Constructor for the `D0phi_KpiKK` algorithm.
+	/// Constructor for the `D0phi_KpiKK` algorithm, derived from `TrackSelector`.
 	/// Here, you should declare properties: give them a name, assign a parameter (data member of `D0phi_KpiKK`), and if required a documentation string. Note that you should define the paramters themselves in the header (D0phi_KpiKK/D0phi_KpiKK.h) and that you should assign the values in `share/D0phi_KpiKK.txt`.
 	D0phi_KpiKK::D0phi_KpiKK(const std::string &name, ISvcLocator* pSvcLocator) :
 		/// * Construct base algorithm `TrackSelector`.
 			TrackSelector(name, pSvcLocator),
-		/// * Construct `NTuple::Tuple` containers.
+		/// * Construct `NTuple::Tuple` containers used in derived classes.
 			fNTuple_dedx_K    ("dedx_K",     "dE/dx of the kaons"),
 			fNTuple_dedx_pi   ("dedx_pi",    "dE/dx of the pions"),
 			fNTuple_fit4c_all ("fit4c_all",  "4-constraint fit information (CMS 4-momentum)"),
@@ -47,11 +47,11 @@
 // * ------- ALGORITHM STEPS ------- * //
 // * =============================== * //
 
+
 	/// (Inherited) `initialize` step of `Algorithm`. This function is called only once, when the algorithm is initialised.
 	/// Define and load `NTuple`s here. Other `NTuple`s have already been defined in the `TrackSelector::initilize` step prior to this this method.
 	StatusCode D0phi_KpiKK::initialize_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
-
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
@@ -80,10 +80,8 @@
 	/// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 	StatusCode D0phi_KpiKK::execute_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
-
 		/// <ol type="A">
 		/// <li> Create selection charged tracks
-
 			// * Print log and set counters *
 				fLog << MSG::DEBUG << "Starting particle selection:" << endmsg;
 				fPIDInstance = ParticleID::instance();
@@ -121,27 +119,42 @@
 						// if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon)) continue; /// If, according to the likelihood method, the particle is still more likely to be a kaon than a pion, the track is rejected.
 						if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `D0phi_KpiKK.txt`).
 						RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
-						if(fTrackKal->charge() > 0) fPionPos.push_back(*fTrackIterator); /// and the (positive) pion is added to the vector of pions.
+						if(fTrackKal->charge()>0) fPionPos.push_back(*fTrackIterator); /// and the (positive) pion is added to the vector of pions.
 					}
 					else {
 						// if(fPIDInstance->pdf(RecMdcKalTrack::kaon) < fPIDInstance->pdf(RecMdcKalTrack::pion)) continue;
 						if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) continue;
 						RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-						if(fTrackKal->charge() < 0) fKaonNeg.push_back(*fTrackIterator);
-						else                        fKaonPos.push_back(*fTrackIterator);
+						if(fTrackKal->charge()<0) fKaonNeg.push_back(*fTrackIterator);
+						else                      fKaonPos.push_back(*fTrackIterator);
 					}
 
 				/// </ol>
 			}
 
-			// * Finish good photon selection *
-			fLog << MSG::DEBUG
-				<< "N_{K^-}  = "  << fKaonNeg.size() << ", "
-				<< "N_{K^+}  = "  << fKaonPos.size() << ", "
-				<< "N_{\pi^+} = " << fPionPos.size() << endmsg;
+
+		/// <li> Create selection of MC truth particles by looping over the collection of MC particles created in `TrackSelector::execute()`. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.
+			if(fEventHeader->runNumber()<0 && fNTuple_fit_mc.DoWrite()) {
+				fMcKaonNeg.clear();
+				fMcKaonPos.clear();
+				fMcPionPos.clear();
+				std::vector<Event::McParticle*>::iterator it;
+				for(it=fMcParticles.begin(); it!=fMcParticles.end(); ++it) {
+					switch((*it)->particleProperty()) {
+						case -321 : fMcKaonNeg.push_back(*it); break;
+						case  321 : fMcKaonPos.push_back(*it); break;
+						case  211 : fMcPionPos.push_back(*it); break;
+						default : fLog << MSG::DEBUG << "No switch case defined for McParticle " << (*it)->particleProperty() << endmsg;
+					}
+				}
+			}
 
 
 		/// <li> @b Write the multiplicities of the selected particles.
+			fLog << MSG::DEBUG
+				<< "N_{K^-} = "  << fKaonNeg.size() << ", "
+				<< "N_{K^+} = "  << fKaonPos.size() << ", "
+				<< "N_{\pi^+} = " << fPionPos.size() << endmsg;
 			if(fNTuple_mult_sel.DoWrite()) {
 				fNTuple_mult_sel.at("NKaonNeg") = fKaonNeg.size();
 				fNTuple_mult_sel.at("NKaonPos") = fKaonPos.size();
@@ -150,25 +163,20 @@
 			}
 
 
-		/// <li> Make selection of MC truth particles by looping over the collection of MC particles created in `TrackSelector::execute()`. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.
-		if(fEventHeader->runNumber()<0 && fNTuple_fit_mc.DoWrite()) {
-			std::vector<Event::McParticle*>::iterator it;
-			fMcKaonNeg.clear();
-			fMcKaonPos.clear();
-			fMcPionPos.clear();
-			for(it=fMcParticles.begin(); it!=fMcParticles.end(); ++it) {
-				switch((*it)->particleProperty()) {
-					case -321 : fMcKaonNeg.push_back(*it); break;
-					case  321 : fMcKaonPos.push_back(*it); break;
-					case  211 : fMcPionPos.push_back(*it); break;
-					default : fLog << MSG::DEBUG << "No switch case defined for McParticle " << (*it)->particleProperty() << endmsg;
-				}
-			} // end of loop over MC particles
-
-
 
 		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
-			if(fMcKaonNeg.size() == 2 && fMcKaonPos.size() == 1 && fMcPionPos.size() == 1)
+			if(fMcKaonNeg.size() != 2) return StatusCode::SUCCESS;
+			if(fMcKaonPos.size() != 1) return StatusCode::SUCCESS;
+			if(fMcPionPos.size() != 1) return StatusCode::SUCCESS;
+
+
+		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
+			if(fNTuple_dedx) {
+				WriteDedxInfoForVector(fKaonNeg, fNTuple_dedx_K);
+				WriteDedxInfoForVector(fKaonPos, fNTuple_dedx_K);
+				WriteDedxInfoForVector(fPionPos, fNTuple_dedx_pi);
+			}
+
 
 		/// <li> Loop over MC truth of final decay products.
 			for(fMcKaonNeg1Iter = fMcKaonNeg.begin(); fMcKaonNeg1Iter != fMcKaonNeg.end(); ++fMcKaonNeg1Iter)
@@ -194,15 +202,6 @@
 					);
 					WriteFitResults(&fitresult, fNTuple_fit_mc);
 				/// </ol>
-			} // end of loop over particle combinations
-		}
-
-
-		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx"` branch)
-			if(fNTuple_dedx) {
-				WriteDedxInfoForVector(fKaonNeg, fNTuple_dedx_K);
-				WriteDedxInfoForVector(fKaonPos, fNTuple_dedx_K);
-				WriteDedxInfoForVector(fPionPos, fNTuple_dedx_pi);
 			}
 
 
@@ -210,14 +209,16 @@
 			if(fNTuple_fit4c_all.DoWrite() || fNTuple_fit4c_best.DoWrite()) {
 				// * Reset best fit parameters * //
 				KKFitResult_D0phi_KpiKK bestKalmanFit;
-				bestKalmanFit.fBestCompareValue     = 1e9;
-				// * Loop over all combinations of K-, K+, and pi+ * //
+				bestKalmanFit.fBestCompareValue = 1e9;
+				// * Loop over all combinations //
 				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
 				for(fKaonNeg2Iter = fKaonNeg.begin(); fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
 				for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter  != fKaonPos.end(); ++fKaonPosIter)
 				for(fPionPosIter  = fPionPos.begin(); fPionPosIter  != fPionPos.end(); ++fPionPosIter)
 				{
-					if(fKaonNeg1Iter == fKaonNeg2Iter) continue;
+					// * Only continue if we are not dealing with the same kaon
+						if(fKaonNeg1Iter == fKaonNeg2Iter) continue;
+
 					// * Get Kalman tracks reconstructed by the MDC
 						RecMdcKalTrack* kalTrkKm1 = (*fKaonNeg1Iter)->mdcKalTrack();
 						RecMdcKalTrack* kalTrkKm2 = (*fKaonNeg2Iter)->mdcKalTrack();
@@ -230,7 +231,7 @@
 						WTrackParameter wvKpTrk (gM_K,  kalTrkKp ->getZHelix(), kalTrkKp ->getZError());
 						WTrackParameter wvpipTrk(gM_pi, kalTrkpip->getZHelix(), kalTrkpip->getZError());
 
-					// * Test vertex fit
+					// * Initiate vertex fit * //
 						HepPoint3D vx(0., 0., 0.);
 						HepSymMatrix Evx(3, 0);
 						double bx = 1E+6;
@@ -239,11 +240,11 @@
 						Evx[0][0] = bx*bx;
 						Evx[1][1] = by*by;
 						Evx[2][2] = bz*bz;
-
 						VertexParameter vxpar;
 						vxpar.setVx(vx);
 						vxpar.setEvx(Evx);
 
+					// * Test vertex fit * //
 						VertexFit* vtxfit = VertexFit::instance();
 						vtxfit->init();
 						vtxfit->AddTrack(0, wvKmTrk1);
@@ -266,18 +267,19 @@
 							/// <ol>
 							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
 							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
-							/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
+							/// <li> Construct fit result object for this combintation.
 							KKFitResult_D0phi_KpiKK fitresult(kkmfit);
+							/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
 							WriteFitResults(&fitresult, fNTuple_fit4c_all);
-							/// <li> Decide if this fit is better than the previous
+							/// <li> Decide if this fit is better than the previous.
 							if(fitresult.IsBetter()) bestKalmanFit = fitresult;
 							/// </ol>
 						}
-				} // end of loop over particle combinations
-		/// <li> @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best_*"` branches)
+				}
+				/// After loop over combintations:
+				/// @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best_*"` branches).
 				WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
-
-			} // end of fNTuple_fit4c_.DoWrite()*
+			}
 
 
 		/// </ol>
@@ -285,11 +287,9 @@
 	}
 
 
-	/// Currently does nothing. Cut flow could be printed in this step.
-	/// @todo Add log output to `finalize` step.
+	/// Currently does nothing. See `TrackSelector::finalize` for what else is done when finalising.
 	StatusCode D0phi_KpiKK::finalize_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
-
 		return StatusCode::SUCCESS;
 	}
 

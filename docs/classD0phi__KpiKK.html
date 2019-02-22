@@ -102,9 +102,9 @@ Inheritance diagram for D0phi_KpiKK:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Constructor and destructors</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constructors</div></td></tr>
 <tr class="memitem:a8bd58f92dd541a395caadb7a879fe55a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a8bd58f92dd541a395caadb7a879fe55a">D0phi_KpiKK</a> (const std::string &amp;name, ISvcLocator *pSvcLocator)</td></tr>
-<tr class="memdesc:a8bd58f92dd541a395caadb7a879fe55a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classD0phi__KpiKK.html" title="Analyse  events. ">D0phi_KpiKK</a></code> algorithm.  <a href="#a8bd58f92dd541a395caadb7a879fe55a">More...</a><br /></td></tr>
+<tr class="memdesc:a8bd58f92dd541a395caadb7a879fe55a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classD0phi__KpiKK.html" title="Analyse  events. ">D0phi_KpiKK</a></code> algorithm, derived from <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code>.  <a href="#a8bd58f92dd541a395caadb7a879fe55a">More...</a><br /></td></tr>
 <tr class="separator:a8bd58f92dd541a395caadb7a879fe55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Derived Algorithm steps</div></td></tr>
 <tr class="memitem:a72e81af7a2e5613c50f149200c8e0518"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a72e81af7a2e5613c50f149200c8e0518">initialize_rest</a> ()</td></tr>
@@ -114,12 +114,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0be43dabc8154883ec2f0bf20cab38b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code>. This function is called <em>for each event</em>.  <a href="#a0be43dabc8154883ec2f0bf20cab38b4">More...</a><br /></td></tr>
 <tr class="separator:a0be43dabc8154883ec2f0bf20cab38b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a337a27a8e41b2767aefc07a84e0b9752"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752">finalize_rest</a> ()</td></tr>
-<tr class="memdesc:a337a27a8e41b2767aefc07a84e0b9752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently does nothing.  <a href="#a337a27a8e41b2767aefc07a84e0b9752">More...</a><br /></td></tr>
+<tr class="memdesc:a337a27a8e41b2767aefc07a84e0b9752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently does nothing. See <code><a class="el" href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46" title="Is called at the end of the entire process. Writes total cut flow to terminal and to the output file...">TrackSelector::finalize</a></code> for what else is done when finalising.  <a href="#a337a27a8e41b2767aefc07a84e0b9752">More...</a><br /></td></tr>
 <tr class="separator:a337a27a8e41b2767aefc07a84e0b9752"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classTrackSelector"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classTrackSelector')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classTrackSelector.html">TrackSelector</a></td></tr>
-<tr class="memitem:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">TrackSelector</a> (const std::string &amp;name, ISvcLocator *pSvcLocator)</td></tr>
-<tr class="memdesc:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> algorithm.  <a href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">More...</a><br /></td></tr>
-<tr class="separator:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">initialize</a> ()</td></tr>
 <tr class="memdesc:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>. This function is called once in the beginning <em>of each run</em>. Define and load NTuples here. The <code>NTuples</code> will become the <code>TTree</code>s in the eventual ROOT file, the added <code>NTuple::Item</code>s will be the branches of those trees.  <a href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">More...</a><br /></td></tr>
 <tr class="separator:a66444e69d52ba9b5d861916fa072c4a4 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,19 +126,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46">finalize</a> ()</td></tr>
 <tr class="memdesc:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is called at the end <em>of the entire process</em>. Writes total cut flow to terminal and to the output file.  <a href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46">More...</a><br /></td></tr>
 <tr class="separator:ac12f71603152e155a688861d11c51c46 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">TrackSelector</a> (const std::string &amp;name, ISvcLocator *pSvcLocator)</td></tr>
+<tr class="memdesc:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> base algorithm.  <a href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">More...</a><br /></td></tr>
+<tr class="separator:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1208e2cca3e227978fea89f86116bfa3 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1208e2cca3e227978fea89f86116bfa3">PostConstructor</a> ()</td></tr>
+<tr class="memdesc:a1208e2cca3e227978fea89f86116bfa3 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rather dubious construction, but this method is required and <b>has to be called at the end of each derived constructor</b>.  <a href="classTrackSelector.html#a1208e2cca3e227978fea89f86116bfa3">More...</a><br /></td></tr>
+<tr class="separator:a1208e2cca3e227978fea89f86116bfa3 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Track collections and iterators</div></td></tr>
-<tr class="memitem:afd19015366820f50472c723e6610e53e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#afd19015366820f50472c723e6610e53e">fKaonNeg</a></td></tr>
-<tr class="memdesc:afd19015366820f50472c723e6610e53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^-$" src="form_1.png"/>.  <a href="#afd19015366820f50472c723e6610e53e">More...</a><br /></td></tr>
-<tr class="separator:afd19015366820f50472c723e6610e53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20554939bd2bb2eea7d6715ec903e108"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a20554939bd2bb2eea7d6715ec903e108">fKaonPos</a></td></tr>
-<tr class="memdesc:a20554939bd2bb2eea7d6715ec903e108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^+$" src="form_2.png"/>.  <a href="#a20554939bd2bb2eea7d6715ec903e108">More...</a><br /></td></tr>
-<tr class="separator:a20554939bd2bb2eea7d6715ec903e108"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f0f6eced07ae025fac22c189f48f758"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a0f0f6eced07ae025fac22c189f48f758">fPionPos</a></td></tr>
-<tr class="memdesc:a0f0f6eced07ae025fac22c189f48f758"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>.  <a href="#a0f0f6eced07ae025fac22c189f48f758">More...</a><br /></td></tr>
-<tr class="separator:a0f0f6eced07ae025fac22c189f48f758"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69a087df8aa5e2d39b2e1a20ab7b5b74"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Event::McParticle * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a69a087df8aa5e2d39b2e1a20ab7b5b74">fMcKaonNeg</a></td></tr>
 <tr class="memdesc:a69a087df8aa5e2d39b2e1a20ab7b5b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector containing true <img class="formulaInl" alt="$K^-$" src="form_1.png"/>.  <a href="#a69a087df8aa5e2d39b2e1a20ab7b5b74">More...</a><br /></td></tr>
 <tr class="separator:a69a087df8aa5e2d39b2e1a20ab7b5b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,18 +145,6 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a9c00a16d9bd1ee286e50ad6eb68ced3a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Event::McParticle * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a9c00a16d9bd1ee286e50ad6eb68ced3a">fMcPionPos</a></td></tr>
 <tr class="memdesc:a9c00a16d9bd1ee286e50ad6eb68ced3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector containing true <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>.  <a href="#a9c00a16d9bd1ee286e50ad6eb68ced3a">More...</a><br /></td></tr>
 <tr class="separator:a9c00a16d9bd1ee286e50ad6eb68ced3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebcf4c26733e5acf860f729f69aea22e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#aebcf4c26733e5acf860f729f69aea22e">fKaonNeg1Iter</a></td></tr>
-<tr class="memdesc:aebcf4c26733e5acf860f729f69aea22e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of negative kaons (1st occurence).  <a href="#aebcf4c26733e5acf860f729f69aea22e">More...</a><br /></td></tr>
-<tr class="separator:aebcf4c26733e5acf860f729f69aea22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e7b9cd8c6e71952ce5693903dea34ba"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a6e7b9cd8c6e71952ce5693903dea34ba">fKaonNeg2Iter</a></td></tr>
-<tr class="memdesc:a6e7b9cd8c6e71952ce5693903dea34ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of negative kaons (2st occurence).  <a href="#a6e7b9cd8c6e71952ce5693903dea34ba">More...</a><br /></td></tr>
-<tr class="separator:a6e7b9cd8c6e71952ce5693903dea34ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdf17b5e0828c64f8f7597f69e797c9b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#abdf17b5e0828c64f8f7597f69e797c9b">fKaonPosIter</a></td></tr>
-<tr class="memdesc:abdf17b5e0828c64f8f7597f69e797c9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of positive kaons.  <a href="#abdf17b5e0828c64f8f7597f69e797c9b">More...</a><br /></td></tr>
-<tr class="separator:abdf17b5e0828c64f8f7597f69e797c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78d6aaabd91bde8018fcb1a3bdbaaa95"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a78d6aaabd91bde8018fcb1a3bdbaaa95">fPionPosIter</a></td></tr>
-<tr class="memdesc:a78d6aaabd91bde8018fcb1a3bdbaaa95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of positive pions.  <a href="#a78d6aaabd91bde8018fcb1a3bdbaaa95">More...</a><br /></td></tr>
-<tr class="separator:a78d6aaabd91bde8018fcb1a3bdbaaa95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63d54152d8a6fe1f3a02f8a109206579"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Event::McParticle * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a63d54152d8a6fe1f3a02f8a109206579">fMcKaonNeg1Iter</a></td></tr>
 <tr class="memdesc:a63d54152d8a6fe1f3a02f8a109206579"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the MC collection of negative kaons (1st occurence).  <a href="#a63d54152d8a6fe1f3a02f8a109206579">More...</a><br /></td></tr>
 <tr class="separator:a63d54152d8a6fe1f3a02f8a109206579"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,6 +157,27 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a50fa3b34681c5ce75c05c1ff1e5fc369"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Event::McParticle * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a50fa3b34681c5ce75c05c1ff1e5fc369">fMcPionPosIter</a></td></tr>
 <tr class="memdesc:a50fa3b34681c5ce75c05c1ff1e5fc369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the MC collection of positive pions.  <a href="#a50fa3b34681c5ce75c05c1ff1e5fc369">More...</a><br /></td></tr>
 <tr class="separator:a50fa3b34681c5ce75c05c1ff1e5fc369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd19015366820f50472c723e6610e53e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#afd19015366820f50472c723e6610e53e">fKaonNeg</a></td></tr>
+<tr class="memdesc:afd19015366820f50472c723e6610e53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^-$" src="form_1.png"/>.  <a href="#afd19015366820f50472c723e6610e53e">More...</a><br /></td></tr>
+<tr class="separator:afd19015366820f50472c723e6610e53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20554939bd2bb2eea7d6715ec903e108"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a20554939bd2bb2eea7d6715ec903e108">fKaonPos</a></td></tr>
+<tr class="memdesc:a20554939bd2bb2eea7d6715ec903e108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^+$" src="form_2.png"/>.  <a href="#a20554939bd2bb2eea7d6715ec903e108">More...</a><br /></td></tr>
+<tr class="separator:a20554939bd2bb2eea7d6715ec903e108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f0f6eced07ae025fac22c189f48f758"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a0f0f6eced07ae025fac22c189f48f758">fPionPos</a></td></tr>
+<tr class="memdesc:a0f0f6eced07ae025fac22c189f48f758"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>.  <a href="#a0f0f6eced07ae025fac22c189f48f758">More...</a><br /></td></tr>
+<tr class="separator:a0f0f6eced07ae025fac22c189f48f758"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebcf4c26733e5acf860f729f69aea22e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#aebcf4c26733e5acf860f729f69aea22e">fKaonNeg1Iter</a></td></tr>
+<tr class="memdesc:aebcf4c26733e5acf860f729f69aea22e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of negative kaons (1st occurence).  <a href="#aebcf4c26733e5acf860f729f69aea22e">More...</a><br /></td></tr>
+<tr class="separator:aebcf4c26733e5acf860f729f69aea22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e7b9cd8c6e71952ce5693903dea34ba"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a6e7b9cd8c6e71952ce5693903dea34ba">fKaonNeg2Iter</a></td></tr>
+<tr class="memdesc:a6e7b9cd8c6e71952ce5693903dea34ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of negative kaons (2st occurence).  <a href="#a6e7b9cd8c6e71952ce5693903dea34ba">More...</a><br /></td></tr>
+<tr class="separator:a6e7b9cd8c6e71952ce5693903dea34ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdf17b5e0828c64f8f7597f69e797c9b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#abdf17b5e0828c64f8f7597f69e797c9b">fKaonPosIter</a></td></tr>
+<tr class="memdesc:abdf17b5e0828c64f8f7597f69e797c9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of positive kaons.  <a href="#abdf17b5e0828c64f8f7597f69e797c9b">More...</a><br /></td></tr>
+<tr class="separator:abdf17b5e0828c64f8f7597f69e797c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78d6aaabd91bde8018fcb1a3bdbaaa95"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a78d6aaabd91bde8018fcb1a3bdbaaa95">fPionPosIter</a></td></tr>
+<tr class="memdesc:a78d6aaabd91bde8018fcb1a3bdbaaa95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for looping over the collection of positive pions.  <a href="#a78d6aaabd91bde8018fcb1a3bdbaaa95">More...</a><br /></td></tr>
+<tr class="separator:a78d6aaabd91bde8018fcb1a3bdbaaa95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">NTuples (eventual TTrees)</div></td></tr>
 <tr class="memitem:abf62484c9b057bc1315a14a01e6afe33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleContainer.html">NTupleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#abf62484c9b057bc1315a14a01e6afe33">fNTuple_dedx_K</a></td></tr>
 <tr class="memdesc:abf62484c9b057bc1315a14a01e6afe33"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> of kaons.  <a href="#abf62484c9b057bc1315a14a01e6afe33">More...</a><br /></td></tr>
@@ -186,7 +189,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a857891de8f3e33fda989b679ddbf8dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the 4-constraint fit branch containing <em>all</em> combinations.  <a href="#a857891de8f3e33fda989b679ddbf8dc2">More...</a><br /></td></tr>
 <tr class="separator:a857891de8f3e33fda989b679ddbf8dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30ce41f2bade5dc32370f69dd91a940a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleContainer.html">NTupleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a30ce41f2bade5dc32370f69dd91a940a">fNTuple_fit4c_best</a></td></tr>
-<tr class="memdesc:a30ce41f2bade5dc32370f69dd91a940a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the 5-constraint fit branch containing only the <em>best</em> combination.  <a href="#a30ce41f2bade5dc32370f69dd91a940a">More...</a><br /></td></tr>
+<tr class="memdesc:a30ce41f2bade5dc32370f69dd91a940a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the 4-constraint fit branch containing only the <em>best</em> combination.  <a href="#a30ce41f2bade5dc32370f69dd91a940a">More...</a><br /></td></tr>
 <tr class="separator:a30ce41f2bade5dc32370f69dd91a940a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6debe9f97c92ef6e13492cad1c2b5501"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleContainer.html">NTupleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a6debe9f97c92ef6e13492cad1c2b5501">fNTuple_fit_mc</a></td></tr>
 <tr class="memdesc:a6debe9f97c92ef6e13492cad1c2b5501"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the 4-constraint fit of MC truth.  <a href="#a6debe9f97c92ef6e13492cad1c2b5501">More...</a><br /></td></tr>
@@ -253,7 +256,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:aa60bae0909be3c83b0154eda59bc9d52 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the data from the Time-of-Flight outer barrel detector branch.  <a href="classTrackSelector.html#aa60bae0909be3c83b0154eda59bc9d52">More...</a><br /></td></tr>
 <tr class="separator:aa60bae0909be3c83b0154eda59bc9d52 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad55766b1e861a00c51247237bb53d3d3 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleContainer.html">NTupleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad55766b1e861a00c51247237bb53d3d3">fNTuple_charged</a></td></tr>
-<tr class="memdesc:ad55766b1e861a00c51247237bb53d3d3 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the charged track vertex info charged track vertex branch.  <a href="classTrackSelector.html#ad55766b1e861a00c51247237bb53d3d3">More...</a><br /></td></tr>
+<tr class="memdesc:ad55766b1e861a00c51247237bb53d3d3 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the charged track vertex branch.  <a href="classTrackSelector.html#ad55766b1e861a00c51247237bb53d3d3">More...</a><br /></td></tr>
 <tr class="separator:ad55766b1e861a00c51247237bb53d3d3 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af537061769db9ee47f86f6fc18e45035 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleContainer.html">NTupleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af537061769db9ee47f86f6fc18e45035">fNTuple_dedx</a></td></tr>
 <tr class="memdesc:af537061769db9ee47f86f6fc18e45035 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/>) branch.  <a href="classTrackSelector.html#af537061769db9ee47f86f6fc18e45035">More...</a><br /></td></tr>
@@ -309,7 +312,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a901e31293863843b8b942720e8a594d8 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the photon energy.  <a href="classTrackSelector.html#a901e31293863843b8b942720e8a594d8">More...</a><br /></td></tr>
 <tr class="separator:a901e31293863843b8b942720e8a594d8 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8db8316d9e9d3e3f1742ba0f9cf753d5 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8db8316d9e9d3e3f1742ba0f9cf753d5">fCut_PIDChiSq</a></td></tr>
-<tr class="memdesc:a8db8316d9e9d3e3f1742ba0f9cf753d5 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_72.png"/> of the kinematic Kalman fits.  <a href="classTrackSelector.html#a8db8316d9e9d3e3f1742ba0f9cf753d5">More...</a><br /></td></tr>
+<tr class="memdesc:a8db8316d9e9d3e3f1742ba0f9cf753d5 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_73.png"/> of the kinematic Kalman fits.  <a href="classTrackSelector.html#a8db8316d9e9d3e3f1742ba0f9cf753d5">More...</a><br /></td></tr>
 <tr class="separator:a8db8316d9e9d3e3f1742ba0f9cf753d5 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9858b0f0874a92d2046843649b3ae12 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab9858b0f0874a92d2046843649b3ae12">fCut_PIDProb</a></td></tr>
 <tr class="memdesc:ab9858b0f0874a92d2046843649b3ae12 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See for instance <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6"><code>ParticleID::probPion</code></a>.  <a href="classTrackSelector.html#ab9858b0f0874a92d2046843649b3ae12">More...</a><br /></td></tr>
@@ -333,7 +336,6 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a95d7ef9fdc6df8ce8a40847e11ad1dde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a95d7ef9fdc6df8ce8a40847e11ad1dde">AddNTupleItems_Fit</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:a95d7ef9fdc6df8ce8a40847e11ad1dde"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the fit branches.  <a href="#a95d7ef9fdc6df8ce8a40847e11ad1dde">More...</a><br /></td></tr>
 <tr class="separator:a95d7ef9fdc6df8ce8a40847e11ad1dde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Write methods</div></td></tr>
 <tr class="memitem:a8963d8f75eb7bdaa03a393dd164b7122"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0phi__KpiKK.html#a8963d8f75eb7bdaa03a393dd164b7122">SetFitNTuple</a> (<a class="el" href="classKKFitResult.html">KKFitResult</a> *fitresults, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:a8963d8f75eb7bdaa03a393dd164b7122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specification of what should be written to the fit <code>NTuple</code>. This function is called in <code><a class="el" href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d" title="This virtual method has been declared in the base algorithm to standardise the writing of a fit tuple...">TrackSelector::WriteFitResults</a></code>.  <a href="#a8963d8f75eb7bdaa03a393dd164b7122">More...</a><br /></td></tr>
 <tr class="separator:a8963d8f75eb7bdaa03a393dd164b7122"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -356,6 +358,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d">WriteFitResults</a> (<a class="el" href="classKKFitResult.html">KKFitResult</a> *fitresult, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This <code>virtual</code> method has been declared in the base algorithm to standardise the writing of a fit tuple.  <a href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d">More...</a><br /></td></tr>
 <tr class="separator:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a02ff35ff9eec0b32ef179cd724d1c0 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5a02ff35ff9eec0b32ef179cd724d1c0">PrintFunctionName</a> (const char *class_name, const char *function_name)</td></tr>
+<tr class="memdesc:a5a02ff35ff9eec0b32ef179cd724d1c0 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print function for debugging purposes.  <a href="classTrackSelector.html#a5a02ff35ff9eec0b32ef179cd724d1c0">More...</a><br /></td></tr>
+<tr class="separator:a5a02ff35ff9eec0b32ef179cd724d1c0 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">ParticleID *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">InitializePID</a> (const int method, const int pidsys, const int pidcase, const double chimin=4.)</td></tr>
 <tr class="memdesc:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that standardizes the initialisation of the particle identification system.  <a href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">More...</a><br /></td></tr>
 <tr class="separator:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -402,7 +407,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor for the <code><a class="el" href="classD0phi__KpiKK.html" title="Analyse  events. ">D0phi_KpiKK</a></code> algorithm. </p>
+<p>Constructor for the <code><a class="el" href="classD0phi__KpiKK.html" title="Analyse  events. ">D0phi_KpiKK</a></code> algorithm, derived from <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code>. </p>
 <p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classD0phi__KpiKK.html" title="Analyse  events. ">D0phi_KpiKK</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="D0phi__KpiKK_8h.html">D0phi_KpiKK/D0phi_KpiKK.h</a>) and that you should assign the values in <code>share/D0phi_KpiKK.txt</code>. </p>
 
 <p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00032">32</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
@@ -444,7 +449,7 @@ Additional Inherited Members</h2></td></tr>
 <li><code>"chisq"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_13.png"/> of the Kalman kinematic fit. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00324">324</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00320">320</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -514,15 +519,19 @@ Additional Inherited Members</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
+<p class="startli">Create selection of MC truth particles by looping over the collection of MC particles created in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute()</a></code>. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.</p>
+<p class="endli"></p>
+</li>
+<li>
 <p class="startli"><b>Write</b> the multiplicities of the selected particles.</p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Make selection of MC truth particles by looping over the collection of MC particles created in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute()</a></code>. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.</p>
+<p class="startli">Apply a strict cut on the number of particles: <em>only 2 negative kaons, 1 positive kaon, and 1 positive pion</em></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Apply a strict cut on the number of particles: <em>only 2 negative kaons, 1 positive kaon, and 1 positive pion</em></p>
+<p class="startli"><b>Write</b> <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> PID information (<code>"dedx_*"</code> branchs)</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -544,10 +553,6 @@ Additional Inherited Members</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><b>Write</b> <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> PID information (<code>"dedx"</code> branch)</p>
-<p class="endli"></p>
-</li>
-<li>
 <p class="startli">Perform Kalman 4-constraint Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of: <img class="formulaInl" alt="$m_{K^-K^+}-m_{\phi}$" src="form_11.png"/> (that is the combination for which the invariant mass of the <img class="formulaInl" alt="$K^-\pi^+$" src="form_12.png"/> is closest to <img class="formulaInl" alt="$\phi$" src="form_7.png"/>). See <code>D0phi_KpiKK::MeasureForBestFit</code> for the definition of this measure.</p>
 <ol>
 <li>
@@ -555,25 +560,26 @@ Additional Inherited Members</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
+<p class="startli">Construct fit result object for this combintation.</p>
+<p class="endli"></p>
+</li>
+<li>
 <p class="startli"><b>Write</b> results of the Kalman kinematic fit (all combinations, <code>"fit4c_all"</code>).</p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Decide if this fit is better than the previous</p>
+<p class="startli">Decide if this fit is better than the previous.</p>
 <p class="endli"></p>
 </li>
 </ol>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli"><b>Write</b> results of the Kalman kitematic fit <em>of the best combination</em> (<code>"fit4c_best_*"</code> branches)</p>
+<p>After loop over combintations: <b>Write</b> results of the Kalman kitematic fit <em>of the best combination</em> (<code>"fit4c_best_*"</code> branches).</p>
 <p class="endli"></p>
 </li>
 </ol>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a421380908922f9d240213014c2508360">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00083">83</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00081">81</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -600,12 +606,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Currently does nothing. </p>
-<p>Cut flow could be printed in this step. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Add log output to <code>finalize</code> step. </dd></dl>
+<p>Currently does nothing. See <code><a class="el" href="classTrackSelector.html#ac12f71603152e155a688861d11c51c46" title="Is called at the end of the entire process. Writes total cut flow to terminal and to the output file...">TrackSelector::finalize</a></code> for what else is done when finalising. </p>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a96c7c12f231c8cd622d7e5a6742d80a0">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00293">293</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00291">291</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -705,14 +710,14 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Specification of what should be written to the fit <code>NTuple</code>. This function is called in <code><a class="el" href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d" title="This virtual method has been declared in the base algorithm to standardise the writing of a fit tuple...">TrackSelector::WriteFitResults</a></code>. </p>
 <ol type="1">
-<li>Convert to the derived object of <code><a class="el" href="classKKFitResult.html" title="/ Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a></code> designed for this package. <dl class="section remark"><dt>Remarks</dt><dd>This cast is required and cannot be solved using virtual methods, because of the specific structure of each analysis.</dd></dl>
+<li>Convert to the derived object of <code><a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a></code> designed for this package. <dl class="section remark"><dt>Remarks</dt><dd>This cast is required and cannot be solved using virtual methods, because of the specific structure of each analysis.</dd></dl>
 </li>
 <li>Set the <code>NTuple::Item</code>s. </li>
 </ol>
 
 <p>Implements <a class="el" href="classTrackSelector.html#ac29ffb6542a27402d12c001d1a2d5809">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00308">308</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8cxx_source.html#l00304">304</a> of file <a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a>.</p>
 
 </div>
 </div>
@@ -740,7 +745,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^-$" src="form_1.png"/>. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Decide if this can be formulated in terms of some <code>fEvtRecTrackMap</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00043">43</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00050">50</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -766,7 +771,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of negative kaons (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00049">49</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00053">53</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -792,7 +797,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of negative kaons (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00050">50</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00054">54</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -818,7 +823,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^+$" src="form_2.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00044">44</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00051">51</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -844,7 +849,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of positive kaons. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00051">51</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00055">55</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -870,7 +875,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector containing true <img class="formulaInl" alt="$K^-$" src="form_1.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00046">46</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00043">43</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -896,7 +901,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of negative kaons (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00053">53</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00046">46</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -922,7 +927,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of negative kaons (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00054">54</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00047">47</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -948,7 +953,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector containing true <img class="formulaInl" alt="$K^+$" src="form_2.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00047">47</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00044">44</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -974,7 +979,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of positive kaons. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00055">55</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00048">48</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1000,7 +1005,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector containing true <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00048">48</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00045">45</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1026,7 +1031,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of positive pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00056">56</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00049">49</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1128,7 +1133,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><code>NTuple::Tuple</code> container for the 5-constraint fit branch containing only the <em>best</em> combination. </p>
+<p><code>NTuple::Tuple</code> container for the 4-constraint fit branch containing only the <em>best</em> combination. </p>
 
 <p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00065">65</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
@@ -1182,7 +1187,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00045">45</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00052">52</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
@@ -1208,14 +1213,13 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of positive pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00052">52</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0phi__KpiKK_8h_source.html#l00056">56</a> of file <a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="D0phi__KpiKK_8h_source.html">D0phi_KpiKK.h</a></li>
 <li><a class="el" href="D0phi__KpiKK_8cxx_source.html">D0phi_KpiKK.cxx</a></li>
-<li><a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

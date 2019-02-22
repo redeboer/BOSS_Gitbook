@@ -5,7 +5,9 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+
 	#include "TrackSelector/TrackSelector.h"
+	#include "rhopi_pipigg/KKFitResult_rhopi_pipigg.h"
 
 
 
@@ -38,37 +40,32 @@
 	protected:
 		/// @name Track collections and iterators
 			///@{
-			std::vector<EvtRecTrack*> fGamma;   ///< Vector that contains a selection of pointers to neutral tracks identified as \f$\gamma\f$.
+			std::vector<Event::McParticle*> fMcPhotons; ///< Vector containing true \f$\gamma\f$'s.
+			std::vector<Event::McParticle*> fMcPionNeg; ///< Vector containing true \f$\pi^-\f$.
+			std::vector<Event::McParticle*> fMcPionPos; ///< Vector containing true \f$\pi^+\f$.
+			std::vector<Event::McParticle*>::iterator fMcPhoton1Iter; ///< Iterator for looping over the MC collection of photons (1st occurence).
+			std::vector<Event::McParticle*>::iterator fMcPhoton2Iter; ///< Iterator for looping over the MC collection of photons (2st occurence).
+			std::vector<Event::McParticle*>::iterator fMcPionNegIter; ///< Iterator for looping over the MC collection of negative pions.
+			std::vector<Event::McParticle*>::iterator fMcPionPosIter; ///< Iterator for looping over the MC collection of positive pions.
+			std::vector<EvtRecTrack*> fPhotons; ///< Vector that contains a selection of pointers to neutral tracks identified as \f$\gamma\f$.
 			std::vector<EvtRecTrack*> fPionNeg; ///< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^-\f$.
 			std::vector<EvtRecTrack*> fPionPos; ///< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
-			std::vector<EvtRecTrack*>::iterator fGamma1Iter;  ///< Iterator for looping over the collection of gamma's (1st occurence).
-			std::vector<EvtRecTrack*>::iterator fGamma2Iter;  ///< Iterator for looping over the collection of gamma's (2st occurence).
+			std::vector<EvtRecTrack*>::iterator fPhoton1Iter; ///< Iterator for looping over the collection of photons (1st occurence).
+			std::vector<EvtRecTrack*>::iterator fPhoton2Iter; ///< Iterator for looping over the collection of photons (2st occurence).
 			std::vector<EvtRecTrack*>::iterator fPionNegIter; ///< Iterator for looping over the collection of negative pions.
 			std::vector<EvtRecTrack*>::iterator fPionPosIter; ///< Iterator for looping over the collection of positive pions.
 			///@}
 
 
-		/// @name Control switches
+		/// @name NTuples (eventual TTrees)
 			///@{
-			bool fWrite_mult_select; ///< Package property that determines whether or not to write the multiplicities <i>of the selected particles</i>.
-			bool fWrite_photon;      ///< Package property that determines whether or not to write angle info from the photons.
-			bool fWrite_fit4c_all;   ///< Package property that determines whether or not to write results of the `4C` fit <i>for all combinations</i>.
-			bool fWrite_fit4c_best;  ///< Package property that determines whether or not to write results of the `4C` fit for the combination closest to the expected masses.
-			bool fWrite_fit5c_all;   ///< Package property that determines whether or not to write results of the `5C` fit <i>for all combinations</i>.
-			bool fWrite_fit5c_best;  ///< Package property that determines whether or not to write results of the `5C` fit for the combination closest to the expected masses.
+			NTupleContainer fNTuple_dedx_pi; ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of pions.
+			NTupleContainer fNTuple_fit4c;   ///< `NTuple::Tuple` container for the 4-constraint fit branch containing <i>all</i> combinations.
+			NTupleContainer fNTuple_fit5c;   ///< `NTuple::Tuple` container for the 5-constraint fit branch containing <i>all</i> combinations.
+			NTupleContainer fNTuple_fit_mc;  ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
+			NTupleContainer fNTuple_photon;  ///< `NTuple::Tuple` container for the photon branch.
 			///@}
 
-
-		// ! NTuple data members ! //
-		/// @name Maps of NTuples
-			///@{
-			std::map<std::string, NTuple::Item<double> > fMap_photon;     ///< Container for the `"gamma"` branch.
-			std::map<std::string, NTuple::Item<double> > fMap_dedx_pi;    ///< Container for the `"dedx_pi"` branch.
-			std::map<std::string, NTuple::Item<double> > fMap_fit4c_all;  ///< Container for the `"fit4c_all"` branch.
-			std::map<std::string, NTuple::Item<double> > fMap_fit4c_best; ///< Container for the `"fit4c_best"` branch.
-			std::map<std::string, NTuple::Item<double> > fMap_fit5c_all;  ///< Container for the `"fit5c_all"` branch.
-			std::map<std::string, NTuple::Item<double> > fMap_fit5c_best; ///< Container for the `"fit5c_best"` branch.
-			///@}
 
 		/// @name Counters and cut objects
 			///@{
@@ -77,7 +74,22 @@
 			CutObject fCut_GammaAngle; ///< Cut on angle between the photon and the nearest charged track <i>in degrees</i>.
 			///@}
 
+
 	private:
+		/// @name NTuple methods
+			///@{
+			void AddNTupleItems_Fit(NTupleContainer &tuple);
+			void SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple);
+			///@}
+
+
+		/// @name Computational
+			///@{
+			HepLorentzVector ComputeGammaVector(EvtRecTrack* track);
+			void SetSmallestAngles(std::vector<EvtRecTrack*>::iterator &iter, std::vector<EvtRecTrack*> &vec, Hep3Vector &emcpos);
+			///@}
+
+
 		/// @name Invariant masses
 			///@{
 			double fM_pi0;      ///< Invariant mass of \f$\pi^0 \rightarrow \gamma\gamma\f$.
@@ -89,6 +101,7 @@
 			double fM_JpsiRhop; ///< Invariant mass of \f$J/\psi \rightarrow \rho^-\pi^+\f$.
 			///@}
 
+
 		/// @name Other stored values
 			///@{
 			double fE_gamma1;   ///< Energy of the first photon.
@@ -98,15 +111,6 @@
 			double fSmallestPhi;   ///< Current smallest \f$\phi\f$ angle between the photons and the charged tracks.
 			double fSmallestTheta; ///< Current smallest \f$\theta\f$ angle between the photons and the charged tracks.
 			///@}
-		
-		// * Private methods * //
-			HepLorentzVector ComputeGammaVector(EvtRecTrack* track);
-			double MeasureForBestFit4c();
-			double MeasureForBestFit5c();
-			void BookNtupleItemsFit(const char* tupleName, std::map<std::string, NTuple::Item<double> > &map, const char* tupleTitle);
-			void ComputeInvariantMasses(KalmanKinematicFit *kkmfit);
-			void SetSmallestAngles(std::vector<EvtRecTrack*>::iterator &iter, std::vector<EvtRecTrack*> &vec, Hep3Vector &emcpos);
-			void WriteFitResults(KalmanKinematicFit *kkmfit, std::map<std::string, NTuple::Item<double> > &map, const char *tupleName);
 
 
 	};

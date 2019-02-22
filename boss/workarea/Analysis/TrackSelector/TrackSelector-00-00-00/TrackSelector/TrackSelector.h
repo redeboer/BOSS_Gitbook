@@ -99,6 +99,7 @@
 			void PostConstructor();
 			///@}
 
+
 		/// @name Gaudi Algorithm steps
 			///@{
 			StatusCode initialize();

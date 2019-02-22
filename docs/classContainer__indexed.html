@@ -166,7 +166,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an extension of the <code><a class="el" href="classContainer__base.html" title="This class is the base class for objects requiring a name and a description. ">Container_base</a></code> base class that in addition keeps track of all instanecs in a static mapping of all its instances. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>Consider implementing <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">Curiously Recurring Template Pattern</a> for independent objects of <code>fInstances</code> in derived classes.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Consider implementing <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">Curiously Recurring Template Pattern</a> for independent objects of <code>fInstances</code> in derived classes.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 20th, 2019 </dd></dl>
 
@@ -369,8 +369,8 @@ template&lt;class TYPE &gt; </div>
 
 <p>Read access to <code>fInstances</code> mapping. </p>
 <p>Helper method that allows you to to check whether a key already exists in .</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd><code>Instances</code> function necessary? </dd></dl>
-<p>This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Use error handling for existing keys, not <code>terminate</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd><code>Instances</code> function necessary? </dd></dl>
+<p>This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Use error handling for existing keys, not <code>terminate</code>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Currently redudant, because of the <code>terminate</code>, but returns <code>false</code> at the end. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Contains fatal <code>terminate</code> statement when double booking! Consider turning into a <code>return</code> statement. </dd></dl>
 

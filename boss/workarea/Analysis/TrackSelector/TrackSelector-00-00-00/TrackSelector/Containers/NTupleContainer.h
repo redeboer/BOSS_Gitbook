@@ -68,7 +68,7 @@
 			///@{
 			explicit operator bool() const { return (fTuple && perform); }
 			bool operator! () const { return !perform; }
-			bool DoWrite() const { return (bool)write; }
+			bool DoWrite() const { return perform && write; }
 			///@}
 
 

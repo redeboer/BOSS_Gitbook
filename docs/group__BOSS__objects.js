@@ -4,11 +4,9 @@ var group__BOSS__objects =
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html#a5e51c24407d7e68bd1122dc3cd9f40cc", null ],
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html#abddabe7845286acd74aff933014aeda2", null ],
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html#a192fa0955cdf15a2c7c49c0fff8b6c6c", null ],
-      [ "IsBetter", "classKKFitResult__D0phi__KpiKK.html#af2a47b6a47ae6061cd53f1220426c06e", null ],
       [ "SetValues", "classKKFitResult__D0phi__KpiKK.html#a78ab66239f9af5cc4a81c23cee333d8f", null ],
       [ "SetValues", "classKKFitResult__D0phi__KpiKK.html#a14148e5ecdd29b6f0fd9bd6cc1ee40d2", null ],
       [ "SetValues", "classKKFitResult__D0phi__KpiKK.html#a967fa57dec90b34e3eb8af2560ab2ca1", null ],
-      [ "fFitMeasure", "classKKFitResult__D0phi__KpiKK.html#a6723773ebd9e3a1ab87e69a243dc3405", null ],
       [ "fM_D0", "classKKFitResult__D0phi__KpiKK.html#ab914f0526be00c0169d7ec2721beb676", null ],
       [ "fM_Jpsi", "classKKFitResult__D0phi__KpiKK.html#adc58aa1a19aa265aa34202ec164be213", null ],
       [ "fM_phi", "classKKFitResult__D0phi__KpiKK.html#a077b273f57d25848e5f39aad3e838cd4", null ],
@@ -19,11 +17,9 @@ var group__BOSS__objects =
       [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html#a06271022a9198f1626a207ac0119f34c", null ],
       [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html#ae765ea4d433a91516a469af6578e0f70", null ],
       [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html#afa3ffa66ec311cc66222c55062d7c748", null ],
-      [ "IsBetter", "classKKFitResult__rhopi__pipigg.html#a73caa48c589700b291ee423603ef8eff", null ],
       [ "SetValues", "classKKFitResult__rhopi__pipigg.html#a6be76191e1a07cca588408115545002a", null ],
       [ "SetValues", "classKKFitResult__rhopi__pipigg.html#a31d0ef88dcad4ad18022ff97d29b2141", null ],
       [ "SetValues", "classKKFitResult__rhopi__pipigg.html#a2db157e5a26b5dbd0b088ea3cd349a17", null ],
-      [ "fFitMeasure", "classKKFitResult__rhopi__pipigg.html#ac687ae5d4a7706f9f2991197e4dae174", null ],
       [ "fM_JpsiRho0", "classKKFitResult__rhopi__pipigg.html#ad408b6a47a07d4ef9a433977772e5870", null ],
       [ "fM_JpsiRhom", "classKKFitResult__rhopi__pipigg.html#a575fa42aac6450fbbe6eb9dcedbead6c", null ],
       [ "fM_JpsiRhop", "classKKFitResult__rhopi__pipigg.html#af85208602875a184c17712a880f516f3", null ],
@@ -103,13 +99,14 @@ var group__BOSS__objects =
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult", "classKKFitResult.html#ac70733af97eb1c5214ae57ccffe88cdf", null ],
       [ "KKFitResult", "classKKFitResult.html#a5d9c2f00419e514a5f8cdd4ab180ceef", null ],
-      [ "IsBetter", "classKKFitResult.html#ae099966c518c51c5620025350f1bbb3e", null ],
+      [ "IsBetter", "classKKFitResult.html#ad62460e597db015b74a7234f1f1325bd", null ],
       [ "IsBetter", "classKKFitResult.html#a0c87b8ff75e72f27f68bc5814a42c5a3", null ],
       [ "operator bool", "classKKFitResult.html#ae2e2ee5c9f82ea348e46372fac624065", null ],
       [ "operator!", "classKKFitResult.html#ab032e506a0ffee8489c86d1b4b534aec", null ],
-      [ "SetValues", "classKKFitResult.html#add33917bee1940892f0b180d5f6cf6ea", null ],
+      [ "SetValues", "classKKFitResult.html#a187be4f0f12e3c6f75960d482c06b3c2", null ],
       [ "fBestCompareValue", "classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0", null ],
       [ "fChiSquared", "classKKFitResult.html#ab998d45583725a8561225c1ac7a36a46", null ],
-      [ "fFit", "classKKFitResult.html#ad7499ab02d1777dde3ca506cd35f81b1", null ]
+      [ "fFit", "classKKFitResult.html#ad7499ab02d1777dde3ca506cd35f81b1", null ],
+      [ "fFitMeasure", "classKKFitResult.html#a9134622717074a5c0c4721a95e0bc012", null ]
     ] ]
 ];

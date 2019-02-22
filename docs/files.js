@@ -31,7 +31,6 @@ var files =
     [ "MctruthForTopoAna.h", "MctruthForTopoAna_8h.html", null ],
     [ "NTupleContainer.cxx", "NTupleContainer_8cxx.html", null ],
     [ "NTupleContainer.h", "NTupleContainer_8h.html", null ],
-    [ "NTupleTopoAna.cxx", "NTupleTopoAna_8cxx.html", null ],
     [ "NTupleTopoAna.h", "NTupleTopoAna_8h.html", null ],
     [ "Particle.cxx", "Particle_8cxx.html", null ],
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],

@@ -4,7 +4,6 @@ var searchData=
   ['chainloader',['ChainLoader',['../classChainLoader.html#a7f04559dee5a9654b4b6de028548f8cb',1,'ChainLoader::ChainLoader()'],['../classChainLoader.html#a0626d330808b616cfe94b8358972828a',1,'ChainLoader::ChainLoader(TTree *tree)']]],
   ['commaformattedstring',['CommaFormattedString',['../namespaceCommonFunctions_1_1Print.html#aa9f5f983b7694d74c3bb715facea8c28',1,'CommonFunctions::Print']]],
   ['computegammavector',['ComputeGammaVector',['../classrhopi__pipigg.html#aecd04c4b5ddb174bfa9309a28168e11a',1,'rhopi_pipigg']]],
-  ['computeinvariantmasses',['ComputeInvariantMasses',['../classrhopi__pipigg.html#a9c140207943a83c61bf48db893c7dad1',1,'rhopi_pipigg']]],
   ['computemean',['ComputeMean',['../classChainLoader.html#a58451645958f14410eff8e2b201047ac',1,'ChainLoader']]],
   ['computemomentum',['ComputeMomentum',['../classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0',1,'TrackSelector']]],
   ['configloader',['ConfigLoader',['../classConfigLoader.html#a70bd800418fdb287a7a1877f5a34989f',1,'ConfigLoader']]],

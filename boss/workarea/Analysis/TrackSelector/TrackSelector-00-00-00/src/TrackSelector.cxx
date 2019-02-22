@@ -45,7 +45,7 @@
 // * =========================== * //
 
 
-	/// Constructor for the `TrackSelector` algorithm.
+	/// Constructor for the `TrackSelector` base algorithm.
 	/// Here, you should declare properties: give them a name, assign a parameter (data member of `TrackSelector`), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in `share/jopOptions_TrackSelector.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html for more details.
 	TrackSelector::TrackSelector(const std::string &name, ISvcLocator* pSvcLocator) :
 		/// * Construct `Algorithm` objects.
@@ -85,12 +85,11 @@
 			fCut_PhotonEnergy("PhotonEnergy"),
 			fCut_PIDChiSq    ("PIDChiSq"),
 			fCut_PIDProb     ("PIDProb")
-	{
-		PrintFunctionName("TrackSelector", __func__);
+	{ PrintFunctionName("TrackSelector", __func__);
 	}
 
 
-	/// Rather dubious, but required method that <b>has to be called at the end of each derived constructor</b>.
+	/// Rather dubious construction, but this method is required and <b>has to be called at the end of each derived constructor</b>.
 	/// The reason for that this method is necessary is that a Gaudi `Algorithm` requires properties to have been declared by the time the `Algorithm` has been constructed.
 	void TrackSelector::PostConstructor()
 	{
@@ -463,9 +462,7 @@
 	{ PrintFunctionName("TrackSelector", __func__);
 
 		finalize_rest();
-std::cout << "WriteCuts();" << std::endl;
 		WriteCuts();
-std::cout << "CutObject::PrintAll();" << std::endl;
 		CutObject::PrintAll();
 
 		fLog << MSG::INFO << "Successfully returned from TrackSelector::" << __func__ << "" << endmsg;
