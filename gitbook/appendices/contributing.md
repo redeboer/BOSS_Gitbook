@@ -3,7 +3,7 @@
 There are several means through which you can contribute to these tutorial pages or to the code in the repository itself.
 
 * **Email** Just [email me](../contents.md) if you see something that needs improvement or if there is something you would like to see documented.
-* **Through GitBook** Request access to GitBook. Using GitBook is the most convenient method to collaborate on the tutorial pages: you can comment, discuss, work with drafts, merge them, etc.
+* **Through GitBook** Using GitBook is the most convenient method to collaborate on the tutorial pages: you can comment, discuss, work with drafts, merge them, etc.
 * **Through `git`** Contribute to both the tutorial pages and the code through `git`. For the tutorial pages, you will have to work with the MarkDown source files, but it allows for a larger number of collaborators.
 
 In all cases, just [contact me](about.md) and I can give you access.

@@ -56,7 +56,7 @@ _Argument sketch_
 
 #### `NTuple` booking procedure
 
-The typical booking procedure [used in for instance the `RhopiAlg`](../besiii-software-system/packages/rhopi.md#declaring-and-defining-properties-like-cuts) is not the most convenient. It requires many steps, so it is easy to make a mistake when you modify your code. An overview of the procedure:
+The typical booking procedure [used in for instance the `RhopiAlg`](../besiii-software-system/packages/analysis/rhopi.md#declaring-and-defining-properties-like-cuts) is not the most convenient. It requires many steps, so it is easy to make a mistake when you modify your code. An overview of the procedure:
 
 1. _In the header file:_ **Declaration** of the [`NTuple::Tuple`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classNTuple_1_1Tuple.html) pointer \(eventual `TTree`\) and [`NTuple::Item`s](https://dayabay.bnl.gov/dox/GaudiKernel/html/classNTuple_1_1Item.html) \(eventual branches\) in the header file. This is required because you need a memory address \(branch\) to which you store values and then [write](https://dayabay.bnl.gov/dox/GaudiKernel/html/classINTuple.html#a89cd8df7b0cff68a1cbb45d9c8fe7df5) them.
 2. _In the `initialize` step:_ **Book** the `NTuple::Tuple` in the output file using [`Algorithm::ntupleSvc`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html#aa0e741efefa5312b20f9a213c3ab4cbb). Here, you also determine the name of the eventual `TTree`.

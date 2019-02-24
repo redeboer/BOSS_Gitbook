@@ -1,7 +1,10 @@
-# Monte Carlo simulations
+# Simulation
 
 {% hint style="danger" %}
-**This part of the tutorial is not yet finished.**
+## Work-in-progress
+
+This part of the tutorial is to be base on [this page](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Simulation).  
+**The headers below are notes only.**
 {% endhint %}
 
 ## Introduction

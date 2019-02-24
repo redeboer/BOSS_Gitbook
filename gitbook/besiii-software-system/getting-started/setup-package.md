@@ -143,7 +143,7 @@ BESIII has some documentation on working with CMT available [here](https://docbe
 {% hint style="info" %}
 #### Compare package output
 
-Another reason for working with a copy of the old version of your package is that you can still checkout and run that old version \(just repeat the above procedure within the folder of that old version\). This allows you to run the same analysis \(see [Running jobs](../jobs/)\) again in the old package so that you can compare the output. **Making sure that structural updates of components of software still result in the same output is a vital part of software development!**
+Another reason for working with a copy of the old version of your package is that you can still checkout and run that old version \(just repeat the above procedure within the folder of that old version\). This allows you to run the same analysis \(see [Running jobs](jobs.md)\) again in the old package so that you can compare the output. **Making sure that structural updates of components of software still result in the same output is a vital part of software development!**
 {% endhint %}
 
 ### Adding packages to BOSS    <a id="adding-packages-to-boss"></a>
@@ -190,7 +190,7 @@ cmt broadcast make # build and connect executables to BOSS
 source setup.sh    # set bash variables
 ```
 
-The term `broadcast` is important here and makes the status of the `TestRelease` package different than for instance the `RhopiAlg`.
+The term `broadcast` is important here: as opposed to `config`, `broadcast` will first compile all the required packages and then require the package itself. The idea of the `TestRelease` it that make it require packages that you are interested in so that, if you `broadcast` it, all these dependents will be compiled.
 
 We have now initialised the package, so that you can run it in BOSS from the `run` folder. This is done using `boss.exe`:
 
@@ -210,5 +210,5 @@ Note that in [Step 5 when we set up the work area](setup.md#step-5-modify-your-b
 
 ### Other example packages
 
-{% page-ref page="../packages/rhopi.md" %}
+{% page-ref page="../packages/analysis/rhopi.md" %}
 

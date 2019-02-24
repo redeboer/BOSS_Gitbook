@@ -51,7 +51,7 @@ git clone https://github.com/redeboer/BOSS_Afterburner
 
 **Done!** You now have all example scripts available on your user account and will use them to set up the BOSS environment.
 
-The _BOSS Afterburner_ will be used to analyse output from BOSS. We get back to this in the section [Data analysis](../jobs/data.md).
+The _BOSS Afterburner_ will be used to analyse output from BOSS. We get back to this in the section [Data analysis]().
 
 ## \(B\) Set up the BOSS environment
 
