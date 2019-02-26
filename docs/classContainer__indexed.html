@@ -126,12 +126,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a25f2f3ab9b15ec3ded108ade80382c9f inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a25f2f3ab9b15ec3ded108ade80382c9f">SetDescription</a> (const std::string &amp;desc)</td></tr>
 <tr class="memdesc:a25f2f3ab9b15ec3ded108ade80382c9f inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Give a new description to the object.  <a href="classContainer__base.html#a25f2f3ab9b15ec3ded108ade80382c9f">More...</a><br /></td></tr>
 <tr class="separator:a25f2f3ab9b15ec3ded108ade80382c9f inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab3523d77ea3653124698172993025f3 inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#aab3523d77ea3653124698172993025f3">Name</a> () const</td></tr>
-<tr class="memdesc:aab3523d77ea3653124698172993025f3 inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the name.  <a href="classContainer__base.html#aab3523d77ea3653124698172993025f3">More...</a><br /></td></tr>
-<tr class="separator:aab3523d77ea3653124698172993025f3 inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78bdd498def449c3415eccfb252fa1f8 inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a78bdd498def449c3415eccfb252fa1f8">Description</a> () const</td></tr>
-<tr class="memdesc:a78bdd498def449c3415eccfb252fa1f8 inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the description.  <a href="classContainer__base.html#a78bdd498def449c3415eccfb252fa1f8">More...</a><br /></td></tr>
-<tr class="separator:a78bdd498def449c3415eccfb252fa1f8 inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d60df5ba52f752ad2f5d61fb07067f inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#ac1d60df5ba52f752ad2f5d61fb07067f">Name</a> () const</td></tr>
+<tr class="memdesc:ac1d60df5ba52f752ad2f5d61fb07067f inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the name.  <a href="classContainer__base.html#ac1d60df5ba52f752ad2f5d61fb07067f">More...</a><br /></td></tr>
+<tr class="separator:ac1d60df5ba52f752ad2f5d61fb07067f inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc3f6a11cfbc3e37d40f98cfb78941a inherit pub_methods_classContainer__base"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a7cc3f6a11cfbc3e37d40f98cfb78941a">Description</a> () const</td></tr>
+<tr class="memdesc:a7cc3f6a11cfbc3e37d40f98cfb78941a inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the description.  <a href="classContainer__base.html#a7cc3f6a11cfbc3e37d40f98cfb78941a">More...</a><br /></td></tr>
+<tr class="separator:a7cc3f6a11cfbc3e37d40f98cfb78941a inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -166,7 +166,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an extension of the <code><a class="el" href="classContainer__base.html" title="This class is the base class for objects requiring a name and a description. ">Container_base</a></code> base class that in addition keeps track of all instanecs in a static mapping of all its instances. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Consider implementing <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">Curiously Recurring Template Pattern</a> for independent objects of <code>fInstances</code> in derived classes.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Consider implementing <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">Curiously Recurring Template Pattern</a> for independent objects of <code>fInstances</code> in derived classes.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 20th, 2019 </dd></dl>
 
@@ -369,8 +369,8 @@ template&lt;class TYPE &gt; </div>
 
 <p>Read access to <code>fInstances</code> mapping. </p>
 <p>Helper method that allows you to to check whether a key already exists in .</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd><code>Instances</code> function necessary? </dd></dl>
-<p>This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Use error handling for existing keys, not <code>terminate</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd><code>Instances</code> function necessary? </dd></dl>
+<p>This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Use error handling for existing keys, not <code>terminate</code>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Currently redudant, because of the <code>terminate</code>, but returns <code>false</code> at the end. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Contains fatal <code>terminate</code> statement when double booking! Consider turning into a <code>return</code> statement. </dd></dl>
 
