@@ -85,7 +85,6 @@
 			/// </ol>
 
 		/// </ol>
-		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
 		return StatusCode::SUCCESS;
 	}
 

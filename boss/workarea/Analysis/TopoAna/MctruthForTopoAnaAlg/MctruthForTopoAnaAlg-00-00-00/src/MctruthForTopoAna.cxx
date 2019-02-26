@@ -37,14 +37,14 @@
 			else {
 				m_tuple=ntupleSvc()->book("FILE1/MctruthForTopoAna",CLID_ColumnWiseTuple,"Mctruth For Topology Analysis");
 				if(m_tuple) {
-				/// <ul>
+					/// <ul>
 					m_tuple->addItem("Ievt",  m_ievt);  /// <li> `"Ievt"`: @b counter for number of events (not the ID!).
 					m_tuple->addItem("Runid", m_runid); /// <li> `"Runid"`: run number ID.
 					m_tuple->addItem("Evtid", m_evtid); /// <li> `"Evtid"`: event number ID.
 					m_tuple->addItem("Nmcps", m_nmcps, 0, 100); /// <li> `"Nmcps"`: number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
 					m_tuple->addIndexedItem("Pid",  m_nmcps, m_pid); /// <li> `"Pid"` (array): PDG code for the particle in this array.
 					m_tuple->addIndexedItem("Midx", m_nmcps, m_midx); /// <li> `"Midx"` (array): track index of the mother particle (corrected with `rootIndex`).
-				/// </ul>
+					/// </ul>
 				} else {
 					log << MSG::ERROR << "Cannot book N-tuple:" << long(m_tuple) << endmsg;
 					/// <li> Abort if booking the `NTuple` has failed.
@@ -83,7 +83,7 @@
 				return(StatusCode::FAILURE);  
 			}
 
-		/// <li> Attempt to get 'Monte Carlo truth'.
+		/// <li> Set up counters and switches for the loop.
 			/// <ul>
 			m_nmcps = 0; /// <li> Reset the `m_nmcps` counter for the number of MC particles.
 			const int incPid1 = 91; /// <li> `91` is the PDG code of cluster.
@@ -93,34 +93,33 @@
 			/// </ul>
 
 		/// <li> Loop over collection of MC particle objects. An array containing a selection of MC truth particles is created here.
-			/// <ul>
 			Event::McParticleCol::iterator it = mcParticleCol->begin();
-			for(; it!=mcParticleCol->end(); it++) {
-				// std::cout << "idx=" << m_nmcps << "\t" << "pid=" << (*it)->particleProperty() << "\t" << "midx=" << ((*it)->mother()).trackIndex() << std::endl;
-				/// <li> Only decayed particles are of interest to the `topoana` package.
-				if((*it)->primaryParticle()) continue;
+			for(; it!=mcParticleCol->end(); ++it) {
+			/// <ul>
+			/// <li> Only decayed particles are of interest to the `topoana` package.
+				if( (*it)->primaryParticle())    continue;
 				if(!(*it)->decayFromGenerator()) continue;
-				/// <li> The `rootIndex` variable is used to skip particles like the \f$Z\f$ boson in the decay chain after the \f$e^+e^-\f$ collision. It has to be stored once and untill it is stored, all MC truth particles are rejected (which is what the `incPdcy` boolean is for).
+			/// <li> The `rootIndex` variable is used to skip particles like the \f$Z\f$ boson in the decay chain after the \f$e^+e^-\f$ collision. It has to be stored once and untill it is stored, all MC truth particles are rejected (which is what the `incPdcy` boolean is for).
 				if(
 					(*it)->particleProperty() == incPid1 ||
 					(*it)->particleProperty() == incPid2 ) {
 					incPdcy = true;
 					rootIndex = (*it)->trackIndex();
 				}
-				/// <li> Skip if this particle is the initial cluster itself.
+			/// <li> Skip if this particle is the initial cluster itself.
 				if(!incPdcy ||
 					(*it)->particleProperty() == incPid1 ||
 					(*it)->particleProperty() == incPid2 ) continue;
-				/// <li> Store PDG code of this MC particle.
+			/// <li> Store PDG code of this MC particle.
 				m_pid[m_nmcps] = (*it)->particleProperty();
-				/// <li> Store track ID of the mother. This ID is `-1` if it is the initial cluster (e.g. \f$J/\psi\f$).
+			/// <li> Store a track index of the mother. This ID is `-1` if it is the initial cluster (e.g. \f$J/\psi\f$).
 				if(
 					((*it)->mother()).particleProperty() == incPid1 ||
 					((*it)->mother()).particleProperty() == incPid2 ) m_midx[m_nmcps] = -1;
 				else m_midx[m_nmcps] = ((*it)->mother()).trackIndex()-rootIndex-1;
 				m_nmcps++;
-			}
 			/// </ul>
+			}
 
 		/// <li> @b Write info stored in the loop to the `"MctruthForTopoAna"` `TTree`.
 			m_tuple->write();

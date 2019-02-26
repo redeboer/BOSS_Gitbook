@@ -68,14 +68,14 @@
 	/// Namespace that contains some parameters (such as particle masses) that are useful for derived classes of the `TrackSelector` base algorithm.
 	namespace TSGlobals
 	{
-		const double gM_rho  = 0.77526;    /// Mass of \f$\rho^{0\pm}\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf">PDG</a>.
-		const double gM_pi0  = 0.1349770;  /// Mass of \f$\pi^0\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf">PDG</a>.
-		const double gM_pi   = 0.13957061; /// Mass of \f$\pi^\pm\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-plus-minus.pdf">PDG</a>.
-		const double gM_K    = 0.493677;   /// Mass of \f$K^\pm\f$.
-		const double gM_D0   = 1.86483;    /// Mass of \f$D^0\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf">PDG</a>.
-		const double gM_phi  = 1.019461;   /// Mass of \f$\phi\f$.
-		const double gM_Jpsi = 3.0969;     /// Mass of \f$J/\psi\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf">PDG</a>.
-		const double gEcms   = 3.097;      /// Center-of-mass energy.
+		const double gM_rho  = 0.77526;    ///< Mass of \f$\rho^{0\pm}\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf">PDG</a>.
+		const double gM_pi0  = 0.1349770;  ///< Mass of \f$\pi^0\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf">PDG</a>.
+		const double gM_pi   = 0.13957061; ///< Mass of \f$\pi^\pm\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-plus-minus.pdf">PDG</a>.
+		const double gM_K    = 0.493677;   ///< Mass of \f$K^\pm\f$.
+		const double gM_D0   = 1.86483;    ///< Mass of \f$D^0\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf">PDG</a>.
+		const double gM_phi  = 1.019461;   ///< Mass of \f$\phi\f$.
+		const double gM_Jpsi = 3.0969;     ///< Mass of \f$J/\psi\f$, see <a href="http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf">PDG</a>.
+		const double gEcms   = 3.097;      ///< Center-of-mass energy.
 		const HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
 	};
 
@@ -119,7 +119,7 @@
 			///@}
 
 
-		/// @name NTuple methods
+		/// @name NTuple handlers
 			///@{
 			void AddNTupleItems_McTruth();
 			void AddNTupleItems_Dedx(NTupleContainer &tuple);
@@ -153,6 +153,8 @@
 			std::vector<EvtRecTrack*> fGoodChargedTracks; ///< Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.
 			std::vector<EvtRecTrack*> fGoodNeutralTracks; ///< Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons).
 			std::vector<EvtRecTrack*>::iterator fTrackIterator; ///< Iterator for looping over the collection of charged and neutral tracks (`EvtRecTrackCol`).
+			bool fCreateChargedCollection; ///< A switch that allows the derived algorithms to decide whether to create a collection of @b charged tracks in the `TrackSelector::execute` step. This switch is hard-coded, and inaccessible to the job options, because it depends on the nature of the derived analysis whether or not to create this collection.
+			bool fCreateNeutralCollection; ///< A switch that allows the derived algorithms to decide whether to create a collection of @b neutral tracks in the `TrackSelector::execute` step. This switch is hard-coded, and inaccessible to the job options, because it depends on the nature of the derived analysis whether or not to create this collection.
 			///@}
 
 
@@ -206,8 +208,10 @@
 
 		/// @name Particle Identification
 			///@{
-			ParticleID* InitializePID(const int method, const int pidsys, const int pidcase, const double chimin=4.);
 			ParticleID *fPIDInstance; ///< Pointer to instance of particle identification (PID). Only used in <i>derived subalgorithms</i>.
+			ParticleID* InitializePID(const int method, const int pidsys, const int pidcase, const double chimin=4.);
+			bool IsDecay(Event::McParticle* particle, const int mother) const;
+			bool IsDecay(Event::McParticle* particle, const int mother, const int pdg) const;
 			///@}
 
 
@@ -219,20 +223,21 @@
 
 
 	private:
-		/// @name NTuple methods
+		/// @name NTuple handlers
 			///@{
 			void BookNTuple(NTupleContainer &tuple);
 			void BookNTuples();
 			void DeclareSwitches();
+			void CreateChargedCollection();
+			void CreateNeutralCollection();
+			void CreateMCtruthCollection();
 			///@}
 
 
 		/// @name Cut handlers
 			///@{
+			void AddAndWriteCuts();
 			void DeclareCuts();
-			template<typename TYPE>
-			void WriteCuts_entry(const TYPE &value);
-			void WriteCuts();
 			///@}
 
 

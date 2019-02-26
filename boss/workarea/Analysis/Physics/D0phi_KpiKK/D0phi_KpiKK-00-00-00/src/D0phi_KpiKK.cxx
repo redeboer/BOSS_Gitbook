@@ -9,6 +9,7 @@
 	#include "D0phi_KpiKK/D0phi_KpiKK.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include "VertexFit/VertexFit.h"
+	#include <float.h> // for DBL_MAX
 	#include <string>
 	#include <utility>
 
@@ -27,6 +28,7 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
+
 	/// Constructor for the `D0phi_KpiKK` algorithm, derived from `TrackSelector`.
 	/// Here, you should declare properties: give them a name, assign a parameter (data member of `D0phi_KpiKK`), and if required a documentation string. Note that you should define the paramters themselves in the header (D0phi_KpiKK/D0phi_KpiKK.h) and that you should assign the values in `share/D0phi_KpiKK.txt`.
 	D0phi_KpiKK::D0phi_KpiKK(const std::string &name, ISvcLocator* pSvcLocator) :
@@ -39,6 +41,7 @@
 			fNTuple_fit4c_best("fit4c_best", "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
 			fNTuple_fit_mc    ("fit_mc",     "Fake fit information according to MC truth")
 	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
+		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
 	}
 
 
@@ -48,18 +51,17 @@
 // * =============================== * //
 
 
-	/// (Inherited) `initialize` step of `Algorithm`. This function is called only once, when the algorithm is initialised.
-	/// Define and load `NTuple`s here. Other `NTuple`s have already been defined in the `TrackSelector::initilize` step prior to this this method.
+	/// (Inherited) `initialize` step of `Algorithm`.
+	/// This function is called only once, when the algorithm is initialised.
+	/// @remark Define and load `NTuple`s here. Other `NTuple`s have already been defined in the `TrackSelector::initilize` step prior to this this method.
 	StatusCode D0phi_KpiKK::initialize_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
-			if(fNTuple_mult_sel.DoWrite()) {
-				fNTuple_mult_sel["NKaonPos"]; /// <li> `"NKaonPos"`: Number of \f$K^+\f$.
-				fNTuple_mult_sel["NKaonNeg"]; /// <li> `"NKaonNeg"`: Number of \f$K^-\f$.
-				fNTuple_mult_sel["NPionPos"]; /// <li> `"NPionPos"`: Number of \f$\pi^-\f$.
-			}
+			fNTuple_mult_sel.AddItem("NKaonPos"); /// <li> `"NKaonPos"`: Number of \f$K^+\f$.
+			fNTuple_mult_sel.AddItem("NKaonNeg"); /// <li> `"NKaonNeg"`: Number of \f$K^-\f$.
+			fNTuple_mult_sel.AddItem("NPionPos"); /// <li> `"NPionPos"`: Number of \f$\pi^-\f$.
 			/// </ol>
 
 		/// <li> `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_Dedx` for more info.
@@ -72,20 +74,16 @@
 			AddNTupleItems_Fit(fNTuple_fit_mc);
 
 		/// </ol>
-		fLog << MSG::INFO << "Successfully returned from initialize()" << endmsg;
 		return StatusCode::SUCCESS;
 	}
 
 
-	/// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
+	/// Inherited `execute` method of the `Algorithm`.
+	/// This function is called *for each event*.
 	StatusCode D0phi_KpiKK::execute_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
 		/// <ol type="A">
-		/// <li> Create selection charged tracks
-			// * Print log and set counters *
-				fLog << MSG::DEBUG << "Starting particle selection:" << endmsg;
-				fPIDInstance = ParticleID::instance();
-
+		/// <li> Create specific charged track selections
 			// * Clear vectors of selected particles *
 				fKaonNeg.clear();
 				fKaonPos.clear();
@@ -139,7 +137,7 @@
 				fMcKaonPos.clear();
 				fMcPionPos.clear();
 				std::vector<Event::McParticle*>::iterator it;
-				for(it=fMcParticles.begin(); it!=fMcParticles.end(); ++it) {
+				for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) {
 					switch((*it)->particleProperty()) {
 						case -321 : fMcKaonNeg.push_back(*it); break;
 						case  321 : fMcKaonPos.push_back(*it); break;
@@ -152,8 +150,8 @@
 
 		/// <li> @b Write the multiplicities of the selected particles.
 			fLog << MSG::DEBUG
-				<< "N_{K^-} = "  << fKaonNeg.size() << ", "
-				<< "N_{K^+} = "  << fKaonPos.size() << ", "
+				<< "N_{K^-} = "   << fKaonNeg.size() << ", "
+				<< "N_{K^+} = "   << fKaonPos.size() << ", "
 				<< "N_{\pi^+} = " << fPionPos.size() << endmsg;
 			if(fNTuple_mult_sel.DoWrite()) {
 				fNTuple_mult_sel.at("NKaonNeg") = fKaonNeg.size();
@@ -163,19 +161,33 @@
 			}
 
 
-
 		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
-			if(fMcKaonNeg.size() != 2) return StatusCode::SUCCESS;
-			if(fMcKaonPos.size() != 1) return StatusCode::SUCCESS;
-			if(fMcPionPos.size() != 1) return StatusCode::SUCCESS;
+			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
+			if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
+			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
+			if(fEventHeader->runNumber()<0 && fNTuple_fit_mc.DoWrite()) {
+				if(
+					fMcKaonNeg.size() != 2 || 
+					fMcKaonPos.size() != 1 || 
+					fMcPionPos.size() != 1
+				) {
+					fLog << MSG::DEBUG << "Number cut passed, but MC truth disagrees:" << endmsg;
+					fLog << MSG::DEBUG << "  nMcKaonNeg = " << fMcKaonNeg.size() << endmsg;
+					fLog << MSG::DEBUG << "  nMcKaonPos = " << fMcKaonPos.size() << endmsg;
+					fLog << MSG::DEBUG << "  nMcPionPos = " << fMcPionPos.size() << endmsg;
+					return StatusCode::SUCCESS;
+				}
+			}
+
+
+		/// <li> @b Write Monte Carlo truth for `topoana` package
+			fNTuple_mctruth.Write();
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
-			if(fNTuple_dedx) {
-				WriteDedxInfoForVector(fKaonNeg, fNTuple_dedx_K);
-				WriteDedxInfoForVector(fKaonPos, fNTuple_dedx_K);
-				WriteDedxInfoForVector(fPionPos, fNTuple_dedx_pi);
-			}
+			WriteDedxInfoForVector(fKaonNeg, fNTuple_dedx_K);
+			WriteDedxInfoForVector(fKaonPos, fNTuple_dedx_K);
+			WriteDedxInfoForVector(fPionPos, fNTuple_dedx_pi);
 
 
 		/// <li> Loop over MC truth of final decay products.
@@ -187,12 +199,11 @@
 				/// <ol>
 				/// <li> Only continue if the two kaons are different.
 					if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
-
 				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
-					if((!(*fMcKaonNeg1Iter)->primaryParticle()) && (*fMcKaonNeg1Iter)->mother().particleProperty() != 333) continue; // mother phi
-					if((!(*fMcKaonNeg2Iter)->primaryParticle()) && (*fMcKaonNeg2Iter)->mother().particleProperty() != 421) continue; // mother D0
-					if((!(*fMcKaonPosIter) ->primaryParticle()) && (*fMcKaonPosIter) ->mother().particleProperty() != 333) continue; // mother phi
-					if((!(*fMcPionPosIter) ->primaryParticle()) && (*fMcPionPosIter) ->mother().particleProperty() != 421) continue; // mother D0
+					if(!IsDecay(*fMcKaonNeg2Iter, 421, -321)) continue; // D0  --> K-
+					if(!IsDecay(*fMcPionPosIter,  421,  211)) continue; // D0  --> pi+
+					if(!IsDecay(*fMcKaonNeg1Iter, 333, -321)) continue; // phi --> K-
+					if(!IsDecay(*fMcKaonPosIter,  333,  321)) continue; // phi --> K+
 				/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
 					KKFitResult_D0phi_KpiKK fitresult(
 						*fMcKaonNeg1Iter,
@@ -209,7 +220,7 @@
 			if(fNTuple_fit4c_all.DoWrite() || fNTuple_fit4c_best.DoWrite()) {
 				// * Reset best fit parameters * //
 				KKFitResult_D0phi_KpiKK bestKalmanFit;
-				bestKalmanFit.fBestCompareValue = 1e9;
+				bestKalmanFit.ResetBestCompareValue();
 				// * Loop over all combinations //
 				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
 				for(fKaonNeg2Iter = fKaonNeg.begin(); fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
@@ -252,7 +263,10 @@
 						vtxfit->AddTrack(2, wvKpTrk);
 						vtxfit->AddTrack(3, wvpipTrk);
 						vtxfit->AddVertex(0, vxpar, 0, 1);
-						if(!vtxfit->Fit(0)) continue;
+						if(!vtxfit->Fit(0)) {
+							fLog << MSG::WARNING << "vertex fit failed" << endmsg;
+							continue;
+						}
 						vtxfit->Swim(0);
 
 					// * Get Kalman kinematic fit for this combination and store if better than previous one
@@ -274,10 +288,14 @@
 							/// <li> Decide if this fit is better than the previous.
 							if(fitresult.IsBetter()) bestKalmanFit = fitresult;
 							/// </ol>
+						} else {
+							fLog << MSG::DEBUG << "Fit failed for event "
+								<< fEventHeader->runNumber() << ":"
+								<< fEventHeader->eventNumber() << endmsg;
 						}
 				}
 				/// After loop over combintations:
-				/// @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best_*"` branches).
+				/// @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branches).
 				WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
 			}
 
@@ -287,7 +305,8 @@
 	}
 
 
-	/// Currently does nothing. See `TrackSelector::finalize` for what else is done when finalising.
+	/// Currently does nothing.
+	/// See `TrackSelector::finalize` for what else is done when finalising.
 	StatusCode D0phi_KpiKK::finalize_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
 		return StatusCode::SUCCESS;
@@ -300,11 +319,18 @@
 // * =============================== * //
 
 
-	/// Specification of what should be written to the fit `NTuple`. This function is called in `TrackSelector::WriteFitResults`.
+	/// Specification of what should be written to the fit `NTuple`.
+	/// This function is called in `TrackSelector::WriteFitResults`.
 	void D0phi_KpiKK::SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple)
 	{
 		/// -# Convert to the derived object of `KKFitResult` designed for this package. @remark This cast is required and cannot be solved using virtual methods, because of the specific structure of each analysis.
 			KKFitResult_D0phi_KpiKK* fit = dynamic_cast<KKFitResult_D0phi_KpiKK*>(fitresults);
+
+		/// -# @warning Terminate if cast failed.
+			if(!fit) {
+				std::cout << "FATAL ERROR: Dynamic cast failed" << std::endl;
+				std::terminate();
+			}
 
 		/// -# Set the `NTuple::Item`s.
 			tuple.at("mD0")   = fit->fM_D0;
@@ -319,7 +345,7 @@
 	/// This function encapsulates the `addItem` procedure for the fit branches.
 	void D0phi_KpiKK::AddNTupleItems_Fit(NTupleContainer &tuple)
 	{
-		if(!tuple) return;
+		if(!tuple.DoWrite()) return;
 		tuple.AddItem("mD0");   /// * `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
 		tuple.AddItem("mphi");  /// * `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
 		tuple.AddItem("mJpsi"); /// * `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).

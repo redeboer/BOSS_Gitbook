@@ -32,7 +32,7 @@
 	public:
 		/// @name Constructors and destructors
 			///@{
-			NTupleContainer(const std::string &name, const std::string &description="");
+			NTupleContainer(const std::string &name, const std::string &description="", const bool write=true);
 			~NTupleContainer();
 			///@}
 
@@ -41,50 +41,47 @@
 			///@{
 			static std::map<std::string, NTupleContainer*> instances;
 			static NTupleContainer& Get(const std::string &tuple_name) { return *instances.at(tuple_name); }
+			static void PrintTuplesAndItems();
+			static void PrintFilledTuples();
 			///@}
 
 
-		// @name Setters
+		/// @name Setters
 			///@{
 			void SetTuplePtr(NTuplePtr& data) { fTuple = data.ptr(); }
 			///@}
 
 
-		// @name Getters
+		/// @name Getters
 			///@{
-			NTuple::Item<double>& operator[] (const std::string &key) { return items[key]; }
-			NTuple::Item<double>& at(const std::string &key) { return items.at(key); }
+			NTuple::Item<double>& operator[] (const std::string &key) { return fItems[key]; }
+			NTuple::Item<double>& at(const std::string &key) { return fItems.at(key); }
+			const std::map<std::string, NTuple::Item<double> >* GetItems() { return &fItems; }
+			const ULong_t GetEntries() const { return fEntries; } /// Read access to `fEntries`.
 			///@}
 
 
 		/// @name NTuple handlers and members
 			///@{
 			void AddItem(const std::string &item_name);
-			void Write() const;
+			void Write();
 			///@}
 
 
-		// @name JobSwitch handlers
+		/// @name JobSwitch handlers
 			///@{
-			explicit operator bool() const { return (fTuple && perform); }
-			bool operator! () const { return !perform; }
-			bool DoWrite() const { return perform && write; }
+			const bool DoWrite() const { return (bool)fWrite; } /// Return `true` if `fTuple` pointer exists and if `fWrite` property has been set to `true`.
+			void SetWriteSwitch(const bool val=true) { fWrite.SetValue(val); }
 			///@}
 
 
 	protected:
-		// @name Setters
+		/// @name Data members
 			///@{
-			void SetSwitch(JobSwitch &obj, const std::string &prepend);
-			///@}
-
-
-		// @name Data members
-			///@{
-			JobSwitch perform; ///< Boolean job property that can be used as a switch for performing a loop to fill this `NTuple` (property name starts with `"do"` by default).
-			JobSwitch write;   ///< Boolean job property that determines whether or not to write data stored to this `NTuple` to a `TTree` (property name starts with `"write_"` by default).
+			JobSwitch fWrite;   ///< Boolean job property that determines whether or not to write data stored to this `NTuple` to a `TTree` (property name starts with `"write_"` by default).
 			NTuple::Tuple *fTuple; ///< Pointer to the encapsulated `NTuple::Tuple`.
-			std::map<std::string, NTuple::Item<double> > items; ///< Inventory of added items.
+			ULong_t fEntries;
+			std::map<std::string, NTuple::Item<double> > fItems; ///< Inventory of added items.
 			///@}
 	};
 

@@ -20,11 +20,20 @@
 	KKFitResult_D0phi_KpiKK::KKFitResult_D0phi_KpiKK(KalmanKinematicFit* kkmfit) :
 		KKFitResult(kkmfit)
 	{
-		SetValues(fFit);
+		if(!fFit) return;
+		/// Get Lorentz vectors of the decay products using `KalmanKinematicFit::pfit`:
+		SetValues(
+			kkmfit->pfit(0), /// -# \f$K^-\f$ (first occurrence)
+			kkmfit->pfit(1), /// -# \f$K^-\f$ (second occurrence)
+			kkmfit->pfit(2), /// -# \f$K^+\f$
+			kkmfit->pfit(3)  /// -# \f$\pi^+\f$
+		);
 	}
 
+
 	/// Construct a `KKFitResult_D0phi_KpiKK` object based on a pointer to a `KalmanKinematicFit` object.
-	KKFitResult_D0phi_KpiKK::KKFitResult_D0phi_KpiKK(Event::McParticle* kaonNeg1, Event::McParticle* kaonNeg2, Event::McParticle* kaonPos, Event::McParticle* pionPos)
+	KKFitResult_D0phi_KpiKK::KKFitResult_D0phi_KpiKK(Event::McParticle* kaonNeg1, Event::McParticle* kaonNeg2, Event::McParticle* kaonPos, Event::McParticle* pionPos) :
+		KKFitResult(nullptr)
 	{
 		SetValues(kaonNeg1, kaonNeg2, kaonPos, pionPos);
 	}
@@ -35,23 +44,6 @@
 // * ------- KKFITRESULTS ------- * //
 // * ============================ * //
 
-	/// Helper function for the constructor (hence `private` method).
-	void KKFitResult_D0phi_KpiKK::SetValues(KalmanKinematicFit* kkmfit)
-	{
-		/// <ol>
-		/// <li> Test whether `KalmanKinematicFit` pointer exists.
-			if(!fFit) return;
-		/// <li> Get Lorentz vectors of the decay products using `KalmanKinematicFit::pfit`:
-			/// <ol>
-			SetValues(
-				fFit->pfit(0), /// <li> \f$K^-\f$ (first occurrence)
-				fFit->pfit(1), /// <li> \f$K^-\f$ (second occurrence)
-				fFit->pfit(2), /// <li> \f$K^+\f$
-				fFit->pfit(3)  /// <li> \f$\pi^+\f$
-			);
-			/// </ol>
-		/// </ol>
-	}
 
 	/// Helper function for the constructor (hence `private` method).
 	void KKFitResult_D0phi_KpiKK::SetValues(
@@ -62,18 +54,20 @@
 	{
 		/// <ol>
 		/// <li> Test whether all `Event::McParticle` pointers exist.
-		if(!kaonNeg1) return;
-		if(!kaonNeg2) return;
-		if(!kaonPos)  return;
-		if(!pionPos)  return;
+			if(!kaonNeg1) return;
+			if(!kaonNeg2) return;
+			if(!kaonPos)  return;
+			if(!pionPos)  return;
 		/// <li> Apply `SetValues` to the `initialFourMomentum` of these `Event::McParticle` pointers.
-		SetValues(
-			kaonNeg1->initialFourMomentum(),
-			kaonNeg2->initialFourMomentum(),
-			kaonPos ->initialFourMomentum(),
-			pionPos ->initialFourMomentum());
+			SetValues(
+				kaonNeg1->initialFourMomentum(),
+				kaonNeg2->initialFourMomentum(),
+				kaonPos ->initialFourMomentum(),
+				pionPos ->initialFourMomentum()
+			);
 		/// </ol>
 	}
+
 
 	/// Helper function for the constructor (hence `private` method).
 	void KKFitResult_D0phi_KpiKK::SetValues(
@@ -98,6 +92,8 @@
 			fP_phi  = std::sqrt(pphi.px()*pphi.px() + pphi.py()*pphi.py() + pphi.pz()*pphi.pz());  /// <li> `fP_phi` = \f$|\vec{p}_{K^-K^+}|\f$
 			/// </ul>
 		/// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{K^-K^+} - m_{\phi}\f$
-		fFitMeasure = std::abs(fM_phi - gM_phi);
+			fFitMeasure = std::abs(fM_phi - gM_phi);
+		/// <li> Set `fHasResults` to `true`.
+			fHasResults = true;
 		/// </ol>
 	}

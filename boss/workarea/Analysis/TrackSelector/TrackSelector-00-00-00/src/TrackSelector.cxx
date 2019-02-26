@@ -58,7 +58,7 @@
 			fEvtRecTrkCol (eventSvc(), EventModel::EvtRec::EvtRecTrackCol),
 		/// * Construct `NTuple::Tuple`s containers used in base class
 			fNTuple_mult   ("mult",    "Event multiplicities"),
-			fNTuple_vertex ("vertex",  "Primary vertex (collision point)"),
+			fNTuple_vertex ("vertex",  "Primary vertex (interaction point)"),
 			fNTuple_charged("charged", "Charged track info"),
 			fNTuple_neutral("neutral", "Charged track info"),
 			fNTuple_dedx   ("dedx",    "dE/dx of all charged tracks"),
@@ -84,7 +84,11 @@
 			fCut_CosTheta    ("costheta"),
 			fCut_PhotonEnergy("PhotonEnergy"),
 			fCut_PIDChiSq    ("PIDChiSq"),
-			fCut_PIDProb     ("PIDProb")
+			fCut_PIDProb     ("PIDProb"),
+		/// * Set default values for create switches (`fCreateChargedCollection` and `fCreateNeutralCollection`)
+			fCreateChargedCollection(false),
+			fCreateNeutralCollection(false),
+			fPostConstructed(false)
 	{ PrintFunctionName("TrackSelector", __func__);
 	}
 
@@ -105,28 +109,31 @@
 // * =============================== * //
 
 
-	/// (Inherited) `initialize` step of `Algorithm`. This function is called once in the beginning <i>of each run</i>. Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
+	/// (Inherited) `initialize` step of `Algorithm`.
+	/// This function is called once in the beginning <i>of each run</i>. Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
 	StatusCode TrackSelector::initialize()
 	{ PrintFunctionName("TrackSelector", __func__);
 
 		// * Call to methods that have to be called before anything can be done * //
-			BookNTuples();
 			if(!fPostConstructed) {
 				std::cout << "FATAL ERROR: PostConstructor has not been called in constructor of derived class of TrackSelector" << std::endl;
 				std::terminate();
 			}
+			fCreateNeutralCollection = fCreateNeutralCollection || fNTuple_neutral.DoWrite();
+			fCreateChargedCollection = fCreateChargedCollection || fNTuple_charged.DoWrite();
+			fNTuple_neutral.SetWriteSwitch(fCreateNeutralCollection);
+			fNTuple_charged.SetWriteSwitch(fCreateChargedCollection);
+			BookNTuples();
 
 		/// <ol type="A">
 		/// <li> `"mult"`: Multiplicities of the total event
 			/// <ol>
-			fNTuple_mult.AddItem("Ntotal");       /// <li> `"Ntotal"`:       Total number of events per track.
-			fNTuple_mult.AddItem("Ncharge");      /// <li> `"Ncharge"`:      Number of charged tracks.
-			fNTuple_mult.AddItem("Nneutral");     /// <li> `"Nneutral"`:     Number of charged tracks.
-			if(fNTuple_neutral) fNTuple_mult.AddItem("NgoodNeutral"); /// <li> `"NgoodNeutral"`: Number of 'good' neutral tracks.
-			if(fNTuple_charged) {
-				fNTuple_mult.AddItem("NgoodCharged"); /// <li> `"NgoodCharged"`: Number of 'good' charged tracks.
-				fNTuple_mult.AddItem("Nmdc");         /// <li> `"Nmdc"`:         Number of charged tracks in MDC.
-			}
+			fNTuple_mult.AddItem("Ntotal");   /// <li> `"Ntotal"`:   Total number of events per track.
+			fNTuple_mult.AddItem("Ncharge");  /// <li> `"Ncharge"`:  Number of charged tracks.
+			fNTuple_mult.AddItem("Nneutral"); /// <li> `"Nneutral"`: Number of charged tracks.
+			if(fCreateNeutralCollection) fNTuple_mult.AddItem("NgoodNeutral"); /// <li> `"NgoodNeutral"`: Number of 'good' neutral tracks (if performed).
+			if(fCreateChargedCollection) fNTuple_mult.AddItem("Nmdc");         /// <li> `"Nmdc"`:         Number of charged tracks in MDC (if performed).
+			if(fCreateChargedCollection) fNTuple_mult.AddItem("NgoodCharged"); /// <li> `"NgoodCharged"`: Number of 'good' charged tracks (if performed).
 			/// </ol>
 
 		/// <li> `"vertex"`: Vertex info
@@ -188,8 +195,6 @@
 		/// </ol>
 
 		initialize_rest();
-		// BookNTupleForCuts();
-		fLog << MSG::INFO << "Successfully returned from TrackSelector::" << __func__ << endmsg;
 		return StatusCode::SUCCESS;
 	}
 
@@ -197,37 +202,33 @@
 	/// This method is called <b>for each event</b>.
 	StatusCode TrackSelector::execute()
 	{ PrintFunctionName("TrackSelector", __func__);
-		/// <ol type="A">
-		/// <li> Load next event from DST file. For more info see:
-			/// <ul>
+		/// <h1> Load DST input file </h1>
+			/// <ol>
+			/// <li> Load headers from the input file.
+				/// <ul>
 				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html">Namespace `EventModel`</a>
 				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html">Class `EvtRecEvent`</a>
 				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html">Type definition `EvtRecTrackCol`</a>
 				/// <li> <a href="http://bes3.to.infn.it/Boss/7.0.0/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed">Type definition `Event::McParticleCol`</a>
-			/// </ul>
-
-			// * Load headers
-			fLog << MSG::DEBUG << "Loading EventHeader, EvtRecEvent, and EvtRecTrackCol" << endmsg;
-			fEventHeader   = SmartDataPtr<Event::EventHeader>(eventSvc(), "/Event/EventHeader");
-			fEvtRecEvent   = SmartDataPtr<EvtRecEvent>       (eventSvc(), EventModel::EvtRec::EvtRecEvent);
-			fEvtRecTrkCol  = SmartDataPtr<EvtRecTrackCol>    (eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
-
-			// * Log run number, event number, and number of events *
-			fLog << MSG::DEBUG
-				<< "RUN "          << fEventHeader->runNumber()   << ", "
-				<< "event number " << fEventHeader->eventNumber() << endmsg;
-			fLog << MSG::DEBUG
-				<< "Ncharged = " << fEvtRecEvent->totalCharged() << ", "
-				<< "Nneutral = " << fEvtRecEvent->totalNeutral() << ", "
-				<< "Ntotal = "   << fEvtRecEvent->totalTracks()  << endmsg;
-
-			// * Increase counters *
-			++fCounter_Nevents;
-			fCounter_Ncharged += fEvtRecEvent->totalCharged();
-			fCounter_Nneutral += fEvtRecEvent->totalNeutral();
-			fCounter_Ntracks  += fEvtRecEvent->totalTracks();
-
-			// * Set vertex origin *
+				/// </ul>
+				fLog << MSG::DEBUG << "Loading EventHeader, EvtRecEvent, and EvtRecTrackCol" << endmsg;
+				fEventHeader   = SmartDataPtr<Event::EventHeader>(eventSvc(), "/Event/EventHeader");
+				fEvtRecEvent   = SmartDataPtr<EvtRecEvent>       (eventSvc(), EventModel::EvtRec::EvtRecEvent);
+				fEvtRecTrkCol  = SmartDataPtr<EvtRecTrackCol>    (eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
+			/// <li> Log run number, event number, and number of events.
+				fLog << MSG::DEBUG
+					<< "RUN "          << fEventHeader->runNumber()   << ", "
+					<< "event number " << fEventHeader->eventNumber() << endmsg;
+				fLog << MSG::DEBUG
+					<< "Ncharged = " << fEvtRecEvent->totalCharged() << ", "
+					<< "Nneutral = " << fEvtRecEvent->totalNeutral() << ", "
+					<< "Ntotal = "   << fEvtRecEvent->totalTracks()  << endmsg;
+			/// <li> Increase counter objects (see `CutObject`).
+				++fCounter_Nevents;
+				fCounter_Ncharged += fEvtRecEvent->totalCharged();
+				fCounter_Nneutral += fEvtRecEvent->totalNeutral();
+				fCounter_Ntracks  += fEvtRecEvent->totalTracks();
+			/// <li> Set vertex origin.
 				IVertexDbSvc* vtxsvc;
 				Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
 				if(vtxsvc->isVertexValid()){
@@ -235,237 +236,47 @@
 					// double* vv  = vtxsvc->SigmaPrimaryVertex();
 					fVertexPoint.set(dbv[0], dbv[1], dbv[2]);
 				}
+			/// </ol>
 
-		/// <li> Get Monte Carlo truth if available (that is, if the run number is negative).
-			if(fEventHeader->runNumber()<0 && fNTuple_mctruth) {
-				/// <ol>
-				/// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `"FILE1"`.
-				fMcParticleCol = SmartDataPtr<Event::McParticleCol>(eventSvc(), "/Event/MC/McParticleCol");
+		/// <h1> Create track collections </h1>
+			CreateChargedCollection(); /// -# Perform `CreateChargedCollection`.
+			CreateNeutralCollection(); /// -# Perform `CreateNeutralCollection`.
+			CreateMCtruthCollection(); /// -# Perform `CreateMCtruthCollection`.
 
-				/// <li> @b Abort if does not exist.
-				///@todo Might have to make this aborting behaviour less strict.
-				if(!fMcParticleCol) {
-					fLog << MSG::ERROR << "Could not retrieve McParticelCol" << endmsg;
-					return(StatusCode::FAILURE);
+		/// <h1> Write event info </h1>
+			/// -# @b Write general multiplicities (`"mult"` branch)
+				if(fNTuple_mult.DoWrite()) {
+					fNTuple_mult.at("Ntotal")   = fEvtRecEvent->totalTracks();
+					fNTuple_mult.at("Ncharge")  = fEvtRecEvent->totalCharged();
+					fNTuple_mult.at("Nneutral") = fEvtRecEvent->totalNeutral();
+					if(fCreateChargedCollection) fNTuple_mult.at("Nmdc")         = fNChargesMDC;
+					if(fCreateChargedCollection) fNTuple_mult.at("NgoodCharged") = fGoodChargedTracks.size();
+					if(fCreateNeutralCollection) fNTuple_mult.at("NgoodNeutral") = fGoodNeutralTracks.size();
+					fNTuple_mult.Write();
 				}
 
-				/// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data available in `McParticle`, see <a href="http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html">here</a>. Only add to `fMcParticles` if the `McParticle` satisfies:
-				bool doNotRecord(true);
-				for(Event::McParticleCol::iterator it = fMcParticleCol->begin(); it!=fMcParticleCol->end(); ++it) {
-					/// <ul>
-					/// <li> It is not a primary particle.
-					if( (*it)->primaryParticle()) continue;
-					/// <li> Only add if the decay has been generated. @todo Why? What does this mean precisely?
-					if(!(*it)->decayFromGenerator()) continue;
-					/// <li> Only start recording after we have passed the initial cluster (e.g. \f$J/\psi\f$). Note that `91` is the PDG code of cluster and `92` is the PDG code of string.
-					if(
-						(*it)->particleProperty() == 91 ||  /// <li> `91` is the PDG code of cluster.
-						(*it)->particleProperty() == 92 ) { /// <li> `92` is the PDG code of string.
-						doNotRecord = false;
-					}
-					/// <li> Skip if this particle is the initial cluster itself.
-					if(doNotRecord) continue;
-					/// <li> Add the pointer to the `fMcParticles` vector.
-					fMcParticles.push_back(*it);
-					/// </ul>
-				} // end of for loop
-				/// </ol>
-
-			} // end of if runNumber<0
-
-		/// <li> Create selection charged tracks and write track info:
-			/// Note: the first part of the set of reconstructed tracks are the charged tracks.
-
-			// * Reset counters and initialize PID instance *
-			fGoodChargedTracks.clear();
-			fPIDInstance = ParticleID::instance();
-
-			// * Only perform if there are charged tracks *
-			if(fNTuple_charged && fEvtRecEvent->totalCharged()) {
-
-				fNChargesMDC = 0;
-				fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
-				for(int i = 0; i < fEvtRecEvent->totalCharged(); ++i) {
-					/// <ol>
-					/// <li> Get MDC information
-
-						// * Get track info from Main Drift Chamber
-						fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endmsg;
-						fTrackIterator = fEvtRecTrkCol->begin() + i;
-						if(!(*fTrackIterator)->isMdcTrackValid()) continue;
-						++fCounter_Nmdcvalid;
-						fTrackMDC = (*fTrackIterator)->mdcTrack();
-
-						// * Get kinematics of track
-						double phi  = fTrackMDC->helix(1);
-						double vr =
-							(fTrackMDC->x() - fVertexPoint.x()) * cos(phi) +
-							(fTrackMDC->y() - fVertexPoint.y()) * sin(phi);
-
-						// * Get radii of track vertex
-						HepVector a = fTrackMDC->helix();
-						HepSymMatrix Ea = fTrackMDC->err();
-						HepPoint3D point0(0., 0., 0.); // initial point for MDC reconstruction
-						VFHelix helixip(point0, a, Ea);
-						helixip.pivot(fVertexPoint); /// @todo Check if `helixip.pivot(fVertexPoint)` doesn't affect `fVertexPoint`.
-						HepVector vecipa = helixip.a();
-						double rvxy  = fabs(vecipa[0]); // nearest distance to IP in xy plane
-						double rvz   = vecipa[3];       // nearest distance to IP in z direction
-						double rvphi = vecipa[1];       // angle in the xy-plane (?)
-
-					/// <li> Apply charged track cuts:
-						/// <ul>
-						if(fCut_Vz .FailsMax(fabs(fTrackMDC->z()))) continue; /// <li> \f$z\f$ coordinate of the collision point has to be within `cut_Vz0_max`
-						if(fCut_Vxy.FailsMax(vr)                  ) continue; /// <li> radius in \f$xy\f$ plane has to be less than `cut_Vr0_max`
-						if(fCut_Rz .FailsMax(fabs(rvz))           ) continue; /// <li> \f$z\f$ coordinate of the distance to the interaction point has to be within `cut_Rvz0_max`
-						if(fCut_Rxy.FailsMax(rvxy)                ) continue; /// <li> distance to the interaction point in \f$xy\f$ plane has to be within `cut_Rvxy0_max`
-						if(fCut_CosTheta.FailsMax(fabs(cos(fTrackMDC->theta())))) continue; /// <li> distance to the interaction point in \f$xy\f$ plane has to be within `cut_costheta_max`
-						/// </ul>
-
-						// * Add charged track to vector
-						fGoodChargedTracks.push_back(*fTrackIterator);
-						fNChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
-
-					/// <li> @b Write charged track vertex position info ("charged" branch)
-						if(fNTuple_charged.DoWrite()) {
-							fNTuple_charged.at("vx")    = fTrackMDC->x();
-							fNTuple_charged.at("vy")    = fTrackMDC->y();
-							fNTuple_charged.at("vz")    = fTrackMDC->z();
-							fNTuple_charged.at("vr")    = vr;
-							fNTuple_charged.at("rvxy")  = rvxy;
-							fNTuple_charged.at("rvz")   = rvz;
-							fNTuple_charged.at("rvphi") = rvphi;
-							fNTuple_charged.at("phi")   = phi;
-							fNTuple_charged.at("p")     = fTrackMDC->p();
-							fNTuple_charged.Write();
-						}
-
-					/// <li> @b Write dE/dx PID information ("dedx" branch)
-						WriteDedxInfo(*fTrackIterator, fNTuple_dedx);
-
-					/// <li> @b Write Time-of-Flight PID information ("tof*" branch)
-						if(fNTuple_TofEC.DoWrite() || fNTuple_TofIB.DoWrite() || fNTuple_TofOB.DoWrite()) {
-
-							// * Check if MDC and TOF info for track are valid *
-							if(!(*fTrackIterator)->isMdcTrackValid()) continue;
-							if(!(*fTrackIterator)->isTofTrackValid()) continue;
-
-							// * Get momentum as determined by MDC *
-							fTrackMDC = (*fTrackIterator)->mdcTrack();
-							double ptrk;
-							if(fTrackMDC) ptrk = fTrackMDC->p();
-							SmartRefVector<RecTofTrack> tofTrkCol = (*fTrackIterator)->tofTrack();
-							SmartRefVector<RecTofTrack>::iterator iter_tof = tofTrkCol.begin();
-							for(; iter_tof != tofTrkCol.end(); ++iter_tof) {
-								TofHitStatus hitStatus;
-								hitStatus.setStatus((*iter_tof)->status());
-								if(!hitStatus.is_counter()) continue;
-								if(hitStatus.is_barrel()) {
-									if(hitStatus.layer() == 1) { // inner barrel
-										if(fNTuple_TofIB.DoWrite()) WriteTofInformation(iter_tof, ptrk, fNTuple_TofIB);
-									} else if(hitStatus.layer() == 2) { // outer barrel
-										if(fNTuple_TofOB.DoWrite()) WriteTofInformation(iter_tof, ptrk, fNTuple_TofOB);
-									}
-								}
-								else if(fNTuple_TofEC.DoWrite() && hitStatus.layer() == 0) // end cap
-									WriteTofInformation(iter_tof, ptrk, fNTuple_TofEC);
-							}
-
-						} // if(fNTuple_tofec.DoWrite() || fNTuple_tofib.DoWrite() || fNTuple_tofob.DoWrite())
-
-					/// </ol>
+			/// -# @b Write information about the interaction point (`"vertex"` branch)
+				if(fNTuple_vertex.DoWrite()) {
+					fNTuple_vertex.at("vx0") = fVertexPoint.x();
+					fNTuple_vertex.at("vy0") = fVertexPoint.y();
+					fNTuple_vertex.at("vz0") = fVertexPoint.z();
+					fNTuple_vertex.Write();
 				}
 
-				// * Finish good charged track selection *
-				fLog << MSG::DEBUG << "Number of 'good' charged tracks: " << fGoodChargedTracks.size() << endmsg;
-			}
-
-
-		/// <li> Create selection of neutral tracks and write track info.
-			/// Note: The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired with each charged track and if their angle is smaller than a certain value (here, 200), the photon track is stored as 'good photon' (added to `iGam`).
-
-			// * Set counters and data members *
-			fGoodNeutralTracks.clear();
-
-			// * Only perform if there are neutral tracks *
-			if(fNTuple_neutral && fEvtRecEvent->totalNeutral()) {
-
-				// * Loop over neutral tracks *
-				fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
-				for(int i = fEvtRecEvent->totalCharged(); i < fEvtRecEvent->totalTracks(); ++i) {
-					/// <ol>
-					/// <li> Get EMC information
-						fLog << MSG::DEBUG << "   neutral track " << i-fEvtRecEvent->totalCharged() << "/" << fEvtRecEvent->totalNeutral() << endmsg;
-						fTrackIterator = fEvtRecTrkCol->begin() + i; 
-						if(!(*fTrackIterator)->isEmcShowerValid()) continue;
-						fTrackEMC = (*fTrackIterator)->emcShower();
-						if(!fTrackEMC) continue;
-
-					/// <li> Apply photon energy cut (set by `TrackSelector.cut_PhotonEnergy`).
-						if(fCut_PhotonEnergy.FailsMin(fTrackEMC->energy())) continue;
-
-					/// <li> @b Write neutral track information (if `write_neutral` is set to `true`).
-						if(fNTuple_neutral.DoWrite()) {
-							fNTuple_neutral.at("E")     = fTrackEMC->energy();
-							fNTuple_neutral.at("x")     = fTrackEMC->x();
-							fNTuple_neutral.at("y")     = fTrackEMC->y();
-							fNTuple_neutral.at("z")     = fTrackEMC->z();
-							fNTuple_neutral.at("phi")   = fTrackEMC->phi();
-							fNTuple_neutral.at("theta") = fTrackEMC->theta();
-							fNTuple_neutral.at("time")  = fTrackEMC->time();
-							NTupleContainer::Get("neutral").Write();
-						}
-
-					/// <li> Add photon track to vector of neutral tracks (`fGoodNeutralTracks`).
-						fGoodNeutralTracks.push_back(*fTrackIterator);
-
-					/// </ol>
-				}
-
-				// * Finish good photon selection *
-				fLog << MSG::DEBUG << "Number of 'good' photons: " << fGoodNeutralTracks.size() << endmsg;
-			}
-
-
-		/// <li> @b Write event info (`"mult"` branch)
-			if(fNTuple_mult.DoWrite()) {
-				fNTuple_mult.at("Ntotal")       = fEvtRecEvent->totalTracks();
-				fNTuple_mult.at("Ncharge")      = fEvtRecEvent->totalCharged();
-				fNTuple_mult.at("Nneutral")     = fEvtRecEvent->totalNeutral();
-				if(fNTuple_charged) {
-					fNTuple_mult.at("NgoodCharged") = fGoodChargedTracks.size();
-					fNTuple_mult.at("Nmdc")         = fNChargesMDC;
-				}
-				if(fNTuple_neutral) fNTuple_mult.at("NgoodNeutral") = fGoodNeutralTracks.size();
-				NTupleContainer::Get("mult").Write();
-			}
-
-		/// <li> @b Write event info (`"vertex"` branch)
-			if(fNTuple_vertex.DoWrite()) {
-				fNTuple_vertex.at("vx0") = fVertexPoint.x();
-				fNTuple_vertex.at("vy0") = fVertexPoint.y();
-				fNTuple_vertex.at("vz0") = fVertexPoint.z();
-				NTupleContainer::Get("vertex").Write();
-			}
-
-		/// <li> Perform derived algoritm as defined in `TrackSelector::execute_rest`.
-			if(execute_rest() == StatusCode::SUCCESS) return StatusCode::SUCCESS;
-			if(fPIDInstance) delete fPIDInstance;
-
-		/// </ol>
+		if(execute_rest() == StatusCode::SUCCESS) return StatusCode::SUCCESS;
+		if(fPIDInstance) delete fPIDInstance;
 		return StatusCode::SUCCESS;
 	}
 
 
-	/// Is called at the end <i>of the entire process</i>. Writes total cut flow to terminal and to the output file.
+	/// Is called at the end <i>of the entire process</i>.
+	/// Writes total cut flow to terminal and to the output file.
 	StatusCode TrackSelector::finalize()
 	{ PrintFunctionName("TrackSelector", __func__);
-
 		finalize_rest();
-		WriteCuts();
+		NTupleContainer::PrintFilledTuples();
+		AddAndWriteCuts();
 		CutObject::PrintAll();
-
-		fLog << MSG::INFO << "Successfully returned from TrackSelector::" << __func__ << "" << endmsg;
 		return StatusCode::SUCCESS;
 	}
 
@@ -474,7 +285,8 @@
 	/// This function has been implemented in the base class to standardise terminal output.
 	/// @remark In the derived classes, place this function at the beginning of each algorithm step for debugging purposes, using the format `PrintFunctionName("<class name>", __func__)`.
 	void TrackSelector::PrintFunctionName(const char* class_name, const char* function_name)
-	{ PrintFunctionName("TrackSelector", __func__);
+	{
+		fLog << MSG::DEBUG << "\n\n\n\n===>> " << class_name << "::" << function_name << " <<===\n" << endmsg;
 	}
 
 
@@ -487,20 +299,21 @@
 	/// This function encapsulates the `addItem` procedure for the MC truth branches for the TopoAna package.
 	void TrackSelector::AddNTupleItems_McTruth()
 	{
-		if(!fNTuple_mctruth) return;
-		// fNTuple_mctruth.GetNTuple()->addItem("iEvt",   fNTuple_mctruth.iEvt);           /// * `"iEvt"`: @b Counter for number of events (not the ID!) @todo Check event counter if required for `topoana`
-		fNTuple_mctruth.GetNTuple()->addItem("runID",  fNTuple_mctruth.runID);          /// * `"runID"`: Run number ID.
-		fNTuple_mctruth.GetNTuple()->addItem("evtID",  fNTuple_mctruth.evtID);          /// * `"evtID"`: Rvent number ID.
-		fNTuple_mctruth.GetNTuple()->addItem("nItems", fNTuple_mctruth.nItems, 0, 100); /// * `"nItems"`: Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
-		fNTuple_mctruth.GetNTuple()->addIndexedItem("particle", fNTuple_mctruth.nItems, fNTuple_mctruth.particle); /// * `"particle"`: PDG code for the particle in this array.
-		fNTuple_mctruth.GetNTuple()->addIndexedItem("mother",   fNTuple_mctruth.nItems, fNTuple_mctruth.mother);   /// * `"mother"`: Track index of the mother particle.
+		if(!fNTuple_mctruth.DoWrite()) return;
+		// fNTuple_mctruth.GetNTuple()->addItem("iEvt",   fNTuple_mctruth.iEvt);      /// * `"iEvt"`: @b Counter for number of events (not the ID!) @todo Check event counter if required for `topoana`
+		fNTuple_mctruth.GetNTuple()->addItem("runID", fNTuple_mctruth.runID);         /// * `"runID"`: Run number ID.
+		fNTuple_mctruth.GetNTuple()->addItem("evtID", fNTuple_mctruth.evtID);         /// * `"evtID"`: Rvent number ID.
+		fNTuple_mctruth.GetNTuple()->addItem("index", fNTuple_mctruth.index, 0, 100); /// * `"index"`: Index that is necessary for loading the following his one is necessary for loading following two items, because they are arrays.
+		fNTuple_mctruth.GetNTuple()->addIndexedItem("particle", fNTuple_mctruth.index, fNTuple_mctruth.particle); /// * `"particle"`: PDG code for the particle in this array.
+		fNTuple_mctruth.GetNTuple()->addIndexedItem("mother",   fNTuple_mctruth.index, fNTuple_mctruth.mother);   /// * `"mother"`: Track index of the mother particle.
 	}
 
 
-	/// This function encapsulates the `addItem` procedure for the \f$dE/dx\f$ energy loss branch (`"dedx"`). This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
+	/// This function encapsulates the `addItem` procedure for the \f$dE/dx\f$ energy loss branch (`"dedx"`).
+	/// This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
 	void TrackSelector::AddNTupleItems_Dedx(NTupleContainer &tuple)
 	{
-		if(!tuple) return;
+		if(!tuple.DoWrite()) return;
 		// tuple.AddItem("dedx_K");     /// * `"dedx_K"`      Expected value of \f$dE/dx\f$ in case of kaon hypothesis.
 		// tuple.AddItem("dedx_P");     /// * `"dedx_P"`      Expected value of \f$dE/dx\f$ in case of proton hypothesis.
 		// tuple.AddItem("dedx_e");     /// * `"dedx_e"`      Expected value of \f$dE/dx\f$ in case of electron hypothesis.
@@ -520,10 +333,11 @@
 	}
 
 
-	/// This function encapsulates the `addItem` procedure for the ToF branch. This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.
+	/// This function encapsulates the `addItem` procedure for the ToF branch.
+	/// This allows to standardize the loading of the end cap, inner barrel, and outer barrel ToF branches.
 	void TrackSelector::AddNTupleItems_Tof(NTupleContainer &tuple)
 	{
-		if(!tuple) return;
+		if(!tuple.DoWrite()) return;
 		tuple.AddItem("p");      /// * `"p"`:      Momentum of the track as reconstructed by MDC.
 		tuple.AddItem("tof");    /// * `"tof"`:    Time of flight.
 		tuple.AddItem("path");   /// * `"path"`:   Path length.
@@ -542,20 +356,21 @@
 	/// Helper function that allows you to relate the `NTupleContainer` argument `tuple` to the output file (i.e. to 'book' it).
 	void TrackSelector::BookNTuple(NTupleContainer &tuple)
 	{
-		/// -# @b Abort if 'do `JobSwitch'` is set to `false`.
-			if(!tuple) return;
+		/// -# @Abort if the `"write_"` `JobSwitch` option has been set to `false`.
+			if(!tuple.DoWrite()) return;
 
 		/// -# Form a string for booking in the file. Typically: `"FILE1/<tree name>"`.
-			const char* bookName = Form("FILE1/%s", tuple.Name());
+			const char* bookName = Form("FILE1/%s", tuple.Name().c_str());
 
 		/// -# Attempt to get this `NTuple::Tuple` from file the file.
 			NTuplePtr nt(ntupleSvc(), bookName);
+			if(nt) fLog << MSG::INFO << "  loaded NTuple \"" << tuple.Name() << "\" from FILE1" << endmsg;
 
 		/// -# If not available in file, book a new one.
-			if(!nt) {
-				fLog << MSG::INFO << "Booked NTuple \"" << tuple.Name() << "\"" << endmsg;
+			else {
+				fLog << MSG::INFO << "  booked NTuple \"" << tuple.Name() << "\"" << endmsg;
 				nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, tuple.Description());
-				if(!nt) fLog << MSG::ERROR << "    Cannot book N-tuple:" << long(nt) << " (" << tuple.Name() << ")" << endmsg;
+				if(!nt) fLog << MSG::WARNING << "  --> cannot book N-tuple: " << long(nt) << " (\"" << tuple.Name() << "\")" << endmsg;
 			}
 
 		/// -# Import this NTuplePtr to the `tuple` object.
@@ -566,17 +381,243 @@
 	/// Go over all instances of `NTupleContainer` and book them using `BookNTuple`.
 	void TrackSelector::BookNTuples()
 	{
+		fLog << MSG::INFO << "Booking " << NTupleContainer::instances.size() << " NTuples:" << endmsg;
 		std::map<std::string, NTupleContainer*>::iterator it = NTupleContainer::instances.begin();
 		for(it; it != NTupleContainer::instances.end(); ++it) BookNTuple(*it->second);
 	}
 
 
-	/// Declare properties for each `JobSwitch`. This method has been added to the `TrackSelector`, and not to the `JobSwitch` class, because it requires the `Algorithm::decalareProperty` method.
+	/// Create a preselection of charged tracks (without cuts).
+	/// This method is used in `TrackSelector::execute` only. See `fGoodChargedTracks` for more information.
+	void TrackSelector::CreateChargedCollection()
+	{
+		/// <ol>
+		/// <li> @b Abort if `fCreateChargedCollection` has been set to `false`. This is decided in the derived class.
+			if(!fCreateChargedCollection) return;
+
+		/// <li> Clear `fGoodChargedTracks` collection `vector` and initialize PID instance.
+			fGoodChargedTracks.clear();
+			fPIDInstance = ParticleID::instance();
+
+		/// <li> @ Abort if there are no charged tracks in the `fEvtRecEvent` track collection.
+			if(!fEvtRecEvent->totalCharged()) 
+
+		/// <li> Loop over the charged tracks in the loaded `fEvtRecEvent` track collection. The first part of the set of reconstructed tracks are the charged tracks.
+			fNChargesMDC = 0;
+			fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
+			for(int i = 0; i < fEvtRecEvent->totalCharged(); ++i) {
+			/// <ol>
+			/// <li> Get MDC information
+
+				// * Get track info from Main Drift Chamber
+				fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endmsg;
+				fTrackIterator = fEvtRecTrkCol->begin() + i;
+				if(!(*fTrackIterator)->isMdcTrackValid()) continue;
+				++fCounter_Nmdcvalid;
+				fTrackMDC = (*fTrackIterator)->mdcTrack();
+
+				// * Get kinematics of track
+				double phi  = fTrackMDC->helix(1);
+				double vr =
+					(fTrackMDC->x() - fVertexPoint.x()) * cos(phi) +
+					(fTrackMDC->y() - fVertexPoint.y()) * sin(phi);
+
+				// * Get radii of track vertex
+				HepVector a = fTrackMDC->helix();
+				HepSymMatrix Ea = fTrackMDC->err();
+				HepPoint3D point0(0., 0., 0.); // initial point for MDC reconstruction
+				VFHelix helixip(point0, a, Ea);
+				helixip.pivot(fVertexPoint); /// @todo Check if `helixip.pivot(fVertexPoint)` doesn't affect `fVertexPoint`.
+				HepVector vecipa = helixip.a();
+				double rvxy  = fabs(vecipa[0]); // nearest distance to IP in xy plane
+				double rvz   = vecipa[3];       // nearest distance to IP in z direction
+				double rvphi = vecipa[1];       // angle in the xy-plane (?)
+
+			/// <li> Apply charged track cuts:
+				/// <ul>
+				if(fCut_Vz .FailsMax(fabs(fTrackMDC->z()))) continue; /// <li> \f$z\f$ coordinate of the collision point has to be within `cut_Vz0_max`
+				if(fCut_Vxy.FailsMax(vr)                  ) continue; /// <li> radius in \f$xy\f$ plane has to be less than `cut_Vr0_max`
+				if(fCut_Rz .FailsMax(fabs(rvz))           ) continue; /// <li> \f$z\f$ coordinate of the distance to the interaction point has to be within `cut_Rvz0_max`
+				if(fCut_Rxy.FailsMax(rvxy)                ) continue; /// <li> distance to the interaction point in \f$xy\f$ plane has to be within `cut_Rvxy0_max`
+				if(fCut_CosTheta.FailsMax(fabs(cos(fTrackMDC->theta())))) continue; /// <li> distance to the interaction point in \f$xy\f$ plane has to be within `cut_costheta_max`
+				/// </ul>
+
+				// * Add charged track to vector
+				fGoodChargedTracks.push_back(*fTrackIterator);
+				fNChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
+
+			/// <li> @b Write charged track vertex position info ("charged" branch)
+				if(fNTuple_charged.DoWrite()) {
+					fNTuple_charged.at("vx")    = fTrackMDC->x();
+					fNTuple_charged.at("vy")    = fTrackMDC->y();
+					fNTuple_charged.at("vz")    = fTrackMDC->z();
+					fNTuple_charged.at("vr")    = vr;
+					fNTuple_charged.at("rvxy")  = rvxy;
+					fNTuple_charged.at("rvz")   = rvz;
+					fNTuple_charged.at("rvphi") = rvphi;
+					fNTuple_charged.at("phi")   = phi;
+					fNTuple_charged.at("p")     = fTrackMDC->p();
+					fNTuple_charged.Write();
+				}
+
+			/// <li> @b Write dE/dx PID information ("dedx" branch)
+				WriteDedxInfo(*fTrackIterator, fNTuple_dedx);
+
+			/// <li> @b Write Time-of-Flight PID information ("tof*" branch)
+				if(fNTuple_TofEC.DoWrite() || fNTuple_TofIB.DoWrite() || fNTuple_TofOB.DoWrite()) {
+					// * Check if MDC and TOF info for track are valid *
+					if(!(*fTrackIterator)->isMdcTrackValid()) continue;
+					if(!(*fTrackIterator)->isTofTrackValid()) continue;
+					// * Get momentum as determined by MDC *
+					fTrackMDC = (*fTrackIterator)->mdcTrack();
+					double ptrk;
+					if(fTrackMDC) ptrk = fTrackMDC->p();
+					SmartRefVector<RecTofTrack> tofTrkCol = (*fTrackIterator)->tofTrack();
+					SmartRefVector<RecTofTrack>::iterator iter_tof = tofTrkCol.begin();
+					for(; iter_tof != tofTrkCol.end(); ++iter_tof) {
+						TofHitStatus hitStatus;
+						hitStatus.setStatus((*iter_tof)->status());
+						if(!hitStatus.is_counter()) continue;
+						if(hitStatus.is_barrel()) {
+							if(hitStatus.layer() == 1) { // inner barrel
+								WriteTofInformation(iter_tof, ptrk, fNTuple_TofIB);
+							} else if(hitStatus.layer() == 2) { // outer barrel
+								WriteTofInformation(iter_tof, ptrk, fNTuple_TofOB);
+							}
+						}
+						else if(hitStatus.layer() == 0) // end cap
+							WriteTofInformation(iter_tof, ptrk, fNTuple_TofEC);
+					}
+				}
+
+			/// </ol>
+			}
+			fLog << MSG::DEBUG << "Number of 'good' charged tracks: " << fGoodChargedTracks.size() << endmsg;
+
+		/// </ol>
+	}
+
+
+	/// Create a preselection of @b neutral tracks (without cuts).
+	/// This method is used in `TrackSelector::execute` only. See `fGoodNeutralTracks` for more information.
+	void TrackSelector::CreateNeutralCollection()
+	{
+		/// <ol>
+		/// <li> @b Abort if `fCreateNeutralCollection` has been set to `false`. This is decided in the derived class.
+			if(!fCreateNeutralCollection) return;
+
+		/// <li> Clear `fGoodNeutralTracks` collection `vector`.
+			fGoodNeutralTracks.clear();
+
+		/// <li> @ Abort if there are no charged tracks in the `fEvtRecEvent` track collection.
+			if(!fEvtRecEvent->totalNeutral()) 
+
+		/// <li> Loop over the neutral tracks in the loaded `fEvtRecEvent` track collection. The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies).
+			fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
+			for(int i = fEvtRecEvent->totalCharged(); i < fEvtRecEvent->totalTracks(); ++i) {
+			/// <ol>
+			/// <li> Get EMC information
+				fLog << MSG::DEBUG << "   neutral track " << i-fEvtRecEvent->totalCharged() << "/" << fEvtRecEvent->totalNeutral() << endmsg;
+				fTrackIterator = fEvtRecTrkCol->begin() + i; 
+				if(!(*fTrackIterator)->isEmcShowerValid()) continue;
+				fTrackEMC = (*fTrackIterator)->emcShower();
+				if(!fTrackEMC) continue;
+
+			/// <li> Apply photon energy cut (set by `TrackSelector.cut_PhotonEnergy`).
+				if(fCut_PhotonEnergy.FailsMin(fTrackEMC->energy())) continue;
+
+			/// <li> @b Write neutral track information (if `write_neutral` is set to `true`).
+				if(fNTuple_neutral.DoWrite()) {
+					fNTuple_neutral.at("E")     = fTrackEMC->energy();
+					fNTuple_neutral.at("x")     = fTrackEMC->x();
+					fNTuple_neutral.at("y")     = fTrackEMC->y();
+					fNTuple_neutral.at("z")     = fTrackEMC->z();
+					fNTuple_neutral.at("phi")   = fTrackEMC->phi();
+					fNTuple_neutral.at("theta") = fTrackEMC->theta();
+					fNTuple_neutral.at("time")  = fTrackEMC->time();
+					fNTuple_neutral.Write();
+				}
+
+			/// <li> Add photon track to vector of neutral tracks (`fGoodNeutralTracks`).
+				fGoodNeutralTracks.push_back(*fTrackIterator);
+
+			/// </ol>
+			}
+			fLog << MSG::DEBUG << "Number of 'good' photons: " << fGoodNeutralTracks.size() << endmsg;
+
+		/// </ol>
+	}
+
+
+	/// Create a preselection of <b>Monte Carlo truth</b> tracks.
+	/// This method is used in `TrackSelector::execute` only. See `fMcParticles` for more information. Call `fNTuple_mctruth.Write()` in some place in the derived algorithm to write to this `NTuple` depending on after which cut you want to write MC truth.
+	void TrackSelector::CreateMCtruthCollection()
+	{
+		/// <ol>
+		/// <li> @b Abort if `"write_mctruth"` job switch has been set to `false`.
+			if(!fNTuple_mctruth.DoWrite()) return;
+
+		/// <li> @b Abort if input file is not MC generated (that is, if the run number is not negative).
+			if(fEventHeader->runNumber()>=0) return;
+
+		/// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `"FILE1"` input file.
+			fMcParticleCol = SmartDataPtr<Event::McParticleCol>(eventSvc(), "/Event/MC/McParticleCol");
+
+		/// <li> @b Abort if does not exist.
+			if(!fMcParticleCol) {
+				fLog << MSG::ERROR << "Could not retrieve McParticelCol" << endmsg;
+				return;
+			}
+
+		/// <li> @b Import run number and event number to `fNTuple_mctruth`.
+			fNTuple_mctruth.runID  = fEventHeader->runNumber();
+			fNTuple_mctruth.evtID  = fEventHeader->eventNumber();
+
+		/// <li> Set counters and switches for the loop.
+			bool doNotContinue(true); // only start recording if set to false in the loop
+			int rootIndex(-1); // index of mother particles, necessary for topoana
+			fNTuple_mctruth.index = 0;
+
+		/// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data available in `McParticle`, see <a href="http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html">here</a>. Only add to `fMcParticles` if the `McParticle` satisfies:
+			for(Event::McParticleCol::iterator it = fMcParticleCol->begin(); it!=fMcParticleCol->end(); ++it) {
+			/// <ul>
+			/// <li> @b Skip if it is not a primary particle or if the decay was no from a generator.
+			/// @todo Why? What does this mean precisely?
+				if( (*it)->primaryParticle())    continue;
+				if(!(*it)->decayFromGenerator()) continue;
+			/// <li> Only start recording after we have passed the initial cluster (e.g. \f$J/\psi\f$). See `NTupleTopoAna::IsInitialCluster`.
+				if(NTupleTopoAna::IsInitialCluster(*it)) {
+					doNotContinue = false;
+					rootIndex = (*it)->trackIndex();
+				}
+			/// <li> Skip if this particle is before the initial cluster itself.
+				if(doNotContinue) continue;
+			/// <li> @b Import PDG code of this MC particle.
+				fNTuple_mctruth.particle[fNTuple_mctruth.index] = (*it)->particleProperty();
+			/// <li> @b Import a track index of the mother. This index is defined as `-1` for the initial cluster (e.g. \f$J/\psi\f$) .
+				if(NTupleTopoAna::IsInitialCluster(*it))
+					fNTuple_mctruth.mother[fNTuple_mctruth.index] = -1;
+				else
+					fNTuple_mctruth.mother[fNTuple_mctruth.index] = ((*it)->mother()).trackIndex()-rootIndex-1;
+			/// <li> @b Increment loop index (`fNTuple_mctruth::index`).
+				fNTuple_mctruth.index++;
+			/// <li> Add the pointer to the `fMcParticles` collection vector for use in the derived algorithms.
+				fMcParticles.push_back(*it);
+			/// </ul>
+			}
+
+		/// </ol>
+	}
+
+
+	/// Declare properties for each `JobSwitch`.
+	/// This method has been added to the `TrackSelector`, and not to the `JobSwitch` class, because it requires the `Algorithm::decalareProperty` method.
 	void TrackSelector::DeclareSwitches()
 	{
+		fLog << MSG::INFO << "Assigning job switches to NTuple containers:" << endmsg;
 		std::list<JobSwitch*>::iterator it = JobSwitch::gJobSwitches.begin();
 		for(; it != JobSwitch::gJobSwitches.end(); ++it) {
-			declareProperty((*it)->Name(), (*it)->value);
+			declareProperty((*it)->Name().c_str(), (*it)->fValue);
 			fLog << MSG::INFO << "  added property \"" << (*it)->Name() << "\"" << endmsg;
 		}
 	}
@@ -645,12 +686,14 @@
 	/// @remark You should redefine the virtual `SetFitNTuple` method in your derived algorithm to specify what should be stored to this fit `NTuple`.
 	void TrackSelector::WriteFitResults(KKFitResult *fitresults, NTupleContainer &tuple)
 	{
-		/// -# Abort if `fitresults` is not available.
-			if(!fitresults || !*fitresults) {
-				fLog << MSG::DEBUG << "KalmanKinematicFit for \"" << tuple.Name() << "\" is empty" << endmsg;
-				return;
-			}
-			
+		/// -# @b Abort if `"write_" `JobSwitch` option has been set to `false`.
+			if(!tuple.DoWrite()) return;
+
+		/// -# @b Abort if `fitresults` pointer is a `nullptr` and not a `KKFitResult` object.
+			if(!fitresults) return;
+
+		/// -# @b Abort if `fitresults` does not have fit results.
+			if(!fitresults->HasResults()) return;
 		/// -# Performed derived version of the `virtual` `SetFitNTuple` method.
 			SetFitNTuple(fitresults, tuple);
 
@@ -660,23 +703,24 @@
 	}
 
 
-
-	/// Encapsulates the proces of writing PID info. This allows you to write the PID information after the particle selection as well.
+	/// Encapsulates the proces of writing PID info.
+	/// This allows you to write the PID information after the particle selection as well.
 	void TrackSelector::WritePIDInformation()
 	{
-		/// -# Abort if the 'write `JobSwitch`' has been set to `false`.
+		/// -# @b Abort if the 'write `JobSwitch`' has been set to `false`.
 			if(!fNTuple_PID.DoWrite()) return;
 
-		/// -# Abort if there is no PID instance.
+		/// -# @b Abort if there is no PID instance.
 			if(!fPIDInstance) return;
+
+		/// -# @b Abort if there is no `fTrackMDC`.
+			if(!fTrackMDC) return;
 
 		/// -# Get PID info and set the `NTuple::Item`s.
 			fLog << MSG::DEBUG << "Writing PID information" << endmsg;
 			fTrackMDC = (*fTrackIterator)->mdcTrack();
-			if(fTrackMDC) {
-				fNTuple_PID.at("p")    = fTrackMDC->p();
-				fNTuple_PID.at("cost") = cos(fTrackMDC->theta());
-			}
+			fNTuple_PID.at("p")        = fTrackMDC->p();
+			fNTuple_PID.at("cost")     = cos(fTrackMDC->theta());
 			fNTuple_PID.at("chiToFEC") = fPIDInstance->chiTofE(2);
 			fNTuple_PID.at("chiToFIB") = fPIDInstance->chiTof1(2);
 			fNTuple_PID.at("chiToFOB") = fPIDInstance->chiTof2(2);
@@ -693,7 +737,8 @@
 	}
 
 
-	/// Helper method for writing Time-of-Flight information. This function has be created to enable you to write TOF information for different collections of tracks.
+	/// Helper method for writing Time-of-Flight information.
+	/// This function has be created to enable you to write TOF information for different collections of tracks.
 	void TrackSelector::WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, NTupleContainer &tuple)
 	{
 		/// -# Abort if the 'write `JobSwitch`' has been set to `false`.
@@ -734,8 +779,8 @@
 // * ========================================= * //
 
 
-	/// Method that standardizes the initialisation of the particle identification system. Define here <i>as general as possible</i>, but use in the derived subalgorithms.
-	/// See http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
+	/// Method that standardizes the initialisation of the particle identification system.
+	/// Define here <i>as general as possible</i>, but use in the derived subalgorithms. See http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
 	/// @todo Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`. See talk by Liu Huanhuan on 2019/01/10.
 	/// @param method Which method to use: probability, likelihood, or neuron network (see `TSGlobals::PIDMethod`). You can also combine using e.g. `pid->methodLikelihood() | pid->methodProbability()`.
 	/// @param pidsys PID systems you want to call. Can combined using bit seperators (`|`), e.g. `pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE()` for \f$dE/dx\f$ plus all ToF detectors.
@@ -761,49 +806,69 @@
 	}
 
 
+	/// Check whether a decayed MC truth particle comes from a particle with PDG code `mother`.
+	bool TrackSelector::IsDecay(Event::McParticle* particle, const int mother) const
+	{
+		if(particle->primaryParticle()) return false;
+		if(particle->mother().particleProperty() == mother) return true;
+		return false;
+	}
+
+
+	/// Check whether a decayed MC truth particle has PDG code `pdg` and comes from a particle with PDG code `mother`.
+	bool TrackSelector::IsDecay(Event::McParticle* particle, const int mother, const int pdg) const
+	{
+		if(!IsDecay(particle, mother)) return false;
+		if(particle->particleProperty() == pdg) return true;
+		return false;
+	}
+
+
 
 // * ============================= * //
 // * -------- CUT METHODS -------- * //
 // * ============================= * //
 
 
-	/// Declare properties for each `CutObject`. Each `CutObject` has two properties: a `min` and a `max`. This method has been added to the `TrackSelector`, and not to the `CutObject` class, because it requires the `Algorithm::decalareProperty` method.
+	/// Declare corresponding job properties for each `CutObject`.
+	/// Each `CutObject` has two corresponding job properties: a minimum and a maximum. These two corresponding properties are declared as `"cut_<name>_min/max" respectively so that they can be set in the job options file.
+	/// @remark This method has been added to the `TrackSelector`, and not to the `CutObject` class, because it requires the `Algorithm::decalareProperty` method.
 	void TrackSelector::DeclareCuts()
 	{
+		fLog << MSG::INFO << "Declaring cuts for NTuple \"" << fNTuple_cuts.Name() << "\":" << endmsg;
 		std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
 		for(; cut != CutObject::gCutObjects.end(); ++cut) {
+			/// -# Declare a `"cut_<name>_min"` property.
 			declareProperty((*cut)->NameMin(), (*cut)->min);
+			/// -# Declare a `"cut_<name>_max"` property.
 			declareProperty((*cut)->NameMax(), (*cut)->max);
-			fLog << MSG::INFO << "  added cut \"" << (*cut)->Name() << "\"" << endmsg;
+			fLog << MSG::INFO << "  added \"cut_" << (*cut)->Name() << "_min/max\"" << endmsg;
 		}
-	}
-
-
-	/// Helper function for `WriteCuts` that allows you to write one entry (usually: `min`, `max`, `counter`).
-	template<typename TYPE>
-	void TrackSelector::WriteCuts_entry(const TYPE &value)
-	{
-		std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
-		for(cut; cut != CutObject::gCutObjects.end(); ++cut)
-			fNTuple_cuts[(*cut)->Name()] = value;
-		fNTuple_cuts.Write();
+		/// -# Also set `JobSwitches` of `"_cutvalues"` to `true`, because they have to be written no matter what the job option files says.
+		fNTuple_cuts.SetWriteSwitch(true);
 	}
 
 
 	/// Write all cuts (`name`, `value`, and `count` of accepted) to a branch called "_cutvalues".
-	void TrackSelector::WriteCuts()
+	void TrackSelector::AddAndWriteCuts()
 	{
-		/// -# For each cut name, create an `NTuple::Item<double>` in the map `fNTuple_cuts`.
-		std::list<CutObject*>::iterator cut;
-		for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut) {
-			fNTuple_cuts.AddItem((*cut)->Name());
-		}
-		/// -# Write `min` values to the first entry.
-		WriteCuts_entry((*cut)->min);
-		/// -# Write `max` values to the second entry.
-		WriteCuts_entry((*cut)->max);
-		/// -# Write the `counter` values to the third entry.
-		WriteCuts_entry((*cut)->counter);
+		/// <ol>
+		/// <li> <b>Add all items</b> to the `"_cutvalues"` `NTupleContainer`.
+			std::list<CutObject*>::iterator cut;
+			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
+				fNTuple_cuts.AddItem((*cut)->Name());
+		/// <li> @b Write `"min"` values as the first entry.
+			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
+				fNTuple_cuts.at((*cut)->Name()) = (*cut)->min;
+			fNTuple_cuts.Write();
+		/// <li> @b Write `"max"` values as the second entry.
+			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
+				fNTuple_cuts.at((*cut)->Name()) = (*cut)->max;
+		/// <li> @b Write the `"counter"` values as the third entry.
+			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
+				fNTuple_cuts.at((*cut)->Name()) = (*cut)->counter;
+			fNTuple_cuts.Write();
+		/// </ol>
 	}
 
 

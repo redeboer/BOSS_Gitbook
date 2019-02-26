@@ -7,6 +7,7 @@
 // * ========================= * //
 
 	#include "VertexFit/KalmanKinematicFit.h"
+	#include <float.h> // for DBL_MAX
 
 
 
@@ -25,24 +26,27 @@
 	public:
 		/// @name Constructor
 			///@{
-			KKFitResult() : fChiSquared(1e9), fFitMeasure(1e9) {}
-			KKFitResult(KalmanKinematicFit* kkmfit);
+			KKFitResult(KalmanKinematicFit* kkmfit=nullptr);
 			///@}
 
 
 		/// @name Boolean tests
 			///@{
-			explicit operator bool() const { return fFit; }
-			bool operator!() const { return !fFit; }
+			bool HasResults() { return fHasResults; }
+			explicit operator bool() const { return fHasResults; }
 			virtual bool IsBetter() const;
 			///@}
 
 
-		/// @name Fit characteristics
+		/// @name Setters
+			///@{
+			void ResetBestCompareValue(const double value=DBL_MAX) { fBestCompareValue = value; };
+			///@}
+
+
+		/// @name Parameters computed from fit
 			///@{
 			double fChiSquared; ///< \f$\chi^2\f$ of <i>this</i> fit (hence, not `static`).
-			double fFitMeasure; ///< Measure that can be used to compare fits. @remark Usage depends completely on your implementation in the derived class.
-			static double fBestCompareValue; ///< Current best value for the comparison. Note that it is automatically reset to the value set here when all (derived) instances of `KKFitResult` are destroyed.
 			///@}
 
 
@@ -53,15 +57,12 @@
 			///@}
 
 
-		/// @name Setters
-			///@{
-			void SetValues();
-			///@}
-
-
 		/// @name Fit characteristics
 			///@{
+			double fFitMeasure; ///< Measure that can be used to compare fits. @remark Usage depends completely on your implementation in the derived class.
+			static double fBestCompareValue; ///< Current best value for the comparison. Note that it is automatically reset to the value set here when all (derived) instances of `KKFitResult` are destroyed.
 			KalmanKinematicFit* fFit;
+			bool fHasResults; ///< You will only want to write the fit results if they have been properly computed. This bit is set to `true` if either this object has been constructed using a non-empty `KalmanKinematicFit` pointer or has been constructed with (see derived classes for implementation)
 			///@}
 
 

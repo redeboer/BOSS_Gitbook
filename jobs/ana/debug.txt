@@ -10,17 +10,18 @@
 
 // * ------- ROOT input data file (rec or dst) ------- * //
 EventCnvSvc.digiRootInputFile = {
-	"/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst/jpsi2009_stream001_run9952_file1.dst"
+	// "/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst/jpsi2009_stream001_run9952_file1.dst"
+	"/scratchfs/bes/deboer/data/dst/D0phi_KpiKK_MC_1e5/D0phi_KpiKK_0.dst"
 };
 
 // * ------- OUTPUT PRINTOUT LEVEL ------- * //
 /// Set output level threshold: 2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL
-MessageSvc.OutputLevel = 2;
+MessageSvc.OutputLevel = 4;
 MessageSvc.useColors   = true;
 
 // * ------- Number of events ------- * //
 /// Number of events to be processed (-1 stands for all events)
-ApplicationMgr.EvtMax = 1;
+ApplicationMgr.EvtMax = 100;
 
 // * ------- ROOT output data file (root) ------- * //
 ApplicationMgr.HistogramPersistency = "ROOT";

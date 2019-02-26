@@ -27,8 +27,8 @@
 		virtual void SetName(const std::string &name);
 		virtual void SetName(const std::string &name, const std::string &desc);
 		virtual void SetDescription(const std::string &desc);
-		const char* Name() const { return fName.c_str(); } ///< Get a pointer to the `C` string (!) of the name.
-		const char* Description() const { return fDescription.c_str(); } ///< Get a pointer to the `C` string (!) of the description.
+		const std::string& Name() const { return fName; } ///< Get a pointer to the `C` string (!) of the name.
+		const std::string& Description() const { return fDescription; } ///< Get a pointer to the `C` string (!) of the description.
 	private:
 		std::string fName; ///< Name/identifier of the container object.
 		std::string fDescription; ///< Title or description of the container object.

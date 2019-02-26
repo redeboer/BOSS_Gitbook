@@ -12,14 +12,17 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-	double KKFitResult::fBestCompareValue = 1e9;
+	double KKFitResult::fBestCompareValue = DBL_MAX;
 
 	/// Constructor that immediately instantiates all its members from a `KalmanKinematic` fit result.
 	KKFitResult::KKFitResult(KalmanKinematicFit* kkmfit) :
-		fChiSquared(1e9),
-		fFit(kkmfit)
+		fChiSquared(DBL_MAX),
+		fFitMeasure(DBL_MAX),
+		fFit(kkmfit),
+		fHasResults(false)
 	{
-		SetValues();
+		if(!fFit) return;
+		fChiSquared = fFit->chisq();
 	}
 
 
@@ -27,13 +30,6 @@
 // * =================================== * //
 // * -------- PROTECTED METHODS -------- * //
 // * =================================== * //
-
-	/// Constructof for the `KKFitResult` base class.
-	void KKFitResult::SetValues()
-	{
-		if(!fFit) return;
-		fChiSquared = fFit->chisq();
-	}
 
 
 	/// Comparison method.

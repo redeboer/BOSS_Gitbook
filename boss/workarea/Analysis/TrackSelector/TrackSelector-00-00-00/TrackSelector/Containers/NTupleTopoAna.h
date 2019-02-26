@@ -6,8 +6,9 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "TrackSelector/Containers/NTupleContainer.h"
 	#include "GaudiKernel/NTuple.h"
+	#include "McTruth/McParticle.h"
+	#include "TrackSelector/Containers/NTupleContainer.h"
 
 
 
@@ -26,6 +27,11 @@
 		/// @name Constructors and destructors
 			///@{
 			NTupleTopoAna(const std::string &name, const std::string &desc) : NTupleContainer(name, desc) {} /// @remark Here you can define the name and title of the branch for the TopoAna pacakge!
+			static bool IsInitialCluster(Event::McParticle *mcparticle) {
+				return
+					mcparticle->particleProperty() == 91 ||
+					mcparticle->particleProperty() == 92;
+			} ///< Test whether an MC truth particle is `91` (the PDG code of a 'cluster') or `92` (the PDG code of a string). This function is used to characterised the initial cluster, e.g. \f$J/\psi\f$
 			///@}
 
 
@@ -39,10 +45,10 @@
 			///@{
 			// NTuple::Item<int>  iEvt;     ///< @b Counter for number of events (not the ID!)
 			NTuple::Item<int>  runID;    ///< Run number ID.
-			NTuple::Item<int>  evtID;    ///< Rvent number ID.
-			NTuple::Item<int>  nItems;   ///< Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
+			NTuple::Item<int>  evtID;    ///< Event number ID.
+			NTuple::Item<int>  index;    ///< Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
 			NTuple::Array<int> particle; ///< PDG code for the particle in this array.
-			NTuple::Array<int> mother;   ///< Track index of the mother particle.
+			NTuple::Array<int> mother;   ///< Track index of the mother particle, starting with 0 (not PDG code!).
 			///@}
 	};
 
