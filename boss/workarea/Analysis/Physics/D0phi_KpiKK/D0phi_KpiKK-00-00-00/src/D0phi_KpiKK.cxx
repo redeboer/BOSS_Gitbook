@@ -39,8 +39,7 @@
 			fNTuple_dedx_pi    ("dedx_pi",     "dE/dx of the pions"),
 			fNTuple_fit4c_all  ("fit4c_all",   "4-constraint fit information (CMS 4-momentum)"),
 			fNTuple_fit4c_best ("fit4c_best",  "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
-			fNTuple_fit_mc     ("fit_mc",      "Fake fit information according to MC truth"),
-			fNTuple_mctruth_cut("mctruth_cut", "Monte Carlo truth for TopoAna package after initiel event selection")
+			fNTuple_fit_mc     ("fit_mc",      "Fake fit information according to MC truth")
 	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
 		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
 	}
@@ -74,9 +73,6 @@
 			AddNTupleItems_Fit(fNTuple_fit4c_best);
 			AddNTupleItems_Fit(fNTuple_fit_mc);
 
-		/// <li> `"mctruth_cut"`: Monte Carlo truth for TopoAna package <b>after initial event selection</b>.
-			AddNTupleItems_McTruth(fNTuple_mctruth_cut);
-
 		/// </ol>
 		return StatusCode::SUCCESS;
 	}
@@ -87,10 +83,6 @@
 	StatusCode D0phi_KpiKK::execute_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
 		/// <ol type="A">
-		/// <li> @b Write Monte Carlo truth for `topoana` package (<i>all events</i>).
-			CreateMCtruthCollection();
-			WriteMcTruthForTopoAna(fNTuple_mctruth);
-
 		/// <li> Create specific charged track selections
 			// * Clear vectors of selected particles *
 				fKaonNeg.clear();
@@ -156,23 +148,11 @@
 			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
 			if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
 			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
-			// if(fEventHeader->runNumber()<0 && fNTuple_fit_mc.DoWrite()) {
-			// 	if(
-			// 		fMcKaonNeg.size() != 2 || 
-			// 		fMcKaonPos.size() != 1 || 
-			// 		fMcPionPos.size() != 1
-			// 	) {
-			// 		fLog << MSG::DEBUG << "WARNING: Number cut passed, but MC truth disagrees:" << endmsg;
-			// 		fLog << MSG::DEBUG << "  nMcKaonNeg = " << fMcKaonNeg.size() << endmsg;
-			// 		fLog << MSG::DEBUG << "  nMcKaonPos = " << fMcKaonPos.size() << endmsg;
-			// 		fLog << MSG::DEBUG << "  nMcPionPos = " << fMcPionPos.size() << endmsg;
-			// 		return StatusCode::SUCCESS;
-			// 	}
-			// }
 
 
-		/// <li> @b Write Monte Carlo truth for `topoana` package (<i>all events</i>).
-			WriteMcTruthForTopoAna(fNTuple_mctruth_cut);
+		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
+			CreateMCtruthCollection();
+			WriteMcTruthForTopoAna(fNTuple_mctruth);
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)

@@ -64,7 +64,6 @@
 			NTupleContainer fNTuple_fit4c_all;   ///< `NTuple::Tuple` container for the 4-constraint fit branch containing <i>all</i> combinations.
 			NTupleContainer fNTuple_fit4c_best;  ///< `NTuple::Tuple` container for the 4-constraint fit branch containing only the <i>best</i> combination.
 			NTupleContainer fNTuple_fit_mc;      ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
-			NTupleTopoAna   fNTuple_mctruth_cut; ///< `NTuple::Tuple` container for Monte Carlo truth <b>after the initial event selection</b> (compare `TrackSelector::fNTuple_mctruth` and how it is implemented in the `TrackSelector`).
 			///@}
 
 

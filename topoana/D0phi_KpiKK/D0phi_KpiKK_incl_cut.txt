@@ -1,0 +1,81 @@
+Decay trees and their respective final states:
+
+index:  1	iDcyTr:  0	iDcyFSt:  0	nEtrs:  48	nCmltEtrs:  48
+  e+ e- -->
+( e+ e- --> )
+
+
+Decay final states:
+
+index:  1	iDcyFSt:  0	nEtrs:  48	nCmltEtrs:  48
+  e+ e- -->
+
+
+Decay branches begun with D*0:
+
+
+Decay branches begun with D0:
+
+
+Decay branches begun with anti-D*0:
+
+
+Decay branches begun with anti-D0:
+
+
+Decay branches begun with omega:
+
+
+Decay branches begun with phi:
+
+
+Exclusive decay branches matched with J/psi --> phi D0 + anything:
+
+
+Exclusive decay branches matched with J/psi --> phi D*0 + anything:
+
+
+Exclusive decay branches matched with J/psi --> omega D0 + anything:
+
+
+Exclusive decay branches matched with J/psi --> D0 + anything:
+
+
+Exclusive decay branches matched with J/psi --> D*0 + anything:
+
+
+Exclusive decay branches matched with J/psi --> phi + anything:
+
+
+Exclusive decay branches matched with phi --> K+ K- + anything:
+
+
+Exclusive decay branches matched with D0 --> pi+ K- + anything:
+
+
+Signal particles:
+
+index:  1	SigP:  D0	iSigP:  0	nPs:   0	nCmltPs:  0
+
+index:  2	SigP:  D*0	iSigP:  1	nPs:   0	nCmltPs:  0
+
+index:  3	SigP:  anti-D0	iSigP:  2	nPs:   0	nCmltPs:  0
+
+index:  4	SigP:  anti-D*0	iSigP:  3	nPs:   0	nCmltPs:  0
+
+index:  5	SigP:  phi	iSigP:  4	nPs:   0	nCmltPs:  0
+
+index:  6	SigP:  omega	iSigP:  5	nPs:   0	nCmltPs:  0
+
+
+Signal decay final states:
+
+index:  1	iSigDcyFSt2:  0	iDcyFSt2:  ---	nEtrs:  0	nCmltEtrs:  0
+  e+ e- --> pi+ K+ K- K-
+
+index:  2	iSigDcyFSt2:  1	iDcyFSt2:  ---	nEtrs:  0	nCmltEtrs:  0
+  e+ e- --> pi0 pi+ pi+ pi- K-
+
+index:  3	iSigDcyFSt2:  2	iDcyFSt2:  ---	nEtrs:  0	nCmltEtrs:  0
+  e+ e- --> pi+ pi+ pi- K-
+

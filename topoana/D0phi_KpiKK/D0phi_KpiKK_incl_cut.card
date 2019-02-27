@@ -4,32 +4,32 @@
 
 % Names of input root files
 {
-  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/inclMC/D0phi_KpiKK_10*.root
+  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/inclMC/D0phi_KpiKK_incl_mctruth_cut.root
 }
 
 % Tree name
 {
-  MctruthForTopoAna
+  mctruth_cut
 }
 
 % Branch name of the number of particles
 {
-  Nmcps
+  index
 }
 
 % Branch name of the array of particle identifications
 {
-  Pid
+  particle
 }
 
 % Branch name of the array of the mother indeces of particles
 {
-  Midx
+  mother
 }
 
 % Main name of output files 
 {  
-  D0phi_KpiKK_test
+  D0phi_KpiKK_incl_cut
 }
 
 
