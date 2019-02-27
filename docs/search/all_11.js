@@ -6,6 +6,7 @@ var searchData=
   ['reconstruction_2etxt',['reconstruction.txt',['../reconstruction_8txt.html',1,'']]],
   ['removeleading',['RemoveLeading',['../classConfigLoader.html#a547e7300a3f5100cf5d8484392a9a4d3',1,'ConfigLoader']]],
   ['removetrailing',['RemoveTrailing',['../classConfigLoader.html#a621262f4fd263be406c5fc35bd93eb39',1,'ConfigLoader']]],
+  ['resetbestcomparevalue',['ResetBestCompareValue',['../classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb',1,'KKFitResult']]],
   ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#a5a404d3db862276fa70b85a353496d4e',1,'Settings::Particles']]],
   ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],
   ['rhopi_5fpipigg',['rhopi_pipigg',['../classrhopi__pipigg.html',1,'rhopi_pipigg'],['../classrhopi__pipigg.html#a6a2dce6146cebb243245965e9d9d3a85',1,'rhopi_pipigg::rhopi_pipigg()']]],

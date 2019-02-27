@@ -120,12 +120,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a25f2f3ab9b15ec3ded108ade80382c9f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a25f2f3ab9b15ec3ded108ade80382c9f">SetDescription</a> (const std::string &amp;desc)</td></tr>
 <tr class="memdesc:a25f2f3ab9b15ec3ded108ade80382c9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Give a new description to the object.  <a href="#a25f2f3ab9b15ec3ded108ade80382c9f">More...</a><br /></td></tr>
 <tr class="separator:a25f2f3ab9b15ec3ded108ade80382c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab3523d77ea3653124698172993025f3"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#aab3523d77ea3653124698172993025f3">Name</a> () const</td></tr>
-<tr class="memdesc:aab3523d77ea3653124698172993025f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the name.  <a href="#aab3523d77ea3653124698172993025f3">More...</a><br /></td></tr>
-<tr class="separator:aab3523d77ea3653124698172993025f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78bdd498def449c3415eccfb252fa1f8"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a78bdd498def449c3415eccfb252fa1f8">Description</a> () const</td></tr>
-<tr class="memdesc:a78bdd498def449c3415eccfb252fa1f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the description.  <a href="#a78bdd498def449c3415eccfb252fa1f8">More...</a><br /></td></tr>
-<tr class="separator:a78bdd498def449c3415eccfb252fa1f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d60df5ba52f752ad2f5d61fb07067f"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#ac1d60df5ba52f752ad2f5d61fb07067f">Name</a> () const</td></tr>
+<tr class="memdesc:ac1d60df5ba52f752ad2f5d61fb07067f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the name.  <a href="#ac1d60df5ba52f752ad2f5d61fb07067f">More...</a><br /></td></tr>
+<tr class="separator:ac1d60df5ba52f752ad2f5d61fb07067f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc3f6a11cfbc3e37d40f98cfb78941a"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainer__base.html#a7cc3f6a11cfbc3e37d40f98cfb78941a">Description</a> () const</td></tr>
+<tr class="memdesc:a7cc3f6a11cfbc3e37d40f98cfb78941a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the description.  <a href="#a7cc3f6a11cfbc3e37d40f98cfb78941a">More...</a><br /></td></tr>
+<tr class="separator:a7cc3f6a11cfbc3e37d40f98cfb78941a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -138,7 +138,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class is the base class for objects requiring a name and a description. </p>
-<p>This can be useful for instance for defining derived containers containing properties and <code>NTuple</code>s. See <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures">this page</a> for the motivation. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Encapsulate in <code>namespace</code> structure. </dd></dl>
+<p>This can be useful for instance for defining derived containers containing properties and <code>NTuple</code>s. See <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures">this page</a> for the motivation. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Encapsulate in <code>namespace</code> structure. </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 15th, 2019 </dd></dl>
 
@@ -185,8 +185,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a78bdd498def449c3415eccfb252fa1f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78bdd498def449c3415eccfb252fa1f8">&#9670;&nbsp;</a></span>Description()</h2>
+<a id="a7cc3f6a11cfbc3e37d40f98cfb78941a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cc3f6a11cfbc3e37d40f98cfb78941a">&#9670;&nbsp;</a></span>Description()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,7 +195,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char* Container_base::Description </td>
+          <td class="memname">const std::string&amp; Container_base::Description </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -214,8 +214,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aab3523d77ea3653124698172993025f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab3523d77ea3653124698172993025f3">&#9670;&nbsp;</a></span>Name()</h2>
+<a id="ac1d60df5ba52f752ad2f5d61fb07067f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1d60df5ba52f752ad2f5d61fb07067f">&#9670;&nbsp;</a></span>Name()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +224,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char* Container_base::Name </td>
+          <td class="memname">const std::string&amp; Container_base::Name </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>

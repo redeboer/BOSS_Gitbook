@@ -3,7 +3,6 @@ var classKKFitResult__D0phi__KpiKK =
     [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html#a5e51c24407d7e68bd1122dc3cd9f40cc", null ],
     [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html#abddabe7845286acd74aff933014aeda2", null ],
     [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html#a192fa0955cdf15a2c7c49c0fff8b6c6c", null ],
-    [ "SetValues", "classKKFitResult__D0phi__KpiKK.html#a78ab66239f9af5cc4a81c23cee333d8f", null ],
     [ "SetValues", "classKKFitResult__D0phi__KpiKK.html#a14148e5ecdd29b6f0fd9bd6cc1ee40d2", null ],
     [ "SetValues", "classKKFitResult__D0phi__KpiKK.html#a967fa57dec90b34e3eb8af2560ab2ca1", null ],
     [ "fM_D0", "classKKFitResult__D0phi__KpiKK.html#ab914f0526be00c0169d7ec2721beb676", null ],
