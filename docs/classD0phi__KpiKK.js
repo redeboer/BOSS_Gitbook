@@ -2,6 +2,7 @@ var classD0phi__KpiKK =
 [
     [ "D0phi_KpiKK", "classD0phi__KpiKK.html#a8bd58f92dd541a395caadb7a879fe55a", null ],
     [ "AddNTupleItems_Fit", "classD0phi__KpiKK.html#a95d7ef9fdc6df8ce8a40847e11ad1dde", null ],
+    [ "CreateMCtruthSelection", "classD0phi__KpiKK.html#ad87a294142d626988607585bb837a943", null ],
     [ "execute_rest", "classD0phi__KpiKK.html#a0be43dabc8154883ec2f0bf20cab38b4", null ],
     [ "finalize_rest", "classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752", null ],
     [ "initialize_rest", "classD0phi__KpiKK.html#a72e81af7a2e5613c50f149200c8e0518", null ],
@@ -23,6 +24,7 @@ var classD0phi__KpiKK =
     [ "fNTuple_fit4c_all", "classD0phi__KpiKK.html#a857891de8f3e33fda989b679ddbf8dc2", null ],
     [ "fNTuple_fit4c_best", "classD0phi__KpiKK.html#a30ce41f2bade5dc32370f69dd91a940a", null ],
     [ "fNTuple_fit_mc", "classD0phi__KpiKK.html#a6debe9f97c92ef6e13492cad1c2b5501", null ],
+    [ "fNTuple_mctruth_cut", "classD0phi__KpiKK.html#aed1b244ab7d46a7cc3accb943138348d", null ],
     [ "fPionPos", "classD0phi__KpiKK.html#a0f0f6eced07ae025fac22c189f48f758", null ],
     [ "fPionPosIter", "classD0phi__KpiKK.html#a78d6aaabd91bde8018fcb1a3bdbaaa95", null ]
 ];
