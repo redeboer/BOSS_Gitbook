@@ -64,7 +64,7 @@ The typical booking procedure [used in for instance the `RhopiAlg`](../besiii-so
 
 #### Declaring properties
 
-[Similarly to booking the `NTuple`s](), declaring package properties is not too convenient either. An overview:
+[Similarly to booking the `NTuple`s](intro.md#ntuple-booking-procedure), declaring package properties is not too convenient either. An overview:
 
 1. **Declaration** of memory addresses in the header file, such as `double`s for cuts and `bool`leans for switches.
 2. **Declaring the property** in the constructor using [`Algorithm::declareProperty`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html#acc63d83555ffb3833df7334468551d7d). Here you assign a name to the property. It is inconvenient that you have to go back and forth between the header file and the source code to keep the declared properties in agreement with the declared memory addresses.
