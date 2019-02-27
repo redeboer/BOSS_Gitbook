@@ -121,9 +121,11 @@
 
 		/// @name NTuple handlers
 			///@{
-			void AddNTupleItems_McTruth();
+			void AddNTupleItems_McTruth(NTupleTopoAna &tuple);
 			void AddNTupleItems_Dedx(NTupleContainer &tuple);
 			void AddNTupleItems_Tof (NTupleContainer &tuple);
+			void CreateMCtruthCollection();
+			virtual void CreateMCtruthSelection() = 0; ///< Function that should be defined in the derived calss and called after `CreateMCtruthCollection`. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.
 			///@}
 
 
@@ -134,16 +136,17 @@
 			void WritePIDInformation();
 			void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, NTupleContainer &tuple);
 			void WriteFitResults(KKFitResult *fitresult, NTupleContainer &tuple);
+			void WriteMcTruthForTopoAna(NTupleTopoAna &tuple);
 			virtual void SetFitNTuple(KKFitResult *fitresult, NTupleContainer &tuple) = 0; ///< Virtual method that is executed in `WriteFitResults` and should be further specified in the derived classes. @param fitresult This parameter is a pointer to allow for `dynamic_cast` in the derived specification of this `virtual` function. @param tuple The `NTuple` to which you eventually want to write the results.
 			///@}
 
 
 		/// @name Access to the DST file
 			///@{
-			SmartDataPtr<Event::EventHeader> fEventHeader;  ///< Data pointer for `"Event/EventHeader"` data. It is set in `execute()` step in each event.
+			SmartDataPtr<Event::EventHeader>   fEventHeader;   ///< Data pointer for `"Event/EventHeader"` data. It is set in `execute()` step in each event.
 			SmartDataPtr<Event::McParticleCol> fMcParticleCol; ///< Data pointer for `"Event/MC/McParticleCol"` data. It is set in `execute()` step in each event.
-			SmartDataPtr<EvtRecEvent> fEvtRecEvent;  ///< Data pointer for `EventModel::EvtRec::EvtRecEvent` which is set in `execute()` in each event.
-			SmartDataPtr<EvtRecTrackCol> fEvtRecTrkCol; ///< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in `execute()` in each event.
+			SmartDataPtr<EvtRecEvent>          fEvtRecEvent;   ///< Data pointer for `EventModel::EvtRec::EvtRecEvent` which is set in `execute()` in each event.
+			SmartDataPtr<EvtRecTrackCol>       fEvtRecTrkCol;  ///< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in `execute()` in each event.
 			///@}
 
 
@@ -183,7 +186,7 @@
 			NTupleContainer fNTuple_mult_sel; ///< `NTuple::Tuple` container for the `"mult_select"` branch.
 			NTupleContainer fNTuple_neutral;  ///< `NTuple::Tuple` container for the neutral track info neutral track info branch.
 			NTupleContainer fNTuple_vertex;   ///< `NTuple::Tuple` container for the primary vertex info vertex branch.
-			NTupleTopoAna   fNTuple_mctruth;  ///< `NTuple::Tuple` container for Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be further specified in `NTupleTopoAna`, a derived class of `NTupleContainer`.
+			NTupleTopoAna   fNTuple_mctruth;  ///< `NTuple::Tuple` container for Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be further specified in a `NTupleTopoAna` object, a derived class of `NTupleContainer`.
 			///@}
 
 
@@ -230,7 +233,6 @@
 			void DeclareSwitches();
 			void CreateChargedCollection();
 			void CreateNeutralCollection();
-			void CreateMCtruthCollection();
 			///@}
 
 

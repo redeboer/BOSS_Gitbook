@@ -35,11 +35,12 @@
 		/// * Construct base algorithm `TrackSelector`.
 			TrackSelector(name, pSvcLocator),
 		/// * Construct `NTuple::Tuple` containers used in derived classes.
-			fNTuple_dedx_K    ("dedx_K",     "dE/dx of the kaons"),
-			fNTuple_dedx_pi   ("dedx_pi",    "dE/dx of the pions"),
-			fNTuple_fit4c_all ("fit4c_all",  "4-constraint fit information (CMS 4-momentum)"),
-			fNTuple_fit4c_best("fit4c_best", "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
-			fNTuple_fit_mc    ("fit_mc",     "Fake fit information according to MC truth")
+			fNTuple_dedx_K     ("dedx_K",      "dE/dx of the kaons"),
+			fNTuple_dedx_pi    ("dedx_pi",     "dE/dx of the pions"),
+			fNTuple_fit4c_all  ("fit4c_all",   "4-constraint fit information (CMS 4-momentum)"),
+			fNTuple_fit4c_best ("fit4c_best",  "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
+			fNTuple_fit_mc     ("fit_mc",      "Fake fit information according to MC truth"),
+			fNTuple_mctruth_cut("mctruth_cut", "Monte Carlo truth for TopoAna package after initiel event selection")
 	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
 		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
 	}
@@ -73,6 +74,9 @@
 			AddNTupleItems_Fit(fNTuple_fit4c_best);
 			AddNTupleItems_Fit(fNTuple_fit_mc);
 
+		/// <li> `"mctruth_cut"`: Monte Carlo truth for TopoAna package <b>after initial event selection</b>.
+			AddNTupleItems_McTruth(fNTuple_mctruth_cut);
+
 		/// </ol>
 		return StatusCode::SUCCESS;
 	}
@@ -83,6 +87,10 @@
 	StatusCode D0phi_KpiKK::execute_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
 		/// <ol type="A">
+		/// <li> @b Write Monte Carlo truth for `topoana` package (<i>all events</i>).
+			CreateMCtruthCollection();
+			WriteMcTruthForTopoAna(fNTuple_mctruth);
+
 		/// <li> Create specific charged track selections
 			// * Clear vectors of selected particles *
 				fKaonNeg.clear();
@@ -131,23 +139,6 @@
 			}
 
 
-		/// <li> Create selection of MC truth particles by looping over the collection of MC particles created in `TrackSelector::execute()`. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.
-			if(fEventHeader->runNumber()<0 && fNTuple_fit_mc.DoWrite()) {
-				fMcKaonNeg.clear();
-				fMcKaonPos.clear();
-				fMcPionPos.clear();
-				std::vector<Event::McParticle*>::iterator it;
-				for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) {
-					switch((*it)->particleProperty()) {
-						case -321 : fMcKaonNeg.push_back(*it); break;
-						case  321 : fMcKaonPos.push_back(*it); break;
-						case  211 : fMcPionPos.push_back(*it); break;
-						default : fLog << MSG::DEBUG << "No switch case defined for McParticle " << (*it)->particleProperty() << endmsg;
-					}
-				}
-			}
-
-
 		/// <li> @b Write the multiplicities of the selected particles.
 			fLog << MSG::DEBUG
 				<< "N_{K^-} = "   << fKaonNeg.size() << ", "
@@ -165,23 +156,23 @@
 			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
 			if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
 			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
-			if(fEventHeader->runNumber()<0 && fNTuple_fit_mc.DoWrite()) {
-				if(
-					fMcKaonNeg.size() != 2 || 
-					fMcKaonPos.size() != 1 || 
-					fMcPionPos.size() != 1
-				) {
-					fLog << MSG::DEBUG << "Number cut passed, but MC truth disagrees:" << endmsg;
-					fLog << MSG::DEBUG << "  nMcKaonNeg = " << fMcKaonNeg.size() << endmsg;
-					fLog << MSG::DEBUG << "  nMcKaonPos = " << fMcKaonPos.size() << endmsg;
-					fLog << MSG::DEBUG << "  nMcPionPos = " << fMcPionPos.size() << endmsg;
-					return StatusCode::SUCCESS;
-				}
-			}
+			// if(fEventHeader->runNumber()<0 && fNTuple_fit_mc.DoWrite()) {
+			// 	if(
+			// 		fMcKaonNeg.size() != 2 || 
+			// 		fMcKaonPos.size() != 1 || 
+			// 		fMcPionPos.size() != 1
+			// 	) {
+			// 		fLog << MSG::DEBUG << "WARNING: Number cut passed, but MC truth disagrees:" << endmsg;
+			// 		fLog << MSG::DEBUG << "  nMcKaonNeg = " << fMcKaonNeg.size() << endmsg;
+			// 		fLog << MSG::DEBUG << "  nMcKaonPos = " << fMcKaonPos.size() << endmsg;
+			// 		fLog << MSG::DEBUG << "  nMcPionPos = " << fMcPionPos.size() << endmsg;
+			// 		return StatusCode::SUCCESS;
+			// 	}
+			// }
 
 
-		/// <li> @b Write Monte Carlo truth for `topoana` package
-			fNTuple_mctruth.Write();
+		/// <li> @b Write Monte Carlo truth for `topoana` package (<i>all events</i>).
+			WriteMcTruthForTopoAna(fNTuple_mctruth_cut);
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
@@ -319,6 +310,19 @@
 // * =============================== * //
 
 
+	/// This function encapsulates the `addItem` procedure for the fit branches.
+	void D0phi_KpiKK::AddNTupleItems_Fit(NTupleContainer &tuple)
+	{
+		if(!tuple.DoWrite()) return;
+		tuple.AddItem("mD0");   /// * `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
+		tuple.AddItem("mphi");  /// * `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
+		tuple.AddItem("mJpsi"); /// * `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
+		tuple.AddItem("pD0");   /// * `"pD0"`:   3-momentum mass for the combination \f$K^- \pi^+\f$ (\f$D^0\f$ candidate).
+		tuple.AddItem("pphi");  /// * `"pphi"`:  3-momentum mass for the combination \f$K^+ K^+  \f$ (\f$\phi\f$ candidate).
+		tuple.AddItem("chisq"); /// * `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
+	}
+
+
 	/// Specification of what should be written to the fit `NTuple`.
 	/// This function is called in `TrackSelector::WriteFitResults`.
 	void D0phi_KpiKK::SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple)
@@ -342,14 +346,26 @@
 	}
 
 
-	/// This function encapsulates the `addItem` procedure for the fit branches.
-	void D0phi_KpiKK::AddNTupleItems_Fit(NTupleContainer &tuple)
+	/// Specification of `TrackSelector::CreateMCtruthSelection`.
+	/// Create selection of MC truth particles by looping over the collection of MC particles created by `TrackSelector::CreateMCtruthCollection()`.
+	void D0phi_KpiKK::CreateMCtruthSelection()
 	{
-		if(!tuple.DoWrite()) return;
-		tuple.AddItem("mD0");   /// * `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
-		tuple.AddItem("mphi");  /// * `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
-		tuple.AddItem("mJpsi"); /// * `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
-		tuple.AddItem("pD0");   /// * `"pD0"`:   3-momentum mass for the combination \f$K^- \pi^+\f$ (\f$D^0\f$ candidate).
-		tuple.AddItem("pphi");  /// * `"pphi"`:  3-momentum mass for the combination \f$K^+ K^+  \f$ (\f$\phi\f$ candidate).
-		tuple.AddItem("chisq"); /// * `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
+		/// -# @b Abort if input file is not from a Monte Carlo simulation (that is, if the run number is not negative).
+			if(fEventHeader->runNumber()>=0) return;
+		/// -# @b Abort if `"write_fit_mc"`, has been set to `false`.
+			if(!fNTuple_fit_mc.DoWrite()) return;
+		/// -# Clear MC truth particle selections.
+			fMcKaonNeg.clear();
+			fMcKaonPos.clear();
+			fMcPionPos.clear();
+		/// -# Loop over `fMcParticles` collection of MC truth particles and fill the selections.
+			std::vector<Event::McParticle*>::iterator it;
+			for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) {
+				switch((*it)->particleProperty()) {
+					case -321 : fMcKaonNeg.push_back(*it); break;
+					case  321 : fMcKaonPos.push_back(*it); break;
+					case  211 : fMcPionPos.push_back(*it); break;
+					default : fLog << MSG::DEBUG << "No switch case defined for McParticle " << (*it)->particleProperty() << endmsg;
+				}
+			}
 	}

@@ -119,10 +119,8 @@
 				std::cout << "FATAL ERROR: PostConstructor has not been called in constructor of derived class of TrackSelector" << std::endl;
 				std::terminate();
 			}
-			fCreateNeutralCollection = fCreateNeutralCollection || fNTuple_neutral.DoWrite();
-			fCreateChargedCollection = fCreateChargedCollection || fNTuple_charged.DoWrite();
-			fNTuple_neutral.SetWriteSwitch(fCreateNeutralCollection);
-			fNTuple_charged.SetWriteSwitch(fCreateChargedCollection);
+			fCreateNeutralCollection |= fNTuple_neutral.DoWrite();
+			fCreateChargedCollection |= fNTuple_charged.DoWrite();
 			BookNTuples();
 
 		/// <ol type="A">
@@ -176,7 +174,7 @@
 			AddNTupleItems_Tof(fNTuple_TofOB);
 
 		/// <li> `"mctruth"`: Monte Carlo truth for TopoAna package.
-			AddNTupleItems_McTruth();
+			AddNTupleItems_McTruth(fNTuple_mctruth);
 
 		/// <li> `"PID"`: Track PID information.
 			/// <ol>
@@ -241,7 +239,7 @@
 		/// <h1> Create track collections </h1>
 			CreateChargedCollection(); /// -# Perform `CreateChargedCollection`.
 			CreateNeutralCollection(); /// -# Perform `CreateNeutralCollection`.
-			CreateMCtruthCollection(); /// -# Perform `CreateMCtruthCollection`.
+			/// -# @remark You should call `CreateMCtruthCollection` in the derived class.
 
 		/// <h1> Write event info </h1>
 			/// -# @b Write general multiplicities (`"mult"` branch)
@@ -297,15 +295,14 @@
 
 
 	/// This function encapsulates the `addItem` procedure for the MC truth branches for the TopoAna package.
-	void TrackSelector::AddNTupleItems_McTruth()
+	void TrackSelector::AddNTupleItems_McTruth(NTupleTopoAna &tuple)
 	{
-		if(!fNTuple_mctruth.DoWrite()) return;
-		// fNTuple_mctruth.GetNTuple()->addItem("iEvt",   fNTuple_mctruth.iEvt);      /// * `"iEvt"`: @b Counter for number of events (not the ID!) @todo Check event counter if required for `topoana`
-		fNTuple_mctruth.GetNTuple()->addItem("runID", fNTuple_mctruth.runID);         /// * `"runID"`: Run number ID.
-		fNTuple_mctruth.GetNTuple()->addItem("evtID", fNTuple_mctruth.evtID);         /// * `"evtID"`: Rvent number ID.
-		fNTuple_mctruth.GetNTuple()->addItem("index", fNTuple_mctruth.index, 0, 100); /// * `"index"`: Index that is necessary for loading the following his one is necessary for loading following two items, because they are arrays.
-		fNTuple_mctruth.GetNTuple()->addIndexedItem("particle", fNTuple_mctruth.index, fNTuple_mctruth.particle); /// * `"particle"`: PDG code for the particle in this array.
-		fNTuple_mctruth.GetNTuple()->addIndexedItem("mother",   fNTuple_mctruth.index, fNTuple_mctruth.mother);   /// * `"mother"`: Track index of the mother particle.
+		if(!tuple.DoWrite()) return;
+		tuple.GetNTuple()->addItem("runID", tuple.runID);         /// * `"runID"`: Run number ID.
+		tuple.GetNTuple()->addItem("evtID", tuple.evtID);         /// * `"evtID"`: Rvent number ID.
+		tuple.GetNTuple()->addItem("index", tuple.index, 0, 100); /// * `"index"`: Index that is necessary for loading the following his one is necessary for loading following two items, because they are arrays.
+		tuple.GetNTuple()->addIndexedItem("particle", tuple.index, tuple.particle); /// * `"particle"`: PDG code for the particle in this array.
+		tuple.GetNTuple()->addIndexedItem("mother",   tuple.index, tuple.mother);   /// * `"mother"`: Track index of the mother particle.
 	}
 
 
@@ -358,21 +355,17 @@
 	{
 		/// -# @Abort if the `"write_"` `JobSwitch` option has been set to `false`.
 			if(!tuple.DoWrite()) return;
-
 		/// -# Form a string for booking in the file. Typically: `"FILE1/<tree name>"`.
 			const char* bookName = Form("FILE1/%s", tuple.Name().c_str());
-
 		/// -# Attempt to get this `NTuple::Tuple` from file the file.
 			NTuplePtr nt(ntupleSvc(), bookName);
 			if(nt) fLog << MSG::INFO << "  loaded NTuple \"" << tuple.Name() << "\" from FILE1" << endmsg;
-
 		/// -# If not available in file, book a new one.
 			else {
 				fLog << MSG::INFO << "  booked NTuple \"" << tuple.Name() << "\"" << endmsg;
 				nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, tuple.Description());
 				if(!nt) fLog << MSG::WARNING << "  --> cannot book N-tuple: " << long(nt) << " (\"" << tuple.Name() << "\")" << endmsg;
 			}
-
 		/// -# Import this NTuplePtr to the `tuple` object.
 			tuple.SetTuplePtr(nt);
 	}
@@ -493,7 +486,6 @@
 			/// </ol>
 			}
 			fLog << MSG::DEBUG << "Number of 'good' charged tracks: " << fGoodChargedTracks.size() << endmsg;
-
 		/// </ol>
 	}
 
@@ -550,61 +542,45 @@
 
 
 	/// Create a preselection of <b>Monte Carlo truth</b> tracks.
-	/// This method is used in `TrackSelector::execute` only. See `fMcParticles` for more information. Call `fNTuple_mctruth.Write()` in some place in the derived algorithm to write to this `NTuple` depending on after which cut you want to write MC truth.
+	/// This method is used in `TrackSelector::execute` only. It is used to fill the `fMcParticles` `vector` with a selection of `McParticle` pointers. This collection starts with the initial cluster (e.g. \f$J/\psi\f$) and continues with the rest of the decay chain. Only then is it possible to use `CreateMCtruthSelection`, so it is called at the end.
+	/// @see `fMcParticles`
 	void TrackSelector::CreateMCtruthCollection()
 	{
 		/// <ol>
-		/// <li> @b Abort if `"write_mctruth"` job switch has been set to `false`.
-			if(!fNTuple_mctruth.DoWrite()) return;
-
 		/// <li> @b Abort if input file is not MC generated (that is, if the run number is not negative).
 			if(fEventHeader->runNumber()>=0) return;
 
-		/// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `"FILE1"` input file.
-			fMcParticleCol = SmartDataPtr<Event::McParticleCol>(eventSvc(), "/Event/MC/McParticleCol");
+		/// <li> @b Abort if `"write_mctruth"` job switch has been set to `false`.
+			if(!fNTuple_mctruth.DoWrite()) return;
 
-		/// <li> @b Abort if does not exist.
+		/// <li> Clear `fMcParticles` vector.
+			fMcParticles.clear();
+
+		/// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `"FILE1"` input file and @b abort if does not exist..
+			fMcParticleCol = SmartDataPtr<Event::McParticleCol>(eventSvc(), "/Event/MC/McParticleCol");
 			if(!fMcParticleCol) {
 				fLog << MSG::ERROR << "Could not retrieve McParticelCol" << endmsg;
 				return;
 			}
 
-		/// <li> @b Import run number and event number to `fNTuple_mctruth`.
-			fNTuple_mctruth.runID  = fEventHeader->runNumber();
-			fNTuple_mctruth.evtID  = fEventHeader->eventNumber();
-
-		/// <li> Set counters and switches for the loop.
-			bool doNotContinue(true); // only start recording if set to false in the loop
-			int rootIndex(-1); // index of mother particles, necessary for topoana
-			fNTuple_mctruth.index = 0;
-
 		/// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data available in `McParticle`, see <a href="http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html">here</a>. Only add to `fMcParticles` if the `McParticle` satisfies:
+			bool doNotContinue(true); // only start recording if set to false in the loop
 			for(Event::McParticleCol::iterator it = fMcParticleCol->begin(); it!=fMcParticleCol->end(); ++it) {
 			/// <ul>
-			/// <li> @b Skip if it is not a primary particle or if the decay was no from a generator.
-			/// @todo Why? What does this mean precisely?
+			/// <li> @b Skip if it is not a primary particle or if the decay was not from a generator.
 				if( (*it)->primaryParticle())    continue;
-				if(!(*it)->decayFromGenerator()) continue;
+				if(!(*it)->decayFromGenerator()) continue; /// @todo Why? What does coming from a generator mean precisely?
 			/// <li> Only start recording after we have passed the initial cluster (e.g. \f$J/\psi\f$). See `NTupleTopoAna::IsInitialCluster`.
-				if(NTupleTopoAna::IsInitialCluster(*it)) {
-					doNotContinue = false;
-					rootIndex = (*it)->trackIndex();
-				}
-			/// <li> Skip if this particle is before the initial cluster itself.
-				if(doNotContinue) continue;
-			/// <li> @b Import PDG code of this MC particle.
-				fNTuple_mctruth.particle[fNTuple_mctruth.index] = (*it)->particleProperty();
-			/// <li> @b Import a track index of the mother. This index is defined as `-1` for the initial cluster (e.g. \f$J/\psi\f$) .
 				if(NTupleTopoAna::IsInitialCluster(*it))
-					fNTuple_mctruth.mother[fNTuple_mctruth.index] = -1;
-				else
-					fNTuple_mctruth.mother[fNTuple_mctruth.index] = ((*it)->mother()).trackIndex()-rootIndex-1;
-			/// <li> @b Increment loop index (`fNTuple_mctruth::index`).
-				fNTuple_mctruth.index++;
+					doNotContinue = false;
+				if(doNotContinue) continue;
 			/// <li> Add the pointer to the `fMcParticles` collection vector for use in the derived algorithms.
 				fMcParticles.push_back(*it);
 			/// </ul>
 			}
+
+		/// <li> <i>(For the derived class:)</i><br> Create selections of specific MC truth particles using `CreateMCtruthSelection`. Will not be performed if not specified in the derived algorithm.
+			CreateMCtruthSelection();
 
 		/// </ol>
 	}
@@ -700,6 +676,51 @@
 		/// -# @b Write \f$dE/dx\f$ info.
 			tuple.Write();
 			fLog << MSG::DEBUG << "Writing fit results \"" << tuple.Name() << "\"" << endmsg;
+	}
+
+
+	/// Write an `NTuple` containing branches that are required for the `TopoAna` method.
+	/// @warning This method can be called only after `fMcParticles` has been filled using `CreateMCtruthCollection`.
+	void TrackSelector::WriteMcTruthForTopoAna(NTupleTopoAna &tuple)
+	{
+		/// -# @b Abort if input file is not MC generated (that is, if the run number is not negative).
+			if(fEventHeader->runNumber()>=0) return;
+
+		/// -# @b Abort if `"write_"` `JobSwitch` has been set to `false`.
+			if(!tuple.DoWrite()) return;
+
+		/// -# @b Abort if `fMcParticles` has not been filled.
+			if(!fMcParticles.size()) return;
+
+		/// -# @b Import run number and event number to `tuple`.
+			fLog << MSG::DEBUG << "Writing TopoAna NTuple \"" << tuple.Name() << "\" with " << fMcParticles.size() << " particles" << endmsg;
+			tuple.runID = fEventHeader->runNumber();
+			tuple.evtID = fEventHeader->eventNumber();
+
+		/// -# Set counters and switches for the loop.
+			tuple.index = 0;
+			bool setRootIndex(true);
+			int rootIndex(-1);
+
+		/// -# Loop over `fMcParticles`. Set mother track ID to `-1` if the track `IsInitialCluster`.
+			std::vector<Event::McParticle*>::iterator it;
+			for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) {
+				tuple.particle[tuple.index] = (*it)->particleProperty();
+				if(NTupleTopoAna::IsInitialCluster(*it)) {
+					tuple.mother[tuple.index] = -1;
+					if(setRootIndex) {
+						rootIndex = (*it)->trackIndex();
+						setRootIndex = false;
+					}
+				}
+				else {
+					tuple.mother[tuple.index] = ((*it)->mother()).trackIndex()-rootIndex-1;
+				}
+				++tuple.index;
+			}
+
+		/// -# @b Write `NTuple` if `write` has been set to `true`.
+			tuple.Write();
 	}
 
 
