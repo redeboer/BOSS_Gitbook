@@ -18,8 +18,7 @@ The `topoana` package has to be run over a ROOT file that you have to prepare yo
 
 * the **run ID** number
 * the **event ID** number
-* number of the selected events \(using a counter\)
-* the **number of tracks** stored in this event \(necessary for loading the following arrays\)
+* a **track index,** which is necessary for loading the following arrays
 * an array contain the **PDG code for each track** in this event
 * an array containing the PDG code for the **mother of each track** \(if available\)
 
@@ -29,6 +28,22 @@ You can design a procedure to write this MC truth information yourself, but you 
 
 1. Add the [`MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html) algorithm package to the job options of your analysis, using: `ApplicationMgr.DLLs += {"MctruthForTopoAnaAlg"}; ApplicationMgr.TopAlg += {"MctruthForTopoAna"};` This is the quickest solution, but it does not allow you to perform cuts: all the events will be written to the `TTree`.
 2. Go through the code of the `MctruthForTopo` algorithm and take over the relevant components in your own initial event selection package, so that you can implement it within your cut procedure.
+3. Use the [`CreateMCtruthCollection`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#a3bee37dd275d6b15ca491ae1d493c05a) and [`WriteMcTruthForTopoAna`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#ac65fb01ccb38c60af713518e0afb0ba6) in the [`TrackSelector`](../../../../the-boss-afterburner/initial/#base-derived-algorithm-structure) base algorithm.
+
+#### Structure of the `Event::McParticleCol` collection
+
+The `TTree` containing Monte Carlo data that is needed for `topoana` is created by looping over the [`Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed) in each event and writing the branches described above. To gain a better understanding of what a package like [`MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html) does, let's have a look at the the contents of the MC truth particle collection in one event:
+
+| Index | Particle code | Particle name | Mother code | Mother name |
+| ---: | ---: | :--- | ---: | :--- |
+| 0 | 23 | `Z0` \( $$Z^0$$ \) |  |  |
+| 1 | 22 | `gamma` \( $$\gamma$$ \) |  |  |
+| 2 | 4 | `c` \( $$c$$ \) |  |  |
+| 3 | -4 | `anti-c` \( $$\bar{c}$$ \) |  |  |
+| 4 | 91 | `cluster` | -4 | `anti-c` \( $$\bar{c}$$ \) |
+| 5 | 443 | `J/psi` \( $$J/\psi$$ \) | 91 | `cluster` |
+| 6 | 11 | `e-` \( $$e^-$$ \) |  |  |
+| 7 | 421 | `D0` \( $$D^0$$ \) | 443 | `J/psi` \( $$J/\psi$$ \) |
 
 ## Installing `topoana`
 
