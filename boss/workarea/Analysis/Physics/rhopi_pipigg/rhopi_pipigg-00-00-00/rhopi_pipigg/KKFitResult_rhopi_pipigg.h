@@ -28,7 +28,7 @@
 		///@{
 			KKFitResult_rhopi_pipigg() {}
 			KKFitResult_rhopi_pipigg(KalmanKinematicFit* kkmfit);
-			KKFitResult_rhopi_pipigg(Event::McParticle* kaonNeg1, Event::McParticle* kaonNeg2, Event::McParticle* kaonPos, Event::McParticle* pionPos);
+			KKFitResult_rhopi_pipigg(Event::McParticle* photon1, Event::McParticle* photon2, Event::McParticle* pionNeg, Event::McParticle* pionPos);
 		///@}
 
 
@@ -47,9 +47,8 @@
 	private:
 		/// @name Setters
 			///@{
-			void SetValues(KalmanKinematicFit* kkmfit);
-			void SetValues(const HepLorentzVector &pKaonNeg1, const HepLorentzVector &pKaonNeg2, const HepLorentzVector &pKaonPos, const HepLorentzVector &pPionPos);
-			void SetValues(Event::McParticle *kaonNeg1, Event::McParticle *kaonNeg2, Event::McParticle *kaonPos, Event::McParticle *pionPos);
+			void SetValues(const HepLorentzVector &pPhoton1, const HepLorentzVector &pPhoton2, const HepLorentzVector &pPionNeg, const HepLorentzVector &pPionPos);
+			void SetValues(Event::McParticle *photon1, Event::McParticle *photon2, Event::McParticle *pionPos, Event::McParticle *pionPos);
 			///@}
 
 

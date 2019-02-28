@@ -9,6 +9,7 @@
 	#include "rhopi_pipigg/rhopi_pipigg.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include "VertexFit/VertexFit.h"
+	#include <float.h> // for DBL_MAX
 	#include <string>
 	#include <utility>
 
@@ -27,8 +28,9 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
+
 	/// Constructor for the `rhopi_pipigg` algorithm, derived from `TrackSelector`.
-	/// Here, you should declare properties: give them a name, assign a parameter (data member of `rhopi_pipigg`), and if required a documentation string. Note that you should define the paramters themselves in the header (rhopi_pipigg/rhopi_pipigg.h) and that you should assign the values in `share/jopOptions_rhopi_pipigg.txt`.
+	/// Here, you should declare properties: give them a name, assign a parameter (data member of `rhopi_pipigg`), and if required a documentation string. Note that you should define the paramters themselves in the header (rhopi_pipigg/rhopi_pipigg.h) and that you should assign the values in `share/rhopi_pipigg.txt`.
 	rhopi_pipigg::rhopi_pipigg(const std::string &name, ISvcLocator* pSvcLocator) :
 		/// * Construct base algorithm `TrackSelector`.
 			TrackSelector(name, pSvcLocator),
@@ -43,6 +45,8 @@
 			fCut_GammaTheta("gamma_theta"),
 			fCut_GammaAngle("gamma_angle")
 	{ PrintFunctionName("rhopi_pipigg", __func__); PostConstructor();
+		fCreateChargedCollection = true;
+		fCreateNeutralCollection = true;
 	}
 
 
@@ -52,18 +56,17 @@
 // * =============================== * //
 
 
-	/// (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning.
-	/// Define and load NTuples here.
+	/// (Inherited) `initialize` step of `Algorithm`.
+	/// This function is called only once, when the algorithm is initialised.
+	/// @remark Define and load `NTuple`s here. Other `NTuple`s have already been defined in the `TrackSelector::initilize` step prior to this this method.
 	StatusCode rhopi_pipigg::initialize_rest()
 	{ PrintFunctionName("rhopi_pipigg", __func__);
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
-			if(fNTuple_mult_sel.DoWrite()) {
-				fNTuple_mult_sel["NPhotons"]; /// <li> `"NPhotons"`: Number of \f$\gamma\f$'s.
-				fNTuple_mult_sel["NPionNeg"]; /// <li> `"NPionNeg"`: Number of \f$\pi^-\f$.
-				fNTuple_mult_sel["NPionPos"]; /// <li> `"NPionPos"`: Number of \f$\pi^+\f$.
-			}
+			fNTuple_mult_sel.AddItem("NPhotons"); /// <li> `"NPhotons"`: Number of \f$\gamma\f$'s.
+			fNTuple_mult_sel.AddItem("NPionNeg"); /// <li> `"NPionNeg"`: Number of \f$\pi^-\f$.
+			fNTuple_mult_sel.AddItem("NPionPos"); /// <li> `"NPionPos"`: Number of \f$\pi^+\f$.
 			/// </ol>
 
 		/// <li> `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_Dedx` for more info.
@@ -72,16 +75,14 @@
 		/// <li> `"fit4c"` and `"fit5c"`: results of the Kalman kinematic fit results. See `TrackSelector::AddNTupleItems_Fit` for more info.
 			AddNTupleItems_Fit(fNTuple_fit4c);
 			AddNTupleItems_Fit(fNTuple_fit5c);
+			AddNTupleItems_Fit(fNTuple_fit_mc);
 
 		/// <li> `"photon"`: information of the selected photons
-
 			/// <ol>
-			if(fNTuple_photon.DoWrite()) {
-				fNTuple_photon.AddItem("E");     /// <li> `"E"`:     Energy of the photon.
-				fNTuple_photon.AddItem("phi");   /// <li> `"phi"`:   Smallest angle between the photon and the nearest charged pion.
-				fNTuple_photon.AddItem("theta"); /// <li> `"theta"`: Smallest angle between the photon and the nearest charged pion.
-				fNTuple_photon.AddItem("angle"); /// <li> `"angle"`: Smallest angle between the photon and the nearest charged pion.
-			}
+			fNTuple_photon.AddItem("E");     /// <li> `"E"`:     Energy of the photon.
+			fNTuple_photon.AddItem("phi");   /// <li> `"phi"`:   Smallest angle between the photon and the nearest charged pion.
+			fNTuple_photon.AddItem("theta"); /// <li> `"theta"`: Smallest angle between the photon and the nearest charged pion.
+			fNTuple_photon.AddItem("angle"); /// <li> `"angle"`: Smallest angle between the photon and the nearest charged pion.
 			/// </ol>
 
 		/// </ol>
@@ -93,12 +94,7 @@
 	StatusCode rhopi_pipigg::execute_rest()
 	{ PrintFunctionName("rhopi_pipigg", __func__);
 		/// <ol type="A">
-		/// <li> Create selection charged tracks
-
-			// * Print log and set counters *
-				fLog << MSG::DEBUG << "Starting particle selection:" << endmsg;
-				fPIDInstance = ParticleID::instance();
-
+		/// <li> Create specific charged track selections
 			// * Clear vectors of selected particles *
 				fPionNeg.clear();
 				fPionPos.clear();
@@ -236,11 +232,11 @@
 				/// <li> Only continue if the two photons are different.
 					if(fMcPhoton1Iter == fMcPhoton2Iter) continue;
 
-				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
-					if((!(*fMcPhoton1Iter)->primaryParticle()) && (*fMcPhoton1Iter)->mother().particleProperty() != 333) continue; // photon 1
-					if((!(*fMcPhoton2Iter)->primaryParticle()) && (*fMcPhoton2Iter)->mother().particleProperty() != 421) continue; // photon 2
-					if((!(*fMcPionNegIter)->primaryParticle()) && (*fMcPionNegIter)->mother().particleProperty() != 333) continue; // negative pion
-					if((!(*fMcPionPosIter)->primaryParticle()) && (*fMcPionPosIter)->mother().particleProperty() != 421) continue; // positive pion
+				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow \pi^+\pi^-\gamma\gamma\f$.
+					if(!IsDecay(*fMcPhoton1Iter, 111, 22)) continue; // D0  --> K-
+					if(!IsDecay(*fMcPhoton2Iter, 111, 22)) continue; // D0  --> pi+
+					if(!(IsDecay(*fMcPionNegIter, , -211) || IsDecay(*fMcPionNegIter, , -211))) continue; // phi --> K-
+					if(!(IsDecay(*fMcPionPosIter, ,  211) || IsDecay(*fMcPionPosIter, ,  211))) continue; // phi --> K+
 
 				/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
 					KKFitResult_rhopi_pipigg fitresult(
@@ -258,13 +254,16 @@
 			if(fNTuple_fit4c.DoWrite()) {
 				// * Reset best fit parameters * //
 				KKFitResult_rhopi_pipigg bestKalmanFit;
-				bestKalmanFit.fBestCompareValue = 1e9;
+				bestKalmanFit.ResetBestCompareValue();
 				// * Loop over all combinations * //
 				for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
-				for(fPhoton2Iter = fPhoton1Iter+1;   fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
+				for(fPhoton2Iter = fPhotons.begin(); fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
 				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
 				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
 				{
+					// * Only continue if we are not dealing with the same kaon
+						if(fPhoton1Iter == fPhoton2Iter) continue;
+
 					// * Get Kalman tracks
 						RecMdcKalTrack *pimTrk = (*fPionNegIter)->mdcKalTrack();
 						RecMdcKalTrack *pipTrk = (*fPionPosIter)->mdcKalTrack();
@@ -292,7 +291,10 @@
 						vtxfit->AddTrack(0, wvpimTrk);
 						vtxfit->AddTrack(1, wvpipTrk);
 						vtxfit->AddVertex(0, vxpar, 0, 1);
-						if(!vtxfit->Fit(0)) continue;
+						if(!vtxfit->Fit(0)) {
+							fLog << MSG::WARNING << "vertex fit failed" << endmsg;
+							continue;
+						}
 						vtxfit->Swim(0);
 
 					// * Get Kalman kinematic fit for this combination and store if better than previous one
@@ -324,10 +326,13 @@
 				KalmanKinematicFit *bestKalmanFit = nullptr;
 				// * Loop over all combinations of pi-, pi+, and gamma * //
 				for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
-				for(fPhoton2Iter = fPhoton1Iter+1;   fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
+				for(fPhoton2Iter = fPhotons.begin(); fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
 				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
 				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
 				{
+					// * Only continue if we are not dealing with the same kaon
+						if(fPhoton1Iter == fPhoton2Iter) continue;
+
 					// * Get Kalman tracks
 						RecMdcKalTrack *pimTrk = (*fPionNegIter)->mdcKalTrack();
 						RecMdcKalTrack *pipTrk = (*fPionPosIter)->mdcKalTrack();
@@ -355,7 +360,10 @@
 						vtxfit->AddTrack(0, wvpimTrk);
 						vtxfit->AddTrack(1, wvpipTrk);
 						vtxfit->AddVertex(0, vxpar, 0, 1);
-						if(!vtxfit->Fit(0)) continue;
+						if(!vtxfit->Fit(0)) {
+							fLog << MSG::WARNING << "vertex fit failed" << endmsg;
+							continue;
+						}
 						vtxfit->Swim(0);
 
 					// * Get Kalman kinematic fit for this combination and store if better than previous one
@@ -420,7 +428,7 @@
 	/// This function encapsulates the `addItem` procedure for the fit branches.
 	void rhopi_pipigg::AddNTupleItems_Fit(NTupleContainer &tuple)
 	{
-		if(!tuple) return;
+		if(!tuple.DoWrite()) return;
 		tuple.AddItem("mpi0");       /// * `"mpi0"`:       Invariant mass for \f$\pi^0 \rightarrow \gamma\gamma\f$ candidate.
 		tuple.AddItem("mrho0");      /// * `"mrho0"`:      Invariant mass for \f$\rho^0 \rightarrow \pi^-\pi^+\f$ candidate.
 		tuple.AddItem("mrho-");      /// * `"mrho-`":      Invariant mass for \f$\rho^- \rightarrow \pi^0\pi^-\f$ candidate.

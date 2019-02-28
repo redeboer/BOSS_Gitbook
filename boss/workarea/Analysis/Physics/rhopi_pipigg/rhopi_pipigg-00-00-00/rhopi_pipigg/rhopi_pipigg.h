@@ -29,6 +29,7 @@
 			rhopi_pipigg(const std::string &name, ISvcLocator* pSvcLocator);
 			///@}
 
+
 		/// @name Derived Algorithm steps
 			///@{
 			StatusCode initialize_rest();
@@ -62,8 +63,8 @@
 			NTupleContainer fNTuple_dedx_pi; ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of pions.
 			NTupleContainer fNTuple_fit4c;   ///< `NTuple::Tuple` container for the 4-constraint fit branch containing <i>all</i> combinations.
 			NTupleContainer fNTuple_fit5c;   ///< `NTuple::Tuple` container for the 5-constraint fit branch containing <i>all</i> combinations.
-			NTupleContainer fNTuple_fit_mc;  ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
 			NTupleContainer fNTuple_photon;  ///< `NTuple::Tuple` container for the photon branch.
+			NTupleContainer fNTuple_fit_mc;      ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
 			///@}
 
 
@@ -79,6 +80,7 @@
 		/// @name NTuple methods
 			///@{
 			void AddNTupleItems_Fit(NTupleContainer &tuple);
+			void CreateMCtruthSelection();
 			void SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple);
 			///@}
 
@@ -115,7 +117,7 @@
 
 	};
 
+
+
 /// @}
-
-
 #endif

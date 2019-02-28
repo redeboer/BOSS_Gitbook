@@ -42,6 +42,7 @@
 			fNTuple_fit_mc     ("fit_mc",      "Fake fit information according to MC truth")
 	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
 		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
+		fCreateNeutralCollection = false;
 	}
 
 
