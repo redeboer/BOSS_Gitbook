@@ -18,7 +18,7 @@ The `topoana` package has to be run over a ROOT file that you have to prepare yo
 
 * the **run ID** number
 * the **event ID** number
-* a **track index,** which is necessary for loading the following arrays
+* a **track index** \(just a counter\)**,** which is necessary for loading the following arrays
 * an array contain the **PDG code for each track** in this event
 * an array containing the PDG code for the **mother of each track** \(if available\)
 
