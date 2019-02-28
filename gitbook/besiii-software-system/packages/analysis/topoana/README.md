@@ -34,26 +34,43 @@ You can design a procedure to write this MC truth information yourself, but you 
 
 The `TTree` containing Monte Carlo data that is needed for `topoana` is created by looping over the [`Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed) in each event and writing the branches described above. To gain a better understanding of what a package like [`MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html) does, let's have a look at the the contents of the MC truth particle collection in one event:
 
-| Index | Particle |  |  | Mother |  |  |
-| ---: | ---: | :---: | :---: | ---: | :---: | :--- |
-| 0 | 23 | `Z0` | $$Z^0$$ |  |  |  |
-| 1 | 22 | `gamma` | $$\gamma$$ |  |  |  |
-| 2 | 4 | `c` | $$c$$ | 23 | `Z0` | $$Z^0$$ |
-| 3 | -4 | `anti-c` | $$\bar{c}$$ | 23 | `Z0` | $$Z^0$$ |
-| 4 | 91 | `cluster` |  | -4 | `anti-c` | $$\bar{c}$$ |
-| 5 | 443 | `J/psi` | $$J/\psi$$ | 91 | `cluster` |  |
-| 6 | 11 | `e-` | $$e^-$$ |  |  |  |
-| 7 | 421 | `D0` | $$D^0$$ | 443 | `J/psi` | $$J/\psi$$ |
-| 8 | 333 | `phi` | $$\phi$$ | 443 | `J/psi` | $$J/\psi$$ |
-| 9 | -321 | `K-` | $$K^-$$ | 421 | `D0` | $$D^0$$ |
-| 10 | 221 | `eta` | $$\eta$$ | 421 | `D0` | $$D^0$$ |
-| 11 | 321 | `K+` | $$K^+$$ | 333 | `phi` | $$\phi$$ |
-| 12 | -321 | `K-` | $$K^-$$ | 333 | `phi` | $$\phi$$ |
-| 13 | -13 | `mu+` | $$\mu^+$$ | 321 | `K+` | $$K^+$$ |
-| 14 | 14 | `nu_mu` | $$\nu_\mu$$ | 321 | `K+` | $$K^+$$ |
-| 15 | -11 | `e+` | $$e^+$$ | -13 | `mu+` | $$\mu^+$$ |
-| 16 | 12 | `nu_e` | $$\nu_e$$ | -13 | `mu+` | $$\mu^+$$ |
-| 17 | -14 | `anti-nu_mu` | $$\bar{\nu}_{\mu}$$ | -13 | `mu+` | $$\mu^+$$ |
+| Index | Particle |  |  | Index | Mother |  |  |
+| ---: | ---: | :---: | :--- | ---: | ---: | :---: | :--- |
+| **0** | 23 | `Z0` | $$Z^0$$ |  |  |  |  |
+| **1** | 22 | `gamma` | $$\gamma$$ |  |  |  |  |
+| **2** | 4 | `c` | $$c$$ | **0** | 23 | `Z0` | $$Z^0$$ |
+| **3** | -4 | `anti-c` | $$\bar{c}$$ | **0** | 23 | `Z0` | $$Z^0$$ |
+| **4** | 91 | `cluster` |  | **3** | -4 | `anti-c` | $$\bar{c}$$ |
+| **5** | 443 | `J/psi` | $$J/\psi$$ | **4** | 91 | `cluster` |  |
+| **6** | 11 | `e-` | $$e^-$$ |  |  |  |  |
+| **7** | 421 | `D0` | $$D^0$$ | **5** | 443 | `J/psi` | $$J/\psi$$ |
+| **8** | 333 | `phi` | $$\phi$$ | **5** | 443 | `J/psi` | $$J/\psi$$ |
+| **9** | -321 | `K-` | $$K^-$$ | **7** | 421 | `D0` | $$D^0$$ |
+| **10** | 221 | `eta` | $$\eta$$ | **7** | 421 | `D0` | $$D^0$$ |
+| **11** | 321 | `K+` | $$K^+$$ | **8** | 333 | `phi` | $$\phi$$ |
+| **12** | -321 | `K-` | $$K^-$$ | **8** | 333 | `phi` | $$\phi$$ |
+| **13** | -13 | `mu+` | $$\mu^+$$ | **11** | 321 | `K+` | $$K^+$$ |
+| **14** | 14 | `nu_mu` | $$\nu_\mu$$ | **11** | 321 | `K+` | $$K^+$$ |
+| **15** | -11 | `e+` | $$e^+$$ | **13** | -13 | `mu+` | $$\mu^+$$ |
+| **16** | 12 | `nu_e` | $$\nu_e$$ | **13** | -13 | `mu+` | $$\mu^+$$ |
+| **17** | -14 | `anti-nu_mu` | $$\bar{\nu}_{\mu}$$ | **13** | -13 | `mu+` | $$\mu^+$$ |
+
+A few remarks about what we see here:
+
+1. The structure of the decay chain is described by the index \(see [`Event::McParticle::trackIndex`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvent_1_1McParticle.html#34dae94b0ed5f36b875f783e61f8efc9)\). Each particle is labeled by this index and if there is a mother particle, it is 'linked' to its daughter by its index.
+2. The decay chain starts with index `0`, a $$Z^0$$ boson that emerges right after the $$e^+e^-$$ collision, which then decays into a $$c\bar{c}$$ charm pair. In the simulation, this pair is taken to be a `cluster` \(which has code `91`\) or a `string`\(which has code `92`\).
+3. For `TopoAna` \(or actually any physics analysis\), we are only interested in what happens after the formation of the cluster. This is where the meson is created to which the beam energy is tuned, in this case $$J/\psi$$. **We therefore only store particles that come after either particle code 91 or 92**, see [`MctruthForTopoAna::execute`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html#a31d830efda52e991f6fc3ec3547e2c71).
+4. From the remainder of the table, we can see that the rest of the decay chain becomes \(a rather rare if not impossible decay\):
+
+$$
+J/\psi \rightarrow D^0 \phi \\
+D^0 \rightarrow K^-\eta \\
+\phi \rightarrow K^+K^- \\
+K^+ \rightarrow \mu^+\nu_\mu \\
+\mu^+ \rightarrow e^+\nu_e\bar{\nu}_\mu
+$$
+
+The main take away is that `topoana`requires you to store the branch with "track index" [defined above](./#preparing-initial-event-selection) as having an offset: the first particle is to be the initial meson \(e.g. $$J/\psi$$\) with track index `0`. So you need to subtract its original index from the particles that come after.
 
 ## Installing `topoana`
 
