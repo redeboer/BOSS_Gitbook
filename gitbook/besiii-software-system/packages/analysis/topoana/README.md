@@ -18,7 +18,7 @@ The `topoana` package has to be run over a ROOT file that you have to prepare yo
 
 * the **run ID** number
 * the **event ID** number
-* a **track index** \(just a counter\)**,** which is necessary for loading the following arrays
+* the **number of particles** in this event**,** which is necessary for loading the following arrays
 * an array contain the **PDG code for each track** in this event
 * an array containing the PDG code for the **mother of each track** \(if available\)
 
@@ -46,7 +46,7 @@ The `TTree` containing Monte Carlo data that is needed for `topoana` is created 
 | **7** | 421 | `D0` | $$D^0$$ | **5** | 443 | `J/psi` | $$J/\psi$$ |
 | **8** | 333 | `phi` | $$\phi$$ | **5** | 443 | `J/psi` | $$J/\psi$$ |
 | **9** | -321 | `K-` | $$K^-$$ | **7** | 421 | `D0` | $$D^0$$ |
-| **10** | 221 | `eta` | $$\eta$$ | **7** | 421 | `D0` | $$D^0$$ |
+| **10** | 221 | `pi+` | $$\pi^+$$ | **7** | 421 | `D0` | $$D^0$$ |
 | **11** | 321 | `K+` | $$K^+$$ | **8** | 333 | `phi` | $$\phi$$ |
 | **12** | -321 | `K-` | $$K^-$$ | **8** | 333 | `phi` | $$\phi$$ |
 | **13** | -13 | `mu+` | $$\mu^+$$ | **11** | 321 | `K+` | $$K^+$$ |
@@ -70,7 +70,23 @@ K^+ \rightarrow \mu^+\nu_\mu \\
 \mu^+ \rightarrow e^+\nu_e\bar{\nu}_\mu
 $$
 
-The main take away is that `topoana`requires you to store the branch with "track index" [defined above](./#preparing-initial-event-selection) as having an offset: the first particle is to be the initial meson \(e.g. $$J/\psi$$\) with track index `0`. So you need to subtract its original index from the particles that come after.
+The main takeaway is that `topoana`requires you to store the branch with "track index" [defined above](./#preparing-initial-event-selection) as **having an offset**: the first particle is to be the initial meson \(e.g. $$J/\psi$$\) with track index `0`, so that you can use the mother index as an array index.  So you need to subtract its original index from index of the the particles that come after. In addition, the selection of MC truth particles is only to contain:
+
+* Particles that result from the initial cluster or string, that is, everything that in this case comes after $$J/\psi$$.
+* Only particles that come from the generator. This means they are not background simulated in the detectors and that that they were included in the decay chain from the generator. \(See [`Event::McParticle::decayFromGenerator`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvent_1_1McParticle.html#675a3679ea082c13d4ca4ce1c5571b59).\) In this case, this means that everything that comes after the decay of $$D^0$$ and $$\phi$$ is to be excluded, because the $$\mu^+$$ and $$K^+$$ decays take place outside the BESIII detector.
+* Only particles that have a mother particle \(is not [`primaryParticle`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvent_1_1McParticle.html#f225ad5eb24b49e277349c3ec2dd297e)\).
+
+In table format, with these conventions, the result that should be stored for the `topoana` package would be:
+
+| Array index | Particle |  |  | Array index | Mother |  |  |
+| ---: | ---: | :---: | :--- | ---: | ---: | :---: | :--- |
+| **0** | 443 | `J/psi` | $$J/\psi$$ | **-1** | 91 | `cluster` |  |
+| **2** | 421 | `D0` | $$D^0$$ | **0** | 443 | `J/psi` | $$J/\psi$$ |
+| **3** | 333 | `phi` | $$\phi$$ | **0** | 443 | `J/psi` | $$J/\psi$$ |
+| **4** | -321 | `K-` | $$K^-$$ | **2** | 421 | `D0` | $$D^0$$ |
+| **5** | 211 | `pi+` | $$\pi^+$$ | **2** | 421 | `D0` | $$D^0$$ |
+| **6** | 321 | `K+` | $$K^+$$ | **3** | 333 | `phi` | $$\phi$$ |
+| **7** | -321 | `K-` | $$K^-$$ | **3** | 333 | `phi` | $$\phi$$ |
 
 ## Installing `topoana`
 
