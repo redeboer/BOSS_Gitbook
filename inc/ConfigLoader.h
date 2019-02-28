@@ -181,7 +181,7 @@
 		/// -# Print loaded values in table form.
 		ArgPair_base::PrintAll();
 		/// @return Number of valid loaded arguments
-		return ArgPair_base::Instances()->size();
+		return ArgPair_base::instances.size();
 	}
 
 	/// Attempt to get a parameter @b name from a line.
