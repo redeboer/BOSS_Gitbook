@@ -30,32 +30,30 @@ You can design a procedure to write this MC truth information yourself, but you 
 2. Go through the code of the `MctruthForTopo` algorithm and take over the relevant components in your own initial event selection package, so that you can implement it within your cut procedure.
 3. Use the [`CreateMCtruthCollection`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#a3bee37dd275d6b15ca491ae1d493c05a) and [`WriteMcTruthForTopoAna`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#ac65fb01ccb38c60af713518e0afb0ba6) in the [`TrackSelector`](../../../../the-boss-afterburner/initial/#base-derived-algorithm-structure) base algorithm.
 
-#### Structure of the `Event::McParticleCol` collection
+### Structure of the `Event::McParticleCol` collection
 
 The `TTree` containing Monte Carlo data that is needed for `topoana` is created by looping over the [`Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed) in each event and writing the branches described above. To gain a better understanding of what a package like [`MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html) does, let's have a look at the the contents of the MC truth particle collection in one event:
 
-| Index | Particle code | name         | formula                   | Mother code  | name        | formula |
-| ----: | ------------: | :----------: | :-----------------------: | -----------: | ----------: | :------ |
-|     0 |            23 | `Z0`         | \( $$Z^0$$ \)             |              |             |         |
-|     1 |            22 | `gamma`      | \( $$\gamma$$ \)          |              |             |         |
-|     2 |             4 | `c`          | \( $$c$$ \)               |           23 | `Z0`        | \( $$Z^0$$ \) |
-|     3 |            -4 | `anti-c`     | \( $$\bar{c}$$ \)         |           23 | `Z0`        | \( $$Z^0$$ \) |
-|     4 |            91 | `cluster`    |                           |           -4 | `anti-c`    | \( $$\bar{c}$$ \) |
-|     5 |           443 | `J/psi`      | \( $$J/\psi$$ \)          |           91 | `cluster`   |         |
-|     6 |            11 | `e-`         | \( $$e^-$$ \)             |              |             |         |
-|     7 |           421 | `D0`         | \( $$D^0$$ \)             |          443 | `J/psi`     | \( $$J/\psi$$ \) |
-|     8 |           333 | `phi`        | \( $$\phi$$ \)            |          443 | `J/psi`     | \( $$J/\psi$$ \) |
-|     9 |          -321 | `K-`         | \( $$K^-$$ \)             |          421 | `D0`        | \( $$D^0$$ \) |
-|    10 |           221 | `eta`        | \( $$\eta$$ \)            |          421 | `D0`        | \( $$D^0$$ \) |
-|    11 |           321 | `K+`         | \( $$K^+$$ \)             |          333 | `phi`       | \( $$\phi$$ \) |
-|    12 |          -321 | `K-`         | \( $$K^-$$ \)             |          333 | `phi`       | \( $$\phi$$ \) |
-|    13 |           -13 | `mu+`        | \( $$\mu^+$$ \)           |          321 | `K+`        | \( $$K^+$$ \) |
-|    14 |            14 | `nu_mu`      | \( $$\nu_\mu$$ \)         |          321 | `K+`        | \( $$K^+$$ \) |
-|    15 |           -11 | `e+`         | \( $$e^+$$ \)             |          -13 | `mu+`       | \( $$\mu^+$$ \) |
-|    16 |            12 | `nu_e`       | \( $$\nu_e$$ \)           |          -13 | `mu+`       | \( $$\mu^+$$ \) |
-|    17 |           -14 | `anti-nu_mu` | \( $$\bar{\nu}_{\mu}$$ \) |          -13 | `mu+`       | \( $$\mu^+$$ \) |
-
-
+| Index | Particle |  |  | Mother |  |  |
+| ---: | ---: | :---: | :---: | ---: | :---: | :--- |
+| 0 | 23 | `Z0` | \( $$Z^0$$ \) |  |  |  |
+| 1 | 22 | `gamma` | \( $$\gamma$$ \) |  |  |  |
+| 2 | 4 | `c` | \( $$c$$ \) | 23 | `Z0` | \( $$Z^0$$ |
+| 3 | -4 | `anti-c` | \( $$\bar{c}$$ \) | 23 | `Z0` | \( $$Z^0$$ |
+| 4 | 91 | `cluster` |  | -4 | `anti-c` | \( $$\bar{c}$$ |
+| 5 | 443 | `J/psi` | \( $$J/\psi$$ \) | 91 | `cluster` |  |
+| 6 | 11 | `e-` | \( $$e^-$$ \) |  |  |  |
+| 7 | 421 | `D0` | \( $$D^0$$ \) | 443 | `J/psi` | \( $$J/\psi$$ |
+| 8 | 333 | `phi` | \( $$\phi$$ \) | 443 | `J/psi` | \( $$J/\psi$$ |
+| 9 | -321 | `K-` | \( $$K^-$$ \) | 421 | `D0` | \( $$D^0$$ |
+| 10 | 221 | `eta` | \( $$\eta$$ \) | 421 | `D0` | \( $$D^0$$ |
+| 11 | 321 | `K+` | \( $$K^+$$ \) | 333 | `phi` | \( $$\phi$$ |
+| 12 | -321 | `K-` | \( $$K^-$$ \) | 333 | `phi` | \( $$\phi$$ |
+| 13 | -13 | `mu+` | \( $$\mu^+$$ \) | 321 | `K+` | \( $$K^+$$ |
+| 14 | 14 | `nu_mu` | \( $$\nu_\mu$$ \) | 321 | `K+` | \( $$K^+$$ |
+| 15 | -11 | `e+` | \( $$e^+$$ \) | -13 | `mu+` | \( $$\mu^+$$ |
+| 16 | 12 | `nu_e` | \( $$\nu_e$$ \) | -13 | `mu+` | \( $$\mu^+$$ |
+| 17 | -14 | `anti-nu_mu` | \( $$\bar{\nu}_{\mu}$$ \) | -13 | `mu+` | \( $$\mu^+$$ |
 
 ## Installing `topoana`
 
@@ -78,7 +76,7 @@ The following pages list **all fields** that can be used in your `topoana` card:
 
 ## Tips on the results
 
-_\(From `topoana` terminal output.\)_
+_\(From_ `topoana` _terminal output.\)_
 
 1. Statistics of the topologies are summarized in three types files: `pdf`, `tex` and `txt`. Although these are different formats, they contain the same information. The `pdf` file is the easiest to read. It has been converted from the `tex` file using the `pdflatex` command. If necessary, you can check the contents of the `txt` file as well \(e.g. using text processing commands\).
 2. Tags of the topologies are inserted in all the entries of `TTree` for `topoana` in the output ROOT file\(s\). The ROOT files may have been split up, in which case you should load them using a `TChain`. Except for this, the `TTree` for `topoana` data of the output ROOT file is entirely the same as that of the input ROOT file\(s\). In addition, the topology tags are identical with those listed in the txt, tex, and pdf files.
