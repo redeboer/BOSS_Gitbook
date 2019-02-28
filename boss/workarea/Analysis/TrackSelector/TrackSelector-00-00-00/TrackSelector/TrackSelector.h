@@ -152,7 +152,7 @@
 
 		/// @name Track collections and iterators
 			///@{
-			std::vector<Event::McParticle*> fMcParticles; ///< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the `fNTuple_mctruth` member and calling its `NTupleTopoAna::Write` method, otherwise it is useless.
+			std::vector<Event::McParticle*> fMcParticles; ///< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Only generated particles that are detectable are included. The cluster and everything that comes before it is also not included. See <a href="https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection">here</a> for a better explanation. @remark Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the `fNTuple_mctruth` member and calling its `NTupleTopoAna::Write` method, otherwise it is useless.
 			std::vector<EvtRecTrack*> fGoodChargedTracks; ///< Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.
 			std::vector<EvtRecTrack*> fGoodNeutralTracks; ///< Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons).
 			std::vector<EvtRecTrack*>::iterator fTrackIterator; ///< Iterator for looping over the collection of charged and neutral tracks (`EvtRecTrackCol`).
@@ -193,11 +193,11 @@
 		/// @name Counters and cut objects
 			///@{
 			NTuple::Tuple* fCutTuples;
-			CutObject fCounter_Nevents;   ///< Eventual total number of events.
-			CutObject fCounter_Ntracks;   ///< Eventual total number of tracks.
-			CutObject fCounter_Ncharged;  ///< Eventual total number of charged tracks.
-			CutObject fCounter_Nmdcvalid; ///< Eventual total number of charged tracks that are 'MDC valid'.
-			CutObject fCounter_Nneutral;  ///< Eventual total number of neutral tracks.
+			CutObject fCounter_Ntracks;   ///< Cummulative total number of tracks.
+			CutObject fCounter_Ncharged;  ///< Cummulative total number of charged tracks.
+			CutObject fCounter_Nmdcvalid; ///< Cummulative total number of charged tracks that are 'MDC valid'.
+			CutObject fCounter_Nneutral;  ///< Cummulative total number of neutral tracks.
+			CutObject fCutFlow_Nevents;   ///< <b>Cut flow counter</b>: total number of events.
 			CutObject fCut_Vxy; ///< Cut on the radius \f$r\f$ of the primary vertex.
 			CutObject fCut_Vz;  ///< Cut on the \f$z\f$ coordinate of the primary vertex.
 			CutObject fCut_Rxy; ///< Cut on the distance in the \f$z\f$ direction between the primary vertex and the vertex of the charged track.

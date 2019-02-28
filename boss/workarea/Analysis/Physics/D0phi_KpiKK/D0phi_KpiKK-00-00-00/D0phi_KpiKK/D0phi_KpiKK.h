@@ -67,6 +67,13 @@
 			///@}
 
 
+		/// @name Counters and cut objects
+			///@{
+			CutObject fCutFlow_NChargedOK;   ///< <b>Cut flow counter</b>: total number of events that have exactly the number of charged tracks we want.
+			CutObject fCutFlow_NPIDnumberOK; ///< <b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want.
+			///@}
+
+
 	private:
 		/// @name NTuple methods
 			///@{

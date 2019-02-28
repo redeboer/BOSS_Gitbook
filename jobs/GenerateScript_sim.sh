@@ -19,5 +19,5 @@ nEventsPerJob=5000
 outputLevel=4
 
 # * Create job from template and submit * #
-bash CreateJobFiles_mc.sh "${packageName}" ${nJobs} ${nEventsPerJob} ${outputLevel}
+bash CreateJobFiles_sim.sh "${packageName}" ${nJobs} ${nEventsPerJob} ${outputLevel}
 bash SubmitAll.sh "${packageName}_mc"

@@ -71,7 +71,7 @@
 			fNTuple_mult_sel("mult_select", "Multiplicities of selected particles"),
 			fNTuple_mctruth ("mctruth",     "Monte Carlo truth for TopoAna package"),
 		/// * Construct counters (in essence a `CutObject` without cuts).
-			fCounter_Nevents  ("N_events"),
+			fCutFlow_Nevents  ("N_events"),
 			fCounter_Ntracks  ("N_tracks"),
 			fCounter_Ncharged ("N_charged"),
 			fCounter_Nneutral ("N_neutral"),
@@ -222,7 +222,7 @@
 					<< "Nneutral = " << fEvtRecEvent->totalNeutral() << ", "
 					<< "Ntotal = "   << fEvtRecEvent->totalTracks()  << endmsg;
 			/// <li> Increase counter objects (see `CutObject`).
-				++fCounter_Nevents;
+				++fCutFlow_Nevents;
 				fCounter_Ncharged += fEvtRecEvent->totalCharged();
 				fCounter_Nneutral += fEvtRecEvent->totalNeutral();
 				fCounter_Ntracks  += fEvtRecEvent->totalTracks();
@@ -271,8 +271,11 @@
 	/// Writes total cut flow to terminal and to the output file.
 	StatusCode TrackSelector::finalize()
 	{ PrintFunctionName("TrackSelector", __func__);
+		/// * Peform `finalize_rest` if defined in the derived algorithm.
 		finalize_rest();
+		/// * Print information about all NTupleContainers that have been filled (`PrintFilledTuples`).
 		NTupleContainer::PrintFilledTuples();
+		/// * Add and write cuts (`AddAndWriteCuts`) and print the cut flow (`CutObject::PrintAll`).
 		AddAndWriteCuts();
 		CutObject::PrintAll();
 		return StatusCode::SUCCESS;
@@ -881,6 +884,7 @@
 		/// <li> @b Write `"max"` values as the second entry.
 			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
 				fNTuple_cuts.at((*cut)->Name()) = (*cut)->max;
+			fNTuple_cuts.Write();
 		/// <li> @b Write the `"counter"` values as the third entry.
 			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
 				fNTuple_cuts.at((*cut)->Name()) = (*cut)->counter;

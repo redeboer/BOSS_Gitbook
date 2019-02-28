@@ -39,7 +39,10 @@
 			fNTuple_dedx_pi    ("dedx_pi",     "dE/dx of the pions"),
 			fNTuple_fit4c_all  ("fit4c_all",   "4-constraint fit information (CMS 4-momentum)"),
 			fNTuple_fit4c_best ("fit4c_best",  "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
-			fNTuple_fit_mc     ("fit_mc",      "Fake fit information according to MC truth")
+			fNTuple_fit_mc     ("fit_mc",      "Fake fit information according to MC truth"),
+		/// * Construct counters (in essence a `CutObject` without cuts).
+			fCutFlow_NChargedOK  ("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
+			fCutFlow_NPIDnumberOK("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks")
 	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
 		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
 		fCreateNeutralCollection = false;
@@ -145,15 +148,23 @@
 			}
 
 
+		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>4 charged tracks in total</b>.
+			if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS; /// <li> 4 charged tracks in total
+			++fCutFlow_NChargedOK;
+
+
+		/// <li> <b>PID cut</b>: apply a strict cut on the number of the selected particles. Only:
+			/// <ol>
+			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS; /// <li> 2 negative kaons
+			if(fKaonPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive kaon
+			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion
+			/// </ol>
+			++fCutFlow_NPIDnumberOK;
+
+
 		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
 			CreateMCtruthCollection();
 			WriteMcTruthForTopoAna(fNTuple_mctruth);
-
-
-		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
-			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
-			if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
-			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
