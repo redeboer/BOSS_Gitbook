@@ -30,7 +30,7 @@ if [ ${analyseMC} == 1 ]; then
 	gExampleFromFile=0
 	nEventsPerJob=-1
 	directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}_MC_1e6" # excl
-	directoryToRead="/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst" # incl
+	# directoryToRead="/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst" # incl
 	identifier="${packageName}"
 fi
 

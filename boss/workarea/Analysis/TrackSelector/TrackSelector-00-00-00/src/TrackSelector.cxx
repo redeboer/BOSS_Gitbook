@@ -556,7 +556,7 @@
 		/// <li> Clear `fMcParticles` vector.
 			fMcParticles.clear();
 
-		/// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `"FILE1"` input file and @b abort if does not exist..
+		/// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `"FILE1"` input file and @b abort if does not exist.
 			fMcParticleCol = SmartDataPtr<Event::McParticleCol>(eventSvc(), "/Event/MC/McParticleCol");
 			if(!fMcParticleCol) {
 				fLog << MSG::ERROR << "Could not retrieve McParticelCol" << endmsg;
@@ -567,12 +567,15 @@
 			bool doNotContinue(true); // only start recording if set to false in the loop
 			for(Event::McParticleCol::iterator it = fMcParticleCol->begin(); it!=fMcParticleCol->end(); ++it) {
 			/// <ul>
-			/// <li> @b Skip if it is not a primary particle or if the decay was not from a generator.
-				if( (*it)->primaryParticle())    continue;
-				if(!(*it)->decayFromGenerator()) continue; /// @todo Why? What does coming from a generator mean precisely?
-			/// <li> Only start recording after we have passed the initial cluster (e.g. \f$J/\psi\f$). See `NTupleTopoAna::IsInitialCluster`.
-				if(NTupleTopoAna::IsInitialCluster(*it))
+			/// <li> @b Skip if the track is not a primary particle (has no mother). The initial meson to which the beam is tuned is included, because its mother is a `cluster` or `string`.
+				if((*it)->primaryParticle())    continue;
+			/// <li> @b Skip if the track is not from the generator. This means that it is simulated in the detectors, but did not come from the event generator.
+				if(!(*it)->decayFromGenerator()) continue;
+			/// <li> Only start recording <i>after</i> we have passed the initial simulation `cluster` (code 91) or `string` (code 92). The next particle after this cluster or string will be the meson to which the beam is tuned (e.g. \f$J/\psi\f$). @see `NTupleTopoAna::IsInitialCluster`.
+				if(NTupleTopoAna::IsInitialCluster(*it)) {
 					doNotContinue = false;
+					continue;
+				}
 				if(doNotContinue) continue;
 			/// <li> Add the pointer to the `fMcParticles` collection vector for use in the derived algorithms.
 				fMcParticles.push_back(*it);
@@ -697,26 +700,19 @@
 			tuple.runID = fEventHeader->runNumber();
 			tuple.evtID = fEventHeader->eventNumber();
 
-		/// -# Set counters and switches for the loop.
+		/// -# Store first entry: the initial meson. See <a href="https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection">here</a> for the reason of using `indexOffset`.
+			std::vector<Event::McParticle*>::iterator it = fMcParticles.begin();
+			int indexOffset ((*it)->trackIndex());
 			tuple.index = 0;
-			bool setRootIndex(true);
-			int rootIndex(-1);
+			tuple.particle[0] = (*it)->particleProperty();
+			tuple.mother  [0] = (*it)->mother().trackIndex() - indexOffset;
+			++it;
 
-		/// -# Loop over `fMcParticles`. Set mother track ID to `-1` if the track `IsInitialCluster`.
-			std::vector<Event::McParticle*>::iterator it;
-			for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) {
-				tuple.particle[tuple.index] = (*it)->particleProperty();
-				if(NTupleTopoAna::IsInitialCluster(*it)) {
-					tuple.mother[tuple.index] = -1;
-					if(setRootIndex) {
-						rootIndex = (*it)->trackIndex();
-						setRootIndex = false;
-					}
-				}
-				else {
-					tuple.mother[tuple.index] = ((*it)->mother()).trackIndex()-rootIndex-1;
-				}
+		/// -# Loop over tthe remainder of `fMcParticles` and store the daughters
+			for(; it != fMcParticles.end(); ++it) {
 				++tuple.index;
+				tuple.particle[tuple.index] = (*it)->particleProperty();
+				tuple.mother  [tuple.index] = (*it)->mother().trackIndex() - indexOffset;
 			}
 
 		/// -# @b Write `NTuple` if `write` has been set to `true`.

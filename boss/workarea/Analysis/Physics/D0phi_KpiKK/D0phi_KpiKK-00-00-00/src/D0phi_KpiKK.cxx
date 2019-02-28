@@ -145,15 +145,15 @@
 			}
 
 
+		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
+			CreateMCtruthCollection();
+			WriteMcTruthForTopoAna(fNTuple_mctruth);
+
+
 		/// <li> Apply a strict cut on the number of particles: <i>only 2 negative kaons, 1 positive kaon, and 1 positive pion</i>
 			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
 			if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
 			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
-
-
-		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
-			CreateMCtruthCollection();
-			WriteMcTruthForTopoAna(fNTuple_mctruth);
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)

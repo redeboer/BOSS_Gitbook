@@ -92,13 +92,19 @@
 			int rootIndex(-1);
 			/// </ul>
 
+		/// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `"FILE1"` input file and @b abort if does not exist.
+			fMcParticleCol = SmartDataPtr<Event::McParticleCol>(eventSvc(), "/Event/MC/McParticleCol");
+			if(!fMcParticleCol) {
+				fLog << MSG::ERROR << "Could not retrieve McParticelCol" << endmsg;
+				return;
+			}
+
 		/// <li> Loop over collection of MC particle objects. An array containing a selection of MC truth particles is created here.
-			Event::McParticleCol::iterator it = mcParticleCol->begin();
-			for(; it!=mcParticleCol->end(); ++it) {
+			for(Event::McParticleCol::iterator it = mcParticleCol->begin(); it!=mcParticleCol->end(); ++it) {
 			/// <ul>
-			/// <li> Only decayed particles are of interest to the `topoana` package.
+			/// <li> @b Skip if it is not a primary particle or if the decay was not from a generator.
 				if( (*it)->primaryParticle())    continue;
-				if(!(*it)->decayFromGenerator()) continue;
+				if(!(*it)->decayFromGenerator()) continue; /// @todo Why? What does coming from a generator mean precisely?
 			/// <li> The `rootIndex` variable is used to skip particles like the \f$Z\f$ boson in the decay chain after the \f$e^+e^-\f$ collision. It has to be stored once and untill it is stored, all MC truth particles are rejected (which is what the `incPdcy` boolean is for).
 				if(
 					(*it)->particleProperty() == incPid1 ||

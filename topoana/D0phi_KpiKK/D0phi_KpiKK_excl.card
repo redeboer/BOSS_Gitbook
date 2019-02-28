@@ -4,12 +4,12 @@
 
 % Names of input root files
 {
-  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/inclMC/D0phi_KpiKK_incl_mctruth_cut.root
+  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/exclMC/D0phi_KpiKK_MC_1e6.root
 }
 
 % Tree name
 {
-  mctruth_cut
+  mctruth
 }
 
 % Branch name of the number of particles
@@ -29,7 +29,7 @@
 
 % Main name of output files 
 {  
-  D0phi_KpiKK_incl_cut
+  D0phi_KpiKK_excl
 }
 
 
@@ -39,11 +39,6 @@
 # ============================= #
 # ------ OPTIONAL FIELDS ------ #
 # ============================= #
-
-% Maximum number of entries to be processed
-{
-  10000
-}
 
 % Signal particles
 {

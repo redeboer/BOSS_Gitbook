@@ -1,20 +1,26 @@
 Decay trees and their respective final states:
 
-index:  1	iDcyTr:  0	iDcyFSt:  0	nEtrs:  48	nCmltEtrs:  48
-  e+ e- -->
-( e+ e- --> )
+index:  1	iDcyTr:  0	iDcyFSt:  0	nEtrs:  1000000	nCmltEtrs:  1000000
+  e+ e- --> cluster J/psi
+  cluster --> phi D0
+  phi --> K+ K-
+  D0 --> pi+ K-
+( e+ e- --> pi+ K+ K- K- J/psi )
 
 
 Decay final states:
 
-index:  1	iDcyFSt:  0	nEtrs:  48	nCmltEtrs:  48
-  e+ e- -->
+index:  1	iDcyFSt:  0	nEtrs:  1000000	nCmltEtrs:  1000000
+  e+ e- --> pi+ K+ K- K- J/psi
 
 
 Decay branches begun with D*0:
 
 
 Decay branches begun with D0:
+
+index:  1	iDcyBrP2:  0	nCases:  1000000	nCmltCases:  1000000
+  D0 --> pi+ K-
 
 
 Decay branches begun with anti-D*0:
@@ -27,6 +33,9 @@ Decay branches begun with omega:
 
 
 Decay branches begun with phi:
+
+index:  1	iDcyBrP6:  0	nCases:  1000000	nCmltCases:  1000000
+  phi --> K+ K-
 
 
 Exclusive decay branches matched with J/psi --> phi D0 + anything:
@@ -49,23 +58,29 @@ Exclusive decay branches matched with J/psi --> phi + anything:
 
 Exclusive decay branches matched with phi --> K+ K- + anything:
 
+index:  1	iDcyBrIncDcyBr7:  0	nCases:  1000000	nCmltCases:  1000000
+  phi --> K+ K-
+
 
 Exclusive decay branches matched with D0 --> pi+ K- + anything:
+
+index:  1	iDcyBrIncDcyBr8:  0	nCases:  1000000	nCmltCases:  1000000
+  D0 --> pi+ K-
 
 
 Signal particles:
 
-index:  1	SigP:  D0	iSigP:  0	nPs:   0	nCmltPs:  0
+index:  1	SigP:  D0	iSigP:  0	nPs:   1000000	nCmltPs:  1000000
 
-index:  2	SigP:  D*0	iSigP:  1	nPs:   0	nCmltPs:  0
+index:  2	SigP:  phi	iSigP:  4	nPs:   1000000	nCmltPs:  2000000
 
-index:  3	SigP:  anti-D0	iSigP:  2	nPs:   0	nCmltPs:  0
+index:  3	SigP:  anti-D0	iSigP:  2	nPs:   0	nCmltPs:  2000000
 
-index:  4	SigP:  anti-D*0	iSigP:  3	nPs:   0	nCmltPs:  0
+index:  4	SigP:  anti-D*0	iSigP:  3	nPs:   0	nCmltPs:  2000000
 
-index:  5	SigP:  phi	iSigP:  4	nPs:   0	nCmltPs:  0
+index:  5	SigP:  D*0	iSigP:  1	nPs:   0	nCmltPs:  2000000
 
-index:  6	SigP:  omega	iSigP:  5	nPs:   0	nCmltPs:  0
+index:  6	SigP:  omega	iSigP:  5	nPs:   0	nCmltPs:  2000000
 
 
 Signal decay final states:
