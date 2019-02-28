@@ -11,8 +11,8 @@ LIBNAME = BossAfterburner
 
 
 # * COMPILER FLAGS * #
-# COMPILER = clang++
 COMPILER = g++
+# COMPILER = clang++
 ROOTINC    := -I$(shell root-config --incdir)
 ROOTCFLAGS := $(shell root-config --cflags)
 ROOTLIBS   := $(shell root-config --libs --evelibs --glibs)

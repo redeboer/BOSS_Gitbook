@@ -3,7 +3,7 @@
  */
 
 // * FILE NAME * //
-	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK/inclMC"
+	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK/inclMC/D0phi_KpiKK_incl_mctruth_cut.root"
 
 // * TERMINAL OUTPUT * //
 	Print branches = true

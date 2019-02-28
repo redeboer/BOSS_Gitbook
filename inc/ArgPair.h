@@ -30,8 +30,8 @@
 		virtual void Print(int width=0) = 0;
 		virtual void SetParameter(const std::string &parname, const std::string &parvalue, bool output=false) = 0;
 		std::string name;
-	protected:
 		static std::list<ArgPair_base*> instances;
+	protected:
 		void PrintName(int width=0);
 	};
 

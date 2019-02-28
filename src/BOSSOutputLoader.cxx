@@ -333,7 +333,8 @@
 		std::list<ChainLoader*> outputList;
 		for(auto it = fChains.begin(); it != fChains.end(); ++it) {
 			TString name(it->second.GetChain().GetName());
-			if(!name.EqualTo("_cutvalues")) outputList.push_back(&(it->second));
+			// if(!name.EqualTo("_cutvalues"))
+				outputList.push_back(&(it->second));
 		}
 		// * Sort resulting list based on number of entries * //
 		outputList.sort([](ChainLoader* const & a, ChainLoader* const & b)

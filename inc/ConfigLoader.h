@@ -168,7 +168,7 @@
 				std::string beginning = line.substr(0,2);
 				if(!beginning.compare("//")) continue; // C++ line comment
 				if(!beginning.compare("/*")) continue; // C++ begin block comment
-				if(beginning.front() == '*') continue; // C++ continue block comment
+				if(beginning.front() == '*') continue; // C++ continue/end block comment
 				if(beginning.front() == '#') continue; // bash comment
 				if(beginning.front() == '%') continue; // LaTeX comment
 			/// <li> Get paramter name and value.
@@ -181,7 +181,7 @@
 		/// -# Print loaded values in table form.
 		ArgPair_base::PrintAll();
 		/// @return Number of valid loaded arguments
-		return ArgPair_base::instances.size();
+		return ArgPair_base::Instances()->size();
 	}
 
 	/// Attempt to get a parameter @b name from a line.

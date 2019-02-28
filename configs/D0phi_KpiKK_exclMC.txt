@@ -3,10 +3,11 @@
  */
 
 // * FILE NAME * //
-	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK_MC_1e6.root"
+	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK/exclMC/D0phi_KpiKK_MC_1e6.root"
 
 // * TERMINAL OUTPUT * //
 	Print branches = false
+	Print averages = false
 
 // * PLOT STYLE * //
 	Use y log scale = "y"
@@ -15,7 +16,7 @@
 	Plot statistics = false
 
 // * WHICH BRANCHES TO PLOT * //
-	Plot raw data      = true
+	Plot raw data      = false
 	Draw multiplicites = true
 	Draw vertex        = false
 	Draw ToF           = false
