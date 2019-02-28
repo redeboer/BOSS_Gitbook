@@ -34,16 +34,28 @@ You can design a procedure to write this MC truth information yourself, but you 
 
 The `TTree` containing Monte Carlo data that is needed for `topoana` is created by looping over the [`Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed) in each event and writing the branches described above. To gain a better understanding of what a package like [`MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html) does, let's have a look at the the contents of the MC truth particle collection in one event:
 
-| Index | Particle code | Particle name | Mother code | Mother name |
-| ---: | ---: | :--- | ---: | :--- |
-| 0 | 23 | `Z0` \( $$Z^0$$ \) |  |  |
-| 1 | 22 | `gamma` \( $$\gamma$$ \) |  |  |
-| 2 | 4 | `c` \( $$c$$ \) |  |  |
-| 3 | -4 | `anti-c` \( $$\bar{c}$$ \) |  |  |
-| 4 | 91 | `cluster` | -4 | `anti-c` \( $$\bar{c}$$ \) |
-| 5 | 443 | `J/psi` \( $$J/\psi$$ \) | 91 | `cluster` |
-| 6 | 11 | `e-` \( $$e^-$$ \) |  |  |
-| 7 | 421 | `D0` \( $$D^0$$ \) | 443 | `J/psi` \( $$J/\psi$$ \) |
+| Index | Particle code | name         | formula                   | Mother code  | name        | formula |
+| ----: | ------------: | :----------: | :-----------------------: | -----------: | ----------: | :------ |
+|     0 |            23 | `Z0`         | \( $$Z^0$$ \)             |              |             |         |
+|     1 |            22 | `gamma`      | \( $$\gamma$$ \)          |              |             |         |
+|     2 |             4 | `c`          | \( $$c$$ \)               |           23 | `Z0`        | \( $$Z^0$$ \) |
+|     3 |            -4 | `anti-c`     | \( $$\bar{c}$$ \)         |           23 | `Z0`        | \( $$Z^0$$ \) |
+|     4 |            91 | `cluster`    |                           |           -4 | `anti-c`    | \( $$\bar{c}$$ \) |
+|     5 |           443 | `J/psi`      | \( $$J/\psi$$ \)          |           91 | `cluster`   |         |
+|     6 |            11 | `e-`         | \( $$e^-$$ \)             |              |             |         |
+|     7 |           421 | `D0`         | \( $$D^0$$ \)             |          443 | `J/psi`     | \( $$J/\psi$$ \) |
+|     8 |           333 | `phi`        | \( $$\phi$$ \)            |          443 | `J/psi`     | \( $$J/\psi$$ \) |
+|     9 |          -321 | `K-`         | \( $$K^-$$ \)             |          421 | `D0`        | \( $$D^0$$ \) |
+|    10 |           221 | `eta`        | \( $$\eta$$ \)            |          421 | `D0`        | \( $$D^0$$ \) |
+|    11 |           321 | `K+`         | \( $$K^+$$ \)             |          333 | `phi`       | \( $$\phi$$ \) |
+|    12 |          -321 | `K-`         | \( $$K^-$$ \)             |          333 | `phi`       | \( $$\phi$$ \) |
+|    13 |           -13 | `mu+`        | \( $$\mu^+$$ \)           |          321 | `K+`        | \( $$K^+$$ \) |
+|    14 |            14 | `nu_mu`      | \( $$\nu_\mu$$ \)         |          321 | `K+`        | \( $$K^+$$ \) |
+|    15 |           -11 | `e+`         | \( $$e^+$$ \)             |          -13 | `mu+`       | \( $$\mu^+$$ \) |
+|    16 |            12 | `nu_e`       | \( $$\nu_e$$ \)           |          -13 | `mu+`       | \( $$\mu^+$$ \) |
+|    17 |           -14 | `anti-nu_mu` | \( $$\bar{\nu}_{\mu}$$ \) |          -13 | `mu+`       | \( $$\mu^+$$ \) |
+
+
 
 ## Installing `topoana`
 
