@@ -86,12 +86,12 @@
 	/// This function is called *for each event*.
 	StatusCode D0phi_KpiKK::execute_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
-
-
-		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
-			CreateMCtruthCollection();
-			WriteMcTruthForTopoAna(fNTuple_mctruth);
 		/// <ol type="A">
+		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>4 charged tracks in total</b>.
+			if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS; /// <li> 4 charged tracks in total
+			++fCutFlow_NChargedOK;
+
+
 		/// <li> Create specific charged track selections
 			// * Clear vectors of selected particles *
 				fKaonNeg.clear();
@@ -153,11 +153,6 @@
 			}
 
 
-		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>4 charged tracks in total</b>.
-			if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS; /// <li> 4 charged tracks in total
-			++fCutFlow_NChargedOK;
-
-
 		/// <li> <b>PID cut</b>: apply a strict cut on the number of the selected particles. Only:
 			/// <ol>
 			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS; /// <li> 2 negative kaons
@@ -165,6 +160,11 @@
 			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion
 			/// </ol>
 			++fCutFlow_NPIDnumberOK;
+
+
+		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
+			CreateMCtruthCollection();
+			WriteMcTruthForTopoAna(fNTuple_mctruth);
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)

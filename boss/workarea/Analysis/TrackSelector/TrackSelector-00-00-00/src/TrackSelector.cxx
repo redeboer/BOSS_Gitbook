@@ -567,7 +567,7 @@
 			}
 
 		/// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data available in `McParticle`, see <a href="http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html">here</a>. Only add to `fMcParticles` if the `McParticle` satisfies:
-			bool doNotContinue(true); // only start recording if set to false in the loop
+			bool doNotInclude(true); // only start recording if set to false in the loop
 			for(Event::McParticleCol::iterator it = fMcParticleCol->begin(); it!=fMcParticleCol->end(); ++it) {
 			/// <ul>
 			/// <li> @b Skip if the track is not a primary particle (has no mother). The initial meson to which the beam is tuned is included, because its mother is a `cluster` or `string`.
@@ -575,11 +575,11 @@
 			/// <li> @b Skip if the track is not from the generator. This means that it is simulated in the detectors, but did not come from the event generator.
 				if(!(*it)->decayFromGenerator()) continue;
 			/// <li> Only start recording <i>after</i> we have passed the initial simulation `cluster` (code 91) or `string` (code 92). The next particle after this cluster or string will be the meson to which the beam is tuned (e.g. \f$J/\psi\f$). @see `NTupleTopoAna::IsInitialCluster`.
-				if(doNotContinue && NTupleTopoAna::IsInitialCluster(*it)) {
-					doNotContinue = false;
+				if(doNotInclude && NTupleTopoAna::IsInitialCluster(*it)) {
+					doNotInclude = false;
 					continue;
 				}
-				if(doNotContinue) continue;
+				if(doNotInclude) continue;
 			/// <li> Add the pointer to the `fMcParticles` collection vector for use in the derived algorithms.
 				fMcParticles.push_back(*it);
 			/// </ul>
@@ -703,25 +703,18 @@
 			tuple.runID = fEventHeader->runNumber();
 			tuple.evtID = fEventHeader->eventNumber();
 
-		/// -# Store first entry: the initial meson. See <a href="https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection">here</a> for the reason of using `indexOffset`.
+		/// -# The `trackIndex` of the first particle is to be the offset for the array index, because this entry should have array index `0`. See <a href="https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection">here</a> for more information on using `indexOffset`.
 			std::vector<Event::McParticle*>::iterator it = fMcParticles.begin();
 			int indexOffset ((*it)->trackIndex());
-			tuple.index = 0;
-			tuple.particle[0] = (*it)->particleProperty();
-			tuple.mother  [0] = (*it)->mother().trackIndex() - indexOffset;
-			++it;
-
-			// std::cout
-				// << std::setw(3) << tuple.index
-				// << std::setw(7) << tuple.particle[tuple.index]
-				// << std::setw(4) << tuple.mother[tuple.index]
-				// << std::endl;
 
 		/// -# Loop over tthe remainder of `fMcParticles` and store the daughters
 			for(; it != fMcParticles.end(); ++it) {
-				++tuple.index;
 				tuple.particle[tuple.index] = (*it)->particleProperty();
-				tuple.mother  [tuple.index] = (*it)->mother().trackIndex() - indexOffset;
+				if(NTupleTopoAna::IsInitialCluster(*it))
+					tuple.mother[tuple.index] = -1;
+				else
+					tuple.mother[tuple.index] = (*it)->mother().trackIndex() - indexOffset;
+				++tuple.index;
 				// std::cout
 					// << std::setw(3) << tuple.index
 					// << std::setw(7) << tuple.particle[tuple.index]
