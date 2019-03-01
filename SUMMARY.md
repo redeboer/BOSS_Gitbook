@@ -34,5 +34,5 @@
 * [Contributing](appendices/contributing.md)
 * [Glossary](appendices/glossary.md)
 * [About](appendices/about.md)
-* [BOSS Afterburner](https://besiii.gitbook.io/afterburner)
+* [BOSS Afterburner](https://redeboer.gitbook.io/afterburner)
 
