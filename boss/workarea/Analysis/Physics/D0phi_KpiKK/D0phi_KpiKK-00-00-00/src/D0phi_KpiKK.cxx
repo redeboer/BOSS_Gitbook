@@ -86,6 +86,11 @@
 	/// This function is called *for each event*.
 	StatusCode D0phi_KpiKK::execute_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
+
+
+		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
+			CreateMCtruthCollection();
+			WriteMcTruthForTopoAna(fNTuple_mctruth);
 		/// <ol type="A">
 		/// <li> Create specific charged track selections
 			// * Clear vectors of selected particles *
@@ -160,11 +165,6 @@
 			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion
 			/// </ol>
 			++fCutFlow_NPIDnumberOK;
-
-
-		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
-			CreateMCtruthCollection();
-			WriteMcTruthForTopoAna(fNTuple_mctruth);
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)

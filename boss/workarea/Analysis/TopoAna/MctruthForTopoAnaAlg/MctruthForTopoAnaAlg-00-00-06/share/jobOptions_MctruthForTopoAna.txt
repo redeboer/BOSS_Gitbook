@@ -1,0 +1,2 @@
+ApplicationMgr.DLLs += {"MctruthForTopoAnaAlg"};
+ApplicationMgr.TopAlg += { "MctruthForTopoAna" };
