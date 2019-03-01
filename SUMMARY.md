@@ -15,17 +15,17 @@
 
 ## Packages
 
-* [BOSS Packages](packages-1/packages.md)
-* [Generation](packages-1/generation.md)
-* [Simulation](packages-1/simulation.md)
-* [Reconstruction](packages-1/reconstruction.md)
-* [Analysis](packages-1/analysis/README.md)
-  * [RhopiAlg](packages-1/analysis/rhopi.md)
-  * [PipiJpsiAlg](packages-1/analysis/pipijpsi.md)
-  * [TopoAna](packages-1/analysis/topoana/README.md)
-    * [Required fields](packages-1/analysis/topoana/required.md)
-    * [Optional fields](packages-1/analysis/topoana/optional.md)
-  * [Other packages](packages-1/analysis/other.md)
+* [BOSS Packages](packages/packages.md)
+* [Generation](packages/generation.md)
+* [Simulation](packages/simulation.md)
+* [Reconstruction](packages/reconstruction.md)
+* [Analysis](packages/analysis/README.md)
+  * [RhopiAlg](packages/analysis/rhopi.md)
+  * [PipiJpsiAlg](packages/analysis/pipijpsi.md)
+  * [TopoAna](packages/analysis/topoana/README.md)
+    * [Required fields](packages/analysis/topoana/required.md)
+    * [Optional fields](packages/analysis/topoana/optional.md)
+  * [Other packages](packages/analysis/other.md)
 
 ## Appendices
 
@@ -34,4 +34,5 @@
 * [Contributing](appendices/contributing.md)
 * [Glossary](appendices/glossary.md)
 * [About](appendices/about.md)
+* [BOSS Afterburner](https://besiii.gitbook.io/afterburner)
 
