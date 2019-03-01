@@ -1,10 +1,18 @@
-# Main page
+# The BOSS Gitbook
+
+{% hint style="danger" %}
+**These pages are currently being reorganised**
+
+The _BOSS Gitbook_ that you are currently looking only is to contain tutorial pages on BOSS and its official packages.
+
+For pages on The BOSS Afterburner and its analysis framework see [_The BOSS Afterburner_ Gitbook](https://besiii.gitbook.io/afterburner).
+{% endhint %}
 
 {% hint style="warning" %}
 Feedback on these pages is very welcome! See [About](appendices/about.md) for contact details.
 {% endhint %}
 
-## _The BOSS Afterburner_ repository
+## Contents of these
 
 This repository has been set up as an unofficial extension to the BOSS analysis framework of the [BESIII collaboration](http://bes3.ihep.ac.cn). The repository has three major components:
 

@@ -9,5 +9,5 @@ Following the Software Guide of the [BESIII Offline Software Group](https://docb
 3. \*\*\*\*[**Reconstruction**](reconstruction.md)\*\*\*\*
 4. \*\*\*\*[**Analysis**](analysis/)
 
-[Feedback and contributions](../../appendices/contributing.md) to these pages are vital, as there are continuous improvements to the BOSS analysis framework.
+[Feedback and contributions](../appendices/contributing.md) to these pages are vital, as there are continuous improvements to the BOSS analysis framework.
 

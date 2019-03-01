@@ -210,5 +210,5 @@ Note that in [Step 5 when we set up the work area](setup.md#step-5-modify-your-b
 
 ### Other example packages
 
-{% page-ref page="../packages/analysis/rhopi.md" %}
+{% page-ref page="../../packages-1/analysis/rhopi.md" %}
 

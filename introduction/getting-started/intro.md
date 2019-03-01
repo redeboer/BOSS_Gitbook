@@ -32,6 +32,6 @@ More information:
 * [Wikipedia on CVS](https://en.wikipedia.org/wiki/Concurrent_Versions_System)
 
 {% hint style="info" %}
-CVS can be used as a tool for collaboration, but is somewhat outdated. This is [one of the motivations](../../the-boss-afterburner/intro.md#motivation) for designing the BOSS Afterburner framework.
+CVS can be used as a tool for collaboration, but is somewhat outdated. This is [one of the motivations]() for designing the BOSS Afterburner framework.
 {% endhint %}
 
