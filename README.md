@@ -5,7 +5,7 @@
 
 The _BOSS Gitbook_ that you are currently looking only is to contain tutorial pages on BOSS and its official packages.
 
-For pages on The BOSS Afterburner and its analysis framework see [_The BOSS Afterburner_ Gitbook](https://besiii.gitbook.io/afterburner).
+For pages on The BOSS Afterburner and its analysis framework see [_The BOSS Afterburner_ Gitbook](https://redeboer.gitbook.io/boss_afterburner).
 {% endhint %}
 
 {% hint style="warning" %}
