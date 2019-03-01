@@ -87,3 +87,4 @@ jobs/topoana/**/*.txt
 jobs/topoana/*/*.txt
 jobs/topoana/*/*/*.txt
 topoana/**.txt
+topoana/*.txt

@@ -4,7 +4,7 @@
 
 % Names of input root files
 {
-  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/exclMC/D0phi_KpiKK_MC_1e6.root
+  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/exclMC/D0phi_KpiKK_excl_1e6.root
 }
 
 % Tree name

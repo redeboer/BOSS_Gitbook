@@ -4,7 +4,7 @@
 
 % Names of input root files
 {
-  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/inclMC/D0phi_KpiKK_incl_mctruth_cut.root
+  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/inclMC/D0phi_KpiKK_incl.root
 }
 
 % Tree name
@@ -39,11 +39,6 @@
 # ============================= #
 # ------ OPTIONAL FIELDS ------ #
 # ============================= #
-
-# % Maximum number of entries to be processed
-# {
-#   10000
-# }
 
 % Signal particles
 {
@@ -91,15 +86,7 @@
   2   phi
 
   0	  J/psi
-  1	  anti-D0
-  2   phi
-
-  0	  J/psi
   1	  D*0
-  2   phi
-
-  0	  J/psi
-  1	  anti-D*0
   2   phi
 
   0	  J/psi
@@ -110,19 +97,10 @@
   1	  D0
   
   0	  J/psi
-  1	  anti-D0
-  
-  0	  J/psi
   1	  D*0
   
   0	  J/psi
-  1	  anti-D*0
-  
-  0	  J/psi
   1	  phi
-  
-  0	  J/psi
-  1	  omega
   
   0	  phi
   1	  K+
@@ -131,10 +109,6 @@
   0	  D0
   1	  K-
   2	  pi+
-  
-  0	  anti-D0
-  1	  K+
-  2	  pi-
 }
 
 # % Skip the topology analysis of decay trees and decay final states (Two options: Y and N. Default: N)
