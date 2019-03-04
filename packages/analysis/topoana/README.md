@@ -41,12 +41,12 @@ This is the quickest solution, but it does not allow you to perform cuts: all th
 
 | Version | Data type |
 | :--- | :--- |
-| `MctruthForTopoAna-00-00-01` |  |
-| `MctruthForTopoAna-00-00-02` |  |
-| `MctruthForTopoAna-00-00-03` |  |
-| `MctruthForTopoAna-00-00-04` |  |
-| `MctruthForTopoAna-00-00-05` |  |
-| `MctruthForTopoAna-00-00-06` |  |
+| `00-00-01` |  |
+| `00-00-02` |  |
+| `00-00-03` | $$J/\psi$$ |
+| `00-00-04` |  |
+| `00-00-05` |  |
+| `00-00-06` | 4180 data |
 
 All versions of `MctruthForTopo` can be found here on the IHEP server:
 
