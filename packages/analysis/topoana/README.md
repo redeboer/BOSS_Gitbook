@@ -24,15 +24,8 @@ The `topoana` package has to be run over a ROOT file that you have to prepare yo
 
 You can design a procedure to write this MC truth information yourself, but you can also use either of the following two methods:
 
-1. Add the `MctruthForTopo` algorithm package \(see below\) to the job options of your analysis, using:
-```
-ApplicationMgr.DLLs += {"MctruthForTopoAnaAlg"};
-ApplicationMgr.TopAlg += {"MctruthForTopoAna"};
-```
-This is the quickest solution, but it does not allow you to perform cuts: all the events will be written to the `TTree`.
-
+1. Add the `MctruthForTopo` algorithm package \(see below\) to the job options of your analysis.
 2. Go through the code of the `MctruthForTopo` algorithm and take over the relevant components in your own initial event selection package, so that you can implement it within your cut procedure.
-
 3. Use the [`CreateMCtruthCollection`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#a3bee37dd275d6b15ca491ae1d493c05a) and [`WriteMcTruthForTopoAna`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#ac65fb01ccb38c60af713518e0afb0ba6) in the [`TrackSelector`]() base algorithm.
 
 ### The `MctruthForTopo` package
@@ -54,7 +47,14 @@ All versions of `MctruthForTopo` can be found here on the IHEP server:
 /besfs/users/zhouxy/workarea/workarea-6.6.5/Analysis/Physics/MctruthForTopoAnaAlg
 ```
 
-You may choose a different version of BOSS than `6.6.5`, the one used above.
+You may choose a different version of BOSS than `6.6.5`, the one used above. If you have sourced one of these versions \(using `bash cmt/setup`\), you can run it by adding the following lines to your job options:
+
+```
+ApplicationMgr.DLLs += {"MctruthForTopoAnaAlg"};
+ApplicationMgr.TopAlg += {"MctruthForTopoAna"};
+```
+
+Note: Using `MctruthForTopoAna` is the quickest way to create a `TTree` containing the necessary data for `topoana`, but it does not allow you to perform cuts: **all the events** will be written to the `TTree` and no cut will be applied.
 
 ### Structure of the `Event::McParticleCol` collection
 
