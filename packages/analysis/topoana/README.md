@@ -34,12 +34,12 @@ You can design a procedure to write this MC truth information yourself, but you 
 
 | Version | Data type |
 | :--- | :--- |
-| `00-00-01` |  |
-| `00-00-02` |  |
-| `00-00-03` | $$J/\psi$$ |
-| `00-00-04` |  |
-| `00-00-05` |  |
-| `00-00-06` | 4180 data |
+| `00-00-01` | No selection: all `McParticle`s are loaded |
+| `00-00-02` | Particles that don't come from a generator are rejected \([`decayFromGenerator`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvent_1_1McParticle.html#675a3679ea082c13d4ca4ce1c5571b59)\) |
+| `00-00-03` | Specifically designed for $$J/\psi$$ |
+| `00-00-04` | $$J/\psi$$, but with bug fix for `cluster` and `string` |
+| `00-00-05` | Designed for PID $$90022$$ and $$80022$$ (??) |
+| `00-00-06` | $$4,180$$ MeV data |
 
 All versions of `MctruthForTopo` can be found here on the IHEP server:
 
