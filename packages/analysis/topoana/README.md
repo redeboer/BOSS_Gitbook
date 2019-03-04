@@ -18,19 +18,37 @@ The `topoana` package has to be run over a ROOT file that you have to prepare yo
 
 * the **run ID** number
 * the **event ID** number
-* the **number of particles** in this event**,** which is necessary for loading the following arrays
+* the **number of particles** in this event, which is necessary for loading the following arrays
 * an array contain the **PDG code for each track** in this event
 * an array containing the PDG code for the **mother of each track** \(if available\)
 
 You can design a procedure to write this MC truth information yourself, but you can also use either of the following two methods:
 
-1. Add the [`MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html) algorithm package to the job options of your analysis, using: `ApplicationMgr.DLLs += {"MctruthForTopoAnaAlg"}; ApplicationMgr.TopAlg += {"MctruthForTopoAna"};` This is the quickest solution, but it does not allow you to perform cuts: all the events will be written to the `TTree`.
+1. Add the `MctruthForTopo` algorithm package \(see below\) to the job options of your analysis, using:
+```
+ApplicationMgr.DLLs += {"MctruthForTopoAnaAlg"};
+ApplicationMgr.TopAlg += {"MctruthForTopoAna"};
+```
+This is the quickest solution, but it does not allow you to perform cuts: all the events will be written to the `TTree`.
+
 2. Go through the code of the `MctruthForTopo` algorithm and take over the relevant components in your own initial event selection package, so that you can implement it within your cut procedure.
+
 3. Use the [`CreateMCtruthCollection`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#a3bee37dd275d6b15ca491ae1d493c05a) and [`WriteMcTruthForTopoAna`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#ac65fb01ccb38c60af713518e0afb0ba6) in the [`TrackSelector`]() base algorithm.
 
 ### The `MctruthForTopo` package
 
-`MctruthForTopo` is an example package that comes with `topoana`. It can be used for preparing a ROOT file sample that contains a `TTree` as described above. See the [documentation of `MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html#a7d5e77225fb2195719b0df23af66bbb9) for how these branches are typically called within `MctruthForTopo-00-00-06`. All versions of `MctruthForTopo` can be found here:
+`MctruthForTopo` is an example package that comes with `topoana`. It can be used for preparing a ROOT file sample that contains a `TTree` as described above. See the [documentation of `MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html#a7d5e77225fb2195719b0df23af66bbb9) for how these branches are typically called within `MctruthForTopo-00-00-06`.
+
+| Version | Data type |
+| :--- | :--- |
+| `MctruthForTopoAna-00-00-01` |  |
+| `MctruthForTopoAna-00-00-02` |  |
+| `MctruthForTopoAna-00-00-03` |  |
+| `MctruthForTopoAna-00-00-04` |  |
+| `MctruthForTopoAna-00-00-05` |  |
+| `MctruthForTopoAna-00-00-06` |  |
+
+All versions of `MctruthForTopo` can be found here on the IHEP server:
 
 ```bash
 /besfs/users/zhouxy/workarea/workarea-6.6.5/Analysis/Physics/MctruthForTopoAnaAlg
