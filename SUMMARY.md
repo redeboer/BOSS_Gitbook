@@ -1,7 +1,6 @@
 # Table of contents
 
-* [The BOSS Gitbook](README.md)
-* [Contents of the tutorial pages](contents.md)
+* [The BOSS GitBook](README.md)
 
 ## Introduction
 

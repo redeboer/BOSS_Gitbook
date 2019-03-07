@@ -1,40 +1,36 @@
-# The BOSS Gitbook
-
-{% hint style="danger" %}
-**These pages are currently being reorganised**
-
-The _BOSS Gitbook_ that you are currently looking only is to contain tutorial pages on BOSS and its official packages.
-
-For pages on The BOSS Afterburner and its analysis framework see [_The BOSS Afterburner_ Gitbook](https://redeboer.gitbook.io/boss_afterburner).
-{% endhint %}
+# The BOSS GitBook
 
 {% hint style="warning" %}
 Feedback on these pages is very welcome! See [About](appendices/about.md) for contact details.
 {% endhint %}
 
-## Contents of these
+This GitBook describes the use of the BESIII Offline Software System \(BOSS\). These pages started as a collection of notes, but now aim to serve several purposes:
 
-This repository has been set up as an unofficial extension to the BOSS analysis framework of the [BESIII collaboration](http://bes3.ihep.ac.cn). The repository has three major components:
+* Provide accessible and up-to-date **tutorials** on working with BOSS. These pages written as step-by-step guides and are particularly aimed at beginners, but also provide background information of what the software is doing.
+* Serve as an **inventory of packages** and libraries often used within BOSS. Ideally, this should allow analysers to navigate through the tools that are already available.
+* Serve as a platform where analysers can **easily and continuously update** their documentation.
+* Maintain an **updated list of references** to must-read web pages or literature on BESIII.
 
-1. The [tutorial pages on GitBook](https://besiii.gitbook.io/boss) that you are currently looking at. These pages are to serve as an accessible introduction and user guide to the BOSS software framework used in the BESIII collaboration.
-2. A [base-derived algorithm structure for the **initial event selection**](https://redeboer.github.io/BOSS_Afterburner/group__BOSS.html). This part of the repository is integrated in BOSS and is designed to facilitate collaboration on code for initial event selection in hadron research at BESIII.
-3. An [analysis framework for **final event selection**](https://redeboer.github.io/BOSS_Afterburner/group__BOSS__Afterburner.html). This part of the repository is designed to formalise and standardise loading, plotting, and fitting procedures that you perform on the output of the initial event selection.
+What goes for all of the above is that, whatever your background or level, _**your feedback is vital**_. These tutorial pages are quite new and need testing and improvement. More importantly, the more people contribute, the more these pages can become a reference source.
 
-The source code for all of the above is [available on GitHub](https://github.com/redeboer/BOSS_Afterburner) and can be contributed to through `git`.
+So if you read this and like the idea, do have a look at the [contributing page](appendices/contributing.md)!  
+Contributions from all levels is highly appreciated.
 
 {% hint style="info" %}
 If you do not have an IHEP networking account, it is better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html) of BESIII — this framework can only be of use if you are a member of the BESIII collaboration and if you have access to the software of this collaboration. You can also have a look at the links in the section [Further reading](appendices/references.md).
 {% endhint %}
 
-## Accessing _The BOSS Afterburner_
+## Contents of the tutorial pages
 
-There are three channels through which you can access _The BOSS Afterburner_ online.
+This [GitBook](https://besiii.gitbook.io/boss) provides tutorials for using the BOSS Analysis Framework used in the BESIII collaboration. Currently, the pages have been written from the perspective of \(light\) hadron spectroscopy, but the tutorials can be useful for other forms of analysis as well.
 
-1. **GitBook** \([besiii.gitbook.io/boss](https://besiii.gitbook.io/boss)\), which provides an accessible graphical interface for the tutorial-like pages on using BOSS, on the initial event selection packages, and on the final event selection framework in this repository.
-2. **GitPages** \([redeboer.github.io/BOSS\_Afterburner](https://redeboer.github.io/BOSS_Afterburner/)\), which contains class documentation for the initial and final event selection frameworks of _The BOSS Afterburner_. This platform can be consulted for more details about the design of these two frameworks.
-3. **GitHub** \([github.com/redeboer/BOSS\_Afterburner](https://github.com/redeboer/BOSS_Afterburner)\), which is the complete repository itself. It contains the source code \(Markdown, C++, HTML, bash, etc.\) for all components. Collaboration on all of the above is possible through this platform, using `git`.
+Here are shortcuts that you might want to take:
 
-More briefly put, GitHub 'feeds' the content on GitBook and GitPages.
+1. [**Getting started with BOSS**](introduction/getting-started/) ****If you are not familiar with BOSS, it is best to start with this part of the tutorial. It will help you set up the BOSS environment in your account on the IHEP server \('install BOSS'\), explain you some basics of the package structure on which BOSS is built, and guide you through the process of submitting jobs.
+2. [**Major BOSS packages**](packages/packages.md) ****Here, you will find descriptions of some of the important BOSS packages used in initial event selection, most notably, the `RhopiAlg` package. This section is to serve as an inventory of BOSS packages.
+3. [**Tips, Tricks, and Troubleshooting**](appendices/tips.md) These pages are used to collect problems that are frequently encountered when working with BOSS. As such, these notes are useful no matter your level. _New suggestions are most welcome!_
 
-![Means of accessing The BOSS Afterburner](.gitbook/assets/boss_repository-1.png)
+## A note on the _BOSS Afterburner_
+
+Initially, these pages were part of the [_BOSS Afterburner_ repository](https://github.com/redeboer/BOSS_Afterburner). This repository has been split up into the pages that you are currently looking at and a separate repository that serves as an extension to BOSS. Its documentation pages can be found [here](https://redeboer.gitbook.io/boss_afterburner).
 

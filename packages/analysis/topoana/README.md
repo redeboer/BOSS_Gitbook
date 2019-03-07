@@ -26,7 +26,7 @@ You can design a procedure to write this MC truth information yourself, but you 
 
 1. Add the `MctruthForTopo` algorithm package \(see below\) to the job options of your analysis.
 2. Go through the code of the `MctruthForTopo` algorithm and take over the relevant components in your own initial event selection package, so that you can implement it within your cut procedure.
-3. Use the [`CreateMCtruthCollection`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#a3bee37dd275d6b15ca491ae1d493c05a) and [`WriteMcTruthForTopoAna`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#ac65fb01ccb38c60af713518e0afb0ba6) in the [`TrackSelector`]() base algorithm.
+3. Use the [`CreateMCtruthCollection`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#a3bee37dd275d6b15ca491ae1d493c05a) and [`WriteMcTruthForTopoAna`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#ac65fb01ccb38c60af713518e0afb0ba6) in the [`TrackSelector`](./) base algorithm.
 
 ### The `MctruthForTopo` package
 
@@ -38,7 +38,7 @@ You can design a procedure to write this MC truth information yourself, but you 
 | `00-00-02` | Particles that don't come from a generator are rejected \([`decayFromGenerator`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvent_1_1McParticle.html#675a3679ea082c13d4ca4ce1c5571b59)\) |
 | `00-00-03` | Specifically designed for $$J/\psi$$ |
 | `00-00-04` | $$J/\psi$$, but with bug fix for `cluster` and `string` |
-| `00-00-05` | Designed for PID $$90022$$ and $$80022$$ (??) |
+| `00-00-05` | Designed for PID $$90022$$ and $$80022$$ \(??\) |
 | `00-00-06` | $$4,180$$ MeV data |
 
 All versions of `MctruthForTopo` can be found here on the IHEP server:
@@ -49,7 +49,7 @@ All versions of `MctruthForTopo` can be found here on the IHEP server:
 
 You may choose a different version of BOSS than `6.6.5`, the one used above. If you have sourced one of these versions \(using `bash cmt/setup`\), you can run it by adding the following lines to your job options:
 
-```
+```text
 ApplicationMgr.DLLs += {"MctruthForTopoAnaAlg"};
 ApplicationMgr.TopAlg += {"MctruthForTopoAna"};
 ```
@@ -96,7 +96,7 @@ K^+ \rightarrow \mu^+\nu_\mu \\
 \mu^+ \rightarrow e^+\nu_e\bar{\nu}_\mu
 $$
 
-The main takeaway is that `topoana`requires you to store the branch with "track index" [defined above](./#preparing-initial-event-selection) as **having an offset**: the first particle is to be the initial meson \(e.g. $$J/\psi$$\) with track index `0`, so that you can use the mother index as an array index.  So you need to subtract its original index from index of the the particles that come after. In addition, the selection of MC truth particles is only to contain:
+The main takeaway is that `topoana`requires you to store the branch with "track index" [defined above](./#preparing-initial-event-selection) as **having an offset**: the first particle is to be the initial meson \(e.g. $$J/\psi$$\) with track index `0`, so that you can use the mother index as an array index. So you need to subtract its original index from index of the the particles that come after. In addition, the selection of MC truth particles is only to contain:
 
 * Particles that result from the initial cluster or string, that is, everything that in this case comes after $$J/\psi$$.
 * Only particles that come from the generator. This means they are not background simulated in the detectors and that that they were included in the decay chain from the generator. \(See [`Event::McParticle::decayFromGenerator`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvent_1_1McParticle.html#675a3679ea082c13d4ca4ce1c5571b59).\) In this case, this means that everything that comes after the decay of $$D^0$$ and $$\phi$$ is to be excluded, because the $$\mu^+$$ and $$K^+$$ decays take place outside the BESIII detector.
