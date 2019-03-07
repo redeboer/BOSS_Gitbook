@@ -202,13 +202,5 @@ which, in this case, will run a Monte Carlo simulation.
 
 Note that in [Step 5 when we set up the work area](setup.md#step-5-modify-your-bashrc) we added `source setup.sh` line to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
 
-#### A note on `TestRelease` versions in the _BOSS Afterburner_    <a id="a-note-on-testrelease-versions-in-the-boss-afterburner"></a>
-
-* `​`[`TestRelease-00-00-86`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-00-86) is the original 'stock' version
-* `​`[`TestRelease-00-00-87`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-00-87) is the same, but has better alignment
-* `​`[`TestRelease-00-01-00`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease/TestRelease-00-01-00) is the version used in _BOSS Afterburner_
-
-### Other example packages
-
 {% page-ref page="../../packages/analysis/rhopi.md" %}
 

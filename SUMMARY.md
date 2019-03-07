@@ -6,11 +6,17 @@
 
 * [Introduction to BESIII](introduction/besiii.md)
 * [Getting started with BOSS](introduction/getting-started/README.md)
-  * [Organisation of the IHEP server](introduction/getting-started/server.md)
-  * [The BOSS Analysis Framework](introduction/getting-started/intro.md)
+  * [The role of the IHEP server](introduction/getting-started/server.md)
+  * [What is BOSS?](introduction/getting-started/intro.md)
   * [Setup of your BOSS environment](introduction/getting-started/setup.md)
   * [Set up a BOSS package](introduction/getting-started/setup-package.md)
   * [Running jobs](introduction/getting-started/jobs.md)
+  * [Summary](introduction/getting-started/summary.md)
+* [Key aspects of analysis at BESIII](introduction/analysis/README.md)
+  * [Analysing signal shape](introduction/analysis/analysing-signal-shape.md)
+  * [Analysing background](introduction/analysis/analysing-background.md)
+  * [Analysing data](introduction/analysis/analysing-data.md)
+  * [Error studies](introduction/analysis/error-studies.md)
 
 ## Packages
 
@@ -24,7 +30,15 @@
   * [TopoAna](packages/analysis/topoana/README.md)
     * [Required fields](packages/analysis/topoana/required.md)
     * [Optional fields](packages/analysis/topoana/optional.md)
+  * [FSFilter](packages/analysis/fsfilter.md)
   * [Other packages](packages/analysis/other.md)
+
+## Physics
+
+* [Physics at BESIII](physics/intro.md)
+* [The BESIII Experiment](physics/besiii.md)
+* [Typical cuts](physics/cuts.md)
+* [Fitting procedures](physics/fitting.md)
 
 ## Appendices
 

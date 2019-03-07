@@ -1,6 +1,6 @@
 # About
 
-The BOSS Gitbook started as a personal side project, starting from a collection of basic notes, but it is currently being investigated whether these tutorials can be expanded. Ideally, this Gitbook not only is to provide a set of **accessible** tutorial pages on the use of BOSS, but also a continuously updated **inventory of the available packages**.
+The BOSS GitBook started as a personal side project, beginning with a collection of notes. It is currently being investigated whether these tutorials can be expanded. Ideally, this GitBook not only is to provide a set of **accessible** tutorial pages on the use of BOSS, but also a continuously updated **inventory of the available packages**.
 
 For more information about the original project, see the [_BOSS Afterburner_ Gitbook](https://redeboer.gitbook.io/boss_afterburner)_._
 

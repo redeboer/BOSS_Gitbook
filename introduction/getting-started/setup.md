@@ -6,14 +6,18 @@
 **@todo** Rewrite for TC-shell \(`tcsh`\).
 {% endhint %}
 
-In this section, you will learn how to 'install' BOSS. Since BOSS has already been built on the server, this actually means that you set up _path variables_ in `bash`, so you can access certain versions of those BOSS builds from your IHEP user account.
+{% hint style="warning" %}
+**@todo:**  These tutorial pages still rely on the structure used by the _BOSS Afterburner_.
+{% endhint %}
+
+In this section, you will learn how to 'install' BOSS. Since BOSS has already been compiled on the server, so installing actually means that you set up _path variables_ in `bash`. You can then access certain versions of those BOSS builds from your IHEP user account.
 
 There are two main directories that you will be using:
 
 1. the _BOSS workarea_, from which access to BOSS is managed and which contains your own BOSS packages \(mostly event selection\), and
 2. an _analysis folder_, which contains scripts that you design yourself to analyse output from BOSS \(for example fitting histograms\). You can even decide to have this folder locally on your own pc.
 
-It is totally up to you where you place these folders. A common procedure is to put the _analysis folder_ in the `ihepbatch` folder, but have a look at the [organisation of the IHEP server]() to decide if there is some other folder that meets your needs.
+It is totally up to you where you place these folders. A common procedure is to put the _analysis folder_ in the `ihepbatch` folder, but have a look at the [organisation of the IHEP server](server.md) to decide if there is some other folder that meets your needs.
 
 {% hint style="info" %}
 #### Optional helper for beginners:
@@ -50,8 +54,6 @@ git clone https://github.com/redeboer/BOSS_Afterburner
 ```
 
 **Done!** You now have all example scripts available on your user account and will use them to set up the BOSS environment.
-
-The _BOSS Afterburner_ will be used to analyse output from BOSS. We get back to this in the section [Data analysis]().
 
 ## \(B\) Set up the BOSS environment
 
@@ -153,7 +155,7 @@ If everything went well, it should print something like:
 /besfs/users/$USER/BOSS_Afterburner/boss/workarea:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
 ```
 
-The paths listed here \(separated by `:` columns\) will be used to look for packages required by the `requirements` files of packages \(see [Set up a BOSS package]()\). The first of these paths points to your _BOSS workarea_, the second to the BOSS version you use \(also called **`$BesArea`**\), and the rest to libraries of for instance [Gaudi](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html).
+The paths listed here \(separated by `:` columns\) will be used to look for packages required by the `requirements` files of packages \(see [Set up a BOSS package](setup-package.md)\). The first of these paths points to your _BOSS workarea_, the second to the BOSS version you use \(also called **`$BesArea`**\), and the rest to libraries of for instance [Gaudi](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html).
 
 ### **Step 5: Modify your `bashrc`**
 
