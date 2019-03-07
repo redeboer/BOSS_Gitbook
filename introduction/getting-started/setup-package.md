@@ -20,7 +20,7 @@ Here, the name `MyFirstPackage` is just an example name of the package. The name
 * `minor id` if you only made changes that are backward compatible, such as new functionality;
 * `major id` if you modified the interface \(header file\) that require you to completely recompile the package.
 
-The above only becomes relevant as when you start developing packages, so you can forget about this for now.
+For more information on this numbering scheme, read more about this [**semantic versioning** here](https://semver.org/) \(many languages available\). The above only becomes relevant as when you start developing packages, so you can forget about this for now.
 
 The result of the above command is a new folder, that we'll navigate into:
 
