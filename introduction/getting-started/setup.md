@@ -32,7 +32,7 @@ Data generated with BOSS through the _workarea_ scripts will then be written to 
 {% hint style="info" %}
 #### In case of large data
 
-If you work with large data samples, you may want to write your output to[`scratchfs`](). Take care to modify the paths your job option files accordingly!
+If you work with large data samples, you may want to write your output to[`scratchfs`](server.md#main-directories). Take care to modify the paths your job option files accordingly!
 {% endhint %}
 
 ## \(A\) Set up the _BOSS Afterburner_
@@ -219,7 +219,7 @@ mkdir -p "$BOSSWORKAREA/workarea"
 
 The option `-p` is used to avoid error messages when making this directory: if you followed [Step \(A\)](setup.md#a-set-up-the-boss-afterburner), this folder already exists, because it is already available in the BOSS repository \(which you cloned in [the first part](setup.md#1-set-up-the-boss-afterburner)\).
 
-We'll get back to the `workarea` folder when we [set up a BOSS package]().
+We'll get back to the `workarea` folder when we [set up a BOSS package](setup-package.md).
 
 {% hint style="info" %}
 Your _BOSS workarea_ typically contains three folders \(see [an example here](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea)\):

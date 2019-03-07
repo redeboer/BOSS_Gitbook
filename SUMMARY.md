@@ -13,10 +13,10 @@
   * [Running jobs](introduction/getting-started/jobs.md)
   * [Summary](introduction/getting-started/summary.md)
 * [Key aspects of analysis at BESIII](introduction/analysis/README.md)
-  * [Analysing signal shape](introduction/analysis/analysing-signal-shape.md)
-  * [Analysing background](introduction/analysis/analysing-background.md)
-  * [Analysing data](introduction/analysis/analysing-data.md)
-  * [Error studies](introduction/analysis/error-studies.md)
+  * [Analysing signal shape](introduction/analysis/signal.md)
+  * [Analysing background](introduction/analysis/background.md)
+  * [Analysing data](introduction/analysis/data.md)
+  * [Error studies](introduction/analysis/errors.md)
 
 ## Packages
 

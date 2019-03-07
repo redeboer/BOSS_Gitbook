@@ -6,7 +6,7 @@ description: The following fields have to be specified to your card.
 
 ## Names of input root files
 
-One file per line, without tailing characters, such as comma, semicolon and period. Just like in the `TChain::Add()` method, absolute, relative paths, and wildcards \(`[]?*`\) are supported.
+One file per line, without tailing characters, such as comma, semicolon and period. Just like in the `TChain::Add` method, absolute, relative paths, and wildcards \(`[]?*`\) are supported.
 
 ## Tree name
 
