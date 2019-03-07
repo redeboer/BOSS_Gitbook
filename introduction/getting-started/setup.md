@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 **Warning:** In it's current version, this tutorial assumes you use a `bash` terminal.
 
-**@todo** Rewrite for TC-shell \(`tcsh`\).
+**@todo** Rewrite for TC-shell \(`tcsh`\). Please [contact me](../../appendices/about.md) if you have experience.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -20,42 +20,12 @@ There are two main directories that you will be using:
 It is totally up to you where you place these folders. A common procedure is to put the _analysis folder_ in the `ihepbatch` folder, but have a look at the [organisation of the IHEP server](server.md) to decide if there is some other folder that meets your needs.
 
 {% hint style="info" %}
-#### Optional helper for beginners:
-
-If you are not sure what to do, simply follow the procedure below all the way from [Step \(A\)](setup.md#a-set-up-the-boss-afterburner).
-
-I placed the _BOSS workarea_ folder **within** the BOSS Afterburner repository, so that it is available as an example \(see [`BOSS_Afterburner/boss`](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss)\), while the _analysis folder_ is the folder containing it, that is, the BOSS Afterburner repository itself.  I think the BOSS Afterburner is best placed in the `besfs` folder.
-
-Data generated with BOSS through the _workarea_ scripts will then be written to the `BOSS_Afterburner/data` subdirectory and analysis plots to the `BOSS_Afterburner/plots` folder.
-{% endhint %}
-
-{% hint style="info" %}
 #### In case of large data
 
 If you work with large data samples, you may want to write your output to[`scratchfs`](server.md#main-directories). Take care to modify the paths your job option files accordingly!
 {% endhint %}
 
-## \(A\) Set up the _BOSS Afterburner_
-
-{% hint style="info" %}
-Skip this step if you already know what you are doing. However, take care that the paths used in the tutorial probably will not agree with your setup.
-{% endhint %}
-
-This is the simple part. Go to the _BES file system_ folder \(or whatever folder you prefer\):
-
-```bash
-cd /besfs/users/$USER
-```
-
-[Clone](https://help.github.com/articles/cloning-a-repository/) the _BOSS Afterburner_ repository \(it may take a few minutes\):
-
-```bash
-git clone https://github.com/redeboer/BOSS_Afterburner
-```
-
-**Done!** You now have all example scripts available on your user account and will use them to set up the BOSS environment.
-
-## \(B\) Set up the BOSS environment
+## Set up the BOSS environment
 
 {% hint style="info" %}
 **The below procedure is** [**also available as a bash script**](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/setup_boss.sh)**.**
@@ -217,7 +187,7 @@ It is convenient to place your BOSS packages in a `workarea` folder next to the 
 mkdir -p "$BOSSWORKAREA/workarea"
 ```
 
-The option `-p` is used to avoid error messages when making this directory: if you followed [Step \(A\)](setup.md#a-set-up-the-boss-afterburner), this folder already exists, because it is already available in the BOSS repository \(which you cloned in [the first part](setup.md#1-set-up-the-boss-afterburner)\).
+The option `-p` is used to avoid error messages when making this directory.
 
 We'll get back to the `workarea` folder when we [set up a BOSS package](setup-package.md).
 
