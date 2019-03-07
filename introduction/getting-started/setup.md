@@ -27,8 +27,10 @@ If you work with large data samples, you may want to write your output to[`scrat
 
 ## Set up the BOSS environment
 
-{% hint style="info" %}
+{% hint style="warning" %}
 **The below procedure is** [**also available as a bash script**](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/setup_boss.sh)**.**
+
+This script, however, originates from the _BOSS Afterburner_, and currently still requires you to clone this repository along with it.
 {% endhint %}
 
 In this part of the tutorial, we will do two things: \(1\) setup the necessary references to BOSS and \(2\) set up your _BOSS workarea_. You will be running your BOSS packages \(mainly event selection\) from this folder.
