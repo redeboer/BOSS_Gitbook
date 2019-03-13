@@ -37,7 +37,7 @@
 
 * [Physics at BESIII](physics/intro.md)
 * [The BESIII Experiment](physics/besiii.md)
-* [Typical cuts](physics/cuts.md)
+* [Cutting](physics/cuts.md)
 * [Fitting procedures](physics/fitting.md)
 
 ## Appendices
