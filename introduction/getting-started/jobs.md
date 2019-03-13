@@ -23,31 +23,40 @@ In the following, we will go through some extra tricks that you will need to mas
 
 ## Submitting a job    <a id="submitting-a-job"></a>
 
-The `TestRelease` package typically simulates, reconstructs, and analyses only 10 events. For serious work, you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queue'. For this, there are two options: either you submit them using the command `hep_sub` or using the command `boss.condor`. The latter is easiest: you can use it just like `boss.exe`.
+The `TestRelease` package typically simulates, reconstructs, and analyses only a few hundred events. For serious work, you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queue'. For this, there are two options: either you submit them using the command `hep_sub` or using the command `boss.condor`. The latter is easiest: you can use it just like `boss.exe`.
 
-With `hep_sub`, however, you essentially forward a shell script to the queue, which then executes the commands in there. So you'll have to make that first. Let's say, you make a shell script `test.sh` in the `run` folder that looks like this:
+With `hep_sub`, however, you essentially forward a shell script to the queue, which then executes the commands in there. So you will **first put the command for your job in make a shell script** \(`.sh`\). Let's say, you make a shell script `test.sh` in the `run` folder that looks like this:
 
-```text
-#!/bin/bashboss.exe jobOptions_sim.txt
+```bash
+#!/bin/bash
+boss.exe jobOptions_sim.txt
 ```
 
 The first line clarifies that you use `bash`, the second does what you did when running a job: calling `boss.exe`, but of course, you can make this script to execute whatever `bash` commands you want.
 
-The 'queue' \(`hep_sub`\) executes bash scripts using `./`, not the command `bash`. You therefore have to make the script executable. This is done through `chmod +x <yourscript>.sh`.
+The 'queue' \(`hep_sub`\) executes bash scripts using `./`, not the command `bash`. You therefore have to make the script executable. This is done through `chmod +x <yourscript>.sh` \('change mode to executable'\).
 
-Now you can simply submit the shell script to the queue using:
+Now you can submit the shell script to the queue using:
 
 ```bash
-hep_sub test.sh -g physics
+hep_sub -g physics test.sh
 ```
 
-and it will be executed in the background. Here, the option `-g` tellst that you are from the `physics` group. You can check whether the job is \(still\) running in the queue using:
+and your job will be executed by the computing centre. Here, the option `-g` tells that you are from the `physics` group. A \(more or less\) equivalent to this command is `boss.condor test.sh`.
+
+You can check whether the job is \(still\) running in the queue using:
 
 ```bash
 hep_q -u $USER
 ```
 
-Note that `hep_q` would list all jobs from all users.
+Note that `hep_q` would list all jobs from all users. The first column of the table you see here \(if you have submitted any jobs\) is the job ID. If you have made some mistake in your analysis code, you can use this ID to **remove a job**, like this:
+
+```bash
+hep_rm 26345898.0
+```
+
+Alternatively, you can remove _all_ your jobs from the queue using `hep_rm -a`.
 
 ## Splitting up jobs    <a id="splitting-up-jobs"></a>
 
