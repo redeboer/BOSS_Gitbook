@@ -37,5 +37,5 @@ Here are shortcuts that you might want to take:
 
 ## A note on the _BOSS Afterburner_
 
-Initially, these pages were part of the [_BOSS Afterburner_ repository](https://github.com/redeboer/BOSS_Afterburner). This repository has been split up into the pages that you are currently looking at and a separate repository that serves as an extension to BOSS. Its documentation pages can be found [here](https://redeboer.gitbook.io/boss_afterburner).
+Initially, these pages were part of the [_BOSS Afterburner_ repository](https://github.com/redeboer/BOSS_Afterburner). This repository has been split up into the pages that you are currently looking at and a separate repository that serves as an extension to BOSS. Its documentation pages can be found [here](https://redeboer.gitbook.io/boss_afterburner). The _BOSS Afterburner_ aims at providing tools to standardise analysis procedures at BESIII.
 
