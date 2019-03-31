@@ -11,12 +11,14 @@
   * [http://bes.ihep.ac.cn/](http://bes.ihep.ac.cn/)
   * [BEPC & BEPCII](http://english.ihep.cas.cn/doc/259.html)
 * **IHEP**
+  * [IHEP Computing Service Manual](http://afsapply.ihep.ac.cn/cchelp/en/)
   * [http://english.ihep.cas.cn/](http://english.ihep.cas.cn/) \[English\]
   * [http://www.ihep.cas.cn/](http://www.ihep.cas.cn/) \[Chinese\]
   * [http://web.ihep.ac.cn/](http://web.ihep.ac.cn/)
 
 ## The BOSS Analysis Framework
 
+* \*\*\*\*[**IHEP Manual on BESIII**](http://afsapply.ihep.ac.cn/cchelp/en/experiments/BES/)\*\*\*\*
 * **BOSS software source code:**
   * [for users inside IHEP](http://koala.ihep.ac.cn/cgi-bin/viewcvs.cgi/BossCvs/)
   * [for users outside IHEP](http://docbes3.ihep.ac.cn/viewvc/cgi-bin/viewvc.cgi/BESIII/BossCvs/)
