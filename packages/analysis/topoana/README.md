@@ -1,11 +1,17 @@
 # TopoAna
 
-This package is an extremely helpful tool for analysing [inclusive Monte Carlo samples](../../../appendices/glossary.md#inclusive-monte-carlo-simulation). Inclusive MC samples give us valuable information about the **background** of your analysis, as it allows you to know the true contributions to that background. If you know what components that background exists of, you can:
+This package is an extremely helpful tool for analysing the topologies of [inclusive Monte Carlo samples](../../../appendices/glossary.md#inclusive-monte-carlo-simulation). Inclusive MC samples give us valuable information about the **background** of your analysis, as it allows you to know the true contributions to that background. If you know what components that background exists of, you can:
 
 * try to make smart cuts to remove those background components;
 * use a particular function that describes that background component best when applying a fit to the real data.
 
 The problem with inclusive samples, however, is that they can include thousands of decay modes. The `topoana` package allows you to make certain selections and to generate tables that list frequencies of particles and decay modes that are of interest to you.
+
+All versions of the package can be found here on [the IHEP server](../../../introduction/getting-started/server.md#accessing-the-server):
+
+```bash
+/besfs/users/zhouxy/tools/topoana
+```
 
 {% hint style="info" %}
 _Credit for the package goes to **Zhou Xingyu**_  
