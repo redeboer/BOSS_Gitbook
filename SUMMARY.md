@@ -26,6 +26,7 @@
 * [Reconstruction](packages/reconstruction.md)
 * [Analysis](packages/analysis/README.md)
   * [RhopiAlg](packages/analysis/rhopi.md)
+  * [DDecayAlg](packages/analysis/ddecayalg.md)
   * [PipiJpsiAlg](packages/analysis/pipijpsi.md)
   * [TopoAna](packages/analysis/topoana/README.md)
     * [Required fields](packages/analysis/topoana/required.md)
