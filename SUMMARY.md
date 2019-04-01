@@ -28,6 +28,7 @@
   * [RhopiAlg](packages/analysis/rhopi.md)
   * [DDecayAlg](packages/analysis/ddecayalg.md)
   * [PipiJpsiAlg](packages/analysis/pipijpsi.md)
+  * [DDecayAlg](packages/analysis/ddecayalg.md)
   * [TopoAna](packages/analysis/topoana/README.md)
     * [Required fields](packages/analysis/topoana/required.md)
     * [Optional fields](packages/analysis/topoana/optional.md)
