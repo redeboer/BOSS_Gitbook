@@ -25,6 +25,7 @@
 * [Simulation](packages/simulation.md)
 * [Reconstruction](packages/reconstruction.md)
 * [Analysis](packages/analysis/README.md)
+  * [DDecayAlg](packages/analysis/DDecayAlg/DDecayAlg.md)
   * [RhopiAlg](packages/analysis/rhopi.md)
   * [PipiJpsiAlg](packages/analysis/pipijpsi.md)
   * [TopoAna](packages/analysis/topoana/README.md)
