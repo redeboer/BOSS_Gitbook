@@ -28,7 +28,7 @@ Here are shortcuts that you might want to take:
 
 1. [**Getting started with BOSS**](introduction/getting-started/) ****If you are not familiar with BOSS, it is best to start with this part of the tutorial. It will help you set up the BOSS environment in your account on the IHEP server \('install BOSS'\), explain you some basics of the package structure on which BOSS is built, and guide you through the process of submitting jobs.
 2. [**Major BOSS packages**](packages/packages.md) ****Here, you will find descriptions of some of the important BOSS packages used in initial event selection, most notably, the `RhopiAlg` package. This section is to serve as an inventory of BOSS packages.
-3. \*\*\*\*[**Physics at BESIII**](physics/intro.md)  
+3. \*\*\*\*[**Physics at BESIII**](physics/intro/)  
    An inventory of important physics principles behind of data analysis at BESIII.
 
    _\(These pages have not yet been written.\)_

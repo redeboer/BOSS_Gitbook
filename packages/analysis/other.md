@@ -13,6 +13,7 @@ See [source code](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/
 
 The `DDecayAlg` can be found here.
 
-```
+```text
 /afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/BesExamples/DDecayAlg/
 ```
+

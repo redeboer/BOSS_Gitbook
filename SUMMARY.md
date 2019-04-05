@@ -28,7 +28,7 @@
   * [RhopiAlg](packages/analysis/rhopi.md)
   * [DDecayAlg](packages/analysis/ddecayalg.md)
   * [PipiJpsiAlg](packages/analysis/pipijpsi.md)
-  * [DDecayAlg](packages/analysis/ddecayalg.md)
+  * [DDecayAlg](packages/analysis/ddecayalg-1.md)
   * [TopoAna](packages/analysis/topoana/README.md)
     * [Required fields](packages/analysis/topoana/required.md)
     * [Optional fields](packages/analysis/topoana/optional.md)
@@ -38,7 +38,8 @@
 
 ## Physics
 
-* [Physics at BESIII](physics/intro.md)
+* [Physics at BESIII](physics/intro/README.md)
+  * [Statistics](physics/intro/statistics.md)
 * [The BESIII Experiment](physics/besiii.md)
 * [Cutting](physics/cuts.md)
 * [Fitting procedures](physics/fitting.md)
