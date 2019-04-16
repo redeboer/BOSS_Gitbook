@@ -2,7 +2,7 @@
 
 * [The BOSS GitBook](README.md)
 
-## Introduction
+## Tutorials
 
 * [Introduction to BESIII](introduction/besiii.md)
 * [Getting started with BOSS](introduction/getting-started/README.md)
@@ -12,22 +12,26 @@
   * [Set up a BOSS package](introduction/getting-started/setup-package.md)
   * [Running jobs](introduction/getting-started/jobs.md)
   * [Summary](introduction/getting-started/summary.md)
-* [Key aspects of analysis at BESIII](introduction/analysis/README.md)
-  * [Analysing signal shape](introduction/analysis/signal.md)
-  * [Analysing background](introduction/analysis/background.md)
-  * [Analysing data](introduction/analysis/data.md)
-  * [Error studies](introduction/analysis/errors.md)
+* [Data sets](introduction/data/README.md)
+  * [BESIII measurements](introduction/data/measurements.md)
+  * [Inclusive Monte Carlo samples](introduction/data/inclusive.md)
+  * [Generating exclusive Monte Carlo data](introduction/data/exclusive.md)
+* [Initial event selection](introduction/initial.md)
+* [Final event selection](introduction/final/README.md)
+  * [Analysing signal shape](introduction/final/signal.md)
+  * [Analysing background](introduction/final/background.md)
+  * [Error studies](introduction/final/errors.md)
 
-## Packages
+## BOSS Packages
 
-* [BOSS Packages](packages/packages.md)
+* [Introduction](packages/intro.md)
 * [Generation](packages/generation.md)
 * [Simulation](packages/simulation.md)
 * [Reconstruction](packages/reconstruction.md)
 * [Analysis](packages/analysis/README.md)
-  * [RhopiAlg](packages/analysis/rhopi.md)
-  * [DDecayAlg](packages/analysis/ddecayalg.md)
-  * [PipiJpsiAlg](packages/analysis/pipijpsi.md)
+  * [Example packages](packages/analysis/example-packages/README.md)
+    * [RhopiAlg](packages/analysis/example-packages/rhopi.md)
+    * [PipiJpsiAlg](packages/analysis/example-packages/pipijpsi.md)
   * [DDecayAlg](packages/analysis/ddecayalg-1.md)
   * [TopoAna](packages/analysis/topoana/README.md)
     * [Required fields](packages/analysis/topoana/required.md)

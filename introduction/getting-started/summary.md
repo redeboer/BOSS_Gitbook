@@ -4,7 +4,7 @@
 
 {% hint style="warning" %}
 **@todo**  
-Write summary of the steps you go through when updating and performing an analysis job. As opposed to [Key aspects of analysis at BESIII](../analysis/), this summary is to be a more practical step-by-step guide.
+Write summary of the steps you go through when updating and performing an analysis job. As opposed to [Key aspects of analysis at BESIII](../final/), this summary is to be a more practical step-by-step guide.
 {% endhint %}
 
 1. Compile

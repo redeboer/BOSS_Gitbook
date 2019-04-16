@@ -202,5 +202,5 @@ which, in this case, will run a Monte Carlo simulation.
 
 Note that in [Step 5 when we set up the work area](setup.md#step-5-modify-your-bashrc) we added `source setup.sh` line to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
 
-{% page-ref page="../../packages/analysis/rhopi.md" %}
+{% page-ref page="../../packages/analysis/example-packages/rhopi.md" %}
 

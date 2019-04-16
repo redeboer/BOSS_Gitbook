@@ -1,4 +1,4 @@
-# BOSS Packages
+# Introduction
 
 The aim of this part of the BOSS Gitbook is to provide accessible instructions for usage of certain package as well as to provide a platform where documentation on all packages is collected. A vast amount of tools is already available, but an overview of these package does not yet exist, let alone an overview that can be continuously contributed to and updated by any BESIII member interested.
 
