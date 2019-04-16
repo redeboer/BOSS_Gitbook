@@ -15,7 +15,7 @@ All versions of the package can be found here on [the IHEP server](../../../tuto
 
 {% hint style="info" %}
 _Credit for the package goes to **Zhou Xingyu**_  
-For more information about the motivation behind `topoana`, see [these slides](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/TopoAna/v1.6.9/doc/readme.pdf).
+For more information about the motivation behind `topoana`, see [these slides](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/TopoAna/v1.6.9.1/doc/readme.pdf).
 {% endhint %}
 
 ## Preparing initial event selection
