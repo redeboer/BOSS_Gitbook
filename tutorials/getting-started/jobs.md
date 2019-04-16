@@ -6,7 +6,7 @@ Particle physicists perform analyses on either data from measurements or on data
 2. **`rec`**: you reconstruct particle tracks from the raw data and write out a reconstructed data file \(`dst`\).
 3. **`ana`**: you analyse the reconstructed tracks and generate a [CERN ROOT](https://root.cern.ch/input-and-output) file containing trees that describe event and track variables \(`root`\).
 
-When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. \(See [Organisation of the IHEP server](https://github.com/redeboer/BOSS_Afterburner/tree/902bbfd0a1c109e93d69e39a384ddfed810d8a02/organisation-of-the-ihep-server/README.md), under "Reconstructed data sets", for where these files are located.\)
+When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. \(See [Organisation of the IHEP server](), under "Reconstructed data sets", for where these files are located.\)
 
 The steps are performed from `jobOptions*.txt` files of your own package in your work area. These files are executed using the `boss.exe` command. Usually, you use the `TestRelease` package to run other packages. In the case of `RhopiAlg`:
 
@@ -66,7 +66,7 @@ You can do all this by hand, but it is much more convenient to generate these fi
 
 ## Splitting scripts in the BOSS Afterburner
 
-The BOSS Afterburner offers some bash scripts that can do job splitting for you. In the case of Monte Carlo simulation, reconstruction, and analysis, you work with run numbers and with unique random seed numbers, whereas in data analysis, you have to make selections of `dst` data files. The[`jobs` folder of the BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner/tree/master/jobs) therefore contains two different types of generation scripts.
+The BOSS Afterburner offers some bash scripts that can do job splitting for you. In the case of Monte Carlo simulation, reconstruction, and analysis, you work with run numbers and with unique random seed numbers, whereas in data analysis, you have to make selections of `dst` data files. The[`jobs` folder of the BOSS Afterburner](https://github.com/redeboer/BOSS_IniSelect/tree/master/jobs) therefore contains two different types of generation scripts.
 
 As you can see, the folder contains a `templates` folder with files that contain the templates with tokens and there are also output folders `ana`, `rec`, `sim` \(for the three steps in MC simulations\), and `sub` \(shell scripts that you submit to the 'queue'\). Then there is also a folder `dec` containing your decay charts for exclusive Monte Carlo simulations \(see section [Monte Carlo simulations](https://besiii.gitbook.io/boss/besiii-software-system/jobs/simulations)\) and a folder called `filenames`. The last one is important for generating job options for data analysis \(see complications described under 2.\).
 
@@ -76,7 +76,7 @@ Finally, script procedures that are shared by both type of job option generation
 
 These are built on four job option template files: one for the `sim` step, one for `rec`, one for `ana`, and one for the shell script that you feed to the 'queue' \(`hep_sub`\). Here, the complicating ingredient is the random seed number \(which has to be unique for each `sim` job option file\) and the list of run numbers \(which will determine the parameters in simulation and reconstruction\).
 
-Usage is illustrated in the [`ExampleScript_mc.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/ExampleScript_mc.sh) script.
+Usage is illustrated in the [`GenerateScript_sim.sh`](https://github.com/redeboer/BOSS_IniSelect/blob/master/jobs/GenerateScript_sim.sh) script.
 
 ### Job options for data \(or Monte Carlo\) analysis
 
@@ -85,7 +85,7 @@ These only result in `ana` job option files and in a shell script that you use t
 1. Generate a list of \(`dst`\) files you want to analyse. You can do this by feeding a text file of directories and/or filenames that you want to analyse to a function called `CreateFilenameInventoryFromFile` in `CommonFunctions.sh`. Alternatively, you can use the function `CreateFilenameInventoryFromDirectory`, which lists all files within that directory. The output is a number of text files with a maximum number of lines each that together make up the complete list of files.
 2. Insert the paths listed in each of the text files listed above into the `ana` template. For this, the lines of the text files are also converted into C++ vector-of-strings format \(i.e., separated by commas and surrounded by quotation `"` marks\).
 
-Usage of both the relevant functions in the `CommonFunctions.sh` script and of the [`CreateJobFiles_data.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/CreateJobFiles_data.sh) is illustrated in[`ExampleScript_data.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/ExampleScript_data.sh).
+Usage of both the relevant functions in the `CommonFunctions.sh` script and of the [`CreateJobFiles_ana.sh`](https://github.com/redeboer/BOSS_IniSelect/blob/master/jobs/CreateJobFiles_ana.sh) is illustrated in[`GenerateScript_ana.sh`](https://github.com/redeboer/BOSS_IniSelect/blob/master/jobs/GenerateScript_ana.sh).
 
 {% hint style="info" %}
 #### Analysing all events

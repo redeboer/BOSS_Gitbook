@@ -15,7 +15,7 @@ All versions of the package can be found here on [the IHEP server](../../../tuto
 
 {% hint style="info" %}
 _Credit for the package goes to **Zhou Xingyu**_  
-For more information about the motivation behind `topoana`, see [these slides](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/TopoAna/v1.6.9/doc/readme.pdf).
+For more information about the motivation behind `topoana`, see [these slides](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/TopoAna/v1.6.9/doc/readme.pdf).
 {% endhint %}
 
 ## Preparing initial event selection
@@ -32,11 +32,11 @@ You can design a procedure to write this MC truth information yourself, but you 
 
 1. Add the `MctruthForTopo` algorithm package \(see below\) to the job options of your analysis.
 2. Go through the code of the `MctruthForTopo` algorithm and take over the relevant components in your own initial event selection package, so that you can implement it within your cut procedure.
-3. Use the [`CreateMCtruthCollection`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#a3bee37dd275d6b15ca491ae1d493c05a) and [`WriteMcTruthForTopoAna`](https://redeboer.github.io/BOSS_Afterburner/classTrackSelector.html#ac65fb01ccb38c60af713518e0afb0ba6) in the [`TrackSelector`](./) base algorithm.
+3. Use the [`CreateMCtruthCollection`](https://redeboer.github.io/BOSS_IniSelect/classTrackSelector.html#a7fcf071193ce54e8ce65293133c7dbe3) and [`WriteMcTruthForTopoAna`](https://redeboer.github.io/BOSS_IniSelect/classTrackSelector.html#ac65fb01ccb38c60af713518e0afb0ba6) in the [`TrackSelector`](./) base algorithm.
 
 ### The `MctruthForTopo` package
 
-`MctruthForTopo` is an example package that comes with `topoana`. It can be used for preparing a ROOT file sample that contains a `TTree` as described above. See the [documentation of `MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html#a7d5e77225fb2195719b0df23af66bbb9) for how these branches are typically called within `MctruthForTopo-00-00-06`.
+`MctruthForTopo` is an example package that comes with `topoana`. It can be used for preparing a ROOT file sample that contains a `TTree` as described above. See the [documentation of `MctruthForTopo`](https://redeboer.github.io/BOSS_IniSelect/MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html#l00028) for how these branches are typically called within `MctruthForTopo-00-00-06`.
 
 | Version | Data type |
 | :--- | :--- |
@@ -64,7 +64,7 @@ Note: Using `MctruthForTopoAna` is the quickest way to create a `TTree` containi
 
 ### Structure of the `Event::McParticleCol` collection
 
-The `TTree` containing Monte Carlo data that is needed for `topoana` is created by looping over the [`Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed) in each event and writing the branches described above. To gain a better understanding of what a package like [`MctruthForTopo`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html) does, let's have a look at the the contents of the MC truth particle collection in one event:
+The `TTree` containing Monte Carlo data that is needed for `topoana` is created by looping over the [`Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed) in each event and writing the branches described above. To gain a better understanding of what a package like [`MctruthForTopo`](https://redeboer.github.io/BOSS_IniSelect/classMctruthForTopoAna.html) does, let's have a look at the the contents of the MC truth particle collection in one event:
 
 | Index | Particle |  |  | Index | Mother |  |  |
 | ---: | ---: | :---: | :--- | ---: | ---: | :---: | :--- |
@@ -91,7 +91,7 @@ A few remarks about what we see here:
 
 1. The structure of the decay chain is described by the index \(see [`Event::McParticle::trackIndex`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvent_1_1McParticle.html#34dae94b0ed5f36b875f783e61f8efc9)\). Each particle is labeled by this index and if there is a mother particle, it is 'linked' to its daughter by its index.
 2. The decay chain starts with index `0`, a $$Z^0$$ boson that emerges right after the $$e^+e^-$$ collision, which then decays into a $$c\bar{c}$$ charm pair. In the simulation, this pair is taken to be a `cluster` \(which has code `91`\) or a `string`\(which has code `92`\).
-3. For `TopoAna` \(or actually any physics analysis\), we are only interested in what happens after the formation of the cluster. This is where the meson is created to which the beam energy is tuned, in this case $$J/\psi$$. **We therefore only store particles that come after either particle code 91 or 92**, see [`MctruthForTopoAna::execute`](https://redeboer.github.io/BOSS_Afterburner/classMctruthForTopoAna.html#a31d830efda52e991f6fc3ec3547e2c71).
+3. For `TopoAna` \(or actually any physics analysis\), we are only interested in what happens after the formation of the cluster. This is where the meson is created to which the beam energy is tuned, in this case $$J/\psi$$. **We therefore only store particles that come after either particle code 91 or 92**, see [`MctruthForTopoAna::execute`](https://redeboer.github.io/BOSS_IniSelect/classMctruthForTopoAna.html#a31d830efda52e991f6fc3ec3547e2c71).
 4. From the remainder of the table, we can see that the rest of the decay chain becomes \(a rather rare if not impossible decay\):
 
 $$
@@ -122,7 +122,7 @@ In table format, with these conventions, the result that should be stored for th
 
 ## Installing `topoana`
 
-Execute [`setup.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/TopoAna/v1.6.9/setup.sh) and see the instructions there on how to source it. If you have done this, you can use the command `topoana.exe` the output generated through the [previous step](./#preparing-initial-event-selection).
+Execute [`setup.sh`](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/TopoAna/v1.6.9/setup.sh) and see the instructions there on how to source it. If you have done this, you can use the command `topoana.exe` the output generated through the [previous step](./#preparing-initial-event-selection).
 
 ## Format of a `topoana` card
 
@@ -135,7 +135,7 @@ The syntax of the `topoana` card is slightly reminiscent of `bash`. Starting a l
 * `#` means that the line is a comment and is therefore ignored;
 * `%` means that the the line represents a field.
 
-A opening curly brace \(`{`\) following a `%` sign means that a field block is opened. The next line\(s\) contain the value\(s\) of that field. Close the block with a closing curly brace \(`}`\). See [here](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/TopoAna/v1.6.9/tutorials/ta1_basics/mixed_topoana.card) for an example of a `topoana` card.
+A opening curly brace \(`{`\) following a `%` sign means that a field block is opened. The next line\(s\) contain the value\(s\) of that field. Close the block with a closing curly brace \(`}`\). See [here](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/TopoAna/v1.6.9/tutorials/ta1_basics/mixed_topoana.card) for an example of a `topoana` card.
 
 The following pages list **all fields** that can be used in your `topoana` card: [required](required.md) and [optional fields](optional.md).
 

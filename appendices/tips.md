@@ -96,7 +96,7 @@ sed -i 's/\r$//' $fileName
 ```
 
 {% hint style="info" %}
-This command is also available is used `source` to load [`jobs/CommonFunctions.sh`](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/CommonFunctions.sh), you can use the function `ChangeLineEndingsFromWindowsToUnix`.
+This command is also available is used `source` to load [`jobs/CommonFunctions.sh`](https://github.com/redeboer/BOSS_IniSelect/blob/master/jobs/CommonFunctions.sh), you can use the function `ChangeLineEndingsFromWindowsToUnix`.
 {% endhint %}
 
 ### Some header files are not found when compiling my package

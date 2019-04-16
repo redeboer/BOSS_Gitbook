@@ -1,6 +1,6 @@
 # RhopiAlg
 
-See full [Doxygen documentation](https://redeboer.github.io/BOSS_Afterburner/classRhopiAlg.html) on GitPages.
+See full [Doxygen documentation](https://redeboer.github.io/BOSS_IniSelect/classRhopiAlg.html) on GitPages.
 
 ## What does this example package teach?
 
@@ -45,15 +45,15 @@ The original `RhopiAlg` package \(version `0.0.23`\) is located here,
 /afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23
 ```
 
-You can also [have a look at it in the BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23) or [import the original packages](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/import_packages.sh) for any version of BOSS.
+You can also [have a look at it in the BOSS Afterburner](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23) or [import the original packages](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/import_packages.sh) for any version of BOSS.
 
-A better commented and expanded version is also available within the BOSS Afterburner \([version 1.0.0](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00)\). In this tutorial, we will work with this version, but, as with `TestRelease`, you can choose to work with a copy from the `$BesArea`.
+A better commented and expanded version is also available within the BOSS Afterburner \([version 1.0.0](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00)\). In this tutorial, we will work with this version, but, as with `TestRelease`, you can choose to work with a copy from the `$BesArea`.
 
 The `RhopiAlg` package is one of the dependencies of `TestRelease`: you actually use `TestRelease` to run an analysis from `RhopiAlg` \(or any other package\). This also means that you have to follow the normal procedure for updating a package [as described above](../../../tutorials/getting-started/setup-package.md#updating-a-package).
 
 ## Declaring and defining properties like cuts
 
-See [header `.h` file](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/RhopiAlg/Rhopi.h) for declarations and [source `.cxx` code](https://github.com/redeboer/BOSS_Afterburner/blob/master/boss/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/src/Rhopi.cxx) for definitions of cuts.
+See [header `.h` file](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/RhopiAlg/RhopiAlg.h) for declarations and [source `.cxx` code](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/src/RhopiAlg.cxx) for definitions of cuts.
 
 ## Determining vertex position
 

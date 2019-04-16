@@ -122,7 +122,7 @@ If it does build correctly, you can make the package accessible to BOSS using:
 source setup.sh
 ```
 
-This sets certain`bash` variables so that BOSS will use your version of this package. One of these variables is called `$<PACKAGENAME>ROOT` and can be used to call your package in job options file \(see for example `$RHOPIALGROOT` in [this template](https://github.com/redeboer/BOSS_Afterburner/blob/master/jobs/templates/jobOptions_ana_rhopi_data.txt)\).
+This sets certain`bash` variables so that BOSS will use your version of this package. One of these variables is called `$<PACKAGENAME>ROOT` and can be used to call your package in job options file \(see for example `$RHOPIALGROOT` in [this template](https://github.com/redeboer/BOSS_IniSelect/blob/master/jobs/templates/analysis.txt)\).
 
 Congratulations, you have created an update of your package!
 
@@ -156,11 +156,11 @@ Another reason for working with a copy of the old version of your package is tha
 
 ## Example packages    <a id="example-packages"></a>
 
-Within BOSS, there are already a few 'example' packages available. All of these are accessible through the so-called [`TestRelease` package](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/TestRelease), which will be described and set up first. We then focus on one of its main dependencies: the [RhopiAlg algorithm](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea/Analysis/Physics/RhopiAlg). Within BESIII, this package is typically used as an example for selecting events and usually forms the start of your research.
+Within BOSS, there are already a few 'example' packages available. All of these are accessible through the so-called [`TestRelease` package](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/TestRelease), which will be described and set up first. We then focus on one of its main dependencies: the [RhopiAlg algorithm](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/Analysis/Physics/RhopiAlg). Within BESIII, this package is typically used as an example for selecting events and usually forms the start of your research.
 
 ### The `TestRelease` package    <a id="the-testrelease-package"></a>
 
-The `TestRelease` package is used to run certain basic packages that are already available within BOSS. It is best if you copy `TestRelease` into your [your _workarea_](setup.md#step-1-define-your-boss-workarea-folder), so you can play around with it. A slightly updated version of the `TestRelease` is already available in the BOSS Afterburner in the [`boss/workarea` folder](https://github.com/redeboer/BOSS_Afterburner/tree/master/boss/workarea).
+The `TestRelease` package is used to run certain basic packages that are already available within BOSS. It is best if you copy `TestRelease` into your [your _workarea_](setup.md#step-1-define-your-boss-workarea-folder), so you can play around with it. A slightly updated version of the `TestRelease` is already available in the BOSS Afterburner in the [`workarea` folder](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea).
 
 You can also choose to copy it from its location in BOSS:
 

@@ -1,6 +1,6 @@
 # PipiJpsiAlg
 
-See full [Doxygen documentation for the `PipiJpsiAlg`](https://redeboer.github.io/BOSS_Afterburner/classPipiJpsi.html) on GitPages.
+See full [Doxygen documentation for the `PipiJpsiAlg`](https://redeboer.github.io/BOSS_IniSelect/classPipiJpsi.html) on GitPages.
 
 ## What does this example package teach?
 
