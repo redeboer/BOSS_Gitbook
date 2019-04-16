@@ -7,7 +7,7 @@ This package is an extremely helpful tool for analysing the topologies of [inclu
 
 The problem with inclusive samples, however, is that they can include thousands of decay modes. The `topoana` package allows you to make certain selections and to generate tables that list frequencies of particles and decay modes that are of interest to you.
 
-All versions of the package can be found here on [the IHEP server](../../../introduction/getting-started/server.md#accessing-the-server):
+All versions of the package can be found here on [the IHEP server](../../../tutorials/getting-started/server.md#accessing-the-server):
 
 ```bash
 /besfs/users/zhouxy/tools/topoana
