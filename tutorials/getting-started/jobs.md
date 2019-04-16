@@ -2,11 +2,11 @@
 
 Particle physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In BOSS, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on BOSS:
 
-1. **`sim`**: you perform a Monte Carlo simulation and generate a raw data file \(`rtraw`\).
-2. **`rec`**: you reconstruct particle tracks from the raw data and write out a reconstructed data file \(`dst`\).
-3. **`ana`**: you analyse the reconstructed tracks and generate a [CERN ROOT](https://root.cern.ch/input-and-output) file containing trees that describe event and track variables \(`root`\).
+1. `sim`: you perform a Monte Carlo simulation and generate a raw data file \(`rtraw`\).
+2. `rec`: you reconstruct particle tracks from the raw data and write out a reconstructed data file \(`dst`\).
+3. `ana`: you analyse the reconstructed tracks and generate a [CERN ROOT](https://root.cern.ch/input-and-output) file containing trees that describe event and track variables \(`root`\).
 
-When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. \(See [Organisation of the IHEP server](), under "Reconstructed data sets", for where these files are located.\)
+When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. \(See [Organisation of the IHEP server](jobs.md), under "Reconstructed data sets", for where these files are located.\)
 
 The steps are performed from `jobOptions*.txt` files of your own package in your work area. These files are executed using the `boss.exe` command. Usually, you use the `TestRelease` package to run other packages. In the case of `RhopiAlg`:
 
@@ -21,7 +21,7 @@ This is essentially it! Of course, for your own analysis, you will have to tweak
 
 In the following, we will go through some extra tricks that you will need to master in order to do computational intensive analyses using **BOSS**.
 
-## Submitting a job    <a id="submitting-a-job"></a>
+## Submitting a job     <a id="submitting-a-job"></a>
 
 The `TestRelease` package typically simulates, reconstructs, and analyses only a few hundred events. For serious work, you will have to generate thousands of events and this will take a long time. You can therefore submit your job to a so-called 'queue'. For this, there are two options: either you submit them using the command `hep_sub` or using the command `boss.condor`. The latter is easiest: you can use it just like `boss.exe`.
 
@@ -58,7 +58,7 @@ hep_rm 26345898.0
 
 Alternatively, you can remove _all_ your jobs from the queue using `hep_rm -a`.
 
-## Splitting up jobs    <a id="splitting-up-jobs"></a>
+## Splitting up jobs     <a id="splitting-up-jobs"></a>
 
 Jobs that take a long time to be executed in the queue will be killed by the server. It is therefore recommended that you work with a maximum of **10,000 events** per job if you perform Monte Carlo simulations \(the `sim` step consumes much computer power\). Of course, you will be wanting to work with much larger data samples, sou you will have to submit parallel jobs. This can be done by writing different `jobOptions*.txt` files, where you modify the input/output files and random seed number.
 

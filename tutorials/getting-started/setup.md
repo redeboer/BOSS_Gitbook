@@ -7,7 +7,7 @@
 {% endhint %}
 
 {% hint style="warning" %}
-**@todo:**  These tutorial pages still rely on the structure used by the _BOSS Afterburner_.
+**@todo:** These tutorial pages still rely on the structure used by the _BOSS Afterburner_.
 {% endhint %}
 
 In this section, you will learn how to 'install' BOSS. Since BOSS has already been compiled on the server, so installing actually means that you set up _path variables_ in `bash`. You can then access certain versions of those BOSS builds from your IHEP user account.
@@ -73,7 +73,7 @@ cd "$BOSSWORKAREA/cmthome"*
 
 Note from the `cp` command that we have omitted the version from the original folder name. You can choose to keep it as well, but in the BOSS Afterburner, the convention is that `cmthome` and `workarea` without a version number refer to the latest stable version of BOSS.
 
-### **Step 3: Modify `requirements`**
+### **Step 3: Modify** `requirements`
 
 In `cmthome*` , you'll now have to modify a file called `requirements`, so that it handles your username properly. We'll use the `vi` editor here, but you can use whatever editor you prefer:
 
@@ -99,7 +99,7 @@ path_remove CMTPATH "${WorkArea}"
 path_prepend CMTPATH "${WorkArea}"
 ```
 
-The `$CMTPATH` is an important variable for [CMT](intro.md#configuration-management-tool-cmt). It is comparable to `$PATH` in that it lists all directories that contain CMT packages. Note that, when CMT searches for packages that you listed in the `requirements` file, it will use the first occurrence in the `$CMTPATH`.  This is why you `prepend` it.
+The `$CMTPATH` is an important variable for [CMT](intro.md#configuration-management-tool-cmt). It is comparable to `$PATH` in that it lists all directories that contain CMT packages. Note that, when CMT searches for packages that you listed in the `requirements` file, it will use the first occurrence in the `$CMTPATH`. This is why you `prepend` it.
 
 {% hint style="info" %}
 Note that `$CMTPATH` will actually be set to a subfolder called `workarea` **within** what we so far defined as the _BOSS workarea_. We will create this subfolder in [**Step 7**](setup.md#step-7-create-a-workarea-subfolder).
@@ -127,9 +127,9 @@ If everything went well, it should print something like:
 /besfs/users/$USER/BOSS_IniSelect/workarea:/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/gaudi/GAUDI_v23r9:/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib/LCGCMT/LCGCMT_65a
 ```
 
-The paths listed here \(separated by `:` columns\) will be used to look for packages required by the `requirements` files of packages \(see [Set up a BOSS package](setup-package.md)\). The first of these paths points to your _BOSS workarea_, the second to the BOSS version you use \(also called **`$BesArea`**\), and the rest to libraries of for instance [Gaudi](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html).
+The paths listed here \(separated by `:` columns\) will be used to look for packages required by the `requirements` files of packages \(see [Set up a BOSS package](setup-package.md)\). The first of these paths points to your _BOSS workarea_, the second to the BOSS version you use \(also called `$BesArea`\), and the rest to libraries of for instance [Gaudi](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html).
 
-### **Step 5: Modify your `bashrc`**
+### **Step 5: Modify your** `bashrc`
 
 Adapt your `bash` profile \(`.bash_profile`\) and _run commands_ file \(`.bashrc`\) so that BOSS is loaded automatically every time you log into the server.
 
@@ -157,11 +157,11 @@ source ~/load_boss.sh
 
 For this to work upon login, you will have to [download the `load_boss.sh` script from the BOSS Afterburner](https://github.com/redeboer/BOSS_IniSelect/blob/master/load_boss.sh) and add it to your home folder \(`~`\). If you do not know how to get that file on the server, simply copy the content from the [raw version](https://raw.githubusercontent.com/redeboer/BOSS_IniSelect/master/load_boss.sh) of that file and paste it into a new \(`cd ~; vi load_boss.sh` and paste\).
 
-Notice that the commands we used in [**Step 4**](setup.md#step-4-set-references-to-boss) are again used  in the [`load_boss.sh` file](https://github.com/redeboer/BOSS_IniSelect/blob/master/load_boss.sh) under `# * Setup BOSS area * #`. There is also a reference to the `workarea` \(see [**Step 7**](setup.md#step-7-create-a-workarea-subfolder)\). The last of these four lines allows you to submit BOSS jobs to the 'queue' \(`hep_sub`\) — for now, don't worry what this means.
+Notice that the commands we used in [**Step 4**](setup.md#step-4-set-references-to-boss) are again used in the [`load_boss.sh` file](https://github.com/redeboer/BOSS_IniSelect/blob/master/load_boss.sh) under `# * Setup BOSS area * #`. There is also a reference to the `workarea` \(see [**Step 7**](setup.md#step-7-create-a-workarea-subfolder)\). The last of these four lines allows you to submit BOSS jobs to the 'queue' \(`hep_sub`\) — for now, don't worry what this means.
 
 You can now either log in again to the server or use `source ~/.bashrc` to reload the run commands.
 
-### **Step 6: Test BOSS using `boss.exe`**
+### **Step 6: Test BOSS using** `boss.exe`
 
 To test whether everything went correctly, you can try to run BOSS:
 
@@ -181,7 +181,7 @@ ERROR! the jobOptions file is empty!
 
 If not, something went wrong and you should carefully recheck what you did in the above steps.
 
-### **Step 7: Create a `workarea` subfolder**
+### **Step 7: Create a** `workarea` **subfolder**
 
 It is convenient to place your BOSS packages in a `workarea` folder next to the `cmthome` folder we have been using so far. In our case it will be:
 
@@ -196,9 +196,9 @@ We'll get back to the `workarea` folder when we [set up a BOSS package](setup-pa
 {% hint style="info" %}
 Your _BOSS workarea_ typically contains three folders \(see [an example here](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea)\):
 
-1.  [**`Analysis`**](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/Analysis), which contains CMT packages that you use for your analysis
-2. [**`InstallArea`**](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/InstallArea), which is created when you use `cmt confi`
-3. [**`TestRelease`**](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/TestRelease), which is used to run all packages
+1. [`Analysis`](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/Analysis), which contains CMT packages that you use for your analysis
+2. [`InstallArea`](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/InstallArea), which is created when you use `cmt confi`
+3. [`TestRelease`](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/TestRelease), which is used to run all packages
 
 The file structure of your _workarea_ follows that of the packages in `$BesArea` \(use `ls $BesArea` to verify this\), because, [as explained before](setup.md#step-3-modify-requirements), packages in your _workarea_ have priority over those in `$BesArea`. As such, you can expand your _workarea_ by copying certain packages from the `$BesArea` and modifying those. In the _BOSS Afterburner_, there is for instance [a modification of the `BesEvtGen` Monte Carlo generator](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/Generator).
 {% endhint %}
