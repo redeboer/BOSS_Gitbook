@@ -19,7 +19,7 @@ An event selection program usually consists of three steps:
 Gaudi utilizes that idea in the form of an [`Algorithm` class](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html). Your analysis is defined by deriving from this class and specifying what you want to be performed in the `initialize`, `execute`, and `finalize` steps.
 
 {% hint style="info" %}
-For up to date tutorials about Gaudi, see [this Gitbook by the LHCb collaboration](https://lhcb.github.io/developkit-lessons/first-development-steps/02a-gaudi-helloworld.html). A small warning: LHCb runs analysis through Python, while BESIII jobs are run through `boss.exe`.
+For up to date tutorials about Gaudi, see [this Gitbook by the LHCb collaboration](https://lhcb.github.io/developkit-lessons/first-development-steps/02a-gaudi-helloworld.html). A small warning: LHCb runs analysis through Python, while BESIII jobs are run through `boss.exe`. In addition, LHCb uses an extended version of the `Algorithm`class, [called `GaudiAlgorithm`](https://twiki.cern.ch/twiki/bin/view/LHCb/GaudiAlgorithm), so the instructions cannot be replicated for BOSS.
 {% endhint %}
 
 ## Configuration Management Tool \(CMT\)
