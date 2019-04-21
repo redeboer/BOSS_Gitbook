@@ -2,11 +2,25 @@
 
 ## What is BOSS?
 
-{% hint style="warning" %}
-**@todo** Write introduction to the [BESIII Offline Software System \(BOSS\)](http://english.ihep.cas.cn/bes/doc/2247.html).
-{% endhint %}
+BOSS is the **B**ESIII **O**ffline **S**oftware **S**ystem with which all data from the BESIII detector is processed and analysed. As a data analyser, you will use BOSS to make an initial event selection and collision info that is relevant for your analysis to an output ROOT file. In the final event selection, you use that ROOT file to produce the relevant plots for your analysis.
 
-* Built on [Gaudi](https://dayabay.bnl.gov/dox/GaudiKernel/html/annotated.html) \(which in turn was developed by LHCb\)
+In this section, we will discuss the three most important components that form BOSS:
+
+* The Gaudi Framework
+
+## The Gaudi Framework
+
+An event selection program usually consists of three steps:
+
+1. **Initialize**. Here, you for instance load raw data and set some variables.
+2. **Execute**. For each collision event, you for instance extract parameters from the tracks.
+3. **Finalize**. You write the data you collected to an output file.
+
+Gaudi utilizes that idea in the form of an [`Algorithm` class](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html). Your analysis is defined by deriving from this class and specifying what you want to be performed in the `initialize`, `execute`, and `finalize` steps.
+
+{% hint style="info" %}
+For up to date tutorials about Gaudi, see [this Gitbook by the LHCb collaboration](https://lhcb.github.io/developkit-lessons/first-development-steps/02a-gaudi-helloworld.html). A small warning: LHCb runs analysis through Python, while BESIII jobs are run through `boss.exe`.
+{% endhint %}
 
 ## Configuration Management Tool \(CMT\)
 
