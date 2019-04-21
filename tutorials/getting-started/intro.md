@@ -1,12 +1,12 @@
 # What is BOSS?
 
-## What is BOSS?
-
 BOSS is the **B**ESIII **O**ffline **S**oftware **S**ystem with which all data from the BESIII detector is processed and analysed. As a data analyser, you will use BOSS to make an initial event selection and collision info that is relevant for your analysis to an output ROOT file. In the final event selection, you use that ROOT file to produce the relevant plots for your analysis.
 
 In this section, we will discuss the three most important components that form BOSS:
 
-* The Gaudi Framework
+* [The Gaudi Framework](intro.md#the-gaudi-framework), which streamlines algorithms used in analyses.
+* [CMT](intro.md#configuration-management-tool-cmt), which is used to manage packages designed by different groups.
+* [CVS](intro.md#concurrent-versions-system-cvs), which is the version control system used to maintain BOSS.
 
 ## The Gaudi Framework
 
