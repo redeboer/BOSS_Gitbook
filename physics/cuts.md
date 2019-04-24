@@ -2,7 +2,7 @@
 
 ## Typical cuts
 
-In papers from the BESIII Collaboration, you will usually encounter the following cuts.
+In papers from the BESIII Collaboration, you will usually encounter the following cuts. They are also listed [here](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Recommend_cuts) \(requires login\).
 
 ### Vertex geometry
 
@@ -35,11 +35,11 @@ If there are more than one charged tracks, there is a time requirement of $$0 \l
 
 Cut flow is usually represented in the form of a table that lists the cuts and the corresponding number of events that passed the cut. This gives you insight in how much signal remains after your cuts, but also gives some idea of efficiencies if you make a cut flow table for an exclusive Monte Carlo sample.
 
-A typical example would be:
+A typical example would be \(with some thought up numbers\):
 
 |  |  |  |
 | :--- | ---: | ---: |
-| Total number of events | $$100\%$$  | $$100\%$$  |
+| Total number of events | $$100,000$$  | $$100\%$$  |
 | Number of events with $$m$$ number of charged tracks | $$53,234$$  | $$53\%$$  |
 | Number of events with _at least_ $$n$$ neutral tracks | $$43,156$$  | $$43\%$$  |
 | Number of events with exactly the final state particles | $$20,543$$ | $$21\%$$ |
