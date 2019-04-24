@@ -61,6 +61,10 @@ Again, we'll define the version number as a variable here.
 BOSSVERSION="7.0.4"
 ```
 
+{% hint style="info" %}
+An overview of all BOSS versions and their release notes can be found [here](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/ReleaseNotes) \(requires login\).
+{% endhint %}
+
 ### **Step 2: Import environment scripts**
 
 We'll first have to obtain some scripts that can set up the necessary references to BOSS. This is done by copying the `cmthome*` folder from the BOSS Software directory to your _BOSS workarea_:
