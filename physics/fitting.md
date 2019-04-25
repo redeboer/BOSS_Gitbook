@@ -29,3 +29,7 @@ Characterisation of detector resolution\(s\).
 * ​[Chebychev polynomial](https://root.cern.ch/doc/master/classRooChebychev.html)​
 * ​[Argus background shape](https://root.cern/doc/master/classRooArgusBG.html)​
 
+## Other literature
+
+* [LHCb GitBook on RooFit](https://lhcb.github.io/ostap-tutorials/fitting/decorations.html)
+
