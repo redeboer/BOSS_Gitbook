@@ -17,6 +17,7 @@ Characterisation of detector resolution\(s\).
 * Only works in case of _narrow structure_ and if there are no other resonances nearby
 * Can be used to extract _pole parameters_ such as particle width
 * Possible: energy dependent parameters
+* Convolution of a Breit-Wigner with a Gaussian is called a _Voigtian_ \(see [`RooVoigtian`](https://root.cern.ch/doc/master/classRooVoigtian.html)\).
 
 ### Flatté parametrisation
 
