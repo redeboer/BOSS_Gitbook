@@ -32,5 +32,5 @@ Characterisation of detector resolution\(s\).
 ## Other literature
 
 * [LHCb GitBook on RooFit](https://lhcb.github.io/ostap-tutorials/fitting/decorations.html)
-* [Example scripts for `RooFit`](https://root.cern.ch/root/html/tutorials/roofit/index.html)\`\`
+* [Example scripts for `RooFit`](https://root.cern.ch/root/html/tutorials/roofit/index.html) \(see overview of descriptions [here](https://root.cern.ch/doc/master/group__tutorial__roofit.html)\)
 
