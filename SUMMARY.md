@@ -37,6 +37,7 @@
     * [Required fields](packages/analysis/topoana/required.md)
     * [Optional fields](packages/analysis/topoana/optional.md)
   * [FSFilter](packages/analysis/fsfilter.md)
+  * [BesDChain](packages/analysis/besdchain.md)
   * [Other packages](packages/analysis/other.md)
 * [Beyond BOSS](packages/beyond-boss.md)
 
