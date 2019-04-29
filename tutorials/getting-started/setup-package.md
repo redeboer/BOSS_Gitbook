@@ -96,6 +96,10 @@ cd MyFirstPackage-01-00-00/cmt
 
 Now **create new CMT setup and cleanup scripts** using:
 
+```bash
+cmt config
+```
+
 If you for instance open the `setup.sh` file you will see that it has deduced the new version number from the folder name.
 
 #### Build package     <a id="build-package"></a>
