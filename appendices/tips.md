@@ -31,7 +31,7 @@ g++ YourCode.C -I$(root-config --incdir) $(root-config --libs --evelibs --glibs)
 
 _Pro_ `bash` _tip:_ You might like to create an easy command for this. You can do this by adding the following lines to your `~/.bashrc`.
 
-```text
+```bash
 function rtcompile () {
     g++ "$1" -I$(root-config --incdir) $(root-config --libs --evelibs --glibs) -lRooFit -lRooFitCore -lRooStats -lMinuit -o "${1/.*/.o}"
 }
@@ -44,14 +44,14 @@ function rtcompilerun () {
 function rtdebugcompile () {
     g++ "$1" -I$(root-config --incdir) $(root-config --libs --evelibs --glibs) -lRooFit -lRooFitCore -lRooStats -lMinuit -fsanitize=address -g -o "${1/.*/}"
 }
-export rtcompile
-export rtcompilerun
-export rtdebugcompile
+export -f rtcompile
+export -f rtcompilerun
+export -f rtdebugcompile
 ```
 
 Note the flags added through `root-config`: there are includes \(preceded by option `-I`\) and linked libraries \(following that option, and preceding output option `-o`\). Note also that flags have been added for `RooFit`. For more information about ROOT flags, see [this page](https://root.cern.ch/root/HowtoCERNLIB.html).
 
-I give three examples of commands here, one for compiling only \(`rtcompile`\), one for compiling and executing if successful \(`rtcompilerun`\), and one for compiling with `fsanitize` activated \([`rtdebugcompile`](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html)\). The latter is useful if you want to look for memory leaks etc --- only use if you are interested in this, because it will decrease runtime. In addition, there are many issues in root \(like `TString`\) that are identified by `fsanitize`.
+I give three examples of commands here, one for compiling only \(`rtcompile`\), one for compiling and executing if successful \(`rtcompilerun`\), and one for compiling with `fsanitize` activated \([`rtdebugcompile`](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html)\). The latter is useful if you want to look for memory leaks etc --- only use if you are interested in this, because it will decrease run-time. In addition, there are many issues in root \(like `TString`\) that are identified by `fsanitize`.
 
 ### Compiling on Windows 10
 
