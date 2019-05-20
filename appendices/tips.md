@@ -111,3 +111,10 @@ use McTruth     McTruth-*     Event
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+### I cannot submit a job through `boss.condor` or `hep_sub` but see `ERROR: Failed to create new proc id` instead
+
+Two known causes:
+
+1. In the case of `hep_sub`, you should submit an **executable** bash script. Make the `sh` script executable using `chmod +x`. Use `boss.condor` in exactly the same way as `boss.exe`, that is, feed it a job options file \(`txt`\), not a bash script.
+2. You sourced a bash script that contained an `export -f`statement \(exporting a bash `function`\). While this is correct way of exporting a function, it somehow affects BOSS. Change this statement into `export` \(omit the `f` option\) and the issue is fixed.
+
