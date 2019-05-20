@@ -1,16 +1,30 @@
 # IHEP GitLab
 
-IHEP supplies a GitLab server, which allows you to put your analysis code in a `git` repository. You can then enjoy all the benefits of version control, different branches to collaborate as a team, a better overview through online access, etc. The IHEP GitLab server can be accessed through [gitlab.ihep.ac.cn](http://gitlab.ihep.ac.cn/), but you will first need to apply First, for an IHEP GitLab account. You can do this by sending an email to [fanrh@ihep.ac.cn](mailto:fanrh@ihep.ac.cn).
-
-Have a look [here](https://guides.github.com/introduction/git-handbook/) at what `git` does, it's worth it!
+IHEP supplies a GitLab server, which allows you to put your analysis code in a `git` repository. You can then enjoy all the benefits of version control, different branches to collaborate as a team, a better overview through online access, etc. The IHEP GitLab server can be accessed through [gitlab.ihep.ac.cn](http://gitlab.ihep.ac.cn/). Have a look [here](https://guides.github.com/introduction/git-handbook/) at what `git` does, it's worth it!
 
 {% hint style="info" %}
 Unfortunately, the IHEP GitLab server is only available on-campus through the LAN network. In theory, it is possible to connect through the IHEP VPN \([ssl.ihep.ac.cn](http://ssl.ihep.ac.cn)\) using EasyConnect, though to set this up, you will first need to be in that LAN network. There are plans to make the server available through the standard SSO account.
 {% endhint %}
 
-## Pushing your code to a new repository
+## Preparing access to the server
 
-Imagine the situation where you have already developed some code for your analysis and you want to start tracking it using `git`. Here, we go through the steps required to put that code into a repository and push it to the IHEP GitLab server.
+To be able to push files to a repository on the IHEP GitLab server, you will first need to apply for an IHEP GitLab account. You can do this by sending an email to [fanrh@ihep.ac.cn](mailto:fanrh@ihep.ac.cn).
+
+When you have received your login credentials, log in to [gitlab.ihep.ac.cn](http://gitlab.ihep.ac.cn/profile/keys/132) and have a look around. As you have probably noticed, there is a warning that you have to add an SSH key in order to pull and push to the server. The steps to create such a key are comparable to [those for login in to the IHEP server](./#key-generation-for-ssh).
+
+1. Generate an SSH key with the command `ssh-keygen`. You can choose to leave the password empty.
+2. Add the SSH key to the `ssh-agent` and create a corresponding _public key_ with the commands: `eval $(ssh-agent -s) ssh-add ~/.ssh/id_rsa`
+3. Now, obtain the corresponding public key using: `cat ~/.ssh/id_rsa.pub` and copy all the text you see there \(from `ssh-rsa` to `@ihep.ac.cn`\).
+4. Go to [gitlab.ihep.ac.cn/profile/keys](http://gitlab.ihep.ac.cn/profile/keys), click "Add SSH Key", paste the code there, and "Add key".
+5. That's it!
+
+See [here](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for more elaborate instructions.
+
+As a test, you can now create a new repository on the server. Just click ["New project"](http://gitlab.ihep.ac.cn/projects/new) and follow the instructions. This is a nice way to start, as you will be immediately shown instructions on how to configure `git` locally \(such as setting the user name\).
+
+## Pushing existing code to a new repository
+
+Imagine the situation where you have already developed some code for your analysis and you want to start tracking it using `git`. Let's say the directory containing this called is `TestRepo`. Here, we go through the steps required to put that code into a repository and push it to the IHEP GitLab server.
 
 #### Step 1: Go to the files you want to track
 
@@ -72,15 +86,46 @@ Some commands that are useful from this stage onward:
 The above 5 steps are all you need to know if you just want to track your files through `git` **locally**. You do not have to work with a GitLab server, though of course this does allow for team collaboration and is the best way to backup your work.
 {% endhint %}
 
-#### Step 6: Push your new repository to the IHEP GitLab server
+#### Step 6: Configure the `git repository`
 
-If you have applied for an account \(see [introduction above](ihep-gitlab.md)\), you can push this new repository to [gitlab.ihep.ac.cn](http://gitlab.ihep.ac.cn/). Initially, the repository will be public within IHEP, but we'll see later how you can make this repository private or available only to certain people.
-
-First, add the SSH location to which you want to write your repository:
+If you have applied for an account and [added an SSH key](ihep-gitlab.md#pushing-your-code-to-a-new-repository), you can push this new repository to [gitlab.ihep.ac.cn](http://gitlab.ihep.ac.cn/). If you haven't already done so, set the user name and email address for this repository:
 
 ```bash
-git remote add origin git@gitlab.ihep.ac.cn:<username>/<repository name>
+git config user.name "<Your full name>"
+git config user.email "<email>@ihep.ac.cn"
 ```
 
-Here, `<user name>` should be the one you were given when you registered, while `<repository name>` cannot contain spaces.
+Use `git config --global` if you want to use these credentials everywhere.
+
+Now you can add the SSH location to which you want to write your repository:
+
+```bash
+git remote add origin git@gitlab.ihep.ac.cn:<username>/TestRepo
+```
+
+Here, `<user name>` should be the one you were given when you registered. Here, we use the directory name `TestRepo` as repository name, but it can be any name as long as it is unique within your account.
+
+#### Step 7: Create the repository on the server
+
+Unfortunately, access through SSH does not allow you to create a new repository on the server, so you have to do this through the web interface.
+
+Go to [gitlab.ihep.ac.cn](http://gitlab.ihep.ac.cn/) and click "New repository". Use `TestRepo` as the "_Project_ name", then click "Customize repository name?" to ensure that the name of the repository is `TestRepo`as well. \(If you don't, it will be named `testrepo`, while **the** _**repository**_ **name should match the name of your directory**.
+
+#### Step 8: Push your the first commit
+
+Now, back to your files, you can push the commit you made to that new `TestRepo` on the server:
+
+```bash
+git push -u origin master
+```
+
+Later, you can just use `git push` without arguments.
+
+That's it!
+
+You can now edit and add files and then go through steps [3 \(add\)](ihep-gitlab.md#step-3-add-the-files-in-the-directory), [4 \(commit\)](ihep-gitlab.md#step-4-commit-the-changes), [5 \(status\)](ihep-gitlab.md#step-5-check-the-status-of-the-repository), and [8 \(push\)](ihep-gitlab.md#step-8-push-your-the-first-commit) to track your files.
+
+{% hint style="info" %}
+If you work together with others, you can use `git pull`to get the latest changes that others added. Working together through `git` is, however, a bit more complicated because you'll have to think about different branches and how to deal with merge conflicts. Have a look at the [Git Handbook](https://guides.github.com/introduction/git-handbook/) for more information.
+{% endhint %}
 
