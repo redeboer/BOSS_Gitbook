@@ -13,7 +13,7 @@ ssh -Y <your user name>@lxslc7.ihep.ac.cn
 Here, the option `-Y` ensures _X11 forwarding_, allowing you to open graphical applications.
 
 {% hint style="info" %}
-If you don't like having to enter your password every time you log in, have a look at the section [Key generation in Tips & Tricks](../../appendices/tips.md#key-generation-for-ssh).
+If you don't like having to enter your password every time you log in, have a look at the section [Key generation in Tips & Tricks](../../appendices/tips/#key-generation-for-ssh).
 {% endhint %}
 
 In Windows, there are some nice tools that allow you to access the server. First of all, to be able to use SSH, use will either have to use [PuTTY](https://www.putty.org/) or more extensive software like [Xmanager](https://www.netsarang.com/products/xmg_overview.html). You can also just search for some Linux terminals for Windows. In addition, I would recommend you to work with the \(S\)FTP client [WinSCP](https://winscp.net/eng/index.php). It allows you to easily navigate the file structure of the IHEP server and to quickly transfer---even synchronise---files up and down to your own computer.

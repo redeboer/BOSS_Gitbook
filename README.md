@@ -33,7 +33,7 @@ Here are shortcuts that you might want to take:
 
    _\(These pages have not yet been written.\)_
 
-4. [**Tips, Tricks, and Troubleshooting**](appendices/tips.md) ****These pages are used to collect problems that are frequently encountered when working with BOSS. As such, these notes are useful no matter your level. _New suggestions are most welcome!_
+4. [**Tips, Tricks, and Troubleshooting**](appendices/tips/) ****These pages are used to collect problems that are frequently encountered when working with BOSS. As such, these notes are useful no matter your level. _New suggestions are most welcome!_
 
 ## A note on the _BOSS Afterburner_
 
