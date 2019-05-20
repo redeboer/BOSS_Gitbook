@@ -109,7 +109,7 @@ Here, `<user name>` should be the one you were given when you registered. Here, 
 
 Unfortunately, access through SSH does not allow you to create a new repository on the server, so you have to do this through the web interface.
 
-Go to [gitlab.ihep.ac.cn](http://gitlab.ihep.ac.cn/) and click "New repository". Use `TestRepo` as the "_Project_ name", then click "Customize repository name?" to ensure that the name of the repository is `TestRepo`as well. \(If you don't, it will be named `testrepo`, while **the** _**repository**_ **name should match the name of your directory**.
+Go to [gitlab.ihep.ac.cn](http://gitlab.ihep.ac.cn/) and click "New repository". Use `TestRepo` as the "_Project_ name", then click "Customize repository name?" to ensure that the name of the repository is `TestRepo`as well. \(If you don't, it will be named `testrepo`, while **the** _**repository**_ **name should match the name of your directory**. As you see, the default option for a new repository is private, so only you can see it.
 
 #### Step 8: Push your the first commit
 
@@ -119,9 +119,9 @@ Now, back to your files, you can push the commit you made to that new `TestRepo`
 git push -u origin master
 ```
 
-Later, you can just use `git push` without arguments.
+Later, you can just use `git push` without arguments, but this is to force the first commit to the master branch.
 
-That's it!
+**That's it, the connection has been established!**
 
 You can now edit and add files and then go through steps [3 \(add\)](ihep-gitlab.md#step-3-add-the-files-in-the-directory), [4 \(commit\)](ihep-gitlab.md#step-4-commit-the-changes), [5 \(status\)](ihep-gitlab.md#step-5-check-the-status-of-the-repository), and [8 \(push\)](ihep-gitlab.md#step-8-push-your-the-first-commit) to track your files.
 
