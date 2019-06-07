@@ -17,7 +17,9 @@ So if you read this and like the idea, do have a look at the [contributing page]
 Contributions from all levels is highly appreciated.
 
 {% hint style="info" %}
-If you do not have an IHEP networking account, it is better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html) of BESIII — this framework can only be of use if you are a member of the BESIII collaboration and if you have access to the software of this collaboration. You can also have a look at the links in the section [Further reading](appendices/references.md).
+If you do not have an IHEP networking account, it is better to check out the official [Offline Software page](http://english.ihep.cas.cn/bes/doc/2247.html) of BESIII. For this, you in turn need to be a BESIII member and have an SSO account, which can be done [here](http://afsapply.ihep.ac.cn/cchelp/en/accounts/#21-user-account-application).
+
+BOSS can only be of use if you are a member of the BESIII collaboration and if you have access to the software of this collaboration. You can also have a look at the links in the section [Further reading](appendices/references.md).
 {% endhint %}
 
 ## Contents of the tutorial pages
