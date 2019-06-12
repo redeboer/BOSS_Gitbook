@@ -1,4 +1,4 @@
-# The role of the IHEP server \(lxslc\)
+# The IHEP server \(lxslc\)
 
 Within BESIII, most analysis tasks are run on a server that is hosted by [IHEP](../../appendices/glossary.md#ihep). The server is also where you will use BOSS. You will need to [apply for an IHEP computing account](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Lxslc_account_application) to be able to log in.
 
@@ -10,7 +10,7 @@ The IHEP server runs on [Scientific Linux CERN](https://linux.web.cern.ch/linux/
 ssh -Y <your user name>@lxslc7.ihep.ac.cn
 ```
 
-Here, the option `-Y` ensures _X11 forwarding_, allowing you to open graphical applications.
+Here, the option `-Y` ensures _X11 forwarding_, allowing you to open graphical applications from the server.
 
 {% hint style="info" %}
 If you don't like having to enter your password every time you log in, have a look at the section [Key generation in Tips & Tricks](../../appendices/tips/#key-generation-for-ssh).
@@ -31,7 +31,7 @@ When you have logged into the server, you usually start in your home \(`~`\) fol
 | `/scratchfs/bes/$USER` | 500 GB | NA | max. 2 weeks |
 
 {% hint style="danger" %}
-**Do not exceed these data quotas!** If you do, the folder of which you are exceeding its quota will be locked by the Computing Center after a few weeks and it is quite a hassle to regain access.
+**Do not exceed these quotas!** If you do, the folder of which you are exceeding its quota will be locked by the Computing Center after a few weeks and it is quite a hassle to regain access.
 {% endhint %}
 
 Of course, here, and in what follows, `$USER` refers to your user name.
