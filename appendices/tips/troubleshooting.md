@@ -76,7 +76,5 @@ JobOptionsSvc       ERROR locale::facet::_S_create_c_locale name not valid
 ApplicationMgr      FATAL Error initializing JobOptionsS
 ```
 
-{% hint style="warning" %}
-**@todo** Find solution!
-{% endhint %}
+it means you have encountered another nasty bug. It probably has to do with the environment of the terminal with which you log in \(in the case of Windows, it is known to appear when [using the `wsl` terminal](./#compiling-on-windows-10)\). Try a different terminal \(such as [`git bash`](https://gitforwindows.org/)\) and the problem will probably disappear. It's magic!
 
