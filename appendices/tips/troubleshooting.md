@@ -51,3 +51,32 @@ Two known causes:
 1. In the case of `hep_sub`, you should submit an **executable** bash script. Make the `sh` script executable using `chmod +x`. Use `boss.condor` in exactly the same way as `boss.exe`, that is, feed it a job options file \(`txt`\), not a bash script.
 2. You sourced a bash script that contained an `export -f`statement \(exporting a bash `function`\). While this is correct way of exporting a function, it somehow affects BOSS. Change this statement into `export` \(omit the `f` option\) and the issue is fixed.
 
+### I cannot run `boss.exe` without jobs
+
+It should be possible to run `boss.exe` without jobs \(see [here](../../tutorials/getting-started/setup.md#step-6-test-boss-using-boss-exe)\). Does it result in the following error message?
+
+```text
+boss.exe: error while loading shared libraries: libReflex.so: cannot open shared object file: No such file or directory
+```
+
+If so, you probably forgot to [source `TestRelease`](../../tutorials/getting-started/setup.md#step-5-implement-the-testrelease-package).
+
+### I get a message about `sysInitialize()` when running a job
+
+If you receive the following error message:
+
+```text
+**************************************************
+               BOSS version: 7.0.4
+************** BESIII Collaboration **************
+
+the jobOptions file is : jobOptions_sim.txt
+JobOptionsSvc       FATAL in sysInitialize(): standard std::exception is caught
+JobOptionsSvc       ERROR locale::facet::_S_create_c_locale name not valid
+ApplicationMgr      FATAL Error initializing JobOptionsS
+```
+
+{% hint style="warning" %}
+**@todo** Find solution!
+{% endhint %}
+
