@@ -1,11 +1,16 @@
-# Setup of your BOSS environment
+# Setup your BOSS environment
 
 {% hint style="warning" %}
 **Warning:** In it's current version, this tutorial assumes you use a `bash` terminal. It should work for TC-shell as well, but if you experience problems, please [contact me](../../appendices/about.md).
 {% endhint %}
 
 {% hint style="success" %}
-See [last section of this page](setup.md#summary-of-commands) for an overview of all commands.
+See [last section of this page](setup.md#summary-of-commands) for an overview of all commands. If you are in a very lazy mood, you can also download and run [this bash script](https://github.com/redeboer/BOSS_IniSelect/blob/master/setup/SetupBoss.sh):
+
+```bash
+wget https://raw.githubusercontent.com/redeboer/BOSS_IniSelect/master/setup/SetupBoss.sh
+bash SetupBoss.sh
+```
 {% endhint %}
 
 In this section, you will learn how to 'install' BOSS. Since BOSS has already been compiled on the server, installing actually means that you set up _path variables_ in the `bash` shell. Shortly said, your user account then 'knows' where to locate BOSS and how to run it.
@@ -24,10 +29,6 @@ If you work with large data samples, you may want to write your output to a diff
 {% endhint %}
 
 ## Set up the BOSS environment
-
-{% hint style="info" %}
-**The below procedure is** [**also available as a bash script**](https://github.com/redeboer/BOSS_IniSelect/blob/master/setup/SetupBoss.sh)**.**
-{% endhint %}
 
 ### **Step 1:** Define your local install folder
 
