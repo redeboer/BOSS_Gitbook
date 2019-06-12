@@ -31,12 +31,6 @@ If you work with large data samples, you may want to write your output to a diff
 
 ### **Step 1:** Define your local install folder
 
-* Local install area: `/besfs/users/$USER/boss/`
-  * `cmthome` \(manages access to BOSS\)
-  * `workarea` \(contains your analysis code\)
-    * `TestRelease` \(a package that loads essential BOSS packages\)
-    * `InstallArea` \(collection binaries and header files after compiling\)
-
 For the sake of making this tutorial work in a general setting, we will first define a `bash` variable here \(you can just execute this command in `bash`\):
 
 In this part of the tutorial, we will do two things: \(1\) setup the necessary references to BOSS and \(2\) preparing your `workarea` folder. You will be developing and your own BOSS packages \(mainly code for event selection\) in this `workarea` folder. Next to your `workarea`, there will be a [_Configuration Management Tool_](intro.md#configuration-management-tool-cmt) folder \(`cmthome`\), which manages access to the BOSS installation. In the end you will have a file structure like this:
@@ -170,9 +164,10 @@ Then move into the `cmt` folder that comes with it and source scripts in there:
 
 ```bash
 cd TestRelease/TestRelease-*/cmt
-cmt config       # initialise CMT
-make             # compiles source code
-source setup.sh  # set path environment
+cmt broadcast      # load all packages to which TestRelease refers
+cmt config         # perform setup and cleanup scripts
+cmt broadcast make # build executables
+source setup.sh    # set bash variables
 ```
 
 ### **Step 6: Test BOSS using** `boss.exe`
@@ -260,9 +255,10 @@ mkdir -p $BOSSINSTALL/workarea
 cd $BOSSINSTALL/workarea
 cp -Rf $BesArea/TestRelease .
 cd TestRelease/TestRelease-*/cmt
-cmt config
-make
-source setup.sh
+cmt broadcast      # load all packages to which TestRelease refers
+cmt config         # perform setup and cleanup scripts
+cmt broadcast make # build executables
+source setup.sh    # set bash variables
 
 ```
 
