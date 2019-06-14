@@ -5,10 +5,10 @@
 {% endhint %}
 
 {% hint style="success" %}
-See [last section of this page](setup.md#summary-of-commands) for an overview of all commands. If you are in a very lazy mood, you can also download and run [this bash script](https://github.com/redeboer/BOSS_IniSelect/blob/master/setup/SetupBoss.sh):
+See [last section of this page](setup.md#summary-of-commands) for an overview of all commands. If you are in a very lazy mood, you can also download and run [this bash script](https://github.com/redeboer/BOSS_StarterKit/blob/master/utilities/SetupBoss.sh):
 
 ```bash
-wget https://raw.githubusercontent.com/redeboer/BOSS_IniSelect/master/setup/SetupBoss.sh
+wget https://raw.githubusercontent.com/redeboer/BOSS_StarterKit/master/utilities/SetupBoss.sh
 bash SetupBoss.sh
 ```
 {% endhint %}
