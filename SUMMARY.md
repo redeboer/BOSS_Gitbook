@@ -8,7 +8,7 @@
 * [Getting started with BOSS](tutorials/getting-started/README.md)
   * [The IHEP server \(lxslc\)](tutorials/getting-started/server.md)
   * [What is BOSS?](tutorials/getting-started/intro.md)
-  * [Setup your BOSS environment](tutorials/getting-started/setup.md)
+  * [Set up your BOSS environment](tutorials/getting-started/setup.md)
   * [Set up a BOSS package](tutorials/getting-started/setup-package.md)
   * [Running jobs](tutorials/getting-started/jobs.md)
   * [Summary](tutorials/getting-started/summary.md)
