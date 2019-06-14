@@ -4,10 +4,10 @@ Within BESIII, most analysis tasks are run on a server that is hosted by [IHEP](
 
 ## Accessing the server
 
-The IHEP server runs on [Scientific Linux CERN](https://linux.web.cern.ch/linux/scientific.shtml) \(SLC\). The server offers several versions. Usually, people use either SLC5, SLC6, or SLC7. The domain names for these are `lxslc7.ihep.ac.cn`, where the `7` in this case refers to SLC7. If you are running on Linux or a Linux terminal, the server can be easily accessed using:
+The IHEP server runs on [Scientific Linux CERN](https://linux.web.cern.ch/linux/scientific.shtml) \(SLC\). The server offers several versions. Usually, people use either SLC5, SLC6, or SLC7. The domain names for these are `lxslc6.ihep.ac.cn`, where the `6` in this case refers to SLC6. If you are running on Linux or a Linux terminal, the server can be easily accessed using:
 
 ```bash
-ssh -Y <your user name>@lxslc7.ihep.ac.cn
+ssh -Y <your user name>@lxslc6.ihep.ac.cn
 ```
 
 Here, the option `-Y` ensures _X11 forwarding_, allowing you to open graphical applications from the server.

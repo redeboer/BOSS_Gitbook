@@ -19,7 +19,7 @@ If you do not like to keep having to enter your password, have a look at generat
 1. Generate a key with the command `ssh-keygen`. You can choose to leave the password empty.
 2. Add the SSH key to the `ssh-agent` and create a corresponding _public key_ with the commands: `eval $(ssh-agent -s) ssh-add ~/.ssh/id_rsa`
 3. Copy the public key to the server using: `ssh-copy-id -i ~/.ssh/id_rsa <your user name>@lxslc6.ihep.ac.cn` You will be asked for your IHEP account password.
-4. Try to log in to the server with: `ssh -Y <your user name>@lxslc7.ihep.ac.cn` If all went correctly, you don't have to enter your password anymore.
+4. Try to log in to the server with: `ssh -Y <your user name>@lxslc6.ihep.ac.cn` If all went correctly, you don't have to enter your password anymore.
 
 ### Compiling
 
