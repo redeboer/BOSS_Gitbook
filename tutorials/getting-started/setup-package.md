@@ -200,5 +200,13 @@ which, in this case, will run a Monte Carlo simulation.
 
 Note that [when we set up the `workarea`](setup.md#step-7-modify-your-bashrc), we added `source setup.sh` line to the `.bashrc` that ensures that the `TestRelease` package is loaded every time you log in, so you won't have to do this every time yourself.
 
+### Example packages
+
+Physics related example packages are described [here](../../packages/analysis/example-packages/). Within BESIII, [`RhopiAlg`](../../packages/analysis/example-packages/rhopi.md) and [`PipiJpsiAlg`](../../packages/analysis/example-packages/pipijpsi.md) are commonly used as examples for initial event selection.
+
+{% hint style="success" %}
+BOSS Tutorials are under development and can be found in the [BOSS\_Tutorials repository](https://github.com/redeboer/BOSS_Tutorials).
+{% endhint %}
+
 {% page-ref page="../../packages/analysis/example-packages/rhopi.md" %}
 
