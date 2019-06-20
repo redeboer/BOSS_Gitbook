@@ -8,10 +8,12 @@ Particle physicists perform analyses on either data from measurements or on data
 
 When you are analysing measurement data, you won't have to perform steps 1 and 2: the BESIII collaboration reconstructs all data samples whenever a new version of BOSS is released. \(See [Organisation of the IHEP server](jobs.md), under "Reconstructed data sets", for where these files are located.\)
 
-The steps are performed from `jobOptions*.txt` files of your own package in your work area. These files are executed using the `boss.exe` command. Usually, you use the `TestRelease` package to run other packages. In the case of `RhopiAlg`:
+The steps are performed from `jobOptions*.txt` files of your own package in your work area. What is a job options file? Job options contain parameters that are loaded by the algorithm of your package at run-time \(have a look at `declareProperty` [in the `RhopiAlg`](../../packages/analysis/example-packages/rhopi.md)\). These parameters can be an output file name, certain cuts, boolean switches for whether or not to write certain NTuples, etc.
+
+A job is run using the `boss.exe` command,  with the path to a job option file as argument. You can use the example job option files in `TestRelease` as a try:
 
 ```bash
-cd "$BOSSWORKAREA/workarea/TestRelease/TestRelease-*/run/"
+cd "$TESTRELEASEROOT/run/"
 boss.exe jobOptions_sim.txt
 boss.exe jobOptions_rec.txt
 boss.exe jobOptions_ana_rhopi.txt
@@ -20,6 +22,12 @@ boss.exe jobOptions_ana_rhopi.txt
 This is essentially it! Of course, for your own analysis, you will have to tweak the parameters in these `jobOptions_*.txt` files and in `TestRelease` to integrate and run your own packages.
 
 In the following, we will go through some extra tricks that you will need to master in order to do computational intensive analyses using **BOSS**.
+
+{% hint style="info" %}
+#### Analysing all events
+
+In data analysis, you usually want to use all events available: cuts are applied to get rid of events you don't want. It is therefore better to use `-1`, which stands for '_all_ events', for the maximum number of events in `ApplicationMgr.EvtMax`.
+{% endhint %}
 
 ## Submitting a job     <a id="submitting-a-job"></a>
 
@@ -64,32 +72,7 @@ Jobs that take a long time to be executed in the queue will be killed by the ser
 
 You can do all this by hand, but it is much more convenient to generate these files with some script \(whether C++, bash or `tcsh`\) that can generate `jobOptions*.txt` files from a certain _template file_. In these, you for instance replace the specific paths and seed number you used by generic tokens like `INPUTFILE`, `OUTPUTFILE`, and `RANDOMSEED`. You can then use the script to replace these unique tokens by a path or a unique number. Have a look at the [`awk`](https://www.tldp.org/LDP/abs/html/awk.html) and [`sed`](https://www.gnu.org/software/sed/manual/sed.html) commands to get the idea.
 
-## Splitting scripts in the BOSS Afterburner
+## Splitting scripts using the BOSS Job Submitter
 
-The BOSS Afterburner offers some bash scripts that can do job splitting for you. In the case of Monte Carlo simulation, reconstruction, and analysis, you work with run numbers and with unique random seed numbers, whereas in data analysis, you have to make selections of `dst` data files. The[`jobs` folder of the BOSS Afterburner](https://github.com/redeboer/BOSS_IniSelect/tree/master/jobs) therefore contains two different types of generation scripts.
-
-As you can see, the folder contains a `templates` folder with files that contain the templates with tokens and there are also output folders `ana`, `rec`, `sim` \(for the three steps in MC simulations\), and `sub` \(shell scripts that you submit to the 'queue'\). Then there is also a folder `dec` containing your decay charts for exclusive Monte Carlo simulations \(see section [Monte Carlo simulations](https://besiii.gitbook.io/boss/besiii-software-system/jobs/simulations)\) and a folder called `filenames`. The last one is important for generating job options for data analysis \(see complications described under 2.\).
-
-Finally, script procedures that are shared by both type of job option generation have been grouped into functions in the `CommonFunctions.sh` shell script.
-
-### Job options for Monte Carlo simulations
-
-These are built on four job option template files: one for the `sim` step, one for `rec`, one for `ana`, and one for the shell script that you feed to the 'queue' \(`hep_sub`\). Here, the complicating ingredient is the random seed number \(which has to be unique for each `sim` job option file\) and the list of run numbers \(which will determine the parameters in simulation and reconstruction\).
-
-Usage is illustrated in the [`GenerateScript_sim.sh`](https://github.com/redeboer/BOSS_IniSelect/blob/master/jobs/GenerateScript_sim.sh) script.
-
-### Job options for data \(or Monte Carlo\) analysis
-
-These only result in `ana` job option files and in a shell script that you use to submit to the queue. Here, the complicating ingredient is the list of `dst` that you feed to the `ana` job option file. This list of filenames has to be split up into subgroups \(one for each job option file\) and has to be inserted into the C++ code \(at `EventCnvSvc.digiRootInputFile`\), formatted as a C++ vector of strings. You will also want not to put too many `dst` files there, because you then run the risk that job will be killed if the run time is too long. The generation of this type of job option files is therefore comprised of two parts:
-
-1. Generate a list of \(`dst`\) files you want to analyse. You can do this by feeding a text file of directories and/or filenames that you want to analyse to a function called `CreateFilenameInventoryFromFile` in `CommonFunctions.sh`. Alternatively, you can use the function `CreateFilenameInventoryFromDirectory`, which lists all files within that directory. The output is a number of text files with a maximum number of lines each that together make up the complete list of files.
-2. Insert the paths listed in each of the text files listed above into the `ana` template. For this, the lines of the text files are also converted into C++ vector-of-strings format \(i.e., separated by commas and surrounded by quotation `"` marks\).
-
-Usage of both the relevant functions in the `CommonFunctions.sh` script and of the [`CreateJobFiles_ana.sh`](https://github.com/redeboer/BOSS_IniSelect/blob/master/jobs/CreateJobFiles_ana.sh) is illustrated in[`GenerateScript_ana.sh`](https://github.com/redeboer/BOSS_IniSelect/blob/master/jobs/GenerateScript_ana.sh).
-
-{% hint style="info" %}
-#### Analysing all events
-
-In data analysis, you usually want to use all events available: cuts are applied to get rid of events you don't want. It is therefore better to use `-1`, which stands for '_all_ events', for the maximum number of events in `ApplicationMgr.EvtMax`.
-{% endhint %}
+See [documentation of the BOSS Job Submitter repository](https://github.com/redeboer/BOSS_JobSubmitter).
 

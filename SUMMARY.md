@@ -22,7 +22,7 @@
   * [Analysing background](tutorials/final/background.md)
   * [Error studies](tutorials/final/errors.md)
 
-## BOSS Packages
+## BOSS Packages <a id="packages"></a>
 
 * [Introduction](packages/intro.md)
 * [Generation](packages/generation.md)

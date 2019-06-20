@@ -159,6 +159,19 @@ Another reason for working with a copy of the old version of your package is tha
 **Note**: It seems special access rights are needed for this procedure, so I have currently not been able to test these procedures.
 {% endhint %}
 
+## Summary
+
+Whenever you have set up a package, set it up using:
+
+```bash
+cd cmt          # navigate into its cmt folder
+cmt config      # OPTIONAL: reset the package
+make            # compile the source code
+source setup.sh # set bash variables for this package
+```
+
+If this package is a Gaudi algorithm, you can [run it as a BOSS job](jobs.md).
+
 ## Example packages     <a id="example-packages"></a>
 
 Within BOSS, there are already a few 'example' packages available. All of these are accessible through the so-called [`TestRelease` package](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/TestRelease), which will be described and set up first. We then focus on one of its main dependencies: the [RhopiAlg algorithm](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/Analysis/Physics/RhopiAlg). Within BESIII, this package is typically used as an example for selecting events and usually forms the start of your research.

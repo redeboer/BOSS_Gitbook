@@ -29,9 +29,9 @@ The `RhopiAlg` is the starting point for beginners using BOSS. It teaches:
 
 ## Introduction
 
-One of the basic analysis packages that is already provided in BOSS is the `RhopiAlg` package. Within BESIII, almost everyone knows it, because it is used as the starting point for developing your own packages. `RhopiAlg` is an illustration of a typical procedure in particle physics: reconstructing a decayed particle. For this, you will have to make apply cuts on measured parameters and this package is an illustration of this procedure.
+One of the basic physics analysis packages that is already provided in BOSS is the `RhopiAlg` package. Within BESIII, almost everyone knows it, because it is used as the starting point for developing your own initial event selection packages. `RhopiAlg` is an illustration of a typical procedure in particle physics: reconstructing a decayed particle. For this, you will have to make apply cuts on measured parameters and this package is an illustration of this procedure.
 
-The `RhopiAlg` analyses the decay of the $$\rho(770)$$ meson. As you can see in the in the [PDG listing for this meson](http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf), the $$\rho(770)$$ meson predominantly decays through $$\rho\rightarrow\pi\pi$$ \(almost 100%\), whether it concerns a $$\rho^+$$ , $$\rho^0$$ , or $$\rho^-$$. This means that we can reconstruct this meson purely through this _2-particle decay mode_.
+The `RhopiAlg` analyses the decay of the $$\rho(770)$$ meson. As you can see in the in the [PDG listing for this meson](http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf), the $$\rho(770)$$ meson predominantly decays through $$\rho\rightarrow\pi\pi$$ \(almost $$100\%$$\), whether it concerns a $$\rho^+$$ , $$\rho^0$$ , or $$\rho^-$$. This means that we can reconstruct this meson purely through this _2-particle decay mode_.
 
 Additionally, when we consider the charged $$\rho^\pm$$ mesons, one of the decay products is the neutral pion: $$\rho^\pm \rightarrow \pi^\pm\pi^0$$. This meson is again neutral and cannot be detected, so has to be reconstructed. But here again, there is one dominant decay mode: $$\pi^0 \rightarrow \gamma\gamma$$ \($$98.823 \pm 0.034 \%$$, see [its PDG listing](http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf)\). This means that we can reconstruct the $$\rho^\pm$$ meson almost exclusively through its $$\rho^\pm \rightarrow \pi^\pm\pi^0 \rightarrow \pi^\pm\gamma\gamma$$ decay channel.
 
@@ -45,32 +45,40 @@ The original `RhopiAlg` package \(version `0.0.23`\) is located here,
 /afs/ihep.ac.cn/bes3/offline/Boss/$BOSSVERSION/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23
 ```
 
-You can also [have a look at it in the BOSS Afterburner](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23) or [import the original packages](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/import_packages.sh) for any version of BOSS.
+You can also [find the `RhopiAlg` package in the BOSS Tutorials repository](https://github.com/redeboer/BOSS_Tutorials/tree/master/RhopiAlg/RhopiAlg-00-00-23).
 
-A better commented and expanded version is also available within the BOSS Afterburner \([version 1.0.0](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00)\). In this tutorial, we will work with this version, but, as with `TestRelease`, you can choose to work with a copy from the `$BesArea`.
+## How to compile and run?
 
-The `RhopiAlg` package is one of the dependencies of `TestRelease`: you actually use `TestRelease` to run an analysis from `RhopiAlg` \(or any other package\). This also means that you have to follow the normal procedure for updating a package [as described above](../../../tutorials/getting-started/setup-package.md#updating-a-package).
+See [summary of Set up a BOSS package](../../../tutorials/getting-started/setup-package.md#summary) and [Running jobs](../../../tutorials/getting-started/jobs.md). An [example of a analysis job option file for `RhopiAlg`](https://github.com/redeboer/BOSS_IniSelect_ORIGINAL/blob/b48291704f1b1df6a9953fd50689b9039f064815/workarea/TestRelease/TestRelease-00-00-00/run/jobOptions_ana_rhopi.txt)is found under `run` [in the `TestRelease` package](../../../tutorials/getting-started/setup-package.md#the-testrelease-package).
 
-## Declaring and defining properties like cuts
+The parameter `EventCnvSvc.digiRootInputFile` lists the input files. This is currently `rhopi.dst` \(namely the output after running the [`jobOptions_rec.txt`job](https://github.com/redeboer/BOSS_IniSelect_ORIGINAL/blob/b48291704f1b1df6a9953fd50689b9039f064815/workarea/TestRelease/TestRelease-00-00-00/run/jobOptions_rec.txt)\), but you can also feed it other DST files, such as [the ones reconstructed from BESIII data or inclusive Monte Carlo samples](../../../tutorials/getting-started/server.md#important-data-paths).
 
-See [header `.h` file](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/RhopiAlg/RhopiAlg.h) for declarations and [source `.cxx` code](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/src/RhopiAlg.cxx) for definitions of cuts.
+## Description of source code
 
-## Determining vertex position
+{% hint style="warning" %}
+The sections below are incomplete and it is not yet decided whether it is useful to describe the source code in words. For now, you can also have a look at [this class description](https://redeboer.github.io/BOSS_IniSelect_ORIGINAL/classRhopiAlg.html#a93c6042360744cee6c886ee0ba985504) \(redirects to `execute` step of the algorithm\). Scroll down a bit, and you can also navigate to the corresponding source code \(in this case, [line 478](https://redeboer.github.io/BOSS_IniSelect_ORIGINAL/RhopiAlg_8cxx_source.html#l00478)\), which has slightly improved comments compared to version `00-00-23`.
+{% endhint %}
 
-## Writing properties
+### Declaring and defining properties like cuts
 
-## Looping over charged and neutral tracks
+See [header `.h` file](https://github.com/redeboer/BOSS_IniSelect_ORIGINAL/blob/b48291704f1b1df6a9953fd50689b9039f064815/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/RhopiAlg/RhopiAlg.h#L42) for declarations and [source `.cxx` code](https://github.com/redeboer/BOSS_IniSelect_ORIGINAL/blob/master/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/src/RhopiAlg.cxx) for definitions of cuts.
 
-## Kalman kinematic $$n$$-constraints fit procedure
+### Determining vertex position
+
+### Writing properties
+
+### Looping over charged and neutral tracks
+
+### Kalman kinematic $$n$$-constraints fit procedure
 
 * `fit4c` refers to the 4-constraints coming from the original $$\pi^0 \rightarrow \gamma\gamma$$ meson \(or other mesons, depending on the collision energy\), namely, the 4-momentum of the system \(collision energy and sum of the 3-momenta\). Note that the $$\chi^2_\text{red}$$ of the fit is the same for any combination, as the for constraints are the same in each event.
 * `fit5c`  is used when an additional constraint is applied. In the `Rhopi` package, this fifth constraint refers to the constraint reconstruction of $$\rho^\pm \rightarrow \pi^\pm\pi^0 \rightarrow \pi^\pm\gamma\gamma$$, namely the mass of the pion.
 
-## Cut flow
+### Cut flow
 
 ## Output `root` file
 
 {% hint style="warning" %}
-**@todo** Describe `RhopiAlg` and how to work with it.
+General description of how to read the output ROOT file.
 {% endhint %}
 
