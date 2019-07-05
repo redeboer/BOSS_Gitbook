@@ -13,8 +13,15 @@ Although I recognise that any programmer will and should develop her or his own 
 
 For working on `lxslc`, you will need to install this handy [SSH FS extension](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs). This allows you to edit files in for instance your workarea and browse around in the file structure. There are a few steps that are useful to do at this stage:
 
-1. Create a SSH configuration. This specifies where the extension should find `lxslc`, your user name, the folder you want to access, etc. For this, you can use the graphical interface that comes along with the extension (have a look at the manual that comes along with it). You can later edit these configurations in the JSON file of the global settings (use `Ctrl+Shift+P` to search for and open "preferences open settings json").
-2. 
+1. Create an SSH configuration. This specifies where the extension should find `lxslc`, your user name, the folder you want to access, etc. For this, you can use the graphical interface that comes along with the extension (have a look at the manual that comes along with it). You can later edit these configurations in the JSON file of the global settings (use `Ctrl+Shift+P` to search for and open "preferences open settings json"). You can also add a path to your SSH key file (see below) so that you won't have to enter your log in details each time.
+2. In the bottom left of the left sidebar, right-click the configuration you just made and click "Connect as Workspace folder". You now have all your folders available in the Explorer sidebar and can edit files here nicely.
+3. Use "Save Workspace As..." under "File" to store the settings of this workspace and have the folder opened each time you open this Workspace.
+
+Unfortunately, this extension does not allow to use the full potential of VSCode, such as autocomplete and browsing through header files. VSCode has recently provided its own way of working through SSH, which does allow to use all functionality on the server. For now, it does not work for `lxslc`, but keep an eye on [Remote-SSH](https://code.visualstudio.com/docs/remote/ssh) for further developments.
+
+{% hint style="info" %}
+Use `Ctrl+\`` to open the integrated terminal and have it next to your code editor.
+{% endhint %}
 
 #### Other access to the IHEP server through SSH/SFTP
 
