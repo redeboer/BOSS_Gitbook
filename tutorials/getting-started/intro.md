@@ -32,6 +32,7 @@ See for more information:
 
 * [An accessible introduction to CMT](http://polywww.in2p3.fr/activites/physique/glast/workbook/pages/cmtMRvcmt/cmtIntroduction.htm)
 * [Official website of CMT](http://www.cmtsite.net/) \(partially French\)
+* [Official CMT Manual webpage](http://www.cmtsite.net/CMTDoc.html)
 * [LHCb on CMT](https://lhcb-comp.web.cern.ch/lhcb-comp/support/CMT/cmt.htm) \(historical page\)
 * [A presentation on BESIII Analysis by Shen Chengping](http://www.hep.umn.edu/bes3/MN_BES3_files/BESIII_intro_shencp.pdf): Includes \(somewhat outdated\) instructions on package management
 
