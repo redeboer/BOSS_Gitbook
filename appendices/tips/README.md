@@ -6,11 +6,21 @@
 
 Although I recognise that any programmer will and should develop her or his own habits, there are a few simple recommendations I would like to make, in particular for beginners.
 
-* [**Visual Studio Code**](https://code.visualstudio.com) **\(VS Code\).** Note the "Code" here—I am not referring to the infamous IDE version. Microsoft decided to strip Visual Studio of its compile capabilities and develop this editor in parallel. Since it has been made available _for free_ on all OS platforms, is regularly updated, is configurable with easy-to-access `json` files, offers a growing number of user-developed extensions, I consider VS Code to be one of the most powerful code editors available on the market. Even for users who prefer not to touch the mouse, VS Code has much to offer as well. \(OK, if your are really hardcore keyboard only, just go for [`vim`](https://www.vim.org/).\) **Note:** For working on the IHEP server, you will need to install this handy [SSH FS extension](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs).
-* Other access to the IHEP server through SSH/SFTP:
-  * [**Xmanager**](https://www.netsarang.com/products/xmg_overview.html)
-  * [**WinSCP**](https://winscp.net/eng/index.php)
-  * [**PuTTY**](https://www.putty.org/)
+#### Visual Studio Code
+
+[**Visual Studio Code**](https://code.visualstudio.com) **\(VS Code\).** Note the "Code" here—I am not referring to the infamous IDE version. Microsoft decided to strip Visual Studio of its compile capabilities and develop this editor in parallel. Since it has been made available _for free_ on all OS platforms, is regularly updated, is configurable with easy-to-access `json` files, offers a growing number of user-developed extensions, it is has become the most widely used editor on the market. Even for users who prefer not to touch the mouse, VS Code has much to offer as well. \(OK, if your are really hardcore keyboard only, just go for [`vim`](https://www.vim.org/), but this really only offers advantages if you use it properly.\)
+
+
+For working on `lxslc`, you will need to install this handy [SSH FS extension](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs). This allows you to edit files in for instance your workarea and browse around in the file structure. There are a few steps that are useful to do at this stage:
+
+1. Create a SSH configuration. This specifies where the extension should find `lxslc`, your user name, the folder you want to access, etc. For this, you can use the graphical interface that comes along with the extension (have a look at the manual that comes along with it). You can later edit these configurations in the JSON file of the global settings (use `Ctrl+Shift+P` to search for and open "preferences open settings json").
+2. 
+
+#### Other access to the IHEP server through SSH/SFTP
+
+* [**Xmanager**](https://www.netsarang.com/products/xmg_overview.html)
+* [**WinSCP**](https://winscp.net/eng/index.php)
+* [**PuTTY**](https://www.putty.org/)
 
 ### Key generation for SSH
 
