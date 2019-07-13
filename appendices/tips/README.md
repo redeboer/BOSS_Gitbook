@@ -10,17 +10,16 @@ Although I recognise that any programmer will and should develop her or his own 
 
 [**Visual Studio Code**](https://code.visualstudio.com) **\(VS Code\).** Note the "Code" here—I am not referring to the infamous IDE version. Microsoft decided to strip Visual Studio of its compile capabilities and develop this editor in parallel. Since it has been made available _for free_ on all OS platforms, is regularly updated, is configurable with easy-to-access `json` files, offers a growing number of user-developed extensions, it is has become the most widely used editor on the market. Even for users who prefer not to touch the mouse, VS Code has much to offer as well. \(OK, if your are really hardcore keyboard only, just go for [`vim`](https://www.vim.org/), but this really only offers advantages if you use it properly.\)
 
-
 For working on `lxslc`, you will need to install this handy [SSH FS extension](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs). This allows you to edit files in for instance your workarea and browse around in the file structure. There are a few steps that are useful to do at this stage:
 
-1. Create an SSH configuration. This specifies where the extension should find `lxslc`, your user name, the folder you want to access, etc. For this, you can use the graphical interface that comes along with the extension (have a look at the manual that comes along with it). You can later edit these configurations in the JSON file of the global settings (use `Ctrl+Shift+P` to search for and open "preferences open settings json"). You can also add a path to your SSH key file (see below) so that you won't have to enter your log in details each time.
+1. Create an SSH configuration. This specifies where the extension should find `lxslc`, your user name, the folder you want to access, etc. For this, you can use the graphical interface that comes along with the extension \(have a look at the manual that comes along with it\). You can later edit these configurations in the JSON file of the global settings \(use `Ctrl+Shift+P` to search for and open "preferences open settings json"\). You can also add a path to your SSH key file \(see below\) so that you won't have to enter your log in details each time.
 2. In the bottom left of the left sidebar, right-click the configuration you just made and click "Connect as Workspace folder". You now have all your folders available in the Explorer sidebar and can edit files here nicely.
 3. Use "Save Workspace As..." under "File" to store the settings of this workspace and have the folder opened each time you open this Workspace.
 
 Unfortunately, this extension does not allow to use the full potential of VSCode, such as autocomplete and browsing through header files. VSCode has recently provided its own way of working through SSH, which does allow to use all functionality on the server. For now, it does not work for `lxslc`, but keep an eye on [Remote-SSH](https://code.visualstudio.com/docs/remote/ssh) for further developments.
 
 {% hint style="info" %}
-Use `Ctrl+\`` to open the integrated terminal and have it next to your code editor.
+Use \`Ctrl+\`\` to open the integrated terminal and have it next to your code editor.
 {% endhint %}
 
 #### Other access to the IHEP server through SSH/SFTP
@@ -34,9 +33,9 @@ Use `Ctrl+\`` to open the integrated terminal and have it next to your code edit
 If you do not like to keep having to enter your password, have a look at generating an ssh key [here](https://www.ssh.com/ssh/keygen/) and [here](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 
 1. Generate a key with the command `ssh-keygen`. You can choose to leave the password empty.
-2. Add the SSH key to the `ssh-agent` and create a corresponding _public key_ with the commands: `eval $(ssh-agent -s) ssh-add ~/.ssh/id_rsa`
-3. Copy the public key to the server using: `ssh-copy-id -i ~/.ssh/id_rsa <your user name>@lxslc6.ihep.ac.cn` You will be asked for your IHEP account password.
-4. Try to log in to the server with: `ssh -Y <your user name>@lxslc6.ihep.ac.cn` If all went correctly, you don't have to enter your password anymore.
+2. Add the SSH key to the `ssh-agent` and create a corresponding _public key_ with the commands: `eval $(ssh-agent -s); ssh-add ~/.ssh/id_rsa`
+3. Copy the public key to the server using:  `ssh-copy-id -i ~/.ssh/id_rsa <your user name>@lxslc6.ihep.ac.cn` You will be asked for your IHEP account password.
+4. Try to log in to the server with:  `ssh -Y <your user name>@lxslc6.ihep.ac.cn`  If all went correctly, you don't have to enter your password anymore.
 
 ### Compiling
 
