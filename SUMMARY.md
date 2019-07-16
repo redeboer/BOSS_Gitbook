@@ -52,6 +52,7 @@
 ## Appendices
 
 * [Tips, Tricks, and Troubleshooting](appendices/tips/README.md)
+  * [Tips & Tricks](appendices/tips/tips-and-tricks.md)
   * [Troubleshooting](appendices/tips/troubleshooting.md)
   * [IHEP GitLab](appendices/tips/ihep-gitlab.md)
 * [Further reading](appendices/references.md)
