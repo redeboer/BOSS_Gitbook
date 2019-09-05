@@ -4,9 +4,16 @@ description: Known issues and some solutions.
 
 # Troubleshooting
 
-### **I lost read-write access**
+### **I lost read-write access in my`afs` home folder**
 
-One easy command to solve it: use `klog` and enter your password. You should now be able to read-write in _all_ your sessions.
+Formerly, this problem could be solved using the `klog` command. Since August 2019, this command has become:
+
+```bash
+kinit $USER
+aklog -d
+```
+
+You should now be able to read-write in _all_ your sessions.
 
 ### I'm sure my job is set up correctly, but it keeps resulting in:
 
