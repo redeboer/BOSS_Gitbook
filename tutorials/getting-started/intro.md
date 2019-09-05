@@ -8,6 +8,12 @@ In this section, we will discuss the three most important components that form B
 * [CMT](intro.md#configuration-management-tool-cmt), which is used to manage packages designed by different groups.
 * [CVS](intro.md#concurrent-versions-system-cvs), which is the version control system used to maintain BOSS.
 
+BOSS has been built on several other external libraries. The source files and binaries can be found here on the `lxslc` server:
+
+```text
+/afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib
+```
+
 ## The Gaudi Framework
 
 An event selection program usually consists of three steps:
