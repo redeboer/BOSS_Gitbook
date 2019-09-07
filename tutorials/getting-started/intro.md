@@ -14,6 +14,8 @@ BOSS has been built on several other external libraries. The source files and bi
 /afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/ExternalLib
 ```
 
+You can also have a look at the [BOSS External Libraries repository](https://github.com/redeboer/BOSS_ExternalLibs) and the documentation there.
+
 ## The Gaudi Framework
 
 An event selection program usually consists of three steps:
