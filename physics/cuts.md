@@ -4,17 +4,14 @@
 
 In papers from the BESIII Collaboration, you will usually encounter the following cuts. They are also listed [here](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Recommend_cuts) \(requires login\).
 
-### Vertex geometry
-
-* Interaction point cuts?
-* Multiplicity cuts?
-
 ### Charged tracks
 
-* Distance of the vertex of the track from the interaction \(IP\) in $$xy$$ plane: $$\left|\text{d}r\right| < 1\text{ cm}$$.
-* Distance of the vertex of the track from the IP in $$z$$ plane: $$\left|\text{d}z\right| < 10\text{ cm}$$.
+* Distance of closest approach of the track to the interaction \(IP\) in $$xy$$ plane: $$\left|\text{d}r\right| < 1\text{ cm}$$.
+* Distance of closest approach of the track to the IP in $$z$$ direction: $$\left|\text{d}z\right| < 10\text{ cm}$$.
 * Polar angle: $$\left|\cos\theta\right| < 0.93$$.
 * PID: usually making use of [MDC](besiii.md#muon-chamber-system-muc) and [TOF](besiii.md#time-of-flight-system-tof) and using a probability of at least $$0.001$$.
+
+Sometimes: events with non-zero net charge are rejected.
 
 ### Neutral tracks
 
@@ -23,13 +20,13 @@ Neutral tracks are reconstructed from electromagnetic showers in the [EMC](besii
 |  |  |  |
 | :--- | :---: | :---: |
 | Energy for **barrel** showers | $$\cos\theta < 0.8$$ | $$E > 25\text{ MeV}$$ |
-| Energy for **end cap** showers | $$0.8 < \cos\theta < 0.93$$ | $$E > 50\text{ MeV}$$ |
+| Energy for **end cap** showers | $$0.86 < \cos\theta < 0.93$$ | $$E > 50\text{ MeV}$$ |
 
-If there are more than one charged tracks, there is a time requirement of $$0 \leq T \leq 14$$ \( $$50\text{ ns}$$ \).
+If there is more than one charged track, there is a time requirement of $$0 \leq T \leq 14$$ \( $$50\text{ ns}$$ \).
 
 ### Kinematic fits
 
-* $$\chi^2$$ of the kinematic fit \(no matter how many constraints\): $$\chi^2 < 200$$. One may of course choose to divert from this.
+* $$\chi^2$$ of the kinematic fit is often determined in the final event selection with a efficiency scan using a Figure-Of-Merit. To limit the amount of events stored, a cut-off value of $$\chi^2 < 200$$ is usually used.
 
 ## Cut flow
 
