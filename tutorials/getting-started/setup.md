@@ -201,20 +201,17 @@ On a _login terminal_, the `.bash_profile` script is loaded every time you log i
 
 First, add the following lines to your bash profile \(use `vi ~/.bash_profile`\):
 
-{% code-tabs %}
-{% code-tabs-item title=".bash\_profile" %}
+{% code title=".bash\_profile" %}
 ```bash
 if [[ -f ~/.bashrc ]]; then
     source ~/.bashrc
 fi
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endcode %}
 
 These lines force the server to source your `.bashrc` run commands file when you log in. In that file, you should add the following lines:
 
-{% code-tabs %}
-{% code-tabs-item title=".bashrc" %}
+{% code title=".bashrc" %}
 ```bash
 export BOSSINSTALL="/besfs/users/${USER}/boss"
 export BOSSVERSION="7.0.4"
@@ -225,8 +222,7 @@ source "${BOSSINSTALL}/cmthome/setup.sh"
 source "${BOSSINSTALL}/workarea/TestRelease/TestRelease-*/cmt/setup.sh"
 export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endcode %}
 
 Notice that the commands we used the previous steps appear here again. The last line allows you to submit BOSS jobs to the 'queue' \(using the `hep_sub` command\) — for now, don't worry what this means.
 

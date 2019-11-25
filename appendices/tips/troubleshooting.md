@@ -43,13 +43,31 @@ This command is also available is used `source` to load [`jobs/CommonFunctions.s
 
 Check your `requirements` file. Packages that you need should be declared here as well. For instance, if you want to use `McTruth` packages such as `McParticle.h`, you should add the line:
 
-{% code-tabs %}
-{% code-tabs-item title="requirements" %}
+{% code title="requirements" %}
 ```text
 use McTruth     McTruth-*     Event
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endcode %}
+
+### I am not the right group for submitting jobs
+
+If you receive the error message
+
+```text
+hep_sub: error: argument -g/--group: invalid choice: 'physics' (choose from 'gpupwa', 'mlgpu')
+```
+
+or something with different group names, it means you are in the wrong job submit group. Write an email to Ms. Wen Shuoping to ask to be put in the group `physics` \(or whatever group you need\).
+
+### No resources in job submit group
+
+ If you receive the error message
+
+```text
+No resources in your group(s). So the job can not be submitted.
+```
+
+you should ask to be put in a different group \(probably `physhics`\). Write an email to Ms. Wen Shuoping.
 
 ### I cannot submit a job through `boss.condor` or `hep_sub` but see `ERROR: Failed to create new proc id` instead
 

@@ -150,13 +150,11 @@ _\(From_ `topoana` _terminal output.\)_
 
 Just like a BOSS job, you can submit a `topoana` job to the queue. This is useful if your data is extensive and you want to log out while the job is executed. Just write your command in a `bash` script like this:
 
-{% code-tabs %}
-{% code-tabs-item title="yourbashfile.sh" %}
+{% code title="yourbashfile.sh" %}
 ```bash
 { topoana.exe yourtopoanacard.card; } &> yourlogfile.log
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endcode %}
 
 The pipe \(`>`\) with the curly braces ensures that all output \(including warnings\) is written to the log file \(here, `yourlogfile.log`\).
 
