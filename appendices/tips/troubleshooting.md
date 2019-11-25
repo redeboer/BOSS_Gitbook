@@ -104,3 +104,15 @@ ApplicationMgr      FATAL Error initializing JobOptionsS
 it means you have encountered another nasty bug. It could have something to do with the environment of the terminal with which you log in: in the case of Windows, it is known to appear when [using the `wsl` terminal](./#compiling-on-windows-10). Try a different terminal \(such as [`git bash`](https://gitforwindows.org/)\) and the problem might disappear. It's magic!  
 _Update_: in Linux, the trick doesn't seem to work...
 
+
+
+### I cannot use a graphical interface from `lxslc`
+
+If, for instance, you cannot view a `TBrowser` or cannot open the event display `besvis.exe`, but instead see
+
+```text
+In case you run from a remote ssh session, reconnect with ssh -Y
+```
+
+you probably logged in with an SSH key and even using `ssh -Y`won't help. If you really need the graphical interfaces from `lxslc`, you will need to remove your public key from the `~/.ssh/authorized_keys` file \(just open and edit, it's just a text file\) and log in again.
+
