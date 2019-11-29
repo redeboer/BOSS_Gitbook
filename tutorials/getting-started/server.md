@@ -18,6 +18,14 @@ If you don't like having to enter your password every time you log in, have a lo
 
 In Windows, there are some nice tools that allow you to access the server. First of all, to be able to use SSH, use will either have to use [PuTTY](https://www.putty.org/) or more extensive software like [Xmanager](https://www.netsarang.com/products/xmg_overview.html). You can also just search for some Linux terminals for Windows. In addition, I would recommend you to work with the \(S\)FTP client [WinSCP](https://winscp.net/eng/index.php). It allows you to easily navigate the file structure of the IHEP server and to quickly transfer---even synchronise---files up and down to your own computer.
 
+{% hint style="info" %}
+Once in the server, you can switch to other versions of SLC using `hep_container`. So for instance, if you are in SLC7 \(CentOS\) and want to use SL6, you can use:
+
+`hep_container shell SL6`
+
+where `shell` can be replaced with your shell of choice.
+{% endhint %}
+
 ## Main directories
 
 When you have logged into the server, you usually start in your home \(`~`\) folder. Move to the root of the server \(`cd /`\) and you'll see that is a large number of other directories. A few of these directories contain space that is assigned to your user account. Here is an overview:
