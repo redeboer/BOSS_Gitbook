@@ -1,5 +1,9 @@
 # Running jobs
 
+{% hint style="warning" %}
+**@todo** Write section about [job submission through macros](http://afsapply.ihep.ac.cn/cchelp/en/local-cluster/jobs/HTCondor/#3213-tips-of-using-hepjob).
+{% endhint %}
+
 Particle physicists perform analyses on either data from measurements or on data from Monte Carlo simulation. In BOSS, it is possible to generate your own Monte Carlo simulations and to treat its output as ordinary data. There are there for three basic steps in running a Monte Carlo job on BOSS:
 
 1. `sim`: you perform a Monte Carlo simulation and generate a raw data file \(`rtraw`\).
