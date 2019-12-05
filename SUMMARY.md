@@ -48,6 +48,7 @@
 * [The BESIII Experiment](physics/besiii.md)
 * [Cutting](physics/cuts.md)
 * [Fitting procedures](physics/fitting.md)
+* [Visualization](physics/visualization.md)
 
 ## Appendices
 
@@ -60,5 +61,5 @@
 * [Glossary](appendices/glossary.md)
 * [About](appendices/about.md)
 * [BOSS Afterburner](https://redeboer.gitbook.io/boss_afterburner)
-* [Visualization](visualization.md)
+* [Publication procedure](publication-procedure.md)
 
