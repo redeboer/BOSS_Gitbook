@@ -60,4 +60,5 @@
 * [Glossary](appendices/glossary.md)
 * [About](appendices/about.md)
 * [BOSS Afterburner](https://redeboer.gitbook.io/boss_afterburner)
+* [Visualization](visualization.md)
 
