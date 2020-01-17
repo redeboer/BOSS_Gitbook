@@ -32,7 +32,7 @@
   * [Example packages](packages/analysis/example-packages/README.md)
     * [RhopiAlg](packages/analysis/example-packages/rhopi.md)
     * [PipiJpsiAlg](packages/analysis/example-packages/pipijpsi.md)
-  * [DDecayAlg](packages/analysis/ddecayalg-1.md)
+  * [DDecayAlg](packages/analysis/ddecayalg.md)
   * [TopoAna](packages/analysis/topoana/README.md)
     * [Required fields](packages/analysis/topoana/required.md)
     * [Optional fields](packages/analysis/topoana/optional.md)
