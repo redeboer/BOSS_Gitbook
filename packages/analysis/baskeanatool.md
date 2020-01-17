@@ -33,8 +33,8 @@ effect.
 
 * submit jobs flexible
 
-> For example, assuming you are now at directory "jobs", after "ls" you find many jobs
-> need to submitted.
+> For example, assuming you are now at directory "jobs", after "ls", you find many jobs
+> need to be submitted.
 ```bash
 jobs_ana_001.txt jobs_ana_004.txt jobs_ana_007.txt jobs_ana_010.txt 
 jobs_ana_002.txt jobs_ana_005.txt jobs_ana_008.txt jobs_ana_011.txt 
@@ -62,7 +62,37 @@ Hepsub type="C, Cpp, cxx" exe="root -l -b -q" sub="hep_sub -g physics"
 ```bash
 SimJpsi [decay.card] [number of events]
 ```
-> You can enjoy the physics and forget all dirty bash script!! 
+> You can enjoy the physics and forget all dirty bash script! 
 
 > How to DIY one?
-
+> Write the following into one file, for example "doSim.py"
+```python
+#!/usr/env python
+import SimAndRec
+from SimAndRec import util
+svc = SimAndRec.process("sim.txt","rec.txt")
+if len(util.getArv()) == 0:
+    svc.Make()
+    svc.Sub()
+elif '-make' in util.getArv():
+    svc.Make()
+```
+> The you can use "doSim.py" now
+```
+python doSim.py [decay.card] [number of events]
+```
+> I also suggest you push "alias SimDIY='python /path/to/doSim.py'", into your
+> configuration file, once you use "doSim.py frequently.
+> Look into BaskeAnaTool/SimAndRec/gen.py for simpler way to generate your DIY
+> command.
+* generate and submit typically BOSS event selection jobs
+> There is one class "ana" in module "Bes". Main features:
+```python
+setJobOption()
+addDataSet()
+addcut()
+make()
+sub()
+```
+> You can find some examples in the dirdirectory "BaskeAnaTool/tutorials"
+> Running "ana_Psi2S_inc.py", feeling it more directly.
