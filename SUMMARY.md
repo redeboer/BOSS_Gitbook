@@ -7,6 +7,7 @@
 * [Introduction to BESIII](tutorials/besiii.md)
 * [Getting started with BOSS](tutorials/getting-started/README.md)
   * [The IHEP server \(lxslc\)](tutorials/getting-started/server.md)
+  * [Data quota](tutorials/getting-started/data-quota.md)
   * [What is BOSS?](tutorials/getting-started/intro.md)
   * [Set up your BOSS environment](tutorials/getting-started/setup.md)
   * [Set up a BOSS package](tutorials/getting-started/setup-package.md)
