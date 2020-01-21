@@ -16,3 +16,5 @@ When you have logged into the server, you usually start in your home \(`~`\) fol
 **Do not exceed these quotas!** If you do, the folder of which you are exceeding its quota will be locked by the Computing Center after a few weeks and it is quite a hassle to regain access.
 {% endhint %}
 
+Official information on the quota can be found [here](http://afsapply.ihep.ac.cn/cchelp/en/experiments/BES/#712-storage).
+

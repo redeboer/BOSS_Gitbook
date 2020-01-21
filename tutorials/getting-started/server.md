@@ -26,9 +26,29 @@ Once in the server, you can switch to other versions of SLC using `hep_container
 where `shell` can be replaced with your shell of choice.
 {% endhint %}
 
+## Main directories
+
+When you have logged into the server, you usually start in your home \(`~`\) folder. Move to the root of the server \(`cd /`\) and you'll see that is a large number of other directories. A few of these directories contain space that is assigned to your user account. Here is an overview:
+
+| Path | Data quotum | Max. number of files | Remark |
+| :--- | :---: | :---: | :---: |
+| `/afs/ihep.ac.cn/users/<letter>/$USER` | 500 MB | NA | home \(`~`\) |
+| `/besfs/users/$USER` | 50 GB | 300,000 |  |
+| `/ihepbatch/bes/$USER` | 200 MB | NA |  |
+| `/workfs/bes/$USER` | 5 GB | 50,000 | no `hep_sub` available |
+| `/scratchfs/bes/$USER` | 500 GB | NA | max. 2 weeks\* |
+
+\* In practice, files remain on this server indefinitely.
+
+{% hint style="danger" %}
+**Do not exceed these quotas!** If you do, the folder of which you are exceeding its quota will be locked by the Computing Center after a few weeks and it is quite a hassle to regain access.
+{% endhint %}
+
+Of course, here, and in what follows, `$USER` refers to your user name.
+
 ## Important data paths
 
-Some other important directories for the BESIII Collaboration are the following:
+Some other important directories are the following:
 
 * [BOSS Software directory](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/How_to_setup_BOSS_environment_on_lxslc)
   * `/afs/ihep.ac.cn/bes3/offline/Boss` \(also referred to with `$BesArea`\)
