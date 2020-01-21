@@ -36,7 +36,9 @@ When you have logged into the server, you usually start in your home \(`~`\) fol
 | `/besfs/users/$USER` | 50 GB | 300,000 |  |
 | `/ihepbatch/bes/$USER` | 200 MB | NA |  |
 | `/workfs/bes/$USER` | 5 GB | 50,000 | no `hep_sub` available |
-| `/scratchfs/bes/$USER` | 500 GB | NA | max. 2 weeks |
+| `/scratchfs/bes/$USER` | 500 GB | NA | max. 2 weeks\* |
+
+\* In practice, files remain on this server indefinitely.
 
 {% hint style="danger" %}
 **Do not exceed these quotas!** If you do, the folder of which you are exceeding its quota will be locked by the Computing Center after a few weeks and it is quite a hassle to regain access.
