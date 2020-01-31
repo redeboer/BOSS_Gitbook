@@ -30,3 +30,21 @@ Within these folders, the data files are located under `offline/data` \(e.g. `/b
 Make sure you do not confuse the numbers when navigating these paths.
 {% endhint %}
 
+## Querying for data sets
+
+You can find information about the data sets through MySQL on `lxslc`. To open the database, type:
+
+```text
+mysql --user=guest --password=guestpass -h bes3db2.ihep.ac.cn offlinedb
+```
+
+Now it's a matter of searching through the database through MySQL query commands. Some examples \(in this case to find the exact energies of the data set\):
+
+* `show tables;`
+* `select * from MeasuredEcms where sample = "4360";`;
+* `select * from MeasuredEcms2 limit 20;`
+
+For a reference of MySQL queries, see [here](https://dev.mysql.com/doc/refman/8.0/en/).
+
+Note that there are a few BOSS packages that allow you to fetch data from the MySQL database from the C++ code. The main one is [`DatbaseSvc`](http://code.ihep.ac.cn/bes3/BOSS/tree/master/workarea/Database/DatabaseSvc). For fetching exact beam energy values, use [`MeasuredEcmsSvc`](http://code.ihep.ac.cn/bes3/BOSS/tree/master/workarea/Utilities/MeasuredEcmsSvc).
+
