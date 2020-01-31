@@ -32,7 +32,9 @@ Make sure you do not confuse the numbers when navigating these paths.
 
 ## Querying for data sets
 
-You can find information about the data sets through MySQL on `lxslc`. To open the database, type:
+### On `lxslc`
+
+You can find all information about the data sets through MySQL on `lxslc`. To open the database, type:
 
 ```text
 mysql --user=guest --password=guestpass -h bes3db2.ihep.ac.cn offlinedb
@@ -47,4 +49,10 @@ Now it's a matter of searching through the database through MySQL query commands
 For a reference of MySQL queries, see [here](https://dev.mysql.com/doc/refman/8.0/en/).
 
 Note that there are a few BOSS packages that allow you to fetch data from the MySQL database from the C++ code. The main one is [`DatbaseSvc`](http://code.ihep.ac.cn/bes3/BOSS/tree/master/workarea/Database/DatabaseSvc). For fetching exact beam energy values, use [`MeasuredEcmsSvc`](http://code.ihep.ac.cn/bes3/BOSS/tree/master/workarea/Utilities/MeasuredEcmsSvc).
+
+### Web interface
+
+Alternatively, you can have a look at this page  
+[http://bes3db.ihep.ac.cn/online/webserver/runinfo/runparams.php](http://bes3db.ihep.ac.cn/online/webserver/runinfo/runparams.php)  
+for an overview of run numbers et cetera.
 
