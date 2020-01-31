@@ -60,8 +60,7 @@
   * [Troubleshooting](appendices/tips/troubleshooting.md)
   * [IHEP GitLab](appendices/tips/ihep-gitlab.md)
 * [Further reading](appendices/references.md)
-* [Contributing](appendices/contributing.md)
+* [About & Contributing](appendices/contributing.md)
 * [Glossary](appendices/glossary.md)
-* [About](appendices/about.md)
 * [BOSS Afterburner](https://redeboer.gitbook.io/boss_afterburner)
 

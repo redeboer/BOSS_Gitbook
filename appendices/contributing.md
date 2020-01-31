@@ -1,12 +1,11 @@
-# Contributing
+# About & Contributing
 
-There are several means through which you can contribute to these tutorial pages or to the code in the repository itself.
+The BOSS GitBook has been set up not only to provide a set of **accessible** tutorial pages on the use of BOSS, but also a continuously updated **inventory of the available packages**. For now, it serves as a central, informal location to collect information about BESIII, but the aim is to migrate its content to a formal, interactive BESIII platform as soon as that has been set up.
 
-* **Email** Just [email me](about.md) if you see something that needs improvement or if there is something you would like to see documented.
-* **Through GitBook** Using GitBook is the most convenient method to collaborate on the tutorial pages: you can comment, discuss, work with drafts, merge them, etc.
-* **Through `git`** Contribute to both the tutorial pages and the code through `git`. For the tutorial pages, you will have to work with the MarkDown source files, but it allows for a larger number of collaborators.
+**It is quite easy to contribute!** There are a two ways to do this:
 
-In all cases, just [contact me](about.md) and I can give you access.
+* **Through GitBook** Using the GitBook web interface is the most convenient method to collaborate on these tutorial pages: you can comment, discuss, work with drafts, merge them, etc. You can get login details by emailing [remco.de.boer@ihep.ac.cn](mailto:remco.de.boer@ihep.ac.cn).
+* **Through GitHub** Otherwise, you can always fork the underlying repository \([github.com/redeboer/BOSS\_Gitbook](https://github.com/redeboer/BOSS_Gitbook)\) and add suggestions by [submitting a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
 
 ## Contributing through `git`
 

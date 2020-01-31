@@ -1,7 +1,7 @@
 # Set up your BOSS environment
 
 {% hint style="warning" %}
-**Warning:** In it's current version, this tutorial assumes you use a `bash` terminal. It should work for TC-shell as well, but if you experience problems, please [contact me](../../appendices/about.md).
+**Warning:** In it's current version, this tutorial assumes you use a `bash` terminal. It should work for TC-shell as well, but if you experience problems, please [contact me]().
 {% endhint %}
 
 {% hint style="success" %}

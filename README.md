@@ -1,7 +1,7 @@
 # The BOSS GitBook
 
 {% hint style="warning" %}
-Feedback on these pages is very welcome! See [About](appendices/about.md) for contact details.
+Feedback on these pages is very welcome! See [About & Contributing](appendices/contributing.md) for contact details.
 {% endhint %}
 
 This GitBook describes the use of the BESIII Offline Software System \(BOSS\). These pages started as a collection of notes, but now aim to serve several purposes:
@@ -36,14 +36,4 @@ Here are shortcuts that you might want to take:
    _\(These pages have not yet been written.\)_
 
 4. [**Tips, Tricks, and Troubleshooting**](appendices/tips/) ****These pages are used to collect problems that are frequently encountered when working with BOSS. As such, these notes are useful no matter your level. _New suggestions are most welcome!_
-
-## A note on the _BOSS Afterburner_
-
-Initially, these pages were part of the [_BOSS Afterburner_ repository](https://github.com/redeboer/BOSS_Afterburner). This repository has been split up into the pages that you are currently looking at and separates repositories that serves as extensions to BOSS, which aims providing tools to standardise analysis procedures at BESIII.
-
-* \*\*\*\*[**BOSS Starter Kit**](https://github.com/redeboer/BOSS_StarterKit), containing the following submodules:
-  * [Tutorials](https://github.com/redeboer/BOSS_Tutorials)
-  * [Job Submitter](https://github.com/redeboer/BOSS_JobSubmitter)
-  * [IniSelect](https://github.com/redeboer/BOSS_IniSelect)
-* \*\*\*\*[**BOSS Afterburner**](https://github.com/redeboer/BOSS_Afterburner)\*\*\*\*
 
