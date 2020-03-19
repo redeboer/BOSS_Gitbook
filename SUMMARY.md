@@ -41,7 +41,8 @@
   * [BesDChain](packages/analysis/besdchain.md)
   * [BaskeAnaTool](packages/analysis/baskeanatool.md)
   * [Other packages](packages/analysis/other.md)
-* [Beyond BOSS](packages/beyond-boss.md)
+* [Beyond BOSS](packages/beyond-boss/README.md)
+  * [Conda](packages/beyond-boss/conda.md)
 
 ## Physics
 
