@@ -1,5 +1,7 @@
 # TopoAna
 
+**TopoAna now has a corresponding paper [available on arXiv](https://arxiv.org/abs/2001.04016).**
+
 This package is an extremely helpful tool for analysing the topologies of [inclusive Monte Carlo samples](../../../appendices/glossary.md#inclusive-monte-carlo-simulation). Inclusive MC samples give us valuable information about the **background** of your analysis, as it allows you to know the true contributions to that background. If you know what components that background exists of, you can:
 
 * try to make smart cuts to remove those background components;
