@@ -1,6 +1,9 @@
 # TopoAna
 
-**TopoAna now has a corresponding paper [available on arXiv](https://arxiv.org/abs/2001.04016).**
+{% hint style="info" %}
+_Credit for the package goes to **Zhou Xingyu**_  
+For more information, see the [corresponding paper on arXiv](https://arxiv.org/abs/2001.04016).
+{% endhint %}
 
 This package is an extremely helpful tool for analysing the topologies of [inclusive Monte Carlo samples](../../../appendices/glossary.md#inclusive-monte-carlo-simulation). Inclusive MC samples give us valuable information about the **background** of your analysis, as it allows you to know the true contributions to that background. If you know what components that background exists of, you can:
 
@@ -14,11 +17,6 @@ All versions of the package can be found here on [the IHEP server](../../../tuto
 ```bash
 /besfs/users/zhouxy/tools/topoana
 ```
-
-{% hint style="info" %}
-_Credit for the package goes to **Zhou Xingyu**_  
-For more information about the motivation behind `topoana`, see [these slides](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/TopoAna/v1.6.9.1/doc/readme.pdf).
-{% endhint %}
 
 ## Preparing initial event selection
 
