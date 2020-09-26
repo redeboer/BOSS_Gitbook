@@ -1,4 +1,0 @@
-# Tips, Tricks, and Troubleshooting
-
-## 
-
